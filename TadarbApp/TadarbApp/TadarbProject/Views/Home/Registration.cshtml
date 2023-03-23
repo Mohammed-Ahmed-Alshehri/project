@@ -1,0 +1,519 @@
+﻿@model OrganizationVM
+
+@{
+    ViewData["Title"] = "التسجيل";
+}
+
+<head>
+    <link rel="stylesheet" href="~/css/RegistrationStyle.css" asp-append-version="true" />
+    <head>
+
+
+        
+
+        <!-- boosteatch CSS -->
+
+        <link rel="stylesheet" href="~/css/boostwatch.css" asp-append-version="true" />
+
+
+        <!--icones from awesfont-->
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    </head>
+
+</head>
+
+@*///كود للتحقق من حال ارسال الايميل وتبديل شكل الصفحة *@
+
+@{
+    var DisplayBEmail = "none";
+    var DisplayAEmail = "block";
+    var HasSendE = (bool)ViewData["EmailSend"];
+
+    if (HasSendE)
+    {
+        DisplayBEmail = "block";
+        DisplayAEmail = "none";
+    }
+}
+@*----------------------------------------------------------------*@
+
+<div class="alert alert-success" role="alert" style="display:@DisplayBEmail">
+    <h4 class="alert-heading">لقد تم تسجيلك بنجاح!</h4>
+    <br />
+  <hr>
+    <p>الرجاء التحقق من بريدكم الإلكتروني  المسجل وتفعيله لكي تتمكن من تسجيل الدخول في المنصة.</p>
+</div>
+
+
+<section class="" style="text-align: right; display:@DisplayAEmail">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-12">
+                <div class="card card-registration card-registration-2" style="border-radius: 15px;">
+                    <div class="card-body p-0">
+
+                        <form method="post" asp-action="Registration" enctype="multipart/form-data" class="needs-validation" novalidate>
+                            <div class="row g-0" >
+
+
+
+
+                                <div class="col-lg-6" >
+                                    <div class="p-5">
+                                        <h3 class="fw-normal mb-5" style="color: #4835d4;">معلومات المنظمة</h3>
+
+                                        <div class="form-group">
+                                            <label for="TypeNameOrganiaztion" class="form-label">نوع المنظمة </label>
+                                            <select asp-for="organization.Organization_TypeId" asp-items="@Model.OrganizationTypeListItems" class="form-select" id="validationCustom04" required>
+                                                <option selected disabled value="">-- نوع المنظمة --</option>
+
+                                            </select>
+                                            <div class="invalid-feedback">
+                                                الرجاء إدخال نوع المنظمة
+                                            </div>
+                                        </div>
+
+
+                                 
+                                        <br />
+                                        <div class="row">
+                                            <div class="col-md-6 mb-4 pb-2">
+
+                                                <div class="form-outline" style="text-align: right;">
+
+                                                    <label class="form-label" for="CommercialRegistrationNumber">السجل التجاري</label>
+
+                                                    <input asp-for="organization.CommercialRegistrationNumber" type="text" id="CommercialRegistrationNumberID" class="form-control form-control-lg" required />
+                                                    <div class="invalid-feedback" style="text-align: right;"> الرجاء إدخال السجل التجاري </div>
+
+                                                </div>
+
+                                            </div>
+                                            <div class="col-md-6 mb-4 pb-2">
+
+                                                <div class="form-outline" style="text-align: right;">
+                                                    <label class="form-label" for="OrganizationName">اسم المنظمة</label>
+                                                    <input asp-for="organization.OrganizationName" type="text" id="OrganizationNameID" class="form-control form-control-lg" required />
+                                                    <div class="invalid-feedback" style="text-align: right;"> الرجاء إدخال اسم المنظمة </div>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group" style="text-align: right;">
+                                            <label for="FieldOfOrganization_SpecialtiesField" class="form-label mt-4">المجال الرئيسي</label>
+                                            <select asp-for="organization.FieldOfOrganization_SpecialtiesFieldId" asp-items="@Model.FieldListItems" class="form-select" id="validationCustom04" required>
+                                                <option selected disabled value="">--المجال العام--</option>
+
+                                            </select>
+                                            <div class="invalid-feedback">
+                                                الرجاء إدخال المجال الرئيسي
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-group" style="text-align: right;">
+                                            <label for="CountryName" class="form-label mt-4">الدولة</label>
+                                            <select asp-items="@Model.CountryListItems" class="form-select" id="CountryNameID" required>
+                                                <option selected disabled value="">--الدولة--</option>
+
+                                            </select>
+                                            <div class="invalid-feedback">
+                                                الرجاء إدخال الدولة
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group" style="text-align: right;">
+                                            <label for="MainBranchCity" class="form-label mt-4">الفرع الرئيسي</label>
+                                            <select asp-for="organization.MainBranchCityId" asp-items="@Model.CityListItems" class="form-select" id="CountryNameID" required>
+                                                <option selected disabled value="">--مدينة الفرع الرئيسي--</option>
+
+                                            </select>
+                                            <div class="invalid-feedback">
+                                                الرجاء إدخال مدينة الفرع الرئيسي
+                                            </div>
+                                        </div>
+
+
+                               
+                                        <br />
+
+
+                                        <div class="row">
+                                            <div class="col-md-6 mb-4 pb-2" style="text-align: right;">
+
+                                                <div class="form-group">
+
+                                                    <label for="LogoPathFile" class="form-label mt-4"> إرفاق شعار المنظمة</label>
+
+                                                    @* //(imgFile)هنا اسم الملف الصورة مهم يطابق الاسم في الكنترولر لنه سيتم ارساله مع المودل.*@
+                                                    <input type="file" id="uploadField" name="imgFile" class="form-control" required accept="image/png" />
+                                                    <div class="invalid-feedback" style="text-align: right;"> الرجاء إرفاق شعار المنظمة بصيغة(.png) </div>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="col-md-6 mb-4 pb-2" style="text-align: right;">
+                                                <br />
+                                                <div class="form-outline">
+                                                    <label class="form-label" for="OrganizationURL"> إرفاق رابط المنظمة</label>
+                                                    <input asp-for="organization.OrganizationURL" type="text" id="OrganizationURLID" class="form-control form-control-lg" required />
+                                                    <div class="invalid-feedback" style="text-align: right;"> الرجاء إرفاق رابط المنظمة </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="input-group mb-3" style="text-align: right;">
+
+                                            <input type="text" class="form-control" id="LocationID" placeholder="موقع المنظمة"
+                                                   aria-label="Recipient's username" aria-describedby="button-addon2" disabled>
+
+                                            <button class="btn btn-primary" type="button" id="ButtonLocation" onclick="getLocation()">أدخل الموقع الحالي</button>
+
+                                            @*  //لكي تتلاعب بقيمة المودل فاليو بالجافا سكربت لابد hidden*@
+                                            <input asp-for="organization.Location" id="LocationValue" value="" hidden required />
+                                            <div class="invalid-feedback" style="text-align: right;"> الرجاء رفع موقع المنظمة </div>
+                                        </div>
+
+
+
+                                    </div>
+
+
+
+
+
+                                </div>
+
+                                <div class="col-lg-6 bg-indigo text-white">
+                                    <div class="p-5">
+                                        <h3 class="fw-normal mb-5">معلومات شخصية</h3>
+
+                                        <div class="mb-4 pb-2">
+                                            <div class="form-outline" style="text-align: right;">
+                                                <label class="form-label" for="FullName">الاسم الثلاثي</label>
+                                                <input asp-for="userAcount.FullName" type="text" id="FullNameID" class="form-control form-control-lg" required />
+                                                <div class="invalid-feedback" style="text-align: right;"> الرجاء إدخال الاسم الثلاثي </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-4 pb-2">
+                                            <div class="form-outline" style="text-align: right;">
+                                                <label class="form-label" asp-for="userAcount.UserEmail" for="UserEmail">البريد الإلكتروني</label>
+                                                <input asp-for="userAcount.UserEmail" type="email" id="UserEmailID" class="form-control form-control-lg" required />
+                                                <div class="invalid-feedback" id="UserEmailMassage" style="text-align: right;"> الرجاء إدخال البريد الإلكتروني </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6 mb-4 pb-2">
+
+                                                <div class="form-outline" style="text-align: right;">
+                                                    <label class="form-label" for="ConfirmUserPassword">تأكيد كلمة المرور</label>
+                                                    <input asp-for="userAcount.UserPassword" type="password" id="ConfirmUserPasswordID" class="form-control form-control-lg" required />
+                                                    <div class="invalid-feedback" id="ConfirmPasswordMassage" style="text-align: right;"> الرجاء تأكيد كلمة المرور </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="col-md-6 mb-4 pb-2">
+
+                                                <div class="form-outline" style="text-align: right;">
+                                                    <label class="form-label" for="UserPassword">كلمة المرور</label>
+                                                    <input type="password" id="UserPasswordID" class="form-control form-control-lg" required />
+                                                    <div class="invalid-feedback" id="PasswordMassage" style="text-align: right;"> الرجاء إدخال كلمة المرور </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-4 pb-2">
+                                            <div class="form-outline" style="text-align: right;">
+                                                <label class="form-label" for="Phone">الجوال</label>
+
+                                                <input asp-for="userAcount.Phone" type="string" id="PhoneID" class="form-control form-control-lg"   required />
+                                                <div class="invalid-feedback" style="text-align: right;" id="PhoneIDMassage"> الرجاء إدخال رقم الجوال </div>
+@*                                                <span asp-validation-for="userAcount.Phone" class="text-danger" style="text-align: right;"></span>
+*@                                            </div>
+                                        </div>
+
+
+
+
+
+                                        <div class="form-check d-flex justify-content-start mb-4 pb-3">
+                                            <input class="form-check-input me-3" type="checkbox" value="" id="form2Example3c" />
+                                            <label class="form-check-label text-white" for="form2Example3">
+                                               
+                                            </label>
+                                        </div>
+
+                                        <div class="row">
+                                            <button type="submit" class="btn btn-primary btn-lg" onclick="return ValidateInputImage()"
+                                                    data-mdb-ripple-color="dark">
+                                                تسجيل
+                                            </button>
+                                            
+
+                                        </div>
+
+                                        
+
+                                    </div>
+
+                                   
+
+                                </div>
+
+                               
+
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+@section Scripts{
+
+
+    <script>
+
+
+        //الكود هذا بوتسرتراب يتحقق من جميع الانبت إذا فاضيه أو لا
+
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+        (function ()
+        {
+
+            'use strict'
+
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.querySelectorAll('.needs-validation')
+
+            // Loop over them and prevent submission
+            Array.prototype.slice.call(forms)
+                .forEach(function (form) {
+                    form.addEventListener('submit', function (event) {
+
+                        if (CustomValidation() || !form.checkValidity() || CustomValidation2()) {
+
+                            event.preventDefault()
+                            event.stopPropagation()
+                        }
+
+                        form.classList.add('was-validated')
+                    }, false)
+                    })
+        })()
+
+
+        //document.querySelector('#UserEmailID').addEventListener('blur', CustomValidation);
+
+        function CustomValidation()
+        {
+
+            var E = document.getElementById("UserEmailID");
+
+            var EM = document.getElementById("UserEmailMassage");
+
+            $(document).ready(function () {
+
+                $.ajax({
+                    type: "GET",
+                    url: "@Url.Action("EmailExists")", 
+
+                    data: { Email: E.value },
+
+                    dataType: "json",
+                    success: function (data) {
+                        if (data.exists) {
+
+                                       E.classList.remove('is-valid');
+
+                                       E.classList.add('is-invalid');
+
+                                       EM.innerHTML = "الايميل مسجل مسبقا في النظام";
+                                       
+                                        return true;
+
+                        }
+                        else {
+
+                                       E.classList.add('is-valid');
+
+                                       E.classList.remove('is-invalid');
+
+                                       EM.innerHTML = "الرجاء إدخال البريد الإلكتروني";
+
+
+                        }
+                    }
+                });
+
+            });
+
+
+            return false;
+        }
+
+        //function CustomValidation2() 
+
+        //{
+
+
+        //    var P = document.getElementById("PhoneID");
+
+        //    var PM = document.getElementById("PhoneIDMassage");
+
+        //    if (true) {
+
+        //        P.classList.remove('is-valid');
+
+        //        PE.classList.add('is-invalid');
+
+        //        PM.innerHTML = "الرجاء ادخال رقم جوال صحيح";
+
+        //        return true;
+        //    }
+
+        //    else{
+
+        //        P.classList.add('is-valid');
+
+        //        P.classList.remove('is-invalid');
+
+        //        PM.innerHTML = "00الرجاء إدخال رقم الجوال";
+        //    }
+
+        //    return false;
+        //}
+
+
+        function CustomValidation2(){
+            var P = document.getElementById("PhoneID")
+            var PM = document.getElementById("PhoneIDMassage");
+
+            if(P.length < 10){
+                P.classList.remove('is-valid');
+                P.classList.add('is-invalid');
+
+                PM.innerHTML = "يجب أن يكون رقم الجوال مكون من عشرة أرقام";
+                return false
+            }
+
+            if (P.length > 10) {
+                P.classList.remove('is-valid');
+                P.classList.add('is-invalid');
+
+                PM.innerHTML = "يجب أن يكون رقم الجوال مكون من عشرة أرقام";
+                return false
+            }
+
+            if((P.charAt(0) != 0) && (P.charAt(0) != 5)){
+                P.classList.remove('is-valid');
+                P.classList.add('is-invalid');
+
+                PM.innerHTML = "يجب أن يبدأ رقم الجوال بـ 05 ";
+                return false
+
+            }
+
+        }
+
+       
+
+
+
+        
+         
+        
+
+        //-------------انتهاء كود البوتستراب للتحقق------------------------
+
+        //------------للتأكد من مدخل الصوره هل فارغ أو لا عن طريق طريقة SweetAlert------------------
+
+        function ValidateInputImage() {
+            if (document.getElementById("uploadField").value == "") {
+
+
+                Swal.fire({
+                    icon: 'error',
+                    title: '..حدث خطأ ',
+                    text: 'الرجاء إرفاق شعار المنظمة لإكمال التسجيل',
+                })
+            }
+
+        }
+
+
+
+
+        var loc;
+        var x = document.getElementById("LocationID");
+        var z = document.getElementById("LocationValue");
+
+        function getLocation() {
+
+            //الكود هذا يشوف اذا المتصفج تبع المستخدم يدعم اتاحة الموقع
+            if (!window.navigator.geolocation) {
+
+                window.alert("المتصفح لا يدعم اماكية تحديد الموقع الرجاء استخدام متصفح اخر.");
+            }
+
+
+            // success is a function to handel success status of the service.
+            // error is a function to handel errors status of the service.
+            // options is an opj to set  some options.
+
+            window.navigator.geolocation.getCurrentPosition(success, error, options);
+        }
+
+        //3
+        const options = {
+
+            enableHighAccuracy: true, timeout: 5000, maximumAge: 0
+
+        };
+        //1
+        function success(position) {
+
+            const UserLatitude = position.coords.latitude;
+
+            const UserLongitude = position.coords.longitude;
+
+            loc = " " + UserLatitude + ", " + UserLongitude;
+
+            x.placeholder = loc;
+            z.value = loc;
+
+        }
+        //2
+        //في حال اليوزر ما ضغط سماح على اعطاء الموقع
+        function error(err) {
+
+            //console.log(err);
+            // err === 1 يعني ان المستخدم رفض ادخال الموقع
+            if (err.code === 1) {
+
+                window.alert("الرجاء السماح بادخال الموقع.")
+            }
+
+            // خطاء اخر غير متوقع
+            else {
+                window.alert("خدمة الموقع غير متاحة الرجاء المحاولة في وقت لاحق.")
+            }
+
+        }
+
+
+    </script>
+
+    }

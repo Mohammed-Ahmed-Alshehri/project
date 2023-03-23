@@ -1,0 +1,107 @@
+﻿.hero_a {
+    height: 95vh;
+    position: relative;
+    background-image: url(../images/AppImages/backgroundd.png);
+    background-size: cover;
+    background-position: bottom;
+}
+
+.slider {
+    margin-top: 8cm;
+}
+
+.p {
+    font-size: large;
+    color: rgb(255, 255, 255);
+    font-style: bold;
+    text-align: center;
+    padding-top: 1cm;
+}
+
+.h1 {
+    font-size: larger;
+    color: rgb(255, 255, 255);
+    font-style: bolder;
+    text-align: center;
+    padding-top: 5cm;
+}
+
+
+.btn-1 {
+    width: 145px;
+    display: inline-block;
+    padding: 8px 0;
+    background-color: #d8bf36;
+    font-weight: bold;
+    font-size: x-large;
+    color: #000000;
+    border-radius: 30px;
+    text-align: center;
+    align-items: center;
+}
+
+    .btn-1:hover {
+        background-color: #a5953d;
+        color: rgb(255, 255, 255);
+    }
+
+
+
+
+
+.btn-2 {
+    width: 145px;
+    display: inline-block;
+    padding: 8px 0;
+    background-color: #ffffff;
+    font-weight: bold;
+    font-size: x-large;
+    color: #000000;
+    border-radius: 30px;
+    text-align: center;
+}
+
+
+
+    .btn-2:hover {
+        background-color: rgb(108, 108, 108);
+        color: rgb(255, 255, 255);
+    }
+
+.sec2 {
+    padding: 6em 0 1em;
+    text-align: center;
+    background-color: #eaf1f1;
+    border-bottom: 1px solid rgba(0,0,0,.05)
+}
+
+    /* icons stayle*/
+    .sec2 .ic {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 150px;
+        height: 150px;
+        margin: 0 auto 1rem;
+        font-size: 2rem;
+        line-height: 1;
+        color: rgb(85, 111, 120);
+        background: linear-gradient(145deg, #276877 0%, #3dbfd0 80%);
+        border-radius: 50%
+    }
+
+/* .ic{
+    background-color: rgb(34, 91, 112);
+    
+    color: #e6e6e6;
+    padding:20%;
+    border-radius: 50%;
+
+  } */
+
+.p1 {
+    font-size: larger;
+    color: rgb(0, 0, 0);
+    font-style: bolder;
+    text-align: center;
+}

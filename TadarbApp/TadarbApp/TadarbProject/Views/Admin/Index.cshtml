@@ -1,0 +1,196 @@
+﻿@model IEnumerable<Organization>
+@{
+    ViewData["Title"] = "الصفحة الرئيسية";
+}
+<head>
+
+
+  
+           <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- boosteatch CSS -->
+
+    <link rel="stylesheet" href="~/css/boostwatch.css" asp-append-version="true" />
+
+
+
+
+
+    <style>
+        .dash-count {
+            text-align: center;
+        }
+
+        .carddd:hover {
+            background-color: rgba(122, 122, 122, 0.5);
+        }
+    </style>
+</head>
+
+
+
+<div class="content container-fluid">
+    <div class="row">
+        <div class="col-xl-3 col-sm-3 col-12"> </div>
+
+        <div class="col-xl-3 col-sm-3 col-12">
+
+
+            <div class="card carddd" type="button" value="uni" onclick="location.href='https://localhost:44367/admin/?TypeId=1';">
+                <div class="card-body">
+                    <div class="dash-widget-header">
+
+
+                        
+
+                        <div class="dash-count">
+
+
+                            <img src="/images/AppImages/school.png">
+                            <h1>الجامعات</h1>
+                            <h3> 5,500</h3>
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-sm-3 col-12">
+
+            <div class="card carddd" type="button" value="comp" onclick="location.href='https://localhost:44367/admin/?TypeId=2';">
+
+                <div class="card-body">
+                    <div class="dash-widget-header">
+
+
+
+                        <div class="dash-count">
+
+                            <img src="/images/AppImages/office-building.png">
+                            <h1>الشركات</h1>
+                            <h3> 10,555</h3>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+        <div class="col-xl-3 col-sm-3 col-12"> </div>
+
+
+    </div>
+    <div class="row">
+        <div class="col-md-12 d-flex">
+
+            <div class="card card-table flex-fill">
+                <div class="card-header">
+                    <h4 class="card-title float-start">
+                    </h4>
+                    <form asp-action="index" method="get">
+                        <div class="table-search float-end">
+                            <input type="text" class="form-control" placeholder="Search">
+
+                        </div>
+                        <div class="table-search float-end">
+                            <button class="btn  btn-outline-secondary" type="submit"><i class="fa fa-search"></i></button>
+                        </div>
+                        <div class="table-search float-start">
+                            <button class="btn  btn-outline-primary" type="submit">ظهور الكل</button>
+                        </div>
+                    </form>
+                    <div class="table-search float-end">
+                        <select class="form-select " style="text-align: right" id="stauts" name="stauts">
+                            <option value="" disabled selected> :الحالة</option>
+
+                            <option value="Active">نشط </option>
+
+                            <option value="non-Active" onclick="location.href='https://localhost:44367/admin/?TypeId=2';">غير نشط</option>
+                            <option value="reject" onclick="location.href='https://localhost:44367/admin/?TypeId=2';"> مرفوض</option>
+
+                        </select>
+                    </div>
+                  
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive no-radius">
+
+                        <table class="table table-hover table-center">
+                            <thead>
+                                <tr>
+
+                                    <th>الشعار</th>
+                                    <th>الاسم</th>
+                                    <th class="text-center">تاريخ الانضمام</th>
+                                    <th class="text-center">الحالة</th>
+                                    <th class="text-end">التفاصيل</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                @foreach (var item in Model)
+                                {
+                                   
+
+                                    var stat = @item.ActivationStatus;
+
+                                    <tr>
+                                        <td class="text-nowrap">
+                                            <div class="font-weight-600">
+                                                @item.LogoPath
+                                            </div>
+                                        </td>
+
+
+                                        <td class="text-nowrap"> @item.OrganizationName</td>
+                                        <td class="text-center">
+                                            @item.SubscriptionDate
+                                        </td>
+                                        @if (stat == "Active")
+                                        {
+                                            <td class="text-nowrap text-success "><em>نشط</em></td>
+                                        }
+                                        @if (stat == "Not_Active")
+                                        {
+                                            <td class="text-nowrap text-warning "> <em>غير نشط</em></td>
+                                        }
+                                        @if (stat == "Reject")
+                                        {
+                                            <td class="text-nowrap text-danger "><em>مرفوض</em></td>
+
+                                        }
+                                        <td class="text-end">
+                                            <div class="font-weight-600 ">
+                                                <button type="button" class="btn btn-outline-primary" fdprocessedid="ezqldw">تفاصيل اكثر</button>
+                                            </div>
+
+                                        </td>
+                                    </tr>
+
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+@section Scripts{
+
+  <script>
+
+        
+
+    </script>
+}
+
