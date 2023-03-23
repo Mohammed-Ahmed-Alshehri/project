@@ -3185,11 +3185,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\moham\\Desktop\\IS15\\GraduationProject\\TadarbApp\\TadarbProject\\TadarbProject.csproj",
+      "projectUniqueName": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbProject\\TadarbProject.csproj",
       "projectName": "TadarbProject",
-      "projectPath": "C:\\Users\\moham\\Desktop\\IS15\\GraduationProject\\TadarbApp\\TadarbProject\\TadarbProject.csproj",
+      "projectPath": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbProject\\TadarbProject.csproj",
       "packagesPath": "C:\\Users\\moham\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\moham\\Desktop\\IS15\\GraduationProject\\TadarbApp\\TadarbProject\\obj\\",
+      "outputPath": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbProject\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\moham\\AppData\\Roaming\\NuGet\\NuGet.Config",

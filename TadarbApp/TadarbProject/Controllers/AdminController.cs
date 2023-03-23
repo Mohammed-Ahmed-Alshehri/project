@@ -37,16 +37,16 @@ namespace TadarbProject.Controllers
             if (TypeId == 1)
             {
 
-                OrganizationList = _DbContext.Organizations.Where(item => item.Organization_TypeId == 1).ToList();
+                var OrganizationListU = OrganizationList.Where(item => item.Organization_TypeId == 1).ToList();
 
-
+                return View(OrganizationListU);
             }
 
             if (TypeId == 2)
             {
-                OrganizationList = _DbContext.Organizations.Where(item => item.Organization_TypeId == 2).ToList();
+                var OrganizationListC = OrganizationList.Where(item => item.Organization_TypeId == 2).ToList();
 
-
+                return View(OrganizationListC);
             }
 
             return View(OrganizationList);
