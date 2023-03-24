@@ -1,17 +1,8 @@
-﻿@model IEnumerable<Organization>
+﻿
 @{
     ViewData["Title"] = "الصفحة الرئيسية";
+   
 }
-<head>
-
-
-  
-           <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-    <!-- boosteatch CSS -->
-
-    <link rel="stylesheet" href="~/css/boostwatch.css" asp-append-version="true" />
-
 
 
 
@@ -25,7 +16,7 @@
             background-color: rgba(122, 122, 122, 0.5);
         }
     </style>
-</head>
+
 
 
 
@@ -107,20 +98,31 @@
                     </form>
 
                     <div class="col-sm-6">
-                        <div class="btn-group" data-toggle="buttons">
+                 
+
+                        <div class="btn-group" role="group" aria-label="Basic radio toggle button group" >
+
+                            <input type="radio" class="btn-check" name="btnradio" id="btnradio1"  autocomplete="off"  style="display:none" checked>
+                            <label class="btn btn-outline-primary" for="btnradio1" style="display:none"></label>
+
                             <label class="btn btn-info active">
-                                <input type="radio" name="status" value="all" checked="checked"> الكل
+                                <input class="btn btn-info" type="radio" name="status" value="all" checked="checked" onclick="BasedOnstSatus('')"> الكل
                             </label>
                             <label class="btn btn-success">
-                                <input type="radio" name="status" value="active"> نشط
+                                <input type="radio" name="status" value="active" onclick="BasedOnstSatus('Active')"> نشط
                             </label>
                             <label class="btn btn-warning">
-                                <input type="radio" name="status" value="inactive"> غير نشط
+                                <input type="radio" name="status" value="inactive" onclick="BasedOnstSatus('Not_Active')"> غير نشط
                             </label>
                             <label class="btn btn-danger">
                                 <input type="radio" name="status" value="expired"> مرفوض
-                            </label>							
+                            </label>
+
+                            <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" style="display:none" checked>
+                            <label class="btn btn-outline-primary" for="btnradio1" style="display:none"></label>
+
                         </div>
+
                     </div>
 
 
@@ -145,61 +147,28 @@
                             <thead>
                                 <tr>
 
-                                    <th>الشعار</th>
+                                   
                                     <th>الاسم</th>
                                     <th class="text-center">تاريخ الانضمام</th>
                                     <th class="text-center">الحالة</th>
                                     <th class="text-end">التفاصيل</th>
-                                </tr>
+                               </tr>
                             </thead>
-                            <tbody>
 
-                                @foreach (var item in Model)
-                                {
-                                   
-
-                                    var stat = @item.ActivationStatus;
-
-                                    <tr>
-                                        <td class="text-nowrap">
-                                            <div class="font-weight-600">
-                                                @item.LogoPath
-                                            </div>
-                                        </td>
+                            <tbody id="tbody">
 
 
-                                        <td class="text-nowrap"> @item.OrganizationName</td>
-                                        <td class="text-center">
-                                            @item.SubscriptionDate
-                                        </td>
-                                        @if (stat == "Active")
-                                        {
-                                            <td class="text-nowrap text-success "><em>نشط</em></td>
-                                        }
-                                        @if (stat == "Not_Active")
-                                        {
-                                            <td class="text-nowrap text-warning "> <em>غير نشط</em></td>
-                                        }
-                                        @if (stat == "Reject")
-                                        {
-                                            <td class="text-nowrap text-danger "><em>مرفوض</em></td>
-
-                                        }
-                                        <td class="text-end">
-                                            <div class="font-weight-600 ">
-                                                <button type="button" class="btn btn-outline-primary" fdprocessedid="ezqldw">تفاصيل اكثر</button>
-                                            </div>
-
-                                        </td>
-                                    </tr>
-
-                                }
+                               
                             </tbody>
+
+                  
                         </table>
                     </div>
+
+                  
+
                 </div>
             </div>
-
         </div>
     </div>
 </div>
@@ -209,7 +178,65 @@
 
   <script>
 
-        
+        BasedOnstSatus();
+
+
+        function BasedOnstSatus(sta)
+        {
+            var body = '';
+            var sa = '';
+            $(document).ready(function () 
+            {
+
+                $.ajax({
+                    type: "GET",
+                    url: "@Url.Action("GetByActivationStatus")",
+
+                    data: { status: sta },
+
+                    dataType: "json",
+                    success: function (data) 
+                    {
+
+
+                        $.each(data.list, function (key, value) {
+
+                            if (value.activationStatus == "Active")
+                                sa = 'نشط';
+                            if (value.activationStatus == "Not_Active")
+                                sa = 'غير نشط';
+                            
+                            body +=
+
+                                '<tr> <td> ' + value.organizationName
+                                + '</td><td>'
+                                + value.subscriptionDate.substr(0, 10)
+                                + '</td><td>'
+                                +  sa
+                                + '</td><td>'
+                                + '<a class="btn btn-outline-primary" href="https://localhost:44367/admin/OrganizationDetails/?id=' + value.organizationId + ' " >تفاصيل الطلب</a>'
+                                + '</td></tr>';
+                                
+                           
+                         
+                     
+                       });
+
+
+                        ////$('#tbody')= body;
+                        //$('#tbody').val() = body;
+                        $('#tbody').html(body);
+
+                        
+                    }
+                });
+
+            });
+        }
+
+      
+ 
+
 
     </script>
 }

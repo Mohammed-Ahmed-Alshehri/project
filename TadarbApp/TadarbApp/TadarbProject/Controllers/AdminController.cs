@@ -8,8 +8,8 @@ using TadarbProject.Models.ViewModels;
 using TEST2.Services;
 
 namespace TadarbProject.Controllers
-{ 
-//yazeed edit
+{
+    //yazeed edit
     //badr modify
     //abdulhadi
     public class AdminController : Controller
@@ -29,30 +29,30 @@ namespace TadarbProject.Controllers
         public IActionResult Index(int? TypeId)
         {
 
-            var OrganizationList = _DbContext.Organizations.ToList();
+            /* var OrganizationList = _DbContext.Organizations.ToList();
 
-            if (TypeId == null)
-            {
-                return View(OrganizationList);
-            }
+             if (TypeId == null)
+             {
+                 return View(OrganizationList);
+             }
 
-            if (TypeId == 1)
-            {
+             if (TypeId == 1)
+             {
 
-                var OrganizationListU = OrganizationList.Where(item => item.Organization_TypeId == 1).ToList();
+                 var OrganizationListU = OrganizationList.Where(item => item.Organization_TypeId == 1).ToList();
 
-                return View(OrganizationListU);
-            }
+                 return View(OrganizationListU);
+             }
 
-            if (TypeId == 2)
-            {
-                var OrganizationListC = OrganizationList.Where(item => item.Organization_TypeId == 2).ToList();
+             if (TypeId == 2)
+             {
+                 var OrganizationListC = OrganizationList.Where(item => item.Organization_TypeId == 2).ToList();
 
-                return View(OrganizationListC);
+                 return View(OrganizationListC);
 
-            }
-
-            return View(OrganizationList);
+             }
+ */
+            return View();
         }
 
 
@@ -67,27 +67,44 @@ namespace TadarbProject.Controllers
 
             var Organization = _DbContext.Organizations.FirstOrDefault(item => item.OrganizationId == id);
 
+
+
             if (Organization == null)
             {
                 return NotFound();
             }
 
+            var Ruser = _DbContext.UserAcounts.FirstOrDefault(item => item.UserId == Organization.ResponsibleUserId);
 
-            return View(Organization);
+            OrganizationVM organizationVM = new OrganizationVM { organization = Organization, userAcount = Ruser };
+
+
+            return View(organizationVM);
         }
 
 
 
 
         #region
-        public IActionResult GetAllUsers()
+        public IActionResult GetByActivationStatus(string? status)
         {
+            /* var list = _DbContext.Organizations.ToList();*/
 
-            var UserAcountList = _DbContext.UserAcounts.ToList();
+            IEnumerable<Organization> list;
 
-            var CityList = _DbContext.Cities.ToList();
+            if (status == null)
+            {
+                list = _DbContext.Organizations.ToList();
 
-            return Json(new { data = CityList });
+                return Json(new { list });
+            }
+
+
+            list = _DbContext.Organizations.Where(item => item.ActivationStatus.Equals(status)).OrderByDescending((item => item.SubscriptionDate));
+
+
+
+            return Json(new { list });
         }
 
 
