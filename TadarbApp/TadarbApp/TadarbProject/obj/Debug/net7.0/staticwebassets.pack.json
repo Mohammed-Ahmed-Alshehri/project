@@ -1,359 +1,359 @@
 {
   "Files": [
     {
-      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GraduationProject\\New folder\\TadarbApp\\TadarbApp\\TadarbProject\\obj\\Debug\\net7.0\\scopedcss\\projectbundle\\TadarbProject.bundle.scp.css",
+      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\obj\\Debug\\net7.0\\scopedcss\\projectbundle\\TadarbProject.bundle.scp.css",
       "PackagePath": "staticwebassets\\TadarbProject.bundle.scp.css"
     },
     {
-      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GraduationProject\\New folder\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\EmailTemplates\\verificationtemplate.html",
+      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\EmailTemplates\\verificationtemplate.html",
       "PackagePath": "staticwebassets\\EmailTemplates\\verificationtemplate.html"
     },
     {
-      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GraduationProject\\New folder\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\AppImages\\analytics.png",
+      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\AppImages\\analytics.png",
       "PackagePath": "staticwebassets\\Images\\AppImages\\analytics.png"
     },
     {
-      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GraduationProject\\New folder\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\AppImages\\backgroundd.png",
+      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\AppImages\\backgroundd.png",
       "PackagePath": "staticwebassets\\Images\\AppImages\\backgroundd.png"
     },
     {
-      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GraduationProject\\New folder\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\AppImages\\hierarchical-structure (1).png",
+      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\AppImages\\hierarchical-structure (1).png",
       "PackagePath": "staticwebassets\\Images\\AppImages\\hierarchical-structure (1).png"
     },
     {
-      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GraduationProject\\New folder\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\AppImages\\list.png",
+      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\AppImages\\list.png",
       "PackagePath": "staticwebassets\\Images\\AppImages\\list.png"
     },
     {
-      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GraduationProject\\New folder\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\AppImages\\logonav.png",
+      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\AppImages\\logonav.png",
       "PackagePath": "staticwebassets\\Images\\AppImages\\logonav.png"
     },
     {
-      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GraduationProject\\New folder\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\AppImages\\office-building.png",
+      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\AppImages\\office-building.png",
       "PackagePath": "staticwebassets\\Images\\AppImages\\office-building.png"
     },
     {
-      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GraduationProject\\New folder\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\AppImages\\school.png",
+      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\AppImages\\school.png",
       "PackagePath": "staticwebassets\\Images\\AppImages\\school.png"
     },
     {
-      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GraduationProject\\New folder\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\AppImages\\tadarblogocircle.jpeg",
+      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\AppImages\\tadarblogocircle.jpeg",
       "PackagePath": "staticwebassets\\Images\\AppImages\\tadarblogocircle.jpeg"
     },
     {
-      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GraduationProject\\New folder\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\Organizations\\Logos\\004501ac-a089-418a-9d73-dc6e30c12825.PNG",
+      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\Organizations\\Logos\\004501ac-a089-418a-9d73-dc6e30c12825.PNG",
       "PackagePath": "staticwebassets\\Images\\Organizations\\Logos\\004501ac-a089-418a-9d73-dc6e30c12825.PNG"
     },
     {
-      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GraduationProject\\New folder\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\Organizations\\Logos\\01ff9a16-3dd8-42dc-a4bb-2b98105250e3.PNG",
+      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\Organizations\\Logos\\01ff9a16-3dd8-42dc-a4bb-2b98105250e3.PNG",
       "PackagePath": "staticwebassets\\Images\\Organizations\\Logos\\01ff9a16-3dd8-42dc-a4bb-2b98105250e3.PNG"
     },
     {
-      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GraduationProject\\New folder\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\Organizations\\Logos\\03b16bab-9ebd-48a9-8f1a-7bfe3c6af636.jpg",
+      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\Organizations\\Logos\\03b16bab-9ebd-48a9-8f1a-7bfe3c6af636.jpg",
       "PackagePath": "staticwebassets\\Images\\Organizations\\Logos\\03b16bab-9ebd-48a9-8f1a-7bfe3c6af636.jpg"
     },
     {
-      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GraduationProject\\New folder\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\Organizations\\Logos\\044471a4-e1ea-44e0-8993-b5bed1fbd5bf.PNG",
+      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\Organizations\\Logos\\044471a4-e1ea-44e0-8993-b5bed1fbd5bf.PNG",
       "PackagePath": "staticwebassets\\Images\\Organizations\\Logos\\044471a4-e1ea-44e0-8993-b5bed1fbd5bf.PNG"
     },
     {
-      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GraduationProject\\New folder\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\Organizations\\Logos\\2ea2ec01-4a66-4de4-8481-0bd1dfb83bfd.PNG",
+      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\Organizations\\Logos\\2ea2ec01-4a66-4de4-8481-0bd1dfb83bfd.PNG",
       "PackagePath": "staticwebassets\\Images\\Organizations\\Logos\\2ea2ec01-4a66-4de4-8481-0bd1dfb83bfd.PNG"
     },
     {
-      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GraduationProject\\New folder\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\Organizations\\Logos\\3b008413-1cdf-4c2d-8d67-285c40babe70.jpg",
+      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\Organizations\\Logos\\3b008413-1cdf-4c2d-8d67-285c40babe70.jpg",
       "PackagePath": "staticwebassets\\Images\\Organizations\\Logos\\3b008413-1cdf-4c2d-8d67-285c40babe70.jpg"
     },
     {
-      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GraduationProject\\New folder\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\Organizations\\Logos\\41a01ced-1671-4957-b55f-ed814a3327c9.PNG",
+      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\Organizations\\Logos\\41a01ced-1671-4957-b55f-ed814a3327c9.PNG",
       "PackagePath": "staticwebassets\\Images\\Organizations\\Logos\\41a01ced-1671-4957-b55f-ed814a3327c9.PNG"
     },
     {
-      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GraduationProject\\New folder\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\Organizations\\Logos\\762c67cc-3869-41fb-b7fd-d397d70cdd3e.png",
+      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\Organizations\\Logos\\762c67cc-3869-41fb-b7fd-d397d70cdd3e.png",
       "PackagePath": "staticwebassets\\Images\\Organizations\\Logos\\762c67cc-3869-41fb-b7fd-d397d70cdd3e.png"
     },
     {
-      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GraduationProject\\New folder\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\Organizations\\Logos\\8357f2a9-9fcd-4492-88a8-ec7d4cef811d.png",
+      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\Organizations\\Logos\\8357f2a9-9fcd-4492-88a8-ec7d4cef811d.png",
       "PackagePath": "staticwebassets\\Images\\Organizations\\Logos\\8357f2a9-9fcd-4492-88a8-ec7d4cef811d.png"
     },
     {
-      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GraduationProject\\New folder\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\Organizations\\Logos\\ad8cac30-f863-421f-8a20-58cc789cb093.PNG",
+      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\Organizations\\Logos\\ad8cac30-f863-421f-8a20-58cc789cb093.PNG",
       "PackagePath": "staticwebassets\\Images\\Organizations\\Logos\\ad8cac30-f863-421f-8a20-58cc789cb093.PNG"
     },
     {
-      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GraduationProject\\New folder\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\Organizations\\Logos\\bab339a2-1e4e-4a32-8165-f116b1a59506.PNG",
+      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\Organizations\\Logos\\bab339a2-1e4e-4a32-8165-f116b1a59506.PNG",
       "PackagePath": "staticwebassets\\Images\\Organizations\\Logos\\bab339a2-1e4e-4a32-8165-f116b1a59506.PNG"
     },
     {
-      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GraduationProject\\New folder\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\Organizations\\Logos\\c369ccad-c895-42ae-b599-c82c2bb3e2d8.PNG",
+      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\Organizations\\Logos\\c369ccad-c895-42ae-b599-c82c2bb3e2d8.PNG",
       "PackagePath": "staticwebassets\\Images\\Organizations\\Logos\\c369ccad-c895-42ae-b599-c82c2bb3e2d8.PNG"
     },
     {
-      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GraduationProject\\New folder\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\Organizations\\Logos\\d4e68908-a38a-4d18-a9a9-dcedca17d2ec.png",
+      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\Organizations\\Logos\\d4e68908-a38a-4d18-a9a9-dcedca17d2ec.png",
       "PackagePath": "staticwebassets\\Images\\Organizations\\Logos\\d4e68908-a38a-4d18-a9a9-dcedca17d2ec.png"
     },
     {
-      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GraduationProject\\New folder\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\Organizations\\Logos\\f5ed0556-cf70-44c9-8925-13a193277977.png",
+      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\Organizations\\Logos\\f5ed0556-cf70-44c9-8925-13a193277977.png",
       "PackagePath": "staticwebassets\\Images\\Organizations\\Logos\\f5ed0556-cf70-44c9-8925-13a193277977.png"
     },
     {
-      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GraduationProject\\New folder\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\Organizations\\Logos\\faaf0313-ee00-47dc-be77-b78d3c97cc00.PNG",
+      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\Organizations\\Logos\\faaf0313-ee00-47dc-be77-b78d3c97cc00.PNG",
       "PackagePath": "staticwebassets\\Images\\Organizations\\Logos\\faaf0313-ee00-47dc-be77-b78d3c97cc00.PNG"
     },
     {
-      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GraduationProject\\New folder\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\tadarblogocircle.jpeg",
+      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\tadarblogocircle.jpeg",
       "PackagePath": "staticwebassets\\Images\\tadarblogocircle.jpeg"
     },
     {
-      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GraduationProject\\New folder\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\css\\HomeSttyle.css",
+      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\css\\HomeSttyle.css",
       "PackagePath": "staticwebassets\\css\\HomeSttyle.css"
     },
     {
-      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GraduationProject\\New folder\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\css\\RegistrationStyle.css",
+      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\css\\RegistrationStyle.css",
       "PackagePath": "staticwebassets\\css\\RegistrationStyle.css"
     },
     {
-      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GraduationProject\\New folder\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\css\\boostwatch.css",
+      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\css\\boostwatch.css",
       "PackagePath": "staticwebassets\\css\\boostwatch.css"
     },
     {
-      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GraduationProject\\New folder\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\css\\site.css",
+      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
     {
-      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GraduationProject\\New folder\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\favicon.ico",
+      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
-      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GraduationProject\\New folder\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\js\\site.js",
+      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },
     {
-      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GraduationProject\\New folder\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\LICENSE",
+      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\LICENSE",
       "PackagePath": "staticwebassets\\lib\\bootstrap"
     },
     {
-      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GraduationProject\\New folder\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
+      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css"
     },
     {
-      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GraduationProject\\New folder\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
+      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map"
     },
     {
-      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GraduationProject\\New folder\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
+      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css"
     },
     {
-      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GraduationProject\\New folder\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
+      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map"
     },
     {
-      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GraduationProject\\New folder\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
+      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css"
     },
     {
-      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GraduationProject\\New folder\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
+      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map"
     },
     {
-      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GraduationProject\\New folder\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
+      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css"
     },
     {
-      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GraduationProject\\New folder\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
+      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map"
     },
     {
-      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GraduationProject\\New folder\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
+      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css"
     },
     {
-      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GraduationProject\\New folder\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
+      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map"
     },
     {
-      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GraduationProject\\New folder\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
+      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css"
     },
     {
-      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GraduationProject\\New folder\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
+      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map"
     },
     {
-      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GraduationProject\\New folder\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
+      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css"
     },
     {
-      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GraduationProject\\New folder\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
+      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map"
     },
     {
-      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GraduationProject\\New folder\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
+      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css"
     },
     {
-      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GraduationProject\\New folder\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
+      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map"
     },
     {
-      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GraduationProject\\New folder\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
+      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css"
     },
     {
-      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GraduationProject\\New folder\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
+      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map"
     },
     {
-      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GraduationProject\\New folder\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
+      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css"
     },
     {
-      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GraduationProject\\New folder\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
+      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map"
     },
     {
-      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GraduationProject\\New folder\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
+      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css"
     },
     {
-      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GraduationProject\\New folder\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
+      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map"
     },
     {
-      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GraduationProject\\New folder\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
+      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css"
     },
     {
-      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GraduationProject\\New folder\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
+      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map"
     },
     {
-      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GraduationProject\\New folder\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
+      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css"
     },
     {
-      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GraduationProject\\New folder\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
+      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css.map"
     },
     {
-      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GraduationProject\\New folder\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
+      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css"
     },
     {
-      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GraduationProject\\New folder\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
+      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map"
     },
     {
-      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GraduationProject\\New folder\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
+      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css"
     },
     {
-      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GraduationProject\\New folder\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
+      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map"
     },
     {
-      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GraduationProject\\New folder\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
+      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css"
     },
     {
-      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GraduationProject\\New folder\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
+      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map"
     },
     {
-      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GraduationProject\\New folder\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
+      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js"
     },
     {
-      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GraduationProject\\New folder\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
+      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map"
     },
     {
-      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GraduationProject\\New folder\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
+      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js"
     },
     {
-      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GraduationProject\\New folder\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
+      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map"
     },
     {
-      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GraduationProject\\New folder\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
+      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js"
     },
     {
-      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GraduationProject\\New folder\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
+      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map"
     },
     {
-      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GraduationProject\\New folder\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
+      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js"
     },
     {
-      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GraduationProject\\New folder\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
+      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map"
     },
     {
-      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GraduationProject\\New folder\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
+      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js"
     },
     {
-      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GraduationProject\\New folder\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
+      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js.map"
     },
     {
-      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GraduationProject\\New folder\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
+      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js"
     },
     {
-      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GraduationProject\\New folder\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
+      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map"
     },
     {
-      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GraduationProject\\New folder\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
+      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
       "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
     },
     {
-      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GraduationProject\\New folder\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
+      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js"
     },
     {
-      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GraduationProject\\New folder\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
+      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js"
     },
     {
-      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GraduationProject\\New folder\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
+      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
       "PackagePath": "staticwebassets\\lib\\jquery-validation\\LICENSE.md"
     },
     {
-      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GraduationProject\\New folder\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
+      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.js"
     },
     {
-      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GraduationProject\\New folder\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
+      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.min.js"
     },
     {
-      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GraduationProject\\New folder\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
+      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.js"
     },
     {
-      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GraduationProject\\New folder\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
+      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.min.js"
     },
     {
-      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GraduationProject\\New folder\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\jquery\\LICENSE.txt",
+      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\jquery\\LICENSE.txt",
       "PackagePath": "staticwebassets\\lib\\jquery\\LICENSE.txt"
     },
     {
-      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GraduationProject\\New folder\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\jquery\\dist\\jquery.js",
+      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\jquery\\dist\\jquery.js",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.js"
     },
     {
-      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GraduationProject\\New folder\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
+      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.js"
     },
     {
-      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GraduationProject\\New folder\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
+      "Id": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
     },
     {

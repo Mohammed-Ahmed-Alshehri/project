@@ -234,7 +234,7 @@
                                             <div class="form-outline" style="text-align: right;">
                                                 <label class="form-label" for="Phone">الجوال</label>
 
-                                                <input asp-for="userAcount.Phone" type="string" id="PhoneID" class="form-control form-control-lg"   required />
+                                                <input asp-for="userAcount.Phone" type="string" id="PhoneID" class="form-control form-control-lg"  maxlength="10"  required />
                                                 <div class="invalid-feedback" style="text-align: right;" id="PhoneIDMassage"> الرجاء إدخال رقم الجوال </div>
 @*                                                <span asp-validation-for="userAcount.Phone" class="text-danger" style="text-align: right;"></span>
 *@                                            </div>
@@ -303,10 +303,28 @@
                 .forEach(function (form) {
                     form.addEventListener('submit', function (event) {
 
-                        if (CustomValidation() || !form.checkValidity() || CustomValidation2()) {
+                        if ( !form.checkValidity()  ) {
 
-                            event.preventDefault()
-                            event.stopPropagation()
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+
+                        if ( CustomValidation() ){
+
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+
+                        if (CustomValidation2()) {
+
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+
+                        if (CustomValidation3()) {
+
+                            event.preventDefault();
+                            event.stopPropagation();
                         }
 
                         form.classList.add('was-validated')
@@ -364,72 +382,97 @@
             return false;
         }
 
-        //function CustomValidation2() 
-
-        //{
+   
 
 
-        //    var P = document.getElementById("PhoneID");
+        function CustomValidation2()
+        {
 
-        //    var PM = document.getElementById("PhoneIDMassage");
-
-        //    if (true) {
-
-        //        P.classList.remove('is-valid');
-
-        //        PE.classList.add('is-invalid');
-
-        //        PM.innerHTML = "الرجاء ادخال رقم جوال صحيح";
-
-        //        return true;
-        //    }
-
-        //    else{
-
-        //        P.classList.add('is-valid');
-
-        //        P.classList.remove('is-invalid');
-
-        //        PM.innerHTML = "00الرجاء إدخال رقم الجوال";
-        //    }
-
-        //    return false;
-        //}
-
-
-        function CustomValidation2(){
-            var P = document.getElementById("PhoneID")
+            var P = document.getElementById("PhoneID");
             var PM = document.getElementById("PhoneIDMassage");
 
-            if(P.length < 10){
+
+
+            if (P.value.length != 10 ) {
+
                 P.classList.remove('is-valid');
                 P.classList.add('is-invalid');
 
                 PM.innerHTML = "يجب أن يكون رقم الجوال مكون من عشرة أرقام";
-                return false
+                return true;
             }
 
-            if (P.length > 10) {
-                P.classList.remove('is-valid');
-                P.classList.add('is-invalid');
+            
 
-                PM.innerHTML = "يجب أن يكون رقم الجوال مكون من عشرة أرقام";
-                return false
-            }
-
-            if((P.charAt(0) != 0) && (P.charAt(0) != 5)){
+             if ( (P.value.charAt(0) != 0) )
+            {
                 P.classList.remove('is-valid');
                 P.classList.add('is-invalid');
 
                 PM.innerHTML = "يجب أن يبدأ رقم الجوال بـ 05 ";
-                return false
+                return true;
 
             }
 
+            if ((P.value.charAt(1) != 5)) {
+                P.classList.remove('is-valid');
+                P.classList.add('is-invalid');
+
+                PM.innerHTML = "يجب أن يبدأ رقم الجوال بـ 05 ";
+                return true;
+
+            }
+
+            else {
+
+                P.classList.add('is-valid');
+
+                P.classList.remove('is-invalid');
+
+                PM.innerHTML = "الرجاء إدخال رقم الجوال";
+
+
+            }
+
+            return false;
+
         }
 
-       
 
+           function CustomValidation3()
+        {
+
+            var password = document.getElementById("UserPasswordID");
+            var confirmPassword = document.getElementById("ConfirmUserPasswordID");
+            var CMassage = document.getElementById("ConfirmPasswordMassage");
+
+            if (password.value !== confirmPassword.value) {
+
+                confirmPassword.classList.remove('is-valid');
+                confirmPassword.classList.add('is-invalid');
+
+                CMassage.innerHTML = "يجب أن تكون كلمة المرور متطابقة";
+                return true;
+            }
+
+
+
+            
+
+            else {
+
+                confirmPassword.classList.add('is-valid');
+
+                confirmPassword.classList.remove('is-invalid');
+
+                CMassage.innerHTML = "الرجاء تأكيد كلمة المرور";
+
+
+            }
+
+            return false;
+
+        }
 
 
         

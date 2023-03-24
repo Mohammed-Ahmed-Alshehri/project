@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\moham\\Desktop\\IS15\\GraduationProject\\New folder\\TadarbApp\\TadarbApp\\TadarbProject\\TadarbProject.csproj": {}
+    "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\TadarbProject.csproj": {}
   },
   "projects": {
-    "C:\\Users\\moham\\Desktop\\IS15\\GraduationProject\\New folder\\TadarbApp\\TadarbApp\\TadarbProject\\TadarbProject.csproj": {
+    "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\TadarbProject.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\moham\\Desktop\\IS15\\GraduationProject\\New folder\\TadarbApp\\TadarbApp\\TadarbProject\\TadarbProject.csproj",
+        "projectUniqueName": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\TadarbProject.csproj",
         "projectName": "TadarbProject",
-        "projectPath": "C:\\Users\\moham\\Desktop\\IS15\\GraduationProject\\New folder\\TadarbApp\\TadarbApp\\TadarbProject\\TadarbProject.csproj",
+        "projectPath": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\TadarbProject.csproj",
         "packagesPath": "C:\\Users\\moham\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\moham\\Desktop\\IS15\\GraduationProject\\New folder\\TadarbApp\\TadarbApp\\TadarbProject\\obj\\",
+        "outputPath": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\moham\\AppData\\Roaming\\NuGet\\NuGet.Config",
