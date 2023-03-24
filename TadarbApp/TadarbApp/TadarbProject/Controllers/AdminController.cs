@@ -8,10 +8,12 @@ using TadarbProject.Models.ViewModels;
 using TEST2.Services;
 
 namespace TadarbProject.Controllers
-{
+{ 
+//yazeed edit
+    //badr modify
+    //abdulhadi
     public class AdminController : Controller
     {
-
         private readonly AppDbContext _DbContext;
         private readonly IWebHostEnvironment _WebHostEnvironment;
         private readonly IEmailSender _emailSender;
