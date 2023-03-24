@@ -105,7 +105,27 @@
                             <button class="btn  btn-outline-primary" type="submit">ظهور الكل</button>
                         </div>
                     </form>
-                    <div class="table-search float-end">
+
+                    <div class="col-sm-6">
+                        <div class="btn-group" data-toggle="buttons">
+                            <label class="btn btn-info active">
+                                <input type="radio" name="status" value="all" checked="checked"> الكل
+                            </label>
+                            <label class="btn btn-success">
+                                <input type="radio" name="status" value="active"> نشط
+                            </label>
+                            <label class="btn btn-warning">
+                                <input type="radio" name="status" value="inactive"> غير نشط
+                            </label>
+                            <label class="btn btn-danger">
+                                <input type="radio" name="status" value="expired"> مرفوض
+                            </label>							
+                        </div>
+                    </div>
+
+
+
+                   @* <div class="table-search float-end">
                         <select class="form-select " style="text-align: right" id="stauts" name="stauts">
                             <option value="" disabled selected> :الحالة</option>
 
@@ -115,7 +135,7 @@
                             <option value="reject" onclick="location.href='https://localhost:44367/admin/?TypeId=2';"> مرفوض</option>
 
                         </select>
-                    </div>
+                    </div>*@
                   
                 </div>
                 <div class="card-body">

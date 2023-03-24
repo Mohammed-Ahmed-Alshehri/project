@@ -1,1 +1,100 @@
-﻿
+﻿@model OrganizationVM
+
+
+
+
+<section class="section about-section gray-bg " id="about">
+    <div class="container border border-secondary">
+        <div class="row align-items-center flex-row-reverse">
+
+            <div class="col-lg-4">
+                <div class="about-avatar">
+                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" title="" alt="">
+                </div>
+            </div>
+
+
+
+            <div class="col-lg-6  ">
+                <div class="about-text go-to">
+                    <br />
+                    <label class="dark-color" style="text-align: right;" asp-for="organization.Organization_TypeId">  <label class="dark-color" style="text-align: right;" asp-for="organization.OrganizationName"> شركة المملكة العربية السعودية</label> </label>
+                    <div class="row about-list">
+                        <div class="col-md-6">
+                            <div class="media">
+                                <strong>السجل التجاري</strong>
+                                <label asp-for="organization.CommercialRegistrationNumber" ></label>
+                            </div>
+
+                            <div class="media">
+                                <strong>:الفرع الرئيسي للمنظمة</strong>
+                                <label asp-for="organization.MainBranchCityId"></label>
+                            </div>
+
+
+                            <div class="media">
+                                <strong>البريد الإلكتروني</strong>
+                                <label asp-for="userAcount.UserEmail"></label>
+                            </div>
+
+                            <div class="media">
+                                <strong></strong>
+                                <br />
+                                <label  asp-for="organization.OrganizationURL"></label>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="media">
+                                <strong>:المجال الرئيسي</strong>
+                                <label asp-for="organization.FieldOfOrganization_SpecialtiesFieldId"></label>
+                            </div>
+                            <div class="media">
+                                <strong style="text-align: right;">:الدولة</strong>
+                                <label style="text-align: left;">المملكة العربية السعودية</label>
+                            </div>
+
+
+                            <div class="media">
+                                <strong>:اسم المسؤول</strong>
+                                <label asp-for="userAcount.FullName"></label>
+                            </div>
+
+                            <div class="media">
+                                <strong>:رقم الجوال</strong>
+                                <label asp-for="userAcount.Phone"></label>
+                            </div>
+
+                            <div class="media">
+                                <strong>:موقع المنظمة</strong>
+                                <label asp-for="organization.Location"></label>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="counter">
+            <div class="row">
+                <div class="col-4 col-lg-3">
+                    <div class="count-data text-center">
+                        <button type="button" asp-controller="Admin" asp-action="RejectOrder" asp-route-id="" class="btn btn-danger">رفض الطلب</button>
+
+                    </div>
+                </div>
+                <div class="col-4 col-lg-3">
+                    <div class="count-data text-center">
+                        <button type="button" asp-controller="Admin" asp-action="ConformOrder" asp-route-id="" class="btn btn-success">قبول الطلب</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br />
+    </div>
+
+    </div>
+    </div>
+</section>
