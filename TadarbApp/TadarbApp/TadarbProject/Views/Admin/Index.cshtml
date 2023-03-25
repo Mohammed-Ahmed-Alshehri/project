@@ -15,6 +15,14 @@
         .carddd:hover {
             background-color: rgba(122, 122, 122, 0.5);
         }
+        .dt{
+           background-color:#1c4c64; 
+           color:white;
+        }
+        .dt:hover{
+           background-color:#8da5b1;
+           color:black;
+        }
     </style>
 
 <partial name="_Notification" />
@@ -39,7 +47,7 @@
 
                             <img src="/images/AppImages/school.png">
                             <h1>الجامعات</h1>
-                            <h3> 5,500</h3>
+                            <h3> 587</h3>
 
 
 
@@ -62,7 +70,7 @@
 
                             <img src="/images/AppImages/office-building.png">
                             <h1>الشركات</h1>
-                            <h3> 10,555</h3>
+                            <h3> 106</h3>
 
 
                         </div>
@@ -81,26 +89,26 @@
         <div class="col-md-12 d-flex">
 
             <div class="card card-table flex-fill">
-                <div class="card-header">
+                <div class="card-header ">
                     <h4 class="card-title float-start">
                     </h4>
                     <form asp-action="index" method="get">
                         <div class="table-search float-end">
-                            <input type="text" class="form-control" placeholder="Search">
+                            <input type="text" class="form-control  fa-x40" placeholder="Search">
 
                         </div>
                         <div class="table-search float-end">
                             <button class="btn  btn-outline-secondary" type="submit"><i class="fa fa-search"></i></button>
                         </div>
                         <div class="table-search float-start">
-                            <button class="btn  btn-outline-primary" type="submit">ظهور الكل</button>
+                            <button class="btn  btn-outline-primary" type="submit" style="background-color:#D8BF36;color:black;border:0px;font-size:20px;">ظهور الكل</button>
                         </div>
                     </form>
 
                     <div class="col-sm-6">
                  
 
-                        <div class="btn-group" role="group" aria-label="Basic radio toggle button group" >
+                        <div class="btn-group" role="group" aria-label="Basic radio toggle button group" style:"font-size:20px">
 
                             <input type="radio" class="btn-check" name="btnradio" id="btnradio1"  autocomplete="off"  style="display:none" checked>
                             <label class="btn btn-outline-primary" for="btnradio1" style="display:none"></label>
@@ -143,15 +151,15 @@
                 <div class="card-body">
                     <div class="table-responsive no-radius">
 
-                        <table class="table table-hover table-center">
+                        <table class="table table-hover table-center" style="font-size:20px">
                             <thead>
                                 <tr>
 
                                    
                                     <th>الاسم</th>
-                                    <th class="text-center">تاريخ الانضمام</th>
+                                    <th>تاريخ الانضمام</th>
                                     <th class="text-center">الحالة</th>
-                                    <th class="text-end">التفاصيل</th>
+                                    <th class="text-center">التفاصيل</th>
                                </tr>
                             </thead>
 
@@ -208,14 +216,13 @@
                             
                             body +=
 
-                                '<tr> <td> ' + value.organizationName
-                                + '</td><td>'
-                                + value.subscriptionDate.substr(0, 10)
-                                + '</td><td>'
-                                +  sa
-                                + '</td><td>'
-                                + '<a class="btn btn-outline-primary" href="https://localhost:44367/admin/OrganizationDetails/?id=' + value.organizationId + ' " >تفاصيل الطلب</a>'
-                                + '</td></tr>';
+                                '<tr> <td class="text-nowrap font-weight-600"> ' + value.organizationName + 
+                                '</td><td class="text-nowrap font-weight-600" >' + value.subscriptionDate.substr(0, 10) +
+                                '</td><td class=text-center font-weight-600  >' + sa + 
+                                '</td><td class=text-center font-weight-600  >' +
+                                '<a class="btn dt " href="https://localhost:44367/admin/OrganizationDetails/?id=' +
+                            value.organizationId + ' " >تفاصيل الطلب</a>' + 
+                                '</td></tr>';
                                 
                            
                          

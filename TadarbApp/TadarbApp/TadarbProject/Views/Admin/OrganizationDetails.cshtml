@@ -1,73 +1,56 @@
 ﻿@model TadarbProject.Models.ViewModels.OrganizationVM
 
-
-
-
 <section class="section about-section gray-bg " id="about">
+    <form>
+
+    
     <div class="container border border-secondary" dir="ltr">
         <div class="row align-items-center flex-row-reverse">
 
-            <div class="col-lg-4">
-                <div class="about-avatar">
-                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" title="" alt="">
-                </div>
-            </div>
+
+              
 
 
 
             <div class="col-lg-6  ">
                 <div class="about-text go-to">
-                    <br />
-                    <h3 class="dark-color" style="text-align: right;">  <h3 class="dark-color" style="text-align: right;"> @(Model.organization.Organization_TypeId != 0 ? "جامعة " : "شركة ") @Model.organization.OrganizationName</h3> </h3>
-                    <div class="row about-list">
-                        <div class="col-md-6">
-                            <div class="media">
-                                <strong>السجل التجاري</strong>
-                                <p>@Model.organization.CommercialRegistrationNumber </p>
-                            </div>
-
-                            <div class="media">
-                                <strong>:الفرع الرئيسي للمنظمة</strong>
-                                <p>@Model.CityListItems</p>
-                            </div>
-
-
-                            <div class="media">
-                                <strong>البريد الإلكتروني</strong>
-                                <p>@Model.userAcount.UserEmail</p>
-                            </div>
-
-                            <div class="media">
-                                <strong>:رابط المنظمة</strong>
-                                <br />
-                                <a href="@Model.organization.OrganizationURL" >@Model.organization.OrganizationURL</a>
-                            </div>
+                        <div class="about-avatar">
+                            <img src="https://bootdey.com/img/Content/avatar/avatar7.png" title="" alt="" style="background-position:center">
                         </div>
+                        <br />
+                    <br />
+                    <h3 class="dark-color" style="text-align: center;">  <h3 class="dark-color" style="text-align: center;"> @(Model.organization.Organization_TypeId != 0 ? "جامعة " : "شركة ") @Model.organization.OrganizationName</h3> </h3>
+                    <div class="row about-list">
+                            <div class="col-md-6" style="background-color:red">
+                              
 
-                        <div class="col-md-6">
+
+
                             <div class="media">
-                                <strong>:المجال الرئيسي</strong>
-                                <p> @Model.FieldListItems </p>
+                                    
+                                        <div class="row">
+                                        <div class="col-6 " >
+                                                <h4>@Model.organization.CommercialRegistrationNumber </h4>
+                                            </div>
+                                            <div class="col-6 " >
+                                                <p style="display:inline">: السجل التجاري</p>
+                                        
+                                        </div>
+                                        </div>
                             </div>
+
+
+
+
                             <div class="media">
-                                <strong style="text-align: right;">:الدولة</strong>
-                                <p  style="text-align: left;" >@Model.CountryListItems</p>
+                                <strong><h3>:الفرع الرئيسي للمنظمة</h3></strong>
+                                <h4>@Model.CityListItems</h4>
                             </div>
 
 
                             <div class="media">
-                                <strong>:اسم المسؤول</strong>
-                                <p>@Model.userAcount.FullName</p>
-                            </div>
-
-                            <div class="media">
-                                <strong>:رقم الجوال</strong>
-                                <p>@Model.userAcount.Phone</p>
-                            </div>
-
-                            <div class="media">
-                                <strong>:موقع المنظمة</strong>
-                                <p>@Model.organization.Location</p>
+                                <strong><h3>:موقع المنظمة</h3></strong>
+                                <h4>@Model.organization.Location</h4>
                             </div>
 
 
@@ -75,7 +58,45 @@
                     </div>
                 </div>
             </div>
-        </div>
+        
+
+
+            <div class="col-lg-6  ">
+
+
+                <div class="media">
+                    <strong><h3>البريد الإلكتروني</h3> </strong>
+                    <h4>@Model.userAcount.UserEmail</h4>
+                </div>
+
+                <div class="media">
+                    <strong><h3>:رابط المنظمة</h3></strong>
+                    <br />
+                    <a href="@Model.organization.OrganizationURL">@Model.organization.OrganizationURL</a>
+                </div>
+            
+
+         
+                <div class="media">
+                    <strong><h3>:المجال الرئيسي</h3></strong>
+                    <h4> @Model.FieldListItems </h4>
+                </div>
+                <div class="media">
+                    <strong style="text-align: center;"><h3>:الدولة</h3></strong>
+                    <p style="text-align: left;">@Model.CountryListItems</h4>
+                </div>
+
+
+                <div class="media">
+                    <strong> <h3>:اسم المسؤول</h3></strong>
+                    <h4>@Model.userAcount.FullName</h4>
+                </div>
+
+                <div class="media">
+                    <strong><h3>:رقم الجوال</h3></strong>
+                    <h4>@Model.userAcount.Phone</h4>
+                </div>
+
 
         <div class="counter">
             <div class="row">
@@ -93,8 +114,14 @@
             </div>
         </div>
         <br />
-    </div>
+    
 
     </div>
     </div>
+        </div>
+
+    </form>
 </section>
+
+
+

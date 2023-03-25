@@ -1,5 +1,5 @@
 ﻿.hero_a {
-    height: 95vh;
+    height: 60vh;
     position: relative;
     background-image: url(../images/AppImages/backgroundd.png);
     background-size: cover;
@@ -28,6 +28,7 @@
 
 
 .btn-1 {
+    text-decoration: none;
     width: 145px;
     display: inline-block;
     padding: 8px 0;
@@ -50,6 +51,7 @@
 
 
 .btn-2 {
+    text-decoration: none;
     width: 145px;
     display: inline-block;
     padding: 8px 0;
