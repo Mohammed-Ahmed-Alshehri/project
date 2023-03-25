@@ -82,6 +82,47 @@ namespace TadarbProject.Controllers
             return View(organizationVM);
         }
 
+        public IActionResult RequestAccept(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+
+
+            }
+            var Organization = _DbContext.Organizations.Find(id);
+
+            if (Organization == null) { return NotFound(); }
+
+            Organization.ActivationStatus = "Active";
+
+            _DbContext.Organizations.Update(Organization);
+
+            _DbContext.SaveChanges();
+            TempData["success"] = "تم تفعيل حالة المنظمة إلى نشط بنجاح";
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult RejectAccept(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+
+
+            }
+            var Organization = _DbContext.Organizations.Find(id);
+
+            if (Organization == null) { return NotFound(); }
+
+            Organization.ActivationStatus = "Not_Active";
+
+            _DbContext.Organizations.Update(Organization);
+
+            _DbContext.SaveChanges();
+            TempData["success"] = "تم تفعيل حالة المنظمة إلى غير نشط بنجاح";
+            return RedirectToAction("Index");
+        }
 
 
 
