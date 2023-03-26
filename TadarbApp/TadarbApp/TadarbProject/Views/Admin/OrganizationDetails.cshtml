@@ -1,127 +1,147 @@
-﻿@model TadarbProject.Models.ViewModels.OrganizationVM
-
-<section class="section about-section gray-bg " id="about">
-    <form>
-
-    
-    <div class="container border border-secondary" dir="ltr">
-        <div class="row align-items-center flex-row-reverse">
+﻿
 
 
-              
+<head>
+	<title>Contact Form 02</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+	<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
 
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
-            <div class="col-lg-6  ">
-                <div class="about-text go-to">
-                        <div class="about-avatar">
-                            <img src="https://bootdey.com/img/Content/avatar/avatar7.png" title="" alt="" style="background-position:center">
-                        </div>
-                        <br />
-                    <br />
-                    <h3 class="dark-color" style="text-align: center;">  <h3 class="dark-color" style="text-align: center;"> @(Model.organization.Organization_TypeId != 0 ? "جامعة " : "شركة ") @Model.organization.OrganizationName</h3> </h3>
-                    <div class="row about-list">
-                            <div class="col-md-6" style="background-color:red">
-                              
+	<link rel="stylesheet" href="css/style.css">
+<script src="js/jquery.min.js"></script>
+<script src="js/popper.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.validate.min.js"></script>
+<script src="js/main.js"></script>
+</head>
 
-
-
-                            <div class="media">
-                                    
-                                        <div class="row">
-                                        <div class="col-6 " >
-                                                <h4>@Model.organization.CommercialRegistrationNumber </h4>
-                                            </div>
-                                            <div class="col-6 " >
-                                                <p style="display:inline">: السجل التجاري</p>
-                                        
-                                        </div>
-                                        </div>
-                            </div>
-
-
-
-
-                            <div class="media">
-                                <strong><h3>:الفرع الرئيسي للمنظمة</h3></strong>
-                                <h4>@Model.CityListItems</h4>
-                            </div>
-
-
-                            <div class="media">
-                                <strong><h3>:موقع المنظمة</h3></strong>
-                                <h4>@Model.organization.Location</h4>
-                            </div>
-
-
-                        </div>
-                    </div>
-                </div>
-            </div>
+<body>
         
+	<section class="ftco-section">
+		<div class="container">
+			<div class="row justify-content-center">
+			
+			</div>
+			<div class="row justify-content-center">
+				<div class="col-md-12">
+					<div class="wrapper">
+						<div class="row no-gutters">
+							<div class="col-lg-8 col-md-7 order-md-last d-flex align-items-stretch">
+								<div class="contact-wrap w-100 p-md-5 p-4">
+									<div id="form-message-warning" class="mb-4"></div>
+									<div id="form-message-success" class="mb-4">
+										<label style="font-size:28px"> المجال الرئيسي للمنظمة :</label>
+										<h5>الطب</h5>
+										<h5> @Model.FieldListItems </h5>
+									</div>
+
+									<div id="form-message-success" class="mb-4">
+										<label style="font-size:28px"> السجل التجاري :</label>
 
 
-            <div class="col-lg-6  ">
+										<h5>@Model.organization.CommercialRegistrationNumber </h5>
+									</div>
+
+									<div id="form-message-success" class="mb-4">
+										<label style="font-size:28px"> اسم المسؤول :</label>
+
+										<h5>@Model.userAcount.FullName</h5>
+									</div>
+
+									<div id="form-message-success" class="mb-4">
+										<label style="font-size:28px"> الفرع الرئيسي للمنظمة  :</label>
+
+										<h5>@Model.CityListItems</h5>
+									</div>
+
+									<div id="form-message-success" class="mb-4">
+										<label style="font-size:28px"> الدولة :</label>
+										<h5> المملكة العربية السعودية</h5>
+										<p style="text-align: left;">@Model.CountryListItems</h4>
+									</div>
+
+									<br /> <br /><br /> <br />
+									<form method="POST" id="contactForm" name="contactForm" class="contactForm">
+										<div class="row">
+											
+											
+											<div class="col-md-12">
+												<div class="form-group ">
+													<a type="button" asp-controller="Admin" asp-action="RejectAccept" asp-route-id="@Model.organization.OrganizationId" class="btn btn-primary btn-lg">رفض الطلب</a>
+
+													&nbsp;&nbsp;
+
+													<a type="button" asp-controller="Admin" asp-action="RequestAccept" asp-route-id="@Model.organization.OrganizationId" class="btn btn-primary btn-lg">قبول الطلب</a>
+
+												</div>
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>
 
 
-                <div class="media">
-                    <strong><h3>البريد الإلكتروني</h3> </strong>
-                    <h4>@Model.userAcount.UserEmail</h4>
-                </div>
+							<div class="col-lg-4 col-md-5 d-flex align-items-stretch">
+								<div class="info-wrap bg-primary w-100 p-md-5 p-4">
 
-                <div class="media">
-                    <strong><h3>:رابط المنظمة</h3></strong>
-                    <br />
-                    <a href="@Model.organization.OrganizationURL">@Model.organization.OrganizationURL</a>
-                </div>
-            
+									<img src="https://bootdey.com/img/Content/avatar/avatar7.png" title="" alt="" style="background-position:center">
+									<br /><br /><br />
+									<h3 class="dark-color" style="text-align: center; "> <h3 class="dark-color" style="text-align: center;color:white;"> @(Model.organization.Organization_TypeId != 0 ? "جامعة " : "شركة ") @Model.organization.OrganizationName</h3> </h3>
+									<br />
+									<div class="dbox w-100 d-flex align-items-start">
+										
+										<div class="icon d-flex align-items-center justify-content-center " style="color:white;">
+											<span class="fa fa-map-marker"></span>
+										</div>
+										&nbsp;&nbsp;&nbsp;
 
-         
-                <div class="media">
-                    <strong><h3>:المجال الرئيسي</h3></strong>
-                    <h4> @Model.FieldListItems </h4>
-                </div>
-                <div class="media">
-                    <strong style="text-align: center;"><h3>:الدولة</h3></strong>
-                    <p style="text-align: left;">@Model.CountryListItems</h4>
-                </div>
-
-
-                <div class="media">
-                    <strong> <h3>:اسم المسؤول</h3></strong>
-                    <h4>@Model.userAcount.FullName</h4>
-                </div>
-
-                <div class="media">
-                    <strong><h3>:رقم الجوال</h3></strong>
-                    <h4>@Model.userAcount.Phone</h4>
-                </div>
+										<div class="text pl-3" style="color:white">
+											
+											<h4>@Model.organization.Location</h4>
+										</div>
+									</div>
+									
+									<div class="dbox w-100 d-flex align-items-center" style="color:white">
+										<div class="icon d-flex align-items-center justify-content-center">
+											<span class="fa fa-phone"></span>
+										</div>
+										&nbsp;&nbsp;&nbsp;
+										<div class="text pl-3">
+											<h4>@Model.userAcount.Phone</h4>
+										</div>
+									</div>
 
 
-        <div class="counter">
-            <div class="row">
-                <div class="col-4 col-lg-3">
-                    <div class="count-data text-center">
-                        <a type="button" asp-controller="Admin" asp-action="RejectAccept" asp-route-id="@Model.organization.OrganizationId" class="btn btn-danger">رفض الطلب</a>
+									<div class="dbox w-100 d-flex align-items-center" style="color:white">
+										<div class="icon d-flex align-items-center justify-content-center">
+											<span class="fa fa-paper-plane"></span>
+										</div>
+										&nbsp;&nbsp;&nbsp;
+										<div class="text pl-3">
+											<h4>@Model.userAcount.UserEmail</h4>
+										</div>
+									</div>
 
-                    </div>
-                </div>
-                <div class="col-4 col-lg-3">
-                    <div class="count-data text-center">
-                        <a type="button"  asp-controller="Admin" asp-action="RequestAccept" asp-route-id="@Model.organization.OrganizationId" class="btn btn-success">قبول الطلب</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <br />
-    
+									<div class="dbox w-100 d-flex align-items-center" style="color:white">
+										<div class="icon d-flex align-items-center justify-content-center">
+											<span class="fa fa-globe"></span>
+										</div>
+										&nbsp;&nbsp;&nbsp;
+										<div class="text pl-3">
+											<a href="@Model.organization.OrganizationURL">@Model.organization.OrganizationURL</a>
+										</div>
 
-    </div>
-    </div>
-        </div>
-
-    </form>
-</section>
-
-
-
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<br /> <br /><br /> <br /><br /> <br /><br />
+	</section>
+	</body>
