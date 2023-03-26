@@ -83,8 +83,6 @@
     --bs-highlight-bg: #ffe7d1;
 }
 
-
-
 *,
 *::before,
 *::after {
@@ -96,15 +94,7 @@
         scroll-behavior: smooth;
     }
 }
- 
 
-
-
-
-.dt{
-    background-color:red;
-
-}
 body {
     margin: 0;
     font-family: var(--bs-body-font-family);
@@ -3404,7 +3394,7 @@ textarea.form-control-lg {
 }
 
 .btn-outline-primary {
-    --bs-btn-color: #1c4c64;
+    --bs-btn-color: #158cba;
     --bs-btn-border-color: #158cba;
     --bs-btn-hover-color: #fff;
     --bs-btn-hover-bg: #158cba;

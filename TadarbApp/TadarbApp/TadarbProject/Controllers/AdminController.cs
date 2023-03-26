@@ -26,32 +26,10 @@ namespace TadarbProject.Controllers
 
         }
 
-        public IActionResult Index(int? TypeId)
+        public IActionResult Index()
         {
 
-            /* var OrganizationList = _DbContext.Organizations.ToList();
 
-             if (TypeId == null)
-             {
-                 return View(OrganizationList);
-             }
-
-             if (TypeId == 1)
-             {
-
-                 var OrganizationListU = OrganizationList.Where(item => item.Organization_TypeId == 1).ToList();
-
-                 return View(OrganizationListU);
-             }
-
-             if (TypeId == 2)
-             {
-                 var OrganizationListC = OrganizationList.Where(item => item.Organization_TypeId == 2).ToList();
-
-                 return View(OrganizationListC);
-
-             }
- */
             return View();
         }
 
@@ -76,11 +54,29 @@ namespace TadarbProject.Controllers
 
             var Ruser = _DbContext.UserAcounts.FirstOrDefault(item => item.UserId == Organization.ResponsibleUserId);
 
-            OrganizationVM organizationVM = new OrganizationVM { organization = Organization, userAcount = Ruser };
+            var city = _DbContext.Cities.FirstOrDefault(item => item.CityId == Organization.MainBranchCityId);
+
+            var Country = _DbContext.Countries.FirstOrDefault(item => item.CountryId == city.Country_CountryId);
+
+
+
+            OrganizationVM organizationVM = new OrganizationVM
+            {
+                organization = Organization,
+                userAcount = Ruser,
+
+                CountryListItems = _DbContext.Countries.Where(item => item.CountryId == Country.CountryId).Select(u => new SelectListItem { Text = u.CountryName, Value = u.CountryId.ToString() }),
+
+                CityListItems = _DbContext.Cities.Where(item => item.CityId == city.CityId).Select(u => new SelectListItem { Text = u.CityName, Value = u.CityId.ToString() }),
+
+                FieldListItems = _DbContext.FieldOfSpecialtiesMaster.Where(item => item.FieldId == Organization.FieldOfOrganization_SpecialtiesFieldId).Select(u => new SelectListItem { Text = u.FieldName, Value = u.FieldId.ToString() })
+
+            };
 
 
             return View(organizationVM);
         }
+
 
         public IActionResult RequestAccept(int? id)
         {
@@ -103,7 +99,7 @@ namespace TadarbProject.Controllers
             return RedirectToAction("Index");
         }
 
-        public IActionResult RejectAccept(int? id)
+        public IActionResult RequestReject(int? id)
         {
             if (id == null)
             {
@@ -115,7 +111,7 @@ namespace TadarbProject.Controllers
 
             if (Organization == null) { return NotFound(); }
 
-            Organization.ActivationStatus = "Not_Active";
+            Organization.ActivationStatus = "Rejected";
 
             _DbContext.Organizations.Update(Organization);
 
@@ -127,25 +123,61 @@ namespace TadarbProject.Controllers
 
 
         #region
-        public IActionResult GetByActivationStatus(string? status)
+        public IActionResult GetByActivationStatus(string? status, int? type)
         {
             /* var list = _DbContext.Organizations.ToList();*/
 
             IEnumerable<Organization> list;
 
-            if (status == null)
+
+
+            if (status == null && type == 0)
             {
-                list = _DbContext.Organizations.ToList();
+                list = _DbContext.Organizations.ToList().OrderByDescending((item => item.SubscriptionDate));
+                return Json(new { list });
+            }
+
+
+            if (status != null && type == 0)
+            {
+                list = _DbContext.Organizations.Where(item => item.ActivationStatus.Equals(status)).OrderByDescending((item => item.SubscriptionDate));
 
                 return Json(new { list });
             }
 
 
-            list = _DbContext.Organizations.Where(item => item.ActivationStatus.Equals(status)).OrderByDescending((item => item.SubscriptionDate));
+            if (type == 1 && status == null)
+            {
+                list = _DbContext.Organizations.Where(item => item.Organization_TypeId == 1).OrderByDescending((item => item.SubscriptionDate));
+                return Json(new { list });
+            }
+
+            if (type == 2 && status == null)
+            {
+                list = _DbContext.Organizations.Where(item => item.Organization_TypeId == 2).OrderByDescending((item => item.SubscriptionDate));
+                return Json(new { list });
+            }
+
+            if (type == 1 && status != null)
+            {
+
+                list = _DbContext.Organizations.Where(item => item.ActivationStatus.Equals(status) && item.Organization_TypeId == 1).OrderByDescending((item => item.SubscriptionDate));
+                return Json(new { list });
+            }
+
+            if (type == 2 && status != null)
+            {
+
+                list = _DbContext.Organizations.Where(item => item.ActivationStatus.Equals(status) && item.Organization_TypeId == 2).OrderByDescending((item => item.SubscriptionDate));
+                return Json(new { list });
+            }
 
 
 
-            return Json(new { list });
+
+
+
+            return Json(new { data = "No_data" });
         }
 
 

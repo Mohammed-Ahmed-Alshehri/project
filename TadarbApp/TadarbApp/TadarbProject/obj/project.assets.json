@@ -10413,19 +10413,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\yaaaz\\.nuget\\packages\\": {}
+    "C:\\Users\\moham\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\yaaaz\\OneDrive\\Desktop\\App\\project\\TadarbApp\\TadarbApp\\TadarbProject\\TadarbProject.csproj",
+      "projectUniqueName": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\TadarbProject.csproj",
       "projectName": "TadarbProject",
-      "projectPath": "C:\\Users\\yaaaz\\OneDrive\\Desktop\\App\\project\\TadarbApp\\TadarbApp\\TadarbProject\\TadarbProject.csproj",
-      "packagesPath": "C:\\Users\\yaaaz\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\yaaaz\\OneDrive\\Desktop\\App\\project\\TadarbApp\\TadarbApp\\TadarbProject\\obj\\",
+      "projectPath": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\TadarbProject.csproj",
+      "packagesPath": "C:\\Users\\moham\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\yaaaz\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\moham\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -10483,7 +10483,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
       }
     }
   }
