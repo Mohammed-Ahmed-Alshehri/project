@@ -1,5 +1,5 @@
 ﻿.hero_a {
-    height: 60vh;
+   /* height: 60vh;*/
     position: relative;
     background-image: url(../images/AppImages/backgroundd.png);
     background-size: cover;
@@ -39,6 +39,8 @@
     border-radius: 30px;
     text-align: center;
     align-items: center;
+   /* position:absolute;*/
+    
 }
 
     .btn-1:hover {

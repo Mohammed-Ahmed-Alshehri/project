@@ -133,8 +133,8 @@
 
                                     <th>الاسم</th>
                                     <th>تاريخ الانضمام</th>
-                                    <th>الحالة</th>
-                                    <th>التفاصيل</th>
+                                    <th class="text-center">الحالة</th>
+                                    <th class="text-center">التفاصيل</th>
                                 </tr>
 
                             </thead>
@@ -209,14 +209,12 @@
 
                             body +=
 
-                                '<tr> <td> ' + value.organizationName
-                                + '</td><td>'
-                                + value.subscriptionDate.substr(0, 10)
-                                + '</td><td>'
-                                + sa
-                                + '</td><td>'
-                                + '<a class="btn btn-outline-primary" href="https://localhost:44367/admin/OrganizationDetails/?id=' + value.organizationId + ' " >تفاصيل الطلب</a>'
-                                + '</td></tr>';
+                                '<tr> <td class="text-nowrap font-weight-600"> ' +
+                                value.organizationName + '</td><td class="text-nowrap font-weight-600" >' +
+                                value.subscriptionDate.substr(0, 10) + '</td><td class=text-center font-weight-600  >' +
+                                sa + '</td><td class=text-center font-weight-600  >' +
+                                '<a class="btn btn-outline-primary" href="https://localhost:44367/admin/OrganizationDetails/?id=' +
+                                value.organizationId + ' " >تفاصيل الطلب</a>' + '</td></tr>';
 
 
 
