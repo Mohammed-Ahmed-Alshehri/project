@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "bcD+PzChOzK8shLiM1FoldPfrHhzMYbVbKNn3pDWdNI=",
+  "Hash": "bV8g0pI29hEmuqSWDx0ur+3qwRMc8SZcAO6ufWfqkQU=",
   "Source": "TadarbProject",
   "BasePath": "_content/TadarbProject",
   "Mode": "Default",
@@ -355,6 +355,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Images\\Organizations\\Logos\\2ea2ec01-4a66-4de4-8481-0bd1dfb83bfd.PNG"
+    },
+    {
+      "Identity": "C:\\Users\\abeee\\Desktop\\Tadarb\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\Organizations\\Logos\\385b4563-b15b-47c6-89e4-eecc9dd305d6.png",
+      "SourceId": "TadarbProject",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\abeee\\Desktop\\Tadarb\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "BasePath": "_content/TadarbProject",
+      "RelativePath": "Images/Organizations/Logos/385b4563-b15b-47c6-89e4-eecc9dd305d6.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\Organizations\\Logos\\385b4563-b15b-47c6-89e4-eecc9dd305d6.png"
     },
     {
       "Identity": "C:\\Users\\abeee\\Desktop\\Tadarb\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\Organizations\\Logos\\3b008413-1cdf-4c2d-8d67-285c40babe70.jpg",
