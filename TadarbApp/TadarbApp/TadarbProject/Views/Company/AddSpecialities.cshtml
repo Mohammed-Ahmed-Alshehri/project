@@ -1,0 +1,144 @@
+﻿<head>
+
+    <link rel="stylesheet" href="~/css/AddSpecialities.css" asp-append-version="true" />
+
+
+</head>
+
+<div class="row">
+    <div class="col-sm-4">
+
+        <div class="vertical-nav bg-white" id="sidebar" ">
+            <div class="py-4 px-3 mb-4 bg-light">
+                <div class="media d-flex align-items-center">
+                    <img src="https://www10.0zz0.com/2023/03/28/01/150049724.jpg" alt="..." width="65" class="mr-3 rounded-circle img-thumbnail shadow-sm">
+                    <div class="media-body">
+                        <h4 class="m-0">مستشفى الحرس الوطني</h4>
+                    </div>
+                </div>
+            </div>
+
+            <p class="text-gray font-weight-bold text-uppercase px-3 small pb-4 mb-0">القائمة</p>
+
+            <ul class="nav flex-column bg-white mb-0">
+                <li class="nav-item">
+                    <a asp-controller="Company" asp-action="Index" a class="nav-link text-dark font-italic bg-light">
+                        <i class="fa fa-th-large mr-3 text-primary fa-fw"></i>
+                        إلصفحة الرئيسية
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a asp-controller="Company" asp-action="AddSpecialities" class="nav-link text-dark font-italic">
+                        <i class="fa fa-address-card mr-3 text-primary fa-fw"></i>
+                        إضافة مجالات التدريب
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a asp-controller="Company" asp-action="Addbranches" class="nav-link text-dark font-italic">
+                        <i class="fa fa-cubes mr-3 text-primary fa-fw"></i>
+                        إضافة الفروع
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a  class="nav-link text-dark font-italic">
+                        <i class="fa fa-picture-o mr-3 text-primary fa-fw"></i>
+                        Gallery
+                    </a>
+                </li>
+            </ul>
+
+            <p class="text-gray font-weight-bold text-uppercase px-3 small py-4 mb-0">Charts</p>
+
+
+        </div>
+
+
+        <!-- End vertical navbar -->
+        <!-- Page content holder -->
+        <div class="page-content p-1" id="content">
+            <!-- Toggle button -->
+            <button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i class="fa fa-bars mr-2"></i><small class="text-uppercase font-weight-bold">القائمة</small></button>
+        </div>
+
+
+    </div>
+
+    <div class="col-sm-6">
+        <div class="card" style="border-radius: 15px;">
+            <div class="card-body p-5">
+                <h2 class=" text-center mb-5">اختيار المجالات المراد تقديم التدريب فيها</h2>
+
+                <form>
+
+                    <div class="form-group">
+                        <label for="exampleSelect1" class="form-label mt-4">مجالات التدريب</label>
+                        <select class="form-select" id="exampleSelect1">
+                            <option>الطبي</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
+                    </div>
+                    <br /> <br /> <br />
+
+
+                    <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+                        <input type="checkbox" class="btn-check" id="btncheck1" checked="" autocomplete="off">
+                        <label class="btn btn-primary" for="btncheck1"> الأسنان</label>
+
+                        <input type="checkbox" class="btn-check" id="btncheck2" autocomplete="off">
+                        <label class="btn btn-primary" for="btncheck2">الأشعة</label>
+
+                        <input type="checkbox" class="btn-check" id="btncheck3" autocomplete="off">
+                        <label class="btn btn-primary" for="btncheck3">التمريض</label>
+
+                        <input type="checkbox" class="btn-check" id="btncheck1" checked="" autocomplete="off">
+                        <label class="btn btn-primary" for="btncheck1"> العلاج الطبيعي</label>
+
+                        <input type="checkbox" class="btn-check" id="btncheck2" autocomplete="off">
+                        <label class="btn btn-primary" for="btncheck2">الأطراف الصناعية</label>
+
+                        <input type="checkbox" class="btn-check" id="btncheck3" autocomplete="off">
+                        <label class="btn btn-primary" for="btncheck3">الجراحة</label>
+
+                    </div>
+
+
+                    <br /> <br /> <br />
+                    <div class="d-flex justify-content-center">
+                        <button type="button"
+                                class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">
+                            حفظ
+                        </button>
+                    </div>
+
+
+
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-sm-2"></div>
+</div>
+
+
+@section Scripts{
+    @{
+
+
+        <script>
+            $(function () {
+                // Sidebar toggle behavior
+                $('#sidebarCollapse').on('click', function () {
+                    $('#sidebar, #content').toggleClass('active');
+                });
+            });
+
+        </script>
+
+    }
+    }

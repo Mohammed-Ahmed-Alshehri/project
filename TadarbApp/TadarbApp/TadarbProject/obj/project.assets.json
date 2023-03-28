@@ -10413,19 +10413,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\abeee\\.nuget\\packages\\": {}
+    "C:\\Users\\hp\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\abeee\\Desktop\\Tadarb\\project\\TadarbApp\\TadarbApp\\TadarbProject\\TadarbProject.csproj",
+      "projectUniqueName": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\TadarbProject.csproj",
       "projectName": "TadarbProject",
-      "projectPath": "C:\\Users\\abeee\\Desktop\\Tadarb\\project\\TadarbApp\\TadarbApp\\TadarbProject\\TadarbProject.csproj",
-      "packagesPath": "C:\\Users\\abeee\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\abeee\\Desktop\\Tadarb\\project\\TadarbApp\\TadarbApp\\TadarbProject\\obj\\",
+      "projectPath": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\TadarbProject.csproj",
+      "packagesPath": "C:\\Users\\hp\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\abeee\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\hp\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
