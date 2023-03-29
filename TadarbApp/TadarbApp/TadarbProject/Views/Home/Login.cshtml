@@ -31,7 +31,7 @@
 
                                 <p class="text-center h3 fw-bold mb-5 mx-1 mx-md-4 mt-4" style="color:black;   font-size:33px;">تسجيل الدخول</p>
 
-                                <form class="mx-1 mx-md-4 needs-validation" novalidate>
+                                <form method="post" asp-action="Login" class="mx-1 mx-md-4 needs-validation" novalidate>
 
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <div class="form-outline flex-fill mb-0" style="text-align: right;">
@@ -41,7 +41,7 @@
                                             &nbsp
                                             <i class="fa-solid fa-envelope-circle-check fa-x10" ></i>
 
-                                            <input type="email" id="form3Example1c" class="form-control" placeholder="البريد الالكتروني" required dir="rtl" />
+                                            <input asp-for="UserEmail" type="email" id="form3Example1c" class="form-control" placeholder="البريد الالكتروني" required dir="rtl" />
                                             @*                                                <span asp-validation-for="@Model.UserEmail" class="text-danger" style="text-align: right;"></span>
                                             *@
                                             <div class="invalid-feedback" style="text-align: right;"> الرجاء إدخال البريد الإلكتروني </div>
@@ -56,7 +56,7 @@
                                                                                     &nbsp
 
                                             <i class="fa-solid fa-lock " ></i>
-                                            <input type="password" id="form3Example3c" class="form-control" placeholder="كلمة المرور" required dir="rtl" />
+                                                <input type="password" asp-for="UserPassword" id="form3Example3c" class="form-control" placeholder="كلمة المرور" required dir="rtl" />
                                             
                                             <div class="invalid-feedback" style="text-align: right;"> الرجاء إدخال كلمة المرور </div>
                                         </div>

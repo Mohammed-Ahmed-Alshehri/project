@@ -40,6 +40,36 @@ namespace TadarbProject.Controllers
             return View();
         }
 
+
+
+        [HttpPost]
+        public IActionResult Login(UserAcount user)
+        {
+
+            if (user == null)
+            {
+                return View();
+
+            }
+
+            var UserInDb = _DbContext.UserAcounts.Where(item => item.UserType.Equals("System_Admin") && item.UserEmail.Equals(user.UserEmail) && item.UserPassword.Equals(user.UserPassword)).FirstOrDefault();
+
+            if (UserInDb == null)
+            {
+                return View(UserInDb);
+            }
+
+
+
+
+            return RedirectToAction("Index", "Admin");
+
+
+
+
+
+        }
+
         [HttpGet]
         public IActionResult Registration()
         {
@@ -79,7 +109,8 @@ namespace TadarbProject.Controllers
                     UserPassword = organizationVM.userAcount.UserPassword,
                     FullName = organizationVM.userAcount.FullName,
                     Phone = organizationVM.userAcount.Phone,
-                    City_CityId = organizationVM.organization.MainBranchCityId
+                    City_CityId = organizationVM.organization.MainBranchCityId,
+                    UserType = "Admin"
                 };
 
 
@@ -132,6 +163,7 @@ namespace TadarbProject.Controllers
 
                     Location = organizationVM.organization.Location
 
+
                 };
 
                 _DbContext.Add(organization);
@@ -140,7 +172,7 @@ namespace TadarbProject.Controllers
                 //-----------------------------------------------------------------------------
 
                 //لكي تعبي جسم رسالة الايميل بالتمبليت الذي تريدة + تحديد المرسل له والموضوع و اخيرا رابط التاكيد 
-                var EmailBody = _emailSender.PopulateMessageBody(wwwRootPath, "verificationtemplate.html", organizationVM.organization.OrganizationName, $"https://localhost:44367/home/UdateUserAcountActivationStatus/{user.UserId}");
+                var EmailBody = _emailSender.PopulateMessageBody(wwwRootPath, "verificationtemplate.html", organizationVM.organization.OrganizationName, $"https://localhost:7122/home/UdateUserAcountActivationStatus/{user.UserId}");
 
                 var result = _emailSender.SendEmail(organizationVM.userAcount.UserEmail, "رسالة بشأن التحقق من عنوان البريد الإلكتروني - منصة تدرب", EmailBody);
 
