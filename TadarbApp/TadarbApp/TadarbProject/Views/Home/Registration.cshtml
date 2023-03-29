@@ -240,7 +240,7 @@
                                             <div class="form-outline" style="text-align: right;">
                                                 <label class="form-label" for="Phone" style="font-size:20px;">الجوال</label>
 
-                                                <input asp-for="userAcount.Phone" type="number" id="PhoneID" class="form-control form-control-lg"  maxlength="10"  required />
+                                                <input asp-for="userAcount.Phone" type="tel" id="PhoneID" class="form-control form-control-lg"  maxlength="10"  required />
                                                 <div class="invalid-feedback" style="text-align: right;" id="PhoneIDMassage"> الرجاء إدخال رقم الجوال </div>
                                                 @*                                                <span asp-validation-for="userAcount.Phone" class="text-danger" style="text-align: right;"></span>
 *@                                            </div>
@@ -590,7 +590,7 @@
 
                 map = new google.maps.Map(document.getElementById("map"), {
                 center: MapLatAndLng,
-                    zoom: 10, disableDefaultUI: true
+                    zoom: 15, disableDefaultUI: true
 
                 });
 
