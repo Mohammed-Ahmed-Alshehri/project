@@ -2,7 +2,7 @@
 
     <link rel="stylesheet" href="~/css/AddSpecialities.css" asp-append-version="true" />
 
-
+   
 </head>
 
 <div class="row">
@@ -64,9 +64,9 @@
     </div>
 
     <div class="col-sm-6">
-        <div class="card" style="border-radius: 15px;">
+        <div class="card" style="border-radius: 25px; margin-top:2cm; margin-bottom:3cm; padding:5px 5px 5px 5px ; border-color:black;">
             <div class="card-body p-5">
-                <h2 class=" text-center mb-5">اختيار المجالات المراد تقديم التدريب فيها</h2>
+                <h2 class=" text-center mb-5">إضافة فرع جديد</h2>
 
                 <form>
                     <div class="row">
@@ -74,6 +74,7 @@
                                                     <br /> 
 
                             <div class="form-outline" style="text-align: right;">
+                                <i class="fa-regular fa-address-card"></i>
                                 <label class="form-label" for="OrganizationName" style="font-size:20px;">اسم الفرع</label>
                                 <input  type="text" id="OrganizationNameID" class="form-control form-control-lg" required />
                                 <div class="invalid-feedback" style="text-align: right;"> الرجاء إدخال اسم الفرع </div>
@@ -83,8 +84,8 @@
 
                         </div>
                         <div class="col-md-6 mb-4 pb-2">
-
-                   <label for="MainBranchCity" class="form-label mt-4" style="font-size:22px;">المدينة</label>
+                            <i class="fa-solid fa-earth-americas"></i>
+                   <label for="MainBranchCity" class="form-label mt-4" style="font-size:20px;">المدينة</label>
                                             <select   class="form-select" id="CountryNameID" required>
                                                 <option selected disabled value="">--مدينة الفرع الرئيسي--</option>
                                                                                                 <option  value="">المدينة المنورة</option>
@@ -96,10 +97,7 @@
 
                         </div>
                     </div>
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Recipient's username" aria-label="الرجاء إرفاق موقع الفرع" aria-describedby="button-addon2">
-                        <button class="btn btn-primary" type="button" id="button-addon2">الموقع</button>
-                    </div>
+                    
 
                     <div class="mb-4 pb-2">
                         <div class="form-outline" style="text-align: right;">
@@ -111,6 +109,8 @@
 
                     <div class="mb-4 pb-2">
                         <div class="form-outline" style="text-align: right;">
+                            <i class="fa-solid fa-envelope-circle-check fa-x10"></i>
+
                             <label class="form-label" for="UserEmail" style="font-size:20px;">البريد الإلكتروني</label>
                             <input  type="email" id="UserEmailID" class="form-control form-control-lg" required />
                             <div class="invalid-feedback" id="UserEmailMassage" style="text-align: right;"> الرجاء إدخال البريد الإلكتروني </div>
@@ -120,19 +120,23 @@
                     <div class="row">
                         <div class="col-md-6 mb-4 pb-2">
 
-                            <div class="form-outline" style="text-align: right;">
-                                <label class="form-label" for="ConfirmUserPassword" style="font-size:20px;">تأكيد كلمة المرور</label>
-                                <input  type="password" id="ConfirmUserPasswordID" class="form-control form-control-lg" required />
-                                <div class="invalid-feedback" id="ConfirmPasswordMassage" style="text-align: right;"> الرجاء تأكيد كلمة المرور </div>
-                            </div>
+                           
 
+
+                            <div class="form-outline" style="text-align: right;">
+                                <i class="fa-solid fa-lock "></i>
+                                <label class="form-label" for="UserPassword" style="font-size:20px;">كلمة المرور</label>
+                                <input type="password" id="UserPasswordID" class="form-control form-control-lg" required />
+                                <div class="invalid-feedback" id="PasswordMassage" style="text-align: right;"> الرجاء إدخال كلمة المرور </div>
+                            </div>
                         </div>
                         <div class="col-md-6 mb-4 pb-2">
 
                             <div class="form-outline" style="text-align: right;">
-                                <label class="form-label" for="UserPassword" style="font-size:20px;">كلمة المرور</label>
-                                <input type="password" id="UserPasswordID" class="form-control form-control-lg" required />
-                                <div class="invalid-feedback" id="PasswordMassage" style="text-align: right;"> الرجاء إدخال كلمة المرور </div>
+                                <i class="fa-solid fa-lock "></i>
+                                <label class="form-label" for="ConfirmUserPassword" style="font-size:20px;">تأكيد كلمة المرور</label>
+                                <input type="password" id="ConfirmUserPasswordID" class="form-control form-control-lg" required />
+                                <div class="invalid-feedback" id="ConfirmPasswordMassage" style="text-align: right;"> الرجاء تأكيد كلمة المرور </div>
                             </div>
 
                         </div>
@@ -140,6 +144,7 @@
 
                     <div class="mb-4 pb-2">
                         <div class="form-outline" style="text-align: right;">
+                            <i class="fa-solid fa-phone"></i>
                             <label class="form-label" for="Phone" style="font-size:20px;">الجوال</label>
 
                             <input  type="string" id="PhoneID" class="form-control form-control-lg" required />
@@ -153,10 +158,9 @@
 
                     <br /> <br /> <br />
                     <div class="d-flex justify-content-center">
-                        <button type="button"
-                                class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">
-                            تسجيل
-                        </button>
+                        
+                            <button type="submit" class="btn btn-lg " style="background-color:#D8BF36; font-size:20px;">تسجيل الدخول</button>
+                        
                     </div>
 
 
