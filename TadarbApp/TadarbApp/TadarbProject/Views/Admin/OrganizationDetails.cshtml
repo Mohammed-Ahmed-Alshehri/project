@@ -56,7 +56,7 @@
 
 										<div class="text pl-3">
 
-											<h5>@Model.organization.Location</h5>
+											<h5 id="location"></h5>
 										</div>
 									</div>
 
@@ -199,3 +199,90 @@
 	</div>
 	<br /> <br /><br /> <br /><br /> <br /><br />
 </section>
+
+@section Scripts
+{
+
+   <script>
+
+		var log = @Model.organization.Location.Split(',').First();
+		var lat = @Model.organization.Location.Split(',').Last();
+
+		var country ="";
+		var city= "";
+		latAndLng = log + ", " + lat;
+
+		$(document).ready(function () {
+
+			$.ajax({
+				type: "GET",
+				url: "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + latAndLng + "&key=AIzaSyBJvHlgeiw22e7B_Ypk4uOkUpC8CbpIJA8",
+
+			
+
+				dataType: "json",
+				success: function (data) 
+				{
+
+
+
+					$.each(data.results, function (key, value) {
+
+
+						if (value.types.includes("country")){
+
+							const myJSON = JSON.stringify(value.address_components);
+							
+							//console.log(myJSON);
+
+						
+
+							//console.log(myJSON);
+
+							var i1 = myJSON.indexOf(':')+2;
+							var i2 = myJSON.indexOf(',')-1;
+
+
+							 country = myJSON.substring(i1, i2);
+ 
+
+						}
+
+						if (value.types[0] == "locality" )
+						{
+							//console.log(value.address_components);
+
+							const myJSON2 = JSON.stringify(value.address_components);
+							var x1 = myJSON2.indexOf(':') + 2;
+							var x2 = myJSON2.indexOf(',') - 1;
+
+							 city = myJSON2.substring(x1, x2);
+
+
+						}
+
+						
+						
+
+					});
+
+					fillLocaton(country, city);
+
+				}
+			});
+			
+		});
+
+
+
+		function fillLocaton(v1 , v2){
+
+			var xp = document.getElementById("location").innerHTML = v1 + ", " + v2;
+
+		}
+		
+
+   </script>
+
+
+}

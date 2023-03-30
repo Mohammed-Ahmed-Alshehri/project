@@ -188,6 +188,7 @@
         function BasedOnstSatus(sta, stype) {
             var body = '';
             var sa = '';
+
             $(document).ready(function () {
 
                 $.ajax({
@@ -200,7 +201,8 @@
                     success: function (data) {
 
 
-                        $.each(data.list, function (key, value) {
+                        $.each(data.list, function (key, value) 
+                        {
 
                             if (value.activationStatus == "Active")
                                 sa = 'نشط';
