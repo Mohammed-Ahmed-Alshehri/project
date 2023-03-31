@@ -33,7 +33,27 @@ namespace TadarbProject.Controllers
             return View();
         }
 
+        public IActionResult ViewBranches()
+        {
+
+
+            return View();
+        }
         public IActionResult Addbranches()
+        {
+
+
+            return View();
+        }
+
+        public IActionResult  ViewUsers()
+        {
+
+
+            return View();
+        }
+
+        public IActionResult AddUsers()
         {
 
 
