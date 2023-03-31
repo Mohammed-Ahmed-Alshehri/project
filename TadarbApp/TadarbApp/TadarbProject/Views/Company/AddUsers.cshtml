@@ -1,101 +1,171 @@
-﻿
+﻿<head>
 
-<style>
-    #colorBack {
-        background-color: #1c4c64;
-        opacity: 0.7;
-        margin-top: 1em;
-        color: black;
-    }
+    <link rel="stylesheet" href="~/css/Addbranches.css" asp-append-version="true" />
 
-</style>
+
+</head>
+
 <div class="container">
     <div class="row">
 
-        <div class="col-lg-12 bg-indigo text-white" id="colorBack">
-            <div class="p-5">
-                <h3 class="fw-normal mb-5" style="font:bold"> معلومات مسؤول الفرع </h3>
 
-                <div class="mb-4 pb-2">
-                    <div class="form-outline" style="text-align: right;">
-                        <label class="form-label" for="FullName" style="font-size:20px;">الاسم الثلاثي</label>
-                        <input @*asp-for="userAcount.FullName"*@ type="text" id="FullNameID" class="form-control form-control-lg" required />
-                        <div class="invalid-feedback" style="text-align: right;"> الرجاء إدخال الاسم الثلاثي </div>
-                    </div>
-                </div>
 
-                <div class="mb-4 pb-2">
-                    <div class="form-outline" style="text-align: right;">
-                        <label class="form-label" @*asp-for="userAcount.UserEmail"*@ for="UserEmail" style="font-size:20px;">البريد الإلكتروني</label>
-                        <input@* asp-for="userAcount.UserEmail"*@ type="email" id="UserEmailID" class="form-control form-control-lg" required />
-                        <div class="invalid-feedback" id="UserEmailMassage" style="text-align: right;"> الرجاء إدخال البريد الإلكتروني </div>
-                    </div>
-                </div>
 
-                <div class="row">
-                    <div class="col-md-6 mb-4 pb-2">
+        <div class="row">
+            <div class="col-sm-4">
 
-                        <div class="form-outline" style="text-align: right;">
-                            <label class="form-label" for="UserPassword" style="font-size:20px;">كلمة المرور</label>
-                            <input type="password" id="UserPasswordID" class="form-control form-control-lg" required />
-                            <div class="invalid-feedback" id="PasswordMassage" style="text-align: right;"> الرجاء إدخال كلمة المرور </div>
+                <div class="vertical-nav bg-white" id="sidebar" ">
+                    <div class="py-4 px-3 mb-4 bg-light">
+                        <div class="media d-flex align-items-center">
+                            <img src="https://www10.0zz0.com/2023/03/28/01/150049724.jpg" alt="..." width="65" class="mr-3 rounded-circle img-thumbnail shadow-sm">
+                            <div class="media-body">
+                                <h4 class="m-0">مستشفى الحرس الوطني</h4>
+                            </div>
                         </div>
-
                     </div>
 
-                    <div class="col-md-6 mb-4 pb-2">
+                    <p class="text-gray font-weight-bold text-uppercase px-3 small pb-4 mb-0">القائمة</p>
 
-                        <div class="form-outline" style="text-align: right;">
-                            <label class="form-label" for="ConfirmUserPassword" style="font-size:20px;">تأكيد كلمة المرور</label>
-                            <input @*asp-for="userAcount.UserPassword"*@ type="password" id="ConfirmUserPasswordID" class="form-control form-control-lg" required />
-                            <div class="invalid-feedback" id="ConfirmPasswordMassage" style="text-align: right;"> الرجاء تأكيد كلمة المرور </div>
-                        </div>
+                    <ul class="nav flex-column bg-white mb-0">
+                        <li class="nav-item">
+                            <a asp-controller="Company" asp-action="Index" class="nav-link text-dark font-italic bg-light">
+                                <i class="fa fa-th-large mr-3 text-primary fa-fw"></i>
+                                إلصفحة الرئيسية
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-controller="Company" asp-action="AddSpecialities" class="nav-link text-dark font-italic">
+                                <i class="fa fa-address-card mr-3 text-primary fa-fw"></i>
+                                إضافة مجالات التدريب
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-controller="Company" asp-action="viewusers" class="nav-link text-dark font-italic">
+                                <i class="fa fa-cubes mr-3 text-primary fa-fw"></i>
+                                ادارة مسؤولي الفروع
 
-                    </div>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-controller="Company" asp-action="Addbranches" class="nav-link text-dark font-italic">
+                                <i class="fa fa-cubes mr-3 text-primary fa-fw"></i>
+                                ادارة الفروع
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark font-italic">
+                                <i class="fa fa-picture-o mr-3 text-primary fa-fw"></i>
+                                Gallery
+                            </a>
+                        </li>
+                    </ul>
+
+                    <p class="text-gray font-weight-bold text-uppercase px-3 small py-4 mb-0">Charts</p>
+
 
                 </div>
 
-                <div class="mb-4 pb-2">
-                    <div class="form-outline" style="text-align: right;">
-                        <label class="form-label" for="Phone" style="font-size:20px;">الجوال</label>
 
-                        <input@* asp-for="userAcount.Phone"*@ type="tel" id="PhoneID" class="form-control form-control-lg" maxlength="10" required />
-                        <div class="invalid-feedback" style="text-align: right;" id="PhoneIDMassage"> الرجاء إدخال رقم الجوال </div>
-                        @*                                                <span asp-validation-for="userAcount.Phone" class="text-danger" style="text-align: right;"></span>
-                        *@
-                    </div>
+                <!-- End vertical navbar -->
+                <!-- Page content holder -->
+                <div class="page-content p-1" id="content">
+                    <!-- Toggle button -->
+                    <button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i class="fa fa-bars mr-2"></i><small class="text-uppercase font-weight-bold">القائمة</small></button>
                 </div>
-
-
-
-
-
-
-                <div class="row">
-                    <button type="submit" class="btn btn-primary btn-lg" @*onclick="return ValidateInputImage()"*@
-                            data-mdb-ripple-color="dark" style="background-color:#D8BF36;color:black;border:0px">
-                        تسجيل
-                    </button>
-
-
-                </div>
-
-
-                <a asp-controller="Company" asp-action="ViewUsers" class="row">
-                    <button type="submit" class="btn btn-primary btn-lg"
-                            data-mdb-ripple-color="dark">
-                        الى الخلف
-                    </button>
-                </a>
-
-
-
 
 
             </div>
 
+            <div class="col-sm-6">
+                <div class="card" style="border-radius: 25px; margin-top:2cm; margin-bottom:3cm; padding:5px 5px 5px 5px ; border-color:black;">
+                    <div class="card-body p-5">
+                        <h2 class=" text-center mb-5">إضافة مسؤول فرع</h2>
+
+                        <form>
+                            <div class="row">
+                                <div class=" mb-4 pb-2">
+                                    <br />
+
+                                    <div class="form-outline" style="text-align: right;">
+                                        <i class="fa-solid fa-user"></i>
+                                        <label class="form-label" for="FullName" style="font-size:20px;">الاسم الثلاثي</label>
+                                        <input @*asp-for="userAcount.FullName"*@ type="text" id="FullNameID" class="form-control form-control-lg" required />
+                                        <div class="invalid-feedback" style="text-align: right;"> الرجاء إدخال الاسم الثلاثي </div>
+                                    </div>
 
 
+                                </div>
+
+                            </div>
+
+
+                            <div class="mb-4 pb-2">
+                                <i class="fa-solid fa-at"></i>
+                                <label class="form-label" @*asp-for="userAcount.UserEmail"*@ for="UserEmail" style="font-size:20px;">البريد الإلكتروني</label>
+                                <input type="email" id="UserEmailID" class="form-control form-control-lg" required />
+                                <div class="invalid-feedback" id="UserEmailMassage" style="text-align: right;"> الرجاء إدخال البريد الإلكتروني </div>
+                            </div>
+
+
+                            <div class="mb-4 pb-2">
+                                <i class="fa-solid fa-lock"></i>
+                                <label class="form-label" for="UserPassword" style="font-size:20px;">كلمة المرور</label>
+                                <input type="password" id="UserPasswordID" class="form-control form-control-lg" required />
+                                <div class="invalid-feedback" id="PasswordMassage" style="text-align: right;"> الرجاء إدخال كلمة المرور </div>
+
+                            </div>
+
+                            <div class="mb-4 pb-2">
+                                <i class="fa-solid fa-lock"></i>
+                                <label class="form-label" for="ConfirmUserPassword" style="font-size:20px;">تأكيد كلمة المرور</label>
+                                <input @*asp-for="userAcount.UserPassword"*@ type="password" id="ConfirmUserPasswordID" class="form-control form-control-lg" required />
+                                <div class="invalid-feedback" id="ConfirmPasswordMassage" style="text-align: right;"> الرجاء تأكيد كلمة المرور </div>
+
+
+
+                            </div>
+
+
+
+
+
+
+                            <br />
+                            <div class="row">
+
+                                <button type="submit" class="btn btn-lg " style="background-color:#D8BF36;">إضافة  </button>
+
+
+
+                            </div>
+
+
+                        </form>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-sm-2"></div>
         </div>
     </div>
 </div>
+
+
+@section Scripts{
+    @{
+
+
+        <script>
+            $(function () {
+                // Sidebar toggle behavior
+                $('#sidebarCollapse').on('click', function () {
+                    $('#sidebar, #content').toggleClass('active');
+                });
+            });
+
+        </script>
+
+    }
+    }
