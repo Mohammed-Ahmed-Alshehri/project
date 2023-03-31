@@ -1,8 +1,8 @@
 ﻿<head>
 
-    <link rel="stylesheet" href="~/css/AddSpecialities.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/Addbranches.css" asp-append-version="true" />
 
-   
+
 </head>
 
 <div class="row">
@@ -22,27 +22,27 @@
 
             <ul class="nav flex-column bg-white mb-0">
                 <li class="nav-item">
-                    <a  asp-controller="Company" asp-action="Index"  class="nav-link text-dark font-italic bg-light">
+                    <a asp-controller="Company" asp-action="Index" class="nav-link text-dark font-italic bg-light">
                         <i class="fa fa-th-large mr-3 text-primary fa-fw"></i>
                         إلصفحة الرئيسية
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a  asp-controller="Company" asp-action="AddSpecialities" class="nav-link text-dark font-italic">
+                    <a asp-controller="Company" asp-action="AddSpecialities" class="nav-link text-dark font-italic">
                         <i class="fa fa-address-card mr-3 text-primary fa-fw"></i>
-                        إدارة مجالات التدريب
+                        إضافة مجالات التدريب
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a  asp-controller="Company" asp-action="Addbranches" class="nav-link text-dark font-italic">
+                    <a asp-controller="Company" asp-action="Addbranches" class="nav-link text-dark font-italic">
                         <i class="fa fa-cubes mr-3 text-primary fa-fw"></i>
-                        إدارة المسؤولين
+                        إضافة الفروع
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a  class="nav-link text-dark font-italic">
+                    <a class="nav-link text-dark font-italic">
                         <i class="fa fa-picture-o mr-3 text-primary fa-fw"></i>
-                        إدارة الفروع
+                        Gallery
                     </a>
                 </li>
             </ul>
@@ -70,97 +70,75 @@
 
                 <form>
                     <div class="row">
-                        <div class="col-md-6 mb-4 pb-2">
-                                                    <br /> 
+                        <div class=" mb-4 pb-2">
+                            <br />
 
                             <div class="form-outline" style="text-align: right;">
                                 <i class="fa-regular fa-address-card"></i>
                                 <label class="form-label" for="OrganizationName" style="font-size:20px;">اسم الفرع</label>
-                                <input  type="text" id="OrganizationNameID" class="form-control form-control-lg" required />
+                                <input type="text" id="OrganizationNameID" class="form-control form-control-lg" required />
+
                                 <div class="invalid-feedback" style="text-align: right;"> الرجاء إدخال اسم الفرع </div>
 
                             </div>
-                          
+
 
                         </div>
-                        <div class="col-md-6 mb-4 pb-2">
-                            <i class="fa-solid fa-earth-americas"></i>
-                   <label for="MainBranchCity" class="form-label mt-4" style="font-size:20px;">المدينة</label>
-                                            <select   class="form-select" id="CountryNameID" required>
-                                                <option selected disabled value="">--مدينة الفرع الرئيسي--</option>
-                                                                                                <option  value="">المدينة المنورة</option>
 
-                                            </select>
-                                            <div class="invalid-feedback">
-                                                الرجاء إدخال مدينة الفرع الرئيسي
-                                            </div>
-
-                        </div>
                     </div>
-                    
+
 
                     <div class="mb-4 pb-2">
-                        <div class="form-outline" style="text-align: right;">
-                            <label class="form-label" for="FullName" style="font-size:20px;"></label>
-                            <input  type="text" id="FullNameID" class="form-control form-control-lg" required />
-                            <div class="invalid-feedback" style="text-align: right;"> الرجاء إدخال الاسم الثلاثي </div>
+                        <i class="fa-solid fa-earth-americas"></i>
+                        <label for="MainBranchCity" class="form-label mt-4" style="font-size:20px;">المدينة</label>
+                        <select class="form-select" id="CountryNameID" required>
+                            <option selected disabled value="">--مدينة الفرع الرئيسي--</option>
+                            <option value="">المدينة المنورة</option>
+
+                        </select>
+                        <div class="invalid-feedback">
+                            الرجاء إدخال مدينة الفرع الرئيسي
                         </div>
                     </div>
+
 
                     <div class="mb-4 pb-2">
-                        <div class="form-outline" style="text-align: right;">
-                            <i class="fa-solid fa-envelope-circle-check fa-x10"></i>
+                        <i class="fa-solid fa-user"></i>
+                        <label for="MainBranchCity" class="form-label mt-4" style="font-size:20px;"> اسم المسؤول</label>
+                        <select class="form-select" id="CountryNameID" required>
+                            <option selected disabled value="">--حمد--</option>
+                            <option value="">خالد</option>
 
-                            <label class="form-label" for="UserEmail" style="font-size:20px;">البريد الإلكتروني</label>
-                            <input  type="email" id="UserEmailID" class="form-control form-control-lg" required />
-                            <div class="invalid-feedback" id="UserEmailMassage" style="text-align: right;"> الرجاء إدخال البريد الإلكتروني </div>
-                        </div>
+                        </select>
+
+                    </div>
+                    <br /> <br />
+                    <div class="input-group mb-3" style="text-align: right;">
+
+                        <input type="text" class="form-control" id="LocationID" placeholder="موقع المنظمة"
+                               aria-label="Recipient's username" aria-describedby="button-addon2" disabled style="display:none">
+
+                        <button class="btn btn-primary" type="button" id="ButtonLocation" onclick="getLocation()" style="background-color:#1c4c64;border:0px">أدخل الموقع الحالي</button>
+
+
+                        <input id="LocationValue" value="" hidden required />
+                        <div class="invalid-feedback" style="text-align: right;"> الرجاء رفع موقع المنظمة </div>
+
+                        <div style="height:28vh; width:100%; display:none" id="map" onclick=""></div>
+
+
                     </div>
 
-                    <div class="row">
-                        <div class="col-md-6 mb-4 pb-2">
-
-                           
 
 
-                            <div class="form-outline" style="text-align: right;">
-                                <i class="fa-solid fa-lock "></i>
-                                <label class="form-label" for="UserPassword" style="font-size:20px;">كلمة المرور</label>
-                                <input type="password" id="UserPasswordID" class="form-control form-control-lg" required />
-                                <div class="invalid-feedback" id="PasswordMassage" style="text-align: right;"> الرجاء إدخال كلمة المرور </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 mb-4 pb-2">
 
-                            <div class="form-outline" style="text-align: right;">
-                                <i class="fa-solid fa-lock "></i>
-                                <label class="form-label" for="ConfirmUserPassword" style="font-size:20px;">تأكيد كلمة المرور</label>
-                                <input type="password" id="ConfirmUserPasswordID" class="form-control form-control-lg" required />
-                                <div class="invalid-feedback" id="ConfirmPasswordMassage" style="text-align: right;"> الرجاء تأكيد كلمة المرور </div>
-                            </div>
-
-                        </div>
-                    </div>
-
-                    <div class="mb-4 pb-2">
-                        <div class="form-outline" style="text-align: right;">
-                            <i class="fa-solid fa-phone"></i>
-                            <label class="form-label" for="Phone" style="font-size:20px;">الجوال</label>
-
-                            <input  type="string" id="PhoneID" class="form-control form-control-lg" required />
-                            <div class="invalid-feedback" style="text-align: right;" id="PhoneIDMassage"> الرجاء إدخال رقم الجوال </div>
-                        @*                                                <span asp-validation-for="userAcount.Phone" class="text-danger" style="text-align: right;"></span>
-                            *@
-                        </div>
-                    </div>
-                   
 
 
                     <br /> <br /> <br />
                     <div class="d-flex justify-content-center">
-                        
-                            <button type="submit" class="btn btn-lg " style="background-color:#D8BF36; font-size:20px;">تسجيل الدخول</button>
-                        
+
+                        <button type="submit" class="btn btn-lg " style="background-color:#D8BF36; font-size:20px;">تسجيل الدخول</button>
+
                     </div>
 
 

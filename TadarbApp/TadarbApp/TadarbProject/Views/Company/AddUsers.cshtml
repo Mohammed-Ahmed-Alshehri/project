@@ -1,5 +1,101 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿
+
+<style>
+    #colorBack {
+        background-color: #1c4c64;
+        opacity: 0.7;
+        margin-top: 1em;
+        color: black;
+    }
+
+</style>
+<div class="container">
+    <div class="row">
+
+        <div class="col-lg-12 bg-indigo text-white" id="colorBack">
+            <div class="p-5">
+                <h3 class="fw-normal mb-5" style="font:bold"> معلومات مسؤول الفرع </h3>
+
+                <div class="mb-4 pb-2">
+                    <div class="form-outline" style="text-align: right;">
+                        <label class="form-label" for="FullName" style="font-size:20px;">الاسم الثلاثي</label>
+                        <input @*asp-for="userAcount.FullName"*@ type="text" id="FullNameID" class="form-control form-control-lg" required />
+                        <div class="invalid-feedback" style="text-align: right;"> الرجاء إدخال الاسم الثلاثي </div>
+                    </div>
+                </div>
+
+                <div class="mb-4 pb-2">
+                    <div class="form-outline" style="text-align: right;">
+                        <label class="form-label" @*asp-for="userAcount.UserEmail"*@ for="UserEmail" style="font-size:20px;">البريد الإلكتروني</label>
+                        <input@* asp-for="userAcount.UserEmail"*@ type="email" id="UserEmailID" class="form-control form-control-lg" required />
+                        <div class="invalid-feedback" id="UserEmailMassage" style="text-align: right;"> الرجاء إدخال البريد الإلكتروني </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-4 pb-2">
+
+                        <div class="form-outline" style="text-align: right;">
+                            <label class="form-label" for="UserPassword" style="font-size:20px;">كلمة المرور</label>
+                            <input type="password" id="UserPasswordID" class="form-control form-control-lg" required />
+                            <div class="invalid-feedback" id="PasswordMassage" style="text-align: right;"> الرجاء إدخال كلمة المرور </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-6 mb-4 pb-2">
+
+                        <div class="form-outline" style="text-align: right;">
+                            <label class="form-label" for="ConfirmUserPassword" style="font-size:20px;">تأكيد كلمة المرور</label>
+                            <input @*asp-for="userAcount.UserPassword"*@ type="password" id="ConfirmUserPasswordID" class="form-control form-control-lg" required />
+                            <div class="invalid-feedback" id="ConfirmPasswordMassage" style="text-align: right;"> الرجاء تأكيد كلمة المرور </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="mb-4 pb-2">
+                    <div class="form-outline" style="text-align: right;">
+                        <label class="form-label" for="Phone" style="font-size:20px;">الجوال</label>
+
+                        <input@* asp-for="userAcount.Phone"*@ type="tel" id="PhoneID" class="form-control form-control-lg" maxlength="10" required />
+                        <div class="invalid-feedback" style="text-align: right;" id="PhoneIDMassage"> الرجاء إدخال رقم الجوال </div>
+                        @*                                                <span asp-validation-for="userAcount.Phone" class="text-danger" style="text-align: right;"></span>
+                        *@
+                    </div>
+                </div>
+
+
+
+
+
+
+                <div class="row">
+                    <button type="submit" class="btn btn-primary btn-lg" @*onclick="return ValidateInputImage()"*@
+                            data-mdb-ripple-color="dark" style="background-color:#D8BF36;color:black;border:0px">
+                        تسجيل
+                    </button>
+
+
+                </div>
+
+
+                <a asp-controller="Company" asp-action="ViewUsers" class="row">
+                    <button type="submit" class="btn btn-primary btn-lg"
+                            data-mdb-ripple-color="dark">
+                        الى الخلف
+                    </button>
+                </a>
+
+
+
+
+
+            </div>
+
+
+
+        </div>
+    </div>
+</div>

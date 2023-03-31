@@ -26,6 +26,12 @@ namespace TadarbProject.Controllers
             return View();
         }
 
+        public IActionResult ViewSpecialities()
+        {
+
+
+            return View();
+        }
         public IActionResult AddSpecialities()
         {
 

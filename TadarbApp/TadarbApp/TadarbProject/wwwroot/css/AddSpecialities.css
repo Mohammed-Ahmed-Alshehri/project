@@ -1,5 +1,80 @@
-﻿
+﻿.checkbox-list {
+    color: #fff;
+    background: linear-gradient(#1c4c64, #3a6073);
+    padding: 20px;
+    border-radius: 10px;
+}
 
+.checkbox {
+    border-bottom: 1px dashed rgba(255,255,255,0.5);
+    padding: 5px 5px 9px 5px;
+    margin: 0 0 10px;
+    display: block;
+}
+
+    .checkbox input[type=checkbox] {
+        margin: 0;
+        visibility: hidden;
+        left: 1px;
+        top: 1px;
+    }
+
+    .checkbox label {
+        font-size: 15px;
+        line-height: 26px;
+        padding-left: 35px;
+        margin: 0;
+        display: block;
+        cursor: pointer;
+        position: relative;
+        transition: all 0.3s ease 0s;
+    }
+
+        .checkbox label:before,
+        .checkbox label:after {
+            content: "";
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,0.5);
+            border-radius: 4px;
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            transition: all 0.25s;
+        }
+
+        .checkbox label:after {
+            height: 10px;
+            width: 16px;
+            border-radius: 0 0 0 4px;
+            border: 5px solid #fff;
+            border-top: none;
+            border-right: none;
+            opacity: 0;
+            transform: rotate(-45deg);
+            top: 15px;
+            left: 6px;
+        }
+
+    .checkbox input[type=checkbox]:checked + label {
+        font-weight: 600;
+    }
+
+        .checkbox input[type=checkbox]:checked + label:before {
+            opacity: 0;
+            top: -10px;
+        }
+
+        .checkbox input[type=checkbox]:checked + label:after {
+            opacity: 1;
+            top: 6px;
+        }
+
+@media only screen and (max-width:767px) {
+    .checkbox {
+        margin: 0 0 20px;
+    }
+}
 
 .vertical-nav {
     min-width: 17rem;
@@ -18,9 +93,7 @@
     margin-left: 17rem;
     transition: all 0.4s;
 }
-
 /* for toggle behavior */
-
 #sidebar.active {
     margin-right: -17rem;
 }
@@ -50,15 +123,10 @@
         }
 }
 
-
-}
-/*
-*
-* ==========================================
-* FOR DEMO PURPOSE
-* ==========================================
-*
-*/
+} /*
+** ==========================================
+* FOR DEMO PURPOSE* ==========================================
+**/
 body {
     background: #599fd9;
     background: -webkit-linear-gradient(to right, #599fd9, #c2e59c);
@@ -79,5 +147,3 @@ body {
 .text-gray {
     color: #aaa;
 }
-
-

@@ -137,6 +137,10 @@
       "PackagePath": "staticwebassets\\css\\AddSpecialities.css"
     },
     {
+      "Id": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\css\\Addbranches.css",
+      "PackagePath": "staticwebassets\\css\\Addbranches.css"
+    },
+    {
       "Id": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\css\\HomeSttyle.css",
       "PackagePath": "staticwebassets\\css\\HomeSttyle.css"
     },

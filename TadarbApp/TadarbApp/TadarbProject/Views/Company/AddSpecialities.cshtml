@@ -5,9 +5,7 @@
 
 </head>
 
-@*<div class="row" style="background-image:url(https://wallpaperaccess.com/full/732269.jpg); background-repeat: no-repeat;
-            background-size: cover;
-            height: 80vh; width: 100vw;">*@
+<div class="row">
     <div class="col-sm-4">
 
         <div class="vertical-nav bg-white" id="sidebar" ">
@@ -38,13 +36,13 @@
                 <li class="nav-item">
                     <a asp-controller="Company" asp-action="Addbranches" class="nav-link text-dark font-italic">
                         <i class="fa fa-cubes mr-3 text-primary fa-fw"></i>
-                        إدارة المسؤولين
+                        إضافة الفروع
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a  class="nav-link text-dark font-italic">
+                    <a class="nav-link text-dark font-italic">
                         <i class="fa fa-picture-o mr-3 text-primary fa-fw"></i>
-                        إدارة الفروع
+                        Gallery
                     </a>
                 </li>
             </ul>
@@ -65,58 +63,86 @@
 
     </div>
 
-    <div class="col-sm-6" ">
-        <div class="card" style="border-radius: 25px;  border-color:black;">
+    <div class="col-sm-6">
+        <div class="card" style="border-radius: 25px; margin-top:2cm; margin-bottom:3cm; padding:5px 5px 5px 5px ; border-color:black;">
             <div class="card-body p-5">
                 <h2 class=" text-center mb-5">اختيار المجالات المراد تقديم التدريب فيها</h2>
 
-                <form >
+                <form>
 
-                    <div class="form-group">
-                        <label for="exampleSelect1" class="form-label mt-4" style="font-size:25px">مجالات التدريب</label>
-                        <select class="form-select" id="exampleSelect1">
-                            <option>الطبي</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                        </select>
+
+
+
+                    <div class="row">
+                        <div class="col-md-6 mb-4 pb-2">
+                            <br />
+
+                            <div class="form-group col-md-6">
+                                <label for="exampleSelect1" class="form-label mt-4" style="font-size:20px">مجالات التدريب:</label>
+                                <select class="form-select" id="exampleSelect1">
+                                    <option>الطبي</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                </select>
+                            </div>
+
+
+                        </div>
+                        <div class="col-md-6 mb-4 pb-2">
+                            <div class="container">
+                                <div class="row">
+                                    <div>
+                                        <label for="MainBranchCity" class="form-label mt-4" style="font-size:18px;">الرجاء اختيار التخصصات المراد إضافتها:</label>
+                                        <div class="checkbox-list">
+                                            <div class="checkbox">
+                                                <input type="checkbox" id="checkbox1">
+                                                <label for="checkbox1">برمجة</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <input type="checkbox" id="checkbox2" checked="">
+                                                <label for="checkbox2">هندسة</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <input type="checkbox" id="checkbox3">
+                                                <label for="checkbox3">قواعد البيانات</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <input type="checkbox" id="checkbox4" checked="">
+                                                <label for="checkbox4">تطوير الويب</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <input type="checkbox" id="checkbox5">
+                                                <label for="checkbox5">برمجة</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <input type="checkbox" id="checkbox6" checked="">
+                                                <label for="checkbox6">هندسة</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <input type="checkbox" id="checkbox7">
+                                                <label for="checkbox7">قواعد البيانات</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <input type="checkbox" id="checkbox8" checked="">
+                                                <label for="checkbox8">تطوير الويب</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
-                    <br /> <br /> <br />
 
 
-                    <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group" style="font-size:20px">
-
-                        <input type="checkbox" class="btn-check " id="btncheck0" style="display:none" autocomplete="off">
-                        <label class="btn " for="btncheck0"  style="background-color:#1c4c64; color:white;"> الأسنان</label>
-
-                        <input type="checkbox" class="btn-check " id="btncheck1"  autocomplete="off">
-                        <label class="btn " for="btncheck1" style="background-color:#1c4c64; color:white;"> الأسنان</label>
-
-                        <input type="checkbox" class="btn-check" id="btncheck2" autocomplete="off">
-                        <label class="btn " for="btncheck2" style="background-color:#1c4c64; color:white;">الأشعة</label>
-
-                        <input type="checkbox" class="btn-check" id="btncheck3" autocomplete="off">
-                        <label class="btn " for="btncheck3" style="background-color:#1c4c64; color:white;">التمريض</label>
-
-                        <input type="checkbox" class="btn-check" id="btncheck4"  autocomplete="off">
-                        <label class="btn " for="btncheck4" style="background-color:#1c4c64; color:white;"> العلاج الطبيعي</label>
-
-                        <input type="checkbox" class="btn-check" id="btncheck5" autocomplete="off">
-                        <label class="btn " for="btncheck5" style="background-color:#1c4c64; color:white;">الأطراف الصناعية</label>
-
-                        <input type="checkbox" class="btn-check" id="btncheck6" autocomplete="off">
-                        <label class="btn " for="btncheck6" style="background-color:#1c4c64; color:white;">الجراحة</label>
-
-                        <input type="checkbox" class="btn-check " id="btncheck7" style="display:none" autocomplete="off">
-                        <label class="btn " for="btncheck7" style=" background-color:#1c4c64; color:white;"> الأسنان</label>
-
-                    </div>
 
 
-                    <br /> <br /> <br /><br /> <br /> <br /><br /> <br /> <br />
+
+                    <br /> <br />
                     <div class="d-flex justify-content-center">
-                        
+
                         <button type="button" class="btn btn-lg " style="background-color:#D8BF36; font-size:20px;">حفظ</button>
 
                     </div>
@@ -131,8 +157,8 @@
     </div>
 
     <div class="col-sm-2"></div>
-@*</div>
-*@
+</div>
+
 
 @section Scripts{
     @{
