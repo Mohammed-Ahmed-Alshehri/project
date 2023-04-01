@@ -8,7 +8,7 @@
 <div class="row" style="background: linear-gradient(#1c4c64,#5590ad);">
     <div class="col-sm-4">
 
-        <div class="vertical-nav bg-white" id="sidebar" ">
+        <div class="vertical-nav bg-white" id="sidebar" >
             <div class="py-4 px-3 mb-4 bg-light">
                 <div class="media d-flex align-items-center">
                     <img src="https://www10.0zz0.com/2023/03/28/01/150049724.jpg" alt="..." width="65" class="mr-3 rounded-circle img-thumbnail shadow-sm">
@@ -28,15 +28,22 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a asp-controller="Company" asp-action="AddSpecialities" class="nav-link text-dark font-italic">
+                    <a asp-controller="Company" asp-action="ViewSpecialities" class="nav-link text-dark font-italic">
                         <i class="fa fa-address-card mr-3 text-primary fa-fw"></i>
-                        إضافة مجالات التدريب
+                        إدارة مجالات التدريب
                     </a>
                 </li>
-                <li class="nav-item" >
-                    <a asp-controller="Company" asp-action="Addbranches" class="nav-link text-dark font-italic">
+                <li class="nav-item">
+                    <a asp-controller="Company" asp-action="viewUsers" class="nav-link text-dark font-italic">
                         <i class="fa fa-cubes mr-3 text-primary fa-fw"></i>
-                        إضافة الفروع
+                        ادارة مسؤولين الفروع
+
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a asp-controller="Company" asp-action="Viewbranches" class="nav-link text-dark font-italic">
+                        <i class="fa fa-cubes mr-3 text-primary fa-fw"></i>
+                        ادارة الفروع
                     </a>
                 </li>
                 <li class="nav-item">
@@ -87,7 +94,6 @@
 
                     </div>
 
-
                     <div class="mb-4 pb-2">
                         <i class="fa-solid fa-earth-americas"></i>
                         <label for="MainBranchCity" class="form-label mt-4" style="font-size:20px;">المدينة</label>
@@ -129,15 +135,10 @@
 
                     </div>
 
-
-
-
-
-
                     <br /> <br /> <br />
                     <div class="d-flex justify-content-center">
 
-                        <button type="submit" class="btn btn-lg " style="background-color:#e6e291; font-size:20px;">تسجيل الدخول</button>
+                        <button type="submit" class="btn btn-lg " style="background-color:#e6e291; font-size:20px;">إضافة</button>
 
                     </div>
 

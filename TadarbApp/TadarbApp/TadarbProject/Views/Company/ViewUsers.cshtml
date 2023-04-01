@@ -1,68 +1,168 @@
-﻿<div class="card card-table flex-fill">
-    <div class="card-header" style="text-align: center;">
-        <h3>مسؤولي الفروع</h3>
+﻿
+<head>
+
+    <link rel="stylesheet" href="~/css/Addbranches.css" asp-append-version="true" />
 
 
+</head>
+<div class="row" style="background: linear-gradient(#1c4c64,#5590ad); background-repeat: no-repeat;
+            background-size: cover;
+            height: 100vh; width: 100vw; padding:50px 5px 5px 5px;">
 
-        <a asp-controller="Company" asp-action="AddUsers" class="table-search float-end">
-            <button class="btn  btn-primary" type="submit" asp>  اضافة مسؤول جديد <i class="fa fa-add"></i></button>
-        </a>
+    <div class="col-sm-4">
 
+        <div class="vertical-nav bg-white" id="sidebar">
+            <div class="py-4 px-3 mb-4 bg-light">
+                <div class="media d-flex align-items-center">
+                    <img src="https://www10.0zz0.com/2023/03/28/01/150049724.jpg" alt="..." width="65" class="mr-3 rounded-circle img-thumbnail shadow-sm">
+                    <div class="media-body">
+                        <h4 class="m-0">مستشفى الحرس الوطني</h4>
+                    </div>
+                </div>
+            </div>
 
-    </div>
-    <div class="card-body">
-        <div class="table-responsive no-radius">
+            <p class="text-gray font-weight-bold text-uppercase px-3 small pb-4 mb-0">القائمة</p>
 
-            <table class="table table-hover table-center">
-                <thead>
-                    <tr>
+            <ul class="nav flex-column bg-white mb-0">
+                <li class="nav-item">
+                    <a asp-controller="Company" asp-action="Index" class="nav-link text-dark font-italic bg-light">
+                        <i class="fa fa-th-large mr-3 text-primary fa-fw"></i>
+                        إلصفحة الرئيسية
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a asp-controller="Company" asp-action="ViewSpecialities" class="nav-link text-dark font-italic">
+                        <i class="fa fa-address-card mr-3 text-primary fa-fw"></i>
+                        إدارة مجالات التدريب
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a asp-controller="Company" asp-action="viewUsers" class="nav-link text-dark font-italic">
+                        <i class="fa fa-cubes mr-3 text-primary fa-fw"></i>
+                        ادارة مسؤولين الفروع
 
-                        <th>اسم المسؤول</th>
-                        <th>رقم الهاتف</th>
-                        <th class="text-center">البريد الالكتروني</th>
-                        <th class="text-center">حذف  </th>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a asp-controller="Company" asp-action="Viewbranches" class="nav-link text-dark font-italic">
+                        <i class="fa fa-cubes mr-3 text-primary fa-fw"></i>
+                        ادارة الفروع
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark font-italic">
+                        <i class="fa fa-picture-o mr-3 text-primary fa-fw"></i>
+                        Gallery
+                    </a>
+                </li>
+            </ul>
 
-
-
-
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="text-nowrap">
-                            <div class="font-weight-600">
-                                <div class="font-weight-600 ">احمد حمدان</div>
-
-                            </div>
-                        </td>
-                        <td class="text-nowrap"> 0559683335</td>
-                        <td class="text-center">aaa@fff.com</td>
-
-                        <td class="text-center">
-                            <button type="button" class="btn btn-danger" fdprocessedid="ezqldw"><i class="fa fa-trash-alt"></i></button>
-
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td class="text-nowrap">
-                            <div class="font-weight-600">
-                                <div class="font-weight-600 "> صالح مصلح من صلاله</div>
-
-                            </div>
-                        </td>
-                        <td class="text-nowrap"> 0559683335</td>
-                        <td class="text-center"> dsfs@fgdg.com </td>
-
-                        <td class="text-center">
-                            <button type="button" class="btn btn-danger" fdprocessedid="ezqldw"><i class="fa fa-trash-alt"></i></button>
-
-                        </td>
-                    </tr>
+            <p class="text-gray font-weight-bold text-uppercase px-3 small py-4 mb-0">Charts</p>
 
 
-                </tbody>
-            </table>
         </div>
+
+
+        <!-- End vertical navbar -->
+        <!-- Page content holder -->
+        <div class="page-content p-1" id="content">
+            <!-- Toggle button -->
+            <button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i class="fa fa-bars mr-2"></i><small class="text-uppercase font-weight-bold">القائمة</small></button>
+        </div>
+
+
     </div>
+
+    <div class="col-sm-6">
+        <div class="card " style="border-radius: 25px; margin-top:2cm; margin-bottom:3cm; padding:5px 5px 5px 5px ; border-color:black;">
+            <div class="card-header" style="text-align: center;">
+                <h3>مسؤولي الفرع</h3>
+
+
+
+                <a asp-controller="Company" asp-action="AddUsers" class="table-search float-end">
+                    <button class="btn " style="background-color:#1c4c64; color:white" type="submit" asp>  اضافة مسؤول جديد <i class="fa fa-add"></i></button>
+                </a>
+
+
+            </div>
+            <div class="card-body">
+                <div class="table-responsive no-radius">
+
+                    <table class="table table-hover table-center">
+                        <thead>
+                            <tr>
+
+                                <th>اسم المسؤول</th>
+                                <th>رقم الهاتف	</th>
+                                <th class="text-center">البريد الالكتروني	</th>
+                                <th class="text-center">حذف  </th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="text-nowrap">
+                                    <div class="font-weight-600">
+                                        <div class="font-weight-600 ">
+                                            احمد حمدان
+                                        </div>
+
+                                    </div>
+                                </td>
+                                <td class="text-nowrap"> 0559683335	</td>
+                                <td class="text-center">
+                                    aaa@fff.com
+                                </td>
+
+                                <td class="text-center">
+                                    <button type="button" class="btn btn-danger" fdprocessedid="ezqldw"><i class="fa fa-trash-alt"></i></button>
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-nowrap">
+                                    <div class="font-weight-600">
+                                        <div class="font-weight-600 ">
+                                            علي خالد
+                                        </div>
+
+                                    </div>
+                                </td>
+                                <td class="text-nowrap"> 0559683335	</td>
+                                <td class="text-center">
+                                    yyy@fff.com
+                                </td>
+
+                                <td class="text-center">
+                                    <button type="button" class="btn btn-danger" fdprocessedid="ezqldw"><i class="fa fa-trash-alt"></i></button>
+
+                                </td>
+                            </tr>
+                           
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="col-sm-2"></div>
 </div>
+@section Scripts{
+    @{
+
+
+        <script>
+            $(function () {
+                // Sidebar toggle behavior
+                $('#sidebarCollapse').on('click', function () {
+                    $('#sidebar, #content').toggleClass('active');
+                });
+            });
+
+        </script>
+
+    }
+    }

@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Lenovo\\Desktop\\project\\TadarbApp\\TadarbApp\\TadarbProject\\TadarbProject.csproj": {}
+    "C:\\Users\\yaaaz\\OneDrive\\Desktop\\App\\project\\TadarbApp\\TadarbApp\\TadarbProject\\TadarbProject.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Lenovo\\Desktop\\project\\TadarbApp\\TadarbApp\\TadarbProject\\TadarbProject.csproj": {
+    "C:\\Users\\yaaaz\\OneDrive\\Desktop\\App\\project\\TadarbApp\\TadarbApp\\TadarbProject\\TadarbProject.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Lenovo\\Desktop\\project\\TadarbApp\\TadarbApp\\TadarbProject\\TadarbProject.csproj",
+        "projectUniqueName": "C:\\Users\\yaaaz\\OneDrive\\Desktop\\App\\project\\TadarbApp\\TadarbApp\\TadarbProject\\TadarbProject.csproj",
         "projectName": "TadarbProject",
-        "projectPath": "C:\\Users\\Lenovo\\Desktop\\project\\TadarbApp\\TadarbApp\\TadarbProject\\TadarbProject.csproj",
-        "packagesPath": "C:\\Users\\Lenovo\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Lenovo\\Desktop\\project\\TadarbApp\\TadarbApp\\TadarbProject\\obj\\",
+        "projectPath": "C:\\Users\\yaaaz\\OneDrive\\Desktop\\App\\project\\TadarbApp\\TadarbApp\\TadarbProject\\TadarbProject.csproj",
+        "packagesPath": "C:\\Users\\yaaaz\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\yaaaz\\OneDrive\\Desktop\\App\\project\\TadarbApp\\TadarbApp\\TadarbProject\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Lenovo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\yaaaz\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
