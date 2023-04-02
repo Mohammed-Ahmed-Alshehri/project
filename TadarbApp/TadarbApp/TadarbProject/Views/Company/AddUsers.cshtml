@@ -1,4 +1,10 @@
-﻿<head>
+﻿@model EmployeeVM 
+
+@{
+    ViewData["Title"] = "اضافة حساب مسؤول";
+}
+
+<head>
 
     <link rel="stylesheet" href="~/css/Addbranches.css" asp-append-version="true" />
 
@@ -76,15 +82,19 @@
             <div class="card-body p-5">
                 <h2 class=" text-center mb-5">إضافة مسؤول فرع</h2>
 
-                <form>
+                <form asp-controller="Company" asp-action="AddUsers" method="post">
+
                     <div class="row">
+
                         <div class=" mb-4 pb-2">
                             <br />
 
                             <div class="form-outline" style="text-align: right;">
                                 <i class="fa-solid fa-user"></i>
                                 <label class="form-label" for="FullName" style="font-size:20px;">الاسم الثلاثي</label>
-                                <input @*asp-for="userAcount.FullName"*@ type="text" id="FullNameID" class="form-control form-control-lg" required />
+
+                                <input asp-for="userAcount.FullName" type="text" id="FullNameID" class="form-control form-control-lg" required />
+
                                 <div class="invalid-feedback" style="text-align: right;"> الرجاء إدخال الاسم الثلاثي </div>
                             </div>
 
@@ -94,10 +104,27 @@
                     </div>
 
 
+
                     <div class="mb-4 pb-2">
                         <i class="fa-solid fa-at"></i>
-                        <label class="form-label" @*asp-for="userAcount.UserEmail"*@ for="UserEmail" style="font-size:20px;">البريد الإلكتروني</label>
-                        <input type="email" id="UserEmailID" class="form-control form-control-lg" required />
+                        <label class="form-label"  for="EmployeeSSN" style="font-size:20px;">الرقم الوظيفي</label>
+                        <input type="number" asp-for="employee.SSN" id="EmployeeSSN" class="form-control form-control-lg" required />
+                        <div class="invalid-feedback" id="EmployeeSSNMassage" style="text-align: right;"> الرجاء إدخال البريد الإلكتروني </div>
+                    </div>
+
+
+                    <div class="mb-4 pb-2">
+                        <i class="fa-solid fa-at"></i>
+                        <label class="form-label" for="UserPhone" style="font-size:20px;">رقم الجوال</label>
+                        <input type="tel" asp-for="userAcount.Phone" id="UserPhone" class="form-control form-control-lg" required />
+                        <div class="invalid-feedback" id="UserEmailMassage" style="text-align: right;"> الرجاء إدخال البريد الإلكتروني </div>
+                    </div>
+
+
+                    <div class="mb-4 pb-2">
+                        <i class="fa-solid fa-at"></i>
+                        <label class="form-label"  for="UserEmail" style="font-size:20px;">البريد الإلكتروني</label>
+                        <input type="email" asp-for="userAcount.UserEmail"  id="UserEmailID" class="form-control form-control-lg" required />
                         <div class="invalid-feedback" id="UserEmailMassage" style="text-align: right;"> الرجاء إدخال البريد الإلكتروني </div>
                     </div>
 
@@ -113,7 +140,7 @@
                     <div class="mb-4 pb-2">
                         <i class="fa-solid fa-lock"></i>
                         <label class="form-label" for="ConfirmUserPassword" style="font-size:20px;">تأكيد كلمة المرور</label>
-                        <input @*asp-for="userAcount.UserPassword"*@ type="password" id="ConfirmUserPasswordID" class="form-control form-control-lg" required />
+                        <input asp-for="userAcount.UserPassword" type="password" id="ConfirmUserPasswordID" class="form-control form-control-lg" required />
                         <div class="invalid-feedback" id="ConfirmPasswordMassage" style="text-align: right;"> الرجاء تأكيد كلمة المرور </div>
 
 
@@ -128,7 +155,7 @@
                     <br />
                     <div class="row">
 
-                        <button type="submit" class="btn" style="background-color:#e6e291; font-size:20px;">إضافة</button>
+                        <button type="submit"  class="btn" style="background-color:#e6e291; font-size:20px;">إضافة</button>
 
                     </div>
 

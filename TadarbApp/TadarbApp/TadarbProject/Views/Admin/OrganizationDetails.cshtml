@@ -164,6 +164,7 @@
 								</div>
 
 
+								<div style="height:28vh; width:100%;"  id="map" ></div>
 								
 
 
@@ -192,6 +193,8 @@
 
 
 					</div>
+
+
 				</div>
 			</div>
 		</div>
@@ -280,9 +283,37 @@
 			var xp = document.getElementById("location").innerHTML = v1 + ", " + v2;
 
 		}
+
+
+		var MapLatAndLng = { lat: log, lng: lat }
+
+		function initMap() {
+
+
+			map = new google.maps.Map(document.getElementById("map"), {
+				center: MapLatAndLng,
+				zoom: 15, disableDefaultUI: true
+
+			});
+
+
+
+
+
+			marker = new google.maps.Marker({
+				position: MapLatAndLng,
+				map,
+				title: "موقعك الحالي",
+			});
+
+		}
 		
 
    </script>
 
+
+
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBnE545dObN0paZx1wsNqm5TaWx3DkVj7g&callback=initMap&v=weekly&language=ar&region=SA"
+			defer></script>
 
 }
