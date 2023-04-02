@@ -6,7 +6,7 @@
 </head>
 
 <div class="row" style="background: linear-gradient(#1c4c64,#5590ad);">
-    <div class="col-sm-4">
+    <div class="col-sm-4" style="z-index:2;">
 
         <div class="vertical-nav bg-white" id="sidebar" >
             <div class="py-4 px-3 mb-4 bg-light">
@@ -75,7 +75,7 @@
             <div class="card-body p-5">
                 <h2 class=" text-center mb-5">إضافة فرع جديد</h2>
 
-                <form>
+                <form class="needs-validation" novalidate>
                     <div class="row">
                         <div class=" mb-4 pb-2">
                             <br />
@@ -114,8 +114,10 @@
                         <select class="form-select" id="CountryNameID" required>
                             <option selected disabled value="">--حمد--</option>
                             <option value="">خالد</option>
-
                         </select>
+                        <div class="invalid-feedback">
+                           الرجاء إدخال اسم المسؤول
+                        </div>
 
                     </div>
                     <br /> <br />
@@ -160,12 +162,39 @@
 
 
         <script>
+
+        //for moving navbar side
+
             $(function () {
                 // Sidebar toggle behavior
                 $('#sidebarCollapse').on('click', function () {
                     $('#sidebar, #content').toggleClass('active');
                 });
             });
+
+            // Example starter JavaScript for disabling form submissions if there are invalid fields
+(function () {
+  'use strict'
+
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  var forms = document.querySelectorAll('.needs-validation')
+
+  // Loop over them and prevent submission
+  Array.prototype.slice.call(forms)
+    .forEach(function (form) {
+      form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
+
+        form.classList.add('was-validated')
+      }, false)
+    })
+})()
+
+
+
 
         </script>
 
