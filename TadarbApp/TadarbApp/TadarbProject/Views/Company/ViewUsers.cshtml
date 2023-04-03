@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<UserAcount>
 <head>
 
     <link rel="stylesheet" href="~/css/Addbranches.css" asp-append-version="true" />
@@ -101,7 +101,8 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
+
+                          @*  <tr>
                                 <td class="text-nowrap">
                                     <div class="font-weight-600">
                                         <div class="font-weight-600 ">
@@ -119,27 +120,33 @@
                                     <button type="button" class="btn btn-danger" fdprocessedid="ezqldw"><i class="fa fa-trash-alt"></i></button>
 
                                 </td>
-                            </tr>
-                            <tr>
-                                <td class="text-nowrap">
-                                    <div class="font-weight-600">
-                                        <div class="font-weight-600 ">
-                                            علي خالد
-                                        </div>
-
-                                    </div>
-                                </td>
-                                <td class="text-nowrap"> 0559683335	</td>
-                                <td class="text-center">
-                                    yyy@fff.com
-                                </td>
-
-                                <td class="text-center">
-                                    <button type="button" class="btn btn-danger" fdprocessedid="ezqldw"><i class="fa fa-trash-alt"></i></button>
-
-                                </td>
-                            </tr>
+                            </tr>*@
+                          
                            
+
+                            @foreach( var item in Model)
+                            {
+                                <tr>
+                                    <td class="text-nowrap">
+                                        <div class="font-weight-600">
+                                            <div class="font-weight-600 ">
+                                                @item.FullName
+                                            </div>
+
+                                        </div>
+                                    </td>
+                                    <td class="text-nowrap"> @item.Phone	</td>
+                                    <td class="text-center">
+                                        @item.UserEmail
+                                    </td>
+
+                                    <td class="text-center">
+                                        <button type="button" class="btn btn-danger" fdprocessedid="ezqldw"><i class="fa fa-trash-alt"></i></button>
+
+                                    </td>
+                                </tr>
+                                
+                            }
 
                         </tbody>
                     </table>

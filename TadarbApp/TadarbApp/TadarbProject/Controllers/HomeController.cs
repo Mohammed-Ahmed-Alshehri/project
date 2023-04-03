@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using TadarbProject.Data;
 using TadarbProject.Models;
 using TadarbProject.Models.ViewModels;
@@ -15,17 +17,23 @@ namespace TadarbProject.Controllers
         private readonly AppDbContext _DbContext;
         private readonly IWebHostEnvironment _WebHostEnvironment;
         private readonly IEmailSender _emailSender;
-        public HomeController(AppDbContext DbContext, IWebHostEnvironment webHostEnvironment, IEmailSender emailSender)
+        private readonly IHttpContextAccessor _HttpContextAccessor;
+        public HomeController(AppDbContext DbContext, IWebHostEnvironment webHostEnvironment, IEmailSender emailSender, IHttpContextAccessor httpContext)
         {
             _DbContext = DbContext;
             _WebHostEnvironment = webHostEnvironment;
             _emailSender = emailSender;
 
+            _HttpContextAccessor = httpContext;
 
         }
 
         public IActionResult Index()
+
+
         {
+
+
             IEnumerable<UserAcount> userAcount = _DbContext.UserAcounts.ToList();
 
 
@@ -54,15 +62,35 @@ namespace TadarbProject.Controllers
 
             var UserInDb = _DbContext.UserAcounts.Where(item => item.UserType.Equals("System_Admin") && item.UserEmail.Equals(user.UserEmail) && item.UserPassword.Equals(user.UserPassword)).FirstOrDefault();
 
-            if (UserInDb == null)
+            if (UserInDb != null)
             {
-                return View(UserInDb);
+                _HttpContextAccessor.HttpContext.Session.SetString("Name", UserInDb.UserEmail);
+
+                _HttpContextAccessor.HttpContext.Session.SetInt32("UserId", UserInDb.UserId);
+                return RedirectToAction("Index", "Admin");
+
             }
 
 
+            var UserInDb2 = _DbContext.UserAcounts.Where(item => item.UserType.Equals("Company_Admin") && item.UserEmail.Equals(user.UserEmail) && item.UserPassword.Equals(user.UserPassword)).FirstOrDefault();
 
 
-            return RedirectToAction("Index", "Admin");
+            if (UserInDb2 != null)
+            {
+                _HttpContextAccessor.HttpContext.Session.SetString("Name", UserInDb2.UserEmail);
+
+                _HttpContextAccessor.HttpContext.Session.SetInt32("UserId", UserInDb2.UserId);
+
+                return RedirectToAction("Index", "Company");
+
+            }
+
+            return View();
+
+
+
+
+
 
 
 
@@ -95,12 +123,23 @@ namespace TadarbProject.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Registration(OrganizationVM organizationVM, IFormFile? imgFile)
         {
+            var userType = "";
 
 
 
             ViewData["EmailSend"] = false;
             if (ModelState.IsValid)
             {
+
+                if (organizationVM.organization.Organization_TypeId == 1)
+                {
+                    userType = "University_Admin";
+                }
+                else
+                {
+                    userType = "Company_Admin";
+                }
+
 
                 //--------------------------------------UserAcount part ---------------------------------------
                 var user = new UserAcount
@@ -110,7 +149,7 @@ namespace TadarbProject.Controllers
                     FullName = organizationVM.userAcount.FullName,
                     Phone = organizationVM.userAcount.Phone,
                     City_CityId = organizationVM.organization.MainBranchCityId,
-                    UserType = "Admin"
+                    UserType = userType
                 };
 
 

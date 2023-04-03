@@ -17,18 +17,18 @@ namespace TadarbProject.Controllers
         private readonly AppDbContext _DbContext;
         private readonly IWebHostEnvironment _WebHostEnvironment;
         private readonly IEmailSender _emailSender;
-        public AdminController(AppDbContext DbContext, IWebHostEnvironment webHostEnvironment, IEmailSender emailSender)
+        private readonly IHttpContextAccessor _HttpContextAccessor;
+        public AdminController(AppDbContext DbContext, IWebHostEnvironment webHostEnvironment, IEmailSender emailSender, IHttpContextAccessor httpContextAccessor)
         {
             _DbContext = DbContext;
             _WebHostEnvironment = webHostEnvironment;
             _emailSender = emailSender;
-
-
+            _HttpContextAccessor = httpContextAccessor;
         }
 
         public IActionResult Index()
         {
-
+            ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
 
             return View();
         }
