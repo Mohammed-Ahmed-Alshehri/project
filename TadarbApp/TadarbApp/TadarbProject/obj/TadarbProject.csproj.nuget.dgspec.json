@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\TadarbProject.csproj": {}
+    "C:\\Users\\abeee\\Desktop\\Tadarb\\project\\TadarbApp\\TadarbApp\\TadarbProject\\TadarbProject.csproj": {}
   },
   "projects": {
-    "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\TadarbProject.csproj": {
+    "C:\\Users\\abeee\\Desktop\\Tadarb\\project\\TadarbApp\\TadarbApp\\TadarbProject\\TadarbProject.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\TadarbProject.csproj",
+        "projectUniqueName": "C:\\Users\\abeee\\Desktop\\Tadarb\\project\\TadarbApp\\TadarbApp\\TadarbProject\\TadarbProject.csproj",
         "projectName": "TadarbProject",
-        "projectPath": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\TadarbProject.csproj",
-        "packagesPath": "C:\\Users\\hp\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\obj\\",
+        "projectPath": "C:\\Users\\abeee\\Desktop\\Tadarb\\project\\TadarbApp\\TadarbApp\\TadarbProject\\TadarbProject.csproj",
+        "packagesPath": "C:\\Users\\abeee\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\abeee\\Desktop\\Tadarb\\project\\TadarbApp\\TadarbApp\\TadarbProject\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\hp\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\abeee\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -26,7 +22,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
