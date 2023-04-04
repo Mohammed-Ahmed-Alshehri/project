@@ -7,7 +7,9 @@ namespace TadarbProject.Models.ViewModels
     {
         public OrganizationBranch_TrainProv Branch { get; set; }
 
+        [ValidateNever]
         public Organization organization { get; set; }
+
         [ValidateNever]
         public IEnumerable<SelectListItem> CountryListItems { get; set; }
 

@@ -50,18 +50,37 @@ namespace TadarbProject.Controllers
         public IActionResult ViewBranches()
         {
 
+            int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
+            var OrganizationOfR = _DbContext.Organizations.Where(item => item.ResponsibleUserId == RUserId).FirstOrDefault();
 
-            return View();
+            var OrganizationBranches = _DbContext.OrganizationBranches_TrainProv.Where(item => item.Organization_OrganizationId == OrganizationOfR.OrganizationId).ToList();
+
+
+
+            return View(OrganizationBranches);
         }
+
         [HttpGet]
         public IActionResult Addbranches()
         {
+            int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
+
+            var OrganizationOfR = _DbContext.Organizations.Where(item => item.ResponsibleUserId == RUserId).FirstOrDefault();
+
+            var DEPOfR = _DbContext.Departments.Where(item => item.Organization_OrganizationId == OrganizationOfR.OrganizationId && item.DepartmentName.Equals("قسم ادارة الفروع")).FirstOrDefault();
+
+            var OrgEMP = _DbContext.UserAcounts.FromSqlRaw($"select * from UserAcounts WHERE UserAcounts.UserId in (select Employees.UserAccount_UserId from Employees where Employees.Department_DepartmentId = {DEPOfR.DepartmentId});").ToList();
+
+
             BranchVM branchVM = new()
             {
                 Branch = new(),
                 CountryListItems = _DbContext.Countries.ToList().Select(u => new SelectListItem { Text = u.CountryName, Value = u.CountryId.ToString() }),
 
                 CityListItems = _DbContext.Cities.ToList().Select(u => new SelectListItem { Text = u.CityName, Value = u.CityId.ToString() }),
+                UserListItems = OrgEMP.ToList().Select(u => new SelectListItem { Text = u.FullName, Value = u.UserId.ToString() }),
+                organization = OrganizationOfR
+
 
             };
 
@@ -73,19 +92,33 @@ namespace TadarbProject.Controllers
         {
             if (ModelState.IsValid)
             {
+                int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
+
+                var OrganizationOfR = _DbContext.Organizations.Where(item => item.ResponsibleUserId == RUserId).FirstOrDefault();
+
                 var Branch = new OrganizationBranch_TrainProv
                 {
                     BranchName = branchVM.Branch.BranchName,
                     City_CityId = branchVM.Branch.City_CityId,
+                    Responsible_UserId = branchVM.Branch.Responsible_UserId,
+                    Organization_OrganizationId = OrganizationOfR.OrganizationId,
+                    Zoon = null,
+                    Location = null
+
+
 
 
                 };
 
+                _DbContext.OrganizationBranches_TrainProv.Add(Branch);
 
+                _DbContext.SaveChanges();
+
+                return RedirectToAction("ViewBranches");
 
             }
 
-                return View(branchVM);
+            return View(branchVM);
         }
 
 
