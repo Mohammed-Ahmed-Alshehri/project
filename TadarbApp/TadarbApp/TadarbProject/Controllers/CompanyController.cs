@@ -53,11 +53,41 @@ namespace TadarbProject.Controllers
 
             return View();
         }
+        [HttpGet]
         public IActionResult Addbranches()
         {
+            BranchVM branchVM = new()
+            {
+                Branch = new(),
+                CountryListItems = _DbContext.Countries.ToList().Select(u => new SelectListItem { Text = u.CountryName, Value = u.CountryId.ToString() }),
 
-            return View();
+                CityListItems = _DbContext.Cities.ToList().Select(u => new SelectListItem { Text = u.CityName, Value = u.CityId.ToString() }),
+
+            };
+
+            return View(branchVM);
         }
+
+        [HttpPost]
+        public IActionResult Addbranches(BranchVM branchVM)
+        {
+            if (ModelState.IsValid)
+            {
+                var Branch = new OrganizationBranch_TrainProv
+                {
+                    BranchName = branchVM.Branch.BranchName,
+                    City_CityId = branchVM.Branch.City_CityId,
+
+
+                };
+
+
+
+            }
+
+                return View(branchVM);
+        }
+
 
         public IActionResult ViewUsers()
 
@@ -88,6 +118,7 @@ namespace TadarbProject.Controllers
 
 
         [HttpPost]
+
         public IActionResult AddUsers(EmployeeVM employeeVM)
         {
 
@@ -164,6 +195,8 @@ namespace TadarbProject.Controllers
             _DbContext.Employees.Add(EMP);
 
             _DbContext.SaveChanges();
+            TempData["success"] = "تم إضافة حساب المسؤول  بنجاح";
+            return RedirectToAction("ViewUsers");
 
             return View();
         }
