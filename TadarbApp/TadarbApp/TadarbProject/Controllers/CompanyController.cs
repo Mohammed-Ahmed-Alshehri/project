@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http.HttpResults;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using TadarbProject.Data;
@@ -10,14 +8,13 @@ using TEST2.Services;
 
 namespace TadarbProject.Controllers
 {
-    //yazeed edit
-    //badr modify
-    //abdulhadi
+
     public class CompanyController : Controller
     {
         private readonly AppDbContext _DbContext;
         private readonly IEmailSender _emailSender;
         private readonly IHttpContextAccessor _HttpContextAccessor;
+
 
         public CompanyController(AppDbContext DbContext, IEmailSender emailSender, IHttpContextAccessor HttpContextAccessor)
         {
@@ -31,18 +28,39 @@ namespace TadarbProject.Controllers
         public IActionResult Index()
         {
             ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
+
+            int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
+
+            var OrganizationOfR = _DbContext.Organizations.Where(item => item.ResponsibleUserId == RUserId).FirstOrDefault();
+
+
+            ViewBag.OrganizationName = OrganizationOfR.OrganizationName;
+            ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
+
             return View();
         }
 
         public IActionResult ViewSpecialities()
         {
 
+            int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
 
+            var OrganizationOfR = _DbContext.Organizations.Where(item => item.ResponsibleUserId == RUserId).FirstOrDefault();
+
+
+            ViewBag.OrganizationName = OrganizationOfR.OrganizationName;
+            ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
             return View();
         }
         public IActionResult AddSpecialities()
         {
+            int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
 
+            var OrganizationOfR = _DbContext.Organizations.Where(item => item.ResponsibleUserId == RUserId).FirstOrDefault();
+
+
+            ViewBag.OrganizationName = OrganizationOfR.OrganizationName;
+            ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
 
             return View();
         }
@@ -56,6 +74,9 @@ namespace TadarbProject.Controllers
             var OrganizationBranches = _DbContext.OrganizationBranches_TrainProv.Where(item => item.Organization_OrganizationId == OrganizationOfR.OrganizationId).ToList();
 
 
+            ViewBag.OrganizationName = OrganizationOfR.OrganizationName;
+
+            ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
 
             return View(OrganizationBranches);
         }
@@ -69,8 +90,19 @@ namespace TadarbProject.Controllers
 
             var DEPOfR = _DbContext.Departments.Where(item => item.Organization_OrganizationId == OrganizationOfR.OrganizationId && item.DepartmentName.Equals("قسم ادارة الفروع")).FirstOrDefault();
 
-            var OrgEMP = _DbContext.UserAcounts.FromSqlRaw($"select * from UserAcounts WHERE UserAcounts.UserId in (select Employees.UserAccount_UserId from Employees where Employees.Department_DepartmentId = {DEPOfR.DepartmentId});").ToList();
+            ViewBag.OrganizationName = OrganizationOfR.OrganizationName;
+            ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
 
+            IEnumerable<UserAcount> OrgEMP = Enumerable.Empty<UserAcount>(); ;
+
+
+            if (DEPOfR != null)
+            {
+
+                OrgEMP = _DbContext.UserAcounts.FromSqlRaw($"select * from UserAcounts WHERE UserAcounts.UserId IN (select Employees.UserAccount_UserId from Employees where Employees.Department_DepartmentId ={DEPOfR.DepartmentId})" +
+                "AND UserAcounts.UserId NOT IN (select Responsible_UserId from dbo.OrganizationBranches_TrainProv);").ToList();
+
+            }
 
             BranchVM branchVM = new()
             {
@@ -87,6 +119,8 @@ namespace TadarbProject.Controllers
             return View(branchVM);
         }
 
+
+
         [HttpPost]
         public IActionResult Addbranches(BranchVM branchVM)
         {
@@ -102,8 +136,8 @@ namespace TadarbProject.Controllers
                     City_CityId = branchVM.Branch.City_CityId,
                     Responsible_UserId = branchVM.Branch.Responsible_UserId,
                     Organization_OrganizationId = OrganizationOfR.OrganizationId,
-                    Zoon = null,
-                    Location = null
+                    Zoon = branchVM.Branch.Zoon,
+                    Location = branchVM.Branch.Location,
 
 
 
@@ -111,6 +145,17 @@ namespace TadarbProject.Controllers
                 };
 
                 _DbContext.OrganizationBranches_TrainProv.Add(Branch);
+
+
+                var RBranchManger = _DbContext.UserAcounts.FirstOrDefault(item => item.UserId == branchVM.Branch.Responsible_UserId);
+
+
+                RBranchManger.City_CityId = branchVM.Branch.City_CityId;
+
+
+
+                _DbContext.UserAcounts.Update(RBranchManger);
+
 
                 _DbContext.SaveChanges();
 
@@ -129,9 +174,20 @@ namespace TadarbProject.Controllers
 
             var OrganizationOfR = _DbContext.Organizations.Where(item => item.ResponsibleUserId == RUserId).FirstOrDefault();
 
+            ViewBag.OrganizationName = OrganizationOfR.OrganizationName;
+            ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
+
+
             var DEPOfR = _DbContext.Departments.Where(item => item.Organization_OrganizationId == OrganizationOfR.OrganizationId && item.DepartmentName.Equals("قسم ادارة الفروع")).FirstOrDefault();
 
-            var OrgEMP = _DbContext.UserAcounts.FromSqlRaw($"select * from UserAcounts WHERE UserAcounts.UserId in (select Employees.UserAccount_UserId from Employees where Employees.Department_DepartmentId = {DEPOfR.DepartmentId});").ToList();
+            IEnumerable<UserAcount> OrgEMP = Enumerable.Empty<UserAcount>(); ;
+
+            if (DEPOfR != null)
+            {
+                OrgEMP = _DbContext.UserAcounts.FromSqlRaw($"select * from UserAcounts WHERE UserAcounts.UserId in (select Employees.UserAccount_UserId from Employees where Employees.Department_DepartmentId = {DEPOfR.DepartmentId});").ToList();
+
+            }
+
 
 
             return View(OrgEMP);
@@ -140,8 +196,13 @@ namespace TadarbProject.Controllers
         [HttpGet]
         public IActionResult AddUsers()
         {
+            int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
+
+            var OrganizationOfR = _DbContext.Organizations.Where(item => item.ResponsibleUserId == RUserId).FirstOrDefault();
 
 
+            ViewBag.OrganizationName = OrganizationOfR.OrganizationName;
+            ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
             return View();
         }
 
@@ -160,6 +221,8 @@ namespace TadarbProject.Controllers
 
             var RUser = _DbContext.UserAcounts.Find(RUserId);
 
+            var OrganizationOfR = _DbContext.Organizations.Where(item => item.ResponsibleUserId == RUserId).FirstOrDefault();
+
             if (employeeVM == null)
             {
 
@@ -173,7 +236,7 @@ namespace TadarbProject.Controllers
                 UserPassword = employeeVM.userAcount.UserPassword,
                 FullName = employeeVM.userAcount.FullName,
                 Phone = employeeVM.userAcount.Phone,
-                City_CityId = 1,
+                City_CityId = OrganizationOfR.MainBranchCityId,
                 UserType = "Branch_Admin",
                 ActivationStatus = "Active"
 
@@ -186,7 +249,7 @@ namespace TadarbProject.Controllers
 
             _DbContext.SaveChanges();
 
-            var OrganizationOfR = _DbContext.Organizations.Where(item => item.ResponsibleUserId == RUserId).FirstOrDefault();
+
 
             var DEPOfR = _DbContext.Departments.Where(item => item.Organization_OrganizationId == OrganizationOfR.OrganizationId && item.DepartmentName.Equals("قسم ادارة الفروع")).FirstOrDefault();
 
@@ -231,7 +294,6 @@ namespace TadarbProject.Controllers
             TempData["success"] = "تم إضافة حساب المسؤول  بنجاح";
             return RedirectToAction("ViewUsers");
 
-            return View();
         }
 
 

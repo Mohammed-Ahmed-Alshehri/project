@@ -1,6 +1,4 @@
-﻿using Azure.Core;
-
-namespace TEST2.Services
+﻿namespace TEST2.Services
 {
     public interface IEmailSender
     {

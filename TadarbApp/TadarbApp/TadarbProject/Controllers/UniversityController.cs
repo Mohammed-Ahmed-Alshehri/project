@@ -1,10 +1,5 @@
-﻿using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http.HttpResults;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Microsoft.AspNetCore.Mvc;
 using TadarbProject.Data;
-using TadarbProject.Models;
-using TadarbProject.Models.ViewModels;
 using TEST2.Services;
 
 namespace TadarbProject.Controllers
@@ -17,7 +12,7 @@ namespace TadarbProject.Controllers
         private readonly AppDbContext _DbContext;
         private readonly IWebHostEnvironment _WebHostEnvironment;
         private readonly IEmailSender _emailSender;
-       
+
 
         public IActionResult Index()
         {

@@ -159,7 +159,17 @@
 
 
                     </div>
+
+
+
 *@
+
+                    <div style="height:28vh; width:100%; " id="map" onclick=""></div>
+
+                    <input asp-for="Branch.Location" id="BLoc" hidden/>
+
+                    <input asp-for="Branch.Zoon" id="BZoon" hidden />
+
                     <br /> <br /> <br />
                     <div class="d-flex justify-content-center">
 
@@ -217,9 +227,128 @@
 })()
 
 
+            var lat = @Model.organization.Location.Split(',').First();
+            var log = @Model.organization.Location.Split(',').Last();
+
+            function initMap() {
+                const myLatlng = { lat: lat, lng: log };
+                const map = new google.maps.Map(document.getElementById("map"), {
+                    zoom: 12,
+                    
+                    center: myLatlng,
+
+                   disableDefaultUI: true,
+                               
+                });
+
+                // Create the initial InfoWindow.
+                let infoWindow = new google.maps.InfoWindow({
+
+                    content: "حدد موقع الفرع",
+                    position: myLatlng,
+                });
+
+                infoWindow.open(map);
+
+                // Configure the click listener.
+                map.addListener("click", (mapsMouseEvent) => {
+                    // Close the current InfoWindow.
+                    infoWindow.close();
+
+
+
+                    var BlatAndlog = JSON.stringify(mapsMouseEvent.latLng.toJSON(), null, 2).toString().replace(/{|}/g, '').split(',')
+
+                    var Blat = BlatAndlog[0].slice(BlatAndlog[0].indexOf(':') + 2)
+
+                    var Blog = BlatAndlog[1].slice(BlatAndlog[1].indexOf(':') + 2)
+
+                    BlatAndlog = Blat + ", " + Blog;
+
+                  
+
+                    setLoc(BlatAndlog);
+                    setZoon(BlatAndlog);
+                    // Create a new InfoWindow.
+                    infoWindow = new google.maps.InfoWindow({
+
+                        position: mapsMouseEvent.latLng,
+                    });
+
+                    infoWindow.setContent(
+                        "موقع الفرع"
+
+                                                           
+                    );
+                  
+
+                    infoWindow.open(map);
+                });
+            }
+
+            window.initMap = initMap;
+
+
+
+            function setLoc (v)
+            {
+
+                var x = document.getElementById("BLoc").value = v;
+
+                
+            }
+
+
+            function setZoon(v) 
+            {
+
+                $(document).ready(function () {
+
+                    $.ajax({
+                        type: "GET",
+                        url: "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + v + "&key=AIzaSyBJvHlgeiw22e7B_Ypk4uOkUpC8CbpIJA8",
+
+
+
+                        dataType: "json",
+                        success: function (data) {
+
+
+
+                            $.each(data.results, function (key, value) {
+
+                                if(key == 4){
+
+                                    document.getElementById("BZoon").value = value.formatted_address;
+
+                                    //console.log( typeof value.formatted_address);
+                                }
+                                    
+                                
+
+                            
+
+
+
+
+                            });
+
+                            
+
+                        }
+                    });
+
+                });
+            
+            }
+
+
 
 
         </script>
 
+
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBnE545dObN0paZx1wsNqm5TaWx3DkVj7g&callback=initMap&v=weekly&language=ar&region=SA"
+                defer></script>
     }
     }

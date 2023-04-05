@@ -1,6 +1,5 @@
-﻿using System.Net.Mail;
-using System.Net;
-using Microsoft.AspNetCore.Hosting;
+﻿using System.Net;
+using System.Net.Mail;
 
 namespace TEST2.Services
 {
