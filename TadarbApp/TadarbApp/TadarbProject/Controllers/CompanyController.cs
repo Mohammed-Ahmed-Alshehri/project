@@ -167,6 +167,13 @@ namespace TadarbProject.Controllers
         }
 
 
+        public IActionResult AddViewDepartment()
+        {
+
+            return View();
+        }
+
+
         public IActionResult ViewUsers()
 
         {
