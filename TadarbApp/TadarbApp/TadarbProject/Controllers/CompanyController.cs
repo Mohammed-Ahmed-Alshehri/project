@@ -71,14 +71,33 @@ namespace TadarbProject.Controllers
             int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
             var OrganizationOfR = _DbContext.Organizations.Where(item => item.ResponsibleUserId == RUserId).FirstOrDefault();
 
-            var OrganizationBranches = _DbContext.OrganizationBranches_TrainProv.Where(item => item.Organization_OrganizationId == OrganizationOfR.OrganizationId).ToList();
+            var OrganizationBranches = _DbContext.OrganizationBranches_TrainProv.Where(item => item.Organization_OrganizationId == OrganizationOfR.OrganizationId).FirstOrDefault();
+
+        
+
+
+            var userr = _DbContext.UserAcounts.Where(item => item.UserId == OrganizationBranches.Responsible_UserId).ToList();
+            var cityy = _DbContext.Cities.Where(item => item.CityId == OrganizationOfR.MainBranchCityId).ToList();
+
+            var branchh = _DbContext.OrganizationBranches_TrainProv.Where(item => item.Organization_OrganizationId == OrganizationOfR.OrganizationId).ToList();
+
+
+            Viewbranch ViewbranchVM = new Viewbranch
+            {
+                User = userr,
+                city = cityy,
+                Branch = branchh
+
+            };
+
+
 
 
             ViewBag.OrganizationName = OrganizationOfR.OrganizationName;
 
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
 
-            return View(OrganizationBranches);
+            return View(ViewbranchVM);
         }
 
         [HttpGet]

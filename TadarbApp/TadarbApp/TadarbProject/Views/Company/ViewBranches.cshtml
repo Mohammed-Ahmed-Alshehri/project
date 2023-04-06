@@ -1,4 +1,4 @@
-﻿@model IEnumerable<OrganizationBranch_TrainProv>
+﻿@model IEnumerable<Viewbranch>
 
 
 @{
@@ -64,7 +64,7 @@
 
             <p class="text-gray font-weight-bold text-uppercase px-3 small py-4 mb-0">Charts</p>
 
-
+            
     </div>
 
 
@@ -110,18 +110,19 @@
                 </thead>
                 <tbody>
 
-                  @foreach (var item in Model)
+                            @foreach (var item in Model)
                   {
 
                                 <tr>
                                     <td class="text-nowrap">
                                         <div class="font-weight-600">
-                                            <div class="font-weight-600 ">@item.BranchName</div>
+                                        <div class="font-weight-600 "> @item.Branch</div>
 
                                         </div>
                                     </td>
-                                    <td class="text-nowrap"> @item.City_CityId</td>
-                                    <td class="text-center">@item.Responsible_UserId</td>
+                                    <td class="text-nowrap"> @item.city.CityName</td>
+                                <td class="text-center">@item.User.FullName</td>
+
 
                                     <td class="text-center">
                                         <button type="button" class="btn btn-danger" fdprocessedid="ezqldw"><i class="fa fa-trash-alt"></i></button>
