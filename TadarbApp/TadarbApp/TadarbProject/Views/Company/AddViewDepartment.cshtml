@@ -1,4 +1,6 @@
-﻿@{
+﻿@model IEnumerable<Department>
+
+@{
     ViewData["Title"] = "اضافة قسم جديد";
 }
 
@@ -117,6 +119,7 @@
                                             <div class="mb-4 pb-2" style="OVERFLOW-Y:scroll;HEIGHT:200px;" dir="ltr">
                                                 <table class="table table-hover table-center" style="background-color:white;border-radius: 25px;" dir="rtl">
                                                     <thead style="color:#0b70a3">
+
                                                         <tr>
 
                                                             <th> الأقسام المضافة</th>
@@ -129,79 +132,23 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
+                                                         @foreach( var item in Model)
+                            {
                                                         <tr>
                                                             <td class="text-nowrap">
                                                                 <div class="font-weight-600">
-                                                                    <div class="font-weight-600 ">هندسة الحاسب</div>
+                                                                    <div class="font-weight-600 ">@item.DepartmentName</div>
 
                                                                 </div>
                                                             </td>
 
                                                             
                                                         </tr>
-
-                                                        <tr>
-                                                            <td class="text-nowrap">
-                                                                <div class="font-weight-600">
-                                                                    <div class="font-weight-600 ">هندسة الحاسب</div>
-
-                                                                </div>
-                                                            </td>
-
-                                                            
-                                                        </tr>
-
-                                                        <tr>
-                                                            <td class="text-nowrap">
-                                                                <div class="font-weight-600">
-                                                                    <div class="font-weight-600 ">علوم الحاسب</div>
-
-                                                                </div>
-                                                            </td>
-
-                                                            
-                                                        </tr>
-
-                                                        <tr>
-                                                            <td class="text-nowrap">
-                                                                <div class="font-weight-600">
-                                                                    <div class="font-weight-600 ">نظم المعلومات</div>
-
-                                                                </div>
-                                                            </td>
-
-                                                           
-                                                        </tr>
-
-                                                        <tr>
-                                                            <td class="text-nowrap">
-                                                                <div class="font-weight-600">
-                                                                    <div class="font-weight-600 ">هندسة الحاسب</div>
-
-                                                                </div>
-                                                            </td>
-
-                                                            
-                                                        </tr>
-
-                                                        <tr>
-                                                            <td class="text-nowrap">
-                                                                <div class="font-weight-600">
-                                                                    <div class="font-weight-600 ">هندسة الحاسب</div>
-
-                                                                </div>
-                                                            </td>
-
-                                                           
-                                                        </tr>
-
-
-
-
-
-
-
-                                                    </tbody>
+                                                        }
+                                                       
+                                                      
+                                                                                                            
+                                                   </tbody>
                                                 </table>
                                             </div>
                                         </div>

@@ -166,9 +166,42 @@ namespace TadarbProject.Controllers
             return View(branchVM);
         }
 
-
+        [HttpGet]
         public IActionResult AddViewDepartment()
         {
+            int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
+
+            var OrganizationOfR = _DbContext.Organizations.Where(item => item.ResponsibleUserId == RUserId).FirstOrDefault();
+
+            ViewBag.OrganizationName = OrganizationOfR.OrganizationName;
+            ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
+
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult AddViewDepartment(Department department)
+        {
+            int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
+
+            var OrganizationOfR = _DbContext.Organizations.Where(item => item.ResponsibleUserId == RUserId).FirstOrDefault();
+
+            if (department == null)
+            {
+
+                return View();
+
+            }
+            var departemnt = new Department
+            {
+                DepartmentName = department.DepartmentName,
+
+
+            };
+            _DbContext.Departments.Add(departemnt);
+
+            _DbContext.SaveChanges();
+            TempData["success"] = "تم إضافة القسم بنجاح";
 
             return View();
         }
