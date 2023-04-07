@@ -52,6 +52,7 @@ namespace TadarbProject.Controllers
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
             return View();
         }
+
         public IActionResult AddSpecialities()
         {
             int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
@@ -65,6 +66,9 @@ namespace TadarbProject.Controllers
             return View();
         }
 
+
+
+
         public IActionResult ViewBranches()
         {
 
@@ -73,23 +77,11 @@ namespace TadarbProject.Controllers
 
             var OrganizationBranches = _DbContext.OrganizationBranches_TrainProv.Where(item => item.Organization_OrganizationId == OrganizationOfR.OrganizationId).FirstOrDefault();
 
-        
 
 
-            var userr = _DbContext.UserAcounts.Where(item => item.UserId == OrganizationBranches.Responsible_UserId).ToList();
-            var cityy = _DbContext.Cities.Where(item => item.CityId == OrganizationOfR.MainBranchCityId).ToList();
-
-            var branchh = _DbContext.OrganizationBranches_TrainProv.Where(item => item.Organization_OrganizationId == OrganizationOfR.OrganizationId).ToList();
 
 
-            Viewbranch ViewbranchVM = new Viewbranch
-            {
-                User = userr,
-                city = cityy,
-                Branch = branchh
-
-            };
-
+            var Branches = _DbContext.OrganizationBranches_TrainProv.Where(item => item.Organization_OrganizationId == OrganizationOfR.OrganizationId).Include(item => item.city).Include(item => item.user).ToList();
 
 
 
@@ -97,7 +89,7 @@ namespace TadarbProject.Controllers
 
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
 
-            return View(ViewbranchVM);
+            return View(Branches);
         }
 
         [HttpGet]
@@ -382,22 +374,33 @@ namespace TadarbProject.Controllers
             return Json(new { Exists = true });
         }
 
-        //public IActionResult GetAllEMP()
-        //{
-        //    var OR = _DbContext.Organizations.Where(item => item.OrganizationId == 4).FirstOrDefault();
+        public IActionResult GetCities(string? id)
+        {
 
-        //    var dpt = _DbContext.Departments.Where(item => item.Organization_OrganizationId == OR.OrganizationId && item.DepartmentName.Equals("قسم ادارة الفروع")).FirstOrDefault();
+            if (!string.IsNullOrEmpty(id))
+            {
+                var Id = Convert.ToInt64(id);
+                var Cities = _DbContext.Cities.Where(item => item.Country_CountryId == Id).Select(item => new
 
-        //    var emp = _DbContext.Employees.Where(item => item.Department_DepartmentId == dpt.DepartmentId).Include(item => item.userAcount);
+                {
+                    CityId = item.CityId,
+
+                    CityName = item.CityName
+
+                }
 
 
-        //    var UserAcountList = _DbContext.UserAcounts.Where(item => item.UserId == );
+                ).ToList();
 
 
 
-        //    return Json(new { data = emp });
-        //}
+                return Json(new { Cities });
 
+            }
+
+
+            return Json(new { Exists = false });
+        }
         #endregion
     }
 

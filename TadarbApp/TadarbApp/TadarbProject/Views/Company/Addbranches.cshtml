@@ -125,15 +125,17 @@
 
                     <div class="mb-2 pb-2">
                         <i class="fa-solid fa-earth-americas"></i>
-                        <label for="MainBranchCity" class="form-label mt-4" style="font-size:20px;">المدينة</label>
-                        <select asp-for="Branch.City_CityId" class="form-select" asp-items="@Model.CityListItems" id="CountryNameID" required>
-                            <option selected disabled value="">--مدينة الفرع الرئيسي--</option>
+                        <label for="form-CityNameID" class="form-label mt-4" style="font-size:20px;">المدينة</label>
+                        <select class=" form-select " id="CityNameID" name="CityNameID" required>
+                           
 
 
                         </select>
                         <div class="invalid-feedback">
                             الرجاء إدخال مدينة الفرع الرئيسي
                         </div>
+
+                        <input asp-for="Branch.City_CityId" id="OrganizationMainBranchCityId" hidden />
                     </div>
 
 
@@ -197,7 +199,7 @@
 
 
 @section Scripts{
-    @{
+
 
 
         <script>
@@ -349,6 +351,48 @@
             }
 
 
+            $('#CountryNameID').on('change', function () {
+
+
+
+                FillCity(this.value);
+            });
+
+
+            function FillCity(CId) {
+
+
+                $(document).ready(function () {
+                    $.ajax({
+                        type: "GET",
+                        url: "@Url.Action("GetCities")",
+                        data: { id: CId },
+
+                        dataType: "json",
+                        success: function (data) {
+                            var s = '<option selected disabled value="">--مدينة الفرع الرئيسي--</option>';
+
+                            for (var i = 0; i < data.cities.length; i++) {
+                                s += '<option value="' + data.cities[i].cityId + '">' + data.cities[i].cityName + '</option>';
+                            }
+
+                            $("#CityNameID").html(s);
+
+                            $('#CityNameID').attr('hidden', false);
+                        }
+                    });
+                });
+
+
+            }
+
+            $('#CityNameID').on('change', function () {
+
+
+                var d = document.getElementById("OrganizationMainBranchCityId").value = this.value;
+
+            });
+
 
 
         </script>
@@ -356,5 +400,5 @@
 
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBnE545dObN0paZx1wsNqm5TaWx3DkVj7g&callback=initMap&v=weekly&language=ar&region=SA"
                 defer></script>
-    }
+    
     }

@@ -33,7 +33,7 @@ namespace TEST2.Services
         {
             MailMessage mailMessage = new MailMessage();
 
-            mailMessage.From = new MailAddress("tadarabhr@gmail.com");
+            mailMessage.From = new MailAddress("tadarbapp@gmail.com");
 
             mailMessage.To.Add(new MailAddress(ToEmail));
 
@@ -48,7 +48,7 @@ namespace TEST2.Services
                 EnableSsl = true,
                 UseDefaultCredentials = false,
                 DeliveryMethod = SmtpDeliveryMethod.Network,
-                Credentials = new NetworkCredential("tadarabhr@gmail.com", "xhgakgrhtdjuoeyn")
+                Credentials = new NetworkCredential("tadarbapp@gmail.com", "goqgrffjimmfulnu")
             };
 
             var success = "email hass ben send";

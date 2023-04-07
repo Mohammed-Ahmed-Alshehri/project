@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using NuGet.Protocol;
 using TadarbProject.Data;
 using TadarbProject.Models;
 using TadarbProject.Models.ViewModels;
@@ -106,7 +107,7 @@ namespace TadarbProject.Controllers
 
                 CountryListItems = _DbContext.Countries.ToList().Select(u => new SelectListItem { Text = u.CountryName, Value = u.CountryId.ToString() }),
 
-                CityListItems = _DbContext.Cities.ToList().Select(u => new SelectListItem { Text = u.CityName, Value = u.CityId.ToString() }),
+                // CityListItems = _DbContext.Cities.ToList().Select(u => new SelectListItem { Text = u.CityName, Value = u.CityId.ToString() }),
 
                 FieldListItems = _DbContext.FieldOfSpecialtiesMaster.ToList().Select(u => new SelectListItem { Text = u.FieldName, Value = u.FieldId.ToString() })
             };
@@ -251,6 +252,8 @@ namespace TadarbProject.Controllers
         }
 
 
+
+
         #region
         public IActionResult GetAllUsers()
         {
@@ -297,7 +300,33 @@ namespace TadarbProject.Controllers
             return Json(new { Exists = true });
         }
 
+        public IActionResult GetCities(string? id)
+        {
 
+            if (!string.IsNullOrEmpty(id))
+            {
+                var Id = Convert.ToInt64(id);
+                var Cities = _DbContext.Cities.Where(item => item.Country_CountryId == Id).Select(item => new
+
+                {
+                    CityId = item.CityId,
+
+                    CityName = item.CityName
+
+                }
+
+
+                ).ToList();
+
+
+
+                return Json(new { Cities });
+
+            }
+
+
+            return Json(new { Exists = false });
+        }
     }
 
     #endregion

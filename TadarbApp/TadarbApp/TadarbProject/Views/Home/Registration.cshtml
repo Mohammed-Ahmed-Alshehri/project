@@ -106,7 +106,7 @@
 
                                         <div class="form-group" style="text-align: right;">
                                             <label for="FieldOfOrganization_SpecialtiesField" class="form-label mt-4" style="font-size:20px;">المجال الرئيسي</label>
-                                            <select asp-for="organization.FieldOfOrganization_SpecialtiesFieldId" asp-items="@Model.FieldListItems" class="form-select" id="validationCustom04" required>
+                                            <select asp-for="organization.FieldOfOrganization_SpecialtiesFieldId" asp-items="@Model.FieldListItems" class="form-select" id="validationCustom05" required>
                                                 <option selected disabled value="">--المجال العام--</option>
 
                                             </select>
@@ -117,7 +117,7 @@
 
 
                                         <div class="form-group" style="text-align: right;">
-                                            <label for="CountryName" class="form-label mt-4" style="font-size:20px;">الدولة</label>
+                                            <label for="CountryName" class="form-label mt-4" style="font-size:20px;" >الدولة</label>
                                             <select asp-items="@Model.CountryListItems" class="form-select" id="CountryNameID" required>
                                                 <option selected disabled value="">--الدولة--</option>
 
@@ -128,16 +128,22 @@
                                         </div>
 
                                         <div class="form-group" style="text-align: right;">
-                                            <label for="MainBranchCity" class="form-label mt-4" style="font-size:20px;">الفرع الرئيسي</label>
-                                            <select asp-for="organization.MainBranchCityId" asp-items="@Model.CityListItems" class="form-select" id="CountryNameID" required>
-                                                <option selected disabled value="">--مدينة الفرع الرئيسي--</option>
+
+
+                                            <label for="CityNameID" class="form-label mt-4" style="font-size:20px;">الفرع الرئيسي</label>
+                                            <select class="form-select" id="CityNameID" name="CityNameID" required  >
+                                                
 
                                             </select>
+
                                             <div class="invalid-feedback">
                                                 الرجاء إدخال مدينة الفرع الرئيسي
                                             </div>
-                                        </div>
 
+
+                                            <input asp-for="organization.MainBranchCityId" id="OrganizationMainBranchCityId" hidden />
+
+                                        </div>
 
 
                                         <br />
@@ -605,12 +611,56 @@
                });
 
             }
-     
 
-      
 
- 
 
+
+        $('#CountryNameID').on('change', function () {
+
+        
+
+            FillCity(this.value);
+        });
+
+
+        function FillCity(CId){
+
+
+            $(document).ready(function () {
+                $.ajax({
+                    type: "GET",
+                    url: "@Url.Action("GetCities")",
+                    data: { id: CId },
+
+                    dataType: "json",
+                    success: function (data) {
+                        var s = '<option selected disabled value="">--مدينة الفرع الرئيسي--</option>';
+
+                        for (var i = 0; i < data.cities.length; i++) {
+                            s += '<option value="' + data.cities[i].cityId + '">' + data.cities[i].cityName + '</option>';
+                        }
+
+                        $("#CityNameID").html(s);
+
+                        $('#CityNameID').attr('hidden', false);
+                    }
+                });
+            });
+
+
+        }
+
+        $('#CityNameID').on('change', function () {
+
+
+            var d = document.getElementById("OrganizationMainBranchCityId").value = this.value;
+            
+        });
+
+
+   
+
+        
 
     </script>
 

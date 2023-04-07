@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Viewbranch>
+﻿@model IEnumerable<OrganizationBranch_TrainProv>
 
 
 @{
@@ -116,12 +116,13 @@
                                 <tr>
                                     <td class="text-nowrap">
                                         <div class="font-weight-600">
-                                        <div class="font-weight-600 "> @item.Branch</div>
+                                        <div class="font-weight-600 "> @item.BranchName</div>
 
                                         </div>
                                     </td>
                                     <td class="text-nowrap"> @item.city.CityName</td>
-                                <td class="text-center">@item.User.FullName</td>
+
+                                <td class="text-center">@item.user.FullName</td>
 
 
                                     <td class="text-center">
