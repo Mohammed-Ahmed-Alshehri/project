@@ -208,7 +208,7 @@ namespace TadarbProject.Controllers
                 //-----------------------------------------------------------------------------
 
                 //لكي تعبي جسم رسالة الايميل بالتمبليت الذي تريدة + تحديد المرسل له والموضوع و اخيرا رابط التاكيد 
-                var EmailBody = _emailSender.PopulateMessageBody(wwwRootPath, "verificationtemplate.html", organizationVM.organization.OrganizationName, $"https://localhost:7122/home/UdateUserAcountActivationStatus/{user.UserId}");
+                var EmailBody = _emailSender.PopulateMessageBody(wwwRootPath, "verificationtemplate.html", organizationVM.organization.OrganizationName, $"{Url.ActionLink("UdateUserAcountActivationStatus", "Home", new { id = user.UserId })}");
 
                 var result = _emailSender.SendEmail(organizationVM.userAcount.UserEmail, "رسالة بشأن التحقق من عنوان البريد الإلكتروني - منصة تدرب", EmailBody);
 
@@ -216,6 +216,8 @@ namespace TadarbProject.Controllers
                 {
                     ViewData["EmailSend"] = true;
                 }
+
+
 
                 return View(organizationVM);
             }

@@ -37,7 +37,7 @@ namespace TadarbProject.Data
 
         public DbSet<OrganizationBranch_TrainProv> OrganizationBranches_TrainProv { get; set; }
 
-
+        public DbSet<OrganizationProvidTrainingInArea> OrganizationsProvidTrainingInArea { get; set; }
         public DbSet<UniversityCollege> UniversityColleges { get; set; }
 
 

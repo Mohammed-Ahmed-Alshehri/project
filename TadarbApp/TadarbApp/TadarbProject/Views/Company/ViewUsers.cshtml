@@ -9,6 +9,7 @@
 
 
 </head>
+
 <partial name="_Notification" />
 
 <div class="row" style="background: linear-gradient(#1c4c64,#5590ad); background-repeat: no-repeat;
@@ -151,7 +152,7 @@
                                     </td>
 
                                     <td class="text-center">
-                                        <a type="supmit" asp-controller="Company" asp-action="DeleteUser" asp-route-id="@item.UserId" class="btn btn-danger" fdprocessedid="Delete"><i class="fa fa-trash-alt"></i></a>
+                                        <a asp-controller="Company" asp-action="DeleteUser" asp-route-id="@item.UserId" class="btn btn-danger" ><i class="fa fa-trash-alt"></i></a>
 
                                     </td>
                                 </tr>
@@ -168,7 +169,7 @@
     <div class="col-sm-2"></div>
 </div>
 @section Scripts{
-    @{
+
 
 
         <script>
@@ -181,5 +182,5 @@
 
         </script>
 
-    }
+    
     }

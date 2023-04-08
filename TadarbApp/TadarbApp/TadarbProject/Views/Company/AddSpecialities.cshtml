@@ -1,4 +1,4 @@
-﻿
+﻿@model SpecialitiesVM
 
 @{
     ViewData["Title"] = "اضافة تخصص جديد";
@@ -94,13 +94,12 @@
 
 
                         <div class="form-group  mb-4 pb-2">
-                            <label for="exampleSelect1" class="form-label mt-4" style="font-size:20px">اختيار المجال:</label>
-                            <select class="form-select" id="exampleSelect1">
-                                <option>الطبي</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
+                            <label for="MasterFieldsID" class="form-label mt-4" style="font-size:20px">اختيار المجال:</label>
+                            <=
+
+                            <select asp-items="@Model.MasterFieldsListItems" class="form-select" id="MasterFieldsID" required>
+                                <option selected disabled value="">--المجال العام--</option>
+
                             </select>
                         </div>
 
@@ -126,108 +125,9 @@
 
                                                         </tr>
                                                     </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td class="text-nowrap">
-                                                                <div class="font-weight-600">
-                                                                    <div class="font-weight-600 ">هندسة الحاسب</div>
 
-                                                                </div>
-                                                            </td>
-
-                                                            <td class="text-center">
-                                                                <input class="form-check-input" type="checkbox">
-                                                                <label>إضافة</label>
-
-
-                                                            </td>
-                                                        </tr>
-
-                                                        <tr>
-                                                            <td class="text-nowrap">
-                                                                <div class="font-weight-600">
-                                                                    <div class="font-weight-600 ">هندسة الحاسب</div>
-
-                                                                </div>
-                                                            </td>
-
-                                                            <td class="text-center">
-                                                                <input class="form-check-input" type="checkbox">
-                                                                <label>إضافة</label>
-
-
-                                                            </td>
-                                                        </tr>
-
-                                                        <tr>
-                                                            <td class="text-nowrap">
-                                                                <div class="font-weight-600">
-                                                                    <div class="font-weight-600 ">علوم الحاسب</div>
-
-                                                                </div>
-                                                            </td>
-
-                                                            <td class="text-center">
-                                                                <input class="form-check-input" type="checkbox">
-                                                                <label>إضافة</label>
-
-
-                                                            </td>
-                                                        </tr>
-
-                                                        <tr>
-                                                            <td class="text-nowrap">
-                                                                <div class="font-weight-600">
-                                                                    <div class="font-weight-600 ">نظم المعلومات</div>
-
-                                                                </div>
-                                                            </td>
-
-                                                            <td class="text-center">
-                                                                <input class="form-check-input" type="checkbox">
-                                                                <label>إضافة</label>
-
-
-                                                            </td>
-                                                        </tr>
-
-                                                        <tr>
-                                                            <td class="text-nowrap">
-                                                                <div class="font-weight-600">
-                                                                    <div class="font-weight-600 ">هندسة الحاسب</div>
-
-                                                                </div>
-                                                            </td>
-
-                                                            <td class="text-center">
-                                                                <input class="form-check-input" type="checkbox">
-                                                                <label>إضافة</label>
-
-
-                                                            </td>
-                                                        </tr>
-
-                                                        <tr>
-                                                            <td class="text-nowrap">
-                                                                <div class="font-weight-600">
-                                                                    <div class="font-weight-600 ">هندسة الحاسب</div>
-
-                                                                </div>
-                                                            </td>
-
-                                                            <td class="text-center">
-                                                                <input class="form-check-input" type="checkbox">
-                                                                <label>إضافة</label>
-
-
-                                                            </td>
-                                                        </tr>
-
-
-
-
-
-
+                                                    <tbody id="Tbody">
+                                                      
 
                                                     </tbody>
                                                 </table>
@@ -248,7 +148,7 @@
 
             <div class="d-flex justify-content-center">
 
-                <button type="button" class="btn btn-lg " style="background-color:#e6e291; font-size:20px;">حفظ</button>
+                <a class="btn btn-lg " style="background-color:#e6e291; font-size:20px;" onclick="AddSP()" href='@Url.ActionLink("ViewSpecialities")'>حفظ</a>
 
             </div>
 
@@ -264,8 +164,7 @@
 
 
 @section Scripts{
-    @{
-
+    
 
         <script>
             $(function () {
@@ -275,7 +174,98 @@
                 });
             });
 
-        </script>
 
-    }
+
+
+        $('#MasterFieldsID').on('change', function () {
+
+
+
+            FillSFD(this.value);
+        });
+
+
+        function FillSFD(MId) {
+
+
+            $(document).ready(function () {
+                $.ajax({
+                    type: "GET",
+                    url: "@Url.Action("GetDetailFields")",
+                    data: { id: MId },
+
+                    dataType: "json",
+                    success: function (data) {
+                        var body = '';
+
+                        for (var i = 0; i < data.detailfields.length; i++) {
+                            body +=
+                                "<tr> <td class='text-nowrap' ><div class='font-weight-600' > <div class='font-weight-600'>" + data.detailfields[i].specializationName +
+                            "</div></div></td>"
+
+                                    + "<td class='text-center'>"+
+                                "<input class='form-check-input' type='checkbox' value='" + data.detailfields[i].detailFieldId + "'> <label>إضافة</label><td></tr>"
+                        }
+
+                        $("#Tbody").html(body);
+
+                      
+                    }
+                });
+            });
+
+
+        }
+
+        //$('#CityNameID').on('change', function () {
+
+
+        //    var d = document.getElementById("OrganizationMainBranchCityId").value = this.value;
+
+        //});
+
+
+      // get all the check box
+
+
+        let result = [];
+
+        function AddSP() { // this function will get called when the save button is clicked
+            var checkBoxes = document.querySelectorAll('input[type="checkbox"]');
+            result = [];
+
+            checkBoxes.forEach(item => { // loop all the checkbox item
+                if (item.checked) {  //if the check box is checked
+
+                    result.push(parseInt(item.value)); //stored the objects to result array
+                }
+            })
+
+
+           SendSP(result);
+        }
+
+
+
+        function SendSP(Array) {
+
+            $.ajax({
+
+                type: "POST",
+                datatype: "json",
+                url: "@Url.Action("AddDetailFields")",
+                data: { dFieldIds: JSON.stringify(Array) },
+                
+
+            });
+
+
+        }
+
+    </script>
+
+    
+
+
+
     }

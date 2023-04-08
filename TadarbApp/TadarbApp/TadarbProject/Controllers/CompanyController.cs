@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using System.Xml.Linq;
 using TadarbProject.Data;
 using TadarbProject.Models;
 using TadarbProject.Models.ViewModels;
@@ -50,7 +51,19 @@ namespace TadarbProject.Controllers
 
             ViewBag.OrganizationName = OrganizationOfR.OrganizationName;
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
-            return View();
+
+            IEnumerable<FieldOfSpecialtyDetails> Specialities = Enumerable.Empty<FieldOfSpecialtyDetails>();
+            var HasFileds = _DbContext.OrganizationsProvidTrainingInArea.Where(item => item.Organization_OrganizationId == OrganizationOfR.OrganizationId).FirstOrDefault();
+
+            if (HasFileds != null)
+            {
+
+                Specialities = _DbContext.FieldOfSpecialtiesDetails.FromSqlRaw("Select * from FieldOfSpecialtiesDetails WHERE DetailFieldId IN" +
+                    $"(Select DetailField_DetailFieldId From OrganizationsProvidTrainingInArea WHERE Organization_OrganizationId={OrganizationOfR.OrganizationId})").Include(item => item.FieldOfSpecialty).ToList();
+            }
+
+
+            return View(Specialities);
         }
 
         public IActionResult AddSpecialities()
@@ -63,7 +76,16 @@ namespace TadarbProject.Controllers
             ViewBag.OrganizationName = OrganizationOfR.OrganizationName;
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
 
-            return View();
+
+            SpecialitiesVM specialitiesVM = new()
+            {
+
+                MasterFieldsListItems = _DbContext.FieldOfSpecialtiesMaster.ToList().Select(u => new SelectListItem { Text = u.FieldName, Value = u.FieldId.ToString() }),
+
+
+            };
+
+            return View(specialitiesVM);
         }
 
 
@@ -193,7 +215,7 @@ namespace TadarbProject.Controllers
 
         //[HttpPost]
         //public IActionResult AddViewDepartment(Department department)
-       
+
 
         //    return View();
 
@@ -225,6 +247,8 @@ namespace TadarbProject.Controllers
 
             return View(OrgEMP);
         }
+
+
 
         [HttpGet]
         public IActionResult AddUsers()
@@ -329,35 +353,34 @@ namespace TadarbProject.Controllers
 
         }
 
-        public IActionResult DeleteUser(int? id, EmployeeVM employeeVM)
+        public IActionResult DeleteUser(int? id)
         {
 
-            var getid = id;
-            int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
+            //var getid = id;
+            //int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
 
-            var RUser = _DbContext.UserAcounts.Find(getid);
+            //var RUser = _DbContext.UserAcounts.Find(getid);
 
-            //var OrganizationOfR = _DbContext.Organizations.Where(item => item.ResponsibleUserId == RUserId).FirstOrDefault();
+            //var viewuserdetail = _DbContext.UserAcounts.FromSqlRaw($"Select * From UserAcounts join Employees  on UserAcounts.UserId = Employees.UserAccount_UserId where UserAcounts.UserId={getid};").FirstOrDefault();
 
-            //var Branches = _DbContext.Employees.Where(item => item.UserAccount_UserId == RUser.UserId).Include(item => item.).Include(item => item.user).ToList();
+            //if (id == null)
+            //{
 
-            var viewuserdetail = _DbContext.UserAcounts.FromSqlRaw($"Select * From UserAcounts join Employees  on UserAcounts.UserId = Employees.UserAccount_UserId where UserAcounts.UserId={getid};").FirstOrDefault();
+            //    return View();
 
-            if (id == null)
-            {
-
-                return View();
-
-            }
+            //}
 
 
-            _DbContext.UserAcounts.Remove(viewuserdetail);
+            //_DbContext.UserAcounts.Remove(viewuserdetail);
 
-            _DbContext.SaveChanges();
+            //_DbContext.SaveChanges();
 
 
 
             TempData["success"] = "تم حذف حساب المسؤول  بنجاح";
+
+            //Console.WriteLine(" EMP ID IS : " + id);
+
             return RedirectToAction("ViewUsers");
 
 
@@ -418,6 +441,110 @@ namespace TadarbProject.Controllers
 
             return Json(new { Exists = false });
         }
+
+
+        public IActionResult GetDetailFields(string? id)
+        {
+
+            int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
+
+            var RUser = _DbContext.UserAcounts.Find(RUserId);
+
+            var OrganizationOfR = _DbContext.Organizations.Where(item => item.ResponsibleUserId == RUserId).FirstOrDefault();
+
+
+
+
+
+            if (!string.IsNullOrEmpty(id))
+            {
+
+
+                //var HasFileds = _DbContext.OrganizationsProvidTrainingInArea.Where(item => item.Organization_OrganizationId == OrganizationOfR.OrganizationId).FirstOrDefault();
+
+                var Id = Convert.ToInt64(id);
+
+                var Detailfields = _DbContext.FieldOfSpecialtiesDetails.FromSqlRaw($"Select * from FieldOfSpecialtiesDetails WHERE Field_FieldId= {Id} AND DetailFieldId NOT IN" +
+                    $"(Select DetailField_DetailFieldId from OrganizationsProvidTrainingInArea WHERE Organization_OrganizationId={OrganizationOfR.OrganizationId})")
+                    .Select(item => new
+
+                    {
+                        DetailFieldId = item.DetailFieldId,
+
+                        SpecializationName = item.SpecializationName
+
+                    }
+
+
+                ).ToList();
+
+
+                return Json(new { Detailfields });
+
+
+            }
+
+
+            return Json(new { Exists = false });
+        }
+
+
+
+        public IActionResult AddDetailFields(string dFieldIds)
+        {
+
+            if (dFieldIds != "[]")
+            {
+                var charsToRemove = new string[] { "[", "]" };
+
+                foreach (var c in charsToRemove)
+                {
+                    dFieldIds = dFieldIds.Replace(c, string.Empty);
+                }
+
+
+
+
+
+                string[] Ids = dFieldIds.Split(",");
+
+                // Console.WriteLine(Ids[0]);
+
+
+
+                int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
+
+                var RUser = _DbContext.UserAcounts.Find(RUserId);
+
+                var OrganizationOfR = _DbContext.Organizations.Where(item => item.ResponsibleUserId == RUserId).FirstOrDefault();
+
+                foreach (var i in Ids)
+                {
+                    int id = Convert.ToInt32(i);
+
+                    var OPTA = new OrganizationProvidTrainingInArea
+                    {
+                        Organization_OrganizationId = OrganizationOfR.OrganizationId,
+                        DetailField_DetailFieldId = id
+
+
+                    };
+
+
+                    _DbContext.OrganizationsProvidTrainingInArea.Add(OPTA);
+                }
+
+                _DbContext.SaveChanges();
+
+            }
+
+
+
+
+            return RedirectToAction("ViewSpecialities");
+
+        }
+
         #endregion
     }
 
