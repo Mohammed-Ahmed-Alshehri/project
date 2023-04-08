@@ -91,11 +91,9 @@
                 <h3>مسؤولي الفرع</h3>
 
 
-
-                <a asp-controller="Company" asp-action="AddUsers" class="table-search float-end">
-                    <button class="btn " style="background-color:#1c4c64; color:white" type="submit" asp>  اضافة مسؤول جديد <i class="fa fa-add"></i></button>
-                </a>
-
+                    <a asp-controller="Company" asp-action="AddUsers" class="table-search float-end">
+                        <button class="btn " style="background-color:#1c4c64; color:white" type="submit" asp>  اضافة مسؤول جديد <i class="fa fa-add"></i></button>
+                    </a>
 
             </div>
             <div class="card-body">
@@ -153,7 +151,7 @@
                                     </td>
 
                                     <td class="text-center">
-                                        <button type="button" class="btn btn-danger" fdprocessedid="ezqldw"><i class="fa fa-trash-alt"></i></button>
+                                        <a type="supmit" asp-controller="Company" asp-action="DeleteUser" asp-route-id="@item.UserId" class="btn btn-danger" fdprocessedid="Delete"><i class="fa fa-trash-alt"></i></a>
 
                                     </td>
                                 </tr>

@@ -172,13 +172,19 @@
 
 *@
 
-                    <div style="height:28vh; width:100%; " id="map" onclick=""></div>
+                    <div style="height:28vh; width:100%; " id="map" onclick="">
+                        
+                    </div>
+                    
+                    <input asp-for="Branch.Location" id="BLoc" hidden required/>
 
-                    <input asp-for="Branch.Location" id="BLoc" hidden/>
-
-                    <input asp-for="Branch.Zoon" id="BZoon" hidden />
-
+                    <input asp-for="Branch.Zoon" id="BZoon" hidden  required/>
+                    
+                        <div class="invalid-feedback">
+                            الرجاء تحديد موقع الفرع 
+                        </div>
                     <br /> <br /> <br />
+
                     <div class="d-flex justify-content-center">
 
                         <button type="submit" class="btn btn-lg " style="background-color:#e6e291; font-size:20px;">إضافة</button>

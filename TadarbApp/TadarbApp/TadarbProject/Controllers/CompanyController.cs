@@ -187,35 +187,17 @@ namespace TadarbProject.Controllers
             ViewBag.OrganizationName = OrganizationOfR.OrganizationName;
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
 
-            return View();
-        }
-
-        [HttpPost]
-        public IActionResult AddViewDepartment(Department department)
-        {
-            int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
-
-            var OrganizationOfR = _DbContext.Organizations.Where(item => item.ResponsibleUserId == RUserId).FirstOrDefault();
-
-            if (department == null)
-            {
-
-                return View();
-
-            }
-            var departemnt = new Department
-            {
-                DepartmentName = department.DepartmentName,
-
-
-            };
-            _DbContext.Departments.Add(departemnt);
-
-            _DbContext.SaveChanges();
-            TempData["success"] = "تم إضافة القسم بنجاح";
 
             return View();
         }
+
+        //[HttpPost]
+        //public IActionResult AddViewDepartment(Department department)
+       
+
+        //    return View();
+
+        //}
 
 
         public IActionResult ViewUsers()
@@ -344,6 +326,41 @@ namespace TadarbProject.Controllers
             _DbContext.SaveChanges();
             TempData["success"] = "تم إضافة حساب المسؤول  بنجاح";
             return RedirectToAction("ViewUsers");
+
+        }
+
+        public IActionResult DeleteUser(int? id, EmployeeVM employeeVM)
+        {
+
+            var getid = id;
+            int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
+
+            var RUser = _DbContext.UserAcounts.Find(getid);
+
+            //var OrganizationOfR = _DbContext.Organizations.Where(item => item.ResponsibleUserId == RUserId).FirstOrDefault();
+
+            //var Branches = _DbContext.Employees.Where(item => item.UserAccount_UserId == RUser.UserId).Include(item => item.).Include(item => item.user).ToList();
+
+            var viewuserdetail = _DbContext.UserAcounts.FromSqlRaw($"Select * From UserAcounts join Employees  on UserAcounts.UserId = Employees.UserAccount_UserId where UserAcounts.UserId={getid};").FirstOrDefault();
+
+            if (id == null)
+            {
+
+                return View();
+
+            }
+
+
+            _DbContext.UserAcounts.Remove(viewuserdetail);
+
+            _DbContext.SaveChanges();
+
+
+
+            TempData["success"] = "تم حذف حساب المسؤول  بنجاح";
+            return RedirectToAction("ViewUsers");
+
+
 
         }
 
