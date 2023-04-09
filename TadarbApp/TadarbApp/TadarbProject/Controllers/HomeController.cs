@@ -82,6 +82,19 @@ namespace TadarbProject.Controllers
 
             }
 
+            var UserInDb3 = _DbContext.UserAcounts.Where(item => item.UserType.Equals("Branch_Admin") && item.UserEmail.Equals(user.UserEmail) && item.UserPassword.Equals(user.UserPassword)).FirstOrDefault();
+
+
+            if (UserInDb3 != null)
+            {
+                _HttpContextAccessor.HttpContext.Session.SetString("Name", UserInDb3.UserEmail);
+
+                _HttpContextAccessor.HttpContext.Session.SetInt32("UserId", UserInDb3.UserId);
+
+                return RedirectToAction("Index", "Branch");
+
+            }
+
             return View();
 
 

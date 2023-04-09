@@ -1,0 +1,371 @@
+﻿@*@model EmployeeVM*@
+
+@{
+    ViewData["Title"] = "اضافة حساب مسؤول";
+}
+
+<head>
+
+    <link rel="stylesheet" href="~/css/Addbranches.css" asp-append-version="true" />
+
+</head>
+
+<div class="row" style="background: linear-gradient(#1c4c64,#5590ad);">
+    <div class="col-sm-4" style="z-index:2;">
+
+        <div class="vertical-nav bg-white" id="sidebar">
+            <div class="py-4 px-3 mb-4 bg-light">
+                <div class="media d-flex align-items-center">
+                    <img src="~/@ViewBag.OrganizationImage" alt="..." width="65" class="mr-3 rounded-circle img-thumbnail shadow-sm">
+                    <div class="media-body">
+                        <h4 class="m-0">@ViewBag.OrganizationName</h4>
+                    </div>
+                </div>
+            </div>
+
+            <p class="text-gray font-weight-bold text-uppercase px-3 small pb-4 mb-0">القائمة</p>
+
+            <ul class="nav flex-column bg-white mb-0">
+                <li class="nav-item">
+                    <a asp-controller="Branch" asp-action="Index" class="nav-link text-dark font-italic bg-light">
+                        <i class="fa fa-th-large mr-3 text-primary fa-fw"></i>
+                        الصفحة الرئيسية
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a asp-controller="Branch" asp-action="ViewSupervisorsUser" class="nav-link text-dark font-italic">
+                        <i class="fa fa-address-card mr-3 text-primary fa-fw"></i>
+                        ادارة مشرفي التدريب
+                    </a>
+                </li>
+                @*     <li class="nav-item">
+                <a asp-controller=" " asp-action=" " class="nav-link text-dark font-italic">
+                <i class="fa fa-cubes mr-3 text-primary fa-fw"></i>
+                ادارة مسؤولين الفروع
+
+                </a>
+                </li>
+                <li class="nav-item">
+                <a asp-controller=" " asp-action=" " class="nav-link text-dark font-italic">
+                <i class="fa fa-cubes mr-3 text-primary fa-fw"></i>
+                ادارة الفروع
+                </a>
+                </li>
+                <li class="nav-item">
+                <a asp-controller=" " asp-action=" " class="nav-link text-dark font-italic">
+                <i class="fa fa-cubes mr-3 text-primary fa-fw"></i>
+                ادارة الأقسام
+                </a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link text-dark font-italic">
+                <i class="fa fa-picture-o mr-3 text-primary fa-fw"></i>
+                Gallery
+                </a>
+                </li>*@
+            </ul>
+
+
+@*            <p class="text-gray font-weight-bold text-uppercase px-3 small py-4 mb-0">Charts</p>
+*@
+
+
+        </div>
+
+
+        <!-- End vertical navbar -->
+        <!-- Page content holder -->
+        <div class="page-content p-1" id="content">
+            <!-- Toggle button -->
+            <button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i class="fa fa-bars mr-2"></i><small class="text-uppercase font-weight-bold">القائمة</small></button>
+        </div>
+
+
+    </div>
+
+    <div class="col-sm-6">
+        <div class="card" style="border-radius: 25px; margin-top:2cm; margin-bottom:3cm; padding:5px 5px 5px 5px ; border-color:black;background-color:#dfebf2">
+            <div class="card-body p-5">
+                <h2 class=" text-center mb-5">إضافة مسؤول تدريب</h2>
+
+                <form  class="needs-validation" novalidate>
+
+                    <div class="row">
+
+                        <div class=" mb-4 pb-2">
+                            <br />
+
+                            <div class="form-outline" style="text-align: right;">
+                                <i class="fa-solid fa-user"></i>
+                                <label class="form-label" for="FullName" style="font-size:20px;">الاسم الثلاثي</label>
+
+                                <input  type="text" id="FullNameID" class="form-control form-control-lg" required />
+
+                                <div class="invalid-feedback" style="text-align: right;"> الرجاء إدخال الاسم الثلاثي </div>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="mb-4 pb-2">
+                        <i class="fa-regular fa-id-card"></i>
+                        <label class="form-label" for="EmployeeSSN" style="font-size:20px;">الرقم الوظيفي</label>
+                        <input type="number"  id="EmployeeSSN" class="form-control form-control-lg" required />
+                        <div class="invalid-feedback" style="text-align: right;"> الرجاء إدخال الرقم الوظيفي </div>
+                    </div>
+
+
+                    <div class="mb-4 pb-2">
+                        <i class="fa-solid fa-phone"></i>
+                        <label class="form-label" for="UserPhone" style="font-size:20px;">رقم الجوال</label>
+                        <input type="tel"  id="PhoneID" class="form-control form-control-lg" required />
+                        <div class="invalid-feedback" id="PhoneIDMassage" style="text-align: right;"> الرجاء إدخال رقم الجوال </div>
+                    </div>
+
+
+                    <div class="mb-4 pb-2">
+                        <i class="fa-solid fa-at"></i>
+                        <label class="form-label" for="UserEmail" style="font-size:20px;">البريد الإلكتروني</label>
+                        <input type="email"  id="UserEmailID" class="form-control form-control-lg" required />
+                        <div class="invalid-feedback" id="UserEmailMassage" style="text-align: right;"> الرجاء إدخال البريد الإلكتروني </div>
+                    </div>
+
+
+                    <div class="mb-4 pb-2">
+                        <i class="fa-solid fa-lock"></i>
+                        <label class="form-label" for="UserPassword" style="font-size:20px;">كلمة المرور</label>
+                        <input type="password" id="UserPasswordID" class="form-control form-control-lg" required />
+                        <div class="invalid-feedback" id="PasswordMassage" style="text-align: right;"> الرجاء إدخال كلمة المرور </div>
+
+                    </div>
+
+                    <div class="mb-4 pb-2">
+                        <i class="fa-solid fa-lock"></i>
+                        <label class="form-label" for="ConfirmUserPassword" style="font-size:20px;">تأكيد كلمة المرور</label>
+                        <input  type="password" id="ConfirmUserPasswordID" class="form-control form-control-lg" required />
+                        <div class="invalid-feedback" id="ConfirmPasswordMassage" style="text-align: right;"> الرجاء تأكيد كلمة المرور </div>
+                    </div>
+
+
+
+
+
+
+                    <br />
+                    <div class="row">
+
+                        <button type="submit" class="btn" style="background-color:#e6e291; font-size:20px;">إضافة</button>
+
+                    </div>
+
+
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-sm-2"></div>
+</div>
+
+
+
+
+@section Scripts{
+    @{
+
+
+        <script>
+
+            //for moving navbar side
+
+            $(function () {
+                // Sidebar toggle behavior
+                $('#sidebarCollapse').on('click', function () {
+                    $('#sidebar, #content').toggleClass('active');
+                });
+            });
+
+            //// Example starter JavaScript for disabling form submissions if there are invalid fields
+            //(function () {
+            //    'use strict'
+
+            //    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            //    var forms = document.querySelectorAll('.needs-validation')
+
+            //    // Loop over them and prevent submission
+            //    Array.prototype.slice.call(forms)
+            //        .forEach(function (form) {
+            //            form.addEventListener('submit', function (event) {
+            //                if (!form.checkValidity()) {
+
+            //                    event.preventDefault();
+            //                    event.stopPropagation();
+            //                }
+
+            //                if (CustomValidation()) {
+
+            //                    event.preventDefault();
+            //                    event.stopPropagation();
+            //                }
+
+            //                if (CustomValidation2()) {
+
+            //                    event.preventDefault();
+            //                    event.stopPropagation();
+            //                }
+
+            //                if (CustomValidation3()) {
+
+            //                    event.preventDefault();
+            //                    event.stopPropagation();
+            //                }
+
+            //                form.classList.add('was-validated')
+            //            }, false)
+            //        })
+            //})()
+
+            //function CustomValidation() {
+
+
+            //    var E = document.getElementById("UserEmailID");
+
+            //    var EM = document.getElementById("UserEmailMassage");
+
+            //    $(document).ready(function () {
+
+            //        $.ajax({
+            //            type: "GET",
+            //            url: "@Url.Action("EmailExists")",
+
+            //            data: { Email: E.value },
+
+            //            dataType: "json",
+            //            success: function (data) {
+            //                if (data.exists) {
+            //                    E.classList.remove('is-valid');
+
+            //                    E.classList.add('is-invalid');
+
+            //                    EM.innerHTML = "الايميل مسجل مسبقا في النظام";
+
+            //                    return true;
+
+            //                }
+            //                else {
+
+            //                    E.classList.add('is-valid');
+
+            //                    E.classList.remove('is-invalid');
+
+            //                    EM.innerHTML = "الرجاء إدخال البريد الإلكتروني";
+
+
+            //                }
+            //            }
+            //        });
+
+            //    });
+
+
+            //    return false;
+            //}
+
+
+            //function CustomValidation2() {
+
+            //    var P = document.getElementById("PhoneID");
+            //    var PM = document.getElementById("PhoneIDMassage");
+
+
+
+            //    if (P.value.length != 10) {
+
+            //        P.classList.remove('is-valid');
+            //        P.classList.add('is-invalid');
+
+            //        PM.innerHTML = "يجب أن يكون رقم الجوال مكون من عشرة أرقام";
+            //        return true;
+            //    }
+
+
+
+            //    if ((P.value.charAt(0) != 0)) {
+            //        P.classList.remove('is-valid');
+            //        P.classList.add('is-invalid');
+
+            //        PM.innerHTML = "05******** يجب أن يبدأ رقم الجوال بـ ";
+            //        return true;
+
+            //    }
+
+            //    if ((P.value.charAt(1) != 5)) {
+            //        P.classList.remove('is-valid');
+            //        P.classList.add('is-invalid');
+
+            //        PM.innerHTML = " 05******** يجب أن يبدأ رقم الجوال بـ ";
+            //        return true;
+
+            //    }
+
+            //    else {
+
+            //        P.classList.add('is-valid');
+
+            //        P.classList.remove('is-invalid');
+
+            //        PM.innerHTML = "الرجاء إدخال رقم الجوال";
+
+
+            //    }
+
+            //    return false;
+
+            //}
+
+            //function CustomValidation3() {
+
+            //    var password = document.getElementById("UserPasswordID");
+            //    var confirmPassword = document.getElementById("ConfirmUserPasswordID");
+            //    var CMassage = document.getElementById("ConfirmPasswordMassage");
+
+            //    if (password.value !== confirmPassword.value) {
+
+            //        confirmPassword.classList.remove('is-valid');
+            //        confirmPassword.classList.add('is-invalid');
+
+            //        CMassage.innerHTML = "يجب أن تكون كلمة المرور متطابقة";
+            //        return true;
+            //    }
+
+
+
+
+
+            //    else {
+
+            //        confirmPassword.classList.add('is-valid');
+
+            //        confirmPassword.classList.remove('is-invalid');
+
+            //        CMassage.innerHTML = "الرجاء تأكيد كلمة المرور";
+
+
+            //    }
+
+            //    return false;
+
+            //}
+
+
+
+        </script>
+
+    }
+    }
