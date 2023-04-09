@@ -1,0 +1,192 @@
+﻿<head>
+
+    <link rel="stylesheet" href="~/css/AddSpecialities.css" asp-append-version="true" />
+
+
+</head>
+<body style="background: linear-gradient(#1c4c64,#5590ad);">
+    <div class="row">
+
+        <div class="col-sm-4">
+
+            <div class="vertical-nav bg-white" id="sidebar" ">
+                <div class="py-4 px-3 mb-4 bg-light">
+                    <div class="media d-flex align-items-center">
+                        <img src="https://www5.0zz0.com/2023/03/30/10/610274459.png" alt="..." width="65" class="mr-3 rounded-circle img-thumbnail shadow-sm">
+                        <div class="media-body">
+                            <h4 class="m-0">جامعة طيبة</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="text-gray font-weight-bold text-uppercase px-3 small pb-4 mb-0">القائمة</p>
+
+                <ul class="nav flex-column bg-white mb-0">
+                    <li class="nav-item">
+                        <a asp-controller="Company" asp-action="Index" class="nav-link text-dark font-italic bg-light">
+                            <i class="fa fa-th-large mr-3 text-primary fa-fw"></i>
+                            الصفحة الرئيسية
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-controller="Branch" asp-action="ViewOpportunities" class="nav-link text-dark font-italic">
+                            <i class="fa fa-address-card mr-3 text-primary fa-fw"></i>
+                            ادارة الفرص
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-controller="Company" asp-action="Addbranches" class="nav-link text-dark font-italic">
+                            <i class="fa fa-cubes mr-3 text-primary fa-fw"></i>
+
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark font-italic">
+                            <i class="fa fa-picture-o mr-3 text-primary fa-fw"></i>
+                            Gallery
+                        </a>
+                    </li>
+                </ul>
+
+                <p class="text-gray font-weight-bold text-uppercase px-3 small py-4 mb-0">Charts</p>
+
+
+            </div>
+
+
+            <!-- End vertical navbar -->
+            <!-- Page content holder -->
+            <div class="page-content p-1" id="content">
+                <!-- Toggle button -->
+                <button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i class="fa fa-bars mr-2"></i><small class="text-uppercase font-weight-bold">القائمة</small></button>
+            </div>
+
+
+        </div>
+
+        <div class="col-sm-6">
+            <div class="card" style="border-radius: 25px; margin-top:2cm; margin-bottom:3cm; padding:5px 5px 5px 5px ; border-color:black;background-color:#dfebf2">
+                <div class="card-body p-5">
+                    <h2 class=" text-center mb-5">إضافة فرصة جديدة</h2>
+
+                    <form>
+                        <div class="row">
+                            <div class=" mb-4 pb-2">
+                                <br />
+
+                                <div class="form-outline" style="text-align: right;">
+
+                                    <label class="form-label" for="OrganizationName" style="font-size:20px;">اسم الفرصة</label>
+                                    <input type="text" id="OrganizationNameID" class="form-control form-control-lg" required />
+                                    <div class="invalid-feedback" style="text-align: right;"> الرجاء يجب إدخال اسم الفرصة </div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="mb-2 pb-2">
+
+                                <label for="TypeNameOrganiaztion" class="form-label" style="font-size:20px;"> القسم العام</label>
+                                <select class="form-select" required>
+                                    <option selected disabled value="">-- اختيار القسم --</option>
+                                    <option value="">
+                                        طب وجراحة
+                                    </option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    الرجاء يجب إختيار القسم
+                                </div>
+                            </div>
+
+
+
+                            <br />
+
+                            <div class="form-group" style="text-align: right;">
+
+                                <label for="CountryName" class="form-label " style="font-size:20px;">التخصص</label>
+                                <select class="form-select" id="CountryNameID" required>
+                                    <option selected disabled value="">--التخصص--</option>
+                                    <option value="">
+                                        جراحة كلى
+                                    </option>
+
+                                </select>
+                                <div class="invalid-feedback">
+                                    الرجاء يجب إختيار التخصصص
+                                </div>
+                            </div>
+
+                            <div class="mb-2 pb-2">
+                                <i class="fa-solid fa-user"></i>
+                                <label for="form-CityNameID" class="form-label mt-4" style="font-size:20px;">تعيين مشرف اكاديمي</label>
+                                <select class="form-select" required>
+                                    <option selected disabled value="">--المشرفين--</option>
+
+                                </select>
+                                <div class="invalid-feedback">
+                                    الرجاء يجب  إختيار مشرف اكاديمي
+                                </div>
+
+                                <input id="OrganizationMainBranchCityId" hidden />
+                            </div>
+
+
+
+
+
+                            <div class=" col-md-6 mb-2 pb-2">
+                                <i class="fa-regular fa-calendar-days"></i>
+                                <label for="3" class="form-label mt-4" style="font-size:20px;">تاريخ بداية الفرصة</label> <br />
+                                <div>
+                                    <input placeholder="Select date" type="date" id="example" class="form-control">
+
+                                </div>
+                                <div class="invalid-feedback">
+                                    الرجاء يجب تحديد وقت البداية
+                                </div>
+
+                            </div>
+
+
+
+                            <div class=" col-md-6 mb-2 pb-2">
+                                <i class="fa-regular fa-calendar-days"></i>
+                                <label for="3" class="form-label mt-4" style="font-size:20px;">تاريخ نهاية الفرصة</label> <br />
+                                <div>
+                                    <input placeholder="Select date" type="date" id="example" class="form-control">
+
+                                </div>
+                                <div class="invalid-feedback">
+                                    الرجاء يجب تحديد وقت النهاية
+                                </div>
+
+                            </div>
+
+
+
+                        </div>
+
+
+
+
+
+                        <br /> <br /> <br />
+                        <div class="d-flex justify-content-center">
+
+                            <button type="submit" class="btn btn-lg " style="background-color:#e6e291; font-size:20px;">إضافة </button>
+
+                        </div>
+
+
+
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-sm-2"></div>
+    </div>
+</body>

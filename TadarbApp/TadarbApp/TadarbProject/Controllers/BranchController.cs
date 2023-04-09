@@ -82,5 +82,26 @@ namespace TadarbProject.Controllers
         }
 
 
+        public IActionResult ViewOpportunities()
+        {
+            
+
+
+
+            return View();
+
+        }
+
+        public IActionResult AddOpportunities()
+        {
+
+
+
+
+            return View();
+
+        }
+
+
     }
 }
