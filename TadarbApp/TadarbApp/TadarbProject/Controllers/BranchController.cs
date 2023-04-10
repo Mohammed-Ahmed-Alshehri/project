@@ -80,7 +80,80 @@ namespace TadarbProject.Controllers
             return View();
 
         }
+        [HttpPost]
+        public IActionResult AddSupervisorUser(EmployeeVM employeeVM)
+        {
+            int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
 
+            var RUser = _DbContext.UserAcounts.Find(RUserId);
+
+            var Branch = _DbContext.OrganizationBranches_TrainProv.Where(item => item.Responsible_UserId == RUserId).FirstOrDefault();
+            var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Branch.Organization_OrganizationId).FirstOrDefault();
+
+
+            if (employeeVM == null)
+            {
+
+                return View();
+
+            }
+
+            var user = new UserAcount
+            {
+                UserEmail = employeeVM.userAcount.UserEmail,
+                UserPassword = employeeVM.userAcount.UserPassword,
+                FullName = employeeVM.userAcount.FullName,
+                Phone = employeeVM.userAcount.Phone,
+                City_CityId = Branch.City_CityId,
+                UserType = "Training_Supervisor",
+                ActivationStatus = "Active"
+
+            };
+
+            _DbContext.UserAcounts.Add(user);
+
+            _DbContext.SaveChanges();
+
+            var DEPOfR = _DbContext.Departments.Where(item => item.Branch_BranchId ==Branch.BranchId  && item.DepartmentName.Equals("قسم ادارة المشرفين")).FirstOrDefault();
+
+            if (DEPOfR == null)
+            {
+                var DEP = new Department
+                {
+
+                    DepartmentName = "قسم ادارة المشرفين",
+                    Branch_BranchId = Branch.BranchId,
+                    Responsible_UserId = RUser.UserId,
+
+
+
+                };
+
+                _DbContext.Departments.Add(DEP);
+
+                _DbContext.SaveChanges();
+            }
+            int DEPId = _DbContext.Departments.Where(item => item.Branch_BranchId == Branch.BranchId && item.DepartmentName.Equals("قسم ادارة المشرفين")).First().DepartmentId;
+
+            var EMP = new Employee
+            {
+
+                Department_DepartmentId = DEPId,
+                Job_JobId = 2,
+                SSN = employeeVM.employee.SSN,
+                UserAccount_UserId = user.UserId,
+
+
+
+            };
+
+            _DbContext.Employees.Add(EMP);
+
+            _DbContext.SaveChanges();
+            TempData["success"] = "تم إضافة حساب الموظف  بنجاح";
+            return RedirectToAction("ViewSupervisorsUser");
+
+        }
 
         public IActionResult ViewOpportunities()
         {

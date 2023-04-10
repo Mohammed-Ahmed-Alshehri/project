@@ -198,20 +198,30 @@ namespace TadarbProject.Controllers
 
             return View(branchVM);
         }
+        //public IActionResult EditBranche(int? id)
+        //{
+        //    int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
 
-        [HttpGet]
-        public IActionResult AddViewDepartment()
-        {
-            int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
-
-            var OrganizationOfR = _DbContext.Organizations.Where(item => item.ResponsibleUserId == RUserId).FirstOrDefault();
-
-            ViewBag.OrganizationName = OrganizationOfR.OrganizationName;
-            ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
+        //    var OrganizationOfR = _DbContext.Organizations.Where(item => item.ResponsibleUserId == RUserId).FirstOrDefault();
 
 
-            return View();
-        }
+        //    ViewBag.OrganizationName = OrganizationOfR.OrganizationName;
+        //    ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
+
+        //    BranchVM branchVM = new()
+        //    {
+
+        //        Branch = new OrganizationBranch_TrainProv()
+
+        //    };
+        //    if (id != null || id != 0)
+        //    {
+        //        branchVM.Branch = _DbContext.OrganizationBranches_TrainProv.Get(u => u.Id == id);
+        //        return View(branchVM);
+        //    }
+            
+            
+        //}
 
         //[HttpPost]
         //public IActionResult AddViewDepartment(Department department)
