@@ -101,7 +101,7 @@
                                 <div class="form-outline" style="text-align: right;">
                                     <i class="fa-regular fa-address-card"></i>
                                     <label class="form-label" for="BranchName" style="font-size:20px;">اسم الفرع</label>
-                                    <input type="text" asp-for="Branch.BranchName" id="BranchNameID" class="form-control form-control-lg" disabled required />
+                                    <input type="text" asp-for="Branch.BranchName" id="BranchNameID" class="form-control form-control-lg"  required />
 
                                     <div class="invalid-feedback" style="text-align: right;"> الرجاء إدخال اسم الفرع </div>
 
@@ -116,7 +116,8 @@
                         <div class="form-outline" style="text-align: right;">
                             <i class="fa-regular fa-address-card"></i>
                             <label class="form-label" for="BranchCountry" style="font-size:20px;">الدولة</label>
-                            <input type="text" asp-for="@Model.CountryListItems" id="BranchCountryID" class="form-control form-control-lg" disabled required />
+                            
+                            <input type="text" asp-for="@Model.CountryListItems.First().Text" id="BranchCountry" class="form-control form-control-lg" disabled required />
 
                             <div class="invalid-feedback" style="text-align: right;"> الرجاء إدخال اسم الدولة </div>
 
@@ -124,7 +125,8 @@
                         <div class="form-outline" style="text-align: right;">
                             <i class="fa-regular fa-address-card"></i>
                             <label class="form-label" for="BranchCity" style="font-size:20px;">المدينة</label>
-                            <label type="text" id="BranchCityID" class="form-control form-control-lg"> @Model.CityListItems.First().Text  </label>
+                
+                            <input type="text" asp-for="@Model.CityListItems.First().Text " id="BranchCityID" class="form-control form-control-lg" disabled required />
 
                             <div class="invalid-feedback" style="text-align: right;"> الرجاء إدخال اسم المدينة </div>
 
@@ -135,9 +137,9 @@
                             <i class="fa-solid fa-user"></i>
                             <label for="3" class="form-label mt-4" style="font-size:20px;"> اسم المسؤول</label>
                             <select asp-for="Branch.Responsible_UserId" asp-items="@Model.UserListItems" class="form-select" id="UseryNameID" required>
-                                <option selected disabled value="">-- أختيار مسؤول الفرع --</option>
-
+                          
                             </select>
+
                             <div class="invalid-feedback">
                                 الرجاء اختيار اسم المسؤول
                             </div>
@@ -171,6 +173,13 @@
 
                         <input asp-for="Branch.Zoon" id="BZoon" hidden required />
 
+
+                        <input asp-for="Branch.Organization_OrganizationId"  hidden required />
+
+                        <input asp-for="Branch.City_CityId"  hidden required />
+
+                        <input asp-for="Branch.BranchId" hidden required />
+
                         <div class="invalid-feedback">
                             الرجاء تحديد موقع الفرع
                         </div>
@@ -178,7 +187,7 @@
 
                         <div class="d-flex justify-content-center">
 
-                            <button type="submit" class="btn btn-lg " style="background-color:#e6e291; font-size:20px;">تعديل</button>
+                            <button asp-controller="Company" asp-action="EditBranche" type="submit" class="btn btn-lg " style="background-color:#e6e291; font-size:20px;">تعديل</button>
 
                         </div>
 

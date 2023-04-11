@@ -1,5 +1,4 @@
-﻿@model IEnumerable<FieldOfSpecialtyDetails>
-
+﻿
 @{
     ViewData["Title"] = "قائمة التخصصات";
 }
@@ -9,8 +8,11 @@
 
 
 </head>
-<body style="background: linear-gradient(#1c4c64,#5590ad);">
 
+
+<body style="background: linear-gradient(#1c4c64,#5590ad);" id="Sbody">
+
+    <partial name="_Notification" />
 <div class="row" >
 
     <div class="col-sm-4" style="z-index:2;">
@@ -114,27 +116,9 @@
                             </tr>
                         </thead>
 
-                        <tbody>
+                            <tbody id="Tbody">
 
 
-                            @foreach (var item in Model)
-                            {
-                                <tr>
-                                    <td class="text-nowrap">
-                                        <div class="font-weight-600">
-                                            <div class="font-weight-600 ">@item.FieldOfSpecialty.FieldName</div>
-
-                                        </div>
-                                    </td>
-                                    <td class="text-nowrap"> @item.SpecializationName</td>
-
-
-                                    <td class="text-center">
-                                        <button type="button" class="btn btn-danger" fdprocessedid="ezqldw"><i class="fa fa-trash-alt"></i></button>
-
-                                    </td>
-                                </tr>
-                            }
 
                             
                             
@@ -144,6 +128,7 @@
 
 
                         </tbody>
+
                     </table>
                 </div>
             </div>
@@ -155,14 +140,117 @@
 </body>
 @section Scripts{
     
+      
 
         <script>
+
+            FillTable();
+
             $(function () {
                 // Sidebar toggle behavior
                 $('#sidebarCollapse').on('click', function () {
                     $('#sidebar, #content').toggleClass('active');
                 });
             });
+
+
+
+
+             
+            function Delete(Id) 
+          {
+
+             Swal.fire({
+                title: 'تاكيد الحذف',
+                text: "",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'نعم, احذف.!',
+                cancelButtonText:'الغاء',
+            }).then((result) => {
+                if (result.isConfirmed) {
+
+                    $.ajax({
+                        url: "@Url.Action("DeleteFieldOfSpecialty")",
+                        type: 'POST',
+                        data: { id: Id },
+
+                        success: function (data) {
+                           
+                            if (data.success) {
+
+                            
+                               // toastr.success(data.message);
+
+                            }
+                            else {
+
+                               // toastr.error(data.message);
+                            }
+
+                            FillTable();
+                        }
+
+                                        
+                    });
+
+
+                   
+                }
+            })
+
+
+
+          }
+
+          function FillTable()
+          {
+            var body = "";
+
+
+
+            $(document).ready(function () {
+
+               $.ajax({
+
+                    url: "@Url.Action("GetSpecialities")",
+                    type: 'GET',
+                    dataType: "json",
+              
+
+                 success: function (data) 
+                 {
+
+                        $.each(data.specialities, function (key, value) {
+
+                       
+
+                            body +="<tr><td class='text-nowrap' ><div class='font-weight-600'><div class='font-weight-600'>"+ value.fieldOfSpecialty.fieldName + "</div>"+
+                            "</div></td><td class='text-nowrap'>" + value.specializationName + "</td><td class='text-center'>"
+                                + `<button type='button' class='btn btn-danger' fdprocessedid='ezqldw' onclick ='Delete(${value.detailFieldId})'> <i class='fa fa-trash-alt'> </i></button></td></tr>`
+
+
+                            console.log(value);
+
+                        });
+
+
+
+                        $("#Tbody").html(body);
+                    
+
+
+                  }
+
+
+               });
+
+            });
+          }
+
+
 
         </script>
 

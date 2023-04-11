@@ -26,6 +26,7 @@ namespace TadarbProject.Controllers
 
         }
 
+        [HttpGet]
         public IActionResult Index()
         {
             ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
@@ -41,31 +42,24 @@ namespace TadarbProject.Controllers
             return View();
         }
 
+
+        [HttpGet]
         public IActionResult ViewSpecialities()
         {
 
             int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
 
             var OrganizationOfR = _DbContext.Organizations.Where(item => item.ResponsibleUserId == RUserId).FirstOrDefault();
-
-
             ViewBag.OrganizationName = OrganizationOfR.OrganizationName;
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
 
-            IEnumerable<FieldOfSpecialtyDetails> Specialities = Enumerable.Empty<FieldOfSpecialtyDetails>();
-            var HasFileds = _DbContext.OrganizationsProvidTrainingInArea.Where(item => item.Organization_OrganizationId == OrganizationOfR.OrganizationId).FirstOrDefault();
-
-            if (HasFileds != null)
-            {
-
-                Specialities = _DbContext.FieldOfSpecialtiesDetails.FromSqlRaw("Select * from FieldOfSpecialtiesDetails WHERE DetailFieldId IN" +
-                    $"(Select DetailField_DetailFieldId From OrganizationsProvidTrainingInArea WHERE Organization_OrganizationId={OrganizationOfR.OrganizationId})").Include(item => item.FieldOfSpecialty).ToList();
-            }
 
 
-            return View(Specialities);
+            return View();
         }
 
+
+        [HttpGet]
         public IActionResult AddSpecialities()
         {
             int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
@@ -90,7 +84,7 @@ namespace TadarbProject.Controllers
 
 
 
-
+        [HttpGet]
         public IActionResult ViewBranches()
         {
 
@@ -132,7 +126,7 @@ namespace TadarbProject.Controllers
             if (DEPOfR != null)
             {
 
-                OrgEMP = _DbContext.UserAcounts.FromSqlRaw($"select * from UserAcounts WHERE UserAcounts.UserId IN (select Employees.UserAccount_UserId from Employees where Employees.Department_DepartmentId ={DEPOfR.DepartmentId})" +
+                OrgEMP = _DbContext.UserAcounts.FromSqlRaw($"Select * from UserAcounts WHERE UserAcounts.UserId IN (Select Employees.UserAccount_UserId from Employees where Employees.Department_DepartmentId ={DEPOfR.DepartmentId})" +
                 "AND UserAcounts.UserId NOT IN (select Responsible_UserId from dbo.OrganizationBranches_TrainProv);").ToList();
 
             }
@@ -198,6 +192,9 @@ namespace TadarbProject.Controllers
 
             return View(branchVM);
         }
+
+
+        [HttpGet]
         public IActionResult EditBranche(int? id)
         {
             int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
@@ -210,19 +207,29 @@ namespace TadarbProject.Controllers
 
             BranchVM branchVM = new()
             {
-               
-                Branch = new OrganizationBranch_TrainProv()
-               
-           };
 
-            
+                Branch = new OrganizationBranch_TrainProv()
+
+            };
+
+
             if (id != null || id != 0)
             {
+
                 branchVM.Branch = _DbContext.OrganizationBranches_TrainProv.Where(u => u.BranchId == id).FirstOrDefault();
 
-                branchVM.CityListItems = _DbContext.Cities.Where(Ci => Ci.CityId == branchVM.Branch.City_CityId).Select(u => new SelectListItem { Text = u.CityName, Value = u.CityId.ToString() });
+                var city = _DbContext.Cities.Where(Ci => Ci.CityId == branchVM.Branch.City_CityId);
 
-                branchVM.UserListItems = _DbContext.UserAcounts.Where(Us => Us.UserId == branchVM.Branch.Responsible_UserId).Select(u => new SelectListItem { Text = u.FullName, Value = u.UserId.ToString() });
+                branchVM.CityListItems = city.Select(u => new SelectListItem { Text = u.CityName, Value = u.CityId.ToString() });
+
+                branchVM.CountryListItems = _DbContext.Countries.Where(u => u.CountryId == city.First().Country_CountryId).Select(u => new SelectListItem { Text = u.CountryName, Value = u.CountryId.ToString() });
+
+                var DEPOfR = _DbContext.Departments.Where(item => item.Organization_OrganizationId == OrganizationOfR.OrganizationId && item.DepartmentName.Equals("قسم ادارة الفروع")).FirstOrDefault();
+
+
+                branchVM.UserListItems = _DbContext.UserAcounts.FromSqlRaw($"Select * from UserAcounts WHERE UserAcounts.UserId IN (Select Employees.UserAccount_UserId from Employees where Employees.Department_DepartmentId ={DEPOfR.DepartmentId})")
+                    .Select(u => new SelectListItem { Text = u.FullName, Value = u.UserId.ToString() });
+
                 TempData["success"] = "تم تعديل حساب الموظف  بنجاح";
 
                 return View(branchVM);
@@ -232,13 +239,25 @@ namespace TadarbProject.Controllers
             return NotFound();
         }
 
-        //[HttpPost]
-        //public IActionResult AddViewDepartment(Department department)
+        [HttpPost]
+        public IActionResult EditBranche(BranchVM branchVM)
+        {
+
+            if (!ModelState.IsValid)
+            {
+                return View(branchVM);
+            }
 
 
-        //    return View();
 
-        //}
+            _DbContext.OrganizationBranches_TrainProv.Update(branchVM.Branch);
+
+            _DbContext.SaveChanges();
+
+            return RedirectToAction("ViewBranches");
+        }
+
+
 
 
         public IActionResult ViewUsers()
@@ -372,39 +391,7 @@ namespace TadarbProject.Controllers
 
         }
 
-        public IActionResult DeleteUser(int? id)
-        {
 
-            //var getid = id;
-            //int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
-
-            //var RUser = _DbContext.UserAcounts.Find(getid);
-
-            //var viewuserdetail = _DbContext.UserAcounts.FromSqlRaw($"Select * From UserAcounts join Employees  on UserAcounts.UserId = Employees.UserAccount_UserId where UserAcounts.UserId={getid};").FirstOrDefault();
-
-            //if (id == null)
-            //{
-
-            //    return View();
-
-            //}
-
-
-            //_DbContext.UserAcounts.Remove(viewuserdetail);
-
-            //_DbContext.SaveChanges();
-
-
-
-            TempData["success"] = "تم حذف حساب المسؤول  بنجاح";
-
-            //Console.WriteLine(" EMP ID IS : " + id);
-
-            return RedirectToAction("ViewUsers");
-
-
-
-        }
 
 
 
@@ -561,6 +548,63 @@ namespace TadarbProject.Controllers
 
 
             return RedirectToAction("ViewSpecialities");
+
+        }
+
+
+        public IActionResult DeleteFieldOfSpecialty(int? id)
+        {
+
+
+
+
+            if (id != null || id == 0)
+            {
+
+                int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
+
+                var RUser = _DbContext.UserAcounts.Find(RUserId);
+
+                var OrganizationOfR = _DbContext.Organizations.Where(item => item.ResponsibleUserId == RUserId).FirstOrDefault();
+
+
+                var OrgFOS = _DbContext.OrganizationsProvidTrainingInArea.Where(u => u.DetailField_DetailFieldId == id).FirstOrDefault();
+
+                _DbContext.OrganizationsProvidTrainingInArea.Remove(OrgFOS);
+
+
+                _DbContext.SaveChanges();
+
+
+                return Json(new { success = true, message = "تم الحذف بنجاح" });
+            }
+
+
+
+            return Json(new { success = false, message = "حصل خطاء لم يتم الحذف" });
+
+        }
+
+
+        public IActionResult GetSpecialities()
+        {
+            int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
+
+            var OrganizationOfR = _DbContext.Organizations.Where(item => item.ResponsibleUserId == RUserId).FirstOrDefault();
+
+
+
+            IEnumerable<FieldOfSpecialtyDetails> Specialities = Enumerable.Empty<FieldOfSpecialtyDetails>();
+            var HasFileds = _DbContext.OrganizationsProvidTrainingInArea.Where(item => item.Organization_OrganizationId == OrganizationOfR.OrganizationId).FirstOrDefault();
+
+            if (HasFileds != null)
+            {
+
+                Specialities = _DbContext.FieldOfSpecialtiesDetails.FromSqlRaw("Select * from FieldOfSpecialtiesDetails WHERE DetailFieldId IN" +
+                    $"(Select DetailField_DetailFieldId From OrganizationsProvidTrainingInArea WHERE Organization_OrganizationId={OrganizationOfR.OrganizationId})").Include(item => item.FieldOfSpecialty).ToList();
+            }
+
+            return Json(new { Specialities });
 
         }
 
