@@ -12,7 +12,7 @@
                 <div class="media d-flex align-items-center">
                     <img src="~/@ViewBag.OrganizationImage" alt="..." width="65" class="mr-3 rounded-circle img-thumbnail shadow-sm">
                     <div class="media-body">
-                        <h4 class="m-0"> @ViewBag.OrganizationName  </h4>
+                        <h4 class="m-0">@ViewBag.OrganizationName</h4>
                     </div>
                 </div>
             </div>
@@ -29,38 +29,46 @@
                 <li class="nav-item">
                     <a asp-controller="Branch" asp-action="ViewSupervisorsUser" class="nav-link text-dark font-italic">
                         <i class="fa fa-address-card mr-3 text-primary fa-fw"></i>
-                       ادارة مشرفي التدريب
+                        ادارة مشرفي التدريب
                     </a>
                 </li>
-           @*     <li class="nav-item">
-                    <a asp-controller=" " asp-action=" " class="nav-link text-dark font-italic">
-                        <i class="fa fa-cubes mr-3 text-primary fa-fw"></i>
-                        ادارة مسؤولين الفروع
+                <li class="nav-item">
+                    <a asp-controller="Branch" asp-action="ViewOpportunities" class="nav-link text-dark font-italic">
+                        <i class="fa fa-address-card mr-3 text-primary fa-fw"></i>
+                        ادارة الفرص
+                    </a>
+                </li>
+                @*     <li class="nav-item">
+                <a asp-controller=" " asp-action=" " class="nav-link text-dark font-italic">
+                <i class="fa fa-cubes mr-3 text-primary fa-fw"></i>
+                ادارة مسؤولين الفروع
 
-                    </a>
+                </a>
                 </li>
                 <li class="nav-item">
-                    <a asp-controller=" " asp-action=" " class="nav-link text-dark font-italic">
-                        <i class="fa fa-cubes mr-3 text-primary fa-fw"></i>
-                        ادارة الفروع
-                    </a>
+                <a asp-controller=" " asp-action=" " class="nav-link text-dark font-italic">
+                <i class="fa fa-cubes mr-3 text-primary fa-fw"></i>
+                ادارة الفروع
+                </a>
                 </li>
                 <li class="nav-item">
-                    <a asp-controller=" " asp-action=" " class="nav-link text-dark font-italic">
-                        <i class="fa fa-cubes mr-3 text-primary fa-fw"></i>
-                        ادارة الأقسام
-                    </a>
+                <a asp-controller=" " asp-action=" " class="nav-link text-dark font-italic">
+                <i class="fa fa-cubes mr-3 text-primary fa-fw"></i>
+                ادارة الأقسام
+                </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-dark font-italic">
-                        <i class="fa fa-picture-o mr-3 text-primary fa-fw"></i>
-                        Gallery
-                    </a>
+                <a class="nav-link text-dark font-italic">
+                <i class="fa fa-picture-o mr-3 text-primary fa-fw"></i>
+                Gallery
+                </a>
                 </li>*@
             </ul>
 
-@*            <p class="text-gray font-weight-bold text-uppercase px-3 small py-4 mb-0">Charts</p>
-*@
+
+            @*            <p class="text-gray font-weight-bold text-uppercase px-3 small py-4 mb-0">Charts</p>
+            *@
+
 
         </div>
 

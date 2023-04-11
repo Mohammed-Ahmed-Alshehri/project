@@ -19,9 +19,9 @@
             <div class="vertical-nav bg-white" id="sidebar">
                 <div class="py-4 px-3 mb-4 bg-light">
                     <div class="media d-flex align-items-center">
-                        <img src="~/@Model.organization.LogoPath" alt="..." width="65" class="mr-3 rounded-circle img-thumbnail shadow-sm">
+                        <img src="~/@ViewBag.OrganizationImage" alt="..." width="65" class="mr-3 rounded-circle img-thumbnail shadow-sm">
                         <div class="media-body">
-                            <h4 class="m-0">@Model.organization.OrganizationName</h4>
+                            <h4 class="m-0">@ViewBag.OrganizationName</h4>
                         </div>
                     </div>
                 </div>
@@ -101,7 +101,7 @@
                                 <div class="form-outline" style="text-align: right;">
                                     <i class="fa-regular fa-address-card"></i>
                                     <label class="form-label" for="BranchName" style="font-size:20px;">اسم الفرع</label>
-                                    <input type="text" asp-for="Branch.BranchName" id="BranchNameID" class="form-control form-control-lg" required />
+                                    <input type="text" asp-for="Branch.BranchName" id="BranchNameID" class="form-control form-control-lg" disabled required />
 
                                     <div class="invalid-feedback" style="text-align: right;"> الرجاء إدخال اسم الفرع </div>
 
@@ -113,39 +113,33 @@
                         </div>
 
 
-                        <div class="form-group" style="text-align: right;">
-                            <label for="CountryName" class="form-label " style="font-size:20px;">الدولة</label>
-                            <select asp-items="@Model.CountryListItems" class="form-select" id="CountryNameID" required>
-                                <option selected disabled value="">--الدولة--</option>
+                        <div class="form-outline" style="text-align: right;">
+                            <i class="fa-regular fa-address-card"></i>
+                            <label class="form-label" for="BranchCountry" style="font-size:20px;">الدولة</label>
+                            <input type="text" asp-for="@Model.CountryListItems" id="BranchCountryID" class="form-control form-control-lg" disabled required />
 
-                            </select>
-                            <div class="invalid-feedback">
-                                الرجاء إدخال الدولة
-                            </div>
+                            <div class="invalid-feedback" style="text-align: right;"> الرجاء إدخال اسم الدولة </div>
+
                         </div>
+                        <div class="form-outline" style="text-align: right;">
+                            <i class="fa-regular fa-address-card"></i>
+                            <label class="form-label" for="BranchCity" style="font-size:20px;">المدينة</label>
+                            <label type="text" id="BranchCityID" class="form-control form-control-lg"> @Model.CityListItems.First().Text  </label>
 
-                        <div class="mb-2 pb-2">
-                            <i class="fa-solid fa-earth-americas"></i>
-                            <label for="form-CityNameID" class="form-label mt-4" style="font-size:20px;">المدينة</label>
-                            <select class=" form-select " id="CityNameID" name="CityNameID" required>
-                            </select>
-                            <div class="invalid-feedback">
-                                الرجاء إدخال مدينة الفرع الرئيسي
-                            </div>
+                            <div class="invalid-feedback" style="text-align: right;"> الرجاء إدخال اسم المدينة </div>
 
-                            <input asp-for="Branch.City_CityId" id="OrganizationMainBranchCityId" hidden />
                         </div>
 
 
                         <div class="mb-2 pb-2">
                             <i class="fa-solid fa-user"></i>
                             <label for="3" class="form-label mt-4" style="font-size:20px;"> اسم المسؤول</label>
-                            <select asp-for="Branch.Responsible_UserId" asp-items="@Model.UserListItems" class="form-select" id="CountryNameID" required>
+                            <select asp-for="Branch.Responsible_UserId" asp-items="@Model.UserListItems" class="form-select" id="UseryNameID" required>
                                 <option selected disabled value="">-- أختيار مسؤول الفرع --</option>
 
                             </select>
                             <div class="invalid-feedback">
-                                الرجاء إدخال اسم المسؤول
+                                الرجاء اختيار اسم المسؤول
                             </div>
 
                         </div>
@@ -238,100 +232,100 @@
         })()
 
 
-        var lat = @Model.organization.Location.Split(',').First();
-        var log = @Model.organization.Location.Split(',').Last();
+        //var lat = Model.organization.Location.Split(',').First();
+        //var log = Model.organization.Location.Split(',').Last();
 
-        function initMap() {
-            const myLatlng = { lat: lat, lng: log };
-            const map = new google.maps.Map(document.getElementById("map"), {
-                zoom: 12,
+        //function initMap() {
+        //    const myLatlng = { lat: lat, lng: log };
+        //    const map = new google.maps.Map(document.getElementById("map"), {
+        //        zoom: 12,
 
-                center: myLatlng,
+        //        center: myLatlng,
 
-                disableDefaultUI: true,
+        //        disableDefaultUI: true,
 
-            });
+        //    });
 
-            // Create the initial InfoWindow.
-            let infoWindow = new google.maps.InfoWindow({
+        //    // Create the initial InfoWindow.
+        //    let infoWindow = new google.maps.InfoWindow({
 
-                content: "حدد موقع الفرع",
-                position: myLatlng,
-            });
+        //        content: "حدد موقع الفرع",
+        //        position: myLatlng,
+        //    });
 
-            infoWindow.open(map);
+        //    infoWindow.open(map);
 
-            // Configure the click listener.
-            map.addListener("click", (mapsMouseEvent) => {
-                // Close the current InfoWindow.
-                infoWindow.close();
+        //    // Configure the click listener.
+        //    map.addListener("click", (mapsMouseEvent) => {
+        //        // Close the current InfoWindow.
+        //        infoWindow.close();
 
 
 
-                var BlatAndlog = JSON.stringify(mapsMouseEvent.latLng.toJSON(), null, 2).toString().replace(/{|}/g, '').split(',')
+        //        var BlatAndlog = JSON.stringify(mapsMouseEvent.latLng.toJSON(), null, 2).toString().replace(/{|}/g, '').split(',')
 
-                var Blat = BlatAndlog[0].slice(BlatAndlog[0].indexOf(':') + 2)
+        //        var Blat = BlatAndlog[0].slice(BlatAndlog[0].indexOf(':') + 2)
 
-                var Blog = BlatAndlog[1].slice(BlatAndlog[1].indexOf(':') + 2)
+        //        var Blog = BlatAndlog[1].slice(BlatAndlog[1].indexOf(':') + 2)
 
-                BlatAndlog = Blat + ", " + Blog;
+        //        BlatAndlog = Blat + ", " + Blog;
 
 
 
-                setLoc(BlatAndlog);
-                setZoon(BlatAndlog);
-                // Create a new InfoWindow.
-                infoWindow = new google.maps.InfoWindow({
+        //        setLoc(BlatAndlog);
+        //        setZoon(BlatAndlog);
+        //        // Create a new InfoWindow.
+        //        infoWindow = new google.maps.InfoWindow({
 
-                    position: mapsMouseEvent.latLng,
-                });
+        //            position: mapsMouseEvent.latLng,
+        //        });
 
-                infoWindow.setContent(
-                    "موقع الفرع"
+        //        infoWindow.setContent(
+        //            "موقع الفرع"
 
 
-                );
+        //        );
 
 
-                infoWindow.open(map);
-            });
-        }
+        //        infoWindow.open(map);
+        //    });
+        //}
 
-        window.initMap = initMap;
+        //window.initMap = initMap;
 
 
 
-        function setLoc(v) {
+        //function setLoc(v) {
 
-            var x = document.getElementById("BLoc").value = v;
+        //    var x = document.getElementById("BLoc").value = v;
 
 
-        }
+        //}
 
 
-        function setZoon(v) {
+        //function setZoon(v) {
 
-            $(document).ready(function () {
+        //    $(document).ready(function () {
 
-                $.ajax({
-                    type: "GET",
-                    url: "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + v + "&key=AIzaSyBJvHlgeiw22e7B_Ypk4uOkUpC8CbpIJA8",
+        //        $.ajax({
+        //            type: "GET",
+        //            url: "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + v + "&key=AIzaSyBJvHlgeiw22e7B_Ypk4uOkUpC8CbpIJA8",
 
 
 
-                    dataType: "json",
-                    success: function (data) {
+        //            dataType: "json",
+        //            success: function (data) {
 
 
 
-                        $.each(data.results, function (key, value) {
+        //                $.each(data.results, function (key, value) {
 
-                            if (key == 4) {
+        //                    if (key == 4) {
 
-                                document.getElementById("BZoon").value = value.formatted_address;
+        //                        document.getElementById("BZoon").value = value.formatted_address;
 
-                                //console.log( typeof value.formatted_address);
-                            }
+        //                        //console.log( typeof value.formatted_address);
+        //                    }
 
 
 
@@ -340,59 +334,59 @@
 
 
 
-                        });
+        //                });
 
 
 
-                    }
-                });
+        //            }
+        //        });
 
-            });
+        //    });
 
-        }
+        //}
 
 
-        $('#CountryNameID').on('change', function () {
+        //$('#CountryNameID').on('change', function () {
 
 
 
-            FillCity(this.value);
-        });
+        //    FillCity(this.value);
+        //});
 
 
-        function FillCity(CId) {
+        //function FillCity(CId) {
 
 
-            $(document).ready(function () {
-                $.ajax({
-                    type: "GET",
-                    url: "@Url.Action("GetCities")",
-                    data: { id: CId },
+        //    $(document).ready(function () {
+        //        $.ajax({
+        //            type: "GET",
+        //            url: "@Url.Action("GetCities")",
+        //            data: { id: CId },
 
-                    dataType: "json",
-                    success: function (data) {
-                        var s = '<option selected disabled value="">--مدينة الفرع الرئيسي--</option>';
+        //            dataType: "json",
+        //            success: function (data) {
+        //                var s = '<option selected disabled value="">--مدينة الفرع الرئيسي--</option>';
 
-                        for (var i = 0; i < data.cities.length; i++) {
-                            s += '<option value="' + data.cities[i].cityId + '">' + data.cities[i].cityName + '</option>';
-                        }
+        //                for (var i = 0; i < data.cities.length; i++) {
+        //                    s += '<option value="' + data.cities[i].cityId + '">' + data.cities[i].cityName + '</option>';
+        //                }
 
-                        $("#CityNameID").html(s);
+        //                $("#CityNameID").html(s);
 
-                        $('#CityNameID').attr('hidden', false);
-                    }
-                });
-            });
+        //                $('#CityNameID').attr('hidden', false);
+        //            }
+        //        });
+        //    });
 
 
-        }
+        //}
 
-        $('#CityNameID').on('change', function () {
+        //$('#CityNameID').on('change', function () {
 
 
-            var d = document.getElementById("OrganizationMainBranchCityId").value = this.value;
+        //    var d = document.getElementById("OrganizationMainBranchCityId").value = this.value;
 
-        });
+        //});
 
 
 

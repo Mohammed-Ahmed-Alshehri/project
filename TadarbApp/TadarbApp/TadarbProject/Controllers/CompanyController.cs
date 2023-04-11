@@ -198,30 +198,39 @@ namespace TadarbProject.Controllers
 
             return View(branchVM);
         }
-        //public IActionResult EditBranche(int? id)
-        //{
-        //    int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
+        public IActionResult EditBranche(int? id)
+        {
+            int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
 
-        //    var OrganizationOfR = _DbContext.Organizations.Where(item => item.ResponsibleUserId == RUserId).FirstOrDefault();
+            var OrganizationOfR = _DbContext.Organizations.Where(item => item.ResponsibleUserId == RUserId).FirstOrDefault();
+            //var CountryOfr = _DbContext.Countries.Where(item => item.CountryId==)
 
+            ViewBag.OrganizationName = OrganizationOfR.OrganizationName;
+            ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
 
-        //    ViewBag.OrganizationName = OrganizationOfR.OrganizationName;
-        //    ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
+            BranchVM branchVM = new()
+            {
+               
+                Branch = new OrganizationBranch_TrainProv()
+               
+           };
 
-        //    BranchVM branchVM = new()
-        //    {
-
-        //        Branch = new OrganizationBranch_TrainProv()
-
-        //    };
-        //    if (id != null || id != 0)
-        //    {
-        //        branchVM.Branch = _DbContext.OrganizationBranches_TrainProv.Get(u => u.Id == id);
-        //        return View(branchVM);
-        //    }
             
-            
-        //}
+            if (id != null || id != 0)
+            {
+                branchVM.Branch = _DbContext.OrganizationBranches_TrainProv.Where(u => u.BranchId == id).FirstOrDefault();
+
+                branchVM.CityListItems = _DbContext.Cities.Where(Ci => Ci.CityId == branchVM.Branch.City_CityId).Select(u => new SelectListItem { Text = u.CityName, Value = u.CityId.ToString() });
+
+                branchVM.UserListItems = _DbContext.UserAcounts.Where(Us => Us.UserId == branchVM.Branch.Responsible_UserId).Select(u => new SelectListItem { Text = u.FullName, Value = u.UserId.ToString() });
+                TempData["success"] = "تم تعديل حساب الموظف  بنجاح";
+
+                return View(branchVM);
+            }
+
+
+            return NotFound();
+        }
 
         //[HttpPost]
         //public IActionResult AddViewDepartment(Department department)
