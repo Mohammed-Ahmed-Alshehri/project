@@ -148,6 +148,8 @@ namespace TadarbProject.Controllers
 
 
                 _DbContext.SaveChanges();
+                TempData["success"] = "تم إضافة الكلية بنجاح";
+
 
                 return RedirectToAction("ViewColleges");
 
@@ -158,6 +160,76 @@ namespace TadarbProject.Controllers
 
 
 
+        }
+
+
+        [HttpGet]
+        public IActionResult EditColleges(int? id)
+        {
+            int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
+
+            var OrganizationOfR = _DbContext.Organizations.Where(item => item.ResponsibleUserId == RUserId).FirstOrDefault();
+            //var CountryOfr = _DbContext.Countries.Where(item => item.CountryId==)
+
+            ViewBag.OrganizationName = OrganizationOfR.OrganizationName;
+            ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
+
+            CollegeVM collegeVM = new()
+            {
+
+                College = new UniversityCollege()
+
+            };
+
+
+            if (id != null || id != 0)
+            {
+
+                collegeVM.College = _DbContext.UniversityColleges.Where(u => u.CollegeId == id).FirstOrDefault();
+
+                var city = _DbContext.Cities.Where(Ci => Ci.CityId == collegeVM.College.City_CityId);
+                var FiledMster = _DbContext.FieldOfSpecialtiesMaster.Where(Fi => Fi.FieldId == collegeVM.College.FieldOfOrganization_SpecialtiesField);
+
+                collegeVM.CityListItems = city.Select(u => new SelectListItem { Text = u.CityName, Value = u.CityId.ToString() });
+
+                collegeVM.CountryListItems = _DbContext.Countries.Where(u => u.CountryId == city.First().Country_CountryId).Select(u => new SelectListItem { Text = u.CountryName, Value = u.CountryId.ToString() });
+                collegeVM.FieldListItems = _DbContext.FieldOfSpecialtiesMaster.Where(u => u.FieldId == collegeVM.College.FieldOfOrganization_SpecialtiesField).Select(u => new SelectListItem { Text = u.FieldName , Value = u.FieldId.ToString() });
+
+
+                var DEPOfR = _DbContext.Departments.Where(item => item.Organization_OrganizationId == OrganizationOfR.OrganizationId && item.DepartmentName.Equals("قسم ادارة الكليات")).FirstOrDefault();
+
+
+                collegeVM.UserListItems = _DbContext.UserAcounts.FromSqlRaw($"Select * from UserAcounts WHERE UserAcounts.UserId IN (Select Employees.UserAccount_UserId from Employees where Employees.Department_DepartmentId ={DEPOfR.DepartmentId})")
+                    .Select(u => new SelectListItem { Text = u.FullName, Value = u.UserId.ToString() });
+
+
+                return View(collegeVM);
+            }
+
+
+            return NotFound();
+        }
+
+
+
+        [HttpPost]
+        public IActionResult EditColleges(CollegeVM collegeVM)
+        {
+
+            if (!ModelState.IsValid)
+            {
+                return View(collegeVM);
+            }
+
+
+
+            _DbContext.UniversityColleges.Update(collegeVM.College);
+
+            _DbContext.SaveChanges();
+            TempData["success"] = "تم تعديل معلومات الكلية  بنجاح";
+
+
+            return RedirectToAction("ViewColleges");
         }
 
         [HttpGet]

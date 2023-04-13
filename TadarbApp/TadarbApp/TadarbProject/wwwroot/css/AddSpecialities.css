@@ -92,6 +92,10 @@
     width: calc(100% - 17rem);
     margin-left: 17rem;
     transition: all 0.4s;
+    /*    for moving buttons
+*/ position: -webkit-sticky; /* Safari */
+    position: sticky;
+    top: 0;
 }
 /* for toggle behavior */
 #sidebar.active {

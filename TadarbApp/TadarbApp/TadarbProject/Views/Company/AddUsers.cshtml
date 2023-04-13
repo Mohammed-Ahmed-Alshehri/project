@@ -114,15 +114,15 @@
                     <div class="mb-4 pb-2">
                         <i class="fa-regular fa-id-card"></i>
                         <label class="form-label"  for="EmployeeSSN" style="font-size:20px;">الرقم الوظيفي</label>
-                        <input type="number" asp-for="employee.SSN" id="EmployeeSSN" class="form-control form-control-lg" required />
+                        <input type="tel"  asp-for="employee.SSN" id="EmployeeSSN" class="form-control form-control-lg" required />
                         <div class="invalid-feedback"  style="text-align: right;"> الرجاء إدخال الرقم الوظيفي </div>
                     </div>
 
 
                     <div class="mb-4 pb-2">
                         <i class="fa-solid fa-phone"></i>
-                        <label class="form-label" for="UserPhone" style="font-size:20px;">رقم الجوال</label>
-                        <input type="tel" asp-for="userAcount.Phone" id="PhoneID" class="form-control form-control-lg" required />
+                        <label class="form-label"  for="UserPhone" style="font-size:20px;">رقم الجوال</label>
+                            <input type="tel" maxlength="10" asp-for="userAcount.Phone" id="PhoneID" class="form-control form-control-lg" required />
                         <div class="invalid-feedback" id="PhoneIDMassage" style="text-align: right;"> الرجاء إدخال رقم الجوال </div>
                     </div>
 

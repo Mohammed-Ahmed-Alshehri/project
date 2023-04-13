@@ -230,7 +230,7 @@ namespace TadarbProject.Controllers
                 branchVM.UserListItems = _DbContext.UserAcounts.FromSqlRaw($"Select * from UserAcounts WHERE UserAcounts.UserId IN (Select Employees.UserAccount_UserId from Employees where Employees.Department_DepartmentId ={DEPOfR.DepartmentId})")
                     .Select(u => new SelectListItem { Text = u.FullName, Value = u.UserId.ToString() });
 
-                TempData["success"] = "تم تعديل حساب الموظف  بنجاح";
+                TempData["success"] = "تم تعديل معلومات الفرع  بنجاح";
 
                 return View(branchVM);
             }
