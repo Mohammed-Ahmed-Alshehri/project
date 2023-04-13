@@ -95,9 +95,21 @@ namespace TadarbProject.Controllers
 
             }
 
+
+            var UserInDb4 = _DbContext.UserAcounts.Where(item => item.UserType.Equals("University_Admin") && item.UserEmail.Equals(user.UserEmail) && item.UserPassword.Equals(user.UserPassword)).FirstOrDefault();
+
+
+            if (UserInDb4 != null)
+            {
+                _HttpContextAccessor.HttpContext.Session.SetString("Name", UserInDb4.UserEmail);
+
+                _HttpContextAccessor.HttpContext.Session.SetInt32("UserId", UserInDb4.UserId);
+
+                return RedirectToAction("Index", "University");
+
+            }
+
             return View();
-
-
 
 
 
