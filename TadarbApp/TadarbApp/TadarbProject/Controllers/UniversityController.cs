@@ -223,12 +223,6 @@ namespace TadarbProject.Controllers
                 return View(collegeVM);
             }
 
-
-
-
-
-
-
             _DbContext.UniversityColleges.Update(collegeVM.College);
 
             var User = _DbContext.UserAcounts.FirstOrDefault(item => item.UserId == collegeVM.College.Responsible_UserId);
@@ -237,8 +231,8 @@ namespace TadarbProject.Controllers
 
 
             _DbContext.SaveChanges();
-            TempData["success"] = "تم تعديل معلومات الكلية  بنجاح";
 
+            TempData["success"] = "تم تعديل معلومات الكلية بنجاح";
 
             return RedirectToAction("ViewColleges");
         }

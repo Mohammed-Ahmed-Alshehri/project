@@ -128,7 +128,7 @@
                     <div class="mb-4 pb-2">
                         <i class="fa-solid fa-phone"></i>
                         <label class="form-label" for="UserPhone" style="font-size:20px;">رقم الجوال</label>
-                        <input input asp-for="userAcount.Phone" type="tel" id="PhoneID" class="form-control form-control-lg" required />
+                        <input input asp-for="userAcount.Phone"  type="tel" maxlength="10" id="PhoneID" class="form-control form-control-lg" required />
                         <div class="invalid-feedback" id="PhoneIDMassage" style="text-align: right;"> الرجاء إدخال رقم الجوال </div>
                     </div>
 

@@ -232,7 +232,6 @@ namespace TadarbProject.Controllers
                     $"AND UserAcounts.UserId NOT IN (Select Responsible_UserId FROM OrganizationBranches_TrainProv WHERE Responsible_UserId!={branchVM.Branch.Responsible_UserId})")
                     .Select(u => new SelectListItem { Text = u.FullName, Value = u.UserId.ToString() });
 
-                TempData["success"] = "تم تعديل معلومات الفرع  بنجاح";
 
                 return View(branchVM);
             }
@@ -258,6 +257,8 @@ namespace TadarbProject.Controllers
             User.City_CityId = branchVM.Branch.City_CityId;
             _DbContext.UserAcounts.Update(User);
             _DbContext.SaveChanges();
+
+            TempData["success"] = "تم تعديل معلومات الفرع  بنجاح";
 
             return RedirectToAction("ViewBranches");
         }
@@ -393,6 +394,24 @@ namespace TadarbProject.Controllers
             _DbContext.SaveChanges();
             TempData["success"] = "تم إضافة حساب المسؤول  بنجاح";
             return RedirectToAction("ViewUsers");
+
+        }
+
+        [HttpGet]
+        public IActionResult AddViewDepartment()
+        {
+            int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
+
+            var OrganizationOfR = _DbContext.Organizations.Where(item => item.ResponsibleUserId == RUserId).FirstOrDefault();
+
+            var DEPOfR = _DbContext.Departments.Where(item => item.Organization_OrganizationId == OrganizationOfR.OrganizationId).ToList();
+
+
+
+            ViewBag.OrganizationName = OrganizationOfR.OrganizationName;
+            ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
+
+            return View(DEPOfR);
 
         }
 
