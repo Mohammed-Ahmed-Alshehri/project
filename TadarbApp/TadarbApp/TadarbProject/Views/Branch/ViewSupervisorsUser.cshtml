@@ -115,8 +115,8 @@
                                 <th>اسم المسؤول</th>
                                 <th>رقم الهاتف	</th>
                                 <th class="text-center">البريد الالكتروني	</th>
-                                <th class="text-center">حذف  </th>
 
+                              
                             </tr>
                         </thead>
                         <tbody>
@@ -143,29 +143,26 @@
 
 
 
-                           @* @foreach (var item in Model)
-                            {*@
+                            @foreach (var item in Model)
+                            {
                                 <tr>
                                     <td class="text-nowrap">
                                         <div class="font-weight-600">
                                             <div class="font-weight-600 ">
-                                              @*  @item.FullName*@
+                                              @item.FullName
                                             </div>
 
                                         </div>
                                     </td>
-                                    <td class="text-nowrap">@* @item.Phone*@	</td>
+                                    <td class="text-nowrap"> @item.Phone	</td>
                                     <td class="text-center">
-                                     @*   @item.UserEmail*@
+                                        @item.UserEmail
                                     </td>
 
-                                    <td class="text-center">
-@*                                        <a asp-controller="" asp-action="" asp-route-id="" class="btn btn-danger"><i class="fa fa-trash-alt"></i></a>
-*@
-                                    </td>
+                                   
                                 </tr>
 
-                            @*}*@
+                            }
 
                         </tbody>
                     </table>

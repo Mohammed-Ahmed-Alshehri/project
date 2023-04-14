@@ -3,6 +3,7 @@ using TadarbProject.Data;
 using TadarbProject.Models.ViewModels;
 using TadarbProject.Models;
 using TEST2.Services;
+using Microsoft.EntityFrameworkCore;
 
 namespace TadarbProject.Controllers
 {
@@ -28,16 +29,16 @@ namespace TadarbProject.Controllers
 
             int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
 
-            var Branch=  _DbContext.OrganizationBranches_TrainProv.Where(item => item.Responsible_UserId == RUserId).FirstOrDefault();
+            var Branch = _DbContext.OrganizationBranches_TrainProv.Where(item => item.Responsible_UserId == RUserId).FirstOrDefault();
 
-            var OrganizationOfR = _DbContext.Organizations.Where(item =>  item.OrganizationId == Branch.Organization_OrganizationId ).FirstOrDefault();
+            var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Branch.Organization_OrganizationId).FirstOrDefault();
 
 
             ViewBag.OrganizationName = OrganizationOfR.OrganizationName;
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
 
             return View();
-         
+
         }
 
         [HttpGet]
@@ -56,7 +57,23 @@ namespace TadarbProject.Controllers
             ViewBag.OrganizationName = OrganizationOfR.OrganizationName;
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
 
-            return View();
+            var DEPOfR = _DbContext.Departments.Where(item => item.Branch_BranchId == Branch.BranchId && item.DepartmentName.Equals("قسم ادارة مشرفين التدريب")).FirstOrDefault();
+
+
+            IEnumerable<UserAcount> Employees = Enumerable.Empty<UserAcount>(); ;
+
+
+            if (DEPOfR != null)
+            {
+
+                Employees = _DbContext.UserAcounts.FromSqlRaw($"Select * from UserAcounts WHERE UserId IN (Select UserAccount_UserId from Employees WHERE Department_DepartmentId = {DEPOfR.DepartmentId});").ToList();
+
+
+            }
+
+
+
+            return View(Employees);
         }
 
 
@@ -114,17 +131,17 @@ namespace TadarbProject.Controllers
 
             _DbContext.SaveChanges();
 
-            var DEPOfR = _DbContext.Departments.Where(item => item.Branch_BranchId ==Branch.BranchId  && item.DepartmentName.Equals("قسم ادارة المشرفين")).FirstOrDefault();
+            var DEPOfR = _DbContext.Departments.Where(item => item.Branch_BranchId == Branch.BranchId && item.DepartmentName.Equals("قسم ادارة مشرفين التدريب")).FirstOrDefault();
 
             if (DEPOfR == null)
             {
                 var DEP = new Department
                 {
 
-                    DepartmentName = "قسم ادارة المشرفين",
+                    DepartmentName = "قسم ادارة مشرفين التدريب",
                     Branch_BranchId = Branch.BranchId,
-                    Responsible_UserId = RUser.UserId,
-
+                    Responsible_UserId = Branch.Responsible_UserId,
+                    Organization_OrganizationId = Branch.Organization_OrganizationId
 
 
                 };
@@ -133,13 +150,14 @@ namespace TadarbProject.Controllers
 
                 _DbContext.SaveChanges();
             }
-            int DEPId = _DbContext.Departments.Where(item => item.Branch_BranchId == Branch.BranchId && item.DepartmentName.Equals("قسم ادارة المشرفين")).First().DepartmentId;
+
+            int DEPId = _DbContext.Departments.Where(item => item.Branch_BranchId == Branch.BranchId && item.DepartmentName.Equals("قسم ادارة مشرفين التدريب")).First().DepartmentId;
 
             var EMP = new Employee
             {
 
                 Department_DepartmentId = DEPId,
-                Job_JobId = 2,
+                Job_JobId = 3,
                 SSN = employeeVM.employee.SSN,
                 UserAccount_UserId = user.UserId,
 

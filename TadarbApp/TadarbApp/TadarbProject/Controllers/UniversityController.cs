@@ -81,6 +81,7 @@ namespace TadarbProject.Controllers
 
             IEnumerable<UserAcount> OrgEMP = Enumerable.Empty<UserAcount>(); ;
 
+            var OrgCountryId = _DbContext.Cities.Where(item => item.CityId == OrganizationOfR.MainBranchCityId).FirstOrDefault().Country_CountryId;
 
             if (DEPOfR != null)
             {
@@ -95,9 +96,8 @@ namespace TadarbProject.Controllers
                 College = new(),
 
                 FieldListItems = _DbContext.FieldOfSpecialtiesMaster.ToList().Select(u => new SelectListItem { Text = u.FieldName, Value = u.FieldId.ToString() }),
-                CountryListItems = _DbContext.Countries.ToList().Select(u => new SelectListItem { Text = u.CountryName, Value = u.CountryId.ToString() }),
 
-                CityListItems = _DbContext.Cities.ToList().Select(u => new SelectListItem { Text = u.CityName, Value = u.CityId.ToString() }),
+                CityListItems = _DbContext.Cities.Where(item => item.Country_CountryId == OrgCountryId).ToList().Select(u => new SelectListItem { Text = u.CityName, Value = u.CityId.ToString() }),
                 UserListItems = OrgEMP.ToList().Select(u => new SelectListItem { Text = u.FullName, Value = u.UserId.ToString() }),
                 organization = OrganizationOfR
 
@@ -125,7 +125,7 @@ namespace TadarbProject.Controllers
                     City_CityId = CollegeVM.College.City_CityId,
                     Responsible_UserId = CollegeVM.College.Responsible_UserId,
                     Organization_OrganizationId = OrganizationOfR.OrganizationId,
-                    FieldOfOrganization_SpecialtiesField =CollegeVM.College.FieldOfOrganization_SpecialtiesField,
+                    FieldOfOrganization_SpecialtiesField = CollegeVM.College.FieldOfOrganization_SpecialtiesField,
                     Zoon = CollegeVM.College.Zoon,
                     Location = CollegeVM.College.Location,
 
@@ -135,6 +135,8 @@ namespace TadarbProject.Controllers
                 };
 
                 _DbContext.UniversityColleges.Add(Collegee);
+
+
 
 
                 var RCollegeManger = _DbContext.UserAcounts.FirstOrDefault(item => item.UserId == CollegeVM.College.Responsible_UserId);
@@ -193,19 +195,19 @@ namespace TadarbProject.Controllers
                 collegeVM.CityListItems = city.Select(u => new SelectListItem { Text = u.CityName, Value = u.CityId.ToString() });
 
                 collegeVM.CountryListItems = _DbContext.Countries.Where(u => u.CountryId == city.First().Country_CountryId).Select(u => new SelectListItem { Text = u.CountryName, Value = u.CountryId.ToString() });
-                collegeVM.FieldListItems = _DbContext.FieldOfSpecialtiesMaster.Where(u => u.FieldId == collegeVM.College.FieldOfOrganization_SpecialtiesField).Select(u => new SelectListItem { Text = u.FieldName , Value = u.FieldId.ToString() });
+                collegeVM.FieldListItems = _DbContext.FieldOfSpecialtiesMaster.Where(u => u.FieldId == collegeVM.College.FieldOfOrganization_SpecialtiesField).Select(u => new SelectListItem { Text = u.FieldName, Value = u.FieldId.ToString() });
 
 
                 var DEPOfR = _DbContext.Departments.Where(item => item.Organization_OrganizationId == OrganizationOfR.OrganizationId && item.DepartmentName.Equals("قسم ادارة الكليات")).FirstOrDefault();
 
 
-                collegeVM.UserListItems = _DbContext.UserAcounts.FromSqlRaw($"Select * from UserAcounts WHERE UserAcounts.UserId IN (Select Employees.UserAccount_UserId from Employees where Employees.Department_DepartmentId ={DEPOfR.DepartmentId})")
+                collegeVM.UserListItems = _DbContext.UserAcounts.FromSqlRaw($"Select * from UserAcounts WHERE UserAcounts.UserId IN (Select Employees.UserAccount_UserId FROM Employees WHERE Employees.Department_DepartmentId ={DEPOfR.DepartmentId})" +
+                    $"AND UserAcounts.UserId NOT IN (Select Responsible_UserId FROM UniversityColleges WHERE Responsible_UserId!={collegeVM.College.Responsible_UserId})")
                     .Select(u => new SelectListItem { Text = u.FullName, Value = u.UserId.ToString() });
 
 
                 return View(collegeVM);
             }
-
 
             return NotFound();
         }
@@ -223,7 +225,16 @@ namespace TadarbProject.Controllers
 
 
 
+
+
+
+
             _DbContext.UniversityColleges.Update(collegeVM.College);
+
+            var User = _DbContext.UserAcounts.FirstOrDefault(item => item.UserId == collegeVM.College.Responsible_UserId);
+            User.City_CityId = collegeVM.College.City_CityId;
+            _DbContext.UserAcounts.Update(User);
+
 
             _DbContext.SaveChanges();
             TempData["success"] = "تم تعديل معلومات الكلية  بنجاح";
@@ -547,7 +558,7 @@ namespace TadarbProject.Controllers
             {
 
                 Department_DepartmentId = DEPId,
-                Job_JobId = 1,
+                Job_JobId = 2,
                 SSN = employeeVM.employee.SSN,
                 UserAccount_UserId = user.UserId,
 
@@ -569,7 +580,7 @@ namespace TadarbProject.Controllers
 
 
 
-        
+
 
 
 

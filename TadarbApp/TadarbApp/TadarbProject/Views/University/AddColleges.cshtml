@@ -101,31 +101,20 @@
                             </div>
 
 
-
-                             <div class="form-group" style="text-align: right;">
-                        <label for="CountryName" class="form-label " style="font-size:20px;">الدولة</label>
-                        <select  asp-items="@Model.CountryListItems" class="form-select" id="CountryNameID" required>
-                            <option selected disabled value="">--الدولة--</option>
-
-                        </select>
-                        <div class="invalid-feedback">
-                            الرجاء إدخال الدولة
-                        </div>
-                    </div>
-
                     <div class="mb-2 pb-2">
                         <i class="fa-solid fa-earth-americas"></i>
                         <label for="form-CityNameID" class="form-label mt-4" style="font-size:20px;">المدينة</label>
-                        <select class=" form-select " id="CityNameID" name="CityNameID" required>
-                           
 
+                    <select class="form-select" asp-for="College.City_CityId" asp-items="@Model.CityListItems"  required>
+
+                                    <option selected disabled value="">-- اختيار مدينة الفرع --</option>
 
                         </select>
+
                         <div class="invalid-feedback">
                             الرجاء إدخال مدينة الفرع الرئيسي
                         </div>
 
-                        <input asp-for="College.City_CityId" id="OrganizationMainBranchCityId" hidden />
                     </div>
 
 
@@ -336,47 +325,6 @@
         }
 
 
-        $('#CountryNameID').on('change', function () {
-
-
-
-            FillCity(this.value);
-        });
-
-
-        function FillCity(CId) {
-
-
-            $(document).ready(function () {
-                $.ajax({
-                    type: "GET",
-                    url: "@Url.Action("GetCities")",
-                    data: { id: CId },
-
-                    dataType: "json",
-                    success: function (data) {
-                        var s = '<option selected disabled value="">--مدينة الفرع الرئيسي--</option>';
-
-                        for (var i = 0; i < data.cities.length; i++) {
-                            s += '<option value="' + data.cities[i].cityId + '">' + data.cities[i].cityName + '</option>';
-                        }
-
-                        $("#CityNameID").html(s);
-
-                        $('#CityNameID').attr('hidden', false);
-                    }
-                });
-            });
-
-
-        }
-
-        $('#CityNameID').on('change', function () {
-
-
-            var d = document.getElementById("OrganizationMainBranchCityId").value = this.value;
-
-        });
 
 
 

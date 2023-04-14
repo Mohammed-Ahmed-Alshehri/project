@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 using System.Xml.Linq;
 using TadarbProject.Data;
 using TadarbProject.Models;
@@ -227,7 +228,8 @@ namespace TadarbProject.Controllers
                 var DEPOfR = _DbContext.Departments.Where(item => item.Organization_OrganizationId == OrganizationOfR.OrganizationId && item.DepartmentName.Equals("قسم ادارة الفروع")).FirstOrDefault();
 
 
-                branchVM.UserListItems = _DbContext.UserAcounts.FromSqlRaw($"Select * from UserAcounts WHERE UserAcounts.UserId IN (Select Employees.UserAccount_UserId from Employees where Employees.Department_DepartmentId ={DEPOfR.DepartmentId})")
+                branchVM.UserListItems = _DbContext.UserAcounts.FromSqlRaw($"Select * from UserAcounts WHERE UserAcounts.UserId IN (Select Employees.UserAccount_UserId FROM Employees WHERE Employees.Department_DepartmentId ={DEPOfR.DepartmentId})" +
+                    $"AND UserAcounts.UserId NOT IN (Select Responsible_UserId FROM OrganizationBranches_TrainProv WHERE Responsible_UserId!={branchVM.Branch.Responsible_UserId})")
                     .Select(u => new SelectListItem { Text = u.FullName, Value = u.UserId.ToString() });
 
                 TempData["success"] = "تم تعديل معلومات الفرع  بنجاح";
@@ -252,6 +254,9 @@ namespace TadarbProject.Controllers
 
             _DbContext.OrganizationBranches_TrainProv.Update(branchVM.Branch);
 
+            var User = _DbContext.UserAcounts.FirstOrDefault(item => item.UserId == branchVM.Branch.Responsible_UserId);
+            User.City_CityId = branchVM.Branch.City_CityId;
+            _DbContext.UserAcounts.Update(User);
             _DbContext.SaveChanges();
 
             return RedirectToAction("ViewBranches");

@@ -120,6 +120,8 @@
                             <div class="invalid-feedback" style="text-align: right;"> الرجاء إدخال اسم الدولة </div>
 
                         </div>
+
+
                         <div class="form-outline" style="text-align: right;">
                             <i class="fa-regular fa-address-card"></i>
                             <label class="form-label" for="CollegeCity" style="font-size:20px;">المدينة</label>
@@ -143,30 +145,17 @@
 
                         </div>
                         <br /> <br />
-                        @*  <div class="input-group mb-3" style="text-align: right;">
-
-                        <input type="text" class="form-control" id="LocationID" placeholder="موقع المنظمة"
-                        aria-label="Recipient's username" aria-describedby="button-addon2" disabled style="display:none">
-
-                        <button class="btn btn-primary" type="button" id="ButtonLocation" onclick="getLocation()" style="background-color:#1c4c64;border:0px">أدخل الموقع الحالي</button>
-
-
-                        <input id="LocationValue" value="" hidden required />
-                        <div class="invalid-feedback" style="text-align: right;"> الرجاء رفع موقع المنظمة </div>
-
-                        <div style="height:28vh; width:100%; display:none" id="map" onclick=""></div>
-
-
-                        </div>
+                    
 
 
 
-                        *@
+           
 
                         <div style="height:28vh; width:100%; " id="map" onclick="">
                         </div>
 
                         <input asp-for="College.Location" id="BLoc" hidden required />
+                        <input asp-for="College.FieldOfOrganization_SpecialtiesField" id="SpecialtiesField" hidden required />
 
                         <input asp-for="College.Zoon" id="BZoon" hidden required />
 
