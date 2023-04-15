@@ -187,6 +187,8 @@ namespace TadarbProject.Controllers
 
                 _DbContext.SaveChanges();
 
+                TempData["success"] = "تم إضافة حساب الفرع  بنجاح";
+
                 return RedirectToAction("ViewBranches");
 
             }
