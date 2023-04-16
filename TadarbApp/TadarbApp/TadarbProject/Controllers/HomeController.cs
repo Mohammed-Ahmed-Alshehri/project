@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using NuGet.Protocol;
 using TadarbProject.Data;
 using TadarbProject.Models;
 using TadarbProject.Models.ViewModels;
@@ -295,15 +294,7 @@ namespace TadarbProject.Controllers
 
 
         #region
-        public IActionResult GetAllUsers()
-        {
 
-            var UserAcountList = _DbContext.UserAcounts.ToList();
-
-            var CityList = _DbContext.Cities.ToList();
-
-            return Json(new { data = CityList });
-        }
 
         /*public IActionResult SnedEmailService()
         {
@@ -339,6 +330,29 @@ namespace TadarbProject.Controllers
 
             return Json(new { Exists = true });
         }
+
+
+        [HttpGet]
+        public IActionResult PhoneExists(string? Phone)
+        {
+            if (Phone == null)
+            {
+                return Json(new { Exists = false });
+            }
+
+            var item = _DbContext.UserAcounts.Where(item => item.Phone.Equals(Phone)).FirstOrDefault();
+
+            if (item == null)
+            {
+                return Json(new { Exists = false });
+            }
+
+
+
+            return Json(new { Exists = true });
+        }
+
+
 
         public IActionResult GetCities(string? id)
         {

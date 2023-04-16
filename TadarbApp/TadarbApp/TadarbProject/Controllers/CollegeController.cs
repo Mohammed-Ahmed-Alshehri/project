@@ -1,9 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using TadarbProject.Data;
-using TadarbProject.Models.ViewModels;
 using TadarbProject.Models;
+using TadarbProject.Models.ViewModels;
 using TEST2.Services;
 
 namespace TadarbProject.Controllers
@@ -74,7 +73,7 @@ namespace TadarbProject.Controllers
             return View(OrgEMP);
 
 
-     
+
 
 
         }
@@ -117,10 +116,10 @@ namespace TadarbProject.Controllers
 
 
 
-  
 
 
-         
+
+
 
 
 
@@ -137,7 +136,7 @@ namespace TadarbProject.Controllers
                 UserPassword = employeeVM.userAcount.UserPassword,
                 FullName = employeeVM.userAcount.FullName,
                 Phone = employeeVM.userAcount.Phone,
-                City_CityId =College.City_CityId,
+                City_CityId = College.City_CityId,
                 UserType = "DepUni_Admin",
                 ActivationStatus = "Active"
 
@@ -164,7 +163,7 @@ namespace TadarbProject.Controllers
                     DepartmentName = "قسم ادارة مسؤولين اقسام الجامعة",
                     Organization_OrganizationId = OrganizationOfR.OrganizationId,
                     Responsible_UserId = RUser.UserId,
-                    College_CollegeId=College.CollegeId,
+                    College_CollegeId = College.CollegeId,
 
 
 
@@ -222,7 +221,7 @@ namespace TadarbProject.Controllers
 
 
 
-            var DEPOfR = _DbContext.Departments.Where(item => item.Organization_OrganizationId == OrganizationOfR.OrganizationId ).Include(item => item.User).ToList();
+            var DEPOfR = _DbContext.Departments.Where(item => item.Organization_OrganizationId == OrganizationOfR.OrganizationId).Include(item => item.User).ToList();
 
             //IEnumerable<UserAcount> OrgEMP = Enumerable.Empty<UserAcount>(); ;
 
@@ -239,10 +238,10 @@ namespace TadarbProject.Controllers
             return View(DEPOfR);
 
 
-       
-        }
-
-
 
         }
+
+
+
+    }
 }

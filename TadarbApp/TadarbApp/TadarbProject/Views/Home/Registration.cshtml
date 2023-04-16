@@ -344,6 +344,13 @@
                             event.stopPropagation();
                         }
 
+                        
+                        if (CustomValidation4()) {
+
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+
                         form.classList.add('was-validated')
                     }, false)
                     })
@@ -492,6 +499,54 @@
         }
 
 
+        function CustomValidation4()
+        {
+
+            var P = document.getElementById("PhoneID")
+
+            var PM = document.getElementById("PhoneIDMassage");
+
+            $(document).ready(function () {
+
+                $.ajax({
+                    type: "GET",
+                    url: "@Url.Action("PhoneExists")",
+
+                    data: { Phone: P.value },
+
+                    dataType: "json",
+                    success: function (data) {
+                        if (data.exists) {
+
+                                       P.classList.remove('is-valid');
+
+                                       P.classList.add('is-invalid');
+
+                            PM.innerHTML = "رقم الهاتف مسجل مسبقا في النظام";
+                                       
+                                        return true;
+
+                        }
+                        else {
+
+                                       P.classList.add('is-valid');
+
+                                       P.classList.remove('is-invalid');
+
+                                     PM.innerHTML = "الرجاء إدخال رقم الجوال";
+
+
+                        }
+                    }
+                });
+
+            });
+
+
+            return false;
+        }
+
+   
         
          
         

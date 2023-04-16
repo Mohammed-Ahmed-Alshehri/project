@@ -1,9 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using TadarbProject.Data;
-using TadarbProject.Models.ViewModels;
-using TadarbProject.Models;
-using TEST2.Services;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using TadarbProject.Data;
+using TadarbProject.Models;
+using TadarbProject.Models.ViewModels;
+using TEST2.Services;
 
 namespace TadarbProject.Controllers
 {
@@ -217,23 +218,31 @@ namespace TadarbProject.Controllers
         {
             //ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
 
-            //int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
+            int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
 
-            //var Branch = _DbContext.OrganizationBranches_TrainProv.Where(item => item.Responsible_UserId == RUserId).FirstOrDefault();
+            var Branch = _DbContext.OrganizationBranches_TrainProv.Where(item => item.Responsible_UserId == RUserId).FirstOrDefault();
 
-            //var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Branch.Organization_OrganizationId).FirstOrDefault();
-
-
-            //ViewBag.OrganizationName = OrganizationOfR.OrganizationName;
-            //ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
+            var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Branch.Organization_OrganizationId).FirstOrDefault();
 
 
+            ViewBag.OrganizationName = OrganizationOfR.OrganizationName;
+            ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
 
-            return View();
+            SpecialitiesVM specialitiesVM = new()
+            {
+
+                MasterFieldsListItems = _DbContext.FieldOfSpecialtiesMaster.FromSqlRaw("SELECT * FROM FieldOfSpecialtiesMaster WHERE FieldId IN" +
+                $"(SELECT FieldOfSpecialtiesDetails.Field_FieldId FROM FieldOfSpecialtiesDetails ,OrganizationsProvidTrainingInArea WHERE DetailFieldId = DetailField_DetailFieldId AND Organization_OrganizationId ={OrganizationOfR.OrganizationId});")
+                .ToList().Select(u => new SelectListItem { Text = u.FieldName, Value = u.FieldId.ToString() }),
+
+
+            };
+
+            return View(specialitiesVM);
 
 
 
-            
+
 
         }
         [HttpGet]
@@ -241,15 +250,15 @@ namespace TadarbProject.Controllers
         {
             //ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
 
-            //int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
+            int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
 
-            //var Branch = _DbContext.OrganizationBranches_TrainProv.Where(item => item.Responsible_UserId == RUserId).FirstOrDefault();
+            var Branch = _DbContext.OrganizationBranches_TrainProv.Where(item => item.Responsible_UserId == RUserId).FirstOrDefault();
 
-            //var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Branch.Organization_OrganizationId).FirstOrDefault();
+            var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Branch.Organization_OrganizationId).FirstOrDefault();
 
 
-            //ViewBag.OrganizationName = OrganizationOfR.OrganizationName;
-            //ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
+            ViewBag.OrganizationName = OrganizationOfR.OrganizationName;
+            ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
 
 
 
@@ -257,10 +266,57 @@ namespace TadarbProject.Controllers
 
 
 
-          
+
 
         }
 
+        #region
+        public IActionResult GetDetailFields(string? id)
+        {
 
+            int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
+
+
+            var Branch = _DbContext.OrganizationBranches_TrainProv.Where(item => item.Responsible_UserId == RUserId).FirstOrDefault();
+
+            var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Branch.Organization_OrganizationId).FirstOrDefault();
+
+
+
+
+
+            if (!string.IsNullOrEmpty(id))
+            {
+
+
+                //var HasFileds = _DbContext.OrganizationsProvidTrainingInArea.Where(item => item.Organization_OrganizationId == OrganizationOfR.OrganizationId).FirstOrDefault();
+
+                var Id = Convert.ToInt64(id);
+
+                var Detailfields = _DbContext.FieldOfSpecialtiesDetails.FromSqlRaw($"Select * From FieldOfSpecialtiesDetails WHERE Field_FieldId={Id} AND DetailFieldId IN" +
+                    $"(Select DetailField_DetailFieldId From OrganizationsProvidTrainingInArea WHERE Organization_OrganizationId ={OrganizationOfR.OrganizationId})")
+                    .Select(item => new
+
+                    {
+                        DetailFieldId = item.DetailFieldId,
+
+                        SpecializationName = item.SpecializationName
+
+                    }
+
+
+                ).ToList();
+
+
+                return Json(new { Detailfields });
+
+
+            }
+
+
+            return Json(new { Exists = false });
+        }
+
+        #endregion
     }
 }
