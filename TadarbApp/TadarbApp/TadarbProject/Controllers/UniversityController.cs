@@ -575,6 +575,27 @@ namespace TadarbProject.Controllers
 
 
 
+        [HttpGet]
+        public IActionResult PhoneExists(string? Phone)
+        {
+            if (Phone == null)
+            {
+                return Json(new { Exists = false });
+            }
+
+            var item = _DbContext.UserAcounts.Where(item => item.Phone.Equals(Phone)).FirstOrDefault();
+
+            if (item == null)
+            {
+                return Json(new { Exists = false });
+            }
+
+
+
+            return Json(new { Exists = true });
+        }
+
+
 
 
 

@@ -87,7 +87,7 @@
                                 <i class="fa-solid fa-user"></i>
                                 <label class="form-label" for="FullName" style="font-size:20px;">الاسم الثلاثي</label>
 
-                                <input asp-for="userAcount.FullName" type="text" id="FullNameID" class="form-control form-control-lg" required />
+                                <input asp-for="userAcount" type="text" id="FullNameID" class="form-control form-control-lg" required />
 
                                 <div class="invalid-feedback" style="text-align: right;"> الرجاء إدخال الاسم الثلاثي </div>
                             </div>
@@ -209,6 +209,11 @@
                             }
 
                             if (CustomValidation3()) {
+
+                                event.preventDefault();
+                                event.stopPropagation();
+                            }
+                            if (CustomValidation4()) {
 
                                 event.preventDefault();
                                 event.stopPropagation();
@@ -349,6 +354,51 @@
 
                 return false;
 
+            }
+
+            function CustomValidation4() {
+
+                var P = document.getElementById("PhoneID");
+                var PM = document.getElementById("PhoneIDMassage");
+
+                $(document).ready(function () {
+
+                    $.ajax({
+                        type: "GET",
+                        url: "@Url.Action("PhoneExists")",
+
+                        data: { Phone: P.value },
+
+                        dataType: "json",
+                        success: function (data) {
+                            if (data.exists) {
+
+                                P.classList.remove('is-valid');
+
+                                P.classList.add('is-invalid');
+
+                                PM.innerHTML = "رقم الهاتف مسجل مسبقا في النظام";
+
+                                return true;
+
+                            }
+                            else {
+
+                                P.classList.add('is-valid');
+
+                                P.classList.remove('is-invalid');
+
+                                PM.innerHTML = "الرجاء إدخال رقم الجوال";
+
+
+                            }
+                        }
+                    });
+
+                });
+
+
+                return false;
             }
 
 

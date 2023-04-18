@@ -121,6 +121,19 @@ namespace TadarbProject.Controllers
 
             }
 
+            var UserInDb6 = _DbContext.UserAcounts.Where(item => item.UserType.Equals("DepUni_Admin") && item.UserEmail.Equals(user.UserEmail) && item.UserPassword.Equals(user.UserPassword)).FirstOrDefault();
+
+
+            if (UserInDb6 != null)
+            {
+                _HttpContextAccessor.HttpContext.Session.SetString("Name", UserInDb6.UserEmail);
+
+                _HttpContextAccessor.HttpContext.Session.SetInt32("UserId", UserInDb6.UserId);
+
+                return RedirectToAction("Index", "DepartmentUniversity");
+
+            }
+
             return View();
 
 

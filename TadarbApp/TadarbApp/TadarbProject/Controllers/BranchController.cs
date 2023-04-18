@@ -43,6 +43,25 @@ namespace TadarbProject.Controllers
         }
 
         [HttpGet]
+        public IActionResult AddViewDepartment()
+        {
+
+            ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
+
+            int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
+
+            var Branch = _DbContext.OrganizationBranches_TrainProv.Where(item => item.Responsible_UserId == RUserId).FirstOrDefault();
+
+            var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Branch.Organization_OrganizationId).FirstOrDefault();
+
+
+            ViewBag.OrganizationName = OrganizationOfR.OrganizationName;
+            ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
+
+            return View();
+        }
+
+            [HttpGet]
         public IActionResult ViewSupervisorsUser()
         {
 
@@ -193,6 +212,52 @@ namespace TadarbProject.Controllers
             return View();
 
         }
+
+
+        [HttpGet]
+        public IActionResult EmailExists(string? Email)
+        {
+            if (Email == null)
+            {
+                return Json(new { Exists = false });
+            }
+
+            var item = _DbContext.UserAcounts.Where(item => item.UserEmail.Equals(Email)).FirstOrDefault();
+
+            if (item == null)
+            {
+                return Json(new { Exists = false });
+            }
+
+
+
+            return Json(new { Exists = true });
+        }
+
+
+        [HttpGet]
+        public IActionResult PhoneExists(string? Phone)
+        {
+            if (Phone == null)
+            {
+                return Json(new { Exists = false });
+            }
+
+            var item = _DbContext.UserAcounts.Where(item => item.Phone.Equals(Phone)).FirstOrDefault();
+
+            if (item == null)
+            {
+                return Json(new { Exists = false });
+            }
+
+
+
+            return Json(new { Exists = true });
+        }
+
+
+
+
 
         public IActionResult AddOpportunities()
         {
