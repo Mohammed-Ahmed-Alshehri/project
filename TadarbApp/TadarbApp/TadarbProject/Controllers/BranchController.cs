@@ -293,6 +293,7 @@ namespace TadarbProject.Controllers
             ViewBag.OrganizationName = OrganizationOfR.OrganizationName;
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
 
+
             SpecialitiesVM specialitiesVM = new()
             {
 
@@ -300,8 +301,16 @@ namespace TadarbProject.Controllers
                 $"(SELECT FieldOfSpecialtiesDetails.Field_FieldId FROM FieldOfSpecialtiesDetails ,OrganizationsProvidTrainingInArea WHERE DetailFieldId = DetailField_DetailFieldId AND Organization_OrganizationId ={OrganizationOfR.OrganizationId});")
                 .ToList().Select(u => new SelectListItem { Text = u.FieldName, Value = u.FieldId.ToString() }),
 
+                DepartmentListItems = _DbContext.Departments.FromSqlRaw($"SELECT * FROM Departments WHERE Responsible_UserId  = { Branch.Responsible_UserId } AND DepartmentName !='قسم ادارة مشرفين التدريب';")
+                .ToList().Select(u => new SelectListItem { Text = u.DepartmentName, Value = u.DepartmentId.ToString() }),
+
+
 
             };
+
+
+
+
 
             return View(specialitiesVM);
 
@@ -310,6 +319,68 @@ namespace TadarbProject.Controllers
 
 
         }
+
+        public IActionResult AddDetailFields(string dFieldIds)
+        {
+
+            if (dFieldIds != "[]")
+            {
+                var charsToRemove = new string[] { "[", "]" };
+
+                foreach (var c in charsToRemove)
+                {
+                    dFieldIds = dFieldIds.Replace(c, string.Empty);
+                }
+
+
+
+
+
+                string[] Ids = dFieldIds.Split(",");
+
+                // Console.WriteLine(Ids[0]);
+
+
+
+                int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
+
+                var RUser = _DbContext.UserAcounts.Find(RUserId);
+
+
+
+             //   var OrganizationOfR = _DbContext.Organizations.Where(item => item.ResponsibleUserId == RUserId).FirstOrDefault();
+
+                var Department = _DbContext.Departments.Where(item => item.Responsible_UserId == RUserId).FirstOrDefault();
+
+                foreach (var i in Ids)
+                {
+                    int id = Convert.ToInt32(i);
+
+                    var OPTA = new DepartmentTrainingArea
+                    {
+                        Department_DepartmenId = Department.DepartmentId,
+                        TrainArea_DetailFiledId = id,
+
+
+                    };
+
+
+                    _DbContext.DepartmentTrainingAreas.Add(OPTA);
+                }
+
+                _DbContext.SaveChanges();
+
+            }
+
+
+
+
+            return RedirectToAction("ViewDepartmentFiledSpecialties");
+
+        }
+
+
+
         [HttpGet]
         public IActionResult ViewDepartmentFiledSpecialties()
         {
@@ -321,13 +392,15 @@ namespace TadarbProject.Controllers
 
             var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Branch.Organization_OrganizationId).FirstOrDefault();
 
+            var Department = _DbContext.Departments.Where(item => item.Responsible_UserId == RUserId).ToList();
+
 
             ViewBag.OrganizationName = OrganizationOfR.OrganizationName;
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
 
 
 
-            return View();
+            return View(Department);
 
 
 
@@ -481,7 +554,41 @@ namespace TadarbProject.Controllers
         }
 
 
+        public IActionResult GetSpecialities()
+        {
+            int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
 
+            var OrganizationOfR = _DbContext.Organizations.Where(item => item.ResponsibleUserId == RUserId).FirstOrDefault();
+
+            var Branch = _DbContext.OrganizationBranches_TrainProv.Where(item => item.Responsible_UserId == RUserId).FirstOrDefault();
+
+            var departmentofb = _DbContext.Departments.Where(item => item.Branch_BranchId == Branch.BranchId).FirstOrDefault();
+
+            IEnumerable<FieldOfSpecialtyDetails> Specialities = Enumerable.Empty<FieldOfSpecialtyDetails>();
+            var HasFileds = _DbContext.DepartmentTrainingAreas.Where(item => item.Department_DepartmenId == departmentofb.DepartmentId).ToList();
+
+            if (HasFileds != null)
+            {
+
+                Specialities = _DbContext.FieldOfSpecialtiesDetails.FromSqlRaw("Select * from FieldOfSpecialtiesDetails WHERE DetailFieldId IN" +
+                    $"(Select TrainArea_DetailFiledId From DepartmentTrainingAreas WHERE Department_DepartmenId={departmentofb.DepartmentId})").Include(item => item.FieldOfSpecialty).ToList();
+
+            }
+
+            //var Specialities = _DbContext.Departments.Where(item => item.Organization_OrganizationId == OrganizationOfR.OrganizationId && item.Branch_BranchId == Branch.BranchId && !item.DepartmentName.Equals("قسم ادارة مشرفين التدريب"));
+
+
+
+         
+
+
+
+            //return Json(new { DEPList });
+
+
+            return Json(new { Specialities });
+
+        }
         #endregion
     }
 }

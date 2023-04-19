@@ -1,0 +1,349 @@
+﻿
+
+@{
+    ViewData["Title"] = "اضافة قسم جديد";
+}
+
+<head>
+
+    <link rel="stylesheet" href="~/css/AddSpecialities.css" asp-append-version="true" />
+
+
+</head>
+
+<div class="row" style="background: linear-gradient(#1c4c64,#5590ad); background-repeat: no-repeat;
+            background-size: cover;
+            height: 100vh; width: 100vw;">
+    <div class="col-sm-4" style="z-index:2;">
+
+        <div class="vertical-nav bg-white" id="sidebar">
+            <div class="py-4 px-3 mb-4 bg-light">
+                <div class="media d-flex align-items-center">
+                    <img src="~/@ViewBag.OrganizationImage" alt="..." width="65" class="mr-3 rounded-circle img-thumbnail shadow-sm">
+                    <div class="media-body">
+                        <h4 class="m-0">@ViewBag.OrganizationName</h4>
+                    </div>
+                </div>
+            </div>
+
+            <p class="text-gray font-weight-bold text-uppercase px-3 small pb-4 mb-0">القائمة</p>
+
+            <ul class="nav flex-column bg-white mb-0">
+                <li class="nav-item">
+                    <a asp-controller="Branch" asp-action="Index" class="nav-link text-dark font-italic bg-light">
+                        <i class="fa-solid fa-house"></i>
+                        الصفحة الرئيسية
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a asp-controller="Branch" asp-action="AddViewDepartment" class="nav-link text-dark font-italic">
+                        <i class="fa fa-address-card mr-3 text-primary fa-fw"></i>
+                        إدارة الاقسام
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a asp-controller="Branch" asp-action="ViewSupervisorsUser" class="nav-link text-dark font-italic">
+                        <i class="fa-solid fa-building-user"></i>
+                        ادارة مسؤولين الفروع
+
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a asp-controller="branch" asp-action="ViewOpportunities" class="nav-link text-dark font-italic">
+                        <i class="fa-solid fa-person-chalkboard"></i>
+                        ادارة الفرص
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a asp-controller="branch" asp-action="ViewDepartmentFiledSpecialties" class="nav-link text-dark font-italic">
+                        <i class="fa-solid fa-book-open-reader"></i>
+                        إدارة التخصصات
+                    </a>
+                </li>
+            </ul>
+            <p class="text-gray font-weight-bold text-uppercase px-3 small py-4 mb-0">Charts</p>
+
+
+        </div>
+
+
+        <!-- End vertical navbar -->
+        <!-- Page content holder -->
+        <div class="page-content p-1" id="content">
+            <!-- Toggle button -->
+            <button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i class="fa fa-bars mr-2"></i><small class="text-uppercase font-weight-bold">القائمة</small></button>
+        </div>
+
+
+    </div>
+
+    <div class="col-sm-6">
+        <div class="card" style="border-radius: 25px; height:auto; width:auto; margin-top:0.5cm; margin-bottom:3cm; padding:8px 8px 8px 8px ; border-color:black;background-color:#dfebf2">
+            <div class="card-body p-5">
+                <h2 class=" text-center mb-5">إضافة الأقسام المراد إظهارها للفروع</h2>
+
+
+                <div class="row">
+                    <form asp-controller="Company" asp-action="AddViewDepartment" method="post" class="needs-validation" novalidate>
+                        <div class="col-md-6 mb-4 pb-2">
+
+
+                            <div class="form-outline" style="text-align: right;">
+                                <i class="fa-regular fa-address-card"></i>
+                                <label class="form-label" for="BranchName" style="font-size:20px;">اسم القسم</label>
+
+
+
+                                <input type="text" id="BranchNameID" class="form-control form-control-lg" required />
+
+                                <div class="invalid-feedback" style="text-align: right;"> الرجاء إدخال اسم القسم  </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="d-flex justify-content-center">
+
+                            <button type="button" class="btn btn-lg " style="background-color:#e6e291; font-size:20px;" onclick="Add()">إضافة</button>
+
+                        </div>
+
+                    </form>
+                    <div class=" mb-4 pb-2">
+                        <div class="container">
+                            <div class="row">
+                                <div>
+                                    <label for="MainBranchCity" class="form-label mt-4" style="font-size:18px ;">الرجاء اختيار التخصصات المراد إضافتها:</label>
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="mb-4 pb-2" style="OVERFLOW-Y:scroll;HEIGHT:200px;" dir="ltr">
+                                                <table class="table table-hover table-center" style="background-color:white;border-radius: 25px;" dir="rtl">
+                                                    <thead style="color:#0b70a3">
+
+                                                        <tr>
+
+                                                            <th> الأقسام المضافة</th>
+
+
+                                                            <th></th>
+
+
+
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="Tbody">
+
+            
+                                                      
+
+
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+
+        </div>
+    </div>
+
+</div>
+
+<div class="col-sm-2"></div>
+
+
+
+@section Scripts{
+    
+
+
+        <script>
+            $(function () {
+                // Sidebar toggle behavior
+                $('#sidebarCollapse').on('click', function () {
+                    $('#sidebar, #content').toggleClass('active');
+                });
+            });
+
+           FillTable();
+
+
+           function Add() {
+
+            Swal.fire({
+                title: 'تاكيد الاضافة',
+                text: "",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'تأكيد.!',
+                cancelButtonText: 'الغاء',
+            }).then((result) => {
+                if (result.isConfirmed) {
+
+                    var Name = document.getElementById("BranchNameID").value;
+
+                    if (Name == "" )
+                    {
+
+                        return;
+                    }
+
+                    $.ajax({
+                        url: "@Url.Action("AddDEP")",
+                        type: 'POST',
+                            data: { name: Name },
+
+                        success: function (data) {
+
+                            if (data.success) {
+
+
+                                // toastr.success(data.message);
+
+                                document.getElementById("BranchNameID").value = "";
+
+                            }
+                            else {
+
+                                // toastr.error(data.message);
+                            }
+
+                            FillTable();
+                        }
+
+
+                    });
+
+
+
+                }
+              })
+             }
+
+            function FillTable() {
+                var body = "";
+
+
+
+                $(document).ready(function () {
+
+                    $.ajax({
+
+                        url: "@Url.Action("GetAllDEPs")",
+                        type: 'GET',
+                        dataType: "json",
+
+
+                        success: function (data) 
+                        {
+
+
+                            $.each(data.depList, function (key, value) {
+
+
+
+                                    body += "<tr><td class='text-nowrap'><div class='font-weight-600'><div class='font-weight-600'>" + value.departmentName + "</div>" +
+                                    "</div></td><td class='text-center'>"
+                                + `<button type='button' class='btn btn-primary' fdprocessedid='ezqldw' onclick ='Edite(${value.departmentId})'> <i class='fa-regular fa-pen-to-square'> </i></button></td></tr>`
+
+
+                             //  console.log(value.departmentName);
+
+                            });
+
+
+
+                            $("#Tbody").html(body);
+
+
+
+                        }
+
+
+                    });
+
+                });
+            }
+
+
+          function Edite(Id)
+          {
+
+
+            Swal.fire({
+                title: 'تعديل اسم الفرع',
+                input: 'text',
+                inputAttributes: {
+                    autocapitalize: 'off'
+                },
+                showCancelButton: true,
+                confirmButtonText: 'تعديل',
+                cancelButtonText: 'الغاء',
+                showLoaderOnConfirm: true,
+                preConfirm: (login) => {
+
+
+                    if(login == "")
+                    {
+                        return;
+                    }
+
+                    $.ajax({
+
+                        url: "@Url.Action("EditeDEP")",
+                        type: 'POST',
+                        dataType: "json",
+                        data: { id: Id, name: login },
+
+                        success: function (data)
+                        {
+
+                            if (data.success)
+                            {
+                                Swal.fire({
+                                    position: 'top-end',
+                                    icon: 'success',
+                                    title: 'تم تعديل معلومات',
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                });
+
+                            }
+
+                            FillTable();
+                        }
+
+
+                    });
+
+                 
+
+                }
+
+            });
+
+
+          }
+
+        </script>
+
+    
+    }

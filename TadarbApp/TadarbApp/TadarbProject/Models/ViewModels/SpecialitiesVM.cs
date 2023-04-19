@@ -13,6 +13,8 @@ namespace TadarbProject.Models.ViewModels
         [ValidateNever]
         public IEnumerable<SelectListItem> DetailFieldsListItems { get; set; }
 
+        [ValidateNever]
+        public IEnumerable<SelectListItem> DepartmentListItems { get; set; }
 
     }
 }

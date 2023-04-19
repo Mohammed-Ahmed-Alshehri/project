@@ -39,7 +39,7 @@
                     <li class="nav-item">
                         <a asp-controller="Branch" asp-action="ViewSupervisorsUser" class="nav-link text-dark font-italic">
                             <i class="fa-solid fa-building-user"></i>
-                            ادارة مسؤولين الفروع
+                            ادارة مشرفين التدريب
 
                         </a>
                     </li>
@@ -98,7 +98,7 @@
                                 <label for="MasterFieldsID" class="form-label mt-4" style="font-size:20px">اختيار القسم:</label>
 
 
-                                <select @*asp-items="@Model.MasterFieldsListItems"*@ class="form-select" id="MasterFieldsID" required>
+                                <select asp-items="@Model.DepartmentListItems" class="form-select" id="MasterFieldsID" required>
                                     <option selected disabled value="">--القسم العام--</option>
 
                                 </select>
@@ -249,7 +249,7 @@
 
             });
 
-            window.location.replace('@Url.ActionLink("ViewSpecialities")');
+            window.location.replace('@Url.ActionLink("ViewDepartmentFiledSpecialties")');
         }
 
 
