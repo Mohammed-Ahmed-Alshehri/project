@@ -155,7 +155,7 @@
                 if (result.isConfirmed) {
 
                     $.ajax({
-                        url: "@Url.Action("DeleteFieldOfSpecialty")",
+                        url: "@Url.Action("DeleteDepartmentTrainingArea")",
                         type: 'POST',
                         data: { id: Id },
 
@@ -196,20 +196,20 @@
 
                 $.ajax({
 
-                    url: "@Url.Action("GetSpecialities")",
+                    url: "@Url.Action("GetDepartmentTrainingArea")",
                     type: 'GET',
                     dataType: "json",
 
 
                     success: function (data) {
 
-                        $.each(data.Specialities, function (key, value) {
+                        $.each(data.departments, function (key, value) {
 
 
 
-                            body += "<tr><td class='text-nowrap' ><div class='font-weight-600'><div class='font-weight-600'>" + value.fieldOfSpecialty.fieldName + "</div>" +
-                                "</div></td><td class='text-nowrap'>" + value.DepartmentName + "</td><td class='text-center'>"
-                                + `<button type='button' class='btn btn-danger' fdprocessedid='ezqldw' onclick ='Delete(${value.detailFieldId})'> <i class='fa fa-trash-alt'> </i></button></td></tr>`
+                            body += "<tr><td class='text-nowrap' ><div class='font-weight-600'><div class='font-weight-600'>" + value.department.departmentName + "</div>" +
+                                "</div></td><td class='text-nowrap'>" + value.fieldOfSpecialtyDetails.specializationName + "</td><td class='text-center'>"
+                                + `<button type='button' class='btn btn-danger' fdprocessedid='ezqldw' onclick ='Delete(${value.departmentTrainingAreaId})'> <i class='fa fa-trash-alt'> </i></button></td></tr>`
 
 
                             console.log(value);

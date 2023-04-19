@@ -87,7 +87,7 @@
                                 <label for="MasterFieldsID" class="form-label mt-4" style="font-size:20px">اختيار المجال:</label>
 
 
-                                <select asp-items="@Model.MasterFieldsListItems" class="form-select" id="MasterFieldsID" required>
+                                <select asp-items="@Model.MasterFieldsListItems" class="form-select my-select" id="MasterFieldsID" required>
                                     <option selected disabled value="">--المجال العام--</option>
 
                                 </select>
@@ -98,10 +98,12 @@
                                 <label for="MasterFieldsID" class="form-label mt-4" style="font-size:20px">اختيار القسم:</label>
 
 
-                                <select asp-items="@Model.DepartmentListItems" class="form-select" id="MasterFieldsID" required>
+                                <select asp-items="@Model.DepartmentListItems" class="form-select  my-select" id="DepartmentListID" required>
                                     <option selected disabled value="">--القسم العام--</option>
 
                                 </select>
+
+
                             </div>
 
                         </div>
@@ -178,21 +180,40 @@
         });
 
 
-        $('#MasterFieldsID').on('change', function () {
+        //$('#MasterFieldsID').on('change', function () {
 
 
 
-            FillSFD(this.value);
+        //    FillSFD(this.value);
+        //});
+
+
+        var allSelect = [];
+        $('.my-select').change(function () {
+            allSelect = [];
+            $('.my-select').each(function (index, item) {
+                allSelect.push(item.value);
+            });
+
+          //  console.log(allSelect.toString().length);
+
+            if (allSelect.toString().length != 3)
+            {
+
+                return;
+            }
+
+            FillSFD(allSelect.toString());
         });
 
-        function FillSFD(MId) {
+        function FillSFD(MAndDId) {
 
 
             $(document).ready(function () {
                 $.ajax({
                     type: "GET",
                     url: "@Url.Action("GetDetailFields")",
-                    data: { id: MId },
+                    data: { ids: MAndDId },
 
                     dataType: "json",
                     success: function (data) {
@@ -220,9 +241,14 @@
 
         let result = [];
 
-        function AddSP() { // this function will get called when the save button is clicked
+        function AddSP()
+        { // this function will get called when the save button is clicked
             var checkBoxes = document.querySelectorAll('input[type="checkbox"]');
             result = [];
+            var select = document.getElementById('DepartmentListID');
+            var IDvalue = select.options[select.selectedIndex].value;
+
+            result.push(parseInt(IDvalue));
 
             checkBoxes.forEach(item => { // loop all the checkbox item
                 if (item.checked) {  //if the check box is checked
@@ -231,13 +257,23 @@
                 }
             })
 
+            if (result.length > 1){
 
-            SendSP(result);
+                SendSP(result);
+            }
+
+           
+
+
+           
         }
 
 
 
         function SendSP(Array) {
+
+
+          
 
             $.ajax({
 

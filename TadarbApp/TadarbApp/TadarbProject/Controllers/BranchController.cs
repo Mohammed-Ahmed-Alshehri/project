@@ -301,7 +301,7 @@ namespace TadarbProject.Controllers
                 $"(SELECT FieldOfSpecialtiesDetails.Field_FieldId FROM FieldOfSpecialtiesDetails ,OrganizationsProvidTrainingInArea WHERE DetailFieldId = DetailField_DetailFieldId AND Organization_OrganizationId ={OrganizationOfR.OrganizationId});")
                 .ToList().Select(u => new SelectListItem { Text = u.FieldName, Value = u.FieldId.ToString() }),
 
-                DepartmentListItems = _DbContext.Departments.FromSqlRaw($"SELECT * FROM Departments WHERE Responsible_UserId  = { Branch.Responsible_UserId } AND DepartmentName !='قسم ادارة مشرفين التدريب';")
+                DepartmentListItems = _DbContext.Departments.FromSqlRaw($"SELECT * FROM Departments WHERE Responsible_UserId  = {Branch.Responsible_UserId} AND DepartmentName !='قسم ادارة مشرفين التدريب';")
                 .ToList().Select(u => new SelectListItem { Text = u.DepartmentName, Value = u.DepartmentId.ToString() }),
 
 
@@ -347,16 +347,19 @@ namespace TadarbProject.Controllers
                 var RUser = _DbContext.UserAcounts.Find(RUserId);
 
 
+                int DEPId = Convert.ToInt32(Ids[0]);
+                //   var OrganizationOfR = _DbContext.Organizations.Where(item => item.ResponsibleUserId == RUserId).FirstOrDefault();
 
-             //   var OrganizationOfR = _DbContext.Organizations.Where(item => item.ResponsibleUserId == RUserId).FirstOrDefault();
+                var Department = _DbContext.Departments.Where(item => item.DepartmentId == DEPId).FirstOrDefault();
 
-                var Department = _DbContext.Departments.Where(item => item.Responsible_UserId == RUserId).FirstOrDefault();
 
-                foreach (var i in Ids)
+
+
+                foreach (var i in Ids.Skip(1))
                 {
                     int id = Convert.ToInt32(i);
 
-                    var OPTA = new DepartmentTrainingArea
+                    var DTA = new DepartmentTrainingArea
                     {
                         Department_DepartmenId = Department.DepartmentId,
                         TrainArea_DetailFiledId = id,
@@ -365,7 +368,7 @@ namespace TadarbProject.Controllers
                     };
 
 
-                    _DbContext.DepartmentTrainingAreas.Add(OPTA);
+                    _DbContext.DepartmentTrainingAreas.Add(DTA);
                 }
 
                 _DbContext.SaveChanges();
@@ -375,7 +378,7 @@ namespace TadarbProject.Controllers
 
 
 
-            return RedirectToAction("ViewDepartmentFiledSpecialties");
+            return Json(new { Exists = false });
 
         }
 
@@ -409,7 +412,7 @@ namespace TadarbProject.Controllers
         }
 
         #region
-        public IActionResult GetDetailFields(string? id)
+        public IActionResult GetDetailFields(string? ids)
         {
 
             int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
@@ -423,24 +426,28 @@ namespace TadarbProject.Controllers
 
 
 
-            if (!string.IsNullOrEmpty(id))
+            if (!string.IsNullOrEmpty(ids))
             {
 
+                string[] Ids = ids.Split(",");
 
-                //var HasFileds = _DbContext.OrganizationsProvidTrainingInArea.Where(item => item.Organization_OrganizationId == OrganizationOfR.OrganizationId).FirstOrDefault();
+                var FId = Convert.ToInt32(Ids[0]);
+                var DId = Convert.ToInt32(Ids[1]);
 
-                var Id = Convert.ToInt64(id);
+                //Console.WriteLine(FId);
 
-                var Detailfields = _DbContext.FieldOfSpecialtiesDetails.FromSqlRaw($"Select * From FieldOfSpecialtiesDetails WHERE Field_FieldId={Id} AND DetailFieldId IN" +
-                    $"(Select DetailField_DetailFieldId From OrganizationsProvidTrainingInArea WHERE Organization_OrganizationId ={OrganizationOfR.OrganizationId})")
-                    .Select(item => new
+                var Detailfields = _DbContext.FieldOfSpecialtiesDetails.FromSqlRaw($"Select * From FieldOfSpecialtiesDetails WHERE Field_FieldId={FId} AND DetailFieldId IN" +
+                $"(Select DetailField_DetailFieldId From OrganizationsProvidTrainingInArea WHERE Organization_OrganizationId={OrganizationOfR.OrganizationId})" +
+                $"AND DetailFieldId NOT IN (SELECT TrainArea_DetailFiledId From DepartmentTrainingAreas WHERE Department_DepartmenId={DId})")
+                .IgnoreQueryFilters()
+                .Select(item => new
 
-                    {
-                        DetailFieldId = item.DetailFieldId,
+                {
+                    DetailFieldId = item.DetailFieldId,
 
-                        SpecializationName = item.SpecializationName
+                    SpecializationName = item.SpecializationName
 
-                    }
+                }
 
 
                 ).ToList();
@@ -579,7 +586,7 @@ namespace TadarbProject.Controllers
 
 
 
-         
+
 
 
 
@@ -588,7 +595,64 @@ namespace TadarbProject.Controllers
 
             return Json(new { Specialities });
 
+
         }
+
+        public IActionResult GetDepartmentTrainingArea()
+
+        {
+            int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
+
+            var OrganizationOfR = _DbContext.Organizations.Where(item => item.ResponsibleUserId == RUserId).FirstOrDefault();
+
+            var Branch = _DbContext.OrganizationBranches_TrainProv.Where(item => item.Responsible_UserId == RUserId).FirstOrDefault();
+
+            var departmentofb = _DbContext.Departments.Where(item => item.Branch_BranchId == Branch.BranchId).FirstOrDefault();
+
+            IEnumerable<DepartmentTrainingArea> Departments = Enumerable.Empty<DepartmentTrainingArea>();
+
+            Departments = _DbContext.DepartmentTrainingAreas.FromSqlRaw("SELECT * FROM DepartmentTrainingAreas WHERE Department_DepartmenId IN" +
+                $"(SELECT DepartmentId FROM Departments WHERE  DepartmentName!='قسم ادارة الفروع' AND Branch_BranchId={Branch.BranchId})").Include(item => item.department)
+                .Include(item => item.fieldOfSpecialtyDetails).OrderBy(item => item.Department_DepartmenId)
+                .ToList();
+
+
+
+
+
+            return Json(new { Departments });
+
+
+
+        }
+
+        public IActionResult DeleteDepartmentTrainingArea(int? id)
+        {
+
+
+
+            if (id != null || id == 0)
+            {
+
+
+
+                var DEPTA = _DbContext.DepartmentTrainingAreas.Where(u => u.DepartmentTrainingAreaId == id).FirstOrDefault();
+
+                _DbContext.DepartmentTrainingAreas.Remove(DEPTA);
+
+
+                _DbContext.SaveChanges();
+
+
+                return Json(new { success = true, message = "تم الحذف بنجاح" });
+            }
+
+
+
+            return Json(new { success = false, message = "حصل خطاء لم يتم الحذف" });
+
+        }
+
         #endregion
     }
 }

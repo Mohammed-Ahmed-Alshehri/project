@@ -607,12 +607,6 @@ namespace TadarbProject.Controllers
             if (id != null || id == 0)
             {
 
-                int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
-
-                var RUser = _DbContext.UserAcounts.Find(RUserId);
-
-                var OrganizationOfR = _DbContext.Organizations.Where(item => item.ResponsibleUserId == RUserId).FirstOrDefault();
-
 
                 var OrgFOS = _DbContext.OrganizationsProvidTrainingInArea.Where(u => u.DetailField_DetailFieldId == id).FirstOrDefault();
 
