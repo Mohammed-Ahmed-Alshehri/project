@@ -61,7 +61,7 @@ namespace TadarbProject.Controllers
             return View();
         }
 
-            [HttpGet]
+        [HttpGet]
         public IActionResult ViewSupervisorsUser()
         {
 
@@ -381,6 +381,106 @@ namespace TadarbProject.Controllers
 
             return Json(new { Exists = false });
         }
+
+
+        public IActionResult AddDEP(string? name)
+        {
+
+            int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
+
+
+            var Branch = _DbContext.OrganizationBranches_TrainProv.Where(item => item.Responsible_UserId == RUserId).FirstOrDefault();
+
+            var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Branch.Organization_OrganizationId).FirstOrDefault();
+
+
+            if (!string.IsNullOrEmpty(name))
+            {
+
+
+                Department DEP = new Department
+                {
+                    DepartmentName = name,
+                    Responsible_UserId = RUserId,
+                    Organization_OrganizationId = OrganizationOfR.OrganizationId,
+                    Branch_BranchId = Branch.BranchId,
+
+
+
+                };
+
+                _DbContext.Departments.Add(DEP);
+
+                _DbContext.SaveChanges();
+
+
+                return Json(new { success = true });
+            }
+
+
+            return Json(new { success = false });
+        }
+
+
+
+
+        public IActionResult GetAllDEPs()
+        {
+
+            int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
+
+
+            var Branch = _DbContext.OrganizationBranches_TrainProv.Where(item => item.Responsible_UserId == RUserId).FirstOrDefault();
+
+            var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Branch.Organization_OrganizationId).FirstOrDefault();
+
+
+
+            //   IEnumerable<Department> DEPList = Enumerable.Empty<Department>();
+
+            var DEPList = _DbContext.Departments.Where(item => item.Organization_OrganizationId == OrganizationOfR.OrganizationId && item.Branch_BranchId == Branch.BranchId && !item.DepartmentName.Equals("قسم ادارة مشرفين التدريب"));
+
+
+
+            return Json(new { DEPList });
+
+
+
+
+        }
+
+
+
+        public IActionResult EditeDEP(string? id, string? name)
+        {
+
+            if (!string.IsNullOrEmpty(id) && !string.IsNullOrEmpty(name))
+            {
+
+                int Id = Convert.ToInt32(id);
+
+
+                var DEP = _DbContext.Departments.Where(item => item.DepartmentId == Id).FirstOrDefault();
+
+                DEP.DepartmentName = name;
+
+                _DbContext.Departments.Update(DEP);
+
+                _DbContext.SaveChanges();
+
+
+                return Json(new { success = true });
+            }
+
+            return Json(new { success = false });
+
+
+
+
+
+        }
+
+
 
         #endregion
     }

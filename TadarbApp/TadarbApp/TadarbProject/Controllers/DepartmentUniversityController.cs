@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using TadarbProject.Data;
 using TEST2.Services;
 
@@ -28,7 +27,7 @@ namespace TadarbProject.Controllers
 
             var Department = _DbContext.Departments.Where(item => item.Responsible_UserId == RUserId).FirstOrDefault();
 
-           var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Department.Organization_OrganizationId).FirstOrDefault();
+            var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Department.Organization_OrganizationId).FirstOrDefault();
 
 
             ViewBag.OrganizationName = OrganizationOfR.OrganizationName;

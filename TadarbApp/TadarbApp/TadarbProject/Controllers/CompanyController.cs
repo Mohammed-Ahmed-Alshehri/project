@@ -279,7 +279,7 @@ namespace TadarbProject.Controllers
 
             var DEPOfR = _DbContext.Departments.Where(item => item.Organization_OrganizationId == OrganizationOfR.OrganizationId && item.DepartmentName.Equals("قسم ادارة الفروع")).FirstOrDefault();
 
-            IEnumerable<UserAcount> OrgEMP = Enumerable.Empty<UserAcount>(); ;
+            IEnumerable<UserAcount> OrgEMP = Enumerable.Empty<UserAcount>();
 
             if (DEPOfR != null)
             {
