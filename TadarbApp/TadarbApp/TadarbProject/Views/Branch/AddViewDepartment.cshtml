@@ -10,8 +10,9 @@
 
 
 </head>
+<body style="background: linear-gradient(#1c4c64,#5590ad);">
 
-<div class="row" style="background: linear-gradient(#1c4c64,#5590ad); background-repeat: no-repeat;
+<div class="row" style="background-repeat: no-repeat;
             background-size: cover;
             height: 100vh; width: 100vw;">
     <div class="col-sm-4" style="z-index:2;">
@@ -36,33 +37,33 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a asp-controller="Branch" asp-action="AddViewDepartment" class="nav-link text-dark font-italic">
+                    <a asp-controller="Branch" asp-action="AddViewDepartment" class="nav-link text-dark font-italic bg-light ">
                         <i class="fa fa-address-card mr-3 text-primary fa-fw"></i>
                         إدارة الاقسام
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a asp-controller="Branch" asp-action="ViewSupervisorsUser" class="nav-link text-dark font-italic">
+                    <a asp-controller="Branch" asp-action="ViewSupervisorsUser" class="nav-link text-dark font-italic bg-light">
                         <i class="fa-solid fa-building-user"></i>
-                        ادارة مشرفين التدريب
+                        إدارة مشرفين التدريب
 
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a asp-controller="branch" asp-action="ViewOpportunities" class="nav-link text-dark font-italic">
+                    <a asp-controller="branch" asp-action="ViewOpportunities" class="nav-link text-dark font-italic bg-light">
                         <i class="fa-solid fa-person-chalkboard"></i>
-                        ادارة الفرص
+                        إدارة الفرص
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a asp-controller="branch" asp-action="ViewDepartmentFiledSpecialties" class="nav-link text-dark font-italic">
+                    <a asp-controller="branch" asp-action="ViewDepartmentFiledSpecialties" class="nav-link text-dark font-italic bg-light">
                         <i class="fa-solid fa-book-open-reader"></i>
                         إدارة التخصصات
                     </a>
                 </li>
             </ul>
-            <p class="text-gray font-weight-bold text-uppercase px-3 small py-4 mb-0">Charts</p>
+            
 
 
         </div>
@@ -103,23 +104,19 @@
 
                         </div>
 
-                        <div class="d-flex justify-content-center">
-
-                            <button type="button" class="btn btn-lg " style="background-color:#e6e291; font-size:20px;" onclick="Add()">إضافة</button>
-
-                        </div>
+                        
 
                     </form>
                     <div class=" mb-4 pb-2">
                         <div class="container">
                             <div class="row">
                                 <div>
-                                    <label for="MainBranchCity" class="form-label mt-4" style="font-size:18px ;">الرجاء اختيار التخصصات المراد إضافتها:</label>
+                                    <label for="MainBranchCity" class="form-label mt-4" style="font-size:20px ;">الرجاء اختيار التخصصات المراد إضافتها:</label>
                                     <div class="container">
                                         <div class="row">
                                             <div class="mb-4 pb-2" style="OVERFLOW-Y:scroll;HEIGHT:200px;" dir="ltr">
                                                 <table class="table table-hover table-center" style="background-color:white;border-radius: 25px;" dir="rtl">
-                                                    <thead style="color:#0b70a3">
+                                                    <thead style="color:#0b70a3;font-size:20px">
 
                                                         <tr>
 
@@ -149,6 +146,11 @@
                         </div>
                     </div>
 
+                    <div class="d-flex justify-content-center">
+
+                        <button type="button" class="btn btn-lg " style="background-color:#e6e291; font-size:18px;" onclick="Add()">إضافة</button>
+
+                    </div>
                 </div>
             </div>
 
@@ -168,6 +170,7 @@
 <div class="col-sm-2"></div>
 
 
+</body>
 
 @section Scripts{
     

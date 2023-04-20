@@ -11,8 +11,9 @@
 </head>
 
 <partial name="_Notification" />
+<body style="background: linear-gradient(#1c4c64,#5590ad);">
 
-<div class="row" style="background: linear-gradient(#1c4c64,#5590ad); background-repeat: no-repeat;
+<div class="row" style=" background-repeat: no-repeat;
             background-size: cover;
             height: 100vh; width: 100vw; /*padding:50px 5px 5px 5px;*/">
 
@@ -38,36 +39,32 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a asp-controller="Branch" asp-action="AddViewDepartment" class="nav-link text-dark font-italic">
+                    <a asp-controller="Branch" asp-action="AddViewDepartment" class="nav-link text-dark font-italic bg-light">
                         <i class="fa fa-address-card mr-3 text-primary fa-fw"></i>
                         إدارة الاقسام
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a asp-controller="Branch" asp-action="ViewSupervisorsUser" class="nav-link text-dark font-italic">
+                    <a asp-controller="Branch" asp-action="ViewSupervisorsUser" class="nav-link text-dark font-italic bg-light">
                         <i class="fa-solid fa-building-user"></i>
-                        ادارة مشرفين التدريب
+                        إدارة مشرفين التدريب
 
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a asp-controller="branch" asp-action="ViewOpportunities" class="nav-link text-dark font-italic">
+                    <a asp-controller="branch" asp-action="ViewOpportunities" class="nav-link text-dark font-italic bg-light">
                         <i class="fa-solid fa-person-chalkboard"></i>
-                        ادارة الفرص
+                        إدارة الفرص
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a asp-controller="branch" asp-action="ViewDepartmentFiledSpecialties" class="nav-link text-dark font-italic">
+                    <a asp-controller="branch" asp-action="ViewDepartmentFiledSpecialties" class="nav-link text-dark font-italic bg-light">
                         <i class="fa-solid fa-book-open-reader"></i>
                         إدارة التخصصات
                     </a>
                 </li>
             </ul>
-
-
-            @*            <p class="text-gray font-weight-bold text-uppercase px-3 small py-4 mb-0">Charts</p>
-            *@
 
 
         </div>
@@ -90,14 +87,14 @@
 
 
                 <a asp-controller="Branch" asp-action="AddSupervisorUser" class="table-search float-end">
-                    <button class="btn " style="background-color:#1c4c64; color:white" type="submit" asp>  اضافة مسؤول جديد <i class="fa fa-add"></i></button>
+                    <button class="btn " style="background-color:#1c4c64; color:white;font-size:18px" type="submit" asp>  اضافة مسؤول جديد <i class="fa fa-add"></i></button>
                 </a>
 
             </div>
             <div class="card-body">
                 <div class="table-responsive no-radius">
 
-                    <table class="table table-hover table-center">
+                    <table class="table table-hover table-center" style="font-size:18px">
                         <thead>
                             <tr>
 
@@ -162,6 +159,7 @@
     </div>
     <div class="col-sm-2"></div>
 </div>
+</body>
 @section Scripts{
 
 

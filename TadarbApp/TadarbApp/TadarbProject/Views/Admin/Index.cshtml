@@ -3,9 +3,6 @@
 
 }
 
-
-
-
 <style>
     .dash-count {
         text-align: center;
@@ -15,12 +12,11 @@
         background-color: rgba(122, 122, 122, 0.5);
     }
 
-   
 </style>
 
 <partial name="_Notification" />
 
-<h4> مرحبا @ViewBag.Name </h4>
+<h4> مرحبا بك @ViewBag.Name </h4>
 
 
 <div class="content container-fluid mt-2">
@@ -29,23 +25,14 @@
 
         <div class="col-xl-3 col-sm-3 col-12">
 
-
             <div class="card carddd" type="button" value="uni" onclick="ChangeType(1)">
                 <div class="card-body">
                     <div class="dash-widget-header">
-
-
-
-
                         <div class="dash-count">
-
 
                             <img src="/images/AppImages/school.png">
                             <h1>الجامعات</h1>
-                            <h3> 5,500</h3>
-
-
-
+                            <h3> 3,500</h3>
                         </div>
                     </div>
                 </div>
@@ -53,61 +40,38 @@
         </div>
 
         <div class="col-xl-3 col-sm-3 col-12">
-
             <div class="card carddd" type="button" value="comp" onclick="ChangeType(2)">
-
                 <div class="card-body">
                     <div class="dash-widget-header">
-
-
-
                         <div class="dash-count">
-
                             <img src="/images/AppImages/office-building.png">
                             <h1>الشركات</h1>
-                            <h3> 10,555</h3>
-
-
+                            <h3> 2,555</h3>
                         </div>
                     </div>
                 </div>
             </div>
-
-
         </div>
 
         <div class="col-xl-3 col-sm-3 col-12"> </div>
-
-
     </div>
-
     <div class="row m-lg-5 mt-0">
         <div class="col-md-12 d-flex">
-
             <div class="card card-table flex-fill">
                 <div class="card-header">
                     <h4 class="card-title float-start">
                     </h4>
-
-
                     <div class="table-search float-start">
-                        <button class="btn  btn-outline-primary" type="submit" onclick="ChangeType(0)" style="background-color:#e6e291;color:black;border:0px;font-size:20px;">ظهور الكل</button>
-                       
+                        <button class="btn  btn-outline-primary" type="submit" onclick="ChangeType(0)" style="background-color:#e6e291;color:black;border:0px;font-size:18px;">ظهور الكل</button>     
                     </div>
-
-
-
-
                     <div class="col-sm-6">
-
-
-                        <div class="btn-group" role="group" aria-label="Basic radio toggle button group" style:"font-size:20px">
+                        <div class="btn-group" role="group" aria-label="Basic radio toggle button group" style:"font-size:18px">
 
                             <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" style="display:none" checked>
                             <label class="btn btn-outline-primary" for="btnradio1" style="display:none"></label>
 
                             <label class="btn btn-info rounded-end">
-                                <input class="btn btn-info " type="radio" name="status" value="all" onclick="ChangeSatus('')"> الكل
+                                <input class="btn btn-info " type="radio" name="status" value="all" onclick="ChangeSatus('')" > الكل
                             </label>
                             <label class="btn btn-success">
                                 <input type="radio" name="status" value="active"  onclick="ChangeSatus('Active')"> نشط
@@ -137,22 +101,17 @@
 
 
                                     <th>الاسم</th>
-                                    <th>تاريخ الانضمام</th>
+                                    <th>تاريخ الأنضمام</th>
                                     <th class="text-center">الحالة</th>
                                     <th class="text-center">التفاصيل</th>
                                 </tr>
-
                             </thead>
-
                             <tbody id="tbody">
                             </tbody>
 
 
                         </table>
                     </div>
-
-
-
                 </div>
             </div>
         </div>
@@ -239,10 +198,6 @@
 
             });
         }
-
-
-
-
 
     </script>
 }

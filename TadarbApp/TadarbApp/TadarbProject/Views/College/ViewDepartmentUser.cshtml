@@ -11,8 +11,9 @@
 </head>
 
 <partial name="_Notification" />
+<body style="background: linear-gradient(#1c4c64,#5590ad);">
 
-<div class="row" style="background: linear-gradient(#1c4c64,#5590ad); background-repeat: no-repeat;
+<div class="row" style=" background-repeat: no-repeat;
             background-size: cover;
             height: 100vh; width: 100vw; /*padding:50px 5px 5px 5px;*/">
 
@@ -39,37 +40,31 @@
                 </li>
 
                 <li class="nav-item">
-                    <a asp-controller="College" asp-action="ViewDepartmentUser" class="nav-link text-dark font-italic">
+                    <a asp-controller="College" asp-action="ViewDepartmentUser" class="nav-link text-dark font-italic bg-light">
                         <i class="fa-solid fa-building-user"></i>
-                        ادارة مسؤولين الاقسام
+                        إدارة مسؤولين الاقسام
 
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a asp-controller="College" asp-action="AddViewDepartmentUni" class="nav-link text-dark font-italic">
+                    <a asp-controller="College" asp-action="AddViewDepartmentUni" class="nav-link text-dark font-italic bg-light">
                         <i class="fa-solid fa-person-chalkboard"></i>
-                        ادارة الاقسام
+                        إدارة الاقسام
                     </a>
                 </li>
 
             </ul>
 
 
-          
-
-
         </div>
 
-
-        <!-- End vertical navbar -->
-        <!-- Page content holder -->
+        <!-- End vertical navbar1 -->
+        <!-- Page content holder1 -->
         <div class="page-content p-1" id="content">
-            <!-- Toggle button -->
+            <!-- Toggle button1 -->
             <button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i class="fa fa-bars mr-2"></i><small class="text-uppercase font-weight-bold">القائمة</small></button>
         </div>
-
-
     </div>
 
     <div class="col-sm-6">
@@ -79,14 +74,14 @@
 
 
                 <a asp-controller="College" asp-action="AddDepartmentUser" class="table-search float-end">
-                    <button class="btn " style="background-color:#1c4c64; color:white" type="submit" asp>  اضافة مسؤول جديد <i class="fa fa-add"></i></button>
+                    <button class="btn " style="background-color:#1c4c64; color:white;font-size:20px" type="submit" asp>  اضافة مسؤول جديد <i class="fa fa-add"></i></button>
                 </a>
 
             </div>
             <div class="card-body">
                 <div class="table-responsive no-radius">
 
-                    <table class="table table-hover table-center">
+                    <table class="table table-hover table-center" style="font-size:18px">
                         <thead>
                             <tr>
 
@@ -133,6 +128,7 @@
     </div>
     <div class="col-sm-2"></div>
 </div>
+</body>
 @section Scripts{
 
 

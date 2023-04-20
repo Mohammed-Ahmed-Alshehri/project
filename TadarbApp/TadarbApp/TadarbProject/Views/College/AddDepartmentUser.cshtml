@@ -9,8 +9,9 @@
     <link rel="stylesheet" href="~/css/Addbranches.css" asp-append-version="true" />
 
 </head>
+<body style="background: linear-gradient(#1c4c64,#5590ad);">
 
-<div class="row" style="background: linear-gradient(#1c4c64,#5590ad);">
+<div class="row">
     <div class="col-sm-4" style="z-index:2;">
 
         <div class="vertical-nav bg-white" id="sidebar">
@@ -34,34 +35,29 @@
                 </li>
 
                 <li class="nav-item">
-                    <a asp-controller="College" asp-action="ViewDepartmentUser" class="nav-link text-dark font-italic">
+                    <a asp-controller="College" asp-action="ViewDepartmentUser" class="nav-link text-dark font-italic bg-light">
                         <i class="fa-solid fa-building-user"></i>
-                        ادارة مسؤولين الاقسام
+                        إدارة مسؤولين الاقسام
 
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a asp-controller="College" asp-action="AddViewDepartmentUni" class="nav-link text-dark font-italic">
+                    <a asp-controller="College" asp-action="AddViewDepartmentUni" class="nav-link text-dark font-italic bg-light">
                         <i class="fa-solid fa-person-chalkboard"></i>
-                        ادارة الاقسام
+                        إدارة الاقسام
                     </a>
                 </li>
 
             </ul>
 
-
-@*            <p class="text-gray font-weight-bold text-uppercase px-3 small py-4 mb-0">Charts</p>
-*@
-
-
         </div>
 
 
-        <!-- End vertical navbar -->
-        <!-- Page content holder -->
+        <!-- End vertical navbar1 -->
+        <!-- Page content holder1 -->
         <div class="page-content p-1" id="content">
-            <!-- Toggle button -->
+            <!-- Toggle button1 -->
             <button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i class="fa fa-bars mr-2"></i><small class="text-uppercase font-weight-bold">القائمة</small></button>
         </div>
 
@@ -143,7 +139,7 @@
                     <br />
                     <div class="row">
 
-                        <button type="submit" class="btn" style="background-color:#e6e291; font-size:20px;">إضافة</button>
+                        <button type="submit" class="btn" style="background-color:#e6e291; font-size:18px;">إضافة</button>
 
                     </div>
 
@@ -157,10 +153,7 @@
 
     <div class="col-sm-2"></div>
 </div>
-
-
-
-
+</body>
 @section Scripts{
     @{
 

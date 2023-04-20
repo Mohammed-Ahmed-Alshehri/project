@@ -31,34 +31,30 @@
                 <li class="nav-item">
                     <a asp-controller="Company" asp-action="Index" class="nav-link text-dark font-italic bg-light">
                         <i class="fa fa-th-large mr-3 text-primary fa-fw"></i>
-                        إلصفحة الرئيسية
+                        الصفحة الرئيسية
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a asp-controller="Company" asp-action="ViewSpecialities" class="nav-link text-dark font-italic">
+                        <a asp-controller="Company" asp-action="ViewSpecialities" class="nav-link text-dark font-italic bg-light">
                         <i class="fa fa-address-card mr-3 text-primary fa-fw"></i>
                         إدارة مجالات التدريب
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a asp-controller="Company" asp-action="viewUsers" class="nav-link text-dark font-italic">
+                        <a asp-controller="Company" asp-action="viewUsers" class="nav-link text-dark font-italic bg-light">
                         <i class="fa fa-cubes mr-3 text-primary fa-fw"></i>
-                        ادارة مسؤولين الفروع
+                        إدارة مسؤولين الفروع
 
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a asp-controller="Company" asp-action="Viewbranches" class="nav-link text-dark font-italic">
+                        <a asp-controller="Company" asp-action="Viewbranches" class="nav-link text-dark font-italic bg-light">
                         <i class="fa fa-cubes mr-3 text-primary fa-fw"></i>
-                        ادارة الفروع
+                        إدارة الفروع
                     </a>
                 </li>
             
             </ul>
-
-            <p class="text-gray font-weight-bold text-uppercase px-3 small py-4 mb-0">Charts</p>
-
-
         </div>
 
 
@@ -96,27 +92,23 @@
                         <div class="container">
                             <div class="row">
                                 <div>
-                                    <label for="MainBranchCity" class="form-label mt-4" style="font-size:18px ;">الرجاء اختيار التخصصات المراد إضافتها:</label>
+                                    <label for="MainBranchCity" class="form-label mt-4" style="font-size:20px ;">الرجاء اختيار التخصصات المراد إضافتها:</label>
                                     <div class="container">
                                         <div class="row">
                                             <div class="mb-4 pb-2" style="OVERFLOW-Y:scroll;HEIGHT:200px;" dir="ltr">
                                                 <table class="table table-hover table-center" style="background-color:white;border-radius: 25px;" dir="rtl">
-                                                    <thead style="color:#0b70a3">
+                                                    <thead style="color:#0b70a3 ; font-size:18px" >
                                                         <tr>
 
                                                             <th>اسم التخصص:</th>
 
                                                             <th class="text-center">إضافة: </th>
 
-
-
-
                                                         </tr>
                                                     </thead>
 
                                                     <tbody id="Tbody">
-                                                      
-
+                               
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -131,16 +123,12 @@
             </div>
 
 
-
-
-
             <div class="d-flex justify-content-center">
 
-                <a class="btn btn-lg " style="background-color:#e6e291; font-size:20px;" onclick="AddSP()" >حفظ</a>
+                <a class="btn btn-lg " style="background-color:#e6e291; font-size:18px;" onclick="AddSP()" >حفظ</a>
 
-            </div>
-
-
+                </div><br /><br />
+               
 
         </div>
     </div>

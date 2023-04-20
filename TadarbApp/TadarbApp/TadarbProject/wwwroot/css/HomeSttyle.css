@@ -32,15 +32,14 @@
     width: 145px;
     display: inline-block;
     padding: 8px 0;
-    background-color: #d8bf36;
+    background-color: #e6e291;
     font-weight: bold;
     font-size: x-large;
     color: #000000;
-    border-radius: 30px;
+    border-radius: 25px;
     text-align: center;
     align-items: center;
-   /* position:absolute;*/
-    
+    /* position:absolute;*/
 }
 
     .btn-1:hover {
@@ -61,7 +60,7 @@
     font-weight: bold;
     font-size: x-large;
     color: #000000;
-    border-radius: 30px;
+    border-radius: 25px;
     text-align: center;
 }
 

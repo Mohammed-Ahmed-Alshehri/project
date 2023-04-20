@@ -10,8 +10,8 @@
 
 
 </head>
-
-<div class="row" style="background: linear-gradient(#1c4c64,#5590ad); background-repeat: no-repeat;
+<body style="background: linear-gradient(#1c4c64,#5590ad);">
+<div class="row" style="background-repeat: no-repeat;
             background-size: cover;
             height: 100vh; width: 100vw;">
     <div class="col-sm-4" style="z-index:2;">
@@ -37,30 +37,29 @@
                 </li>
 
                 <li class="nav-item">
-                    <a asp-controller="College" asp-action="ViewDepartmentUser" class="nav-link text-dark font-italic">
+                    <a asp-controller="College" asp-action="ViewDepartmentUser" class="nav-link text-dark font-italic bg-light">
                         <i class="fa-solid fa-building-user"></i>
-                        ادارة مسؤولين الاقسام
+                        إدارة مسؤولين الاقسام
 
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a asp-controller="College" asp-action="AddViewDepartmentUni" class="nav-link text-dark font-italic">
+                    <a asp-controller="College" asp-action="AddViewDepartmentUni" class="nav-link text-dark font-italic bg-light">
                         <i class="fa-solid fa-person-chalkboard"></i>
-                        ادارة الاقسام
+                        إدارة الاقسام
                     </a>
                 </li>
 
             </ul>
 
-
         </div>
 
 
-        <!-- End vertical navbar -->
-        <!-- Page content holder -->
+        <!-- End vertical navbar1 -->
+        <!-- Page content holder1 -->
         <div class="page-content p-1" id="content">
-            <!-- Toggle button -->
+            <!-- Toggle button1 -->
             <button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i class="fa fa-bars mr-2"></i><small class="text-uppercase font-weight-bold">القائمة</small></button>
         </div>
 
@@ -84,7 +83,6 @@
                             <input  type="text" id="DepartmentNameID" class="form-control form-control-lg" required />
                             <div class="invalid-feedback" style="text-align: right;"> الرجاء إدخال اسم القسم </div>
 
-                            
 
                         </div>
                     </div>
@@ -98,14 +96,13 @@
 
                             </select>
 
-
                         </div>
 
                     </div>
 
                      <div class="d-flex justify-content-center">
 
-                <a class="btn btn-lg " style="background-color:#e6e291; font-size:20px;" onclick="AddSP()">حفظ</a>
+                <a class="btn btn-lg " style="background-color:#e6e291; font-size:18px;" onclick="AddSP()">حفظ</a>
 
             </div>
 
@@ -118,7 +115,7 @@
                                         <div class="row">
                                             <div class="mb-4 pb-2" style="OVERFLOW-Y:scroll;HEIGHT:200px;" dir="ltr">
                                                 <table class="table table-hover table-center" style="background-color:white;border-radius: 25px;" dir="rtl">
-                                                    <thead style="color:#0b70a3">
+                                                    <thead style="color:#0b70a3;font-size:18px" >
                                                         <tr>
 
                                                             <th>:اسم القسم</th>
@@ -126,9 +123,6 @@
 
 
                                                             <th class="text-center">:إضافة </th>
-
-
-
 
                                                         </tr>
                                                     </thead>
@@ -150,12 +144,9 @@
             </div>
 
 
-
-
-
            @* <div class="d-flex justify-content-center">
 
-                <a class="btn btn-lg " style="background-color:#e6e291; font-size:20px;" onclick="AddSP()">حفظ</a>
+                <a class="btn btn-lg " style="background-color:#e6e291; font-size:18px;" onclick="AddSP()">حفظ</a>
 
             </div>
 *@
@@ -168,7 +159,7 @@
 
 <div class="col-sm-2"></div>
 
-
+</body>
 
 @section Scripts{
     
@@ -176,7 +167,7 @@
 
         <script>
             $(function () {
-                // Sidebar toggle behavior
+                // Sidebar toggle behaviorr
                 $('#sidebarCollapse').on('click', function () {
                     $('#sidebar, #content').toggleClass('active');
                 });

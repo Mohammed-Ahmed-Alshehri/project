@@ -10,8 +10,9 @@
 </head>
 
 <partial name="_Notification" />
+<body style="background: linear-gradient(#1c4c64,#5590ad);">
 
-<div class="row" style="background: linear-gradient(#1c4c64,#5590ad); background-repeat: no-repeat;
+<div class="row" style=" background-repeat: no-repeat;
             background-size: cover;
             height: 100vh; width: 100vw; /*padding:50px 5px 5px 5px;*/">
 
@@ -37,28 +38,28 @@
                     </a>
                 </li>
                  <li class="nav-item">
-                    <a asp-controller="Branch" asp-action="AddViewDepartment" class="nav-link text-dark font-italic">
+                    <a asp-controller="Branch" asp-action="AddViewDepartment" class="nav-link text-dark font-italic bg-light">
                         <i class="fa fa-address-card mr-3 text-primary fa-fw"></i>
                         إدارة الاقسام
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a asp-controller="Branch" asp-action="ViewSupervisorsUser" class="nav-link text-dark font-italic">
+                    <a asp-controller="Branch" asp-action="ViewSupervisorsUser" class="nav-link text-dark font-italic bg-light">
                         <i class="fa-solid fa-building-user"></i>
-                         ادارة مشرفين التدريب
+                         إدارة مشرفين التدريب
 
 
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a asp-controller="branch" asp-action="ViewOpportunities" class="nav-link text-dark font-italic">
+                    <a asp-controller="branch" asp-action="ViewOpportunities" class="nav-link text-dark font-italic bg-light">
                         <i class="fa-solid fa-person-chalkboard"></i>
-                        ادارة الفرص
+                        إدارة الفرص
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a asp-controller="branch" asp-action="ViewDepartmentFiledSpecialties" class="nav-link text-dark font-italic">
+                    <a asp-controller="branch" asp-action="ViewDepartmentFiledSpecialties" class="nav-link text-dark font-italic bg-light">
                         <i class="fa-solid fa-book-open-reader"></i>
                         إدارة التخصصات
                     </a>
@@ -66,17 +67,13 @@
             </ul>
 
 
-            @*            <p class="text-gray font-weight-bold text-uppercase px-3 small py-4 mb-0">Charts</p>
-            *@
-
-
         </div>
 
 
-        <!-- End vertical navbar -->
-        <!-- Page content holder -->
+        <!-- End vertical navbar1 -->
+        <!-- Page content holder1 -->
         <div class="page-content p-1" id="content">
-            <!-- Toggle button -->
+            <!-- Toggle button1 -->
             <button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i class="fa fa-bars mr-2"></i><small class="text-uppercase font-weight-bold">القائمة</small></button>
         </div>
 
@@ -86,17 +83,20 @@
     <div class="col-sm-6">
        
 
-@*        content page here
-*@        </div>
+
+        @*        content page 
+        *@
+    </div>
     <div class="col-sm-2"></div>
 </div>
+</body>
 @section Scripts{
 
 
 
     <script>
         $(function () {
-            // Sidebar toggle behavior
+            // Sidebar toggle behaviorr
             $('#sidebarCollapse').on('click', function () {
                 $('#sidebar, #content').toggleClass('active');
             });

@@ -10,7 +10,8 @@
 
 </head>
 
-<div class="row" style="background: linear-gradient(#1c4c64,#5590ad);">
+<body style="background: linear-gradient(#1c4c64,#5590ad);">
+<div class="row" >
     <div class="col-sm-4" style="z-index:2;">
 
         <div class="vertical-nav bg-white" id="sidebar">
@@ -33,27 +34,27 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a asp-controller="Branch" asp-action="AddViewDepartment" class="nav-link text-dark font-italic">
+                    <a asp-controller="Branch" asp-action="AddViewDepartment" class="nav-link text-dark font-italic  bg-light">
                         <i class="fa fa-address-card mr-3 text-primary fa-fw"></i>
                         إدارة الاقسام
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a asp-controller="Branch" asp-action="ViewSupervisorsUser" class="nav-link text-dark font-italic">
+                    <a asp-controller="Branch" asp-action="ViewSupervisorsUser" class="nav-link text-dark font-italic  bg-light">
                         <i class="fa-solid fa-building-user"></i>
-                        ادارة مشرفين التدريب
+                        إدارة مشرفين التدريب
 
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a asp-controller="branch" asp-action="ViewOpportunities" class="nav-link text-dark font-italic">
+                    <a asp-controller="branch" asp-action="ViewOpportunities" class="nav-link text-dark font-italic  bg-light">
                         <i class="fa-solid fa-person-chalkboard"></i>
-                        ادارة الفرص
+                        إدارة الفرص
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a asp-controller="branch" asp-action="ViewDepartmentFiledSpecialties" class="nav-link text-dark font-italic">
+                    <a asp-controller="branch" asp-action="ViewDepartmentFiledSpecialties" class="nav-link text-dark font-italic  bg-light">
                         <i class="fa-solid fa-book-open-reader"></i>
                         إدارة التخصصات
                     </a>
@@ -145,15 +146,10 @@
                         <div class="invalid-feedback" id="ConfirmPasswordMassage" style="text-align: right;"> الرجاء تأكيد كلمة المرور </div>
                     </div>
 
-
-
-
-
-
                     <br />
                     <div class="row">
 
-                        <button type="submit" class="btn" style="background-color:#e6e291; font-size:20px;">إضافة</button>
+                        <button type="submit" class="btn" style="background-color:#e6e291; font-size:18px;">إضافة</button>
 
                     </div>
 
@@ -169,7 +165,7 @@
 </div>
 
 
-
+</body>
 
 @section Scripts{
     @{

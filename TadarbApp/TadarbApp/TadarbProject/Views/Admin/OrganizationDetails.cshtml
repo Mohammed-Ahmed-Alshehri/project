@@ -3,25 +3,18 @@
 @{
 	Layout = "_Layout";
 }
-
 <head>
 
 
 	<link rel="stylesheet" href="~/css/boostwatch.css" />
 
 </head>
-
-
 <section class="section m-5">
 	<div class="container">
 		<div class="row justify-content-center">
-
-
-
 			<div class="col-md-12">
 				<div class="wrapper">
 					<div class="row no-gutters">
-
 						<div class="col-lg-4 col-md-5 d-flex align-items-stretch " style="color:white;" >
 							<div class="info-wrap   p-md-5 p-4" >
 								<div class="col-12" >
@@ -59,7 +52,6 @@
 											<h5 id="location"></h5>
 										</div>
 									</div>
-
 									<div class="dbox w-100 d-flex align-items-center">
 										<div class="icon d-flex align-items-center justify-content-center">
 											<span class="fa fa-phone"></span>
@@ -97,8 +89,6 @@
 								</div>
 							</div>
 						</div>
-
-
 						<div class="col-lg-8 col-md-7  d-flex align-items-stretch" style="color:black;">
 							<div class="contact-wrap w-100 p-md-5 p-4">
 								<div id="form-message-warning" class="mb-4"></div>
@@ -176,12 +166,12 @@
 
 
 										<div class="col-md-12">
-											<div class="form-group ">
+											<div class="form-group " >
 
-												<a type="button" asp-controller="Admin" asp-action="RequestAccept" asp-route-id="@Model.organization.OrganizationId" class="btn btn-primary btn-lg">قبول الطلب</a>
+												<a type="button" style="font-size:20px" asp-controller="Admin" asp-action="RequestAccept" asp-route-id="@Model.organization.OrganizationId" class="btn btn-primary btn-lg">قبول الطلب</a>
 												&nbsp;&nbsp;
 
-												<a type="button" asp-controller="Admin" asp-action="RequestReject" asp-route-id="@Model.organization.OrganizationId" class="btn btn-secondary btn-lg">رفض الطلب</a>
+												<a type="button" style="font-size:20px" asp-controller="Admin" asp-action="RequestReject" asp-route-id="@Model.organization.OrganizationId" class="btn btn-secondary btn-lg">رفض الطلب</a>
 
 											</div>
 										</div>
