@@ -108,9 +108,6 @@ namespace TadarbProject.Controllers
         public IActionResult AddDepartmentUser(EmployeeVM employeeVM)
         {
 
-
-
-
             int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
 
             var RUser = _DbContext.UserAcounts.Find(RUserId);
@@ -118,13 +115,6 @@ namespace TadarbProject.Controllers
             var College = _DbContext.UniversityColleges.Where(item => item.Responsible_UserId == RUserId).FirstOrDefault();
 
             var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == College.Organization_OrganizationId).FirstOrDefault();
-
-
-
-
-
-
-
 
 
 
@@ -201,13 +191,30 @@ namespace TadarbProject.Controllers
             TempData["success"] = "تم إضافة حساب مسؤول القسم  بنجاح";
             return RedirectToAction("ViewDepartmentUser");
 
+        }
 
 
+        [HttpGet]
+        public IActionResult AddViewDepartmentUni()
+        {
+
+            int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
+
+           ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
+
+            var College = _DbContext.UniversityColleges.Where(item => item.Responsible_UserId == RUserId).FirstOrDefault();
+
+            var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == College.Organization_OrganizationId).FirstOrDefault();
 
 
+            ViewBag.OrganizationName = OrganizationOfR.OrganizationName;
+            ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
+
+            return View();
 
 
         }
+
 
 
         [HttpGet]
@@ -257,42 +264,42 @@ namespace TadarbProject.Controllers
 
 
 
-        [HttpGet]
-        public IActionResult ViewDepartment()
-        {
-            ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
+        //[HttpGet]
+        //public IActionResult ViewDepartment()
+        //{
+        //    ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
 
-            int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
+        //    int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
 
-            var College = _DbContext.UniversityColleges.Where(item => item.Responsible_UserId == RUserId).FirstOrDefault();
+        //    var College = _DbContext.UniversityColleges.Where(item => item.Responsible_UserId == RUserId).FirstOrDefault();
 
-            var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == College.Organization_OrganizationId).FirstOrDefault();
-
-
-            ViewBag.OrganizationName = OrganizationOfR.OrganizationName;
-            ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
+        //    var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == College.Organization_OrganizationId).FirstOrDefault();
 
 
-
-            var DEPOfR = _DbContext.Departments.Where(item => item.Organization_OrganizationId == OrganizationOfR.OrganizationId).Include(item => item.User).ToList();
-
-            //IEnumerable<UserAcount> OrgEMP = Enumerable.Empty<UserAcount>(); ;
-
-            //if (DEPOfR != null)
-            //{
-            //    OrgEMP = _DbContext.UserAcounts.FromSqlRaw($"select * from UserAcounts WHERE UserAcounts.UserId in (select Employees.UserAccount_UserId from Employees where Employees.Department_DepartmentId = {DEPOfR.DepartmentId});").ToList();
-
-            //}
+        //    ViewBag.OrganizationName = OrganizationOfR.OrganizationName;
+        //    ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
 
 
 
+        //    var DEPOfR = _DbContext.Departments.Where(item => item.Organization_OrganizationId == OrganizationOfR.OrganizationId).Include(item => item.User).ToList();
+
+        //    //IEnumerable<UserAcount> OrgEMP = Enumerable.Empty<UserAcount>(); ;
+
+        //    //if (DEPOfR != null)
+        //    //{
+        //    //    OrgEMP = _DbContext.UserAcounts.FromSqlRaw($"select * from UserAcounts WHERE UserAcounts.UserId in (select Employees.UserAccount_UserId from Employees where Employees.Department_DepartmentId = {DEPOfR.DepartmentId});").ToList();
+
+        //    //}
 
 
-            return View(DEPOfR);
 
 
 
-        }
+        //    return View(DEPOfR);
+
+
+
+        //}
 
 
 
