@@ -612,9 +612,8 @@ namespace TadarbProject.Controllers
             IEnumerable<DepartmentTrainingArea> Departments = Enumerable.Empty<DepartmentTrainingArea>();
 
             Departments = _DbContext.DepartmentTrainingAreas.FromSqlRaw("SELECT * FROM DepartmentTrainingAreas WHERE Department_DepartmenId IN" +
-                $"(SELECT DepartmentId FROM Departments WHERE  DepartmentName!='قسم ادارة الفروع' AND Branch_BranchId={Branch.BranchId})").Include(item => item.department)
-                .Include(item => item.fieldOfSpecialtyDetails).OrderBy(item => item.Department_DepartmenId)
-                .ToList();
+                $"(SELECT DepartmentId FROM Departments WHERE  DepartmentName!='قسم ادارة مشرفين التدريب' AND Branch_BranchId={Branch.BranchId})").Include(item => item.department)
+                .Include(item => item.fieldOfSpecialtyDetails).OrderBy(item => item.Department_DepartmenId).ToList();
 
 
 
