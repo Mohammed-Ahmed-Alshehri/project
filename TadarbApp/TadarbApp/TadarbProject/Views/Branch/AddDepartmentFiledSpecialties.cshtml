@@ -31,7 +31,7 @@
                         </a>
                     </li>
                      <li class="nav-item">
-                        <a asp-controller="Branch" asp-action="AddViewDepartment" class="nav-link text-dark font-italic bg-light">
+                        <a asp-controller="Branch" asp-action="ManageDepartment" class="nav-link text-dark font-italic bg-light">
                         <i class="fa fa-address-card mr-3 text-primary fa-fw"></i>
                         إدارة الاقسام
                     </a>
@@ -152,11 +152,18 @@
 
                 <br /><br />
 
-                <div class="d-flex justify-content-center">
+                <div class="d-flex justify-content-center ">
+
+
+                    <a class="btn btn-lg  btn-primary" style="font-size:18px; color:black" href="@Url.Action("ViewDepartmentFiledSpecialties")"> العودة الى القائمة</a>
+
+                     &nbsp; &nbsp;
+
 
                     <a class="btn btn-lg " style="background-color:#e6e291; font-size:18px;" onclick="AddSP()">حفظ</a>
 
                 </div>
+
 
                 <br />
 
@@ -173,6 +180,8 @@
 
 
     <script>
+
+
         $(function () {
             // Sidebar toggle behavior
             $('#sidebarCollapse').on('click', function () {
@@ -191,7 +200,9 @@
 
         var allSelect = [];
         $('.my-select').change(function () {
-            allSelect = [];
+
+           allSelect = [];
+
             $('.my-select').each(function (index, item) {
                 allSelect.push(item.value);
             });

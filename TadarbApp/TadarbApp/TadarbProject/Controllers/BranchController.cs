@@ -43,7 +43,7 @@ namespace TadarbProject.Controllers
         }
 
         [HttpGet]
-        public IActionResult AddViewDepartment()
+        public IActionResult ManageDepartment()
         {
 
             ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");

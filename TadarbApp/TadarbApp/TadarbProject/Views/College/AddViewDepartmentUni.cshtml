@@ -1,5 +1,4 @@
-﻿
-
+﻿@model DepartmentVM
 @{
     ViewData["Title"] = "اضافة قسم جديد";
 }
@@ -73,38 +72,46 @@
 
 
                 <div class="row">
-                    <div class="col-md-6 mb-4 pb-2">
 
 
-                        <div class="form-group  mb-4 pb-2">
-                            <label for="DepartmentNameID" class="form-label mt-4" style="font-size:20px">:اسم القسم</label>
+                        <form method="post" asp-controller="College" asp-action="AddViewDepartmentUni">
+                            <div class="col-md-6 mb-4 pb-2">
 
 
-                            <input  type="text" id="DepartmentNameID" class="form-control form-control-lg" required />
-                            <div class="invalid-feedback" style="text-align: right;"> الرجاء إدخال اسم القسم </div>
+                                <div class="form-group  mb-4 pb-2">
+                                    <label for="DepartmentNameID" class="form-label mt-4" style="font-size:20px">:اسم القسم</label>
 
 
-                        </div>
-                    </div>
-                    <div class="col-md-6 mb-4 pb-2">
-                        <div class="form-group  mb-4 pb-2">
-                            <label for="MasterFieldsID" class="form-label mt-4" style="font-size:20px">اختيار المسؤول:</label>
+                                    <input asp-for="department.DepartmentName" type="text" id="DepartmentNameID" class="form-control form-control-lg" required />
+                                    <div class="invalid-feedback" style="text-align: right;"> الرجاء إدخال اسم القسم </div>
 
 
-                            <select  class="form-control form-control-lg" my-select" id="DepartmentListID" required>
-                                <option selected disabled value="">--اسم المسؤول--</option>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-4 pb-2">
+                                <div class="form-group  mb-4 pb-2">
+                                    <label for="MasterFieldsID" class="form-label mt-4" style="font-size:20px">اختيار المسؤول:</label>
 
-                            </select>
 
-                        </div>
+                                    <select asp-for="department.Responsible_UserId" asp-items="@Model.UserListItems" class="form-control form-control-lg " id="DepartmentListID" required>
 
-                    </div>
+                                        <option selected disabled value="">--اسم المسؤول--</option>
 
-                     <div class="d-flex justify-content-center">
+                                    </select>
 
-                <a class="btn btn-lg " style="background-color:#e6e291; font-size:18px;" onclick="AddSP()">حفظ</a>
+                                </div>
 
-            </div>
+                            </div>
+
+                            <div class="d-flex justify-content-center">
+
+
+                                <button type="submit" class="btn btn-primary" > حفظ </button>
+
+
+                            </div>
+                    </form>
+                  
 
                     <div class=" mb-4 pb-2">
                         <div class="container">
@@ -122,7 +129,7 @@
                                                             <th>:اسم المسؤول</th>
 
 
-                                                            <th class="text-center">:إضافة </th>
+                                                           
 
                                                         </tr>
                                                     </thead>
@@ -144,13 +151,6 @@
             </div>
 
 
-           @* <div class="d-flex justify-content-center">
-
-                <a class="btn btn-lg " style="background-color:#e6e291; font-size:18px;" onclick="AddSP()">حفظ</a>
-
-            </div>
-*@
-
 
         </div>
     </div>
@@ -166,71 +166,12 @@
 
 
         <script>
-            $(function () {
-                // Sidebar toggle behaviorr
-                $('#sidebarCollapse').on('click', function () {
-                    $('#sidebar, #content').toggleClass('active');
-                });
-            });
 
-           FillTable();
+          FillTable();
 
 
-           function Add() {
-
-            Swal.fire({
-                title: 'تاكيد الاضافة',
-                text: "",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'تأكيد.!',
-                cancelButtonText: 'الغاء',
-            }).then((result) => {
-                if (result.isConfirmed) {
-
-                    var Name = document.getElementById("BranchNameID").value;
-
-                    if (Name == "" )
-                    {
-
-                        return;
-                    }
-
-                    $.ajax({
-                        url: "@Url.Action("AddDEP")",
-                        type: 'POST',
-                            data: { name: Name },
-
-                        success: function (data) {
-
-                            if (data.success) {
-
-
-                                // toastr.success(data.message);
-
-                                document.getElementById("/*BranchNameID*/").value = "";
-
-                            }
-                            else {
-
-                                // toastr.error(data.message);
-                            }
-
-                            FillTable();
-                        }
-
-
-                    });
-
-
-
-                }
-              })
-             }
-
-            function FillTable() {
+            function FillTable() 
+            {
                 var body = "";
 
 
@@ -248,18 +189,28 @@
                         {
 
 
-                           $.each(data.depList, function (key, value) {
+                           if (data.exists)
+                           {
+
+                             $.each(data.depList, function (key, value) 
+                             {
 
 
 
-                                    body += "<tr><td class='text-nowrap'><div class='font-weight-600'><div class='font-weight-600'>" + value.departmentName + "</div>" +
-                                    "</div></td><td class='text-center'>"
-                                + `<button type='button' class='btn btn-primary' fdprocessedid='ezqldw' onclick ='Edite(${value.departmentId})'> <i class='fa-regular fa-pen-to-square'> </i></button></td></tr>`
+                                body += "<tr><td class='text-nowrap'><div class='font-weight-600'><div class='font-weight-600'>" + value.departmentName + "</div></td>" +
+
+                                    "<td class='text-nowrap'><div class='font-weight-600'><div class='font-weight-600'>" + value.user.fullName + "</div></td> " +
+                        
+                                  `<td class='text-center'> <button type='button' class='btn btn-primary' fdprocessedid='ezqldw' onclick ='Edite(${value.departmentId})'> <i class='fa-regular fa-pen-to-square'> </i></button></td></tr>`
 
 
-                             //  console.log(value.departmentName);
+                              //   console.log(value.departmentName);
 
-                            });
+                             });
+
+                           }
+
+                     
 
 
 
@@ -276,64 +227,11 @@
             }
 
 
-          function Edite(Id)
-          {
+         
+         
 
 
-            Swal.fire({
-                title: 'تعديل اسم الفرع',
-                input: 'text',
-                inputAttributes: {
-                    autocapitalize: 'off'
-                },
-                showCancelButton: true,
-                confirmButtonText: 'تعديل',
-                cancelButtonText: 'الغاء',
-                showLoaderOnConfirm: true,
-                preConfirm: (login) => {
-
-
-                    if(login == "")
-                    {
-                        return;
-                    }
-
-                    $.ajax({
-
-                        url: "@Url.Action("EditeDEP")",
-                        type: 'POST',
-                        dataType: "json",
-                        data: { id: Id, name: login },
-
-                        success: function (data)
-                        {
-
-                            if (data.success)
-                            {
-                                Swal.fire({
-                                    position: 'top-end',
-                                    icon: 'success',
-                                    title: 'تم تعديل معلومات',
-                                    showConfirmButton: false,
-                                    timer: 1500
-                                });
-
-                            }
-
-                            FillTable();
-                        }
-
-
-                    });
-
-                 
-
-                }
-
-            });
-
-
-          }
+          
 
         </script>
 
