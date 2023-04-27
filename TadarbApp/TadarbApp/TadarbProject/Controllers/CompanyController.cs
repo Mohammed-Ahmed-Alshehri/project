@@ -150,11 +150,13 @@ namespace TadarbProject.Controllers
         [HttpPost]
         public IActionResult Addbranches(BranchVM branchVM)
         {
-            if (ModelState.IsValid)
-            {
+            //if (ModelState.IsValid)
+            //{
                 int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
 
                 var OrganizationOfR = _DbContext.Organizations.Where(item => item.ResponsibleUserId == RUserId).FirstOrDefault();
+
+                
 
                 var Branch = new OrganizationBranch_TrainProv
                 {
@@ -189,9 +191,9 @@ namespace TadarbProject.Controllers
 
                 return RedirectToAction("ViewBranches");
 
-            }
+            //}
 
-            return View(branchVM);
+            //return View(branchVM);
         }
 
 

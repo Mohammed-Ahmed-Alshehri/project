@@ -372,6 +372,8 @@ namespace TadarbProject.Controllers
                 }
 
                 _DbContext.SaveChanges();
+                //TempData["success"] = "تم إضافة التخصصات  بنجاح";
+
 
             }
 
@@ -493,8 +495,10 @@ namespace TadarbProject.Controllers
 
                 _DbContext.SaveChanges();
 
+                //TempData["success"] = "تم إضافة قسم جديد بنجاح";
 
                 return Json(new { success = true });
+
             }
 
 
@@ -548,6 +552,7 @@ namespace TadarbProject.Controllers
 
                 _DbContext.SaveChanges();
 
+                //TempData["success"] = "تم تعديل معلومات القسم  بنجاح";
 
                 return Json(new { success = true });
             }

@@ -10,6 +10,8 @@
 
 
 </head>
+<partial name="_Notification" />
+
 <body style="background: linear-gradient(#1c4c64,#5590ad);">
 
 <div class="row" style="background-repeat: no-repeat;
@@ -82,7 +84,7 @@
     <div class="col-sm-6">
         <div class="card" style="border-radius: 25px; height:auto; width:auto; margin-top:0.5cm; margin-bottom:3cm; padding:8px 8px 8px 8px ; border-color:black;background-color:#dfebf2">
             <div class="card-body p-5">
-                <h2 class=" text-center mb-5">إضافة الأقسام المراد إظهارها للفروع</h2>
+                <h2 class=" text-center mb-5">إضافة الأقسام المتوفرة للفرع</h2>
 
 
                 <div class="row">
@@ -103,6 +105,12 @@
                             </div>
 
                         </div>
+
+                            <div class="d-flex justify-content-center">
+
+                                <button type="button" class="btn btn-lg " style="background-color:#e6e291; font-size:18px;" onclick="Add()">إضافة</button>
+
+                            </div>
 
                         
 
@@ -146,11 +154,7 @@
                         </div>
                     </div>
 
-                    <div class="d-flex justify-content-center">
-
-                        <button type="button" class="btn btn-lg " style="background-color:#e6e291; font-size:18px;" onclick="Add()">إضافة</button>
-
-                    </div>
+                   
                 </div>
             </div>
 
@@ -222,6 +226,7 @@
                                 // toastr.success(data.message);
 
                                 document.getElementById("BranchNameID").value = "";
+
 
                             }
                             else {

@@ -75,32 +75,37 @@
 
 
                         <form method="post" asp-controller="College" asp-action="AddViewDepartmentUni">
-                            <div class="col-md-6 mb-4 pb-2">
+                           
+
+                            <div class="row">
+                                <div class="col-md-6 mb-4 pb-2">
+
+                                    <div class="form-group  mb-4 pb-2">
+                                        <label for="DepartmentNameID" class="form-label mt-4" style="font-size:20px">:اسم القسم</label>
 
 
-                                <div class="form-group  mb-4 pb-2">
-                                    <label for="DepartmentNameID" class="form-label mt-4" style="font-size:20px">:اسم القسم</label>
+                                        <input asp-for="department.DepartmentName" type="text" id="DepartmentNameID" class="form-control form-control-lg" required />
+                                        <div class="invalid-feedback" style="text-align: right;"> الرجاء إدخال اسم القسم </div>
 
 
-                                    <input asp-for="department.DepartmentName" type="text" id="DepartmentNameID" class="form-control form-control-lg" required />
-                                    <div class="invalid-feedback" style="text-align: right;"> الرجاء إدخال اسم القسم </div>
-
-
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-4 pb-2">
-                                <div class="form-group  mb-4 pb-2">
-                                    <label for="MasterFieldsID" class="form-label mt-4" style="font-size:20px">اختيار المسؤول:</label>
-
-
-                                    <select asp-for="department.Responsible_UserId" asp-items="@Model.UserListItems" class="form-control form-control-lg " id="DepartmentListID" required>
-
-                                        <option selected disabled value="">--اسم المسؤول--</option>
-
-                                    </select>
+                                    </div>
 
                                 </div>
+                                <div class="col-md-6 mb-4 pb-2">
 
+                                    <div class="form-group  mb-4 pb-2">
+                                        <label for="MasterFieldsID" class="form-label mt-4" style="font-size:20px">اختيار المسؤول:</label>
+
+
+                                        <select asp-for="department.Responsible_UserId" asp-items="@Model.UserListItems" class="form-control form-control-lg " id="DepartmentListID" required>
+
+                                            <option selected disabled value="">--اسم المسؤول--</option>
+
+                                        </select>
+
+                                    </div>
+
+                                </div>
                             </div>
 
                             <div class="d-flex justify-content-center">
