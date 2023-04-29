@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<UserAcount>
 @{
-    ViewData["Title"] = "قائمة المسؤولين  عن الاقسام";
+    ViewData["Title"] = "قائمة الموظفين";
 }
 
 <head>
@@ -70,11 +70,11 @@
     <div class="col-sm-6">
         <div class="card " style="border-radius: 25px; margin-top:2cm; margin-bottom:3cm; padding:5px 5px 5px 5px ; border-color:black;">
             <div class="card-header" style="text-align: center;">
-                <h3>مسوؤلين الاقسام</h3>
+                <h3>الموظفين</h3>
 
 
                 <a asp-controller="College" asp-action="AddDepartmentUser" class="table-search float-end">
-                    <button class="btn " style="background-color:#1c4c64; color:white;font-size:20px" type="submit" asp>  اضافة مسؤول جديد <i class="fa fa-add"></i></button>
+                    <button class="btn " style="background-color:#1c4c64; color:white;font-size:20px" type="submit" asp>  اضافة موظف جديد <i class="fa fa-add"></i></button>
                 </a>
 
             </div>
@@ -85,7 +85,7 @@
                         <thead>
                             <tr>
 
-                                <th>اسم المسؤول</th>
+                                <th>اسم الموظف</th>
                                 <th>رقم الهاتف	</th>
                                 <th class="text-center">البريد الالكتروني	</th>
 

@@ -74,7 +74,7 @@
                 <div class="row">
 
 
-                        <form method="post" asp-controller="College" asp-action="AddViewDepartmentUni">
+                        <form method="post" asp-controller="College" asp-action="AddViewDepartmentUni" class="needs-validation" novalidate>
                            
 
                             <div class="row">
@@ -102,6 +102,8 @@
                                             <option selected disabled value="">--اسم المسؤول--</option>
 
                                         </select>
+                                        <div class="invalid-feedback" style="text-align: right;"> الرجاء إدخال اسم المسؤول </div>
+
 
                                     </div>
 
@@ -232,9 +234,29 @@
             }
 
 
-         
-         
 
+
+
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+        (function () {
+            'use strict'
+
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.querySelectorAll('.needs-validation')
+
+            // Loop over them and prevent submission
+            Array.prototype.slice.call(forms)
+                .forEach(function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (!form.checkValidity()) {
+                            event.preventDefault()
+                            event.stopPropagation()
+                        }
+
+                        form.classList.add('was-validated')
+                    }, false)
+                })
+        })()
 
           
 
