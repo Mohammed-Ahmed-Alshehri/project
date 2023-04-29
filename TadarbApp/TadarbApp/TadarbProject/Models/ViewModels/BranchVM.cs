@@ -8,6 +8,7 @@ namespace TadarbProject.Models.ViewModels
         public OrganizationBranch_TrainProv Branch { get; set; }
 
 
+        [ValidateNever]
         public Organization organization { get; set; }
 
         [ValidateNever]

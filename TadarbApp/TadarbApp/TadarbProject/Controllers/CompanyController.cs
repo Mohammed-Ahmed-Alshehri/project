@@ -150,50 +150,50 @@ namespace TadarbProject.Controllers
         [HttpPost]
         public IActionResult Addbranches(BranchVM branchVM)
         {
-            //if (ModelState.IsValid)
-            //{
-            int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
 
-            var OrganizationOfR = _DbContext.Organizations.Where(item => item.ResponsibleUserId == RUserId).FirstOrDefault();
-
-
-
-            var Branch = new OrganizationBranch_TrainProv
+            if (ModelState.IsValid)
             {
-                BranchName = branchVM.Branch.BranchName,
-                City_CityId = branchVM.Branch.City_CityId,
-                Responsible_UserId = branchVM.Branch.Responsible_UserId,
-                Organization_OrganizationId = OrganizationOfR.OrganizationId,
-                Zoon = branchVM.Branch.Zoon,
-                Location = branchVM.Branch.Location,
+
+                int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
+
+                var OrganizationOfR = _DbContext.Organizations.Where(item => item.ResponsibleUserId == RUserId).FirstOrDefault();
+
+                var Branch = new OrganizationBranch_TrainProv
+                {
+                    BranchName = branchVM.Branch.BranchName,
+                    City_CityId = branchVM.Branch.City_CityId,
+                    Responsible_UserId = branchVM.Branch.Responsible_UserId,
+                    Organization_OrganizationId = OrganizationOfR.OrganizationId,
+                    Zoon = branchVM.Branch.Zoon,
+                    Location = branchVM.Branch.Location,
 
 
 
 
-            };
+                };
 
-            _DbContext.OrganizationBranches_TrainProv.Add(Branch);
-
-
-            var RBranchManger = _DbContext.UserAcounts.FirstOrDefault(item => item.UserId == branchVM.Branch.Responsible_UserId);
+                _DbContext.OrganizationBranches_TrainProv.Add(Branch);
 
 
-            RBranchManger.City_CityId = branchVM.Branch.City_CityId;
+                var RBranchManger = _DbContext.UserAcounts.FirstOrDefault(item => item.UserId == branchVM.Branch.Responsible_UserId);
+
+
+                RBranchManger.City_CityId = branchVM.Branch.City_CityId;
 
 
 
-            _DbContext.UserAcounts.Update(RBranchManger);
+                _DbContext.UserAcounts.Update(RBranchManger);
 
 
-            _DbContext.SaveChanges();
+                _DbContext.SaveChanges();
 
-            TempData["success"] = "تم إضافة حساب الفرع  بنجاح";
+                TempData["success"] = "تم إضافة حساب الفرع  بنجاح";
 
-            return RedirectToAction("ViewBranches");
+                return RedirectToAction("ViewBranches");
 
-            //}
+            }
 
-            //return View(branchVM);
+            return View(branchVM);
         }
 
 

@@ -433,8 +433,8 @@ namespace TadarbProject.Controllers
 
                 string[] Ids = ids.Split(",");
 
-                var FId = Convert.ToInt32(Ids[0]);
-                var DId = Convert.ToInt32(Ids[1]);
+                var FId = Convert.ToInt32(Ids[1]);
+                var DId = Convert.ToInt32(Ids[0]);
 
                 //Console.WriteLine(FId);
 

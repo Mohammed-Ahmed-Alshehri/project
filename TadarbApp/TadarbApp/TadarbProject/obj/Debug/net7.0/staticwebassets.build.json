@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "s8oVcSCjSl6wSqY7RZaUs2TMH1k4FydElMYGLt/kEpY=",
+  "Hash": "p8gLOgOlgBCZgeix02HXyvo40x3oer+hg71/haA9Gh4=",
   "Source": "TadarbProject",
   "BasePath": "_content/TadarbProject",
   "Mode": "Default",
@@ -10,17 +10,17 @@
     {
       "Name": "TadarbProject\\wwwroot",
       "Source": "TadarbProject",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\obj\\Debug\\net7.0\\scopedcss\\bundle\\TadarbProject.styles.css",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\obj\\Debug\\net7.0\\scopedcss\\bundle\\TadarbProject.styles.css",
       "SourceId": "TadarbProject",
       "SourceType": "Computed",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\obj\\Debug\\net7.0\\scopedcss\\bundle\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\obj\\Debug\\net7.0\\scopedcss\\bundle\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "TadarbProject.styles.css",
       "AssetKind": "All",
@@ -31,13 +31,13 @@
       "AssetTraitValue": "ApplicationBundle",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\obj\\Debug\\net7.0\\scopedcss\\bundle\\TadarbProject.styles.css"
+      "OriginalItemSpec": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\obj\\Debug\\net7.0\\scopedcss\\bundle\\TadarbProject.styles.css"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\obj\\Debug\\net7.0\\scopedcss\\projectbundle\\TadarbProject.bundle.scp.css",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\obj\\Debug\\net7.0\\scopedcss\\projectbundle\\TadarbProject.bundle.scp.css",
       "SourceId": "TadarbProject",
       "SourceType": "Computed",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\obj\\Debug\\net7.0\\scopedcss\\projectbundle\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\obj\\Debug\\net7.0\\scopedcss\\projectbundle\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "TadarbProject.bundle.scp.css",
       "AssetKind": "All",
@@ -48,13 +48,13 @@
       "AssetTraitValue": "ProjectBundle",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\obj\\Debug\\net7.0\\scopedcss\\projectbundle\\TadarbProject.bundle.scp.css"
+      "OriginalItemSpec": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\obj\\Debug\\net7.0\\scopedcss\\projectbundle\\TadarbProject.bundle.scp.css"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\css\\Addbranches.css",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\css\\Addbranches.css",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "css/Addbranches.css",
       "AssetKind": "All",
@@ -68,10 +68,10 @@
       "OriginalItemSpec": "wwwroot\\css\\Addbranches.css"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\css\\AddSpecialities.css",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\css\\AddSpecialities.css",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "css/AddSpecialities.css",
       "AssetKind": "All",
@@ -85,10 +85,10 @@
       "OriginalItemSpec": "wwwroot\\css\\AddSpecialities.css"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\css\\boostwatch.css",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\css\\boostwatch.css",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "css/boostwatch.css",
       "AssetKind": "All",
@@ -102,10 +102,10 @@
       "OriginalItemSpec": "wwwroot\\css\\boostwatch.css"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\css\\HomeSttyle.css",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\css\\HomeSttyle.css",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "css/HomeSttyle.css",
       "AssetKind": "All",
@@ -119,10 +119,10 @@
       "OriginalItemSpec": "wwwroot\\css\\HomeSttyle.css"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\css\\RegistrationStyle.css",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\css\\RegistrationStyle.css",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "css/RegistrationStyle.css",
       "AssetKind": "All",
@@ -136,10 +136,10 @@
       "OriginalItemSpec": "wwwroot\\css\\RegistrationStyle.css"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\EmailTemplates\\verificationtemplate.html",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\EmailTemplates\\verificationtemplate.html",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "EmailTemplates/verificationtemplate.html",
       "AssetKind": "All",
@@ -153,10 +153,10 @@
       "OriginalItemSpec": "wwwroot\\EmailTemplates\\verificationtemplate.html"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\favicon.ico",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\favicon.ico",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "favicon.ico",
       "AssetKind": "All",
@@ -170,10 +170,10 @@
       "OriginalItemSpec": "wwwroot\\favicon.ico"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\AppImages\\analytics.png",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\AppImages\\analytics.png",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "Images/AppImages/analytics.png",
       "AssetKind": "All",
@@ -187,10 +187,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\AppImages\\analytics.png"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\AppImages\\backgroundd.png",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\AppImages\\backgroundd.png",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "Images/AppImages/backgroundd.png",
       "AssetKind": "All",
@@ -204,10 +204,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\AppImages\\backgroundd.png"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\AppImages\\hierarchical-structure (1).png",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\AppImages\\hierarchical-structure (1).png",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "Images/AppImages/hierarchical-structure (1).png",
       "AssetKind": "All",
@@ -221,10 +221,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\AppImages\\hierarchical-structure (1).png"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\AppImages\\list.png",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\AppImages\\list.png",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "Images/AppImages/list.png",
       "AssetKind": "All",
@@ -238,10 +238,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\AppImages\\list.png"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\AppImages\\logonav.png",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\AppImages\\logonav.png",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "Images/AppImages/logonav.png",
       "AssetKind": "All",
@@ -255,10 +255,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\AppImages\\logonav.png"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\AppImages\\office-building.png",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\AppImages\\office-building.png",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "Images/AppImages/office-building.png",
       "AssetKind": "All",
@@ -272,10 +272,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\AppImages\\office-building.png"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\AppImages\\placeholder.png",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\AppImages\\placeholder.png",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "Images/AppImages/placeholder.png",
       "AssetKind": "All",
@@ -289,10 +289,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\AppImages\\placeholder.png"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\AppImages\\school.png",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\AppImages\\school.png",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "Images/AppImages/school.png",
       "AssetKind": "All",
@@ -306,10 +306,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\AppImages\\school.png"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\AppImages\\tadarblogocircle.jpeg",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\AppImages\\tadarblogocircle.jpeg",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "Images/AppImages/tadarblogocircle.jpeg",
       "AssetKind": "All",
@@ -323,10 +323,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\AppImages\\tadarblogocircle.jpeg"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\Organizations\\Logos\\02894b9c-6591-456c-b9ba-ecd3c275af2c.png",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\Organizations\\Logos\\02894b9c-6591-456c-b9ba-ecd3c275af2c.png",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "Images/Organizations/Logos/02894b9c-6591-456c-b9ba-ecd3c275af2c.png",
       "AssetKind": "All",
@@ -340,10 +340,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\Organizations\\Logos\\02894b9c-6591-456c-b9ba-ecd3c275af2c.png"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\Organizations\\Logos\\0873c618-5484-41e8-b0e9-c8e8f06f0b4d.jpg",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\Organizations\\Logos\\0873c618-5484-41e8-b0e9-c8e8f06f0b4d.jpg",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "Images/Organizations/Logos/0873c618-5484-41e8-b0e9-c8e8f06f0b4d.jpg",
       "AssetKind": "All",
@@ -357,10 +357,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\Organizations\\Logos\\0873c618-5484-41e8-b0e9-c8e8f06f0b4d.jpg"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\Organizations\\Logos\\1143791f-8b2a-4717-81d8-c8742a109f68.png",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\Organizations\\Logos\\1143791f-8b2a-4717-81d8-c8742a109f68.png",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "Images/Organizations/Logos/1143791f-8b2a-4717-81d8-c8742a109f68.png",
       "AssetKind": "All",
@@ -374,10 +374,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\Organizations\\Logos\\1143791f-8b2a-4717-81d8-c8742a109f68.png"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\Organizations\\Logos\\14c9011d-a147-4e0f-ba4b-99002d2d5977.png",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\Organizations\\Logos\\14c9011d-a147-4e0f-ba4b-99002d2d5977.png",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "Images/Organizations/Logos/14c9011d-a147-4e0f-ba4b-99002d2d5977.png",
       "AssetKind": "All",
@@ -391,10 +391,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\Organizations\\Logos\\14c9011d-a147-4e0f-ba4b-99002d2d5977.png"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\Organizations\\Logos\\14f353f9-ed38-4a7d-8fd3-934deab73e94.png",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\Organizations\\Logos\\14f353f9-ed38-4a7d-8fd3-934deab73e94.png",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "Images/Organizations/Logos/14f353f9-ed38-4a7d-8fd3-934deab73e94.png",
       "AssetKind": "All",
@@ -408,10 +408,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\Organizations\\Logos\\14f353f9-ed38-4a7d-8fd3-934deab73e94.png"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\Organizations\\Logos\\2866ab84-dd7f-4edf-9535-0fd6c7b60cf4.png",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\Organizations\\Logos\\2866ab84-dd7f-4edf-9535-0fd6c7b60cf4.png",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "Images/Organizations/Logos/2866ab84-dd7f-4edf-9535-0fd6c7b60cf4.png",
       "AssetKind": "All",
@@ -425,10 +425,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\Organizations\\Logos\\2866ab84-dd7f-4edf-9535-0fd6c7b60cf4.png"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\Organizations\\Logos\\2bfa7253-693c-4985-b6c4-b6ed694627ee.png",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\Organizations\\Logos\\2bfa7253-693c-4985-b6c4-b6ed694627ee.png",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "Images/Organizations/Logos/2bfa7253-693c-4985-b6c4-b6ed694627ee.png",
       "AssetKind": "All",
@@ -442,10 +442,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\Organizations\\Logos\\2bfa7253-693c-4985-b6c4-b6ed694627ee.png"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\Organizations\\Logos\\2fdea044-378e-4b3b-935b-68750e2091e2.png",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\Organizations\\Logos\\2fdea044-378e-4b3b-935b-68750e2091e2.png",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "Images/Organizations/Logos/2fdea044-378e-4b3b-935b-68750e2091e2.png",
       "AssetKind": "All",
@@ -459,10 +459,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\Organizations\\Logos\\2fdea044-378e-4b3b-935b-68750e2091e2.png"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\Organizations\\Logos\\36b693d7-0711-4cc4-b76a-25860dac5ba7.jpg",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\Organizations\\Logos\\36b693d7-0711-4cc4-b76a-25860dac5ba7.jpg",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "Images/Organizations/Logos/36b693d7-0711-4cc4-b76a-25860dac5ba7.jpg",
       "AssetKind": "All",
@@ -476,10 +476,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\Organizations\\Logos\\36b693d7-0711-4cc4-b76a-25860dac5ba7.jpg"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\Organizations\\Logos\\3d2065f7-9e0b-44dd-a521-13639e0dc334.png",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\Organizations\\Logos\\3d2065f7-9e0b-44dd-a521-13639e0dc334.png",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "Images/Organizations/Logos/3d2065f7-9e0b-44dd-a521-13639e0dc334.png",
       "AssetKind": "All",
@@ -493,10 +493,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\Organizations\\Logos\\3d2065f7-9e0b-44dd-a521-13639e0dc334.png"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\Organizations\\Logos\\421c3ecd-2073-4ef7-94c2-7ad3d6bf70c5.jpg",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\Organizations\\Logos\\421c3ecd-2073-4ef7-94c2-7ad3d6bf70c5.jpg",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "Images/Organizations/Logos/421c3ecd-2073-4ef7-94c2-7ad3d6bf70c5.jpg",
       "AssetKind": "All",
@@ -510,10 +510,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\Organizations\\Logos\\421c3ecd-2073-4ef7-94c2-7ad3d6bf70c5.jpg"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\Organizations\\Logos\\7d2899a2-8792-4ade-a7a0-653fda7b4dea.png",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\Organizations\\Logos\\7d2899a2-8792-4ade-a7a0-653fda7b4dea.png",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "Images/Organizations/Logos/7d2899a2-8792-4ade-a7a0-653fda7b4dea.png",
       "AssetKind": "All",
@@ -527,10 +527,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\Organizations\\Logos\\7d2899a2-8792-4ade-a7a0-653fda7b4dea.png"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\Organizations\\Logos\\81c5a057-bca9-431f-9b03-61db966d60d0.png",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\Organizations\\Logos\\81c5a057-bca9-431f-9b03-61db966d60d0.png",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "Images/Organizations/Logos/81c5a057-bca9-431f-9b03-61db966d60d0.png",
       "AssetKind": "All",
@@ -544,10 +544,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\Organizations\\Logos\\81c5a057-bca9-431f-9b03-61db966d60d0.png"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\Organizations\\Logos\\82922d86-e630-4025-8801-b2b9dd7921ca.png",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\Organizations\\Logos\\82922d86-e630-4025-8801-b2b9dd7921ca.png",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "Images/Organizations/Logos/82922d86-e630-4025-8801-b2b9dd7921ca.png",
       "AssetKind": "All",
@@ -561,10 +561,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\Organizations\\Logos\\82922d86-e630-4025-8801-b2b9dd7921ca.png"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\Organizations\\Logos\\8711df78-c5be-4870-b157-39f10287bcf7.jpg",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\Organizations\\Logos\\8711df78-c5be-4870-b157-39f10287bcf7.jpg",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "Images/Organizations/Logos/8711df78-c5be-4870-b157-39f10287bcf7.jpg",
       "AssetKind": "All",
@@ -578,10 +578,27 @@
       "OriginalItemSpec": "wwwroot\\Images\\Organizations\\Logos\\8711df78-c5be-4870-b157-39f10287bcf7.jpg"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\Organizations\\Logos\\8c3fae4f-8218-497f-a9cb-d3b394d5fd29.jpg",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\Organizations\\Logos\\8759f88a-6261-420c-bba3-ddd980a3977d.png",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "BasePath": "_content/TadarbProject",
+      "RelativePath": "Images/Organizations/Logos/8759f88a-6261-420c-bba3-ddd980a3977d.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\Organizations\\Logos\\8759f88a-6261-420c-bba3-ddd980a3977d.png"
+    },
+    {
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\Organizations\\Logos\\8c3fae4f-8218-497f-a9cb-d3b394d5fd29.jpg",
+      "SourceId": "TadarbProject",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "Images/Organizations/Logos/8c3fae4f-8218-497f-a9cb-d3b394d5fd29.jpg",
       "AssetKind": "All",
@@ -595,10 +612,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\Organizations\\Logos\\8c3fae4f-8218-497f-a9cb-d3b394d5fd29.jpg"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\Organizations\\Logos\\90d3c494-0c53-4226-97b7-916abb50e1a8.png",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\Organizations\\Logos\\90d3c494-0c53-4226-97b7-916abb50e1a8.png",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "Images/Organizations/Logos/90d3c494-0c53-4226-97b7-916abb50e1a8.png",
       "AssetKind": "All",
@@ -612,10 +629,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\Organizations\\Logos\\90d3c494-0c53-4226-97b7-916abb50e1a8.png"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\Organizations\\Logos\\9b4cf781-e7ff-48d8-b672-2b528f6c5690.png",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\Organizations\\Logos\\9b4cf781-e7ff-48d8-b672-2b528f6c5690.png",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "Images/Organizations/Logos/9b4cf781-e7ff-48d8-b672-2b528f6c5690.png",
       "AssetKind": "All",
@@ -629,10 +646,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\Organizations\\Logos\\9b4cf781-e7ff-48d8-b672-2b528f6c5690.png"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\Organizations\\Logos\\9f9ff5bd-8d9e-4acd-9080-48ec39409a7f.png",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\Organizations\\Logos\\9f9ff5bd-8d9e-4acd-9080-48ec39409a7f.png",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "Images/Organizations/Logos/9f9ff5bd-8d9e-4acd-9080-48ec39409a7f.png",
       "AssetKind": "All",
@@ -646,10 +663,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\Organizations\\Logos\\9f9ff5bd-8d9e-4acd-9080-48ec39409a7f.png"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\Organizations\\Logos\\a116acb8-2caf-4e63-8358-dc8931a46b6d.png",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\Organizations\\Logos\\a116acb8-2caf-4e63-8358-dc8931a46b6d.png",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "Images/Organizations/Logos/a116acb8-2caf-4e63-8358-dc8931a46b6d.png",
       "AssetKind": "All",
@@ -663,10 +680,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\Organizations\\Logos\\a116acb8-2caf-4e63-8358-dc8931a46b6d.png"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\Organizations\\Logos\\b56b074f-987a-41c5-ba44-cf83bc5e1783.png",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\Organizations\\Logos\\b56b074f-987a-41c5-ba44-cf83bc5e1783.png",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "Images/Organizations/Logos/b56b074f-987a-41c5-ba44-cf83bc5e1783.png",
       "AssetKind": "All",
@@ -680,10 +697,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\Organizations\\Logos\\b56b074f-987a-41c5-ba44-cf83bc5e1783.png"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\Organizations\\Logos\\b6388c20-9ce9-474b-b792-722a769614c6.png",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\Organizations\\Logos\\b6388c20-9ce9-474b-b792-722a769614c6.png",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "Images/Organizations/Logos/b6388c20-9ce9-474b-b792-722a769614c6.png",
       "AssetKind": "All",
@@ -697,10 +714,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\Organizations\\Logos\\b6388c20-9ce9-474b-b792-722a769614c6.png"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\Organizations\\Logos\\b6796fe4-89a9-420c-9d8c-e678141266b5.png",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\Organizations\\Logos\\b6796fe4-89a9-420c-9d8c-e678141266b5.png",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "Images/Organizations/Logos/b6796fe4-89a9-420c-9d8c-e678141266b5.png",
       "AssetKind": "All",
@@ -714,10 +731,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\Organizations\\Logos\\b6796fe4-89a9-420c-9d8c-e678141266b5.png"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\Organizations\\Logos\\b81c7a0a-cb11-4443-a951-ed456fac8ff1.png",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\Organizations\\Logos\\b81c7a0a-cb11-4443-a951-ed456fac8ff1.png",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "Images/Organizations/Logos/b81c7a0a-cb11-4443-a951-ed456fac8ff1.png",
       "AssetKind": "All",
@@ -731,10 +748,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\Organizations\\Logos\\b81c7a0a-cb11-4443-a951-ed456fac8ff1.png"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\Organizations\\Logos\\c1377fbe-6f23-48ef-a615-da76580d0818.png",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\Organizations\\Logos\\c1377fbe-6f23-48ef-a615-da76580d0818.png",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "Images/Organizations/Logos/c1377fbe-6f23-48ef-a615-da76580d0818.png",
       "AssetKind": "All",
@@ -748,10 +765,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\Organizations\\Logos\\c1377fbe-6f23-48ef-a615-da76580d0818.png"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\Organizations\\Logos\\c19538d0-d1eb-4352-bcbb-29a270967514.png",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\Organizations\\Logos\\c19538d0-d1eb-4352-bcbb-29a270967514.png",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "Images/Organizations/Logos/c19538d0-d1eb-4352-bcbb-29a270967514.png",
       "AssetKind": "All",
@@ -765,10 +782,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\Organizations\\Logos\\c19538d0-d1eb-4352-bcbb-29a270967514.png"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\Organizations\\Logos\\ca2c60a4-ed21-480f-b897-f58ae4c290c0.png",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\Organizations\\Logos\\ca2c60a4-ed21-480f-b897-f58ae4c290c0.png",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "Images/Organizations/Logos/ca2c60a4-ed21-480f-b897-f58ae4c290c0.png",
       "AssetKind": "All",
@@ -782,10 +799,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\Organizations\\Logos\\ca2c60a4-ed21-480f-b897-f58ae4c290c0.png"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\Organizations\\Logos\\cae52439-8177-4186-9a9e-97e939260c34.png",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\Organizations\\Logos\\cae52439-8177-4186-9a9e-97e939260c34.png",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "Images/Organizations/Logos/cae52439-8177-4186-9a9e-97e939260c34.png",
       "AssetKind": "All",
@@ -799,10 +816,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\Organizations\\Logos\\cae52439-8177-4186-9a9e-97e939260c34.png"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\Organizations\\Logos\\cdae85ff-5af9-45e8-8f24-db71bb354cd2.png",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\Organizations\\Logos\\cdae85ff-5af9-45e8-8f24-db71bb354cd2.png",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "Images/Organizations/Logos/cdae85ff-5af9-45e8-8f24-db71bb354cd2.png",
       "AssetKind": "All",
@@ -816,10 +833,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\Organizations\\Logos\\cdae85ff-5af9-45e8-8f24-db71bb354cd2.png"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\Organizations\\Logos\\cf7569e6-5993-449c-9443-6ad67f1e2623.png",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\Organizations\\Logos\\cf7569e6-5993-449c-9443-6ad67f1e2623.png",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "Images/Organizations/Logos/cf7569e6-5993-449c-9443-6ad67f1e2623.png",
       "AssetKind": "All",
@@ -833,10 +850,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\Organizations\\Logos\\cf7569e6-5993-449c-9443-6ad67f1e2623.png"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\Organizations\\Logos\\d693c757-4ea9-47ac-9d0d-7a954a8325fd.png",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\Organizations\\Logos\\d693c757-4ea9-47ac-9d0d-7a954a8325fd.png",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "Images/Organizations/Logos/d693c757-4ea9-47ac-9d0d-7a954a8325fd.png",
       "AssetKind": "All",
@@ -850,10 +867,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\Organizations\\Logos\\d693c757-4ea9-47ac-9d0d-7a954a8325fd.png"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\Organizations\\Logos\\d6bfcf65-bfbc-492c-aead-86b4846d1021.PNG",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\Organizations\\Logos\\d6bfcf65-bfbc-492c-aead-86b4846d1021.PNG",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "Images/Organizations/Logos/d6bfcf65-bfbc-492c-aead-86b4846d1021.PNG",
       "AssetKind": "All",
@@ -867,10 +884,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\Organizations\\Logos\\d6bfcf65-bfbc-492c-aead-86b4846d1021.PNG"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\Organizations\\Logos\\e5b616ca-b1d6-47e2-a21b-ca88cd008ed4.png",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\Organizations\\Logos\\e5b616ca-b1d6-47e2-a21b-ca88cd008ed4.png",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "Images/Organizations/Logos/e5b616ca-b1d6-47e2-a21b-ca88cd008ed4.png",
       "AssetKind": "All",
@@ -884,10 +901,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\Organizations\\Logos\\e5b616ca-b1d6-47e2-a21b-ca88cd008ed4.png"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\Organizations\\Logos\\f1d01adc-ee09-406b-9a23-8a3c5e243b24.png",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\Organizations\\Logos\\f1d01adc-ee09-406b-9a23-8a3c5e243b24.png",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "Images/Organizations/Logos/f1d01adc-ee09-406b-9a23-8a3c5e243b24.png",
       "AssetKind": "All",
@@ -901,10 +918,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\Organizations\\Logos\\f1d01adc-ee09-406b-9a23-8a3c5e243b24.png"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\Organizations\\Logos\\f897127d-c767-4572-9880-906492f14fbc.png",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\Organizations\\Logos\\f897127d-c767-4572-9880-906492f14fbc.png",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "Images/Organizations/Logos/f897127d-c767-4572-9880-906492f14fbc.png",
       "AssetKind": "All",
@@ -918,10 +935,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\Organizations\\Logos\\f897127d-c767-4572-9880-906492f14fbc.png"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\T.png",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\T.png",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "Images/T.png",
       "AssetKind": "All",
@@ -935,10 +952,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\T.png"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\tadarblogocircle.jpeg",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\tadarblogocircle.jpeg",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "Images/tadarblogocircle.jpeg",
       "AssetKind": "All",
@@ -952,10 +969,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\tadarblogocircle.jpeg"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\tadarblogocircle-removebg-preview.png",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\Images\\tadarblogocircle-removebg-preview.png",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "Images/tadarblogocircle-removebg-preview.png",
       "AssetKind": "All",
@@ -969,10 +986,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\tadarblogocircle-removebg-preview.png"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\js\\site.js",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\js\\site.js",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "js/site.js",
       "AssetKind": "All",
@@ -986,10 +1003,10 @@
       "OriginalItemSpec": "wwwroot\\js\\site.js"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.css",
       "AssetKind": "All",
@@ -1003,10 +1020,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.css.map",
       "AssetKind": "All",
@@ -1020,10 +1037,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.min.css",
       "AssetKind": "All",
@@ -1037,10 +1054,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.min.css.map",
       "AssetKind": "All",
@@ -1054,10 +1071,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.rtl.css",
       "AssetKind": "All",
@@ -1071,10 +1088,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.rtl.css.map",
       "AssetKind": "All",
@@ -1088,10 +1105,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.rtl.min.css",
       "AssetKind": "All",
@@ -1105,10 +1122,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.rtl.min.css.map",
       "AssetKind": "All",
@@ -1122,10 +1139,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.css",
       "AssetKind": "All",
@@ -1139,10 +1156,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.css.map",
       "AssetKind": "All",
@@ -1156,10 +1173,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.min.css",
       "AssetKind": "All",
@@ -1173,10 +1190,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.min.css.map",
       "AssetKind": "All",
@@ -1190,10 +1207,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.rtl.css",
       "AssetKind": "All",
@@ -1207,10 +1224,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.rtl.css.map",
       "AssetKind": "All",
@@ -1224,10 +1241,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css",
       "AssetKind": "All",
@@ -1241,10 +1258,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css.map",
       "AssetKind": "All",
@@ -1258,10 +1275,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.css",
       "AssetKind": "All",
@@ -1275,10 +1292,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.css.map",
       "AssetKind": "All",
@@ -1292,10 +1309,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.min.css",
       "AssetKind": "All",
@@ -1309,10 +1326,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.min.css.map",
       "AssetKind": "All",
@@ -1326,10 +1343,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.rtl.css",
       "AssetKind": "All",
@@ -1343,10 +1360,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.rtl.css.map",
       "AssetKind": "All",
@@ -1360,10 +1377,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css",
       "AssetKind": "All",
@@ -1377,10 +1394,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css.map",
       "AssetKind": "All",
@@ -1394,10 +1411,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.css",
       "AssetKind": "All",
@@ -1411,10 +1428,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.css.map",
       "AssetKind": "All",
@@ -1428,10 +1445,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.min.css",
       "AssetKind": "All",
@@ -1445,10 +1462,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.min.css.map",
       "AssetKind": "All",
@@ -1462,10 +1479,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.rtl.css",
       "AssetKind": "All",
@@ -1479,10 +1496,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.rtl.css.map",
       "AssetKind": "All",
@@ -1496,10 +1513,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css",
       "AssetKind": "All",
@@ -1513,10 +1530,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css.map",
       "AssetKind": "All",
@@ -1530,10 +1547,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.bundle.js",
       "AssetKind": "All",
@@ -1547,10 +1564,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.bundle.js.map",
       "AssetKind": "All",
@@ -1564,10 +1581,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.bundle.min.js",
       "AssetKind": "All",
@@ -1581,10 +1598,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.bundle.min.js.map",
       "AssetKind": "All",
@@ -1598,10 +1615,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.esm.js",
       "AssetKind": "All",
@@ -1615,10 +1632,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.esm.js.map",
       "AssetKind": "All",
@@ -1632,10 +1649,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.esm.min.js",
       "AssetKind": "All",
@@ -1649,10 +1666,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.esm.min.js.map",
       "AssetKind": "All",
@@ -1666,10 +1683,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.js",
       "AssetKind": "All",
@@ -1683,10 +1700,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.js.map",
       "AssetKind": "All",
@@ -1700,10 +1717,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.min.js",
       "AssetKind": "All",
@@ -1717,10 +1734,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.min.js.map",
       "AssetKind": "All",
@@ -1734,10 +1751,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\LICENSE",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\bootstrap\\LICENSE",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "lib/bootstrap/LICENSE",
       "AssetKind": "All",
@@ -1751,10 +1768,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\LICENSE"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\jquery\\dist\\jquery.js",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\jquery\\dist\\jquery.js",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "lib/jquery/dist/jquery.js",
       "AssetKind": "All",
@@ -1768,10 +1785,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery\\dist\\jquery.js"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "lib/jquery/dist/jquery.min.js",
       "AssetKind": "All",
@@ -1785,10 +1802,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery\\dist\\jquery.min.js"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "lib/jquery/dist/jquery.min.map",
       "AssetKind": "All",
@@ -1802,10 +1819,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery\\dist\\jquery.min.map"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\jquery\\LICENSE.txt",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\jquery\\LICENSE.txt",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "lib/jquery/LICENSE.txt",
       "AssetKind": "All",
@@ -1819,10 +1836,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery\\LICENSE.txt"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "lib/jquery-validation/dist/additional-methods.js",
       "AssetKind": "All",
@@ -1836,10 +1853,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "lib/jquery-validation/dist/additional-methods.min.js",
       "AssetKind": "All",
@@ -1853,10 +1870,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "lib/jquery-validation/dist/jquery.validate.js",
       "AssetKind": "All",
@@ -1870,10 +1887,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "lib/jquery-validation/dist/jquery.validate.min.js",
       "AssetKind": "All",
@@ -1887,10 +1904,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "lib/jquery-validation/LICENSE.md",
       "AssetKind": "All",
@@ -1904,10 +1921,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation\\LICENSE.md"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js",
       "AssetKind": "All",
@@ -1921,10 +1938,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js",
       "AssetKind": "All",
@@ -1938,10 +1955,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js"
     },
     {
-      "Identity": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
       "SourceId": "TadarbProject",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\TadarbAppGrad\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
       "BasePath": "_content/TadarbProject",
       "RelativePath": "lib/jquery-validation-unobtrusive/LICENSE.txt",
       "AssetKind": "All",
