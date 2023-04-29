@@ -19,51 +19,55 @@
                     <div class="media d-flex align-items-center">
                         <img src="~/@ViewBag.OrganizationImage" alt="..." width="65" class="mr-3 rounded-circle img-thumbnail shadow-sm">
                         <div class="media-body">
-                            <h5 class="m-0">@ViewBag.OrganizationName</h5>
+                            <h4 class="m-0">@ViewBag.OrganizationName</h4>
                         </div>
                     </div>
                 </div>
-
+                <h5>@ViewBag.Username </h5>
                 <p class="text-gray font-weight-bold text-uppercase px-3 small pb-4 mb-0">القائمة</p>
 
                 <ul class="nav flex-column bg-white mb-0">
                     <li class="nav-item">
-                        <a asp-controller="DepartmentUniversity" asp-action="Index" class="nav-link text-dark font-italic bg-light">
+                        <a asp-controller="" asp-action="" class="nav-link text-dark font-italic bg-light ">
                             <i class="fa-solid fa-house"></i>
                             الصفحة الرئيسية
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a asp-controller="DepartmentUniversity" asp-action="ManageDepartment" class="nav-link text-dark font-italic  bg-light">
-                            <i class="fa fa-address-card mr-3 text-primary fa-fw"></i>
-                            إدارة الاقسام
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a asp-controller="DepartmentUniversity" asp-action="ViewSupervisorsUser" class="nav-link text-dark font-italic  bg-light">
-                            <i class="fa-solid fa-building-user"></i>
-                            إدارة مشرفين التدريب
 
-                        </a>
-                    </li>
 
                     <li class="nav-item">
-                        <a asp-controller="DepartmentUniversity" asp-action="ViewOpportunities" class="nav-link text-dark font-italic  bg-light">
-                            <i class="fa-solid fa-person-chalkboard"></i>
-                            إدارة الفرص
+                        <a asp-controller="DepartmentUniversity" asp-action="ViewAcademicSupervisors" class="nav-link text-dark font-italic bg-light ">
+                            <i class="fa-solid fa-house"></i>
+                            أدارة المشرفين
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a asp-controller="DepartmentUniversity" asp-action="ViewDepartmentFiledSpecialties" class="nav-link text-dark font-italic  bg-light">
-                            <i class="fa-solid fa-book-open-reader"></i>
-                            إدارة التخصصات
+                        <a asp-controller="DepartmentUniversity" asp-action="ViewStudents" class="nav-link text-dark font-italic bg-light ">
+                            <i class="fa-solid fa-house"></i>
+                            أدارة الطلاب
                         </a>
                     </li>
+                    @*   <li class="nav-item">
+                    <a asp-controller="" asp-action="" class="nav-link text-dark font-italic bg-light">
+                    <i class="fa-solid fa-building-user"></i>
+                    إدارة مسؤولين الفروع
+
+                    </a>
+                    </li>
+
+                    <li class="nav-item">
+                    <a asp-controller="" asp-action="" class="nav-link text-dark font-italic bg-light">
+                    <i class="fa-solid fa-person-chalkboard"></i>
+                    إدارة الفرص
+                    </a>
+                    </li>
+                    <li class="nav-item">
+                    <a asp-controller="" asp-action="" class="nav-link text-dark font-italic bg-light">
+                    <i class="fa-solid fa-book-open-reader"></i>
+                    إدارة التخصصات
+                    </a>
+                    </li>*@
                 </ul>
-
-
-                @*            <p class="text-gray font-weight-bold text-uppercase px-3 small py-4 mb-0">Charts</p>
-                *@
 
 
             </div>

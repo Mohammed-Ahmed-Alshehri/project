@@ -163,6 +163,137 @@ namespace TadarbProject.Controllers
 
             return View(Employees);
         }
+        [HttpGet]
+        public IActionResult ViewStudents()
+        {
+
+            ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
+
+            int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
+
+            var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).FirstOrDefault();
+
+            var Employee = _DbContext.Employees.Where(item => item.UserAccount_UserId == RUserId).FirstOrDefault();
+
+            var Department = _DbContext.Departments.Where(item => item.DepartmentId == Employee.Department_DepartmentId).FirstOrDefault();
+
+
+            var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Department.Organization_OrganizationId).FirstOrDefault();
+
+
+            ViewBag.OrganizationName = OrganizationOfR.OrganizationName;
+            ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
+            ViewBag.Username = user.FullName;
+
+
+
+
+            IEnumerable<UserAcount> Student = Enumerable.Empty<UserAcount>();
+
+
+            Student = _DbContext.UserAcounts.FromSqlRaw($"Select * from UserAcounts WHERE UserId IN (Select UserAccount_UserId from UniversitiesTraineeStudents WHERE Department_DepartmentId  =  {Department.DepartmentId});").ToList();
+
+
+
+
+
+
+            
+
+
+
+            return View(Student);
+        }
+
+
+        [HttpGet]
+        public IActionResult AddStudents()
+        {
+            ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
+
+            int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
+
+            var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).FirstOrDefault();
+
+            var Employee = _DbContext.Employees.Where(item => item.UserAccount_UserId == RUserId).FirstOrDefault();
+
+            var Department = _DbContext.Departments.Where(item => item.DepartmentId == Employee.Department_DepartmentId).FirstOrDefault();
+
+
+            var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Department.Organization_OrganizationId).FirstOrDefault();
+
+
+            ViewBag.OrganizationName = OrganizationOfR.OrganizationName;
+            ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
+            ViewBag.Username = user.FullName;
+
+            return View();
+
+        }
+        [HttpPost]
+        public IActionResult AddStudents(StudentVM StudentVM)
+        {
+            int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
+
+
+              var Employee = _DbContext.Employees.Where(item => item.UserAccount_UserId == RUserId).FirstOrDefault();
+
+            var Department = _DbContext.Departments.Where(item => item.DepartmentId == Employee.Department_DepartmentId).FirstOrDefault();
+
+
+            var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Department.Organization_OrganizationId).FirstOrDefault();
+
+            var college = _DbContext.UniversityColleges.Where(item => item.Organization_OrganizationId == OrganizationOfR.OrganizationId).FirstOrDefault();
+
+
+
+            if (StudentVM == null)
+            {
+
+                return View();
+
+            }
+
+            var user = new UserAcount
+            {
+                UserEmail = StudentVM.userAcount.UserEmail,
+                UserPassword = StudentVM.userAcount.UserPassword,
+                FullName = StudentVM.userAcount.FullName,
+                Phone = StudentVM.userAcount.Phone,
+                City_CityId = college.City_CityId,
+                UserType = "Student",
+                ActivationStatus = "Not_Active"
+
+            };
+
+            _DbContext.UserAcounts.Add(user);
+
+            _DbContext.SaveChanges();
+
+
+            var Student = new UniversityTraineeStudent
+            {
+
+                Department_DepartmentId = Department.DepartmentId,
+                UserAccount_UserId = user.UserId,
+                UniversityStudentNumber = StudentVM.UniversityTraineeStudent.UniversityStudentNumber,
+                CompletedHours = StudentVM.UniversityTraineeStudent.CompletedHours,
+
+
+
+
+            };
+
+            _DbContext.UniversitiesTraineeStudents.Add(Student);
+
+            _DbContext.SaveChanges();
+
+
+
+            TempData["success"] = "تم إضافة حساب طالب بنجاح";
+            return RedirectToAction("ViewStudents");
+
+        }
 
 
 

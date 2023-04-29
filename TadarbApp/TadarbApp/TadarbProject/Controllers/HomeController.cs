@@ -134,6 +134,31 @@ namespace TadarbProject.Controllers
 
             }
 
+            var UserInDb7 = _DbContext.UserAcounts.Where(item => item.UserType.Equals("Training_Supervisor") && item.UserEmail.Equals(user.UserEmail) && item.UserPassword.Equals(user.UserPassword)).FirstOrDefault();
+
+
+            if (UserInDb7 != null)
+            {
+                _HttpContextAccessor.HttpContext.Session.SetString("Name", UserInDb7.UserEmail);
+
+                _HttpContextAccessor.HttpContext.Session.SetInt32("UserId", UserInDb7.UserId);
+
+                return RedirectToAction("Index", "TrainingSupervisor");
+
+            }
+            var UserInDb8 = _DbContext.UserAcounts.Where(item => item.UserType.Equals("Academic_supervisor") && item.UserEmail.Equals(user.UserEmail) && item.UserPassword.Equals(user.UserPassword)).FirstOrDefault();
+
+
+            if (UserInDb8 != null)
+            {
+                _HttpContextAccessor.HttpContext.Session.SetString("Name", UserInDb8.UserEmail);
+
+                _HttpContextAccessor.HttpContext.Session.SetInt32("UserId", UserInDb8.UserId);
+
+                return RedirectToAction("Index", "AcadmicSupervisor");
+
+            }
+
             return View();
 
 
