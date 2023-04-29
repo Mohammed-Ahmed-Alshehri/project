@@ -80,7 +80,7 @@ namespace TadarbProject.Controllers
             var DEPOfR = _DbContext.Departments.Where(item => item.Branch_BranchId == Branch.BranchId && item.DepartmentName.Equals("قسم ادارة مشرفين التدريب")).FirstOrDefault();
 
 
-            IEnumerable<UserAcount> Employees = Enumerable.Empty<UserAcount>(); ;
+            IEnumerable<UserAcount> Employees = Enumerable.Empty<UserAcount>();
 
 
             if (DEPOfR != null)
