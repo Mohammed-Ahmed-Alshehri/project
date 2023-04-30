@@ -28,12 +28,12 @@
                         </div>
                     </div>
                 </div>
-                <h5>@ViewBag.Username </h5>
+                <h5> مرحبا بك @ViewBag.Username </h5>
                 <p class="text-gray font-weight-bold text-uppercase px-3 small pb-4 mb-0">القائمة</p>
 
                 <ul class="nav flex-column bg-white mb-0">
                     <li class="nav-item">
-                        <a asp-controller="" asp-action="" class="nav-link text-dark font-italic bg-light ">
+                        <a asp-controller="" asp-action="" class="nav-link text-dark font-italic  ">
                             <i class="fa-solid fa-house"></i>
                             الصفحة الرئيسية
                         </a>
@@ -41,50 +41,30 @@
 
 
                     <li class="nav-item">
-                        <a asp-controller="DepartmentUniversity" asp-action="ViewAcademicSupervisors" class="nav-link text-dark font-italic bg-light ">
+                        <a asp-controller="DepartmentUniversity" asp-action="ViewAcademicSupervisors" class="nav-link text-dark font-italic ">
                             <i class="fa-solid fa-house"></i>
-                            أدارة المشرفين
+                            إدارة المشرفين
                         </a>
                     </li>
                     <li class="nav-item">
                         <a asp-controller="DepartmentUniversity" asp-action="ViewStudents" class="nav-link text-dark font-italic bg-light ">
                             <i class="fa-solid fa-house"></i>
-                            أدارة الطلاب
+                            إدارة الطلاب
                         </a>
                     </li>
-                    @*   <li class="nav-item">
-                    <a asp-controller="" asp-action="" class="nav-link text-dark font-italic bg-light">
-                    <i class="fa-solid fa-building-user"></i>
-                    إدارة مسؤولين الفروع
-
-                    </a>
-                    </li>
-
-                    <li class="nav-item">
-                    <a asp-controller="" asp-action="" class="nav-link text-dark font-italic bg-light">
-                    <i class="fa-solid fa-person-chalkboard"></i>
-                    إدارة الفرص
-                    </a>
-                    </li>
-                    <li class="nav-item">
-                    <a asp-controller="" asp-action="" class="nav-link text-dark font-italic bg-light">
-                    <i class="fa-solid fa-book-open-reader"></i>
-                    إدارة التخصصات
-                    </a>
-                    </li>*@
+                   
                 </ul>
 
 
             </div>
 
 
-            <!-- End vertical navbar -->
-            <!-- Page content holder -->
+            <!-- End vertical navbar1 -->
+            <!-- Page content holder1 -->
             <div class="page-content p-1" id="content">
-                <!-- Toggle button -->
+                <!-- Toggle button1 -->
                 <button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i class="fa fa-bars mr-2"></i><small class="text-uppercase font-weight-bold">القائمة</small></button>
             </div>
-
 
         </div>
 
@@ -108,37 +88,11 @@
 
                                     <th>اسم الطالب</th>
                                     <th>رقم الهاتف	</th>
-                                  
-
+                                
                                     <th class="text-center">البريد الالكتروني	</th>
-
-
                                 </tr>
                             </thead>
                             <tbody>
-
-                                @*  <tr>
-                                <td class="text-nowrap">
-                                <div class="font-weight-600">
-                                <div class="font-weight-600 ">
-                                احمد حمدان
-                                </div>
-
-                                </div>
-                                </td>
-                                <td class="text-nowrap"> 0559683335	</td>
-                                <td class="text-center">
-                                aaa@fff.com
-                                </td>
-
-                                <td class="text-center">
-                                <button type="button" class="btn btn-danger" fdprocessedid="ezqldw"><i class="fa fa-trash-alt"></i></button>
-
-                                </td>
-                                </tr>*@
-
-
-
                                 @foreach (var item in Model)
                                 {
                                     <tr>

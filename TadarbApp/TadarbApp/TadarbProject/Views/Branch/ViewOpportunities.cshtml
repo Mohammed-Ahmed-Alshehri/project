@@ -19,24 +19,25 @@
                         </div>
                     </div>
                 </div>
+                <h5> مرحبا بك @ViewBag.Username </h5>
 
                 <p class="text-gray font-weight-bold text-uppercase px-3 small pb-4 mb-0">القائمة</p>
 
                 <ul class="nav flex-column bg-white mb-0">
                     <li class="nav-item">
-                        <a asp-controller="Branch" asp-action="Index" class="nav-link text-dark font-italic bg-light ">
+                        <a asp-controller="Branch" asp-action="Index" class="nav-link text-dark font-italic  ">
                             <i class="fa-solid fa-house"></i>
                             الصفحة الرئيسية
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a asp-controller="Branch" asp-action="ManageDepartment" class="nav-link text-dark font-italic bg-light ">
+                        <a asp-controller="Branch" asp-action="ManageDepartment" class="nav-link text-dark font-italic ">
                             <i class="fa fa-address-card mr-3 text-primary fa-fw"></i>
                             إدارة الاقسام
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a asp-controller="Branch" asp-action="ViewSupervisorsUser" class="nav-link text-dark font-italic bg-light">
+                        <a asp-controller="Branch" asp-action="ViewSupervisorsUser" class="nav-link text-dark font-italic ">
                             <i class="fa-solid fa-building-user"></i>
                             إدارة مشرفين التدريب
 
@@ -44,13 +45,13 @@
                     </li>
 
                     <li class="nav-item">
-                        <a asp-controller="branch" asp-action="ViewOpportunities" class="nav-link text-dark font-italic bg-light bg-light">
+                        <a asp-controller="branch" asp-action="ViewOpportunities" class="nav-link text-dark font-italic  bg-light">
                             <i class="fa-solid fa-person-chalkboard"></i>
                             إدارة الفرص
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a asp-controller="branch" asp-action="ViewDepartmentFiledSpecialties" class="nav-link text-dark font-italic bg-light">
+                        <a asp-controller="branch" asp-action="ViewDepartmentFiledSpecialties" class="nav-link text-dark font-italic ">
                             <i class="fa-solid fa-book-open-reader"></i>
                             إدارة التخصصات
                         </a>
@@ -61,8 +62,8 @@
             </div>
 
 
-            <!-- End vertical navbar -->
-            <!-- Page content holder -->
+            <!-- End vertical navbar1 -->
+            <!-- Page content holder1 -->
             <div class="page-content p-1" id="content">
                 <!-- Toggle button -->
                 <button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i class="fa fa-bars mr-2"></i><small class="text-uppercase font-weight-bold">القائمة</small></button>

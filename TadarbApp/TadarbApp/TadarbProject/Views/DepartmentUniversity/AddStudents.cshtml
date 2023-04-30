@@ -23,12 +23,12 @@
                         </div>
                     </div>
                 </div>
-                <h5>@ViewBag.Username </h5>
+                <h5> مرحبا بك @ViewBag.Username </h5>
                 <p class="text-gray font-weight-bold text-uppercase px-3 small pb-4 mb-0">القائمة</p>
 
                 <ul class="nav flex-column bg-white mb-0">
                     <li class="nav-item">
-                        <a asp-controller="" asp-action="" class="nav-link text-dark font-italic bg-light ">
+                        <a asp-controller="" asp-action="" class="nav-link text-dark font-italic  ">
                             <i class="fa-solid fa-house"></i>
                             الصفحة الرئيسية
                         </a>
@@ -36,37 +36,18 @@
 
 
                     <li class="nav-item">
-                        <a asp-controller="DepartmentUniversity" asp-action="ViewAcademicSupervisors" class="nav-link text-dark font-italic bg-light ">
+                        <a asp-controller="DepartmentUniversity" asp-action="ViewAcademicSupervisors" class="nav-link text-dark font-italic  ">
                             <i class="fa-solid fa-house"></i>
-                            أدارة المشرفين
+                            إدارة المشرفين
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a asp-controller="DepartmentUniversity" asp-action="ViewStudents" class="nav-link text-dark font-italic bg-light ">
+                        <a asp-controller="DepartmentUniversity" asp-action="ViewStudents" class="nav-link text-dark font-italic  ">
                             <i class="fa-solid fa-house"></i>
-                            أدارة الطلاب
+                            إدارة الطلاب
                         </a>
                     </li>
-                    @*   <li class="nav-item">
-                    <a asp-controller="" asp-action="" class="nav-link text-dark font-italic bg-light">
-                    <i class="fa-solid fa-building-user"></i>
-                    إدارة مسؤولين الفروع
-
-                    </a>
-                    </li>
-
-                    <li class="nav-item">
-                    <a asp-controller="" asp-action="" class="nav-link text-dark font-italic bg-light">
-                    <i class="fa-solid fa-person-chalkboard"></i>
-                    إدارة الفرص
-                    </a>
-                    </li>
-                    <li class="nav-item">
-                    <a asp-controller="" asp-action="" class="nav-link text-dark font-italic bg-light">
-                    <i class="fa-solid fa-book-open-reader"></i>
-                    إدارة التخصصات
-                    </a>
-                    </li>*@
+                    
                 </ul>
 
 
@@ -97,7 +78,7 @@
 
                                 <div class="form-outline" style="text-align: right;">
                                     <i class="fa-solid fa-user"></i>
-                                    <label class="form-label" for="FullName" style="font-size:20px;">الاسم الثلاثي للطالب </label>
+                                    <label class="form-label" for="FullName" style="font-size:20px;">الاسم الثلاثي  </label>
 
                                     <input asp-for="userAcount.FullName" type="text" id="FullNameID" class="form-control form-control-lg" required />
 
@@ -111,14 +92,14 @@
 
                              <div class="mb-4 pb-2">
                             <i class="fa-regular fa-id-card"></i>
-                            <label class="form-label" for="CompletedHours" style="font-size:20px;">عدد الساعات المنجزه </label>
+                            <label class="form-label" for="CompletedHours" style="font-size:20px;">عدد الساعات المكتسبة </label>
                             <input type="number" asp-for="UniversityTraineeStudent.CompletedHours" id="CompletedHours" class="form-control form-control-lg" required />
                             <div class="invalid-feedback" style="text-align: right;"> الرجاء إدخال عدد الساعات المكتسبة </div>
                             </div>
 
                         <div class="mb-4 pb-2">
                             <i class="fa-regular fa-id-card"></i>
-                            <label class="form-label" for="EmployeeSSN" style="font-size:20px;">الرقم الجامعي للطالب</label>
+                            <label class="form-label" for="EmployeeSSN" style="font-size:20px;">الرقم الجامعي </label>
                             <input type="number" asp-for="UniversityTraineeStudent.UniversityStudentNumber" id="EmployeeSSN" class="form-control form-control-lg" required />
                             <div class="invalid-feedback" style="text-align: right;"> الرجاء إدخال الرقم الجامعي </div>
                         </div>
@@ -134,7 +115,7 @@
 
                         <div class="mb-4 pb-2">
                             <i class="fa-solid fa-at"></i>
-                            <label class="form-label" for="UserEmail" style="font-size:20px;">البريد الإلكتروني للطالب</label>
+                            <label class="form-label" for="UserEmail" style="font-size:20px;">البريد الإلكتروني </label>
                             <input type="email" asp-for="userAcount.UserEmail" id="UserEmailID" class="form-control form-control-lg" required />
                             <div class="invalid-feedback" id="UserEmailMassage" style="text-align: right;"> الرجاء إدخال البريد الإلكتروني </div>
                         </div>

@@ -27,9 +27,8 @@ namespace TadarbProject.Controllers
         {
 
             ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
-
             int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
-
+            var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).FirstOrDefault();
             var Branch = _DbContext.OrganizationBranches_TrainProv.Where(item => item.Responsible_UserId == RUserId).FirstOrDefault();
 
             var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Branch.Organization_OrganizationId).FirstOrDefault();
@@ -37,7 +36,7 @@ namespace TadarbProject.Controllers
 
             ViewBag.OrganizationName = OrganizationOfR.OrganizationName;
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
-
+            ViewBag.Username = user.FullName;
             return View();
 
         }
@@ -47,9 +46,8 @@ namespace TadarbProject.Controllers
         {
 
             ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
-
             int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
-
+            var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).FirstOrDefault();
             var Branch = _DbContext.OrganizationBranches_TrainProv.Where(item => item.Responsible_UserId == RUserId).FirstOrDefault();
 
             var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Branch.Organization_OrganizationId).FirstOrDefault();
@@ -57,7 +55,7 @@ namespace TadarbProject.Controllers
 
             ViewBag.OrganizationName = OrganizationOfR.OrganizationName;
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
-
+            ViewBag.Username = user.FullName;
             return View();
         }
 
@@ -68,7 +66,7 @@ namespace TadarbProject.Controllers
             ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
 
             int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
-
+            var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).FirstOrDefault();
             var Branch = _DbContext.OrganizationBranches_TrainProv.Where(item => item.Responsible_UserId == RUserId).FirstOrDefault();
 
             var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Branch.Organization_OrganizationId).FirstOrDefault();
@@ -76,7 +74,7 @@ namespace TadarbProject.Controllers
 
             ViewBag.OrganizationName = OrganizationOfR.OrganizationName;
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
-
+            ViewBag.Username = user.FullName;
             var DEPOfR = _DbContext.Departments.Where(item => item.Branch_BranchId == Branch.BranchId && item.DepartmentName.Equals("قسم ادارة مشرفين التدريب")).FirstOrDefault();
 
 
@@ -103,7 +101,7 @@ namespace TadarbProject.Controllers
             ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
 
             int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
-
+            var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).FirstOrDefault();
             var Branch = _DbContext.OrganizationBranches_TrainProv.Where(item => item.Responsible_UserId == RUserId).FirstOrDefault();
 
             var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Branch.Organization_OrganizationId).FirstOrDefault();
@@ -111,7 +109,7 @@ namespace TadarbProject.Controllers
 
             ViewBag.OrganizationName = OrganizationOfR.OrganizationName;
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
-
+            ViewBag.Username = user.FullName;
 
 
             return View();
@@ -199,7 +197,7 @@ namespace TadarbProject.Controllers
             ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
 
             int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
-
+            var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).FirstOrDefault();
             var Branch = _DbContext.OrganizationBranches_TrainProv.Where(item => item.Responsible_UserId == RUserId).FirstOrDefault();
 
             var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Branch.Organization_OrganizationId).FirstOrDefault();
@@ -207,7 +205,7 @@ namespace TadarbProject.Controllers
 
             ViewBag.OrganizationName = OrganizationOfR.OrganizationName;
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
-
+            ViewBag.Username = user.FullName;
 
             return View();
 
@@ -266,7 +264,7 @@ namespace TadarbProject.Controllers
             ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
 
             int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
-
+            var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).FirstOrDefault();
             var Branch = _DbContext.OrganizationBranches_TrainProv.Where(item => item.Responsible_UserId == RUserId).FirstOrDefault();
 
             var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Branch.Organization_OrganizationId).FirstOrDefault();
@@ -274,17 +272,17 @@ namespace TadarbProject.Controllers
 
             ViewBag.OrganizationName = OrganizationOfR.OrganizationName;
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
-
+            ViewBag.Username = user.FullName;
             return View();
 
         }
         [HttpGet]
         public IActionResult AddDepartmentFiledSpecialties()
         {
-            //ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
+            ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
 
             int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
-
+            var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).FirstOrDefault();
             var Branch = _DbContext.OrganizationBranches_TrainProv.Where(item => item.Responsible_UserId == RUserId).FirstOrDefault();
 
             var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Branch.Organization_OrganizationId).FirstOrDefault();
@@ -292,7 +290,7 @@ namespace TadarbProject.Controllers
 
             ViewBag.OrganizationName = OrganizationOfR.OrganizationName;
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
-
+            ViewBag.Username = user.FullName;
 
             SpecialitiesVM specialitiesVM = new()
             {
@@ -389,10 +387,10 @@ namespace TadarbProject.Controllers
         [HttpGet]
         public IActionResult ViewDepartmentFiledSpecialties()
         {
-            //ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
+            ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
 
             int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
-
+            var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).FirstOrDefault();
             var Branch = _DbContext.OrganizationBranches_TrainProv.Where(item => item.Responsible_UserId == RUserId).FirstOrDefault();
 
             var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Branch.Organization_OrganizationId).FirstOrDefault();
@@ -402,7 +400,7 @@ namespace TadarbProject.Controllers
 
             ViewBag.OrganizationName = OrganizationOfR.OrganizationName;
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
-
+            ViewBag.Username = user.FullName;
 
 
             return View(Department);

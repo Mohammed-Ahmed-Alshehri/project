@@ -24,10 +24,9 @@ namespace TadarbProject.Controllers
         }
         public IActionResult Index()
         {
-            //ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
-
+           ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
             int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
-
+            var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).FirstOrDefault();
             var Department = _DbContext.Departments.Where(item => item.Responsible_UserId == RUserId).FirstOrDefault();
 
             var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Department.Organization_OrganizationId).FirstOrDefault();
@@ -36,19 +35,20 @@ namespace TadarbProject.Controllers
 
             ViewBag.OrganizationName = OrganizationOfR.OrganizationName + " - " + Department.DepartmentName;
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
-
+            ViewBag.Username = user.FullName;
 
             return View();
         }
 
 
 
-
+        [HttpGet]
         public IActionResult AddAcademicSupervisor()
         {
-            // ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
 
+            ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
             int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
+            var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).FirstOrDefault();
 
             var Department = _DbContext.Departments.Where(item => item.Responsible_UserId == RUserId).FirstOrDefault();
 
@@ -57,7 +57,7 @@ namespace TadarbProject.Controllers
 
             ViewBag.OrganizationName = OrganizationOfR.OrganizationName + " - " + Department.DepartmentName;
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
-
+            ViewBag.Username = user.FullName;
 
             return View();
         }
@@ -66,8 +66,6 @@ namespace TadarbProject.Controllers
         [HttpPost]
         public IActionResult AddAcademicSupervisor(EmployeeVM employeeVM)
         {
-
-
 
             int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
 
@@ -103,8 +101,6 @@ namespace TadarbProject.Controllers
             _DbContext.SaveChanges();
 
 
-
-
             var EMP = new Employee
             {
 
@@ -112,9 +108,6 @@ namespace TadarbProject.Controllers
                 Job_JobId = 4,
                 SSN = employeeVM.employee.SSN,
                 UserAccount_UserId = user.UserId,
-
-
-
             };
 
             _DbContext.Employees.Add(EMP);
@@ -130,9 +123,10 @@ namespace TadarbProject.Controllers
 
         public IActionResult ViewAcademicSupervisors()
         {
-            // ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
+             ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
 
             int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
+            var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).FirstOrDefault();
 
             var Department = _DbContext.Departments.Where(item => item.Responsible_UserId == RUserId).FirstOrDefault();
 
@@ -141,6 +135,7 @@ namespace TadarbProject.Controllers
 
             ViewBag.OrganizationName = OrganizationOfR.OrganizationName + " - " + Department.DepartmentName;
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
+            ViewBag.Username = user.FullName;
 
             IEnumerable<UserAcount> Employees = Enumerable.Empty<UserAcount>();
 

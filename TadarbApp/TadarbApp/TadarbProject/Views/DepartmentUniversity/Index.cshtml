@@ -10,8 +10,9 @@
 </head>
 
 <partial name="_Notification" />
+<body style="background: linear-gradient(#1c4c64,#5590ad);">
 
-<div class="row" style="background: linear-gradient(#1c4c64,#5590ad); background-repeat: no-repeat;
+<div class="row" style=" background-repeat: no-repeat;
             background-size: cover;
             height: 100vh; width: 100vw; /*padding:50px 5px 5px 5px;*/">
 
@@ -26,12 +27,12 @@
                     </div>
                 </div>
             </div>
-            <h5>@ViewBag.Username </h5>
+                <h5> مرحبا بك @ViewBag.Username </h5>
             <p class="text-gray font-weight-bold text-uppercase px-3 small pb-4 mb-0">القائمة</p>
 
             <ul class="nav flex-column bg-white mb-0">
                 <li class="nav-item">
-                    <a asp-controller="" asp-action="" class="nav-link text-dark font-italic bg-light ">
+                        <a asp-controller="DepartmentUniversity" asp-action="Index" class="nav-link text-dark font-italic bg-light ">
                         <i class="fa-solid fa-house"></i>
                         الصفحة الرئيسية
                     </a>
@@ -39,37 +40,18 @@
 
 
                 <li class="nav-item">
-                    <a asp-controller="DepartmentUniversity" asp-action="ViewAcademicSupervisors" class="nav-link text-dark font-italic bg-light ">
+                    <a asp-controller="DepartmentUniversity" asp-action="ViewAcademicSupervisors" class="nav-link text-dark font-italic  ">
                         <i class="fa-solid fa-house"></i>
-                        أدارة المشرفين
+                        إدارة المشرفين
                     </a>
                 </li>
                    <li class="nav-item">
-                    <a asp-controller="DepartmentUniversity" asp-action="ViewStudents" class="nav-link text-dark font-italic bg-light ">
+                    <a asp-controller="DepartmentUniversity" asp-action="ViewStudents" class="nav-link text-dark font-italic ">
                         <i class="fa-solid fa-house"></i>
-                        أدارة الطلاب
+                        إدارة الطلاب
                     </a>
                 </li>
-             @*   <li class="nav-item">
-                <a asp-controller="" asp-action="" class="nav-link text-dark font-italic bg-light">
-                        <i class="fa-solid fa-building-user"></i>
-                        إدارة مسؤولين الفروع
-
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                <a asp-controller="" asp-action="" class="nav-link text-dark font-italic bg-light">
-                        <i class="fa-solid fa-person-chalkboard"></i>
-                        إدارة الفرص
-                    </a>
-                </li>
-                <li class="nav-item">
-                <a asp-controller="" asp-action="" class="nav-link text-dark font-italic bg-light">
-                        <i class="fa-solid fa-book-open-reader"></i>
-                        إدارة التخصصات
-                    </a>
-                </li>*@
+             
             </ul>
 
 
@@ -89,14 +71,15 @@
     <div class="col-sm-6">
 
 
-        @*        content page here
+        @*        content page here1
         *@
-        @*        content page 
+        @*        content page1 
         *@
 
     </div>
     <div class="col-sm-2"></div>
 </div>
+</body>
 @section Scripts{
 
 

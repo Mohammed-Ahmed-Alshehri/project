@@ -29,7 +29,7 @@ namespace TadarbProject.Controllers
             ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
 
             int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
-
+            var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).FirstOrDefault();
             var College = _DbContext.UniversityColleges.Where(item => item.Responsible_UserId == RUserId).FirstOrDefault();
 
             var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == College.Organization_OrganizationId).FirstOrDefault();
@@ -37,7 +37,7 @@ namespace TadarbProject.Controllers
 
             ViewBag.OrganizationName = OrganizationOfR.OrganizationName;
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
-
+            ViewBag.Username = user.FullName;
             return View();
 
 
@@ -51,9 +51,9 @@ namespace TadarbProject.Controllers
         {
 
             ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
-
+            
             int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
-
+            var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).FirstOrDefault();
             var College = _DbContext.UniversityColleges.Where(item => item.Responsible_UserId == RUserId).FirstOrDefault();
 
             var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == College.Organization_OrganizationId).FirstOrDefault();
@@ -61,7 +61,7 @@ namespace TadarbProject.Controllers
 
             ViewBag.OrganizationName = OrganizationOfR.OrganizationName;
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
-
+            ViewBag.Username = user.FullName;
             var DEPOfR = _DbContext.Departments.Where(item => item.Organization_OrganizationId == OrganizationOfR.OrganizationId && item.DepartmentName.Equals("قسم ادارة مسؤولين اقسام الجامعة")).FirstOrDefault();
 
             IEnumerable<UserAcount> OrgEMP = Enumerable.Empty<UserAcount>(); ;
@@ -87,9 +87,9 @@ namespace TadarbProject.Controllers
         {
 
             ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
-
+            
             int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
-
+            var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).FirstOrDefault();
             var College = _DbContext.UniversityColleges.Where(item => item.Responsible_UserId == RUserId).FirstOrDefault();
 
             var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == College.Organization_OrganizationId).FirstOrDefault();
@@ -97,7 +97,7 @@ namespace TadarbProject.Controllers
 
             ViewBag.OrganizationName = OrganizationOfR.OrganizationName;
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
-
+            ViewBag.Username = user.FullName;
 
 
             return View();
@@ -198,11 +198,9 @@ namespace TadarbProject.Controllers
         [HttpGet]
         public IActionResult AddViewDepartmentUni()
         {
-
+            //ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
             int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
-
-
-
+            //var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).FirstOrDefault();
             var College = _DbContext.UniversityColleges.Where(item => item.Responsible_UserId == RUserId).FirstOrDefault();
 
             var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == College.Organization_OrganizationId).FirstOrDefault();
@@ -210,7 +208,7 @@ namespace TadarbProject.Controllers
 
             ViewBag.OrganizationName = OrganizationOfR.OrganizationName;
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
-
+            //ViewBag.Username = user.FullName;
 
 
             IEnumerable<UserAcount> CollegeEMP = Enumerable.Empty<UserAcount>(); ;
@@ -257,14 +255,8 @@ namespace TadarbProject.Controllers
         {
 
             int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
-
-
-
             var College = _DbContext.UniversityColleges.Where(item => item.Responsible_UserId == RUserId).FirstOrDefault();
-
             var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == College.Organization_OrganizationId).FirstOrDefault();
-
-
             ViewBag.OrganizationName = OrganizationOfR.OrganizationName;
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
 
@@ -324,11 +316,7 @@ namespace TadarbProject.Controllers
         public IActionResult GetAllDEPs()
         {
 
-
-
             int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
-
-
 
             var College = _DbContext.UniversityColleges.Where(item => item.Responsible_UserId == RUserId).FirstOrDefault();
 
@@ -433,8 +421,6 @@ namespace TadarbProject.Controllers
 
 
         //}
-
-
 
     }
 }

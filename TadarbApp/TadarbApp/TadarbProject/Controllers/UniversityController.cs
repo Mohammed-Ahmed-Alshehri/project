@@ -31,12 +31,13 @@ namespace TadarbProject.Controllers
             ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
 
             int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
-
+            var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).FirstOrDefault();
             var OrganizationOfR = _DbContext.Organizations.Where(item => item.ResponsibleUserId == RUserId).FirstOrDefault();
 
 
             ViewBag.OrganizationName = OrganizationOfR.OrganizationName;
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
+            ViewBag.Username = user.FullName;
             return View();
         }
 
@@ -45,7 +46,7 @@ namespace TadarbProject.Controllers
             ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
 
             int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
-
+            var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).FirstOrDefault();
             var OrganizationOfR = _DbContext.Organizations.Where(item => item.ResponsibleUserId == RUserId).FirstOrDefault();
 
 
@@ -60,6 +61,7 @@ namespace TadarbProject.Controllers
 
             ViewBag.OrganizationName = OrganizationOfR.OrganizationName;
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
+            ViewBag.Username = user.FullName;
             return View(College);
 
         }
@@ -69,7 +71,7 @@ namespace TadarbProject.Controllers
             ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
 
             int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
-
+            var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).FirstOrDefault();
             var OrganizationOfR = _DbContext.Organizations.Where(item => item.ResponsibleUserId == RUserId).FirstOrDefault();
 
             var DEPOfR = _DbContext.Departments.Where(item => item.Organization_OrganizationId == OrganizationOfR.OrganizationId && item.DepartmentName.Equals("قسم ادارة الكليات")).FirstOrDefault();
@@ -77,7 +79,7 @@ namespace TadarbProject.Controllers
 
             ViewBag.OrganizationName = OrganizationOfR.OrganizationName;
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
-
+            ViewBag.Username = user.FullName;
 
             IEnumerable<UserAcount> OrgEMP = Enumerable.Empty<UserAcount>(); ;
 
@@ -168,14 +170,15 @@ namespace TadarbProject.Controllers
         [HttpGet]
         public IActionResult EditColleges(int? id)
         {
+            ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
             int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
-
+            var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).FirstOrDefault();
             var OrganizationOfR = _DbContext.Organizations.Where(item => item.ResponsibleUserId == RUserId).FirstOrDefault();
             //var CountryOfr = _DbContext.Countries.Where(item => item.CountryId==)
 
             ViewBag.OrganizationName = OrganizationOfR.OrganizationName;
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
-
+            ViewBag.Username = user.FullName;
             CollegeVM collegeVM = new()
             {
 
@@ -240,13 +243,13 @@ namespace TadarbProject.Controllers
         [HttpGet]
         public IActionResult ViewSpecialities()
         {
-
+            ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
             int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
-
+            var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).FirstOrDefault();
             var OrganizationOfR = _DbContext.Organizations.Where(item => item.ResponsibleUserId == RUserId).FirstOrDefault();
             ViewBag.OrganizationName = OrganizationOfR.OrganizationName;
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
-
+            ViewBag.Username = user.FullName;
 
 
             return View();
@@ -256,14 +259,15 @@ namespace TadarbProject.Controllers
         [HttpGet]
         public IActionResult AddSpecialities()
         {
+            ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
             int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
-
+            var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).FirstOrDefault();
             var OrganizationOfR = _DbContext.Organizations.Where(item => item.ResponsibleUserId == RUserId).FirstOrDefault();
 
 
             ViewBag.OrganizationName = OrganizationOfR.OrganizationName;
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
-
+            ViewBag.Username = user.FullName;
 
             SpecialitiesVM specialitiesVM = new()
             {
@@ -440,13 +444,14 @@ namespace TadarbProject.Controllers
         public IActionResult ViewUsers()
 
         {
+            ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
             int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
-
+            var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).FirstOrDefault();
             var OrganizationOfR = _DbContext.Organizations.Where(item => item.ResponsibleUserId == RUserId).FirstOrDefault();
 
             ViewBag.OrganizationName = OrganizationOfR.OrganizationName;
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
-
+            ViewBag.Username = user.FullName;
 
             var DEPOfR = _DbContext.Departments.Where(item => item.Organization_OrganizationId == OrganizationOfR.OrganizationId && item.DepartmentName.Equals("قسم ادارة الكليات")).FirstOrDefault();
 
@@ -468,13 +473,15 @@ namespace TadarbProject.Controllers
         [HttpGet]
         public IActionResult AddUsers()
         {
+            ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
             int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
-
+            var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).FirstOrDefault();
             var OrganizationOfR = _DbContext.Organizations.Where(item => item.ResponsibleUserId == RUserId).FirstOrDefault();
 
 
             ViewBag.OrganizationName = OrganizationOfR.OrganizationName;
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
+            ViewBag.Username = user.FullName;
             return View();
         }
 
