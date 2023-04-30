@@ -51,7 +51,7 @@ namespace TadarbProject.Controllers
         {
 
             ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
-            
+
             int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
             var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).FirstOrDefault();
             var College = _DbContext.UniversityColleges.Where(item => item.Responsible_UserId == RUserId).FirstOrDefault();
@@ -87,7 +87,7 @@ namespace TadarbProject.Controllers
         {
 
             ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
-            
+
             int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
             var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).FirstOrDefault();
             var College = _DbContext.UniversityColleges.Where(item => item.Responsible_UserId == RUserId).FirstOrDefault();

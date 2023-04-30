@@ -24,7 +24,7 @@ namespace TadarbProject.Controllers
         }
         public IActionResult Index()
         {
-           ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
+            ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
             int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
             var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).FirstOrDefault();
             var Department = _DbContext.Departments.Where(item => item.Responsible_UserId == RUserId).FirstOrDefault();
@@ -123,7 +123,7 @@ namespace TadarbProject.Controllers
 
         public IActionResult ViewAcademicSupervisors()
         {
-             ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
+            ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
 
             int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
             var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).FirstOrDefault();
@@ -143,21 +143,13 @@ namespace TadarbProject.Controllers
             Employees = _DbContext.UserAcounts.FromSqlRaw("Select * from UserAcounts WHERE UserId IN " +
             $"(Select UserAccount_UserId from Employees WHERE Department_DepartmentId = {Department.DepartmentId});").ToList();
 
-            //try
-            //{
-            //    Employees = _DbContext.UserAcounts.FromSqlRaw("Select * from UserAcounts WHERE UserId IN " +
-            //  $"(Select UserAccount_UserId from Employees WHERE Department_DepartmentId = {Department.DepartmentId});").ToList();
-            //}
-
-            //catch (Exception ex)
-            //{
-            //    Employees = Enumerable.Empty<UserAcount>();
-            //}
 
 
 
             return View(Employees);
         }
+
+
         [HttpGet]
         public IActionResult ViewStudents()
         {
@@ -183,21 +175,7 @@ namespace TadarbProject.Controllers
 
 
 
-            IEnumerable<UserAcount> Student = Enumerable.Empty<UserAcount>();
-
-
-            Student = _DbContext.UserAcounts.FromSqlRaw($"Select * from UserAcounts WHERE UserId IN (Select UserAccount_UserId from UniversitiesTraineeStudents WHERE Department_DepartmentId  =  {Department.DepartmentId});").ToList();
-
-
-
-
-
-
-            
-
-
-
-            return View(Student);
+            return View();
         }
 
 
@@ -225,13 +203,15 @@ namespace TadarbProject.Controllers
             return View();
 
         }
+
+
         [HttpPost]
         public IActionResult AddStudents(StudentVM StudentVM)
         {
             int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
 
 
-              var Employee = _DbContext.Employees.Where(item => item.UserAccount_UserId == RUserId).FirstOrDefault();
+            var Employee = _DbContext.Employees.Where(item => item.UserAccount_UserId == RUserId).FirstOrDefault();
 
             var Department = _DbContext.Departments.Where(item => item.DepartmentId == Employee.Department_DepartmentId).FirstOrDefault();
 
@@ -291,9 +271,90 @@ namespace TadarbProject.Controllers
         }
 
 
+        #region
+
+
+        [HttpGet]
+        public IActionResult GetStudentsList()
+        {
+
+
+
+            int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
+
+            var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).FirstOrDefault();
+
+            var Employee = _DbContext.Employees.Where(item => item.UserAccount_UserId == RUserId).FirstOrDefault();
+
+            var Department = _DbContext.Departments.Where(item => item.DepartmentId == Employee.Department_DepartmentId).FirstOrDefault();
+
+            var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Department.Organization_OrganizationId).FirstOrDefault();
+
+
+            IEnumerable<UniversityTraineeStudent> Students = Enumerable.Empty<UniversityTraineeStudent>();
+
+
+            Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId}")
+                   .AsNoTracking().Include(item => item.user).ToList();
+
+
+            return Json(new { Students });
+        }
+
+
+        [HttpGet]
+        public IActionResult GetStudentsByNameOrNumber(string? filter)
+        {
+            IEnumerable<UniversityTraineeStudent> Students = Enumerable.Empty<UniversityTraineeStudent>();
+
+            if (filter == null)
+            {
+
+                return Json(new { Students });
+
+            }
+
+
+            int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
+
+            var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).FirstOrDefault();
+
+            var Employee = _DbContext.Employees.Where(item => item.UserAccount_UserId == RUserId).FirstOrDefault();
+
+            var Department = _DbContext.Departments.Where(item => item.DepartmentId == Employee.Department_DepartmentId).FirstOrDefault();
+
+            var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Department.Organization_OrganizationId).FirstOrDefault();
+
+            if (Char.IsDigit(filter, 0))
+            {
+
+                Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId} AND " +
+                    $"UniversityStudentNumber = '{filter}'")
+                       .AsNoTracking().Include(item => item.user).ToList();
+            }
+            else
+            {
+                Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId =2 AND " +
+                    $"UserAccount_UserId IN (SELECT UserId FROM UserAcounts WHERE UserAcounts.FullName LIKE '{filter}%')")
+                .AsNoTracking().Include(item => item.user).ToList();
+
+            }
+
+
+
+
+
+
+            return Json(new { Students });
+        }
+
+
+        #endregion
 
 
 
 
     }
+
+
 }

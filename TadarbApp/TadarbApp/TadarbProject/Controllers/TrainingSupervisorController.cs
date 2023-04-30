@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using TadarbProject.Data;
 using TadarbProject.Models;
-using TadarbProject.Models.ViewModels;
 using TEST2.Services;
 
 namespace TadarbProject.Controllers
@@ -41,7 +39,7 @@ namespace TadarbProject.Controllers
 
             ViewBag.OrganizationName = OrganizationOfR.OrganizationName;
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
-             ViewBag.Username = user.FullName;
+            ViewBag.Username = user.FullName;
 
 
 
@@ -49,7 +47,7 @@ namespace TadarbProject.Controllers
 
         }
 
-       
+
 
     }
 }

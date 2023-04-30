@@ -1,5 +1,4 @@
-﻿@model IEnumerable<UserAcount>
-@{
+﻿@{
     ViewData["Title"] = "قائمة  الطلاب الراغبين بالتدريب";
 }
 
@@ -52,7 +51,7 @@
                             إدارة الطلاب
                         </a>
                     </li>
-                   
+
                 </ul>
 
 
@@ -79,63 +78,190 @@
                     </a>
 
                 </div>
-                <div class="card-body">
-                    <div class="table-responsive no-radius">
-
-                        <table class="table table-hover table-center" style="font-size:18px">
-                            <thead>
-                                <tr>
-
-                                    <th>اسم الطالب</th>
-                                    <th>رقم الهاتف	</th>
-                                
-                                    <th class="text-center">البريد الالكتروني	</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var item in Model)
-                                {
-                                    <tr>
-                                        <td class="text-nowrap">
-                                            <div class="font-weight-600">
-                                                <div class="font-weight-600 ">
-                                                    @item.FullName
-                                                </div>
-
-                                            </div>
-                                        </td>
-                                        <td class="text-nowrap"> @item.Phone	</td>
-                                   
-                                        <td class="text-center">
-                                            @item.UserEmail
-                                        </td>
 
 
-                                    </tr>
+                <div class="row m-lg-5 mt-0">
+                    <div class="col-md-12 d-flex">
 
-                                }
+                        <div class="card card-table flex-fill">
+                            <div class="card-header">
+                                <h4 class="card-title float-start">
+                                </h4>
+                                <div class="table-search float-start">
+                                    <button class="btn  btn-info" type="submit" onclick="FillTable()" style="color:black;border:0px;font-size:18px;">ظهور الكل</button>
+                                </div>
 
-                            </tbody>
-                        </table>
+                                <div class="col-sm-6">
+
+                                    <input class="form-control" id="filterInput" type="text" placeholder="البحث بواسطة الاسم أو الرقم الجامعي" aria-label="default input example">
+
+                                    <button class="btn  btn-outline-primary" type="submit" onclick="FillTableSearch()" style="background-color:#e6e291;color:black;border:0px;font-size:18px;">ابحث</button>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="card-body">
+                                <div class="table-responsive no-radius">
+
+                                    <table class="table table-hover table-center" style="font-size:18px">
+                                        <thead>
+                                            <tr>
+
+                                                <th>اسم الطالب</th>
+
+
+                                                <th>الرقم الجامعي</th>
+
+                                                <th>عدد الساعات</th>
+
+                                                <th>رقم الهاتف</th>
+
+                                                <th>البريد الالكتروني</th>
+                                            </tr>
+
+                                        </thead>
+
+                                        <tbody id="Tbody">
+                                        </tbody>
+
+
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
+
+                    <div class="col-sm-2"></div>
+
+
                 </div>
             </div>
-
         </div>
-        <div class="col-sm-2"></div>
-    </div>
 </body>
 @section Scripts{
 
 
 
     <script>
+
+        FillTable();
+
         $(function () {
             // Sidebar toggle behavior
             $('#sidebarCollapse').on('click', function () {
                 $('#sidebar, #content').toggleClass('active');
             });
         });
+
+
+
+
+        function FillTable() {
+            var body = "";
+
+            $(document).ready(function () {
+
+                $.ajax({
+
+                    url: "@Url.Action("GetStudentsList")",
+                    type: 'GET',
+                    dataType: "json",
+
+
+                    success: function (data) {
+
+                        $.each(data.students, function (key, value) {
+
+
+
+                            body += "<tr> <td class='text - nowrap'>  <div class='font - weight - 600'> <div class='font - weight - 600'> " + value.user.fullName + "</div></div></td>" +
+                                "<td class='text - center'>" + value.universityStudentNumber + "</td>"
+                                + "<td class='text - nowrap'> " + value.completedHours + "</td>"
+                                + "<td class='text - nowrap'>" + value.user.phone + "</td>"
+                                + "<td class='text - nowrap'>" + value.user.userEmail + "</td>"
+                                + "</tr>";
+
+
+                            // console.log(value);
+
+                        });
+
+
+
+                        $("#Tbody").html(body);
+
+
+
+                    }
+
+
+                });
+
+            });
+
+        }
+
+
+
+
+        function FillTableSearch() {
+
+            var NameOrNumber = document.getElementById("filterInput").value;
+
+            if (NameOrNumber == "") {
+                return;
+            }
+
+            var body = "";
+
+            $(document).ready(function () {
+
+                $.ajax({
+
+                    url: "@Url.Action("GetStudentsByNameOrNumber")",
+                    type: 'GET',
+                    data: { filter: NameOrNumber },
+                    dataType: "json",
+
+
+                    success: function (data) {
+
+                        $.each(data.students, function (key, value) {
+
+
+
+                            body += "<tr> <td class='text - nowrap'>  <div class='font - weight - 600'> <div class='font - weight - 600'> " + value.user.fullName + "</div></div></td>" +
+                                "<td class='text - center'>" + value.universityStudentNumber + "</td>"
+                                + "<td class='text - nowrap'> " + value.completedHours + "</td>"
+                                + "<td class='text - nowrap'>" + value.user.phone + "</td>"
+                                + "<td class='text - nowrap'>" + value.user.userEmail + "</td>"
+                                + "</tr>";
+
+
+                            //console.log(value);
+
+                        });
+
+
+
+                        $("#Tbody").html(body);
+
+
+
+                    }
+
+
+                });
+
+            });
+
+        }
+
+
+
 
     </script>
 

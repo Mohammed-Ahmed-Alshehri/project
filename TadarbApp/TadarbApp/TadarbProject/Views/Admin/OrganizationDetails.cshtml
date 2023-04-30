@@ -1,309 +1,308 @@
 ﻿@model TadarbProject.Models.ViewModels.OrganizationVM
 
 @{
-	Layout = "_Layout";
+    Layout = "_Layout";
 }
 <head>
 
 
-	<link rel="stylesheet" href="~/css/boostwatch.css" />
+    <link rel="stylesheet" href="~/css/boostwatch.css" />
 
 </head>
 <section class="section m-5">
-	<div class="container">
-		<div class="row justify-content-center">
-			<div class="col-md-12">
-				<div class="wrapper">
-					<div class="row no-gutters">
-						<div class="col-lg-4 col-md-5 d-flex align-items-stretch " style="color:white;" >
-							<div class="info-wrap   p-md-5 p-4" >
-								<div class="col-12" >
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                <div class="wrapper">
+                    <div class="row no-gutters">
+                        <div class="col-lg-4 col-md-5 d-flex align-items-stretch " style="color:white;">
+                            <div class="info-wrap   p-md-5 p-4">
+                                <div class="col-12">
 
-									<div class="dbox  w-100 d-flex align-items-start" >
-										<img src="~/@Model.organization.LogoPath" width="100%" height="100%" title="" alt="" style="position:center">
-										<br /><br /><br />
-									</div>
-								</div>
-								<div class=" bg-primary info-wrap w-100  p-md-5 p-4">
-									<div class="dbox w-150 d-flex  align-items-start">
-										@{
-											if (Model.organization.Organization_TypeId == 1)
-											{
-												<h3 class="dark-color" style="color:white;"> جامعة: @Model.organization.OrganizationName </h3>
+                                    <div class="dbox  w-100 d-flex align-items-start">
+                                        <img src="~/@Model.organization.LogoPath" width="100%" height="100%" title="" alt="" style="position:center">
+                                        <br /><br /><br />
+                                    </div>
+                                </div>
+                                <div class=" bg-primary info-wrap w-100  p-md-5 p-4">
+                                    <div class="dbox w-150 d-flex  align-items-start">
+                                        @{
+                                            if (Model.organization.Organization_TypeId == 1)
+                                            {
+                                                <h3 class="dark-color" style="color:white;"> جامعة: @Model.organization.OrganizationName </h3>
 
-											}
-											else
-											{
-												<h3 class="dark-color" style="color:white;"> شركة: @Model.organization.OrganizationName </h3>
-											}
+                                            }
+                                            else
+                                            {
+                                                <h3 class="dark-color" style="color:white;"> شركة: @Model.organization.OrganizationName </h3>
+                                            }
 
-										}
-									</div>
-									<br />
-									<div class="dbox w-100 d-flex align-items-start">
+                                        }
+                                    </div>
+                                    <br />
+                                    <div class="dbox w-100 d-flex align-items-start">
 
-										<div class="icon d-flex align-items-center justify-content-center ">
-											<span class="fa fa-map-marker"></span>
-										</div>
-										&nbsp;&nbsp;&nbsp;
+                                        <div class="icon d-flex align-items-center justify-content-center ">
+                                            <span class="fa fa-map-marker"></span>
+                                        </div>
+                                        &nbsp;&nbsp;&nbsp;
 
-										<div class="text pl-3">
+                                        <div class="text pl-3">
 
-											<h5 id="location"></h5>
-										</div>
-									</div>
-									<div class="dbox w-100 d-flex align-items-center">
-										<div class="icon d-flex align-items-center justify-content-center">
-											<span class="fa fa-phone"></span>
-										</div>
-										&nbsp;&nbsp;&nbsp;
-										<div class="text pl-3">
-											<h5>@Model.userAcount.Phone</h5>
-										</div>
-									</div>
-
-
-									<div class="dbox w-100 d-flex align-items-center">
-										<div class="icon d-flex align-items-center justify-content-center">
-											<span class="fa fa-paper-plane"></span>
-										</div>
-										&nbsp;&nbsp;&nbsp;
-										<div class="text pl-3">
-											<h5>@Model.userAcount.UserEmail</h5>
-										</div>
-									</div>
-
-									<div class="dbox w-100 d-flex align-items-center">
-										<div class="icon d-flex align-items-center justify-content-center">
-											<span class="fa fa-globe"></span>
-										</div>
-										&nbsp;&nbsp;&nbsp;
-										<div class="text pl-3">
-											<h5>
-												<a href="@Model.organization.OrganizationURL">@Model.organization.OrganizationURL</a>
-
-											</h5>
-										</div>
-
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-8 col-md-7  d-flex align-items-stretch" style="color:black;">
-							<div class="contact-wrap w-100 p-md-5 p-4">
-								<div id="form-message-warning" class="mb-4"></div>
-								<div id="form-message-success" class="mb-4" style="font-size:28px">
-
-									<div class="dbox w-100 d-flex align-items-center">
-										<div class=" d-flex align-items-center justify-content-center">
-											<label > المجال الرئيسي للمنظمة :</label>
-										</div>
-
-										<div class="text pl-5">
-											<h3> &nbsp;&nbsp; @Model.FieldListItems.First().Text  &nbsp;&nbsp; </h3>
-										</div>
-									</div>
-
-								
-									<div class="dbox w-100 d-flex align-items-center">
-										<div class=" d-flex align-items-center justify-content-center">
-											<label> السجل التجاري :</label>
-										</div>
-
-										<div class="text pl-5">
-											<h3>&nbsp;&nbsp; @Model.organization.CommercialRegistrationNumber &nbsp;&nbsp;</h3>
-										</div>
-									</div>
+                                            <h5 id="location"></h5>
+                                        </div>
+                                    </div>
+                                    <div class="dbox w-100 d-flex align-items-center">
+                                        <div class="icon d-flex align-items-center justify-content-center">
+                                            <span class="fa fa-phone"></span>
+                                        </div>
+                                        &nbsp;&nbsp;&nbsp;
+                                        <div class="text pl-3">
+                                            <h5>@Model.userAcount.Phone</h5>
+                                        </div>
+                                    </div>
 
 
-									<div class="dbox w-100 d-flex align-items-center">
-										<div class=" d-flex align-items-center justify-content-center">
-											<label> اسم المسؤول :</label>
-										</div>
+                                    <div class="dbox w-100 d-flex align-items-center">
+                                        <div class="icon d-flex align-items-center justify-content-center">
+                                            <span class="fa fa-paper-plane"></span>
+                                        </div>
+                                        &nbsp;&nbsp;&nbsp;
+                                        <div class="text pl-3">
+                                            <h5>@Model.userAcount.UserEmail</h5>
+                                        </div>
+                                    </div>
 
-										<div class="text pl-5">
-											<h3>&nbsp;&nbsp; @Model.userAcount.FullName &nbsp;&nbsp;</h3>
-										</div>
-									</div>
+                                    <div class="dbox w-100 d-flex align-items-center">
+                                        <div class="icon d-flex align-items-center justify-content-center">
+                                            <span class="fa fa-globe"></span>
+                                        </div>
+                                        &nbsp;&nbsp;&nbsp;
+                                        <div class="text pl-3">
+                                            <h5>
+                                                <a href="@Model.organization.OrganizationURL">@Model.organization.OrganizationURL</a>
 
+                                            </h5>
+                                        </div>
 
-									<div class="dbox w-100 d-flex align-items-center">
-										<div class=" d-flex align-items-center justify-content-center">
-											<label > الفرع الرئيسي للمنظمة  :</label>
-										</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-8 col-md-7  d-flex align-items-stretch" style="color:black;">
+                            <div class="contact-wrap w-100 p-md-5 p-4">
+                                <div id="form-message-warning" class="mb-4"></div>
+                                <div id="form-message-success" class="mb-4" style="font-size:28px">
 
-										<div class="text pl-5">
-											<h3>&nbsp;&nbsp;  @Model.CityListItems.First().Text &nbsp;&nbsp; </h3>
-										</div>
-									</div>
+                                    <div class="dbox w-100 d-flex align-items-center">
+                                        <div class=" d-flex align-items-center justify-content-center">
+                                            <label> المجال الرئيسي للمنظمة :</label>
+                                        </div>
 
-
-
-
-									<div class="dbox w-100 d-flex align-items-center">
-										<div class=" d-flex align-items-center justify-content-center">
-											<label > الدولة :</label>
-										</div>
-
-										<div class="text pl-5">
-											<h3> &nbsp;&nbsp; @Model.CountryListItems.First().Text &nbsp;&nbsp;</h3>
-										</div>
-									</div>
-
-								
-								</div>
-
-
-								<div style="height:28vh; width:100%;"  id="map" ></div>
-								
-
-
-								
-
-								<br /> <br />
-								<form method="POST" id="contactForm" name="contactForm" class="contactForm">
-									<div class="row">
+                                        <div class="text pl-5">
+                                            <h3> &nbsp;&nbsp; @Model.FieldListItems.First().Text  &nbsp;&nbsp; </h3>
+                                        </div>
+                                    </div>
 
 
-										<div class="col-md-12">
-											<div class="form-group " >
+                                    <div class="dbox w-100 d-flex align-items-center">
+                                        <div class=" d-flex align-items-center justify-content-center">
+                                            <label> السجل التجاري :</label>
+                                        </div>
 
-												<a type="button" style="font-size:20px" asp-controller="Admin" asp-action="RequestAccept" asp-route-id="@Model.organization.OrganizationId" class="btn btn-primary btn-lg">قبول الطلب</a>
-												&nbsp;&nbsp;
+                                        <div class="text pl-5">
+                                            <h3>&nbsp;&nbsp; @Model.organization.CommercialRegistrationNumber &nbsp;&nbsp;</h3>
+                                        </div>
+                                    </div>
 
-												<a type="button" style="font-size:20px" asp-controller="Admin" asp-action="RequestReject" asp-route-id="@Model.organization.OrganizationId" class="btn btn-secondary btn-lg">رفض الطلب</a>
 
-											</div>
-										</div>
-									</div>
-								</form>
-							</div>
-						</div>
+                                    <div class="dbox w-100 d-flex align-items-center">
+                                        <div class=" d-flex align-items-center justify-content-center">
+                                            <label> اسم المسؤول :</label>
+                                        </div>
+
+                                        <div class="text pl-5">
+                                            <h3>&nbsp;&nbsp; @Model.userAcount.FullName &nbsp;&nbsp;</h3>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="dbox w-100 d-flex align-items-center">
+                                        <div class=" d-flex align-items-center justify-content-center">
+                                            <label> الفرع الرئيسي للمنظمة  :</label>
+                                        </div>
+
+                                        <div class="text pl-5">
+                                            <h3>&nbsp;&nbsp;  @Model.CityListItems.First().Text &nbsp;&nbsp; </h3>
+                                        </div>
+                                    </div>
 
 
 
-					</div>
+
+                                    <div class="dbox w-100 d-flex align-items-center">
+                                        <div class=" d-flex align-items-center justify-content-center">
+                                            <label> الدولة :</label>
+                                        </div>
+
+                                        <div class="text pl-5">
+                                            <h3> &nbsp;&nbsp; @Model.CountryListItems.First().Text &nbsp;&nbsp;</h3>
+                                        </div>
+                                    </div>
 
 
-				</div>
-			</div>
-		</div>
+                                </div>
 
-	</div>
-	<br /> <br /><br /> <br /><br /> <br /><br />
+
+                                <div style="height:28vh; width:100%;" id="map"></div>
+
+
+
+
+
+                                <br /> <br />
+                                <form method="POST" id="contactForm" name="contactForm" class="contactForm">
+                                    <div class="row">
+
+
+                                        <div class="col-md-12">
+                                            <div class="form-group ">
+
+                                                <a type="button" style="font-size:20px" asp-controller="Admin" asp-action="RequestAccept" asp-route-id="@Model.organization.OrganizationId" class="btn btn-primary btn-lg">قبول الطلب</a>
+                                                &nbsp;&nbsp;
+
+                                                <a type="button" style="font-size:20px" asp-controller="Admin" asp-action="RequestReject" asp-route-id="@Model.organization.OrganizationId" class="btn btn-secondary btn-lg">رفض الطلب</a>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <br /> <br /><br /> <br /><br /> <br /><br />
 </section>
 
 @section Scripts
-{
+    {
 
-   <script>
+    <script>
 
-		var log = @Model.organization.Location.Split(',').First();
-		var lat = @Model.organization.Location.Split(',').Last();
+        var log = @Model.organization.Location.Split(',').First();
+        var lat = @Model.organization.Location.Split(',').Last();
 
-		var country ="";
-		var city= "";
-		latAndLng = log + ", " + lat;
+        var country = "";
+        var city = "";
+        latAndLng = log + ", " + lat;
 
-		$(document).ready(function () {
+        $(document).ready(function () {
 
-			$.ajax({
-				type: "GET",
-				url: "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + latAndLng + "&key=AIzaSyBJvHlgeiw22e7B_Ypk4uOkUpC8CbpIJA8",
-
-			
-
-				dataType: "json",
-				success: function (data) 
-				{
+            $.ajax({
+                type: "GET",
+                url: "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + latAndLng + "&key=AIzaSyBJvHlgeiw22e7B_Ypk4uOkUpC8CbpIJA8",
 
 
 
-					$.each(data.results, function (key, value) {
-
-
-						if (value.types.includes("country")){
-
-							const myJSON = JSON.stringify(value.address_components);
-							
-							//console.log(myJSON);
-
-						
-
-							//console.log(myJSON);
-
-							var i1 = myJSON.indexOf(':')+2;
-							var i2 = myJSON.indexOf(',')-1;
-
-
-							 country = myJSON.substring(i1, i2);
- 
-
-						}
-
-						if (value.types[0] == "locality" )
-						{
-							//console.log(value.address_components);
-
-							const myJSON2 = JSON.stringify(value.address_components);
-							var x1 = myJSON2.indexOf(':') + 2;
-							var x2 = myJSON2.indexOf(',') - 1;
-
-							 city = myJSON2.substring(x1, x2);
-
-
-						}
-
-						
-						
-
-					});
-
-					fillLocaton(country, city);
-
-				}
-			});
-			
-		});
+                dataType: "json",
+                success: function (data) {
 
 
 
-		function fillLocaton(v1 , v2){
-
-			var xp = document.getElementById("location").innerHTML = v1 + ", " + v2;
-
-		}
+                    $.each(data.results, function (key, value) {
 
 
-		var MapLatAndLng = { lat: log, lng: lat }
+                        if (value.types.includes("country")) {
 
-		function initMap() {
+                            const myJSON = JSON.stringify(value.address_components);
+
+                            //console.log(myJSON);
 
 
-			map = new google.maps.Map(document.getElementById("map"), {
-				center: MapLatAndLng,
-				zoom: 15, disableDefaultUI: true
 
-			});
+                            //console.log(myJSON);
+
+                            var i1 = myJSON.indexOf(':') + 2;
+                            var i2 = myJSON.indexOf(',') - 1;
+
+
+                            country = myJSON.substring(i1, i2);
+
+
+                        }
+
+                        if (value.types[0] == "locality") {
+                            //console.log(value.address_components);
+
+                            const myJSON2 = JSON.stringify(value.address_components);
+                            var x1 = myJSON2.indexOf(':') + 2;
+                            var x2 = myJSON2.indexOf(',') - 1;
+
+                            city = myJSON2.substring(x1, x2);
+
+
+                        }
 
 
 
 
 
-			marker = new google.maps.Marker({
-				position: MapLatAndLng,
-				map,
-				title: "موقعك الحالي",
-			});
+                    });
 
-		}
-		
+                    fillLocaton(country, city);
 
-   </script>
+                }
+            });
+
+        });
 
 
 
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBnE545dObN0paZx1wsNqm5TaWx3DkVj7g&callback=initMap&v=weekly&language=ar&region=SA"
-			defer></script>
+        function fillLocaton(v1, v2) {
+
+            var xp = document.getElementById("location").innerHTML = v1 + ", " + v2;
+
+        }
+
+
+        var MapLatAndLng = { lat: log, lng: lat }
+
+        function initMap() {
+
+
+            map = new google.maps.Map(document.getElementById("map"), {
+                center: MapLatAndLng,
+                zoom: 15, disableDefaultUI: true
+
+            });
+
+
+
+
+
+            marker = new google.maps.Marker({
+                position: MapLatAndLng,
+                map,
+                title: "موقعك الحالي",
+            });
+
+        }
+
+
+    </script>
+
+
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBnE545dObN0paZx1wsNqm5TaWx3DkVj7g&callback=initMap&v=weekly&language=ar&region=SA"
+            defer></script>
 
 }

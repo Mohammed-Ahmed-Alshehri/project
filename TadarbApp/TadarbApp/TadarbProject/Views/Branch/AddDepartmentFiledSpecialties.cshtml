@@ -24,19 +24,19 @@
 
                 <p class="text-gray font-weight-bold text-uppercase px-3 small pb-4 mb-0">القائمة</p>
 
-                 <ul class="nav flex-column bg-white mb-0">
+                <ul class="nav flex-column bg-white mb-0">
                     <li class="nav-item">
                         <a asp-controller="Branch" asp-action="Index" class="nav-link text-dark font-italic ">
                             <i class="fa-solid fa-house"></i>
                             الصفحة الرئيسية
                         </a>
                     </li>
-                     <li class="nav-item">
+                    <li class="nav-item">
                         <a asp-controller="Branch" asp-action="ManageDepartment" class="nav-link text-dark font-italic ">
-                        <i class="fa fa-address-card mr-3 text-primary fa-fw"></i>
-                        إدارة الاقسام
-                    </a>
-                </li>
+                            <i class="fa fa-address-card mr-3 text-primary fa-fw"></i>
+                            إدارة الاقسام
+                        </a>
+                    </li>
                     <li class="nav-item">
                         <a asp-controller="Branch" asp-action="ViewSupervisorsUser" class="nav-link text-dark font-italic ">
                             <i class="fa-solid fa-building-user"></i>
@@ -59,7 +59,7 @@
                     </li>
                 </ul>
 
-               
+
 
 
             </div>
@@ -123,10 +123,10 @@
 
                             </div>
                         </div>
-                   
 
 
-                        
+
+
                         <div class=" mb-4 pb-2">
                             <div class="container">
                                 <div class="row">
@@ -136,7 +136,7 @@
                                             <div class="row">
                                                 <div class="mb-4 pb-2" style="OVERFLOW-Y:scroll;HEIGHT:200px;" dir="ltr">
                                                     <table class="table table-hover table-center" style="background-color:white;border-radius: 25px;" dir="rtl">
-                                                        <thead style="color:#0b70a3;font-size:18px" >
+                                                        <thead style="color:#0b70a3;font-size:18px">
                                                             <tr>
 
                                                                 <th>اسم التخصص:</th>
@@ -177,7 +177,7 @@
 
                     <a class="btn btn-lg  " style="font-size:18px; color:black; background-color:#bac9d0;" href="@Url.Action("ViewDepartmentFiledSpecialties")"> العودة الى القائمة</a>
 
-                     &nbsp; &nbsp;
+                    &nbsp; &nbsp;
 
 
 
@@ -225,16 +225,15 @@
         var allSelect = [];
         $('.my-select').change(function () {
 
-           allSelect = [];
+            allSelect = [];
 
             $('.my-select').each(function (index, item) {
                 allSelect.push(item.value);
             });
 
-          //  console.log(allSelect.toString().length);
+            //  console.log(allSelect.toString().length);
 
-            if (allSelect.toString().length != 3)
-            {
+            if (allSelect.toString().length != 3) {
 
                 return;
             }
@@ -277,8 +276,7 @@
 
         let result = [];
 
-        function AddSP()
-        { // this function will get called when the save button is clicked
+        function AddSP() { // this function will get called when the save button is clicked
             var checkBoxes = document.querySelectorAll('input[type="checkbox"]');
             result = [];
             var select = document.getElementById('DepartmentListID');
@@ -293,15 +291,15 @@
                 }
             })
 
-            if (result.length > 1){
+            if (result.length > 1) {
 
                 SendSP(result);
             }
 
-           
 
 
-           
+
+
         }
 
 
@@ -309,7 +307,7 @@
         function SendSP(Array) {
 
 
-          
+
 
             $.ajax({
 
@@ -328,8 +326,8 @@
 
 
 
-        // Example starter JavaScript for disabling form submissions if there are invalid fields
-       
+                        // Example starter JavaScript for disabling form submissions if there are invalid fields
+
 
     </script>
 
