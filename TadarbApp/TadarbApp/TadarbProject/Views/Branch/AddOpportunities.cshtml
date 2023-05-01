@@ -81,13 +81,7 @@
                             <div class=" mb-4 pb-2">
                                 <br />
 
-                                <div class="form-outline" style="text-align: right;">
-
-                                    <label class="form-label" for="OrganizationName" style="font-size:20px;">اسم الفرصة</label>
-                                    <input type="text" id="OrganizationNameID" class="form-control form-control-lg" required />
-                                    <div class="invalid-feedback" style="text-align: right;"> الرجاء يجب إدخال اسم الفرصة </div>
-
-                                </div>
+                              
 
                             </div>
 
@@ -104,20 +98,9 @@
 
                             </div>
 
-                             <div class=" mb-4 pb-2">
-                                <br />
 
-                                <div class="form-outline" style="text-align: right;">
-
-                                    <label class="form-label" for="OrganizationName" style="font-size:20px;">اسم الفرصة</label>
-                                    <input type="text" id="OrganizationNameID" class="form-control form-control-lg" required />
-                                    <div class="invalid-feedback" style="text-align: right;"> الرجاء يجب إدخال اسم الفرصة </div>
-
-                                </div>
-
-                            </div>
-
-                            <div class="mb-2 pb-2">
+                            <div class="row">
+                                <div class="col-md-6 mb-4 pb-2">
 
                                 <label for="TypeNameOrganiaztion" class="form-label" style="font-size:20px;"> القسم العام</label>
                                 <select class="form-select" required>
@@ -127,30 +110,35 @@
                                     </option>
                                 </select>
                                 <div class="invalid-feedback">
-                                    الرجاء يجب إختيار القسم
+                                    الرجاء  إختيار القسم
                                 </div>
                             </div>
 
 
 
-                            <br />
-
+                            
+                                <div class="col-md-6 mb-4 pb-2">
                             <div class="form-group" style="text-align: right;">
 
                                 <label for="CountryName" class="form-label " style="font-size:20px;">التخصص</label>
                                 <select class="form-select" id="CountryNameID" required>
                                     <option selected disabled value="">--التخصص--</option>
-                                    <option value="">
-                                        جراحة كلى
-                                    </option>
+                                   
 
                                 </select>
                                 <div class="invalid-feedback">
-                                    الرجاء يجب إختيار التخصصص
+                                    الرجاء  إختيار التخصصص
                                 </div>
                             </div>
 
-                            <div class="mb-2 pb-2">
+                            </div>
+                            </div>
+
+
+
+                            <div class="row">
+                                <div class="col-md-6 mb-4 pb-2">
+                                    <div class="form-group" style="text-align: right;">
                                 <i class="fa-solid fa-user"></i>
                                 <label for="form-CityNameID" class="form-label mt-4" style="font-size:20px;">تعيين مشرف اكاديمي</label>
                                 <select class="form-select" required>
@@ -158,16 +146,73 @@
 
                                 </select>
                                 <div class="invalid-feedback">
-                                    الرجاء يجب  إختيار مشرف اكاديمي
+                                    الرجاء   إختيار مشرف اكاديمي
                                 </div>
 
                                 <input id="OrganizationMainBranchCityId" hidden />
                             </div>
+                            </div>
+
+                                <div class="col-md-6 mb-4 pb-2">
+                                    <div class="form-group" style="text-align: right;">
+
+                                <label for="CountryName" class="form-label " style="font-size:20px;">نوع التدريب</label>
+                                <select class="form-select" id="CountryNameID" required>
+                                    <option selected disabled value="">--التدريب--</option>
+                                  
+
+                                </select>
+                                <div class="invalid-feedback">
+                                    الرجاء  إختيار التخصصص
+                                </div>
+                            </div>
+                            </div>
+
+                            </div>
 
 
 
+                            <div class="row">
+                                <div class="col-md-4 mb-4 pb-2">
+                             
+                                <br />
 
+                                <div class="form-outline" style="text-align: right;">
+                                    <i class="fa-solid fa-chair"></i>
+                                    <label class="form-label" for="OrganizationName" style="font-size:20px;">عدد المقاعد</label>
+                                    <input type="number" id="OrganizationNameID" class="form-control form-control-lg" required /> 
+                                    <div class="invalid-feedback" style="text-align: right;"> الرجاء يجب إدخال عدد المقاعد </div>
 
+                                </div>
+
+                            </div>
+                                <div class="col-md-4 mb-4 pb-2">
+
+                                    <br />
+
+                                    <div class="form-outline" style="text-align: right;">
+                                        <i class="fa-solid fa-chair"></i>
+                                        <label class="form-label" for="OrganizationName" style="font-size:20px;">عدد ساعات التدريب</label>
+                                        <input type="number" id="OrganizationNameID" class="form-control form-control-lg" required />
+                                        <div class="invalid-feedback" style="text-align: right;"> الرجاء يجب إدخال عدد ساعات التدريب </div>
+
+                                    </div>
+
+                                </div>
+                                 <div class="col-md-4 mb-4 pb-2">
+                             
+                                <br />
+
+                                <div class="form-outline" style="text-align: right;">
+                                    <i class="fa-solid fa-chair"></i>
+                                        <label class="form-label" for="OrganizationName" style="font-size:20px;">عدد اسابيع التدريب</label>
+                                        <input type="number" id="OrganizationNameID" class="form-control form-control-lg" required />
+                                        <div class="invalid-feedback" style="text-align: right;"> الرجاء يجب إدخال عدد اسابيع التدريب </div>
+
+                                </div>
+
+                            </div>
+                            </div>
                             <div class=" col-md-6 mb-2 pb-2">
                                 <i class="fa-regular fa-calendar-days"></i>
                                 <label for="3" class="form-label mt-4" style="font-size:20px;">تاريخ بداية الفرصة</label> <br />
@@ -176,7 +221,7 @@
 
                                 </div>
                                 <div class="invalid-feedback">
-                                    الرجاء يجب تحديد وقت البداية
+                                    الرجاء  تحديد وقت البداية
                                 </div>
 
                             </div>
@@ -191,11 +236,38 @@
 
                                 </div>
                                 <div class="invalid-feedback">
-                                    الرجاء يجب تحديد وقت النهاية
+                                    الرجاء  تحديد وقت النهاية
                                 </div>
 
                             </div>
 
+                            <div class=" col-md-6 mb-2 pb-2">
+                                <i class="fa-regular fa-calendar-days"></i>
+                                <label for="3" class="form-label mt-4" style="font-size:20px;">تاريخ بداية التسجيل </label> <br />
+                                <div>
+                                    <input placeholder="Select date" type="date" id="example" class="form-control">
+
+                                </div>
+                                <div class="invalid-feedback">
+                                    الرجاء  تحديد بداية التسجيل
+                                </div>
+
+                            </div>
+
+
+
+                            <div class=" col-md-6 mb-2 pb-2">
+                                <i class="fa-regular fa-calendar-days"></i>
+                                <label for="3" class="form-label mt-4" style="font-size:20px;">تاريخ نهاية التسجيل</label> <br />
+                                <div>
+                                    <input placeholder="Select date" type="date" id="example" class="form-control">
+
+                                </div>
+                                <div class="invalid-feedback">
+                                    الرجاء  تحديد نهاية التسجيل
+                                </div>
+
+                            </div>
 
 
                         </div>
