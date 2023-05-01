@@ -138,9 +138,12 @@
 
                                                 <th>الرقم الجامعي</th>
 
-                                                <div class="triangle-up"></div>
-                                                <th>عدد الساعات</th>
-                                                <div class="triangle-down"></div>
+                                                
+                                                <th> 
+                                                    عدد الساعات
+                                                    <i class="btn fa-solid fa-arrow-down-long float-l-start fa-xs p-0  " onclick="SortDwon()"> </i>  <i class=" btn fa-solid fa-arrow-up-long float-l-start fa-xs p-0" onclick="SortUp()"></i>
+                                                </th>
+                                        
 
 
                                                 <th>رقم الهاتف</th>
@@ -232,10 +235,98 @@
 
         }
 
+        function SortDwon(){
+            var body = "";
+
+            $(document).ready(function () {
+
+                $.ajax({
+
+                    url: "@Url.Action("GetStudentsListDown")",
+                    type: 'GET',
+                    dataType: "json",
+
+
+                    success: function (data) {
+
+                        $.each(data.students, function (key, value) {
 
 
 
-        function FillTableSearch() {
+                            body += "<tr> <td class='text - nowrap'>  <div class='font - weight - 600'> <div class='font - weight - 600'> " + value.user.fullName + "</div></div></td>" +
+                                "<td class='text - center'>" + value.universityStudentNumber + "</td>"
+                                + "<td class='text - nowrap'> " + value.completedHours + "</td>"
+                                + "<td class='text - nowrap'>" + value.user.phone + "</td>"
+                                + "<td class='text - nowrap'>" + value.user.userEmail + "</td>"
+                                + "</tr>";
+
+
+                            // console.log(value);
+
+                        });
+
+
+
+                        $("#Tbody").html(body);
+
+
+
+                    }
+
+
+                });
+
+            });
+
+        }
+
+
+        function SortUp() {
+            var body = "";
+
+            $(document).ready(function () {
+
+                $.ajax({
+
+                    url: "@Url.Action("GetStudentsListUp")",
+                    type: 'GET',
+                    dataType: "json",
+
+
+                    success: function (data) {
+
+                        $.each(data.students, function (key, value) {
+
+
+
+                            body += "<tr> <td class='text - nowrap'>  <div class='font - weight - 600'> <div class='font - weight - 600'> " + value.user.fullName + "</div></div></td>" +
+                                "<td class='text - center'>" + value.universityStudentNumber + "</td>"
+                                + "<td class='text - nowrap'> " + value.completedHours + "</td>"
+                                + "<td class='text - nowrap'>" + value.user.phone + "</td>"
+                                + "<td class='text - nowrap'>" + value.user.userEmail + "</td>"
+                                + "</tr>";
+
+
+                            // console.log(value);
+
+                        });
+
+
+
+                        $("#Tbody").html(body);
+
+
+
+                    }
+
+
+                });
+
+            });
+
+        }
+
+                function FillTableSearch() {
 
             var NameOrNumber = document.getElementById("filterInput").value;
 
