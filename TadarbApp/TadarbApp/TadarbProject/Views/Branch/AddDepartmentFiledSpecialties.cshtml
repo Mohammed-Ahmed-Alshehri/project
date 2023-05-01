@@ -233,7 +233,7 @@
 
             //  console.log(allSelect.toString().length);
 
-            if (allSelect.toString().length != 3) {
+            if (allSelect.toString()[allSelect.toString().indexOf(',') + 1] == null) {
 
                 return;
             }

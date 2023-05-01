@@ -275,18 +275,22 @@ namespace TadarbProject.Controllers
 
                     College_CollegeId = College.CollegeId,
 
-
-
-
-
-
                 };
 
                 _DbContext.Departments.Add(DEP);
 
+                //var EPM = _DbContext.Employees.Where(item => item.UserAccount_UserId == departmentVM.department.Responsible_UserId).FirstOrDefault();
 
 
                 _DbContext.SaveChanges();
+
+                //var DepartmentEmployee = _DbContext.Departments.Where(item => item.Responsible_UserId == departmentVM.department.Responsible_UserId).FirstOrDefault();
+
+                //EPM.Department_DepartmentId = DepartmentEmployee.DepartmentId;
+
+                //_DbContext.Employees.Update(EPM);
+
+                //_DbContext.SaveChanges();
 
                 TempData["success"] = "تم إضافة الفسم  بنجاح";
 
@@ -374,7 +378,7 @@ namespace TadarbProject.Controllers
                 $"(SELECT FieldOfSpecialtiesDetails.Field_FieldId FROM FieldOfSpecialtiesDetails ,OrganizationsProvidTrainingInArea WHERE DetailFieldId = DetailField_DetailFieldId AND Organization_OrganizationId ={OrganizationOfR.OrganizationId});")
                 .ToList().Select(u => new SelectListItem { Text = u.FieldName, Value = u.FieldId.ToString() }),
 
-                DepartmentListItems = _DbContext.Departments.FromSqlRaw($"SELECT * FROM Departments WHERE Responsible_UserId  = {College.Responsible_UserId} AND DepartmentName !='قسم ادارة مسؤولين اقسام الجامعة';")
+                DepartmentListItems = _DbContext.Departments.FromSqlRaw($"SELECT * FROM Departments  WHERE College_CollegeId   = {College.CollegeId} AND DepartmentName !='قسم ادارة مسؤولين اقسام الجامعة';")
                 .ToList().Select(u => new SelectListItem { Text = u.DepartmentName, Value = u.DepartmentId.ToString() }),
 
 
@@ -398,14 +402,9 @@ namespace TadarbProject.Controllers
                     dFieldIds = dFieldIds.Replace(c, string.Empty);
                 }
 
-
-
-
-
                 string[] Ids = dFieldIds.Split(",");
 
                 // Console.WriteLine(Ids[0]);
-
 
 
                 int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
@@ -497,48 +496,6 @@ namespace TadarbProject.Controllers
 
 
 
-
-
-
-
-        //[HttpGet]
-        //public IActionResult ViewDepartment()
-        //{
-        //    ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
-
-        //    int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
-
-        //    var College = _DbContext.UniversityColleges.Where(item => item.Responsible_UserId == RUserId).FirstOrDefault();
-
-        //    var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == College.Organization_OrganizationId).FirstOrDefault();
-
-
-        //    ViewBag.OrganizationName = OrganizationOfR.OrganizationName;
-        //    ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
-
-
-
-        //    var DEPOfR = _DbContext.Departments.Where(item => item.Organization_OrganizationId == OrganizationOfR.OrganizationId).Include(item => item.User).ToList();
-
-        //    //IEnumerable<UserAcount> OrgEMP = Enumerable.Empty<UserAcount>(); ;
-
-        //    //if (DEPOfR != null)
-        //    //{
-        //    //    OrgEMP = _DbContext.UserAcounts.FromSqlRaw($"select * from UserAcounts WHERE UserAcounts.UserId in (select Employees.UserAccount_UserId from Employees where Employees.Department_DepartmentId = {DEPOfR.DepartmentId});").ToList();
-
-        //    //}
-
-
-
-
-
-        //    return View(DEPOfR);
-
-
-
-        //}
-
-
         #region
 
         public IActionResult GetDetailFields(string? ids)
@@ -555,7 +512,7 @@ namespace TadarbProject.Controllers
 
 
 
-            if (!string.IsNullOrEmpty(ids))
+            if (!string.IsNullOrEmpty(ids) && ids.Length > 2)
             {
 
                 string[] Ids = ids.Split(",");
@@ -568,7 +525,7 @@ namespace TadarbProject.Controllers
                 var Detailfields = _DbContext.FieldOfSpecialtiesDetails.FromSqlRaw($"Select * From FieldOfSpecialtiesDetails WHERE Field_FieldId={FId} AND DetailFieldId IN" +
                 $"(Select DetailField_DetailFieldId From OrganizationsProvidTrainingInArea WHERE Organization_OrganizationId={OrganizationOfR.OrganizationId})" +
                 $"AND DetailFieldId NOT IN (SELECT TrainArea_DetailFiledId From DepartmentTrainingAreas WHERE Department_DepartmenId={DId})")
-                .IgnoreQueryFilters()
+                
                 .Select(item => new
 
                 {

@@ -31,6 +31,9 @@ namespace TadarbProject.Models
         public string UniversityStudentNumber { get; set; }
 
         [Required]
+        public double GPA { get; set; }
+
+        [Required]
         public int CompletedHours { get; set; }
 
         public string? CV_Path { get; set; }

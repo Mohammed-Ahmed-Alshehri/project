@@ -211,10 +211,7 @@ namespace TadarbProject.Controllers
             int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
 
 
-            var Employee = _DbContext.Employees.Where(item => item.UserAccount_UserId == RUserId).FirstOrDefault();
-
-            var Department = _DbContext.Departments.Where(item => item.DepartmentId == Employee.Department_DepartmentId).FirstOrDefault();
-
+            var Department = _DbContext.Departments.Where(item => item.Responsible_UserId == RUserId).FirstOrDefault();
 
             var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Department.Organization_OrganizationId).FirstOrDefault();
 
@@ -253,6 +250,7 @@ namespace TadarbProject.Controllers
                 UserAccount_UserId = user.UserId,
                 UniversityStudentNumber = StudentVM.UniversityTraineeStudent.UniversityStudentNumber,
                 CompletedHours = StudentVM.UniversityTraineeStudent.CompletedHours,
+                GPA = StudentVM.UniversityTraineeStudent.GPA
 
 
 
@@ -279,16 +277,15 @@ namespace TadarbProject.Controllers
         {
 
 
-
             int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
 
-            var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).FirstOrDefault();
 
-            var Employee = _DbContext.Employees.Where(item => item.UserAccount_UserId == RUserId).FirstOrDefault();
+            var Department = _DbContext.Departments.Where(item => item.Responsible_UserId == RUserId).FirstOrDefault();
 
-            var Department = _DbContext.Departments.Where(item => item.DepartmentId == Employee.Department_DepartmentId).FirstOrDefault();
 
             var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Department.Organization_OrganizationId).FirstOrDefault();
+
+            var college = _DbContext.UniversityColleges.Where(item => item.Organization_OrganizationId == OrganizationOfR.OrganizationId).FirstOrDefault();
 
 
             IEnumerable<UniversityTraineeStudent> Students = Enumerable.Empty<UniversityTraineeStudent>();
@@ -317,13 +314,13 @@ namespace TadarbProject.Controllers
 
             int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
 
-            var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).FirstOrDefault();
 
-            var Employee = _DbContext.Employees.Where(item => item.UserAccount_UserId == RUserId).FirstOrDefault();
+            var Department = _DbContext.Departments.Where(item => item.Responsible_UserId == RUserId).FirstOrDefault();
 
-            var Department = _DbContext.Departments.Where(item => item.DepartmentId == Employee.Department_DepartmentId).FirstOrDefault();
 
             var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Department.Organization_OrganizationId).FirstOrDefault();
+
+            var college = _DbContext.UniversityColleges.Where(item => item.Organization_OrganizationId == OrganizationOfR.OrganizationId).FirstOrDefault();
 
             if (Char.IsDigit(filter, 0))
             {
@@ -334,7 +331,7 @@ namespace TadarbProject.Controllers
             }
             else
             {
-                Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId =2 AND " +
+                Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId} AND " +
                     $"UserAccount_UserId IN (SELECT UserId FROM UserAcounts WHERE UserAcounts.FullName LIKE '{filter}%')")
                 .AsNoTracking().Include(item => item.user).ToList();
 

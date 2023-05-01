@@ -106,6 +106,13 @@
 
 
                         <div class="mb-4 pb-2">
+                            <i class="fa-regular fa-id-card"></i>
+                            <label class="form-label" for="STUGPA" style="font-size:20px;">المعدل التراكمي  </label>
+                            <input type="number" min="1.5" max="5.0" step="any" asp-for="UniversityTraineeStudent.GPA" id="STUGPA" class="form-control form-control-lg" required />
+                            <div class="invalid-feedback" style="text-align: right;"> الرجاء إدخال الرقم الجامعي </div>
+                        </div>
+
+                        <div class="mb-4 pb-2">
                             <i class="fa-solid fa-phone"></i>
                             <label class="form-label" for="UserPhone" style="font-size:20px;">رقم جوال </label>
                             <input type="tel" asp-for="userAcount.Phone" id="PhoneID" maxlength="10" class="form-control form-control-lg" required />
