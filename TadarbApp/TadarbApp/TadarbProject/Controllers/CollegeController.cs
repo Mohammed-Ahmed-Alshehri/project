@@ -13,7 +13,7 @@ namespace TadarbProject.Controllers
         private readonly AppDbContext _DbContext;
         private readonly IEmailSender _emailSender;
         private readonly IHttpContextAccessor _HttpContextAccessor;
-
+        
 
         public CollegeController(AppDbContext DbContext, IEmailSender emailSender, IHttpContextAccessor HttpContextAccessor)
         {
@@ -34,8 +34,7 @@ namespace TadarbProject.Controllers
 
             var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == College.Organization_OrganizationId).FirstOrDefault();
 
-
-            ViewBag.OrganizationName = OrganizationOfR.OrganizationName;
+            ViewBag.OrganizationName = OrganizationOfR.OrganizationName + " - " + College.CollegeName;
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
             ViewBag.Username = user.FullName;
             return View();
@@ -58,8 +57,7 @@ namespace TadarbProject.Controllers
 
             var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == College.Organization_OrganizationId).FirstOrDefault();
 
-
-            ViewBag.OrganizationName = OrganizationOfR.OrganizationName;
+            ViewBag.OrganizationName = OrganizationOfR.OrganizationName + " - " + College.CollegeName;
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
             ViewBag.Username = user.FullName;
             var DEPOfR = _DbContext.Departments.Where(item => item.Organization_OrganizationId == OrganizationOfR.OrganizationId && item.DepartmentName.Equals("قسم ادارة مسؤولين اقسام الجامعة")).FirstOrDefault();
@@ -94,8 +92,7 @@ namespace TadarbProject.Controllers
 
             var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == College.Organization_OrganizationId).FirstOrDefault();
 
-
-            ViewBag.OrganizationName = OrganizationOfR.OrganizationName;
+            ViewBag.OrganizationName = OrganizationOfR.OrganizationName + " - " + College.CollegeName;
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
             ViewBag.Username = user.FullName;
 
@@ -205,8 +202,7 @@ namespace TadarbProject.Controllers
 
             var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == College.Organization_OrganizationId).FirstOrDefault();
 
-
-            ViewBag.OrganizationName = OrganizationOfR.OrganizationName;
+            ViewBag.OrganizationName = OrganizationOfR.OrganizationName + " - " + College.CollegeName;
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
             //ViewBag.Username = user.FullName;
 
@@ -257,7 +253,6 @@ namespace TadarbProject.Controllers
             int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
             var College = _DbContext.UniversityColleges.Where(item => item.Responsible_UserId == RUserId).FirstOrDefault();
             var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == College.Organization_OrganizationId).FirstOrDefault();
-            ViewBag.OrganizationName = OrganizationOfR.OrganizationName;
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
 
 
@@ -345,8 +340,7 @@ namespace TadarbProject.Controllers
 
             var Department = _DbContext.Departments.Where(item => item.Responsible_UserId == RUserId).ToList();
 
-
-            ViewBag.OrganizationName = OrganizationOfR.OrganizationName;
+            ViewBag.OrganizationName = OrganizationOfR.OrganizationName + " - " + College.CollegeName;
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
             ViewBag.Username = user.FullName;
 
@@ -366,8 +360,7 @@ namespace TadarbProject.Controllers
 
             var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == College.Organization_OrganizationId).FirstOrDefault();
 
-
-            ViewBag.OrganizationName = OrganizationOfR.OrganizationName;
+            ViewBag.OrganizationName = OrganizationOfR.OrganizationName + " - " + College.CollegeName;
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
             ViewBag.Username = user.FullName;
 

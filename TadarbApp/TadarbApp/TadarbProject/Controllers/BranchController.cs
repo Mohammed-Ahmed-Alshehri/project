@@ -34,7 +34,7 @@ namespace TadarbProject.Controllers
             var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Branch.Organization_OrganizationId).FirstOrDefault();
 
 
-            ViewBag.OrganizationName = OrganizationOfR.OrganizationName;
+            ViewBag.OrganizationName = OrganizationOfR.OrganizationName + " - " + Branch.BranchName;
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
             ViewBag.Username = user.FullName;
             return View();
@@ -53,7 +53,7 @@ namespace TadarbProject.Controllers
             var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Branch.Organization_OrganizationId).FirstOrDefault();
 
 
-            ViewBag.OrganizationName = OrganizationOfR.OrganizationName;
+            ViewBag.OrganizationName = OrganizationOfR.OrganizationName + " - " + Branch.BranchName;
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
             ViewBag.Username = user.FullName;
             return View();
@@ -72,7 +72,7 @@ namespace TadarbProject.Controllers
             var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Branch.Organization_OrganizationId).FirstOrDefault();
 
 
-            ViewBag.OrganizationName = OrganizationOfR.OrganizationName;
+            ViewBag.OrganizationName = OrganizationOfR.OrganizationName + " - " + Branch.BranchName;
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
             ViewBag.Username = user.FullName;
             var DEPOfR = _DbContext.Departments.Where(item => item.Branch_BranchId == Branch.BranchId && item.DepartmentName.Equals("قسم ادارة مشرفين التدريب")).FirstOrDefault();
@@ -107,7 +107,7 @@ namespace TadarbProject.Controllers
             var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Branch.Organization_OrganizationId).FirstOrDefault();
 
 
-            ViewBag.OrganizationName = OrganizationOfR.OrganizationName;
+            ViewBag.OrganizationName = OrganizationOfR.OrganizationName + " - " + Branch.BranchName;
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
             ViewBag.Username = user.FullName;
 
@@ -203,7 +203,7 @@ namespace TadarbProject.Controllers
             var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Branch.Organization_OrganizationId).FirstOrDefault();
 
 
-            ViewBag.OrganizationName = OrganizationOfR.OrganizationName;
+            ViewBag.OrganizationName = OrganizationOfR.OrganizationName + " - " + Branch.BranchName;
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
             ViewBag.Username = user.FullName;
 
@@ -270,7 +270,7 @@ namespace TadarbProject.Controllers
             var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Branch.Organization_OrganizationId).FirstOrDefault();
 
 
-            ViewBag.OrganizationName = OrganizationOfR.OrganizationName;
+            ViewBag.OrganizationName = OrganizationOfR.OrganizationName + " - " + Branch.BranchName;
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
             ViewBag.Username = user.FullName;
             return View();
@@ -391,7 +391,7 @@ namespace TadarbProject.Controllers
             var Department = _DbContext.Departments.Where(item => item.Responsible_UserId == RUserId).ToList();
 
 
-            ViewBag.OrganizationName = OrganizationOfR.OrganizationName;
+            ViewBag.OrganizationName = OrganizationOfR.OrganizationName + " - " + Branch.BranchName;
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
             ViewBag.Username = user.FullName;
 

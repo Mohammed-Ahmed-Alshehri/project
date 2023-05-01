@@ -34,7 +34,6 @@ namespace TadarbProject.Controllers
             var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).FirstOrDefault();
             var OrganizationOfR = _DbContext.Organizations.Where(item => item.ResponsibleUserId == RUserId).FirstOrDefault();
 
-
             ViewBag.OrganizationName = OrganizationOfR.OrganizationName;
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
             ViewBag.Username = user.FullName;
@@ -66,8 +65,8 @@ namespace TadarbProject.Controllers
             var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).FirstOrDefault();
             var OrganizationOfR = _DbContext.Organizations.Where(item => item.ResponsibleUserId == RUserId).FirstOrDefault();
 
-
-            ViewBag.OrganizationName = OrganizationOfR.OrganizationName;
+            ViewBag.OrganizationName = OrganizationOfR.OrganizationName + " - " + OrganizationOfR.OrganizationName;
+            
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
             ViewBag.Username = user.FullName;
 
@@ -113,7 +112,7 @@ namespace TadarbProject.Controllers
 
             var DEPOfR = _DbContext.Departments.Where(item => item.Organization_OrganizationId == OrganizationOfR.OrganizationId && item.DepartmentName.Equals("قسم ادارة الفروع")).FirstOrDefault();
 
-            ViewBag.OrganizationName = OrganizationOfR.OrganizationName;
+            ViewBag.OrganizationName = OrganizationOfR.OrganizationName + " - " + OrganizationOfR.OrganizationName;
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
             ViewBag.Username = user.FullName;
             IEnumerable<UserAcount> OrgEMP = Enumerable.Empty<UserAcount>(); ;
