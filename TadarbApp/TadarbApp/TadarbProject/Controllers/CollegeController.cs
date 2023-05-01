@@ -297,16 +297,6 @@ namespace TadarbProject.Controllers
             return View(departmentVM);
 
 
-
-
-
-
-
-
-
-
-
-
         }
 
 
@@ -335,6 +325,132 @@ namespace TadarbProject.Controllers
 
             return Json(new { Exists = true, depList });
         }
+
+
+
+        [HttpGet]
+        public IActionResult ViewDepartmentFiledSpecialties()
+        {
+            ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
+
+            int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
+            var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).FirstOrDefault();
+            var College = _DbContext.UniversityColleges.Where(item => item.Responsible_UserId == RUserId).FirstOrDefault();
+
+            var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == College.Organization_OrganizationId).FirstOrDefault();
+
+            var Department = _DbContext.Departments.Where(item => item.Responsible_UserId == RUserId).ToList();
+
+
+            ViewBag.OrganizationName = OrganizationOfR.OrganizationName;
+            ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
+            ViewBag.Username = user.FullName;
+
+
+            return View(Department);
+
+        }
+
+        [HttpGet]
+        public IActionResult AddDepartmentFiledSpecialties()
+        {
+            ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
+
+            int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
+            var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).FirstOrDefault();
+            var College = _DbContext.UniversityColleges.Where(item => item.Responsible_UserId == RUserId).FirstOrDefault();
+
+            var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == College.Organization_OrganizationId).FirstOrDefault();
+
+
+            ViewBag.OrganizationName = OrganizationOfR.OrganizationName;
+            ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
+            ViewBag.Username = user.FullName;
+
+            SpecialitiesVM specialitiesVM = new()
+            {
+
+                MasterFieldsListItems = _DbContext.FieldOfSpecialtiesMaster.FromSqlRaw("SELECT * FROM FieldOfSpecialtiesMaster WHERE FieldId IN" +
+                $"(SELECT FieldOfSpecialtiesDetails.Field_FieldId FROM FieldOfSpecialtiesDetails ,OrganizationsProvidTrainingInArea WHERE DetailFieldId = DetailField_DetailFieldId AND Organization_OrganizationId ={OrganizationOfR.OrganizationId});")
+                .ToList().Select(u => new SelectListItem { Text = u.FieldName, Value = u.FieldId.ToString() }),
+
+                DepartmentListItems = _DbContext.Departments.FromSqlRaw($"SELECT * FROM Departments WHERE Responsible_UserId  = {College.Responsible_UserId} AND DepartmentName !='قسم ادارة مسؤولين اقسام الجامعة';")
+                .ToList().Select(u => new SelectListItem { Text = u.DepartmentName, Value = u.DepartmentId.ToString() }),
+
+
+
+            };
+
+            return View(specialitiesVM);
+
+
+        }
+
+        public IActionResult AddDetailFields(string dFieldIds)
+        {
+
+            if (dFieldIds != "[]")
+            {
+                var charsToRemove = new string[] { "[", "]" };
+
+                foreach (var c in charsToRemove)
+                {
+                    dFieldIds = dFieldIds.Replace(c, string.Empty);
+                }
+
+
+
+
+
+                string[] Ids = dFieldIds.Split(",");
+
+                // Console.WriteLine(Ids[0]);
+
+
+
+                int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
+
+                var RUser = _DbContext.UserAcounts.Find(RUserId);
+
+
+                int DEPId = Convert.ToInt32(Ids[0]);
+                //   var OrganizationOfR = _DbContext.Organizations.Where(item => item.ResponsibleUserId == RUserId).FirstOrDefault();
+
+                var Department = _DbContext.Departments.Where(item => item.DepartmentId == DEPId).FirstOrDefault();
+
+
+
+
+                foreach (var i in Ids.Skip(1))
+                {
+                    int id = Convert.ToInt32(i);
+
+                    var DTA = new DepartmentTrainingArea
+                    {
+                        Department_DepartmenId = Department.DepartmentId,
+                        TrainArea_DetailFiledId = id,
+
+
+                    };
+
+
+                    _DbContext.DepartmentTrainingAreas.Add(DTA);
+                }
+
+                _DbContext.SaveChanges();
+                //TempData["success"] = "تم إضافة التخصصات  بنجاح";
+
+
+            }
+
+
+
+
+            return Json(new { Exists = false });
+
+        }
+
+
 
 
 
@@ -421,6 +537,117 @@ namespace TadarbProject.Controllers
 
 
         //}
+
+
+        #region
+
+        public IActionResult GetDetailFields(string? ids)
+        {
+
+            int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
+
+
+            var College = _DbContext.UniversityColleges.Where(item => item.Responsible_UserId == RUserId).FirstOrDefault();
+
+            var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == College.Organization_OrganizationId).FirstOrDefault();
+
+
+
+
+
+            if (!string.IsNullOrEmpty(ids))
+            {
+
+                string[] Ids = ids.Split(",");
+
+                var FId = Convert.ToInt32(Ids[1]);
+                var DId = Convert.ToInt32(Ids[0]);
+
+                //Console.WriteLine(FId);
+
+                var Detailfields = _DbContext.FieldOfSpecialtiesDetails.FromSqlRaw($"Select * From FieldOfSpecialtiesDetails WHERE Field_FieldId={FId} AND DetailFieldId IN" +
+                $"(Select DetailField_DetailFieldId From OrganizationsProvidTrainingInArea WHERE Organization_OrganizationId={OrganizationOfR.OrganizationId})" +
+                $"AND DetailFieldId NOT IN (SELECT TrainArea_DetailFiledId From DepartmentTrainingAreas WHERE Department_DepartmenId={DId})")
+                .IgnoreQueryFilters()
+                .Select(item => new
+
+                {
+                    DetailFieldId = item.DetailFieldId,
+
+                    SpecializationName = item.SpecializationName
+
+                }
+
+
+                ).ToList();
+
+
+                return Json(new { Detailfields });
+
+
+            }
+
+
+            return Json(new { Exists = false });
+        }
+
+        public IActionResult GetDepartmentTrainingArea()
+
+        {
+            int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
+
+            var OrganizationOfR = _DbContext.Organizations.Where(item => item.ResponsibleUserId == RUserId).FirstOrDefault();
+
+            var College = _DbContext.UniversityColleges.Where(item => item.Responsible_UserId == RUserId).FirstOrDefault();
+
+            var departmentofb = _DbContext.Departments.Where(item => item.Branch_BranchId == College.CollegeId).FirstOrDefault();
+
+            IEnumerable<DepartmentTrainingArea> Departments = Enumerable.Empty<DepartmentTrainingArea>();
+
+            Departments = _DbContext.DepartmentTrainingAreas.FromSqlRaw("SELECT * FROM DepartmentTrainingAreas WHERE Department_DepartmenId IN" +
+                $"(SELECT DepartmentId FROM Departments WHERE  DepartmentName!='قسم ادارة مسؤولين اقسام الجامعة' AND College_CollegeId={College.CollegeId})").Include(item => item.department)
+                .Include(item => item.fieldOfSpecialtyDetails).OrderBy(item => item.Department_DepartmenId).ToList();
+
+
+
+
+
+            return Json(new { Departments });
+
+
+
+        }
+
+        public IActionResult DeleteDepartmentTrainingArea(int? id)
+        {
+
+
+
+            if (id != null || id == 0)
+            {
+
+
+
+                var DEPTA = _DbContext.DepartmentTrainingAreas.Where(u => u.DepartmentTrainingAreaId == id).FirstOrDefault();
+
+                _DbContext.DepartmentTrainingAreas.Remove(DEPTA);
+
+
+                _DbContext.SaveChanges();
+
+
+                return Json(new { success = true, message = "تم الحذف بنجاح" });
+            }
+
+
+
+            return Json(new { success = false, message = "حصل خطاء لم يتم الحذف" });
+
+        }
+
+
+        #endregion
+
 
     }
 }

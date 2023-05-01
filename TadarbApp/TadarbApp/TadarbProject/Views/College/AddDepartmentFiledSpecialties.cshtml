@@ -1,0 +1,334 @@
+﻿@model SpecialitiesVM
+
+<head>
+
+    <link rel="stylesheet" href="~/css/AddSpecialities.css" asp-append-version="true" />
+
+
+</head>
+<body style="background: linear-gradient(#1c4c64,#5590ad);">
+
+    <div class="row">
+        <div class="col-sm-4" style="z-index:2;">
+
+            <div class="vertical-nav bg-white" id="sidebar">
+                <div class="py-4 px-3 mb-4 bg-light">
+                    <div class="media d-flex align-items-center">
+                        <img src="~/@ViewBag.OrganizationImage" alt="..." width="65" class="mr-3 rounded-circle img-thumbnail shadow-sm">
+                        <div class="media-body">
+                            <h4 class="m-0">@ViewBag.OrganizationName</h4>
+                        </div>
+                    </div>
+                </div>
+                <h5> مرحبا بك @ViewBag.Username </h5>
+
+                <p class="text-gray font-weight-bold text-uppercase px-3 small pb-4 mb-0">القائمة</p>
+
+                <ul class="nav flex-column bg-white mb-0">
+                    <li class="nav-item">
+                        <a asp-controller="College" asp-action="Index" class="nav-link text-dark font-italic bg-light">
+                            <i class="fa-solid fa-house"></i>
+                            الصفحة الرئيسية
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a asp-controller="College" asp-action="ViewDepartmentUser" class="nav-link text-dark font-italic ">
+                            <i class="fa-solid fa-building-user"></i>
+                            إدارة الموظفين
+
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a asp-controller="College" asp-action="AddViewDepartmentUni" class="nav-link text-dark font-italic ">
+                            <i class="fa-solid fa-person-chalkboard"></i>
+                            إدارة الاقسام
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-controller="College" asp-action="ViewDepartmentFiledSpecialties" class="nav-link text-dark font-italic ">
+                            <i class="fa-solid fa-person-chalkboard"></i>
+                            إدارة التخصصات
+                        </a>
+                    </li>
+
+                </ul>
+
+
+
+
+            </div>
+
+
+            <!-- End vertical navbar -->
+            <!-- Page content holder -->
+            <div class="page-content p-1" id="content">
+                <!-- Toggle button -->
+                <button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i class="fa fa-bars mr-2"></i><small class="text-uppercase font-weight-bold">القائمة</small></button>
+            </div>
+
+
+        </div>
+        <div class="col-sm-6">
+
+            <div class="card" style="border-radius: 25px; height:auto; width:auto; margin-top:0.5cm; margin-bottom:3cm; padding:8px 8px 8px 8px ; border-color:black;background-color:#dfebf2">
+                <div class="card-body p-5">
+                    <h2 class=" text-center mb-5">اختيار التخصصات المراد تقديم التدريب فيها</h2>
+
+
+                    <div class="row">
+
+
+
+
+                        <div class="col-md-6 mb-4 pb-2">
+                            <div class="form-group  mb-4 pb-2">
+                                <label for="MasterFieldsID" class="form-label mt-4" style="font-size:22px">اختيار القسم:</label>
+
+
+                                <select asp-items="@Model.DepartmentListItems" class="form-select  my-select" id="DepartmentListID" required>
+                                    <option selected disabled value="">--القسم العام--</option>
+
+                                </select>
+
+                                <div class="invalid-feedback" style="text-align: right;"> الرجاء اختيار  القسم  </div>
+
+
+
+                            </div>
+
+                        </div>
+
+
+
+
+                        <div class="col-md-6 mb-4 pb-2">
+
+
+                            <div class="form-group  mb-4 pb-2">
+                                <label for="MasterFieldsID" class="form-label mt-4" style="font-size:22px">اختيار المجال:</label>
+
+
+                                <select asp-items="@Model.MasterFieldsListItems" class="form-select my-select" id="MasterFieldsID" required>
+                                    <option selected disabled value="">--المجال العام--</option>
+
+                                </select>
+                                <div class="invalid-feedback" style="text-align: right;"> الرجاء اختيار  المجال  </div>
+
+
+                            </div>
+                        </div>
+
+
+
+
+                        <div class=" mb-4 pb-2">
+                            <div class="container">
+                                <div class="row">
+                                    <div>
+                                        <label for="MainBranchCity" class="form-label mt-4" style="font-size:20px ;">الرجاء اختيار التخصصات المراد إضافتها:</label>
+                                        <div class="container">
+                                            <div class="row">
+                                                <div class="mb-4 pb-2" style="OVERFLOW-Y:scroll;HEIGHT:200px;" dir="ltr">
+                                                    <table class="table table-hover table-center" style="background-color:white;border-radius: 25px;" dir="rtl">
+                                                        <thead style="color:#0b70a3;font-size:18px">
+                                                            <tr>
+
+                                                                <th>اسم التخصص:</th>
+
+                                                                <th class="text-center">إضافة: </th>
+
+
+
+
+                                                            </tr>
+                                                        </thead>
+
+                                                        <tbody id="Tbody">
+                                                        </tbody>
+
+
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+
+                <br /><br />
+
+                <div class="d-flex justify-content-center ">
+
+                    <a class="btn btn-lg " style="background-color:#e6e291; font-size:18px;" onclick="AddSP()">حفظ</a>
+
+                    &nbsp; &nbsp;
+
+                    <a class="btn btn-lg  " style="font-size:18px; color:black; background-color:#bac9d0;" href="@Url.Action("ViewDepartmentFiledSpecialties")"> العودة الى القائمة</a>
+
+                    &nbsp; &nbsp;
+
+
+
+                </div>
+
+
+                <br />
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+    <div class="col-sm-2"></div>
+
+
+</body>
+
+@section Scripts{
+
+
+    <script>
+
+
+        $(function () {
+            // Sidebar toggle behavior
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar, #content').toggleClass('active');
+            });
+        });
+
+
+        //$('#MasterFieldsID').on('change', function () {
+
+
+
+        //    FillSFD(this.value);
+        //});
+
+
+        var allSelect = [];
+        $('.my-select').change(function () {
+
+            allSelect = [];
+
+            $('.my-select').each(function (index, item) {
+                allSelect.push(item.value);
+            });
+
+            //  console.log(allSelect.toString().length);
+
+            if (allSelect.toString().length != 3) {
+
+                return;
+            }
+
+            FillSFD(allSelect.toString());
+        });
+
+        function FillSFD(MAndDId) {
+
+
+            $(document).ready(function () {
+                $.ajax({
+                    type: "GET",
+                    url: "@Url.Action("GetDetailFields")",
+                    data: { ids: MAndDId },
+
+                    dataType: "json",
+                    success: function (data) {
+                        var body = '';
+
+                        for (var i = 0; i < data.detailfields.length; i++) {
+                            body +=
+                                "<tr> <td class='text-nowrap' ><div class='font-weight-600' > <div class='font-weight-600'>" + data.detailfields[i].specializationName +
+                                "</div></div></td>"
+
+                                + "<td class='text-center'>" +
+                                "<input class='form-check-input' type='checkbox' value='" + data.detailfields[i].detailFieldId + "'> <label>إضافة</label><td></tr>"
+                        }
+
+                        $("#Tbody").html(body);
+
+
+                    }
+                });
+            });
+
+
+        }
+
+
+        let result = [];
+
+        function AddSP() { // this function will get called when the save button is clicked
+            var checkBoxes = document.querySelectorAll('input[type="checkbox"]');
+            result = [];
+            var select = document.getElementById('DepartmentListID');
+            var IDvalue = select.options[select.selectedIndex].value;
+
+            result.push(parseInt(IDvalue));
+
+            checkBoxes.forEach(item => { // loop all the checkbox item
+                if (item.checked) {  //if the check box is checked
+
+                    result.push(parseInt(item.value)); //stored the objects to result array
+                }
+            })
+
+            if (result.length > 1) {
+
+                SendSP(result);
+            }
+
+
+
+
+
+        }
+
+
+
+        function SendSP(Array) {
+
+
+
+
+            $.ajax({
+
+                type: "POST",
+                datatype: "json",
+                url: "@Url.Action("AddDetailFields")",
+                data: { dFieldIds: JSON.stringify(Array) },
+
+
+            });
+
+            window.location.replace('@Url.ActionLink("ViewDepartmentFiledSpecialties")');
+        }
+
+
+
+
+
+                                // Example starter JavaScript for disabling form submissions if there are invalid fields
+
+
+    </script>
+
+
+
+
+
+    }

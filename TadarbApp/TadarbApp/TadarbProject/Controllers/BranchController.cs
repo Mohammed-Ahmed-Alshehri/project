@@ -306,14 +306,7 @@ namespace TadarbProject.Controllers
 
             };
 
-
-
-
-
             return View(specialitiesVM);
-
-
-
 
 
         }
