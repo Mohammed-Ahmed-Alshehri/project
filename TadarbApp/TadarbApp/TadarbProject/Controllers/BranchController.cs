@@ -238,7 +238,7 @@ namespace TadarbProject.Controllers
         {
             if (Phone == null)
             {
-                return Json(new { Exists = false });
+                return Json(new { Exists = false }); 
             }
 
             var item = _DbContext.UserAcounts.Where(item => item.Phone.Equals(Phone)).FirstOrDefault();
@@ -256,7 +256,7 @@ namespace TadarbProject.Controllers
 
 
 
-
+        [HttpGet]
         public IActionResult AddOpportunities()
         {
 
@@ -266,6 +266,7 @@ namespace TadarbProject.Controllers
             int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
             var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).FirstOrDefault();
             var Branch = _DbContext.OrganizationBranches_TrainProv.Where(item => item.Responsible_UserId == RUserId).FirstOrDefault();
+            var Department = _DbContext.Departments.Where(item => item.Branch_BranchId == Branch.BranchId).FirstOrDefault();
 
             var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Branch.Organization_OrganizationId).FirstOrDefault();
 
@@ -273,9 +274,87 @@ namespace TadarbProject.Controllers
             ViewBag.OrganizationName = OrganizationOfR.OrganizationName + " - " + Branch.BranchName;
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
             ViewBag.Username = user.FullName;
-            return View();
+            var Opportunity = new TrainingOpportunityVM();
+
+            var DEPOfR = _DbContext.Departments.Where(item => item.Branch_BranchId == Branch.BranchId && item.DepartmentName.Equals("قسم ادارة مشرفين التدريب")).FirstOrDefault();
+
+            Opportunity.UserListItems = _DbContext.UserAcounts.FromSqlRaw($"Select * from UserAcounts WHERE UserAcounts.UserId IN (Select Employees.UserAccount_UserId from Employees where Employees.Department_DepartmentId ={DEPOfR.DepartmentId})" +
+            "AND UserAcounts.UserId NOT IN (select Responsible_UserId from dbo.OrganizationBranches_TrainProv);").ToList().Select(u => new SelectListItem { Text = u.FullName, Value = u.UserId.ToString() });
+
+
+
+            Opportunity.DepartmentListItems = _DbContext.Departments.FromSqlRaw($"SELECT * FROM Departments WHERE Responsible_UserId  = {Branch.Responsible_UserId} AND DepartmentName !='قسم ادارة مشرفين التدريب';")
+           .ToList().Select(u => new SelectListItem { Text = u.DepartmentName, Value = u.DepartmentId.ToString() });
+
+            Opportunity.DetailFieldsListItems = _DbContext.FieldOfSpecialtiesDetails.FromSqlRaw($"SELECT * FROM FieldOfSpecialtiesDetails WHERE DetailFieldId IN(SELECT TrainArea_DetailFiledId FROM DepartmentTrainingAreas WHERE Department_DepartmenId = {Department.DepartmentId})")
+           .ToList().Select(u => new SelectListItem { Text = u.SpecializationName, Value = u.DetailFieldId.ToString() });
+            
+            Opportunity.TrainingTypeListItems = _DbContext.TrainingTypes.FromSqlRaw($"SELECT * FROM TrainingTypes")
+           .ToList().Select(u => new SelectListItem { Text = u.TypeName, Value = u.TrainingTypeId.ToString() });
+
+
+            return View(Opportunity);
 
         }
+
+        [HttpPost]
+        public IActionResult AddOpportunities(TrainingOpportunityVM TrainingOpportunityVM)
+        {
+            int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
+            var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).FirstOrDefault();
+            var Branch = _DbContext.OrganizationBranches_TrainProv.Where(item => item.Responsible_UserId == RUserId).FirstOrDefault();
+
+            var Emplyee = _DbContext.Employees.Where(item => item.UserAccount_UserId == RUserId).FirstOrDefault();
+
+            var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Branch.Organization_OrganizationId).FirstOrDefault();
+
+
+            if (TrainingOpportunityVM == null)
+            {
+
+                return View();
+
+            }
+
+            var Opportunity = new TrainingOpportunity
+            {
+                Branch_BranchId = Branch.BranchId,
+                CreatedByEmployeeId =Emplyee.EmployeeId ,
+                TotalNumberOfSeats = TrainingOpportunityVM.TrainingOpportunity.TotalNumberOfSeats,
+                StartDate = TrainingOpportunityVM.TrainingOpportunity.StartDate,
+                EndDate = TrainingOpportunityVM.TrainingOpportunity.EndDate,
+                StartRegisterDate = TrainingOpportunityVM.TrainingOpportunity.StartRegisterDate,
+                EndRegisterDate=TrainingOpportunityVM.TrainingOpportunity.EndRegisterDate,
+                OpportunityStatus = "Available",
+                AbilityofSubmissionStatus = "Available",
+
+                SupervisorEmployee = TrainingOpportunityVM.TrainingOpportunity.SupervisorEmployee,
+                Department_DepartmentId = TrainingOpportunityVM.TrainingOpportunity.Department_DepartmentId,
+                DetailFiled_DetailFiledId = TrainingOpportunityVM.TrainingOpportunity.DetailFiled_DetailFiledId,
+
+                OpportunityDescription = TrainingOpportunityVM.TrainingOpportunity.OpportunityDescription,
+                RequestedOpportunities = 0,
+                ApprovedOpportunities = 0,
+                RejectedOpportunities = 0,
+                AvailableOpportunities = TrainingOpportunityVM.TrainingOpportunity.TotalNumberOfSeats,
+                MinimumHours = TrainingOpportunityVM.TrainingOpportunity.MinimumHours,
+                MinimumWeeks = TrainingOpportunityVM.TrainingOpportunity.MinimumWeeks,
+                TrainingType_TrainingTypeId = TrainingOpportunityVM.TrainingOpportunity.TrainingType_TrainingTypeId,
+
+
+
+
+
+            };
+
+            _DbContext.TrainingOpportunities.Add(Opportunity);
+
+            _DbContext.SaveChanges();
+            TempData["success"] = "تم إضافة حساب الموظف  بنجاح";
+            return RedirectToAction("AddOpportunities");
+
+        }
+
         [HttpGet]
         public IActionResult AddDepartmentFiledSpecialties()
         {

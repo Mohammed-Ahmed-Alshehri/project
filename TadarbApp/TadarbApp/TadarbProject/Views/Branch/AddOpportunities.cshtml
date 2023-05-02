@@ -1,4 +1,9 @@
-﻿<head>
+﻿@model TrainingOpportunityVM
+
+@{
+    ViewData["Title"] = "اضافة حساب مشرف تدريبي";
+}
+<head>
 
     <link rel="stylesheet" href="~/css/AddSpecialities.css" asp-append-version="true" />
 
@@ -76,7 +81,7 @@
                 <div class="card-body p-5">
                     <h2 class=" text-center mb-5">إضافة فرصة جديدة</h2>
 
-                    <form>
+                    <form asp-controller="Branch" asp-action="AddOpportunities" method="post" class="needs-validation" novalidate>
                         <div class="row">
                             <div class=" mb-4 pb-2">
                                 <br />
@@ -92,7 +97,7 @@
                                 <div class="col-md-6 mb-4 pb-2">
 
                                 <label for="SelectDepartment" class="form-label" style="font-size:20px;"> القسم العام</label>
-                                <select class="form-select" required>
+                                    <select class="form-select" asp-for="@Model.TrainingOpportunity.Department_DepartmentId" asp-items="@Model.DepartmentListItems" required>
                                     <option selected disabled value="">-- اختيار القسم --</option>
                                    
                                 </select>
@@ -106,7 +111,7 @@
                             <div class="form-group" style="text-align: right;">
 
                                         <label for="SpecializationName" class="form-label " style="font-size:20px;">التخصص</label>
-                                        <select class="form-select" id="SpecializationNameID" required>
+                                        <select class="form-select" asp-for="@Model.TrainingOpportunity.DetailFiled" asp-items="@Model.DetailFieldsListItems" id="SpecializationNameID" required>
                                     <option selected disabled value="">--التخصص--</option>
 
                                 </select>
@@ -124,7 +129,7 @@
                                 <div class="form-outline" style="text-align: right;">
 
                                     <label class="form-label" for="OrganizationName" style="font-size:20px;">وصف الفرصة</label>
-                                    <textarea type="text" id="OrganizationNameID" class="form-control form-control-lg" required> </textarea>
+                                    <textarea type="text" asp-for="@Model.TrainingOpportunity.OpportunityDescription" id="OrganizationNameID" class="form-control form-control-lg" required> </textarea>
                                     <div class="invalid-feedback" style="text-align: right;"> الرجاء  إدخال وصف للفرصة </div>
 
                                 </div>
@@ -138,7 +143,7 @@
                                     <div class="form-group" style="text-align: right;">
                                 <i class="fa-solid fa-user"></i>
                                 <label for="form-SupervisorNameID" class="form-label" style="font-size:20px;">تعيين مشرف تدريبي</label>
-                                <select class="form-select" required>
+                                        <select class="form-select" asp-for="@Model.TrainingOpportunity.SupervisorEmployeeId"  asp-items="@Model.UserListItems" required>
                                     <option selected disabled value="">--المشرفين--</option>
 
                                 </select>
@@ -153,7 +158,7 @@
                                     <div class="form-group" style="text-align: right;">
 
                                 <label for="TypeTraining" class="form-label " style="font-size:20px;">نوع التدريب</label>
-                                <select class="form-select" id="TypeTrainingID" required>
+                                <select class="form-select" asp-for="@Model.TrainingOpportunity.TrainingType_TrainingTypeId" asp-items="@Model.TrainingTypeListItems" id="TypeTrainingID" required>
                                     <option selected disabled value="">--التدريب--</option>
                                  
                                 </select>
@@ -175,7 +180,7 @@
                                 <div class="form-outline" style="text-align: right;">
                                     <i class="fa-solid fa-chair"></i>
                                     <label class="form-label" for="OrganizationName" style="font-size:20px;">عدد المقاعد</label>
-                                    <input type="number" id="OrganizationNameID" class="form-control form-control-lg" required /> 
+                                    <input type="number" asp-for="@Model.TrainingOpportunity.TotalNumberOfSeats"  id="OrganizationNameID" class="form-control form-control-lg" required /> 
                                     <div class="invalid-feedback" style="text-align: right;"> الرجاء يجب إدخال عدد المقاعد </div>
 
                                 </div>
@@ -188,7 +193,7 @@
                                     <div class="form-outline" style="text-align: right;">
                                         <i class="fa-regular fa-clock"></i>
                                         <label class="form-label" for="OrganizationName" style="font-size:20px;">عدد ساعات التدريب</label>
-                                        <input type="number" id="OrganizationNameID" class="form-control form-control-lg" required />
+                                        <input type="number" asp-for="@Model.TrainingOpportunity.MinimumHours" id="OrganizationNameID" class="form-control form-control-lg" required />
                                         <div class="invalid-feedback" style="text-align: right;"> الرجاء يجب إدخال عدد ساعات التدريب </div>
 
                                     </div>
@@ -201,7 +206,7 @@
                                 <div class="form-outline" style="text-align: right;">
                                     <i class="fa-solid fa-calendar-week"></i>
                                         <label class="form-label" for="OrganizationName" style="font-size:20px;">عدد اسابيع التدريب</label>
-                                        <input type="number" id="OrganizationNameID" class="form-control form-control-lg" required />
+                                        <input type="number" asp-for="@Model.TrainingOpportunity.MinimumWeeks" id="OrganizationNameID" class="form-control form-control-lg" required />
                                         <div class="invalid-feedback" style="text-align: right;"> الرجاء يجب إدخال عدد اسابيع التدريب </div>
 
                                 </div>
@@ -213,7 +218,7 @@
                                 <i class="fa-regular fa-calendar-days"></i>
                                 <label for="3" class="form-label mt-4" style="font-size:20px;">تاريخ بداية الفرصة</label> <br />
                                 <div>
-                                    <input placeholder="Select date" type="date" id="example" class="form-control">
+                                    <input placeholder="Select date" asp-for="@Model.TrainingOpportunity.StartDate" type="date" id="example" class="form-control">
 
                                 </div>
                                 <div class="invalid-feedback">
@@ -228,7 +233,7 @@
                                 <i class="fa-regular fa-calendar-days"></i>
                                 <label for="3" class="form-label mt-4" style="font-size:20px;">تاريخ نهاية الفرصة</label> <br />
                                 <div>
-                                    <input placeholder="Select date" type="date" id="example" class="form-control">
+                                    <input placeholder="Select date" asp-for="@Model.TrainingOpportunity.EndDate" type="date" id="example" class="form-control">
 
                                 </div>
                                 <div class="invalid-feedback">
@@ -241,7 +246,7 @@
                                 <i class="fa-regular fa-calendar-days"></i>
                                 <label for="3" class="form-label mt-4" style="font-size:20px;">تاريخ بداية التسجيل </label> <br />
                                 <div>
-                                    <input placeholder="Select date" type="date" id="example" class="form-control">
+                                    <input placeholder="Select date" asp-for="@Model.TrainingOpportunity.StartRegisterDate" type="date" id="example" class="form-control">
 
                                 </div>
                                 <div class="invalid-feedback">
@@ -256,7 +261,7 @@
                                 <i class="fa-regular fa-calendar-days"></i>
                                 <label for="3" class="form-label mt-4" style="font-size:20px;">تاريخ نهاية التسجيل</label> <br />
                                 <div>
-                                    <input placeholder="Select date" type="date" id="example" class="form-control">
+                                    <input placeholder="Select date" asp-for="@Model.TrainingOpportunity.EndRegisterDate" type="date" id="example" class="form-control">
 
                                 </div>
                                 <div class="invalid-feedback">
