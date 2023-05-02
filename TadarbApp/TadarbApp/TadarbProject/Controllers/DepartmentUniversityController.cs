@@ -160,15 +160,12 @@ namespace TadarbProject.Controllers
 
             var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).FirstOrDefault();
 
-            var Employee = _DbContext.Employees.Where(item => item.UserAccount_UserId == RUserId).FirstOrDefault();
-
-            var Department = _DbContext.Departments.Where(item => item.DepartmentId == Employee.Department_DepartmentId).FirstOrDefault();
-
+            var Department = _DbContext.Departments.Where(item => item.Responsible_UserId == RUserId).FirstOrDefault();
 
             var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Department.Organization_OrganizationId).FirstOrDefault();
 
             ViewBag.OrganizationName = OrganizationOfR.OrganizationName + " - " + Department.DepartmentName;
-       
+
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
             ViewBag.Username = user.FullName;
 
@@ -188,10 +185,8 @@ namespace TadarbProject.Controllers
 
             var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).FirstOrDefault();
 
-            var Employee = _DbContext.Employees.Where(item => item.UserAccount_UserId == RUserId).FirstOrDefault();
 
-            var Department = _DbContext.Departments.Where(item => item.DepartmentId == Employee.Department_DepartmentId).FirstOrDefault();
-
+            var Department = _DbContext.Departments.Where(item => item.Responsible_UserId == RUserId).FirstOrDefault();
 
             var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Department.Organization_OrganizationId).FirstOrDefault();
 

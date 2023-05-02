@@ -13,7 +13,7 @@ namespace TadarbProject.Controllers
         private readonly AppDbContext _DbContext;
         private readonly IEmailSender _emailSender;
         private readonly IHttpContextAccessor _HttpContextAccessor;
-        
+
 
         public CollegeController(AppDbContext DbContext, IEmailSender emailSender, IHttpContextAccessor HttpContextAccessor)
         {
@@ -60,7 +60,9 @@ namespace TadarbProject.Controllers
             ViewBag.OrganizationName = OrganizationOfR.OrganizationName + " - " + College.CollegeName;
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
             ViewBag.Username = user.FullName;
-            var DEPOfR = _DbContext.Departments.Where(item => item.Organization_OrganizationId == OrganizationOfR.OrganizationId && item.DepartmentName.Equals("قسم ادارة مسؤولين اقسام الجامعة")).FirstOrDefault();
+
+            var DEPOfR = _DbContext.Departments.Where(item => item.Organization_OrganizationId == OrganizationOfR.OrganizationId
+            && item.College_CollegeId == College.CollegeId && item.DepartmentName.Equals("قسم ادارة مسؤولين اقسام الجامعة")).FirstOrDefault();
 
             IEnumerable<UserAcount> OrgEMP = Enumerable.Empty<UserAcount>(); ;
 
@@ -144,7 +146,8 @@ namespace TadarbProject.Controllers
 
 
 
-            var DEPOfR = _DbContext.Departments.Where(item => item.Organization_OrganizationId == OrganizationOfR.OrganizationId && item.DepartmentName.Equals("قسم ادارة مسؤولين اقسام الجامعة")).FirstOrDefault();
+            var DEPOfR = _DbContext.Departments.Where(item => item.Organization_OrganizationId == OrganizationOfR.OrganizationId && item.College_CollegeId == College.CollegeId
+            && item.DepartmentName.Equals("قسم ادارة مسؤولين اقسام الجامعة")).FirstOrDefault();
 
 
 
@@ -169,7 +172,8 @@ namespace TadarbProject.Controllers
 
 
 
-            int DEPId = _DbContext.Departments.Where(item => item.Organization_OrganizationId == OrganizationOfR.OrganizationId && item.DepartmentName.Equals("قسم ادارة مسؤولين اقسام الجامعة")).First().DepartmentId;
+            int DEPId = _DbContext.Departments.Where(item => item.Organization_OrganizationId == OrganizationOfR.OrganizationId &&
+            item.College_CollegeId == College.CollegeId && item.DepartmentName.Equals("قسم ادارة مسؤولين اقسام الجامعة")).First().DepartmentId;
 
             var EMP = new Employee
             {
@@ -276,18 +280,11 @@ namespace TadarbProject.Controllers
 
                 _DbContext.Departments.Add(DEP);
 
-                //var EPM = _DbContext.Employees.Where(item => item.UserAccount_UserId == departmentVM.department.Responsible_UserId).FirstOrDefault();
+
 
 
                 _DbContext.SaveChanges();
 
-                //var DepartmentEmployee = _DbContext.Departments.Where(item => item.Responsible_UserId == departmentVM.department.Responsible_UserId).FirstOrDefault();
-
-                //EPM.Department_DepartmentId = DepartmentEmployee.DepartmentId;
-
-                //_DbContext.Employees.Update(EPM);
-
-                //_DbContext.SaveChanges();
 
                 TempData["success"] = "تم إضافة الفسم  بنجاح";
 
@@ -332,8 +329,8 @@ namespace TadarbProject.Controllers
 
             if (id != null || id != 0)
             {
-              
-                DepartmentVM.department=_DbContext.Departments.Where(u => u.DepartmentId == id).FirstOrDefault();
+
+                DepartmentVM.department = _DbContext.Departments.Where(u => u.DepartmentId == id).FirstOrDefault();
 
 
                 var DEPOfR = _DbContext.Departments.Where(item => item.Organization_OrganizationId == OrganizationOfR.OrganizationId && item.DepartmentName.Equals("قسم ادارة مسؤولين اقسام الجامعة")).FirstOrDefault();
@@ -602,7 +599,7 @@ namespace TadarbProject.Controllers
                 var Detailfields = _DbContext.FieldOfSpecialtiesDetails.FromSqlRaw($"Select * From FieldOfSpecialtiesDetails WHERE Field_FieldId={FId} AND DetailFieldId IN" +
                 $"(Select DetailField_DetailFieldId From OrganizationsProvidTrainingInArea WHERE Organization_OrganizationId={OrganizationOfR.OrganizationId})" +
                 $"AND DetailFieldId NOT IN (SELECT TrainArea_DetailFiledId From DepartmentTrainingAreas WHERE Department_DepartmenId={DId})")
-                
+
                 .Select(item => new
 
                 {
