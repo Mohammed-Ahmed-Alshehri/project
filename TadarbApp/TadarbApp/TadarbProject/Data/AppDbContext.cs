@@ -28,7 +28,6 @@ namespace TadarbProject.Data
 
         public DbSet<DepartmentTrainingArea> DepartmentTrainingAreas { get; set; }
 
-
         public DbSet<Department> Departments { get; set; }
 
         public DbSet<Employee> Employees { get; set; }
@@ -44,6 +43,11 @@ namespace TadarbProject.Data
 
         public DbSet<UniversityTraineeStudent> UniversitiesTraineeStudents { get; set; }
 
+
+        public DbSet<TrainingType> TrainingTypes { get; set; }
+
+
+        public DbSet<TrainingOpportunity> TrainingOpportunities { get; set; }
 
     }
 }
