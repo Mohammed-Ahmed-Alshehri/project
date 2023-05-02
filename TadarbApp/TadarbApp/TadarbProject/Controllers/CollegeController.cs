@@ -197,14 +197,14 @@ namespace TadarbProject.Controllers
         {
             //ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
             int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
-            //var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).FirstOrDefault();
+            var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).FirstOrDefault();
             var College = _DbContext.UniversityColleges.Where(item => item.Responsible_UserId == RUserId).FirstOrDefault();
 
             var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == College.Organization_OrganizationId).FirstOrDefault();
 
             ViewBag.OrganizationName = OrganizationOfR.OrganizationName + " - " + College.CollegeName;
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
-            //ViewBag.Username = user.FullName;
+            ViewBag.Username = user.FullName;
 
 
             IEnumerable<UserAcount> CollegeEMP = Enumerable.Empty<UserAcount>(); ;
@@ -251,10 +251,12 @@ namespace TadarbProject.Controllers
         {
 
             int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
+            var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).FirstOrDefault();
+
             var College = _DbContext.UniversityColleges.Where(item => item.Responsible_UserId == RUserId).FirstOrDefault();
             var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == College.Organization_OrganizationId).FirstOrDefault();
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
-
+            ViewBag.Username = user.FullName;
 
             if (ModelState.IsValid)
             {
@@ -299,7 +301,89 @@ namespace TadarbProject.Controllers
         }
 
 
+        [HttpGet]
+        public IActionResult EditBDepartment(int? id)
+        {
 
+            int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
+            var College = _DbContext.UniversityColleges.Where(item => item.Responsible_UserId == RUserId).FirstOrDefault();
+
+            var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).FirstOrDefault();
+
+            var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == College.Organization_OrganizationId).FirstOrDefault();
+
+            ViewBag.OrganizationName = OrganizationOfR.OrganizationName + " - " + College.CollegeName;
+            ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
+            ViewBag.Username = user.FullName;
+
+
+            //BranchVM branchVM = new()
+            //{
+
+            //    Branch = new OrganizationBranch_TrainProv()
+
+            //};
+
+            DepartmentVM DepartmentVM = new()
+            {
+                department = new Department()
+
+            };
+
+            if (id != null || id != 0)
+            {
+              
+                DepartmentVM.department=_DbContext.Departments.Where(u => u.DepartmentId == id).FirstOrDefault();
+
+
+                var DEPOfR = _DbContext.Departments.Where(item => item.Organization_OrganizationId == OrganizationOfR.OrganizationId && item.DepartmentName.Equals("قسم ادارة مسؤولين اقسام الجامعة")).FirstOrDefault();
+
+                DepartmentVM.UserListItems = _DbContext.UserAcounts.FromSqlRaw($"Select * from UserAcounts WHERE UserAcounts.UserId IN (Select Employees.UserAccount_UserId FROM Employees WHERE Employees.Department_DepartmentId ={DEPOfR.DepartmentId})" +
+                   $"AND UserAcounts.UserId NOT IN (Select Responsible_UserId FROM Departments WHERE Responsible_UserId!={DepartmentVM.department.Responsible_UserId})")
+                   .Select(u => new SelectListItem { Text = u.FullName, Value = u.UserId.ToString() });
+
+                DepartmentVM.department.College_CollegeId = College.CollegeId;
+
+                //var DEPOfR = _DbContext.Departments.Where(item => item.Organization_OrganizationId == OrganizationOfR.OrganizationId && item.DepartmentName.Equals("قسم ادارة الفروع")).FirstOrDefault();
+
+
+                //branchVM.UserListItems = _DbContext.UserAcounts.FromSqlRaw($"Select * from UserAcounts WHERE UserAcounts.UserId IN (Select Employees.UserAccount_UserId FROM Employees WHERE Employees.Department_DepartmentId ={DEPOfR.DepartmentId})" +
+                //    $"AND UserAcounts.UserId NOT IN (Select Responsible_UserId FROM OrganizationBranches_TrainProv WHERE Responsible_UserId!={branchVM.Branch.Responsible_UserId})")
+                //    .Select(u => new SelectListItem { Text = u.FullName, Value = u.UserId.ToString() });
+
+                return View(DepartmentVM);
+            }
+
+
+            return NotFound();
+        }
+
+        [HttpPost]
+        public IActionResult EditBDepartment(DepartmentVM DepartmentVM)
+        {
+            int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
+            var College = _DbContext.UniversityColleges.Where(item => item.Responsible_UserId == RUserId).FirstOrDefault();
+
+
+            if (!ModelState.IsValid)
+            {
+                return View(DepartmentVM);
+            }
+
+            DepartmentVM.department.College_CollegeId = College.CollegeId;
+
+
+            _DbContext.Departments.Update(DepartmentVM.department);
+
+            var User = _DbContext.UserAcounts.FirstOrDefault(item => item.UserId == DepartmentVM.department.Responsible_UserId);
+
+            _DbContext.UserAcounts.Update(User);
+            _DbContext.SaveChanges();
+
+            TempData["success"] = "تم تعديل معلومات القسم  بنجاح";
+
+            return RedirectToAction("AddViewDepartmentUni");
+        }
 
         [HttpGet]
         public IActionResult GetAllDEPs()

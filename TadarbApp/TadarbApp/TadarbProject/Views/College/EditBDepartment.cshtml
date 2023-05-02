@@ -1,0 +1,348 @@
+﻿@model DepartmentVM
+
+
+@{
+    ViewData["Title"] = "تعديل معلومات الفرع";
+}
+
+<head>
+
+    <link rel="stylesheet" href="~/css/Addbranches.css" asp-append-version="true" />
+
+</head>
+<body style="background: linear-gradient(#1c4c64,#5590ad);">
+
+    <div class="row">
+        <div class="col-sm-4" style="z-index:2;">
+
+            <div class="vertical-nav bg-white" id="sidebar">
+                <div class="py-4 px-3 mb-4 bg-light">
+                    <div class="media d-flex align-items-center">
+                        <img src="~/@ViewBag.OrganizationImage" alt="..." width="65" class="mr-3 rounded-circle img-thumbnail shadow-sm">
+                        <div class="media-body">
+                            <h4 class="m-0">@ViewBag.OrganizationName</h4>
+                        </div>
+                    </div>
+                </div>
+                <h5> مرحبا بك @ViewBag.Username </h5>
+
+                <p class="text-gray font-weight-bold text-uppercase px-3 small pb-4 mb-0">القائمة</p>
+
+                <ul class="nav flex-column bg-white mb-0">
+                    <li class="nav-item">
+                        <a asp-controller="College" asp-action="Index" class="nav-link text-dark font-italic ">
+                            <i class="fa-solid fa-house"></i>
+                            الصفحة الرئيسية
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a asp-controller="College" asp-action="ViewDepartmentUser" class="nav-link text-dark font-italic ">
+                            <i class="fa-solid fa-building-user"></i>
+                            إدارة الموظفين
+
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a asp-controller="College" asp-action="AddViewDepartmentUni" class="nav-link text-dark font-italic bg-light">
+                            <i class="fa-solid fa-person-chalkboard"></i>
+                            إدارة الاقسام
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-controller="College" asp-action="ViewDepartmentFiledSpecialties" class="nav-link text-dark font-italic ">
+                            <i class="fa-solid fa-person-chalkboard"></i>
+                            إدارة التخصصات
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+            <!-- End vertical navbar -->
+            <!-- Page content holder -->
+            <div class="page-content p-1" id="content">
+                <!-- Toggle button -->
+                <button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i class="fa fa-bars mr-2"></i><small class="text-uppercase font-weight-bold">القائمة</small></button>
+            </div>
+
+
+        </div>
+
+        <div class="col-sm-6">
+@*
+            <input asp-for="department.organization.OrganizationId" hidden />*@
+
+
+            <div class="card" style="border-radius: 25px; margin-top:2cm; margin-bottom:3cm; padding:5px 5px 5px 5px ; border-color:black;background-color:#dfebf2">
+                <div class="card-body p-5">
+                    <h2 class=" text-center mb-5">تعديل معلومات الفرع</h2>
+
+                    <form method="post" asp-controller="College" asp-action="EditBDepartment" class="needs-validation" novalidate>
+                        <div class="row">
+                            <div class=" mb-2 pb-2">
+                                <br />
+
+                                <div class="form-outline" style="text-align: right;">
+                                    <i class="fa-regular fa-address-card"></i>
+                                    <label class="form-label" for="BranchName" style="font-size:20px;">اسم الفرع</label>
+                                    <input type="text" asp-for="department.DepartmentName" id="BranchNameID" class="form-control form-control-lg" required />
+
+                                    <div class="invalid-feedback" style="text-align: right;"> الرجاء إدخال اسم الفرع </div>
+
+                                </div>
+
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="mb-2 pb-2">
+                            <i class="fa-solid fa-user"></i>
+                            <label for="3" class="form-label mt-4" style="font-size:20px;"> اسم المسؤول</label>
+                            <select asp-for="department.Responsible_UserId" asp-items="@Model.UserListItems" class="form-select" id="UseryNameID" required>
+                            </select>
+
+                            <div class="invalid-feedback">
+                                الرجاء اختيار اسم المسؤول
+                            </div>
+
+                        </div>
+
+                      
+
+
+
+
+
+                        <input asp-for="department.Organization_OrganizationId" hidden required />
+
+
+                        <input asp-for="department.DepartmentId" hidden required />
+
+                      
+
+                        <div class="d-flex justify-content-center">
+
+                            <button asp-controller="College" asp-action="EditBDepartment" asp-route-id="@Model.department.DepartmentId" type="submit" class="btn btn-lg " style="background-color:#e6e291; font-size:20px;">تعديل</button>
+
+                        </div>
+
+
+
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-sm-2"></div>
+    </div>
+</body>
+
+@section Scripts{
+
+
+
+    <script>
+
+        //for moving navbar side
+
+        $(function () {
+            // Sidebar toggle behavior
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar, #content').toggleClass('active');
+            });
+        });
+
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+        (function () {
+            'use strict'
+
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.querySelectorAll('.needs-validation')
+
+            // Loop over them and prevent submission
+            Array.prototype.slice.call(forms)
+                .forEach(function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (!form.checkValidity()) {
+                            event.preventDefault()
+                            event.stopPropagation()
+                        }
+
+                        form.classList.add('was-validated')
+                    }, false)
+                })
+        })()
+
+
+                //var lat = Model.organization.Location.Split(',').First();
+                //var log = Model.organization.Location.Split(',').Last();
+
+                //function initMap() {
+                //    const myLatlng = { lat: lat, lng: log };
+                //    const map = new google.maps.Map(document.getElementById("map"), {
+                //        zoom: 12,
+
+                //        center: myLatlng,
+
+                //        disableDefaultUI: true,
+
+                //    });
+
+                //    // Create the initial InfoWindow.
+                //    let infoWindow = new google.maps.InfoWindow({
+
+                //        content: "حدد موقع الفرع",
+                //        position: myLatlng,
+                //    });
+
+                //    infoWindow.open(map);
+
+                //    // Configure the click listener.
+                //    map.addListener("click", (mapsMouseEvent) => {
+                //        // Close the current InfoWindow.
+                //        infoWindow.close();
+
+
+
+                //        var BlatAndlog = JSON.stringify(mapsMouseEvent.latLng.toJSON(), null, 2).toString().replace(/{|}/g, '').split(',')
+
+                //        var Blat = BlatAndlog[0].slice(BlatAndlog[0].indexOf(':') + 2)
+
+                //        var Blog = BlatAndlog[1].slice(BlatAndlog[1].indexOf(':') + 2)
+
+                //        BlatAndlog = Blat + ", " + Blog;
+
+
+
+                //        setLoc(BlatAndlog);
+                //        setZoon(BlatAndlog);
+                //        // Create a new InfoWindow.
+                //        infoWindow = new google.maps.InfoWindow({
+
+                //            position: mapsMouseEvent.latLng,
+                //        });
+
+                //        infoWindow.setContent(
+                //            "موقع الفرع"
+
+
+                //        );
+
+
+                //        infoWindow.open(map);
+                //    });
+                //}
+
+                //window.initMap = initMap;
+
+
+
+                //function setLoc(v) {
+
+                //    var x = document.getElementById("BLoc").value = v;
+
+
+                //}
+
+
+                //function setZoon(v) {
+
+                //    $(document).ready(function () {
+
+                //        $.ajax({
+                //            type: "GET",
+                //            url: "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + v + "&key=AIzaSyBJvHlgeiw22e7B_Ypk4uOkUpC8CbpIJA8",
+
+
+
+                //            dataType: "json",
+                //            success: function (data) {
+
+
+
+                //                $.each(data.results, function (key, value) {
+
+                //                    if (key == 4) {
+
+                //                        document.getElementById("BZoon").value = value.formatted_address;
+
+                //                        //console.log( typeof value.formatted_address);
+                //                    }
+
+
+
+
+
+
+
+
+                //                });
+
+
+
+                //            }
+                //        });
+
+                //    });
+
+                //}
+
+
+                //$('#CountryNameID').on('change', function () {
+
+
+
+                //    FillCity(this.value);
+                //});
+
+
+                //function FillCity(CId) {
+
+
+                //    $(document).ready(function () {
+                //        $.ajax({
+                //            type: "GET",
+                //            url: "@Url.Action("GetCities")",
+                //            data: { id: CId },
+
+                //            dataType: "json",
+                //            success: function (data) {
+                //                var s = '<option selected disabled value="">--مدينة الفرع الرئيسي--</option>';
+
+                //                for (var i = 0; i < data.cities.length; i++) {
+                //                    s += '<option value="' + data.cities[i].cityId + '">' + data.cities[i].cityName + '</option>';
+                //                }
+
+                //                $("#CityNameID").html(s);
+
+                //                $('#CityNameID').attr('hidden', false);
+                //            }
+                //        });
+                //    });
+
+
+                //}
+
+                //$('#CityNameID').on('change', function () {
+
+
+                //    var d = document.getElementById("OrganizationMainBranchCityId").value = this.value;
+
+                //});
+
+
+
+    </script>
+
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBnE545dObN0paZx1wsNqm5TaWx3DkVj7g&callback=initMap&v=weekly&language=ar&region=SA"
+        defer></script>
+
+    }

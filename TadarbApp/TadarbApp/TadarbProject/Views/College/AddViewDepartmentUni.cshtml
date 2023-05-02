@@ -24,7 +24,8 @@
                     </div>
                 </div>
             </div>
-                @*<h5> مرحبا بك @ViewBag.Username </h5>*@
+                <h5> مرحبا بك @ViewBag.Username </h5>
+
             <p class="text-gray font-weight-bold text-uppercase px-3 small pb-4 mb-0">القائمة</p>
 
             <ul class="nav flex-column bg-white mb-0">
@@ -213,9 +214,10 @@
                                 body += "<tr><td class='text-nowrap'><div class='font-weight-600'><div class='font-weight-600'>" + value.departmentName + "</div></td>" +
 
                                     "<td class='text-nowrap'><div class='font-weight-600'><div class='font-weight-600'>" + value.user.fullName + "</div></td> " +
-                        
-                                  `<td class='text-center'> <button type='button' class='btn btn-primary' fdprocessedid='ezqldw' onclick ='Edite(${value.departmentId})'> <i class='fa-regular fa-pen-to-square'> </i></button></td></tr>`
 
+                                    '</td><td class=text-center font-weight-600  >' +
+                                    '<a class="btn btn-primary fa-regular fa-pen-to-square" href="//localhost:7122/College/EditBDepartment/?id=' +
+                                    value.departmentId + ' " > </a>' + '</td></tr>';
 
                               //   console.log(value.departmentName);
 
@@ -223,8 +225,7 @@
 
                            }
 
-                     
-
+                       
 
 
                             $("#Tbody").html(body);
@@ -241,7 +242,28 @@
 
 
 
+        function Edite(Id) {
 
+
+
+            $.ajax({
+
+                url: "@Url.Action("EditBDepartment")",
+                type: 'GET',
+                dataType: "json",
+                data: { id: Id },
+
+                success: function (data) {
+
+                      console.log(value.id);
+
+
+
+                }
+
+
+            });
+        }
 
         // Example starter JavaScript for disabling form submissions if there are invalid fields
         (function () {
