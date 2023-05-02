@@ -85,45 +85,29 @@
 
                             </div>
 
-                             <div class=" mb-4 pb-2">
-                                <br />
-
-                                <div class="form-outline" style="text-align: right;">
-
-                                    <label class="form-label" for="OrganizationName" style="font-size:20px;">وصف الفرصة</label>
-                                    <textarea type="text" id="OrganizationNameID" class="form-control form-control-lg" required > </textarea>
-                                    <div class="invalid-feedback" style="text-align: right;"> الرجاء يجب إدخال وصف الفرصة </div>
-
-                                </div>
-
-                            </div>
+                            
 
 
                             <div class="row">
                                 <div class="col-md-6 mb-4 pb-2">
 
-                                <label for="TypeNameOrganiaztion" class="form-label" style="font-size:20px;"> القسم العام</label>
+                                <label for="SelectDepartment" class="form-label" style="font-size:20px;"> القسم العام</label>
                                 <select class="form-select" required>
                                     <option selected disabled value="">-- اختيار القسم --</option>
-                                    <option value="">
-                                        طب وجراحة
-                                    </option>
+                                   
                                 </select>
                                 <div class="invalid-feedback">
                                     الرجاء  إختيار القسم
                                 </div>
                             </div>
 
-
-
-                            
+                          
                                 <div class="col-md-6 mb-4 pb-2">
                             <div class="form-group" style="text-align: right;">
 
-                                <label for="CountryName" class="form-label " style="font-size:20px;">التخصص</label>
-                                <select class="form-select" id="CountryNameID" required>
+                                        <label for="SpecializationName" class="form-label " style="font-size:20px;">التخصص</label>
+                                        <select class="form-select" id="SpecializationNameID" required>
                                     <option selected disabled value="">--التخصص--</option>
-                                   
 
                                 </select>
                                 <div class="invalid-feedback">
@@ -132,6 +116,19 @@
                             </div>
 
                             </div>
+                            </div>
+
+                            <div class=" mb-4 pb-2">
+                                <br />
+
+                                <div class="form-outline" style="text-align: right;">
+
+                                    <label class="form-label" for="OrganizationName" style="font-size:20px;">وصف الفرصة</label>
+                                    <textarea type="text" id="OrganizationNameID" class="form-control form-control-lg" required> </textarea>
+                                    <div class="invalid-feedback" style="text-align: right;"> الرجاء  إدخال وصف للفرصة </div>
+
+                                </div>
+
                             </div>
 
 
@@ -140,30 +137,28 @@
                                 <div class="col-md-6 mb-4 pb-2">
                                     <div class="form-group" style="text-align: right;">
                                 <i class="fa-solid fa-user"></i>
-                                <label for="form-CityNameID" class="form-label" style="font-size:20px;">تعيين مشرف اكاديمي</label>
+                                <label for="form-SupervisorNameID" class="form-label" style="font-size:20px;">تعيين مشرف تدريبي</label>
                                 <select class="form-select" required>
                                     <option selected disabled value="">--المشرفين--</option>
 
                                 </select>
                                 <div class="invalid-feedback">
-                                    الرجاء   إختيار مشرف اكاديمي
+                                    الرجاء إختيار مشرف تدريبي
                                 </div>
 
-                                <input id="OrganizationMainBranchCityId" hidden />
                             </div>
                             </div>
 
                                 <div class="col-md-6 mb-4 pb-2">
                                     <div class="form-group" style="text-align: right;">
 
-                                <label for="CountryName" class="form-label " style="font-size:20px;">نوع التدريب</label>
-                                <select class="form-select" id="CountryNameID" required>
+                                <label for="TypeTraining" class="form-label " style="font-size:20px;">نوع التدريب</label>
+                                <select class="form-select" id="TypeTrainingID" required>
                                     <option selected disabled value="">--التدريب--</option>
-                                  
-
+                                 
                                 </select>
                                 <div class="invalid-feedback">
-                                    الرجاء  إختيار التخصصص
+                                    الرجاء  إختيار نوع التدريب
                                 </div>
                             </div>
                             </div>
@@ -213,6 +208,7 @@
 
                             </div>
                             </div>
+
                             <div class=" col-md-6 mb-2 pb-2">
                                 <i class="fa-regular fa-calendar-days"></i>
                                 <label for="3" class="form-label mt-4" style="font-size:20px;">تاريخ بداية الفرصة</label> <br />
