@@ -158,7 +158,18 @@ namespace TadarbProject.Controllers
                 return RedirectToAction("Index", "AcadmicSupervisor");
 
             }
+            var UserInDb9 = _DbContext.UserAcounts.Where(item => item.UserType.Equals("Student") && item.UserEmail.Equals(user.UserEmail) && item.UserPassword.Equals(user.UserPassword)).FirstOrDefault();
 
+
+            if (UserInDb9 != null)
+            {
+                _HttpContextAccessor.HttpContext.Session.SetString("Name", UserInDb9.UserEmail);
+
+                _HttpContextAccessor.HttpContext.Session.SetInt32("UserId", UserInDb9.UserId);
+
+                return RedirectToAction("Index", "Student");
+
+            }
             return View();
 
 

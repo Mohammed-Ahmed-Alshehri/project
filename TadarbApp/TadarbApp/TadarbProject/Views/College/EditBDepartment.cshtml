@@ -78,7 +78,7 @@
 
             <div class="card" style="border-radius: 25px; margin-top:2cm; margin-bottom:3cm; padding:5px 5px 5px 5px ; border-color:black;background-color:#dfebf2">
                 <div class="card-body p-5">
-                    <h2 class=" text-center mb-5">تعديل معلومات الفرع</h2>
+                    <h2 class=" text-center mb-5">تعديل معلومات القسم</h2>
 
                     <form method="post" asp-controller="College" asp-action="EditBDepartment" class="needs-validation" novalidate>
                         <div class="row">
@@ -87,10 +87,10 @@
 
                                 <div class="form-outline" style="text-align: right;">
                                     <i class="fa-regular fa-address-card"></i>
-                                    <label class="form-label" for="BranchName" style="font-size:20px;">اسم الفرع</label>
+                                    <label class="form-label" for="BranchName" style="font-size:20px;">اسم القسم</label>
                                     <input type="text" asp-for="department.DepartmentName" id="BranchNameID" class="form-control form-control-lg" required />
 
-                                    <div class="invalid-feedback" style="text-align: right;"> الرجاء إدخال اسم الفرع </div>
+                                    <div class="invalid-feedback" style="text-align: right;"> الرجاء إدخال اسم القسم </div>
 
                                 </div>
 
