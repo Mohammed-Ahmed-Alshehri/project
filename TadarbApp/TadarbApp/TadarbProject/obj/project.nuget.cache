@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "O9DvL8q16lefjvMZl3rDX5gteHNuFYw0sUdD+espynJ5+btCf+NZldBN7bJsx/oB8jeebJNKR6XwYoI9QBvV5w==",
+  "dgSpecHash": "DwvEuCH0SSya3ES5u+EONVCKQNV+wJGlysyw9HMEX+ZEuzWxJt7MPN7OBAJZUG+ikzlXMC4j7cH6JtQQIb8X1A==",
   "success": true,
-  "projectFilePath": "C:\\Users\\yaaaz\\OneDrive\\Desktop\\app\\project\\TadarbApp\\TadarbApp\\TadarbProject\\TadarbProject.csproj",
+  "projectFilePath": "C:\\Users\\yaaaz\\OneDrive\\Desktop\\project4\\project\\TadarbApp\\TadarbApp\\TadarbProject\\TadarbProject.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\yaaaz\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\yaaaz\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",

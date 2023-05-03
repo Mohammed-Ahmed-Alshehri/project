@@ -92,6 +92,17 @@
         background: linear-gradient(145deg, #276877 0%, #3dbfd0 80%);
         border-radius: 50%
     }
+ 
+
+.sec3 {
+    padding: 6em 0 1em;
+    font-size: 2rem;
+    text-align: center;
+    background-color: #eaf1f1;
+    border-bottom: 1px solid rgba(0,0,0,.05)
+}
+
+  
 
 /* .ic{
     background-color: rgb(34, 91, 112);

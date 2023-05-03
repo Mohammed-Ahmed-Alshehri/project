@@ -14,7 +14,6 @@
 
   <ItemGroup>
     <Folder Include="Models\DbViewModels\" />
-    <Folder Include="wwwroot\Images\AppImages\" />
     <Folder Include="wwwroot\Images\Organizations\Logos\" />
   </ItemGroup>
 
