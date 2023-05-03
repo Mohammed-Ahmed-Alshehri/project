@@ -97,7 +97,7 @@
                                 <div class="col-md-6 mb-4 pb-2">
 
                                 <label for="SelectDepartment" class="form-label" style="font-size:20px;"> القسم العام</label>
-                                    <select class="form-select" asp-for="@Model.TrainingOpportunity.Department_DepartmentId" asp-items="@Model.DepartmentListItems" required>
+                                    <select class="form-select" id="DepartmentNameID" asp-for="@Model.TrainingOpportunity.Department_DepartmentId" asp-items="@Model.DepartmentListItems" required>
                                     <option selected disabled value="">-- اختيار القسم --</option>
                                    
                                 </select>
@@ -111,13 +111,14 @@
                             <div class="form-group" style="text-align: right;">
 
                                         <label for="SpecializationName" class="form-label " style="font-size:20px;">التخصص</label>
-                                        <select class="form-select" asp-for="@Model.TrainingOpportunity.DetailFiled" asp-items="@Model.DetailFieldsListItems" id="SpecializationNameID" required>
-                                    <option selected disabled value="">--التخصص--</option>
+                                        <select class="form-select" id="SpecializationNameID" required>
+                                   
 
                                 </select>
                                 <div class="invalid-feedback">
                                     الرجاء  إختيار التخصصص
                                 </div>
+                                        <input asp-for="TrainingOpportunity.DetailFiled_DetailFiledId" id="OrganizationMainBranchCityId" hidden />
                             </div>
 
                             </div>
@@ -307,6 +308,60 @@
             $('#sidebarCollapse').on('click', function () {
                 $('#sidebar, #content').toggleClass('active');
             });
+        });
+
+
+
+        $('#DepartmentNameID').on('change', function () {
+
+
+
+            FillCity(this.value);
+        });
+
+
+        function FillCity(CId) {
+
+
+            $(document).ready(function () {
+                $.ajax({
+                    type: "GET",
+                    url: "@Url.Action("GetSpecialization")",
+                    data: { id: CId },
+
+                    dataType: "json",
+                    success: function (data) {
+
+
+                        //console.log(data.specialities);
+
+
+                        //console.log(data.speslaiztion.specializationName);
+
+                        var s = '<option selected disabled value="">--التخصصات التابعه للقسم--</option>';
+
+                        for (var i = 0; i < data.specialities.length; i++) {
+
+                          
+
+                            s += '<option value="' + data.specialities[i].detailFieldId + '">' + data.specialities[i].specializationName + '</option>';
+                        }
+
+                        $("#SpecializationNameID").html(s);
+
+                        $('#SpecializationNameID').attr('hidden', false);
+                    }
+                });
+            });
+
+
+        }
+
+        $('#SpecializationNameID').on('change', function () {
+
+
+            var d = document.getElementById("OrganizationMainBranchCityId").value = this.value;
+
         });
 
 

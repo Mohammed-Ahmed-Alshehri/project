@@ -1,4 +1,9 @@
-﻿<head>
+﻿@model IEnumerable<TrainingOpportunity>
+
+@{
+    ViewData["Title"] = "اضافة حساب مشرف تدريبي";
+}
+<head>
 
     <link rel="stylesheet" href="~/css/Addbranches.css" asp-append-version="true" />
 
@@ -6,6 +11,8 @@
 </head>
 
 <body style="background: linear-gradient(#1c4c64,#5590ad);">
+
+    <partial name="_Notification" />
     <div class="row">
 
         <div class="col-sm-4" style="z-index:2;">
@@ -90,7 +97,8 @@
                             <thead>
                                 <tr>
 
-                                    <th>الفرصة</th>
+                                    <th> وصف الفرصة </th>
+                                    <th> تخصص الفرصة </th>
                                     <th>تاريخ بداية التدريب</th>
                                     <th class="text-center">تاريخ نهاية التدريب</th>
                                     <th class="text-center">تعديل </th>
@@ -99,19 +107,29 @@
                                 </tr>
                             </thead>
                             <tbody>
-
+                                 @foreach (var item in Model)
+                            {
                                 <tr>
                                     <td class="text-nowrap">
                                         <div class="font-weight-600">
                                             <div class="font-weight-600 ">
-                                                فرصة1
+                                                    @item.OpportunityDescription
                                             </div>
 
                                         </div>
                                     </td>
-                                    <td class="text-nowrap"> 01/01/2023	</td>
+
+                                    <td class="text-nowrap">
+                                        <div class="font-weight-600">
+                                            <div class="font-weight-600 ">
+                                                    @item.DetailFiled.SpecializationName
+                                            </div>
+
+                                        </div>
+                                    </td>
+                                        <td class="text-nowrap">  @item.StartDate	</td>
                                     <td class="text-center">
-                                        01/02/2023
+                                            @item.EndDate
                                     </td>
                                     <td class="text-center">
                                         <button type="button" class="btn btn-primary" fdprocessedid="ezqldw"><i class="fa-regular fa-pen-to-square"></i></button>
@@ -124,7 +142,7 @@
                                 </tr>
 
 
-
+                                }
 
 
 
