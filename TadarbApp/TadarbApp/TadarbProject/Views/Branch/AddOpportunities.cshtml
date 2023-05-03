@@ -129,8 +129,8 @@
 
                                 <div class="form-outline" style="text-align: right;">
 
-                                    <label class="form-label" for="OrganizationName" style="font-size:20px;">وصف الفرصة</label>
-                                    <textarea type="text" asp-for="@Model.TrainingOpportunity.OpportunityDescription" id="OrganizationNameID" class="form-control form-control-lg" required> </textarea>
+                                    <label class="form-label mt-4" for="OrganizationName" style="font-size:20px;">وصف الفرصة</label>
+                                    <textarea type="text" asp-for="@Model.TrainingOpportunity.OpportunityDescription" id="OrganizationNameID" class="form-control form-control-lg" rows="3" style="height: 72px;" required></textarea>
                                     <div class="invalid-feedback" style="text-align: right;"> الرجاء  إدخال وصف للفرصة </div>
 
                                 </div>
@@ -365,13 +365,5 @@
         });
 
 
-        //For Input textarea Description
-
-        tinymce.init({
-            selector: 'textarea',
-            language: 'ar',
-            plugins: 'anchor autolink charmap codesample emoticons   lists   table visualblocks wordcount',
-            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough |  align lineheight | numlist bullist indent outdent ',
-        });
 
     </script>                  }
