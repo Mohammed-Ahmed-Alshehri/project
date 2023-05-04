@@ -127,9 +127,9 @@
 
                                             </div>
                                         </td>
-                                        <td class="text-nowrap">  @item.StartDate.ToString().Substring(0, 10)	</td>
+                                        <td class="text-nowrap">  @item.StartDate.ToShortDateString()	</td>
                                         <td class="text-center">
-                                            @item.EndDate.ToString().Substring(0, 10)
+                                            @item.EndDate.Date.ToShortDateString()
                                         </td>
                                         <td class="text-center">
                                             <a class="btn btn-primary" href="//localhost:7122/Branch/EditOpportunities?id=@item.TrainingOpportunityId" fdprocessedid=" ezqldw"><i class="fa-regular fa-pen-to-square"></i></a>

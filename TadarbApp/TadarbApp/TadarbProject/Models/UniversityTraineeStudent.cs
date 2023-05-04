@@ -43,5 +43,8 @@ namespace TadarbProject.Models
 
         public string? SkillsDescription { get; set; }
 
+        public string? Gender { get; set; } = "ذكر";
+
+        public string? ActivationStatus { get; set; } = "Active";
     }
 }

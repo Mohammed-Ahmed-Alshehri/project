@@ -143,8 +143,8 @@
                                                     عدد الساعات
                                                     <i class="btn fa-solid fa-arrow-down-long float-l-start fa-xs p-0  " onclick="SortDwon()"> </i>  <i class=" btn fa-solid fa-arrow-up-long float-l-start fa-xs p-0" onclick="SortUp()"></i>
                                                 </th>
-                                        
 
+                                                <th> الجنس </th>
 
                                                 <th>رقم الهاتف</th>
 
@@ -211,6 +211,7 @@
                             body += "<tr> <td class='text - nowrap'>  <div class='font - weight - 600'> <div class='font - weight - 600'> " + value.user.fullName + "</div></div></td>" +
                                 "<td class='text - center'>" + value.universityStudentNumber + "</td>"
                                 + "<td class='text - nowrap'> " + value.completedHours + "</td>"
+                                + "<td class='text - nowrap'> " + value.gender + "</td>"
                                 + "<td class='text - nowrap'>" + value.user.phone + "</td>"
                                 + "<td class='text - nowrap'>" + value.user.userEmail + "</td>"
                                 + "</tr>";

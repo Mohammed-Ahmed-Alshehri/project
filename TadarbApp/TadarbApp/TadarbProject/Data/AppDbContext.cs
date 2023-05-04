@@ -49,5 +49,8 @@ namespace TadarbProject.Data
 
         public DbSet<TrainingOpportunity> TrainingOpportunities { get; set; }
 
+
+        public DbSet<StudentRequestOpportunity> StudentRequestsOnOpportunities { get; set; }
+
     }
 }
