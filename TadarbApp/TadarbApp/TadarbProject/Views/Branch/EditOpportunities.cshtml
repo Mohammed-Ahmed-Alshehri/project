@@ -1,0 +1,387 @@
+﻿@model TrainingOpportunityVM
+
+@{
+    ViewData["Title"] = "تعديل الفرصة التدريبية";
+}
+<head>
+
+    <link rel="stylesheet" href="~/css/AddSpecialities.css" asp-append-version="true" />
+
+
+</head>
+<body style="background: linear-gradient(#1c4c64,#5590ad);">
+    <div class="row">
+
+        <div class="col-sm-4" style="z-index:2;">
+
+            <div class="vertical-nav bg-white" id="sidebar">
+                <div class="py-4 px-3 mb-4 bg-light">
+                    <div class="media d-flex align-items-center">
+                        <img src="~/@ViewBag.OrganizationImage" alt="..." width="65" class="mr-3 rounded-circle img-thumbnail shadow-sm">
+                        <div class="media-body">
+                            <h4 class="m-0">@ViewBag.OrganizationName</h4>
+                        </div>
+                    </div>
+                </div>
+                <h5> مرحبا بك @ViewBag.Username </h5>
+
+                <p class="text-gray font-weight-bold text-uppercase px-3 small pb-4 mb-0">القائمة</p>
+
+                <ul class="nav flex-column bg-white mb-0">
+                    <li class="nav-item">
+                        <a asp-controller="Branch" asp-action="Index" class="nav-link text-dark font-italic ">
+                            <i class="fa-solid fa-house"></i>
+                            الصفحة الرئيسية
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-controller="Branch" asp-action="ManageDepartment" class="nav-link text-dark font-italic ">
+                            <i class="fa fa-address-card mr-3 text-primary fa-fw"></i>
+                            إدارة الاقسام
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-controller="Branch" asp-action="ViewSupervisorsUser" class="nav-link text-dark font-italic ">
+                            <i class="fa-solid fa-building-user"></i>
+                            إدارة مشرفين التدريب
+
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a asp-controller="branch" asp-action="ViewOpportunities" class="nav-link text-dark font-italic bg-light ">
+                            <i class="fa-solid fa-person-chalkboard text-primary"></i>
+                            إدارة الفرص
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-controller="branch" asp-action="ViewDepartmentFiledSpecialties" class="nav-link text-dark font-italic ">
+                            <i class="fa-solid fa-book-open-reader"></i>
+                            إدارة التخصصات
+                        </a>
+                    </li>
+                </ul>
+
+
+            </div>
+
+
+            <!-- End vertical navbar1 -->
+            <!-- Page content holder1 -->
+            <div class="page-content p-1" id="content">
+                <!-- Toggle button -->
+                <button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i class="fa fa-bars mr-2"></i><small class="text-uppercase font-weight-bold">القائمة</small></button>
+            </div>
+
+
+        </div>
+
+        <div class="col-sm-6">
+            <div class="card" style="border-radius: 25px; margin-top:2cm; margin-bottom:3cm; padding:5px 5px 5px 5px ; border-color:black;background-color:#dfebf2">
+                <div class="card-body p-5">
+                    <h2 class=" text-center mb-5">تعديل الفرصة </h2>
+
+                    <form asp-controller="Branch" asp-action="EditOpportunities" method="post" class="needs-validation" novalidate>
+
+                        <input asp-for="TrainingOpportunity.TrainingOpportunityId" id="OpertuntiyId" hidden />
+                        <input asp-for="TrainingOpportunity.Branch_BranchId" id="OpertuntiyId" hidden />
+                        <input asp-for="TrainingOpportunity.CreatedByEmployeeId" id="OpertuntiyId" hidden />
+                        <input asp-for="TrainingOpportunity.SupervisorEmployeeId" id="OpertuntiyId" hidden />
+                        <input asp-for="TrainingOpportunity.Department_DepartmentId" id="OpertuntiyId" hidden />
+                        <input asp-for="TrainingOpportunity.DetailFiled_DetailFiledId" id="OpertuntiyId" hidden />
+                        <input asp-for="TrainingOpportunity.TrainingType_TrainingTypeId" id="OpertuntiyId" hidden />
+                        @*  <input asp-for="UserListItems" id="OpertuntiyId" hidden />
+                        <input asp-for="DepartmentListItems" id="OpertuntiyId" hidden />
+                        <input asp-for="DetailFieldsListItems" id="OpertuntiyId" hidden />
+                        <input asp-for="TrainingTypeListItems" id="OpertuntiyId" hidden />*@
+
+
+
+
+
+
+
+
+
+                        <div class="row">
+                            <div class=" mb-4 pb-2">
+                                <br />
+
+
+
+                            </div>
+
+
+
+
+                            <div class="row">
+                                <div class="col-md-6 mb-4 pb-2">
+
+                                    <label for="SelectDepartment" class="form-label" style="font-size:20px;"> القسم العام</label>
+                                    <input type="text" class="form-control form-control-lg" id="DepartmentNameID" asp-for="@Model.TrainingOpportunity.Department.DepartmentName" disabled required />
+
+
+                                    <div class="invalid-feedback">
+                                        الرجاء  إختيار القسم
+                                    </div>
+                                </div>
+
+
+                                <div class="col-md-6 mb-4 pb-2">
+                                    <div class="form-group" style="text-align: right;">
+
+                                        <label for="SpecializationName" class="form-label " style="font-size:20px;">التخصص</label>
+                                        <input type="text" class="form-control form-control-lg" asp-for="@Model.TrainingOpportunity.DetailFiled.SpecializationName" id="SpecializationNameID" disabled required />
+
+
+
+                                        <div class="invalid-feedback">
+                                            الرجاء  إختيار التخصصص
+                                        </div>
+                                        <input asp-for="TrainingOpportunity.DetailFiled_DetailFiledId" id="OrganizationMainBranchCityId" hidden />
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class=" mb-4 pb-2">
+                                <br />
+
+                                <div class="form-outline" style="text-align: right;">
+
+                                    <label class="form-label" for="OrganizationName" style="font-size:20px;">وصف الفرصة</label>
+                                    <textarea type="text" asp-for="@Model.TrainingOpportunity.OpportunityDescription" id="OrganizationNameID" class="form-control form-control-lg" required> </textarea>
+                                    <div class="invalid-feedback" style="text-align: right;"> الرجاء  إدخال وصف للفرصة </div>
+
+                                </div>
+
+                            </div>
+
+
+
+                            <div class="row">
+                                <div class="col-md-6 mb-4 pb-2">
+                                    <div class="form-group" style="text-align: right;">
+                                        <i class="fa-solid fa-user"></i>
+                                        <label for="form-SupervisorNameID" class="form-label" style="font-size:20px;">تعيين مشرف تدريبي</label>
+                                        <select class="form-select" asp-for="@Model.TrainingOpportunity.SupervisorEmployeeId" asp-items="@Model.UserListItems" required>
+                                        </select>
+                                        <div class="invalid-feedback">
+                                            الرجاء إختيار مشرف تدريبي
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6 mb-4 pb-2">
+                                    <div class="form-group" style="text-align: right;">
+
+                                        <label for="TypeTraining" class="form-label " style="font-size:20px;">نوع التدريب</label>
+                                        <select class="form-select" asp-for="@Model.TrainingOpportunity.TrainingType_TrainingTypeId" asp-items="@Model.TrainingTypeListItems" id="TypeTrainingID" required>
+                                        </select>
+                                        <div class="invalid-feedback">
+                                            الرجاء  إختيار نوع التدريب
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+
+                            <div class="row">
+                                <div class="col-md-4 mb-4 pb-2">
+
+                                    <br />
+
+                                    <div class="form-outline" style="text-align: right;">
+                                        <i class="fa-solid fa-chair"></i>
+                                        <label class="form-label" for="OrganizationName" style="font-size:20px;">عدد المقاعد</label>
+                                        <input type="number" asp-for="@Model.TrainingOpportunity.TotalNumberOfSeats" id="OrganizationNameID" class="form-control form-control-lg" required />
+                                        <div class="invalid-feedback" style="text-align: right;"> الرجاء يجب إدخال عدد المقاعد </div>
+
+                                    </div>
+
+                                </div>
+                                <div class="col-md-4 mb-4 pb-2">
+
+                                    <br />
+
+                                    <div class="form-outline" style="text-align: right;">
+                                        <i class="fa-regular fa-clock"></i>
+                                        <label class="form-label" for="OrganizationName" style="font-size:20px;">عدد ساعات التدريب</label>
+                                        <input type="number" asp-for="@Model.TrainingOpportunity.MinimumHours" id="OrganizationNameID" class="form-control form-control-lg" required />
+                                        <div class="invalid-feedback" style="text-align: right;"> الرجاء يجب إدخال عدد ساعات التدريب </div>
+
+                                    </div>
+
+                                </div>
+                                <div class="col-md-4 mb-4 pb-2">
+
+                                    <br />
+
+                                    <div class="form-outline" style="text-align: right;">
+                                        <i class="fa-solid fa-calendar-week"></i>
+                                        <label class="form-label" for="OrganizationName" style="font-size:20px;">عدد اسابيع التدريب</label>
+                                        <input type="number" asp-for="@Model.TrainingOpportunity.MinimumWeeks" id="OrganizationNameID" class="form-control form-control-lg" required />
+                                        <div class="invalid-feedback" style="text-align: right;"> الرجاء يجب إدخال عدد اسابيع التدريب </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class=" col-md-6 mb-2 pb-2">
+                                <i class="fa-regular fa-calendar-days"></i>
+                                <label for="3" class="form-label mt-4" style="font-size:20px;">تاريخ بداية الفرصة</label> <br />
+                                <div>
+                                    <input placeholder="Select date" asp-for="@Model.TrainingOpportunity.StartDate" type="date" id="example" class="form-control">
+
+                                </div>
+                                <div class="invalid-feedback">
+                                    الرجاء  تحديد وقت البداية
+                                </div>
+
+                            </div>
+
+
+
+                            <div class=" col-md-6 mb-2 pb-2">
+                                <i class="fa-regular fa-calendar-days"></i>
+                                <label for="3" class="form-label mt-4" style="font-size:20px;">تاريخ نهاية الفرصة</label> <br />
+                                <div>
+                                    <input placeholder="Select date" asp-for="@Model.TrainingOpportunity.EndDate" type="date" id="example" class="form-control">
+
+                                </div>
+                                <div class="invalid-feedback">
+                                    الرجاء  تحديد وقت النهاية
+                                </div>
+
+                            </div>
+
+                            <div class=" col-md-6 mb-2 pb-2">
+                                <i class="fa-regular fa-calendar-days"></i>
+                                <label for="3" class="form-label mt-4" style="font-size:20px;">تاريخ بداية التسجيل </label> <br />
+                                <div>
+                                    <input placeholder="Select date" asp-for="@Model.TrainingOpportunity.StartRegisterDate" type="date" id="example" class="form-control">
+
+                                </div>
+                                <div class="invalid-feedback">
+                                    الرجاء  تحديد بداية التسجيل
+                                </div>
+
+                            </div>
+
+
+
+                            <div class=" col-md-6 mb-2 pb-2">
+                                <i class="fa-regular fa-calendar-days"></i>
+                                <label for="3" class="form-label mt-4" style="font-size:20px;">تاريخ نهاية التسجيل</label> <br />
+                                <div>
+                                    <input placeholder="Select date" asp-for="@Model.TrainingOpportunity.EndRegisterDate" type="date" id="example" class="form-control">
+
+                                </div>
+                                <div class="invalid-feedback">
+                                    الرجاء  تحديد نهاية التسجيل
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+
+
+
+
+                        <br /> <br /> <br /><br />
+                        <div class="d-flex justify-content-center">
+
+                            <button type="submit" class="btn btn-lg " asp-route-id="@Model.TrainingOpportunity.TrainingOpportunityId" style="background-color:#e6e291; font-size:18px;">تعديل </button>
+
+                        </div>
+
+
+
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-sm-2"></div>
+    </div>
+    <br />
+</body>
+
+@section Scripts
+    {
+
+    <script>
+        $(function () {
+            // Sidebar toggle behavior
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar, #content').toggleClass('active');
+            });
+        });
+
+
+
+                //$('#DepartmentNameID').on('change', function () {
+
+
+
+                //    FillCity(this.value);
+                //});
+
+
+                //function FillCity(CId) {
+
+
+                //    $(document).ready(function () {
+                //        $.ajax({
+                //            type: "GET",
+                //            url: "@Url.Action("GetSpecialization")",
+                //            data: { id: CId },
+
+                //            dataType: "json",
+                //            success: function (data) {
+
+
+                //                //console.log(data.specialities);
+
+
+                //                //console.log(data.speslaiztion.specializationName);
+
+                //                var s = '<option selected disabled value="">--التخصصات التابعه للقسم--</option>';
+
+                //                for (var i = 0; i < data.specialities.length; i++) {
+
+
+
+                //                    s += '<option value="' + data.specialities[i].detailFieldId + '">' + data.specialities[i].specializationName + '</option>';
+                //                }
+
+                //                $("#SpecializationNameID").html(s);
+
+                //                $('#SpecializationNameID').attr('hidden', false);
+                //            }
+                //        });
+                //    });
+
+
+                //}
+
+                //$('#SpecializationNameID').on('change', function () {
+
+
+                //    var d = document.getElementById("OrganizationMainBranchCityId").value = this.value;
+
+                //});
+
+
+
+
+    </script>
+                  }

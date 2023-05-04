@@ -1,4 +1,8 @@
-﻿@{
+﻿@model IEnumerable<TrainingOpportunity>
+
+
+
+@{
     ViewData["Title"] = "الصفحة الرئيسية";
 }
 
@@ -50,7 +54,7 @@
                             ارفاق التقارير
                         </a>
                     </li>
-                
+
                 </ul>
 
 
@@ -69,33 +73,37 @@
 
         <div class="col-sm-6">
 
+            <div class="card-group">
 
-
-            <div class="card" style="width: 18rem;">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                     <div class="row">
+                @foreach (var item in Model)
+                {
+                    <div class="card" style="width: 18rem;">
+                        <img src="" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">@item.DetailFiled_DetailFiledId</h5>
+                            <p class="card-text"> @item.OpportunityDescription</p>
+                            <div class="row">
                                 <div class="col-md-6">
-                            <i class="fa-solid fa-chair"></i> عدد المفاعد المتاحة
+                                    <i class="fa-solid fa-chair"></i> عدد المفاعد المتاحة
+                                    @item.AvailableOpportunities
+                                </div>
+                                <div class="col-md-6 ">
 
-                                    </div>
-                        <div class="col-md-6 ">
+                                    <i class="fa-regular fa-calendar-days"></i> تاريخ بداية الفرصة
+                                    @item.StartDate
 
-                            <i class="fa-regular fa-calendar-days"></i> تاريخ بداية الفرصة 
-
+                                </div>
+                                <div>
+                                </div>
+                                <a href="#" class="btn btn-primary">Go somewhere</a>
                             </div>
-                                    <div>
+                        </div>
 
-                                    </div>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
+                    </div>
+                }
             </div>
-
+            <div class="col-sm-2"></div>
         </div>
-        <div class="col-sm-2"></div>
-    </div>
 </body>
 @section Scripts{
 
@@ -113,3 +121,4 @@
 
 
     }
+
