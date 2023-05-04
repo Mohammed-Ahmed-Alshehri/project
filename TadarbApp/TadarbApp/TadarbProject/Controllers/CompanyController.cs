@@ -66,7 +66,7 @@ namespace TadarbProject.Controllers
             var OrganizationOfR = _DbContext.Organizations.Where(item => item.ResponsibleUserId == RUserId).FirstOrDefault();
 
             ViewBag.OrganizationName = OrganizationOfR.OrganizationName + " - " + OrganizationOfR.OrganizationName;
-            
+
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
             ViewBag.Username = user.FullName;
 

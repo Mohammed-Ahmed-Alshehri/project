@@ -107,39 +107,39 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                 @foreach (var item in Model)
-                            {
-                                <tr>
-                                    <td class="text-nowrap">
-                                        <div class="font-weight-600">
-                                            <div class="font-weight-600 ">
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td class="text-nowrap">
+                                            <div class="font-weight-600">
+                                                <div class="font-weight-600 ">
                                                     @item.OpportunityDescription
+                                                </div>
+
                                             </div>
+                                        </td>
 
-                                        </div>
-                                    </td>
-
-                                    <td class="text-nowrap">
-                                        <div class="font-weight-600">
-                                            <div class="font-weight-600 ">
+                                        <td class="text-nowrap">
+                                            <div class="font-weight-600">
+                                                <div class="font-weight-600 ">
                                                     @item.DetailFiled.SpecializationName
+                                                </div>
+
                                             </div>
+                                        </td>
+                                        <td class="text-nowrap">  @item.StartDate.ToString().Substring(0, 10)	</td>
+                                        <td class="text-center">
+                                            @item.EndDate.ToString().Substring(0, 10)
+                                        </td>
+                                        <td class="text-center">
+                                            <a class="btn btn-primary" href="//localhost:7122/Branch/EditOpportunities?id=@item.TrainingOpportunityId" fdprocessedid=" ezqldw"><i class="fa-regular fa-pen-to-square"></i></a>
 
-                                        </div>
-                                    </td>
-                                        <td class="text-nowrap">  @item.StartDate	</td>
-                                    <td class="text-center">
-                                            @item.EndDate
-                                    </td>
-                                    <td class="text-center">
-                                            <a class="btn btn-primary" href="//localhost:7122/Branch/EditOpportunities?id= @item.TrainingOpportunityId" fdprocessedid=" ezqldw"><i class="fa-regular fa-pen-to-square"></i></a>
+                                        </td>
+                                        <td class="text-center">
+                                            <button type="button" class="btn btn-danger" fdprocessedid="ezqldw"><i class="fa fa-trash-alt"></i></button>
 
-                                    </td>
-                                    <td class="text-center">
-                                        <button type="button" class="btn btn-danger" fdprocessedid="ezqldw"><i class="fa fa-trash-alt"></i></button>
-
-                                    </td>
-                                </tr>
+                                        </td>
+                                    </tr>
 
 
                                 }
@@ -158,8 +158,8 @@
     </div>
 </body>
 
-  @section Scripts
-{
+@section Scripts
+    {
 
     <script>
         $(function () {

@@ -83,13 +83,13 @@
 
                     <form asp-controller="Branch" asp-action="EditOpportunities" method="post" class="needs-validation" novalidate>
 
-                        <input asp-for="TrainingOpportunity.TrainingOpportunityId" id="OpertuntiyId" hidden />
-                        <input asp-for="TrainingOpportunity.Branch_BranchId" id="OpertuntiyId" hidden />
-                        <input asp-for="TrainingOpportunity.CreatedByEmployeeId" id="OpertuntiyId" hidden />
-                        <input asp-for="TrainingOpportunity.SupervisorEmployeeId" id="OpertuntiyId" hidden />
-                        <input asp-for="TrainingOpportunity.Department_DepartmentId" id="OpertuntiyId" hidden />
-                        <input asp-for="TrainingOpportunity.DetailFiled_DetailFiledId" id="OpertuntiyId" hidden />
-                        <input asp-for="TrainingOpportunity.TrainingType_TrainingTypeId" id="OpertuntiyId" hidden />
+                        <input asp-for="TrainingOpportunity.TrainingOpportunityId" id="TrainingOpportunityId" hidden />
+                        <input asp-for="TrainingOpportunity.Branch_BranchId" id="Branch_BranchId" hidden />
+                        <input asp-for="TrainingOpportunity.CreatedByEmployeeId" id="CreatedByEmployeeId" hidden />
+                        @*        <input asp-for="TrainingOpportunity.SupervisorEmployeeId" id="SupervisorEmployeeId" hidden /*@>
+                        <input asp-for="TrainingOpportunity.Department_DepartmentId" id="Department_DepartmentId" hidden />
+                        <input asp-for="TrainingOpportunity.DetailFiled_DetailFiledId" id="DetailFiled_DetailFiledId" hidden />
+                        @*   <input asp-for="TrainingOpportunity.TrainingType_TrainingTypeId" id="TrainingType_TrainingTypeId" hidden />*@
                         @*  <input asp-for="UserListItems" id="OpertuntiyId" hidden />
                         <input asp-for="DepartmentListItems" id="OpertuntiyId" hidden />
                         <input asp-for="DetailFieldsListItems" id="OpertuntiyId" hidden />
@@ -328,57 +328,57 @@
 
 
 
-                //$('#DepartmentNameID').on('change', function () {
+                        //$('#DepartmentNameID').on('change', function () {
 
 
 
-                //    FillCity(this.value);
-                //});
+                        //    FillCity(this.value);
+                        //});
 
 
-                //function FillCity(CId) {
+                        //function FillCity(CId) {
 
 
-                //    $(document).ready(function () {
-                //        $.ajax({
-                //            type: "GET",
-                //            url: "@Url.Action("GetSpecialization")",
-                //            data: { id: CId },
+                        //    $(document).ready(function () {
+                        //        $.ajax({
+                        //            type: "GET",
+                        //            url: "@Url.Action("GetSpecialization")",
+                        //            data: { id: CId },
 
-                //            dataType: "json",
-                //            success: function (data) {
-
-
-                //                //console.log(data.specialities);
+                        //            dataType: "json",
+                        //            success: function (data) {
 
 
-                //                //console.log(data.speslaiztion.specializationName);
-
-                //                var s = '<option selected disabled value="">--التخصصات التابعه للقسم--</option>';
-
-                //                for (var i = 0; i < data.specialities.length; i++) {
+                        //                //console.log(data.specialities);
 
 
+                        //                //console.log(data.speslaiztion.specializationName);
 
-                //                    s += '<option value="' + data.specialities[i].detailFieldId + '">' + data.specialities[i].specializationName + '</option>';
-                //                }
+                        //                var s = '<option selected disabled value="">--التخصصات التابعه للقسم--</option>';
 
-                //                $("#SpecializationNameID").html(s);
-
-                //                $('#SpecializationNameID').attr('hidden', false);
-                //            }
-                //        });
-                //    });
+                        //                for (var i = 0; i < data.specialities.length; i++) {
 
 
-                //}
 
-                //$('#SpecializationNameID').on('change', function () {
+                        //                    s += '<option value="' + data.specialities[i].detailFieldId + '">' + data.specialities[i].specializationName + '</option>';
+                        //                }
+
+                        //                $("#SpecializationNameID").html(s);
+
+                        //                $('#SpecializationNameID').attr('hidden', false);
+                        //            }
+                        //        });
+                        //    });
 
 
-                //    var d = document.getElementById("OrganizationMainBranchCityId").value = this.value;
+                        //}
 
-                //});
+                        //$('#SpecializationNameID').on('change', function () {
+
+
+                        //    var d = document.getElementById("OrganizationMainBranchCityId").value = this.value;
+
+                        //});
 
 
 

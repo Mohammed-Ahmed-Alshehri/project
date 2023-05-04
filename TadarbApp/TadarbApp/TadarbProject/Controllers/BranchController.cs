@@ -283,8 +283,8 @@ namespace TadarbProject.Controllers
 
             var DEPOfR = _DbContext.Departments.Where(item => item.Branch_BranchId == Branch.BranchId && item.DepartmentName.Equals("قسم ادارة مشرفين التدريب")).FirstOrDefault();
 
-            Opportunity.UserListItems = _DbContext.UserAcounts.FromSqlRaw($"Select * from UserAcounts WHERE UserAcounts.UserId IN (Select Employees.UserAccount_UserId from Employees where Employees.Department_DepartmentId ={DEPOfR.DepartmentId})" +
-            "AND UserAcounts.UserId NOT IN (select Responsible_UserId from dbo.OrganizationBranches_TrainProv);").ToList().Select(u => new SelectListItem { Text = u.FullName, Value = u.UserId.ToString() });
+            Opportunity.UserListItems = _DbContext.Employees.FromSqlRaw($"SELECT * FROM Employees WHERE Department_DepartmentId ={DEPOfR.DepartmentId}")
+                .Include(item => item.userAcount).ToList().Select(u => new SelectListItem { Text = u.userAcount.FullName, Value = u.EmployeeId.ToString() });
 
 
 
@@ -321,7 +321,7 @@ namespace TadarbProject.Controllers
 
             }
 
-            var SyperEmplyee = _DbContext.Employees.Where(item => item.UserAccount_UserId == TrainingOpportunityVM.TrainingOpportunity.SupervisorEmployeeId).FirstOrDefault();
+            //  var SyperEmplyee = _DbContext.Employees.Where(item => item.UserAccount_UserId == TrainingOpportunityVM.TrainingOpportunity.SupervisorEmployeeId).FirstOrDefault();
 
             var Opportunity = new TrainingOpportunity
             {
@@ -335,7 +335,7 @@ namespace TadarbProject.Controllers
                 OpportunityStatus = "Available",
                 AbilityofSubmissionStatus = "Available",
 
-                SupervisorEmployeeId = SyperEmplyee.EmployeeId,
+                SupervisorEmployeeId = TrainingOpportunityVM.TrainingOpportunity.SupervisorEmployeeId,
                 Department_DepartmentId = TrainingOpportunityVM.TrainingOpportunity.Department_DepartmentId,
                 DetailFiled_DetailFiledId = TrainingOpportunityVM.TrainingOpportunity.DetailFiled_DetailFiledId,
 
@@ -403,8 +403,6 @@ namespace TadarbProject.Controllers
                 TrainingOpportunityVM.TrainingOpportunity = _DbContext.TrainingOpportunities.Where(u => u.TrainingOpportunityId == id).FirstOrDefault();
 
 
-                TrainingOpportunityVM.DepartmentListItems = _DbContext.Departments.Where(u => u.DepartmentId == Opertitnty.Department_DepartmentId).Select(u => new SelectListItem { Text = u.DepartmentName, Value = u.DepartmentId.ToString() }).ToList();
-
                 TrainingOpportunityVM.DepartmentListItems = _DbContext.Departments.FromSqlRaw($"SELECT * FROM Departments WHERE Responsible_UserId  = {Branch.Responsible_UserId} AND DepartmentName !='قسم ادارة مشرفين التدريب';")
                  .ToList().Select(u => new SelectListItem { Text = u.DepartmentName, Value = u.DepartmentId.ToString() });
 
@@ -412,28 +410,18 @@ namespace TadarbProject.Controllers
 
                 TrainingOpportunityVM.DetailFieldsListItems = _DbContext.FieldOfSpecialtiesDetails.Where(u => u.DetailFieldId == Opertitnty.DetailFiled_DetailFiledId).Select(u => new SelectListItem { Text = u.SpecializationName, Value = u.DetailFieldId.ToString() }).ToList();
 
-                //TrainingOpportunityVM.DetailFieldsListItems = _DbContext.FieldOfSpecialtiesDetails.FromSqlRaw($"SELECT * FROM FieldOfSpecialtiesDetails WHERE DetailFieldId IN(SELECT TrainArea_DetailFiledId FROM DepartmentTrainingAreas WHERE Department_DepartmenId = {Department.DepartmentId})")
-                //  .ToList().Select(u => new SelectListItem { Text = u.SpecializationName, Value = u.DetailFieldId.ToString() });
-
 
                 TrainingOpportunityVM.DetailFieldsListItems = _DbContext.DepartmentTrainingAreas.Where(u => u.Department_DepartmenId == Opertitnty.Department_DepartmentId).Include(u => u.fieldOfSpecialtyDetails).Select(u => new SelectListItem { Text = u.fieldOfSpecialtyDetails.SpecializationName, Value = u.fieldOfSpecialtyDetails.ToString() }).ToList();
 
 
 
-                TrainingOpportunityVM.TrainingTypeListItems = _DbContext.TrainingTypes.Where(u => u.TrainingTypeId == Opertitnty.TrainingType_TrainingTypeId).Select(u => new SelectListItem { Text = u.TypeName, Value = u.TrainingTypeId.ToString() }).ToList();
 
                 TrainingOpportunityVM.TrainingTypeListItems = _DbContext.TrainingTypes.FromSqlRaw($"SELECT * FROM TrainingTypes")
                     .ToList().Select(u => new SelectListItem { Text = u.TypeName, Value = u.TrainingTypeId.ToString() });
 
 
-
-
-                TrainingOpportunityVM.UserListItems = _DbContext.UserAcounts.Where(u => u.UserId == Emplyee.UserAccount_UserId).Select(u => new SelectListItem { Text = u.FullName, Value = u.UserId.ToString() }).ToList();
-
-                TrainingOpportunityVM.UserListItems = _DbContext.UserAcounts.FromSqlRaw($"Select * from UserAcounts WHERE UserAcounts.UserId IN (Select Employees.UserAccount_UserId from Employees where Employees.Department_DepartmentId ={DEPOfR.DepartmentId})" +
-                "AND UserAcounts.UserId NOT IN (select Responsible_UserId from dbo.OrganizationBranches_TrainProv);").ToList().Select(u => new SelectListItem { Text = u.FullName, Value = u.UserId.ToString() });
-
-
+                TrainingOpportunityVM.UserListItems = _DbContext.Employees.FromSqlRaw($"SELECT * FROM Employees WHERE Department_DepartmentId ={DEPOfR.DepartmentId}")
+                           .Include(item => item.userAcount).ToList().Select(u => new SelectListItem { Text = u.userAcount.FullName, Value = u.EmployeeId.ToString() });
                 return View(TrainingOpportunityVM);
             }
 
@@ -445,38 +433,41 @@ namespace TadarbProject.Controllers
         public IActionResult EditOpportunities(TrainingOpportunityVM TrainingOpportunityVM)
         {
 
-            //if (!ModelState.IsValid)
-            //{
-            //    return View();
-            //}
+            if (!ModelState.IsValid)
+            {
+                return View(TrainingOpportunityVM);
+            }
 
-            //TrainingOpportunityVM.UserListItems = _DbContext.Employees.Where(u => u.UserId == Emplyee.UserAccount_UserId).Select(u => new SelectListItem { Text = u.FullName, Value = u.UserId.ToString() }).ToList();
-
-            //var Oppertinty = _DbContext.TrainingOpportunities.Where(item => item.TrainingOpportunityId == TrainingOpportunityVM.TrainingOpportunity.TrainingOpportunityId).FirstOrDefault();
-
-
-            var Emp = _DbContext.Employees.FirstOrDefault(item => item.EmployeeId == TrainingOpportunityVM.TrainingOpportunity.SupervisorEmployeeId);
-
-            var type = _DbContext.TrainingTypes.FirstOrDefault(item => item.TrainingTypeId == TrainingOpportunityVM.TrainingOpportunity.TrainingType_TrainingTypeId);
-
-            //var Detail = _DbContext.FieldOfSpecialtiesDetails.FirstOrDefault(item => item.DetailFieldId == TrainingOpportunityVM.TrainingOpportunity.DetailFiled_DetailFiledId);
-
-            //var Depart = _DbContext.Departments.FirstOrDefault(item => item.DepartmentId == TrainingOpportunityVM.TrainingOpportunity.Department_DepartmentId);
+            var Opportunity = _DbContext.TrainingOpportunities.Where(u => u.TrainingOpportunityId == TrainingOpportunityVM.TrainingOpportunity.TrainingOpportunityId).FirstOrDefault();
 
 
 
-
-            TrainingOpportunityVM.TrainingOpportunity.SupervisorEmployeeId = Emp.EmployeeId;
-
-            TrainingOpportunityVM.TrainingOpportunity.TrainingType_TrainingTypeId = type.TrainingTypeId;
-
-            //TrainingOpportunityVM.TrainingOpportunity.DetailFiled_DetailFiledId = Detail.DetailFieldId;
-
-            //TrainingOpportunityVM.TrainingOpportunity.Department_DepartmentId = Depart.DepartmentId;
+            Opportunity.OpportunityDescription = TrainingOpportunityVM.TrainingOpportunity.OpportunityDescription;
 
 
+            Opportunity.TrainingType_TrainingTypeId = TrainingOpportunityVM.TrainingOpportunity.TrainingType_TrainingTypeId;
 
-            _DbContext.TrainingOpportunities.Update(TrainingOpportunityVM.TrainingOpportunity);
+
+            Opportunity.SupervisorEmployeeId = TrainingOpportunityVM.TrainingOpportunity.SupervisorEmployeeId;
+
+            Opportunity.TotalNumberOfSeats = TrainingOpportunityVM.TrainingOpportunity.TotalNumberOfSeats;
+
+            Opportunity.MinimumHours = TrainingOpportunityVM.TrainingOpportunity.MinimumHours;
+
+            Opportunity.MinimumWeeks = TrainingOpportunityVM.TrainingOpportunity.MinimumWeeks;
+
+            Opportunity.StartDate = TrainingOpportunityVM.TrainingOpportunity.StartDate;
+
+            Opportunity.EndDate = TrainingOpportunityVM.TrainingOpportunity.EndDate;
+
+            Opportunity.StartRegisterDate = TrainingOpportunityVM.TrainingOpportunity.StartRegisterDate;
+
+            Opportunity.EndRegisterDate = TrainingOpportunityVM.TrainingOpportunity.EndRegisterDate;
+
+
+
+
+            _DbContext.TrainingOpportunities.Update(Opportunity);
 
 
 
@@ -487,6 +478,7 @@ namespace TadarbProject.Controllers
 
 
         }
+
         [HttpGet]
         public IActionResult AddDepartmentFiledSpecialties()
         {
