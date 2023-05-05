@@ -99,22 +99,29 @@ namespace TadarbProject.Controllers
 
         public IActionResult RequsetOnOpportunity(TrainingOpportunityVM trainingOpportunityVN)
         {
-            if (ModelState.IsValid)
-            {
+            
                 int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
                 var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).FirstOrDefault();
                 var UnverTre = _DbContext.UniversitiesTraineeStudents.Where(item => item.UserAccount_UserId == RUserId).FirstOrDefault();
+            //var opert = _DbContext.TrainingOpportunities.Where(item => item.TrainingOpportunityId == trainingOpportunityVN.TrainingOpportunity.TrainingOpportunityId).FirstOrDefault();
 
-                var Trainee = _DbContext.StudentRequestsOnOpportunities.Where(item => item.Trainee_TraineeId == UnverTre.TraineeId).FirstOrDefault();
 
-                //var TrainingOpportunity = _DbContext.TrainingOpportunities.Where(item => item.TrainingOpportunityId == Trainee.TrainingOpportunity_TrainingOpportunityId).FirstOrDefault();
+            //var reqoper = _DbContext.StudentRequestsOnOpportunities.Where(item => item.Trainee_TraineeId == UnverTre.TraineeId).FirstOrDefault();
 
-                var RequestOpportunity = new StudentRequestOpportunity
+            //if (reqoper != null)
+            //{
+            //    TempData["error"] = "تم التقديم بالفرصة مسبقا ";
+
+            //    return View();
+            //}
+
+            var RequestOpportunity = new StudentRequestOpportunity
                 {
+               
                     TrainingOpportunity_TrainingOpportunityId = trainingOpportunityVN.TrainingOpportunity.TrainingOpportunityId,
-                    Trainee_TraineeId = Trainee.Trainee_TraineeId,
+                    Trainee_TraineeId = UnverTre.TraineeId,
                     RequestDate = DateTime.Now,
-                    DecisionStatus = "Wating",
+                    
 
                 };
 
@@ -127,8 +134,8 @@ namespace TadarbProject.Controllers
 
                 return RedirectToAction("Index");
 
-            }
-            return View();
+           
+            
 
 
         }
