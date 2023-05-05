@@ -85,6 +85,10 @@ namespace TadarbProject.Models
 
         [Required]
         public int TrainingType_TrainingTypeId { get; set; }
+
+        [ForeignKey("TrainingType_TrainingTypeId")]
+        [ValidateNever]
+        public TrainingType trainingType { get; set; }
     }
 
 

@@ -244,13 +244,14 @@ namespace TadarbProject.Controllers
                 UserAccount_UserId = user.UserId,
                 UniversityStudentNumber = StudentVM.UniversityTraineeStudent.UniversityStudentNumber,
                 CompletedHours = StudentVM.UniversityTraineeStudent.CompletedHours,
-                GPA = StudentVM.UniversityTraineeStudent.GPA
+                GPA = StudentVM.UniversityTraineeStudent.GPA,
+                Gender = StudentVM.UniversityTraineeStudent.Gender
 
 
 
 
             };
-            
+
 
             _DbContext.UniversitiesTraineeStudents.Add(Student);
 

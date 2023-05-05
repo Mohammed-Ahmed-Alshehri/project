@@ -81,12 +81,12 @@
                         <div class="col-12 col-md-6 text-end pt-4" style="color:white">
                             <h5>
                                 التخصص: الاتصالات وشبكات الحاسب الالي
-                                @*@Model.TrainingOpportunity.DetailFiled_DetailFiledId*@
+                                @Model.TrainingOpportunity.DetailFiled_DetailFiledId
                             </h5>
 
                         </div>
                         <div class="col-12 col-md-6 text-end pt-4" style="color:white">
-                            <h5>نوع التدريب: تدريب تعاوني @*@Model.TrainingOpportunity.TrainingType_TrainingTypeId*@</h5>
+                            <h5>نوع التدريب: تدريب تعاوني @Model.TrainingOpportunity.TrainingType_TrainingTypeId</h5>
 
                         </div>
                     </div>
@@ -100,10 +100,10 @@
 
                                     <div class="row text-center pl-2 " style="font-size:25px">
                                         <div class="p-1 col-3 bg-secondary border-bottom">
-                                            <div>بدايةالتقديم:  @*@Model.TrainingOpportunity.StartRegisterDate*@</div>
+                                            <div>@Model.TrainingOpportunity.StartRegisterDate</div>
                                         </div>
                                         <div class="p-1 col-3 bg-secondary border-bottom">
-                                            <div>نهايةالتقديم:  @*@Model.TrainingOpportunity.EndRegisterDate*@</div>
+                                            <div>@Model.TrainingOpportunity.EndRegisterDate</div>
                                         </div>
                                         <div class="p-1 col-3 bg-secondary border-bottom">
                                             <div>عدد المقاعد: </div>
@@ -115,10 +115,10 @@
 
                                     <div class="row text-center pl-2" style="color:darkslateblue; font-weight:bold; font-size:20px">
                                         <div class="p-1 col-3 bg-secondary">
-                                            <div>  5/15/2023@*@Model.TrainingOpportunity.StartRegisterDate*@</div>
+                                            <div>  @Model.TrainingOpportunity.StartRegisterDate</div>
                                         </div>
                                         <div class="p-1 col-3 bg-secondary">
-                                            <div>  5/20/2023@*@Model.TrainingOpportunity.EndRegisterDate*@</div>
+                                            <div>  @Model.TrainingOpportunity.EndRegisterDate</div>
                                         </div>
                                         <div class="p-1 col-3 bg-secondary">
                                             <div>55</div>
@@ -132,10 +132,10 @@
 
                                     <div class="row text-center pl-2" style="font-size:25px">
                                         <div class="p-1 col-3 bg-secondary border-bottom">
-                                            <div>بدايةالتدريب: @*@Model.TrainingOpportunity.StartRegisterDate*@</div>
+                                            <div>Model.TrainingOpportunity.StartRegisterDate</div>
                                         </div>
                                         <div class="p-1 col-3 bg-secondary border-bottom">
-                                            <div>نهايةالتدريب: @*@Model.TrainingOpportunity.EndRegisterDate*@</div>
+                                            <div>@Model.TrainingOpportunity.EndRegisterDate</div>
                                         </div>
                                         <div class="p-1 col-3 bg-secondary border-bottom">
                                             <div>عدد الاسابيع:</div>
@@ -183,12 +183,14 @@
                         <div class="row ">
                             <div class="col-md-12" >
                                 <br />
+
                                 <div class="form-group ">
 
-                                    <a type="button" style="font-size:20px" class="btn btn-primary btn-lg">التقديم على الفرصة</a>
+                                    <button type="submit" asp-controller="Student" asp-action="RequsetOnOpportunity" style="font-size:20px" class="btn btn-primary btn-lg">قبول الطلب</button>
+
                                     &nbsp;&nbsp;
 
-                                    <a type="button" style="font-size:20px" class="btn btn-secondary btn-lg ">الرجوع للخلف</a>
+                                    <button type="button" style="font-size:20px" class="btn btn-secondary btn-lg ">الرجوع للخلف</button>
 
                                 </div>
 

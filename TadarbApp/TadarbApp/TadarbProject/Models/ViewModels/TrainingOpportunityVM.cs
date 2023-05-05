@@ -7,6 +7,8 @@ namespace TadarbProject.Models.ViewModels
     {
         public TrainingOpportunity TrainingOpportunity { get; set; }
 
+        public StudentRequestOpportunity StudentRequestsOnOpportunities { get; set; }
+
         [ValidateNever]
 
         public IEnumerable<SelectListItem> UserListItems { get; set; }
