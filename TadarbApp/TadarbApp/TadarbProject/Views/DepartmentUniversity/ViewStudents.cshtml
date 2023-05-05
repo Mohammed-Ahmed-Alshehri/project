@@ -91,8 +91,8 @@
 
         </div>
 
-        <div class="col-sm-6">
-            <div class="card " style="border-radius: 25px; margin-top:2cm; margin-bottom:3cm; padding:5px 5px 5px 5px ; border-color:black;">
+        <div class="col-sm-6" style="margin-left:7cm;margin-right:10cm">
+            <div class="card " style="border-radius: 25px;  margin-bottom:7cm;   border-color:black;width:130%">
                 <div class="card-header" style="text-align: center;">
                     <h3> الطلاب الراغبين بالتدريب</h3>
 
@@ -104,7 +104,7 @@
                 </div>
 
 
-                <div class="row m-lg-5 mt-0">
+                <div class="row m-lg-6 mt-0" style="width:102.5%;border-radius: 25px;">
                     <div class="col-md-12 d-flex">
 
                         <div class="card card-table flex-fill">
@@ -116,22 +116,23 @@
                                 </div>
 
                                 <div class="col-sm-6">
+                                   
+                                    <input class="form-control" id="filterInput" type="text" placeholder="البحث بواسطة الاسم أو الرقم الجامعي" aria-label="default input example"> <br />
 
-                                    <input class="form-control" id="filterInput" type="text" placeholder="البحث بواسطة الاسم أو الرقم الجامعي" aria-label="default input example">
+                                    <button class="btn  btn-outline-primary" type="submit" onclick="FillTableSearch()" style="background-color:#e6e291;color:black;border:0px;font-size:18px;">بحث</button>
 
-                                    <button class="btn  btn-outline-primary" type="submit" onclick="FillTableSearch()" style="background-color:#e6e291;color:black;border:0px;font-size:18px;">ابحث</button>
-
-
+                                    &nbsp;
                                     <div class="btn-group " role="group" aria-label="Basic radio toggle button group" style:"font-size:18px">
 
                                         <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" style="display:none" checked>
                                         <label class="btn btn-outline-primary" for="btnradio1" style="display:none"></label>
 
                                         <label class="btn btn-info rounded-start">
-                                            <input class="btn btn-info " type="radio" name="status" value="ذكر" onclick="ChangeGender('ذكر')"> طلاب
+                                            <input class="btn btn-info " type="radio" name="status" value="ذكر" onclick="ChangeGender('ذكر')"> الطلاب
                                         </label>
-                                        <label class="btn btn-success">
-                                            <input type="radio" name="status" value="انثى" onclick="ChangeGender('انثى')"> طالبات
+                                        &nbsp;&nbsp;
+                                        <label class="btn " style="background-color:#faa7e7">
+                                            <input type="radio" name="status" value="انثى" onclick="ChangeGender('انثى')"> الطالبات
                                         </label>
                                        
                                     </div>

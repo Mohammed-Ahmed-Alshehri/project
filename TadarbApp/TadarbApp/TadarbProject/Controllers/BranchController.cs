@@ -606,6 +606,10 @@ namespace TadarbProject.Controllers
 
 
         }
+        public IActionResult OpportunitiesApplicants()
+        {
+            return View();
+        }
 
         #region
         public IActionResult GetDetailFields(string? ids)
