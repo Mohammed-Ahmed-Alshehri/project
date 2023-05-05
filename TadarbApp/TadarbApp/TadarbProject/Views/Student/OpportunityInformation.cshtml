@@ -21,7 +21,7 @@
 
     <div class="row">
 
-        <div class="col-sm-4" style="z-index:2;">
+        <div class="col-sm-2" style="z-index:2;">
 
             <div class="vertical-nav bg-white" id="sidebar">
                 <div class="py-4 px-3 mb-4 bg-light">
@@ -77,99 +77,145 @@
 
         <div class="col-sm-8">
 
+            <form method="post">
+                <div class="card  container pt-4">
+                    <div class="card-header  ml-0  row " style="background-color:#325D73">
+                        <div class="col-12 col-md-6 text-end pt-4" style="color:white">
+                            <h5>
+                                التخصص: الاتصالات وشبكات الحاسب الالي
+                                @*@Model.TrainingOpportunity.DetailFiled_DetailFiledId*@
+                            </h5>
 
-            @*   <form method="post">
-            <div class="card  container pt-4">
-            <div class="card-header bg-primary text-light ml-0  row ">
-            <div class="col-12 col-md-6">
-            <h1 class="text-white-50">@Model.product.Title</h1>
-            <p class="text-warning">by @Model.product.Author</p>
-            </div>
-            <div class="col-12 col-md-6 text-end pt-4">
-            <span class="badge bg-info pt-2" style="height:30px;">@Model.product.CoverType.Name</span>
-            <span class="badge bg-warning pt-2" style="height:30px;">@Model.product.Category.Name</span>
-            </div>
-            </div>
-            <div class="card-body row container">
-            <div class="container rounded p-2">
-            <div class="row">
-            <div class="col-8 col-lg-8">
+                        </div>
+                        <div class="col-12 col-md-6 text-end pt-4" style="color:white">
+                            <h5>نوع التدريب: تدريب تعاوني @*@Model.TrainingOpportunity.TrainingType_TrainingTypeId*@</h5>
 
-            <div class="row pl-2">
-            <h5 class="text-muted">ISBN : @Model.product.ISBN</h5>
-            </div>
-            <div class="row pl-2">
-            <h5 class="text-muted pb-2">List Price: <strike>@Model.product.ListPrice.ToString("c")</strike></h5>
-            </div>
-            <div class="row text-center pl-2">
-            <div class="p-1 col-2 bg-secondary border-bottom">
-            <div>Quantity</div>
-            </div>
-            <div class="p-1 col-2 bg-secondary border-bottom">
-            <div>1-50</div>
-            </div>
-            <div class="p-1 col-2 bg-secondary border-bottom">
-            <div>51-100</div>
-            </div>
-            <div class="p-1 col-2 bg-secondary border-bottom">
-            <div>100+</div>
-            </div>
-            </div>
-            <div class="row text-center pl-2" style="color:maroon; font-weight:bold">
-            <div class="p-1 col-2 bg-secondary">
-            <div>Price</div>
-            </div>
-            <div class="p-1 col-2 bg-secondary">
-            <div>@Model.product.Price.ToString("c")</div>
-            </div>
-            <div class="p-1 col-2 bg-secondary">
-            <div>@Model.product.Price50.ToString("c")</div>
-            </div>
-            <div class="p-1 col-2 bg-secondary">
-            <div>@Model.product.Price100.ToString("c")</div>
-            </div>
-            </div>
-            <div class="row pl-2">
-            <p class="text-secondary">@Model.product.Description</p>
-            </div>
-            <div class="row pl-2">
-            <div class="col-2 text-primary"><h4>Count</h4></div>
-            <div class="col-10"><input asp-for="@Model.Count" class="form-control" /></div>
-            </div>
-            </div>
-            <div class="col-12 col-lg-3 offset-lg-1 text-center">
-            <img src="~/@Model.product.ImageUrl" width="100%" class="rounded" />
-            </div>
-            </div>
-            </div>
-            </div>
-            <div class="card-footer">
-            <div class="row">
-            <div class="col-12 col-md-6 pb-1">
-            <a asp-action="Index" class="btn btn-success form-control " style="height:50px;">Back to home</a>
-            </div>
-            <div class="col-12 col-md-6 pb-1">
-            <button type="submit" value="Add to Cart" class="btn btn-primary form-control" style="height:50px;">Add to Cart</button>
-            </div>
-            </div>
-            </div>
-            </div>
+                        </div>
+                    </div>
+                    <div class="card-body row container">
+                        <div class="container rounded p-2">
+                            <div class="row">
+                                <div class="col-12 col-lg-3 offset-lg-1 text-center">
+                                    <img src="/images/AppImages/log.png" width="100%" height="100%" title="" alt="" style="position:center">
+                                </div>
+                                <div class="col-8 col-lg-8">
+
+                                    <div class="row text-center pl-2 " style="font-size:25px">
+                                        <div class="p-1 col-3 bg-secondary border-bottom">
+                                            <div>بدايةالتقديم:  @*@Model.TrainingOpportunity.StartRegisterDate*@</div>
+                                        </div>
+                                        <div class="p-1 col-3 bg-secondary border-bottom">
+                                            <div>نهايةالتقديم:  @*@Model.TrainingOpportunity.EndRegisterDate*@</div>
+                                        </div>
+                                        <div class="p-1 col-3 bg-secondary border-bottom">
+                                            <div>عدد المقاعد: </div>
+                                        </div>
+                                        <div class="p-1 col-3 bg-secondary border-bottom">
+                                            <div>المدينة: </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row text-center pl-2" style="color:darkslateblue; font-weight:bold; font-size:20px">
+                                        <div class="p-1 col-3 bg-secondary">
+                                            <div>  5/15/2023@*@Model.TrainingOpportunity.StartRegisterDate*@</div>
+                                        </div>
+                                        <div class="p-1 col-3 bg-secondary">
+                                            <div>  5/20/2023@*@Model.TrainingOpportunity.EndRegisterDate*@</div>
+                                        </div>
+                                        <div class="p-1 col-3 bg-secondary">
+                                            <div>55</div>
+                                        </div>
+                                        <div class="p-1 col-3 bg-secondary">
+                                            <div>الرياض</div>
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="row text-center pl-2" style="font-size:25px">
+                                        <div class="p-1 col-3 bg-secondary border-bottom">
+                                            <div>بدايةالتدريب: @*@Model.TrainingOpportunity.StartRegisterDate*@</div>
+                                        </div>
+                                        <div class="p-1 col-3 bg-secondary border-bottom">
+                                            <div>نهايةالتدريب: @*@Model.TrainingOpportunity.EndRegisterDate*@</div>
+                                        </div>
+                                        <div class="p-1 col-3 bg-secondary border-bottom">
+                                            <div>عدد الاسابيع:</div>
+                                        </div>
+                                        <div class="p-1 col-3 bg-secondary border-bottom">
+                                            <div>عدد الساعات:</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row text-center pl-2" style="color:darkslateblue; font-weight:bold; font-size:20px">
+                                        <div class="p-1 col-3 bg-secondary">
+                                            <div> 5/22/2023</div>
+                                        </div>
+                                        <div class="p-1 col-3 bg-secondary">
+                                            <div> 5/26/2023</div>
+                                        </div>
+                                        <div class="p-1 col-3 bg-secondary">
+                                            <div>6</div>
+                                        </div>
+                                        <div class="p-1 col-3 bg-secondary">
+                                            <div>155 ساعة</div>
+                                        </div>
+                                    </div>
+                                    <br /><br />
+                                    <div class="row pl-2   ">
+                                        <p class="text-secondary h5">وصف الفرصة :</p>
+                                        <p>يشير مصطلح شبكة الكمبيوتر إلى أجهزة الحوسبة المتصلة ببعضها، التي تتبادل المعلومات فيما بينها وتشارك الموارد مع بعضها. تستخدم هذه الأجهزة المتصلة بالشبكة نظامًا من القواعد يُسمى بروتوكولات الاتصال، من أجل نقل المعلومات عبر التكنولوجيات المادية أو اللاسلكية.</p>
+                                    </div>
+                                    <br /><br /><br />
+                                    <div class="row pl-2  h5">
+                                        <p class="text-secondary">الموقع :</p>
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <br /><br /><br /><br /><br /><br />
+                    <div class="card-footer align-content-center">
+                        <div class="row ">
+                            <div class="col-md-12">
+                                <br />
+                                <div class="form-group ">
+
+                                    <a type="button" style="font-size:20px" class="btn btn-primary btn-lg">قبول الطلب</a>
+                                    &nbsp;&nbsp;
+
+                                    <a type="button" style="font-size:20px" class="btn btn-secondary btn-lg ">رفض الطلب</a>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <br />
+                    </div>
+                </div>
             </form>
-
-            *@
         </div>
 
+
+
+    </div>
+    <br />
+    <br />
+
+
+
+
+
+    <div class="col-sm-2"></div>
     </div>
 
-
-
-
-
-  
-
-    @* <div class="col-sm-2"></div>
-    </div>*@
-   
 </body>
 
 @section Scripts{

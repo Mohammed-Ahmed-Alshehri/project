@@ -250,6 +250,7 @@ namespace TadarbProject.Controllers
 
 
             };
+            
 
             _DbContext.UniversitiesTraineeStudents.Add(Student);
 
@@ -343,6 +344,97 @@ namespace TadarbProject.Controllers
 
             return Json(new { Students });
         }
+
+
+        [HttpGet]
+        public IActionResult GetStudentsListDowngpa()
+        {
+
+
+            int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
+
+
+            var Department = _DbContext.Departments.Where(item => item.Responsible_UserId == RUserId).FirstOrDefault();
+
+
+            var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Department.Organization_OrganizationId).FirstOrDefault();
+
+            var college = _DbContext.UniversityColleges.Where(item => item.Organization_OrganizationId == OrganizationOfR.OrganizationId).FirstOrDefault();
+
+
+            IEnumerable<UniversityTraineeStudent> Students = Enumerable.Empty<UniversityTraineeStudent>();
+
+
+            Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId}")
+                   .AsNoTracking().Include(item => item.user).OrderBy(item => item.GPA).ToList();
+
+
+            return Json(new { Students });
+        }
+
+        [HttpGet]
+        public IActionResult GetStudentsListUpgpa()
+        {
+
+
+            int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
+
+
+            var Department = _DbContext.Departments.Where(item => item.Responsible_UserId == RUserId).FirstOrDefault();
+
+
+            var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Department.Organization_OrganizationId).FirstOrDefault();
+
+            var college = _DbContext.UniversityColleges.Where(item => item.Organization_OrganizationId == OrganizationOfR.OrganizationId).FirstOrDefault();
+
+
+            IEnumerable<UniversityTraineeStudent> Students = Enumerable.Empty<UniversityTraineeStudent>();
+
+
+            Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId}")
+                   .AsNoTracking().Include(item => item.user).OrderByDescending(item => item.GPA).ToList();
+
+
+            return Json(new { Students });
+        }
+
+
+        public IActionResult GetByGender(string gender)
+        {
+            /* var list = _DbContext.Organizations.ToList();*/
+
+            IEnumerable<UniversityTraineeStudent> list;
+
+
+
+
+            if (gender == "ذكر")
+            {
+
+                list = _DbContext.UniversitiesTraineeStudents.Where(item => item.Gender.Equals(gender)).Include(item => item.user).ToList();
+
+                return Json(new { list });
+            }
+
+            if (gender == "انثى")
+            {
+
+                list = _DbContext.UniversitiesTraineeStudents.Where(item => item.Gender.Equals(gender)).Include(item => item.user).ToList();
+
+                return Json(new { list });
+            }
+
+
+
+
+
+
+            return Json(new { data = "No_data" });
+        }
+
+
+
+
 
         [HttpGet]
         public IActionResult GetStudentsByNameOrNumber(string? filter)

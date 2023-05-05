@@ -121,12 +121,29 @@
 
                                     <button class="btn  btn-outline-primary" type="submit" onclick="FillTableSearch()" style="background-color:#e6e291;color:black;border:0px;font-size:18px;">ابحث</button>
 
+
+                                    <div class="btn-group " role="group" aria-label="Basic radio toggle button group" style:"font-size:18px">
+
+                                        <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" style="display:none" checked>
+                                        <label class="btn btn-outline-primary" for="btnradio1" style="display:none"></label>
+
+                                        <label class="btn btn-info rounded-start">
+                                            <input class="btn btn-info " type="radio" name="status" value="ذكر" onclick="ChangeGender('ذكر')"> طلاب
+                                        </label>
+                                        <label class="btn btn-success">
+                                            <input type="radio" name="status" value="انثى" onclick="ChangeGender('انثى')"> طالبات
+                                        </label>
+                                       
+                                    </div>
                                 </div>
 
                             </div>
 
 
                             <div class="card-body">
+                             
+
+                                </div>
                                 <div class="table-responsive no-radius">
 
                                     <table class="table table-striped table-bordered table-sm" cellspacing="0" width="100%" style="font-size:18px">
@@ -145,6 +162,11 @@
                                                 </th>
 
                                                 <th> الجنس </th>
+
+                                                <th> المعدل التراكمي
+
+                                                    <i class="btn fa-solid fa-arrow-down-long float-l-start fa-xs p-0  " onclick="SortDwongpa()"> </i>  <i class=" btn fa-solid fa-arrow-up-long float-l-start fa-xs p-0" onclick="SortUpgpa()"></i>
+                                                </th>
 
                                                 <th>رقم الهاتف</th>
 
@@ -187,6 +209,88 @@
         });
 
 
+        var gen ="";
+
+        function ChangeGender(x) {
+        
+
+
+            gen = x;
+
+            BasedOnstSatus(gen);
+        }
+
+        function BasedOnstSatus(Gender) {
+            var body = "";
+            var sa = '';
+
+            $(document).ready(function () {
+
+                $.ajax({
+                    type: "GET",
+                    url: "@Url.Action("GetByGender")",
+                    dataType: "json",
+                    data: { gender: Gender },
+
+
+                    success: function (data) {
+
+                        //console.log(data.list);
+
+                        $.each(data.list, function (key, value) {
+
+                            //console.log(data.list);
+
+                            //    console.log(value);
+
+
+
+                            //console.log(value.user.fullName);
+                            //console.log(value.gender);
+                            //console.log(value.completedHours);
+                            //console.log(value.gender);
+                            //console.log(value.gpa);
+                            //console.log(value.user.phone);
+                            //console.log(value.user.userEmail);
+                        
+
+                            //if (value.activationStatus == "Active")
+                            //    sa = 'نشط';
+                            //if (value.activationStatus == "Not_Active")
+                            //    sa = 'غير نشط';
+
+                            //if (value.activationStatus == "Rejected")
+                            //    sa = 'مرفوض';
+
+                            //body +=
+
+                            body += "<tr> <td class='text - nowrap'>  <div class='font - weight - 600'> <div class='font - weight - 600'> " + value.user.fullName + "</div></div></td>" +
+                                "<td class='text - center'>" + value.universityStudentNumber + "</td>"
+                                + "<td class='text - nowrap'> " + value.completedHours + "</td>"
+                                + "<td class='text - nowrap'> " + value.gender + "</td>"
+                                + "<td class='text - nowrap'> " + value.gpa + "</td>"
+                                + "<td class='text - nowrap'>" + value.user.phone + "</td>"
+                                + "<td class='text - nowrap'>" + value.user.userEmail + "</td>"
+                                + "</tr>";
+
+
+
+
+                        });
+
+
+                        ////$('#tbody')= body;
+                        //$('#tbody').val() = body;
+                        $("#Tbody").html(body);
+
+
+                    }
+                });
+
+            });
+        }
+
+
 
 
         function FillTable() {
@@ -212,12 +316,13 @@
                                 "<td class='text - center'>" + value.universityStudentNumber + "</td>"
                                 + "<td class='text - nowrap'> " + value.completedHours + "</td>"
                                 + "<td class='text - nowrap'> " + value.gender + "</td>"
+                                + "<td class='text - nowrap'> " + value.gpa + "</td>"
                                 + "<td class='text - nowrap'>" + value.user.phone + "</td>"
                                 + "<td class='text - nowrap'>" + value.user.userEmail + "</td>"
                                 + "</tr>";
 
 
-                            // console.log(value);
+                             //console.log(value);
 
                         });
 
@@ -257,6 +362,8 @@
                             body += "<tr> <td class='text - nowrap'>  <div class='font - weight - 600'> <div class='font - weight - 600'> " + value.user.fullName + "</div></div></td>" +
                                 "<td class='text - center'>" + value.universityStudentNumber + "</td>"
                                 + "<td class='text - nowrap'> " + value.completedHours + "</td>"
+                                + "<td class='text - nowrap'> " + value.gender + "</td>"
+                                + "<td class='text - nowrap'> " + value.gpa + "</td>"
                                 + "<td class='text - nowrap'>" + value.user.phone + "</td>"
                                 + "<td class='text - nowrap'>" + value.user.userEmail + "</td>"
                                 + "</tr>";
@@ -303,6 +410,8 @@
                             body += "<tr> <td class='text - nowrap'>  <div class='font - weight - 600'> <div class='font - weight - 600'> " + value.user.fullName + "</div></div></td>" +
                                 "<td class='text - center'>" + value.universityStudentNumber + "</td>"
                                 + "<td class='text - nowrap'> " + value.completedHours + "</td>"
+                                + "<td class='text - nowrap'> " + value.gender + "</td>"
+                                + "<td class='text - nowrap'> " + value.gpa + "</td>"
                                 + "<td class='text - nowrap'>" + value.user.phone + "</td>"
                                 + "<td class='text - nowrap'>" + value.user.userEmail + "</td>"
                                 + "</tr>";
@@ -327,7 +436,103 @@
 
         }
 
-                function FillTableSearch() {
+
+        function SortDwongpa() {
+            var body = "";
+
+            $(document).ready(function () {
+
+                $.ajax({
+
+                    url: "@Url.Action("GetStudentsListDowngpa")",
+                    type: 'GET',
+                    dataType: "json",
+
+
+                    success: function (data) {
+
+                        $.each(data.students, function (key, value) {
+
+
+
+                            body += "<tr> <td class='text - nowrap'>  <div class='font - weight - 600'> <div class='font - weight - 600'> " + value.user.fullName + "</div></div></td>" +
+                                "<td class='text - center'>" + value.universityStudentNumber + "</td>"
+                                + "<td class='text - nowrap'> " + value.completedHours + "</td>"
+                                + "<td class='text - nowrap'> " + value.gender + "</td>"
+                                + "<td class='text - nowrap'> " + value.gpa + "</td>"
+                                + "<td class='text - nowrap'>" + value.user.phone + "</td>"
+                                + "<td class='text - nowrap'>" + value.user.userEmail + "</td>"
+                                + "</tr>";
+
+
+                            // console.log(value);
+
+                        });
+
+
+
+                        $("#Tbody").html(body);
+
+
+
+                    }
+
+
+                });
+
+            });
+
+        }
+
+        function SortUpgpa() {
+            var body = "";
+
+            $(document).ready(function () {
+
+                $.ajax({
+
+                    url: "@Url.Action("GetStudentsListUpgpa")",
+                    type: 'GET',
+                    dataType: "json",
+
+
+                    success: function (data) {
+
+                        $.each(data.students, function (key, value) {
+
+
+
+                            body += "<tr> <td class='text - nowrap'>  <div class='font - weight - 600'> <div class='font - weight - 600'> " + value.user.fullName + "</div></div></td>" +
+                                "<td class='text - center'>" + value.universityStudentNumber + "</td>"
+                                + "<td class='text - nowrap'> " + value.completedHours + "</td>"
+                                + "<td class='text - nowrap'> " + value.gender + "</td>"
+                                + "<td class='text - nowrap'> " + value.gpa + "</td>"
+                                + "<td class='text - nowrap'>" + value.user.phone + "</td>"
+                                + "<td class='text - nowrap'>" + value.user.userEmail + "</td>"
+                                + "</tr>";
+
+
+                            // console.log(value);
+
+                        });
+
+
+
+                        $("#Tbody").html(body);
+
+
+
+                    }
+
+
+                });
+
+            });
+
+        }
+
+
+         function FillTableSearch() {
 
             var NameOrNumber = document.getElementById("filterInput").value;
 
@@ -356,6 +561,8 @@
                             body += "<tr> <td class='text - nowrap'>  <div class='font - weight - 600'> <div class='font - weight - 600'> " + value.user.fullName + "</div></div></td>" +
                                 "<td class='text - center'>" + value.universityStudentNumber + "</td>"
                                 + "<td class='text - nowrap'> " + value.completedHours + "</td>"
+                                + "<td class='text - nowrap'> " + value.gender + "</td>"
+                                + "<td class='text - nowrap'> " + value.gpa + "</td>"
                                 + "<td class='text - nowrap'>" + value.user.phone + "</td>"
                                 + "<td class='text - nowrap'>" + value.user.userEmail + "</td>"
                                 + "</tr>";

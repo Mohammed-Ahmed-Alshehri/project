@@ -79,7 +79,7 @@
 
                 @foreach (var item in Model)
                 {
-                    <div class="col-lg-3 col-md-6">
+                    <div class="col-lg-4 col-md-8">
 
 
                         <div class="row p-2">
@@ -95,36 +95,41 @@
                                         <div class="pl-1">
 
                                             <p class="card-title h5 text-primary">
-                                                @item.DetailFiled.SpecializationName
+                                                <h3>@item.DetailFiled.SpecializationName</h3>
                                             </p>
-
-                                            <p class="card-title h5 text-info">
-                                                By <b>@item.AvailableOpportunities</b>
+                                            <br>
+                                            <p class="card-title h5 " style="color:#1c4c64">
+                                                عدد المقاعد: <b>@item.AvailableOpportunities</b>
                                             </p>
                                         </div>
-
-                                        <div class="pl-1">
+                                        <br>
+                                        <div class="pl-1 h5">
 
                                             <p>
-                                                List Price:  <b>@item.StartDate.ToShortDateString()</b>
+                                                بداية التدريب:  <b>@item.StartDate.ToShortDateString()</b>
 
                                             </p>
 
                                             <p>
-                                                As low as:  <b>@item.EndDate.ToShortDateString()</b>
+                                                نهاية التدريب:  <b>@item.EndDate.ToShortDateString()</b>
+
+                                            </p>
+                                            <p>
+                                                نهاية فترة التسجيل:  <b>@item.EndRegisterDate.ToShortDateString()</b>
 
                                             </p>
                                         </div>
 
                                     </div>
 
-
+                                    <br>
                                     <div>
-                                        <a asp-action="Details" asp-route-id="@item.TrainingOpportunityId" class=" btn btn-primary form-control">
-                                            Details
+
+                                        <a asp-action="Details" asp-route-id="@item.TrainingOpportunityId" class=" btn  form-control " style="background-color:#B8B474; color:black;  font-size:20px; border-radius:40;">
+                                            التفاصيل
                                         </a>
                                     </div>
-
+                                    <br>
 
                                 </div>
                             </div>
@@ -145,6 +150,7 @@
 
             <div class="col-sm-2"></div>
         </div>
+    </div>
 </body>
 @section Scripts{
 
