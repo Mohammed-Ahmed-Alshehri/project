@@ -609,14 +609,72 @@ namespace TadarbProject.Controllers
 
 
         }
-        public IActionResult OpportunitiesApplicants()
+
+
+        public IActionResult OpportunitiesApplicants(int? id)
         {
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
+
+            ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
+
+            int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
+            var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).AsNoTracking().FirstOrDefault();
+            var Branch = _DbContext.OrganizationBranches_TrainProv.Where(item => item.Responsible_UserId == RUserId).AsNoTracking().FirstOrDefault();
+
+            var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Branch.Organization_OrganizationId).AsNoTracking().FirstOrDefault();
+
+            var Department = _DbContext.Departments.Where(item => item.Responsible_UserId == RUserId).AsNoTracking().ToList();
+
+
+            ViewBag.OrganizationName = OrganizationOfR.OrganizationName + " - " + Branch.BranchName;
+            ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
+            ViewBag.Username = user.FullName;
+
+            ViewBag.OpportunitiyId = id;
+
+
+
             return View();
         }
-        public IActionResult OpportunitiesApplicantsDetail()
+
+
+        public IActionResult OpportunitiesApplicantsDetail(int? id)
         {
-            return View();
+
+
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
+            ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
+
+            int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
+            var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).AsNoTracking().FirstOrDefault();
+            var Branch = _DbContext.OrganizationBranches_TrainProv.Where(item => item.Responsible_UserId == RUserId).AsNoTracking().FirstOrDefault();
+
+            var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Branch.Organization_OrganizationId).AsNoTracking().FirstOrDefault();
+
+            var Department = _DbContext.Departments.Where(item => item.Responsible_UserId == RUserId).AsNoTracking().ToList();
+
+
+            ViewBag.OrganizationName = OrganizationOfR.OrganizationName + " - " + Branch.BranchName;
+            ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
+            ViewBag.Username = user.FullName;
+
+
+
+            var Student = _DbContext.UniversitiesTraineeStudents.Where(item => item.TraineeId == id)
+                   .AsNoTracking().Include(item => item.user)
+                   .AsNoTracking().Include(item => item.department.universityCollege.organization)
+                   .AsNoTracking().Include(item => item.department.universityCollege.city.Country).FirstOrDefault();
+
+            return View(Student);
         }
+
+
 
         #region
         public IActionResult GetDetailFields(string? ids)
@@ -628,10 +686,6 @@ namespace TadarbProject.Controllers
             var Branch = _DbContext.OrganizationBranches_TrainProv.Where(item => item.Responsible_UserId == RUserId).AsNoTracking().FirstOrDefault();
 
             var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Branch.Organization_OrganizationId).AsNoTracking().FirstOrDefault();
-
-
-
-
 
             if (!string.IsNullOrEmpty(ids))
             {
@@ -884,6 +938,25 @@ namespace TadarbProject.Controllers
 
 
             return Json(new { Exists = false });
+        }
+
+
+        [HttpGet]
+        public IActionResult GetStudentsList(int? id)
+        {
+
+
+            IEnumerable<UniversityTraineeStudent> Students = Enumerable.Empty<UniversityTraineeStudent>();
+
+
+            Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE TraineeId IN " +
+                $"(SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities WHERE TrainingOpportunity_TrainingOpportunityId ={id} )")
+                   .AsNoTracking().Include(item => item.user)
+                   .AsNoTracking().Include(item => item.department.universityCollege.organization)
+                   .AsNoTracking().Include(item => item.department.universityCollege.city.Country).ToList();
+
+
+            return Json(new { Students });
         }
         #endregion
     }

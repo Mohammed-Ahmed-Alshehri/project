@@ -126,29 +126,49 @@
 
 
 
-                                 @foreach (var item in Model)
+                                @foreach (var item in Model)
                                 {
-                                  <tr>
-                                     <td class="text-nowrap">
-                                        <div class="font-weight-600">
-                                            <div class="font-weight-600 ">
+                                    <tr>
+                                        <td class="text-nowrap">
+                                            <div class="font-weight-600">
+                                                <div class="font-weight-600 ">
                                                     @item.trainingOpportunity.Branch.organization.OrganizationName
-                                            </div>
+                                                </div>
 
-                                        </div>
-                                    </td>
+                                            </div>
+                                        </td>
                                         <td class="text-nowrap"> @item.trainingOpportunity.Branch.BranchName	</td>
                                         <td class="text-nowrap"> @item.trainingOpportunity.DetailFiled.SpecializationName	</td>
                                         <td class="text-nowrap"> @item.RequestDate.ToShortDateString()	</td>
                                         <td class="text-nowrap"> @item.trainingOpportunity.StartDate.ToShortDateString()	</td>
-                                    <td class="text-center">
-                                            @item.DecisionStatus
-                                    </td>
+                                        <td class="text-center">
+
+                                            @if (@item.DecisionStatus == "waiting")
+                                            {
+                                                <span class="badge bg-warning"> بانتظار موافقة الجهه </span>
+                                            }
+                                            @if (@item.DecisionStatus == "approved")
+                                            {
+                                                <span class="badge bg-success">تمت الموافقة</span>
+                                            }
+
+                                            @if (@item.DecisionStatus == "system disable")
+                                            {
+                                                <span class="badge bg-dark"> تم الالغاء من قبل النظام </span>
+                                            }
+
+                                            @if (@item.DecisionStatus == "rejected")
+                                            {
+                                                <span class="badge bg-danger"> تم الرفض </span>
+                                            }
 
 
-                                   </tr>
+                                        </td>
 
-                                 }
+
+                                    </tr>
+
+                                }
 
                             </tbody>
                         </table>

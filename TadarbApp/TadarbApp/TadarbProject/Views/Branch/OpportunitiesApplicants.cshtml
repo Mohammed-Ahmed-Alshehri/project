@@ -102,7 +102,6 @@
 
 
             <!-- End vertical navbar1 -->
-
             <!-- Page content holder1 -->
             <div class="page-content p-1" id="content">
                 <!-- Toggle button1 -->
@@ -117,27 +116,27 @@
                     <h3> طلبات المتقدمين</h3>
 
 
-               
+
 
                 </div>
 
 
-     <div class="row m-lg-5 mt-0">
-     <div class="col-md-12 d-flex">
+                <div class="row m-lg-5 mt-0">
+                    <div class="col-md-12 d-flex">
 
-     <div class="card card-table flex-fill">
-     <div class="card-header">
-     <h4 class="card-title float-start">
-     </h4>
-     <div class="table-search float-start">
-     <button class="btn  btn-info" type="submit" onclick="FillTable()" style="color:black;border:0px;font-size:18px;background-color:lightblue">ظهور الكل</button>
-     </div>
+                        <div class="card card-table flex-fill">
+                            <div class="card-header">
+                                <h4 class="card-title float-start">
+                                </h4>
+                                <div class="table-search float-start">
+                                    <button class="btn  btn-info" type="submit" onclick="FillTable()" style="color:black;border:0px;font-size:18px;background-color:lightblue">ظهور الكل</button>
+                                </div>
 
                                 <div class="col-sm-6">
 
                                     <input class="form-control" id="filterInput" type="text" placeholder="البحث بواسطة الاسم أو الرقم الجامعي" aria-label="default input example"><br />
 
-                                    <button class="btn  btn-outline-primary" type="submit" onclick="FillTableSearch()" style="background-color:#e6e291;color:black;border:0px;font-size:18px;">ابحث</button> 
+                                    <button class="btn  btn-outline-primary" type="submit" onclick="FillTableSearch()" style="background-color:#e6e291;color:black;border:0px;font-size:18px;">ابحث</button>
 
 
                                     <div class="btn-group " role="group" aria-label="Basic radio toggle button group" style:"font-size:18px">
@@ -169,16 +168,12 @@
 
                                             <th>اسم الطالب</th>
 
-
+                                            <th>الجامعة</th>
                                             <th>التخصص</th>
 
-
-                                            <th>
-                                                عدد الساعات
-                                                <i class="btn fa-solid fa-arrow-down-long float-l-start fa-xs p-0  " onclick="SortDwon()"> </i>  <i class=" btn fa-solid fa-arrow-up-long float-l-start fa-xs p-0" onclick="SortUp()"></i>
-                                            </th>
-
                                             <th> الجنس </th>
+
+                                            <th> مكان السكن </th>
 
                                             <th>
                                                 المعدل التراكمي
@@ -186,51 +181,12 @@
                                                 <i class="btn fa-solid fa-arrow-down-long float-l-start fa-xs p-0  " onclick="SortDwongpa()"> </i>  <i class=" btn fa-solid fa-arrow-up-long float-l-start fa-xs p-0" onclick="SortUpgpa()"></i>
                                             </th>
 
-                                            <th>رقم الهاتف</th>
+                                            <th>تفاصيل الطالب</th>
 
-                                            <th>البريد الالكتروني</th>
-
-                                            <th>تفاصيل</th>
-                                        </tr>
 
                                     </thead>
 
                                     <tbody id="Tbody">
-                                        <tr>
-
-                                            <td>
-                                                بدر باخشوين
-                                            </td>
-
-                                            <td>
-                                                نظم معلومات
-                                            </td>
-
-                                            <td>
-                                                148
-                                            </td>
-
-                                            <td>
-                                                ذكر
-                                            </td>
-
-                                            <td>
-                                                4.90
-                                            </td>
-
-                                            <td>
-                                                055678865
-                                            </td>
-
-                                            <td>
-                                                badr@gmail.com
-                                            </td>
-
-                                            <td>
-                                                <button type="button" class="btn " asp-controller="Branch" asp-action="OpportunitiesApplicantsDetail" style="background-color:lightblue" fdprocessedid="ezqldw">تفاصيل</button>
-                                            </td>
-
-                                        </tr>
                                     </tbody>
 
 
@@ -290,34 +246,12 @@
 
                     success: function (data) {
 
-                        //console.log(data.list);
+
 
                         $.each(data.list, function (key, value) {
 
-                            //console.log(data.list);
-
-                            //    console.log(value);
 
 
-
-                            //console.log(value.user.fullName);
-                            //console.log(value.gender);
-                            //console.log(value.completedHours);
-                            //console.log(value.gender);
-                            //console.log(value.gpa);
-                            //console.log(value.user.phone);
-                            //console.log(value.user.userEmail);
-
-
-                            //if (value.activationStatus == "Active")
-                            //    sa = 'نشط';
-                            //if (value.activationStatus == "Not_Active")
-                            //    sa = 'غير نشط';
-
-                            //if (value.activationStatus == "Rejected")
-                            //    sa = 'مرفوض';
-
-                            //body +=
 
                             body += "<tr> <td class='text - nowrap'>  <div class='font - weight - 600'> <div class='font - weight - 600'> " + value.user.fullName + "</div></div></td>" +
                                 "<td class='text - center'>" + value.universityStudentNumber + "</td>"
@@ -359,6 +293,7 @@
                     url: "@Url.Action("GetStudentsList")",
                     type: 'GET',
                     dataType: "json",
+                    data: { id: @ViewBag.OpportunitiyId },
 
 
                     success: function (data) {
@@ -367,17 +302,16 @@
 
 
 
-                            body += "<tr> <td class='text - nowrap'>  <div class='font - weight - 600'> <div class='font - weight - 600'> " + value.user.fullName + "</div></div></td>" +
-                                "<td class='text - center'>" + value.universityStudentNumber + "</td>"
-                                + "<td class='text - nowrap'> " + value.completedHours + "</td>"
+                            body += "<tr> <td class='text - nowrap'>  <div class='font - weight - 600'> <div class='font - weight - 600'> " + value.user.fullName + "</div></div></td>"
+                                + "<td class='text - nowrap'> " + value.department.universityCollege.organization.organizationName + "</td>"
+                                + "<td class='text - nowrap'> " + value.department.departmentName + "</td>"
                                 + "<td class='text - nowrap'> " + value.gender + "</td>"
+                                + "<td class='text - nowrap'> " + value.department.universityCollege.city.country.countryName + ", " + value.department.universityCollege.city.cityName + "</td>"
                                 + "<td class='text - nowrap'> " + value.gpa + "</td>"
-                                + "<td class='text - nowrap'>" + value.user.phone + "</td>"
-                                + "<td class='text - nowrap'>" + value.user.userEmail + "</td>"
-                                + "</tr>";
+                                + "<td class='text - nowrap'> " + '<a class="btn btn-outline-primary" href="//localhost:7122/Branch/OpportunitiesApplicantsDetail/?id=' + value.traineeId + ' " >تفاصيل الطلب</a>' + '</td></tr>';
 
 
-                            //console.log(value);
+
 
                         });
 

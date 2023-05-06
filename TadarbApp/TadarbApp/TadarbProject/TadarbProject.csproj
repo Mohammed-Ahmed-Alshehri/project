@@ -15,6 +15,8 @@
   <ItemGroup>
     <Folder Include="Models\DbViewModels\" />
     <Folder Include="wwwroot\Images\Organizations\Logos\" />
+    <Folder Include="wwwroot\StudentDocments\CV\" />
+    <Folder Include="wwwroot\StudentDocments\OtherDocmnets\" />
   </ItemGroup>
 
 </Project>

@@ -10,7 +10,7 @@
 
     <link rel="stylesheet" href="~/css/Addbranches.css" asp-append-version="true" />
 
-  
+
 </head>
 
 <partial name="_Notification" />
@@ -37,26 +37,41 @@
 
                 <ul class="nav flex-column bg-white mb-0">
                     <li class="nav-item">
-                        <a  asp-action="index" class="nav-link text-dark font-italic bg-light">
+                        <a asp-action="index" class="nav-link text-dark font-italic bg-light">
                             <i class="fa-solid fa-house text-primary"></i>
                             الصفحة الرئيسية
                         </a>
                     </li>
+
                     <li class="nav-item">
-                        <a class="nav-link text-dark font-italic ">
+
+
+
+
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                             <i class="fa fa-address-card mr-3 text-primary fa-fw"></i>
-                      
-                                إدارة الفرص
-                            
+
+                            إدارة الفرص
 
                         </a>
+                        <div class="dropdown-menu" style="">
 
-                        <ul>
 
-                            <li class="nav-item"> <a class="nav-link text-dark font-italic " asp-action="ViewOpportunities">عرض الفرص الجديدة </a></li>
-                            <li class="nav-item"> <a class="nav-link text-dark font-italic " asp-action="ViewOpportunitiesStatus"> عرض حالة القبول </a></li>
-                        </ul>
-                      
+                            <a class="dropdown-item" asp-action="ViewOpportunities">عرض الفرص الجديدة </a>
+                            <a class=" dropdown-item" asp-action="ViewOpportunitiesStatus"> عرض حالة القبول </a>
+
+
+                        </div>
+
+                    </li>
+
+
+
+
+
+
 
 
 
@@ -73,11 +88,11 @@
                             ارفاق التقارير
                         </a>
                     </li>
-                    
 
-                    
 
-                
+
+
+
 
                 </ul>
 
@@ -101,64 +116,64 @@
 
             <div class="row pb-3">
 
-               @* @foreach (var item in Model)
+                @* @foreach (var item in Model)
                 {
-                    <div class="col-lg-4 col-md-8">
+                <div class="col-lg-4 col-md-8">
 
 
-                        <div class="row p-2">
+                <div class="row p-2">
 
 
-                            <div class="col-12 p-1" style="border:1px solid #008cba; border-radius:5px;">
+                <div class="col-12 p-1" style="border:1px solid #008cba; border-radius:5px;">
 
-                                <div class="card">
+                <div class="card">
 
-                                    <img src="~/@item.Department.organization.LogoPath" class="card-img-top rounded" />
+                <img src="~/@item.Department.organization.LogoPath" class="card-img-top rounded" />
 
-                                    <div class="card-body">
-                                        <div class="pl-1">
+                <div class="card-body">
+                <div class="pl-1">
 
-                                            <p class="card-title h5 text-primary" >
-                                                <h3>@item.DetailFiled.SpecializationName</h3>
-                                            </p>
-                                            <br>
-                                            <p class="card-title h5 " style="color:#1c4c64">
-                                              عدد المقاعد المتاحة: <b>@item.AvailableOpportunities</b>
-                                            </p>
-                                        </div>
-                                        <br>
-                                        <div class="pl-1 h5">
+                <p class="card-title h5 text-primary" >
+                <h3>@item.DetailFiled.SpecializationName</h3>
+                </p>
+                <br>
+                <p class="card-title h5 " style="color:#1c4c64">
+                عدد المقاعد المتاحة: <b>@item.AvailableOpportunities</b>
+                </p>
+                </div>
+                <br>
+                <div class="pl-1 h5">
 
-                                            <p>
-                                                بداية التدريب:  <b>@item.StartDate.ToShortDateString()</b>
+                <p>
+                بداية التدريب:  <b>@item.StartDate.ToShortDateString()</b>
 
-                                            </p>
+                </p>
 
-                                            <p>
-                                                نهاية التدريب:  <b>@item.EndDate.ToShortDateString()</b>
+                <p>
+                نهاية التدريب:  <b>@item.EndDate.ToShortDateString()</b>
 
-                                            </p>
-                                            <p>
-                                                نهاية فترة التسجيل:  <b>@item.EndRegisterDate.ToShortDateString()</b>
+                </p>
+                <p>
+                نهاية فترة التسجيل:  <b>@item.EndRegisterDate.ToShortDateString()</b>
 
-                                            </p>
-                                        </div>
+                </p>
+                </div>
 
-                                    </div>
+                </div>
 
-                                    <br>
-                                    <div>
+                <br>
+                <div>
 
-                                        <a asp-controller="Student" asp-action="OpportunityInformation" asp-route-id="@item.TrainingOpportunityId" class=" btn form-control " style="background-color:#B8B474; color:black;  font-size:20px; border-radius:40;">التفاصيل </a>
-                                    </div>
-                                    <br>
+                <a asp-controller="Student" asp-action="OpportunityInformation" asp-route-id="@item.TrainingOpportunityId" class=" btn form-control " style="background-color:#B8B474; color:black;  font-size:20px; border-radius:40;">التفاصيل </a>
+                </div>
+                <br>
 
-                                </div>
-                            </div>
+                </div>
+                </div>
 
-                        </div>
+                </div>
 
-                    </div>
+                </div>
                 }*@
 
 

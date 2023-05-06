@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TadarbProject.Data;
 using TadarbProject.Models;
@@ -10,14 +11,15 @@ namespace TadarbProject.Controllers
     public class StudentController : Controller
     {
         private readonly AppDbContext _DbContext;
+        private readonly IWebHostEnvironment _WebHostEnvironment;
         private readonly IEmailSender _emailSender;
         private readonly IHttpContextAccessor _HttpContextAccessor;
 
 
-        public StudentController(AppDbContext DbContext, IEmailSender emailSender, IHttpContextAccessor HttpContextAccessor)
+        public StudentController(AppDbContext DbContext, IEmailSender emailSender, IHttpContextAccessor HttpContextAccessor, IWebHostEnvironment webHostEnvironment)
         {
             _DbContext = DbContext;
-
+            _WebHostEnvironment = webHostEnvironment;
             _emailSender = emailSender;
             _HttpContextAccessor = HttpContextAccessor;
 
@@ -33,7 +35,15 @@ namespace TadarbProject.Controllers
 
             var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Department.Organization_OrganizationId).AsNoTracking().FirstOrDefault();
 
+            if (user.ActivationStatus == "Not_Active")
+            {
 
+
+                TempData["error"] = "حالة الحساب غير نشط " +
+                    "الرجاء تعديل كلمة المرور ";
+                return RedirectToAction("EditAccount");
+
+            }
 
             ViewBag.OrganizationName = OrganizationOfR.OrganizationName + " - " + Department.DepartmentName;
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
@@ -42,6 +52,128 @@ namespace TadarbProject.Controllers
 
             return View();
         }
+        [HttpGet]
+        public IActionResult EditAccount()
+        {
+            ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
+            int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
+            var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).AsNoTracking().FirstOrDefault();
+
+
+
+            ViewBag.Username = user.FullName;
+
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult EditAccount(UniversityTraineeStudent UniversityTraineeStudent, IFormFile? CvFile, IFormFile? otherDoc)
+        {
+            ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
+
+            int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
+            var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).AsNoTracking().FirstOrDefault();
+
+            var Student = _DbContext.UniversitiesTraineeStudents.Where(item => item.UserAccount_UserId == RUserId).Include(item => item.user).AsNoTracking().FirstOrDefault();
+
+
+
+
+            //--------------------------------------organization LogoPath to ceate a file in the project and save the Path to the data base ---------------------------------------
+
+            if (CvFile != null && UniversityTraineeStudent.user.UserPassword != null)
+            {
+                string fileName = Guid.NewGuid().ToString();
+
+                string wwwRootPath = _WebHostEnvironment.WebRootPath;
+
+                var uploadTo = Path.Combine(wwwRootPath, @"StudentDocments\CV\");
+
+                var extension = Path.GetExtension(CvFile.FileName);
+
+                using (var fileStreams = new FileStream(Path.Combine(uploadTo, fileName + extension), FileMode.Create))
+                {
+                    CvFile.CopyTo(fileStreams);
+                }
+
+                //Here what will be in the database.
+                var DbLogoPath = @"StudentDocments\CV\" + fileName + extension;
+                //-----------------------------------------------------------------------------
+                Student.CV_Path = DbLogoPath;
+                Student.user.ActivationStatus = "Active";
+                Student.user.UserPassword = UniversityTraineeStudent.user.UserPassword;
+
+            }
+
+
+            if (CvFile != null && UniversityTraineeStudent.user.UserPassword == null)
+            {
+                string fileName = Guid.NewGuid().ToString();
+
+                string wwwRootPath = _WebHostEnvironment.WebRootPath;
+
+                var uploadTo = Path.Combine(wwwRootPath, @"StudentDocments\CV\");
+
+                var extension = Path.GetExtension(CvFile.FileName);
+
+                using (var fileStreams = new FileStream(Path.Combine(uploadTo, fileName + extension), FileMode.Create))
+                {
+                    CvFile.CopyTo(fileStreams);
+                }
+
+                //Here what will be in the database.
+                var DbLogoPath = @"StudentDocments\CV\" + fileName + extension;
+                //-----------------------------------------------------------------------------
+                Student.CV_Path = DbLogoPath;
+
+
+            }
+
+
+            if (otherDoc != null)
+            {
+                string fileName = Guid.NewGuid().ToString();
+
+                string wwwRootPath = _WebHostEnvironment.WebRootPath;
+
+                var uploadTo = Path.Combine(wwwRootPath, @"StudentDocments\OtherDocmnets\");
+
+                var extension = Path.GetExtension(otherDoc.FileName);
+
+                using (var fileStreams = new FileStream(Path.Combine(uploadTo, fileName + extension), FileMode.Create))
+                {
+                    otherDoc.CopyTo(fileStreams);
+                }
+
+                //Here what will be in the database.
+                var DbLogoPath = @"StudentDocments\OtherDocmnets\" + fileName + extension;
+                //-----------------------------------------------------------------------------
+                Student.ExtraDocuments_Path = DbLogoPath;
+
+
+            }
+
+
+
+            if (UniversityTraineeStudent.SkillsDescription != null)
+            {
+                Student.SkillsDescription = UniversityTraineeStudent.SkillsDescription;
+            }
+
+
+
+
+            _DbContext.UniversitiesTraineeStudents.Update(Student);
+
+
+            _DbContext.SaveChanges();
+
+            return RedirectToAction("Index");
+
+        }
+
+
 
         [HttpGet]
         public IActionResult ViewOpportunities()

@@ -1,4 +1,4 @@
-﻿@model TrainingOpportunityVM
+﻿@model UniversityTraineeStudent
 
 
 
@@ -108,7 +108,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-12 col-lg-3 offset-lg-1 text-center">
-                                    <img src="~/Images/AppImages/log.png" title="" alt="" style="position:center; width:100%; height:auto">
+                                    <img src="~/@Model.department.universityCollege.organization.LogoPath" title="" alt="" style="position:center; width:100%; height:auto">
                                 </div>
                                 <div class="col-8 col-lg-8">
 
@@ -133,13 +133,13 @@
 
                                     <div class="row text-center pl-2" style="color:darkslateblue; font-weight:bold; font-size:20px">
                                         <div class="p-1 col-4 bg-secondary">
-                                            <div>يزيد الصاعدي</div>
+                                            <div>@Model.user.FullName</div>
                                         </div>
                                         <div class="p-1 col-4 bg-secondary">
-                                            <div>جامعة طيبة</div>
+                                            <div>@Model.department.universityCollege.organization.OrganizationName</div>
                                         </div>
                                         <div class="p-1 col-4 bg-secondary">
-                                            <div> نظم معلومات</div>
+                                            <div>@Model.department.DepartmentName</div>
                                         </div>
                                         
                                     </div>
@@ -159,13 +159,13 @@
 
                                     <div class="row text-center pl-2" style="color:darkslateblue; font-weight:bold; font-size:20px">
                                         <div class="p-1 col-4 bg-secondary">
-                                            <div>yazed@hotmail.com</div>
+                                            <div>@Model.user.UserEmail</div>
                                         </div>
                                         <div class="p-1 col-4 bg-secondary">
-                                            <div>0552233766</div>
+                                            <div>@Model.user.Phone</div>
                                         </div>
                                         <div class="p-1 col-4 bg-secondary">
-                                            <div>ذكر</div>
+                                            <div>@Model.Gender</div>
                                         </div>
 
                                     </div>
@@ -185,13 +185,13 @@
 
                                     <div class="row text-center pl-2" style="color:darkslateblue; font-weight:bold; font-size:20px">
                                         <div class="p-1 col-4 bg-secondary">
-                                            <div> المدينة المنورة</div>
+                                            <div>@Model.department.universityCollege.city.CityName</div>
                                         </div>
                                         <div class="p-1 col-4 bg-secondary">
-                                            <div>4.99</div>
+                                            <div>@Model.GPA</div>
                                         </div>
                                         <div class="p-1 col-4 bg-secondary">
-                                            <div>150</div>
+                                            <div>@Model.CompletedHours</div>
                                         </div>
                                         
                                     </div>
@@ -221,7 +221,7 @@
                         <div class="row ">
                             <div class="col-md-12">
                                 <br />
-                                <input asp-for="TrainingOpportunity.TrainingOpportunityId" hidden />
+                                <input asp-for="TraineeId" hidden />
 
                                 <div class="form-group text-xxl-center">
 
