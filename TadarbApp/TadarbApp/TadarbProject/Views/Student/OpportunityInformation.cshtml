@@ -76,7 +76,7 @@
         <div class="col-sm-8" style="margin-right:2cm">
 
             <form method="post">
-                <div class="card  container pt-4">
+                <div class="card  container ">
                     <div class="card-header  ml-0  row " style="background-color:#325D73">
                         <div class="col-12 col-md-6 text-end pt-4" style="color:white">
                             <h5>
@@ -94,16 +94,16 @@
                         <div class="container rounded p-2">
                             <div class="row">
                                 <div class="col-12 col-lg-3 offset-lg-1 text-center">
-                                    <img src="~/@Model.TrainingOpportunity.Branch.organization.LogoPath" title="" alt="" style="position:center; width:60%; height:40%">
+                                    <img src="~/@Model.TrainingOpportunity.Branch.organization.LogoPath" title="" alt="" style="position:center; width:100%; height:auto">
                                 </div>
                                 <div class="col-8 col-lg-8">
 
                                     <div class="row text-center pl-2 " style="font-size:25px">
                                         <div class="p-1 col-3 bg-secondary border-bottom">
-                                            <div>بداية التسجيل </div>
+                                            <div>بدايةالتدريب :</div>
                                         </div>
                                         <div class="p-1 col-3 bg-secondary border-bottom">
-                                            <div>:نهاية التسجيل</div>
+                                            <div>نهاية التدريب :</div>
                                         </div>
                                         <div class="p-1 col-3 bg-secondary border-bottom">
                                             <div>عدد المقاعد:  </div>
@@ -135,10 +135,10 @@
 
                                     <div class="row text-center pl-2" style="font-size:25px">
                                         <div class="p-1 col-3 bg-secondary border-bottom">
-                                            <div>@Model.TrainingOpportunity.StartRegisterDate.ToShortDateString()</div>
+                                            <div>بدايةالتقديم:</div>
                                         </div>
                                         <div class="p-1 col-3 bg-secondary border-bottom">
-                                            <div>@Model.TrainingOpportunity.EndRegisterDate.ToShortDateString()</div>
+                                            <div>نهايةالتقديم:</div>
                                         </div>
                                         <div class="p-1 col-3 bg-secondary border-bottom">
                                             <div>عدد الاسابيع:</div>
@@ -150,40 +150,42 @@
 
                                     <div class="row text-center pl-2" style="color:darkslateblue; font-weight:bold; font-size:20px">
                                         <div class="p-1 col-3 bg-secondary">
-                                            <div> ??</div>
+                                            <div>@Model.TrainingOpportunity.StartRegisterDate.ToShortDateString()</div>
                                         </div>
                                         <div class="p-1 col-3 bg-secondary">
-                                            <div> ??</div>
+                                            <div>@Model.TrainingOpportunity.EndRegisterDate.ToShortDateString()</div>
                                         </div>
                                         <div class="p-1 col-3 bg-secondary">
-                                            <div>6</div>
+                                            <div>@Model.TrainingOpportunity.MinimumWeeks</div>
                                         </div>
                                         <div class="p-1 col-3 bg-secondary">
-                                            <div>@Model.TrainingOpportunity.MinimumHours ساعة</div>
+                                            <div>@Model.TrainingOpportunity.MinimumHours</div>
                                         </div>
                                     </div>
                                     <br /><br />
-                                    <div class="row pl-2   ">
-                                        <p class="text-secondary h5">وصف الفرصة :</p>
-                                        <p> @Model.TrainingOpportunity.OpportunityDescription</p>
-                                    </div>
-                                    <br /><br /><br />
-                                    <div class="row pl-2  h5">
-                                        <p class="text-secondary">الموقع :</p>
 
-                                        <div style="height:28vh; width:100%;" id="map"></div>
-                                    </div>
+                                    
 
                                 </div>
 
 
                             </div>
+
+                            <div class="row pl-2   ">
+                                <p class="text-secondary h5">وصف الفرصة:</p>
+                                <p> @Model.TrainingOpportunity.OpportunityDescription</p>
+                            </div>
+                            <br /><br /><br />
+                            <div class="row pl-2  h5">
+                                <p class="text-secondary">الموقع :</p>
+
+                                <div style="height:28vh; width:100%;" id="map"></div>
+                            </div>
                         </div>
                     </div>
 
 
-
-                    <br /><br /><br /><br /><br /><br />
+                    <br />
                     <div class="card-footer align-content-center">
                         <div class="row ">
                             <div class="col-md-12">
@@ -192,7 +194,7 @@
 
 
 
-                                Message #general
+                                
                                 <div class="form-group ">
 
                                     <button type="submit" asp-controller="Student" asp-action="RequsetOnOpportunity" asp style="font-size:20px" class="btn btn-primary btn-lg">قبول الطلب</button>

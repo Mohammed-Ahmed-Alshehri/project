@@ -1,0 +1,232 @@
+﻿@model TrainingOpportunityVM
+
+
+
+@{
+    ViewData["Title"] = "معلومات الفرصة";
+}
+
+<head>
+
+    <link rel="stylesheet" href="~/css/Addbranches.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/boostwatch.css" />
+
+
+</head>
+
+<partial name="_Notification" />
+<body style="background: linear-gradient(#1c4c64,#5590ad); ">
+
+    <div class="row">
+
+        <div class="col-sm-2" style="z-index:2;">
+
+            <div class="vertical-nav bg-white" id="sidebar">
+                <div class="py-4 px-3 mb-4 bg-light">
+                    <div class="media d-flex align-items-center">
+                        <img src="~/@ViewBag.OrganizationImage" alt="..." width="65" class="mr-3 rounded-circle img-thumbnail shadow-sm">
+                        <div class="media-body">
+                            <h4 class="m-0">@ViewBag.OrganizationName</h4>
+                        </div>
+                    </div>
+                </div>
+                <h5> مرحبا بك @ViewBag.Username </h5>
+
+                <p class="text-gray font-weight-bold text-uppercase px-3 small pb-4 mb-0">القائمة</p>
+
+                <ul class="nav flex-column bg-white mb-0">
+                <li class="nav-item">
+                    <a asp-controller="Branch" asp-action="Index" class="nav-link text-dark font-italic ">
+                        <i class="fa-solid fa-house"></i>
+                        الصفحة الرئيسية
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a asp-controller="Branch" asp-action="ManageDepartment" class="nav-link text-dark font-italic  ">
+                        <i class="fa fa-address-card mr-3 text-primary fa-fw"></i>
+                        إدارة الاقسام
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a asp-controller="Branch" asp-action="ViewSupervisorsUser" class="nav-link text-dark font-italic  ">
+                        <i class="fa-solid fa-building-user"></i>
+                        إدارة مشرفين التدريب
+
+                    </a>
+                </li>
+
+
+                <li class="nav-item">
+                    <a asp-controller="branch" asp-action="ViewDepartmentFiledSpecialties" class="nav-link text-dark font-italic ">
+                        <i class="fa-solid fa-book-open-reader text-primary"></i>
+                        إدارة التخصصات
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a asp-controller="branch" asp-action="ViewOpportunities" class="nav-link text-dark font-italic ">
+                        <i class="fa-solid fa-person-chalkboard"></i>
+                        إدارة الفرص
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a asp-controller="branch" asp-action="OpportunitiesApplicants" class="nav-link text-dark font-italic bg-light ">
+                        <i class="fa-solid fa-square-poll-horizontal"></i>
+                        ادارة طلبات المتقدمين
+                    </a>
+                </li>
+                </ul>
+
+            </div>
+
+
+            <!-- End vertical navbar -->
+            <!-- Page content holder -->
+            <div class="page-content p-1" id="content">
+                <!-- Toggle button -->
+                <button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i class="fa fa-bars mr-2"></i><small class="text-uppercase font-weight-bold">القائمة</small></button>
+            </div>
+
+
+        </div>
+
+        <div class="col-sm-8" style="margin-right:2cm">
+
+            <form method="post">
+                <div class="card  container ">
+                   
+                    <div class="card-body row container">
+                        <div class="container rounded p-1">
+                            <div class="row">
+                                
+                                <div class="col-8 col-lg-8">
+
+                                    <div class="row text-center pl-2 " style="font-size:25px">
+                                        <div class="p-1 col-3 bg-secondary border-bottom">
+                                            <div>بدايةالتدريب :</div>
+                                        </div>
+                                        <div class="p-1 col-3 bg-secondary border-bottom">
+                                            <div>نهاية التدريب :</div>
+                                        </div>
+
+                                        <div class="p-1 col-3 bg-secondary border-bottom">
+                                            <div>عدد المقاعد:  </div>
+                                        </div>
+                                        <div class="p-1 col-3 bg-secondary border-bottom">
+                                            <div>المدينة: </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row text-center pl-2" style="color:darkslateblue; font-weight:bold; font-size:20px">
+                                        <div class="p-1 col-3 bg-secondary">
+                                            <div></div>
+                                        </div>
+                                        <div class="p-1 col-3 bg-secondary">
+                                            <div></div>
+                                        </div>
+                                        <div class="p-1 col-3 bg-secondary">
+                                            <div></div>
+                                        </div>
+                                        <div class="p-1 col-3 bg-secondary">
+                                            <div>
+                                               
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="row text-center pl-2" style="font-size:25px">
+                                        <div class="p-1 col-3 bg-secondary border-bottom">
+                                            <div>بدايةالتقديم:</div>
+                                        </div>
+                                        <div class="p-1 col-3 bg-secondary border-bottom">
+                                            <div>نهايةالتقديم:</div>
+                                        </div>
+                                        <div class="p-1 col-3 bg-secondary border-bottom">
+                                            <div>عدد الاسابيع:</div>
+                                        </div>
+                                        <div class="p-1 col-3 bg-secondary border-bottom">
+                                            <div>عدد الساعات:</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row text-center pl-2" style="color:darkslateblue; font-weight:bold; font-size:20px">
+                                        <div class="p-1 col-3 bg-secondary">
+                                            <div></div>
+                                        </div>
+                                        <div class="p-1 col-3 bg-secondary">
+                                            <div></div>
+                                        </div>
+                                        <div class="p-1 col-3 bg-secondary">
+                                            <div></div>
+                                        </div>
+                                        <div class="p-1 col-3 bg-secondary">
+                                            <div></div>
+                                        </div>
+                                    </div>
+                                    <br /><br />
+
+                                    
+
+                                </div>
+
+
+                            </div>
+
+                            
+                        </div>
+                    </div>
+
+
+                    <br />
+                    <div class="card-footer align-content-center">
+                        <div class="row ">
+                            <div class="col-md-12">
+                                <br />
+                                <input asp-for="TrainingOpportunity.TrainingOpportunityId" hidden />
+
+                                
+                                <div class="form-group ">
+                                    <button type="button" style="font-size:20px" class="btn btn-secondary btn-lg ">الرجوع للخلف</button>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <br />
+                    </div>
+                </div>
+            </form>
+        </div>
+
+
+
+    </div>
+    <br />
+    <br />
+
+
+    <div class="col-sm-2"></div>
+    </div>
+
+</body>
+
+@section Scripts{
+
+
+
+    <script>
+        $(function () {
+            // Sidebar toggle behavior
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar, #content').toggleClass('active');
+            });
+        });
+
+
+    </script>
+
+    
+    }

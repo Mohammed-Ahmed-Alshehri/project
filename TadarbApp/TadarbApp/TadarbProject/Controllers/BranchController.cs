@@ -613,6 +613,10 @@ namespace TadarbProject.Controllers
         {
             return View();
         }
+        public IActionResult OpportunitiesApplicantsDetail()
+        {
+            return View();
+        }
 
         #region
         public IActionResult GetDetailFields(string? ids)
