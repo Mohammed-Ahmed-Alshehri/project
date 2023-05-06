@@ -34,49 +34,48 @@
 
                 <p class="text-gray font-weight-bold text-uppercase px-3 small pb-4 mb-0">القائمة</p>
 
+
                 <ul class="nav flex-column bg-white mb-0">
-                <li class="nav-item">
-                    <a asp-controller="Branch" asp-action="Index" class="nav-link text-dark font-italic ">
-                        <i class="fa-solid fa-house"></i>
-                        الصفحة الرئيسية
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a asp-controller="Branch" asp-action="ManageDepartment" class="nav-link text-dark font-italic  ">
-                        <i class="fa fa-address-card mr-3 text-primary fa-fw"></i>
-                        إدارة الاقسام
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a asp-controller="Branch" asp-action="ViewSupervisorsUser" class="nav-link text-dark font-italic  ">
-                        <i class="fa-solid fa-building-user"></i>
-                        إدارة مشرفين التدريب
+                    <li class="nav-item">
+                        <a asp-controller="Branch" asp-action="Index" class="nav-link text-dark font-italic ">
+                            <i class="fa-solid fa-house"></i>
+                            الصفحة الرئيسية
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-controller="Branch" asp-action="ManageDepartment" class="nav-link text-dark font-italic  ">
+                            <i class="fa fa-address-card mr-3 text-primary fa-fw"></i>
+                            إدارة الاقسام
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-controller="Branch" asp-action="ViewSupervisorsUser" class="nav-link text-dark font-italic  ">
+                            <i class="fa-solid fa-building-user"></i>
+                            إدارة مشرفين التدريب
 
-                    </a>
-                </li>
+                        </a>
+                    </li>
 
 
-                <li class="nav-item">
-                    <a asp-controller="branch" asp-action="ViewDepartmentFiledSpecialties" class="nav-link text-dark font-italic ">
-                        <i class="fa-solid fa-book-open-reader text-primary"></i>
-                        إدارة التخصصات
-                    </a>
-                </li>
+                    <li class="nav-item">
+                        <a asp-controller="branch" asp-action="ViewDepartmentFiledSpecialties" class="nav-link text-dark font-italic ">
+                            <i class="fa-solid fa-book-open-reader text-primary"></i>
+                            إدارة التخصصات
+                        </a>
+                    </li>
 
-                <li class="nav-item">
-                    <a asp-controller="branch" asp-action="ViewOpportunities" class="nav-link text-dark font-italic ">
-                        <i class="fa-solid fa-person-chalkboard"></i>
-                        إدارة الفرص
-                    </a>
-                </li>
+                    <li class="nav-item">
+                        <a asp-controller="branch" asp-action="ViewOpportunities" class="nav-link text-dark font-italic ">
+                            <i class="fa-solid fa-person-chalkboard"></i>
+                            إدارة الفرص
+                        </a>
+                    </li>
 
-                <li class="nav-item">
-                    <a asp-controller="branch" asp-action="OpportunitiesApplicants" class="nav-link text-dark font-italic bg-light ">
-                        <i class="fa-solid fa-square-poll-horizontal"></i>
-                        ادارة طلبات المتقدمين
-                    </a>
-                </li>
+                    
                 </ul>
+
+
+
 
             </div>
 
@@ -91,90 +90,127 @@
 
         </div>
 
-        <div class="col-sm-8" style="margin-right:2cm">
-
+        <div class="col-sm-8" >
+            
             <form method="post">
                 <div class="card  container ">
-                   
-                    <div class="card-body row container">
-                        <div class="container rounded p-1">
-                            <div class="row">
+                    
+                    <div class="card-body row ">
+                        <div class="container">
+                            <div class="card-header  ml-0  row " style="background-color:#325D73">
+                                <div class="col-12 col-md-6 text-end pt-4 " style="color:white">
+                                    <h4>
+                                      معلومات الطالب
+                                    </h4>
+
+                                </div>
                                 
+                            </div>
+                            <div class="row">
+                                <div class="col-12 col-lg-3 offset-lg-1 text-center">
+                                    <img src="~/Images/AppImages/log.png" title="" alt="" style="position:center; width:100%; height:auto">
+                                </div>
                                 <div class="col-8 col-lg-8">
 
                                     <div class="row text-center pl-2 " style="font-size:25px">
-                                        <div class="p-1 col-3 bg-secondary border-bottom">
-                                            <div>بدايةالتدريب :</div>
-                                        </div>
-                                        <div class="p-1 col-3 bg-secondary border-bottom">
-                                            <div>نهاية التدريب :</div>
+                                        <div class="p-1 col-4 bg-secondary border-bottom">
+                                            <div><i class="fa-solid fa-user"></i> اسم الطالب   :</div>
                                         </div>
 
-                                        <div class="p-1 col-3 bg-secondary border-bottom">
-                                            <div>عدد المقاعد:  </div>
+                                        <div class="p-1 col-4 bg-secondary border-bottom">
+
+                                            <div>
+                                                <i class="fa-solid fa-building-columns"></i> اسم الجامعة :
+
+                                            </div>
+
                                         </div>
-                                        <div class="p-1 col-3 bg-secondary border-bottom">
-                                            <div>المدينة: </div>
+                                        <div class="p-1 col-4 bg-secondary border-bottom">
+                                            <div>التخصص:  </div>
                                         </div>
+                                        
                                     </div>
 
                                     <div class="row text-center pl-2" style="color:darkslateblue; font-weight:bold; font-size:20px">
-                                        <div class="p-1 col-3 bg-secondary">
-                                            <div></div>
+                                        <div class="p-1 col-4 bg-secondary">
+                                            <div>يزيد الصاعدي</div>
                                         </div>
-                                        <div class="p-1 col-3 bg-secondary">
-                                            <div></div>
+                                        <div class="p-1 col-4 bg-secondary">
+                                            <div>جامعة طيبة</div>
                                         </div>
-                                        <div class="p-1 col-3 bg-secondary">
-                                            <div></div>
+                                        <div class="p-1 col-4 bg-secondary">
+                                            <div> نظم معلومات</div>
                                         </div>
-                                        <div class="p-1 col-3 bg-secondary">
-                                            <div>
-                                               
-                                            </div>
-                                        </div>
+                                        
                                     </div>
-
-
 
                                     <div class="row text-center pl-2" style="font-size:25px">
-                                        <div class="p-1 col-3 bg-secondary border-bottom">
-                                            <div>بدايةالتقديم:</div>
+                                        <div class="p-1 col-4 bg-secondary border-bottom">
+                                            <div><i class="fa-regular fa-envelope"></i> البريد الإلكتروني:</div>
                                         </div>
-                                        <div class="p-1 col-3 bg-secondary border-bottom">
-                                            <div>نهايةالتقديم:</div>
+                                        <div class="p-1 col-4 bg-secondary border-bottom">
+                                            <div><i class="fa-solid fa-phone"></i> رقم الهاتف:</div>
                                         </div>
-                                        <div class="p-1 col-3 bg-secondary border-bottom">
-                                            <div>عدد الاسابيع:</div>
+                                        <div class="p-1 col-4 bg-secondary border-bottom">
+                                            <div><i class="fa-solid fa-person-half-dress"></i> الجنس:</div>
                                         </div>
-                                        <div class="p-1 col-3 bg-secondary border-bottom">
-                                            <div>عدد الساعات:</div>
-                                        </div>
+
                                     </div>
 
                                     <div class="row text-center pl-2" style="color:darkslateblue; font-weight:bold; font-size:20px">
-                                        <div class="p-1 col-3 bg-secondary">
-                                            <div></div>
+                                        <div class="p-1 col-4 bg-secondary">
+                                            <div>yazed@hotmail.com</div>
                                         </div>
-                                        <div class="p-1 col-3 bg-secondary">
-                                            <div></div>
+                                        <div class="p-1 col-4 bg-secondary">
+                                            <div>0552233766</div>
                                         </div>
-                                        <div class="p-1 col-3 bg-secondary">
-                                            <div></div>
+                                        <div class="p-1 col-4 bg-secondary">
+                                            <div>ذكر</div>
                                         </div>
-                                        <div class="p-1 col-3 bg-secondary">
-                                            <div></div>
+
+                                    </div>
+
+                                    <div class="row text-center pl-2" style="font-size:25px">
+                                        <div class="p-1 col-4 bg-secondary border-bottom">
+                                            <div><i class="fa-solid fa-building-user"></i> المدينة:</div>
                                         </div>
+                                        <div class="p-1 col-4 bg-secondary border-bottom">
+                                            <div>المعدل التراكمي:</div>
+                                        </div>
+                                        <div class="p-1 col-4 bg-secondary border-bottom">
+                                            <div><i class="fa-regular fa-clock"></i> عدد الساعات :</div>
+                                        </div>
+                                        
+                                    </div>
+
+                                    <div class="row text-center pl-2" style="color:darkslateblue; font-weight:bold; font-size:20px">
+                                        <div class="p-1 col-4 bg-secondary">
+                                            <div> المدينة المنورة</div>
+                                        </div>
+                                        <div class="p-1 col-4 bg-secondary">
+                                            <div>4.99</div>
+                                        </div>
+                                        <div class="p-1 col-4 bg-secondary">
+                                            <div>150</div>
+                                        </div>
+                                        
                                     </div>
                                     <br /><br />
-
-                                    
-
+                                    <div class="row pl-2   ">
+                                        <p class="text-secondary h5">وصف مهارات الطالب:</p>
+                                        <p class="">وصف مهارات الطالب</p>
+                                    </div>
+                                    <br />
+                                    <button type="submit"  asp style="font-size:18px" class="btn btn-primary btn-lg">تنزيل السيرة الذاتية</button>
+                                    &nbsp;&nbsp;
+                                    <button type="submit"  asp style="font-size:18px" class="btn btn-primary btn-lg">ملفات اخرى</button>
                                 </div>
+
 
 
                             </div>
 
+                            <br />
                             
                         </div>
                     </div>
@@ -187,9 +223,14 @@
                                 <br />
                                 <input asp-for="TrainingOpportunity.TrainingOpportunityId" hidden />
 
-                                
-                                <div class="form-group ">
-                                    <button type="button" style="font-size:20px" class="btn btn-secondary btn-lg ">الرجوع للخلف</button>
+                                <div class="form-group text-xxl-center">
+
+                                    <button type="submit"  asp style="font-size:20px" class="btn btn-primary btn-lg">قبول</button>
+
+                                    &nbsp;&nbsp;
+                                    <button type="submit"  asp style="font-size:20px" class="btn btn-primary btn-lg">رفض</button>
+                                    &nbsp;&nbsp;
+                                    <button type="submit"  asp style="font-size:20px" class="btn btn-primary btn-lg">الرجوع الى الخلف</button>
                                 </div>
 
                             </div>
@@ -204,13 +245,11 @@
 
 
     </div>
-    <br />
-    <br />
-
-
+    
     <div class="col-sm-2"></div>
     </div>
-
+    <br />
+    <br />
 </body>
 
 @section Scripts{
@@ -225,6 +264,11 @@
             });
         });
 
+
+
+        
+
+        
 
     </script>
 
