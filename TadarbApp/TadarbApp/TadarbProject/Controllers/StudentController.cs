@@ -85,28 +85,23 @@ namespace TadarbProject.Controllers
 
             var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Department.Organization_OrganizationId).AsNoTracking().FirstOrDefault();
 
-            var Req = _DbContext.StudentRequestsOnOpportunities.Where(item => item.Trainee_TraineeId == UnverTre.TraineeId).FirstOrDefault();
-
-            var reqlist = _DbContext.StudentRequestsOnOpportunities.Where(item => item.Trainee_TraineeId == UnverTre.TraineeId).ToList();
-
-            var OPertunty = _DbContext.TrainingOpportunities.Where(item => item.TrainingOpportunityId == Req.TrainingOpportunity_TrainingOpportunityId)
-                .Include(item => item.Branch.organization)
-                .Include(item => item.DetailFiled).FirstOrDefault();
-
-            TrainingOpportunityVM viwooper = new()
-            {
-                TrainingOpportunity= OPertunty,
-                StudentRequestsOnOpportunities=Req,
-
-            };    
 
 
-               ViewBag.OrganizationName = OrganizationOfR.OrganizationName + " - " + Department.DepartmentName;
+            //var OPertunty = _DbContext.TrainingOpportunities.FromSqlRaw("SELECT * FROM TrainingOpportunities WHERE TrainingOpportunityId IN " +
+            //    $"(SELECT TrainingOpportunity_TrainingOpportunityId FROM StudentRequestsOnOpportunities WHERE Trainee_TraineeId = {UnverTre.TraineeId});")
+            //    .AsNoTracking()
+            //    .Include(item => item.DetailFiled)
+            //    .Include(item => item.Branch.organization).ToList();
+
+            var StudentReq = _DbContext.StudentRequestsOnOpportunities.Where(item => item.Trainee_TraineeId == UnverTre.TraineeId)
+                .AsNoTracking().Include(item => item.trainingOpportunity.Branch.organization).Include(item => item.trainingOpportunity.DetailFiled).ToList();
+
+            ViewBag.OrganizationName = OrganizationOfR.OrganizationName + " - " + Department.DepartmentName;
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
             ViewBag.Username = user.FullName;
 
 
-            return View(viwooper);
+            return View(StudentReq);
         }
 
         public IActionResult OpportunityInformation(int? id)

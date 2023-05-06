@@ -1,4 +1,4 @@
-﻿@model TrainingOpportunityVM
+﻿@model IEnumerable<StudentRequestOpportunity>
 @{
     ViewData["Title"] = "حالة التقديم على الفرص ";
 }
@@ -114,7 +114,7 @@
                                     <th>تخصص الفرصة</th>
                                     <th> تاريخ التقديم على الفرصة</th>
                                     <th>تاريح بداية التدريب </th>
-                              
+
                                     <th class="text-center">حالة الطلب 	</th>
 
 
@@ -122,33 +122,33 @@
                             </thead>
                             <tbody>
 
-                            
 
 
 
-                               @* @foreach (var item in Model)
-                                {*@
-                                    <tr>
-                                        <td class="text-nowrap">
-                                            <div class="font-weight-600">
-                                                <div class="font-weight-600 ">
-                                                @Model.TrainingOpportunity.Branch.organization.OrganizationName
-                                                </div>
 
+                                 @foreach (var item in Model)
+                                {
+                                  <tr>
+                                     <td class="text-nowrap">
+                                        <div class="font-weight-600">
+                                            <div class="font-weight-600 ">
+                                                    @item.trainingOpportunity.Branch.organization.OrganizationName
                                             </div>
-                                        </td>
-                                    <td class="text-nowrap"> @Model.TrainingOpportunity.Branch.BranchName	</td>
-                                    <td class="text-nowrap"> @Model.TrainingOpportunity.DetailFiled.SpecializationName	</td>
-                                    <td class="text-nowrap"> @Model.StudentRequestsOnOpportunities.RequestDate	</td>
-                                    <td class="text-nowrap"> @Model.TrainingOpportunity.StartDate	</td>
-                                        <td class="text-center">
-                                            @Model.StudentRequestsOnOpportunities.DecisionStatus
-                                        </td>
+
+                                        </div>
+                                    </td>
+                                        <td class="text-nowrap"> @item.trainingOpportunity.Branch.BranchName	</td>
+                                        <td class="text-nowrap"> @item.trainingOpportunity.DetailFiled.SpecializationName	</td>
+                                        <td class="text-nowrap"> @item.RequestDate.ToShortDateString()	</td>
+                                        <td class="text-nowrap"> @item.trainingOpportunity.StartDate.ToShortDateString()	</td>
+                                    <td class="text-center">
+                                            @item.DecisionStatus
+                                    </td>
 
 
-                                    </tr>
+                                   </tr>
 
-                               @* }*@
+                                 }
 
                             </tbody>
                         </table>
