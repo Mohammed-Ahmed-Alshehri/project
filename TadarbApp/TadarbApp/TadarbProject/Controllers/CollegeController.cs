@@ -29,10 +29,10 @@ namespace TadarbProject.Controllers
             ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
 
             int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
-            var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).FirstOrDefault();
-            var College = _DbContext.UniversityColleges.Where(item => item.Responsible_UserId == RUserId).FirstOrDefault();
+            var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).AsNoTracking().FirstOrDefault();
+            var College = _DbContext.UniversityColleges.Where(item => item.Responsible_UserId == RUserId).AsNoTracking().FirstOrDefault();
 
-            var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == College.Organization_OrganizationId).FirstOrDefault();
+            var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == College.Organization_OrganizationId).AsNoTracking().FirstOrDefault();
 
             ViewBag.OrganizationName = OrganizationOfR.OrganizationName + " - " + College.CollegeName;
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
@@ -52,23 +52,23 @@ namespace TadarbProject.Controllers
             ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
 
             int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
-            var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).FirstOrDefault();
-            var College = _DbContext.UniversityColleges.Where(item => item.Responsible_UserId == RUserId).FirstOrDefault();
+            var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).AsNoTracking().FirstOrDefault();
+            var College = _DbContext.UniversityColleges.Where(item => item.Responsible_UserId == RUserId).AsNoTracking().FirstOrDefault();
 
-            var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == College.Organization_OrganizationId).FirstOrDefault();
+            var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == College.Organization_OrganizationId).AsNoTracking().FirstOrDefault();
 
             ViewBag.OrganizationName = OrganizationOfR.OrganizationName + " - " + College.CollegeName;
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
             ViewBag.Username = user.FullName;
 
             var DEPOfR = _DbContext.Departments.Where(item => item.Organization_OrganizationId == OrganizationOfR.OrganizationId
-            && item.College_CollegeId == College.CollegeId && item.DepartmentName.Equals("قسم ادارة مسؤولين اقسام الجامعة")).FirstOrDefault();
+            && item.College_CollegeId == College.CollegeId && item.DepartmentName.Equals("قسم ادارة مسؤولين اقسام الجامعة")).AsNoTracking().FirstOrDefault();
 
             IEnumerable<UserAcount> OrgEMP = Enumerable.Empty<UserAcount>(); ;
 
             if (DEPOfR != null)
             {
-                OrgEMP = _DbContext.UserAcounts.FromSqlRaw($"select * from UserAcounts WHERE UserAcounts.UserId in (select Employees.UserAccount_UserId from Employees where Employees.Department_DepartmentId = {DEPOfR.DepartmentId});").ToList();
+                OrgEMP = _DbContext.UserAcounts.FromSqlRaw($"select * from UserAcounts WHERE UserAcounts.UserId in (select Employees.UserAccount_UserId from Employees where Employees.Department_DepartmentId = {DEPOfR.DepartmentId});").AsNoTracking().ToList();
 
             }
 
@@ -89,10 +89,10 @@ namespace TadarbProject.Controllers
             ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
 
             int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
-            var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).FirstOrDefault();
-            var College = _DbContext.UniversityColleges.Where(item => item.Responsible_UserId == RUserId).FirstOrDefault();
+            var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).AsNoTracking().FirstOrDefault();
+            var College = _DbContext.UniversityColleges.Where(item => item.Responsible_UserId == RUserId).AsNoTracking().FirstOrDefault();
 
-            var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == College.Organization_OrganizationId).FirstOrDefault();
+            var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == College.Organization_OrganizationId).AsNoTracking().FirstOrDefault();
 
             ViewBag.OrganizationName = OrganizationOfR.OrganizationName + " - " + College.CollegeName;
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
@@ -112,9 +112,9 @@ namespace TadarbProject.Controllers
 
             var RUser = _DbContext.UserAcounts.Find(RUserId);
 
-            var College = _DbContext.UniversityColleges.Where(item => item.Responsible_UserId == RUserId).FirstOrDefault();
+            var College = _DbContext.UniversityColleges.Where(item => item.Responsible_UserId == RUserId).AsNoTracking().FirstOrDefault();
 
-            var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == College.Organization_OrganizationId).FirstOrDefault();
+            var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == College.Organization_OrganizationId).AsNoTracking().FirstOrDefault();
 
 
 
@@ -147,7 +147,7 @@ namespace TadarbProject.Controllers
 
 
             var DEPOfR = _DbContext.Departments.Where(item => item.Organization_OrganizationId == OrganizationOfR.OrganizationId && item.College_CollegeId == College.CollegeId
-            && item.DepartmentName.Equals("قسم ادارة مسؤولين اقسام الجامعة")).FirstOrDefault();
+            && item.DepartmentName.Equals("قسم ادارة مسؤولين اقسام الجامعة")).AsNoTracking().FirstOrDefault();
 
 
 
@@ -201,10 +201,10 @@ namespace TadarbProject.Controllers
         {
             //ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
             int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
-            var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).FirstOrDefault();
-            var College = _DbContext.UniversityColleges.Where(item => item.Responsible_UserId == RUserId).FirstOrDefault();
+            var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).AsNoTracking().FirstOrDefault();
+            var College = _DbContext.UniversityColleges.Where(item => item.Responsible_UserId == RUserId).AsNoTracking().FirstOrDefault();
 
-            var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == College.Organization_OrganizationId).FirstOrDefault();
+            var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == College.Organization_OrganizationId).AsNoTracking().FirstOrDefault();
 
             ViewBag.OrganizationName = OrganizationOfR.OrganizationName + " - " + College.CollegeName;
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
@@ -214,14 +214,14 @@ namespace TadarbProject.Controllers
             IEnumerable<UserAcount> CollegeEMP = Enumerable.Empty<UserAcount>(); ;
 
 
-            var DEPOfC = _DbContext.Departments.Where(item => item.Organization_OrganizationId == OrganizationOfR.OrganizationId && item.College_CollegeId == College.CollegeId).FirstOrDefault();
+            var DEPOfC = _DbContext.Departments.Where(item => item.Organization_OrganizationId == OrganizationOfR.OrganizationId && item.College_CollegeId == College.CollegeId).AsNoTracking().FirstOrDefault();
 
 
             if (DEPOfC != null)
             {
 
                 CollegeEMP = _DbContext.UserAcounts.FromSqlRaw($"Select * from UserAcounts WHERE UserAcounts.UserId IN (Select Employees.UserAccount_UserId from Employees where Employees.Department_DepartmentId = {DEPOfC.DepartmentId})" +
-                "AND UserAcounts.UserId NOT IN(select Responsible_UserId from dbo.Departments);").ToList();
+                "AND UserAcounts.UserId NOT IN(select Responsible_UserId from dbo.Departments);").AsNoTracking().ToList();
 
 
             }
@@ -255,10 +255,10 @@ namespace TadarbProject.Controllers
         {
 
             int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
-            var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).FirstOrDefault();
+            var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).AsNoTracking().FirstOrDefault();
 
-            var College = _DbContext.UniversityColleges.Where(item => item.Responsible_UserId == RUserId).FirstOrDefault();
-            var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == College.Organization_OrganizationId).FirstOrDefault();
+            var College = _DbContext.UniversityColleges.Where(item => item.Responsible_UserId == RUserId).AsNoTracking().FirstOrDefault();
+            var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == College.Organization_OrganizationId).AsNoTracking().FirstOrDefault();
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
             ViewBag.Username = user.FullName;
 
@@ -303,11 +303,11 @@ namespace TadarbProject.Controllers
         {
 
             int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
-            var College = _DbContext.UniversityColleges.Where(item => item.Responsible_UserId == RUserId).FirstOrDefault();
+            var College = _DbContext.UniversityColleges.Where(item => item.Responsible_UserId == RUserId).AsNoTracking().FirstOrDefault();
 
-            var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).FirstOrDefault();
+            var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).AsNoTracking().FirstOrDefault();
 
-            var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == College.Organization_OrganizationId).FirstOrDefault();
+            var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == College.Organization_OrganizationId).AsNoTracking().FirstOrDefault();
 
             ViewBag.OrganizationName = OrganizationOfR.OrganizationName + " - " + College.CollegeName;
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
@@ -330,14 +330,15 @@ namespace TadarbProject.Controllers
             if (id != null || id != 0)
             {
 
-                DepartmentVM.department = _DbContext.Departments.Where(u => u.DepartmentId == id).FirstOrDefault();
+                DepartmentVM.department = _DbContext.Departments.Where(u => u.DepartmentId == id).AsNoTracking().FirstOrDefault();
 
 
-                var DEPOfR = _DbContext.Departments.Where(item => item.Organization_OrganizationId == OrganizationOfR.OrganizationId && item.DepartmentName.Equals("قسم ادارة مسؤولين اقسام الجامعة")).FirstOrDefault();
+                var DEPOfR = _DbContext.Departments.Where(item => item.Organization_OrganizationId == OrganizationOfR.OrganizationId && item.DepartmentName.Equals("قسم ادارة مسؤولين اقسام الجامعة"))
+                    .AsNoTracking().FirstOrDefault();
 
                 DepartmentVM.UserListItems = _DbContext.UserAcounts.FromSqlRaw($"Select * from UserAcounts WHERE UserAcounts.UserId IN (Select Employees.UserAccount_UserId FROM Employees WHERE Employees.Department_DepartmentId ={DEPOfR.DepartmentId})" +
                    $"AND UserAcounts.UserId NOT IN (Select Responsible_UserId FROM Departments WHERE Responsible_UserId!={DepartmentVM.department.Responsible_UserId})")
-                   .Select(u => new SelectListItem { Text = u.FullName, Value = u.UserId.ToString() });
+                   .AsNoTracking().Select(u => new SelectListItem { Text = u.FullName, Value = u.UserId.ToString() });
 
                 DepartmentVM.department.College_CollegeId = College.CollegeId;
 
@@ -359,7 +360,7 @@ namespace TadarbProject.Controllers
         public IActionResult EditBDepartment(DepartmentVM DepartmentVM)
         {
             int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
-            var College = _DbContext.UniversityColleges.Where(item => item.Responsible_UserId == RUserId).FirstOrDefault();
+            var College = _DbContext.UniversityColleges.Where(item => item.Responsible_UserId == RUserId).AsNoTracking().FirstOrDefault();
 
 
             if (!ModelState.IsValid)
@@ -372,7 +373,7 @@ namespace TadarbProject.Controllers
 
             _DbContext.Departments.Update(DepartmentVM.department);
 
-            var User = _DbContext.UserAcounts.FirstOrDefault(item => item.UserId == DepartmentVM.department.Responsible_UserId);
+            var User = _DbContext.UserAcounts.AsNoTracking().FirstOrDefault(item => item.UserId == DepartmentVM.department.Responsible_UserId);
 
             _DbContext.UserAcounts.Update(User);
             _DbContext.SaveChanges();
@@ -388,13 +389,13 @@ namespace TadarbProject.Controllers
 
             int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
 
-            var College = _DbContext.UniversityColleges.Where(item => item.Responsible_UserId == RUserId).FirstOrDefault();
+            var College = _DbContext.UniversityColleges.Where(item => item.Responsible_UserId == RUserId).AsNoTracking().FirstOrDefault();
 
-            var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == College.Organization_OrganizationId).FirstOrDefault();
+            var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == College.Organization_OrganizationId).AsNoTracking().FirstOrDefault();
 
             var depList = _DbContext.Departments.Where(item => item.Organization_OrganizationId == OrganizationOfR.OrganizationId && item.College_CollegeId == College.CollegeId && !item.DepartmentName.Equals("قسم ادارة مسؤولين اقسام الجامعة"))
                 .Include(item => item.User)
-                .ToList();
+                .AsNoTracking().ToList();
 
             if (depList == null)
             {
@@ -414,12 +415,12 @@ namespace TadarbProject.Controllers
             ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
 
             int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
-            var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).FirstOrDefault();
-            var College = _DbContext.UniversityColleges.Where(item => item.Responsible_UserId == RUserId).FirstOrDefault();
+            var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).AsNoTracking().FirstOrDefault();
+            var College = _DbContext.UniversityColleges.Where(item => item.Responsible_UserId == RUserId).AsNoTracking().FirstOrDefault();
 
-            var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == College.Organization_OrganizationId).FirstOrDefault();
+            var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == College.Organization_OrganizationId).AsNoTracking().FirstOrDefault();
 
-            var Department = _DbContext.Departments.Where(item => item.Responsible_UserId == RUserId).ToList();
+            var Department = _DbContext.Departments.Where(item => item.Responsible_UserId == RUserId).AsNoTracking().ToList();
 
             ViewBag.OrganizationName = OrganizationOfR.OrganizationName + " - " + College.CollegeName;
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
@@ -436,10 +437,10 @@ namespace TadarbProject.Controllers
             ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
 
             int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
-            var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).FirstOrDefault();
-            var College = _DbContext.UniversityColleges.Where(item => item.Responsible_UserId == RUserId).FirstOrDefault();
+            var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).AsNoTracking().FirstOrDefault();
+            var College = _DbContext.UniversityColleges.Where(item => item.Responsible_UserId == RUserId).AsNoTracking().FirstOrDefault();
 
-            var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == College.Organization_OrganizationId).FirstOrDefault();
+            var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == College.Organization_OrganizationId).AsNoTracking().FirstOrDefault();
 
             ViewBag.OrganizationName = OrganizationOfR.OrganizationName + " - " + College.CollegeName;
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
@@ -450,10 +451,10 @@ namespace TadarbProject.Controllers
 
                 MasterFieldsListItems = _DbContext.FieldOfSpecialtiesMaster.FromSqlRaw("SELECT * FROM FieldOfSpecialtiesMaster WHERE FieldId IN" +
                 $"(SELECT FieldOfSpecialtiesDetails.Field_FieldId FROM FieldOfSpecialtiesDetails ,OrganizationsProvidTrainingInArea WHERE DetailFieldId = DetailField_DetailFieldId AND Organization_OrganizationId ={OrganizationOfR.OrganizationId});")
-                .ToList().Select(u => new SelectListItem { Text = u.FieldName, Value = u.FieldId.ToString() }),
+                .AsNoTracking().ToList().Select(u => new SelectListItem { Text = u.FieldName, Value = u.FieldId.ToString() }),
 
                 DepartmentListItems = _DbContext.Departments.FromSqlRaw($"SELECT * FROM Departments  WHERE College_CollegeId   = {College.CollegeId} AND DepartmentName !='قسم ادارة مسؤولين اقسام الجامعة';")
-                .ToList().Select(u => new SelectListItem { Text = u.DepartmentName, Value = u.DepartmentId.ToString() }),
+                .AsNoTracking().ToList().Select(u => new SelectListItem { Text = u.DepartmentName, Value = u.DepartmentId.ToString() }),
 
 
 
@@ -489,7 +490,7 @@ namespace TadarbProject.Controllers
                 int DEPId = Convert.ToInt32(Ids[0]);
                 //   var OrganizationOfR = _DbContext.Organizations.Where(item => item.ResponsibleUserId == RUserId).FirstOrDefault();
 
-                var Department = _DbContext.Departments.Where(item => item.DepartmentId == DEPId).FirstOrDefault();
+                var Department = _DbContext.Departments.Where(item => item.DepartmentId == DEPId).AsNoTracking().FirstOrDefault();
 
 
 
@@ -535,7 +536,7 @@ namespace TadarbProject.Controllers
                 return Json(new { Exists = false });
             }
 
-            var item = _DbContext.UserAcounts.Where(item => item.UserEmail.Equals(Email)).FirstOrDefault();
+            var item = _DbContext.UserAcounts.Where(item => item.UserEmail.Equals(Email)).AsNoTracking().FirstOrDefault();
 
             if (item == null)
             {
@@ -556,7 +557,7 @@ namespace TadarbProject.Controllers
                 return Json(new { Exists = false });
             }
 
-            var item = _DbContext.UserAcounts.Where(item => item.Phone.Equals(Phone)).FirstOrDefault();
+            var item = _DbContext.UserAcounts.Where(item => item.Phone.Equals(Phone)).AsNoTracking().FirstOrDefault();
 
             if (item == null)
             {
@@ -578,9 +579,9 @@ namespace TadarbProject.Controllers
             int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
 
 
-            var College = _DbContext.UniversityColleges.Where(item => item.Responsible_UserId == RUserId).FirstOrDefault();
+            var College = _DbContext.UniversityColleges.Where(item => item.Responsible_UserId == RUserId).AsNoTracking().FirstOrDefault();
 
-            var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == College.Organization_OrganizationId).FirstOrDefault();
+            var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == College.Organization_OrganizationId).AsNoTracking().FirstOrDefault();
 
 
 
@@ -610,7 +611,7 @@ namespace TadarbProject.Controllers
                 }
 
 
-                ).ToList();
+                ).AsNoTracking().ToList();
 
 
                 return Json(new { Detailfields });
@@ -627,17 +628,17 @@ namespace TadarbProject.Controllers
         {
             int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
 
-            var OrganizationOfR = _DbContext.Organizations.Where(item => item.ResponsibleUserId == RUserId).FirstOrDefault();
+            var OrganizationOfR = _DbContext.Organizations.Where(item => item.ResponsibleUserId == RUserId).AsNoTracking().FirstOrDefault();
 
-            var College = _DbContext.UniversityColleges.Where(item => item.Responsible_UserId == RUserId).FirstOrDefault();
+            var College = _DbContext.UniversityColleges.Where(item => item.Responsible_UserId == RUserId).AsNoTracking().FirstOrDefault();
 
-            var departmentofb = _DbContext.Departments.Where(item => item.Branch_BranchId == College.CollegeId).FirstOrDefault();
+            var departmentofb = _DbContext.Departments.Where(item => item.Branch_BranchId == College.CollegeId).AsNoTracking().FirstOrDefault();
 
             IEnumerable<DepartmentTrainingArea> Departments = Enumerable.Empty<DepartmentTrainingArea>();
 
             Departments = _DbContext.DepartmentTrainingAreas.FromSqlRaw("SELECT * FROM DepartmentTrainingAreas WHERE Department_DepartmenId IN" +
                 $"(SELECT DepartmentId FROM Departments WHERE  DepartmentName!='قسم ادارة مسؤولين اقسام الجامعة' AND College_CollegeId={College.CollegeId})").Include(item => item.department)
-                .Include(item => item.fieldOfSpecialtyDetails).OrderBy(item => item.Department_DepartmenId).ToList();
+                .Include(item => item.fieldOfSpecialtyDetails).OrderBy(item => item.Department_DepartmenId).AsNoTracking().ToList();
 
 
 
@@ -659,7 +660,7 @@ namespace TadarbProject.Controllers
 
 
 
-                var DEPTA = _DbContext.DepartmentTrainingAreas.Where(u => u.DepartmentTrainingAreaId == id).FirstOrDefault();
+                var DEPTA = _DbContext.DepartmentTrainingAreas.Where(u => u.DepartmentTrainingAreaId == id).AsNoTracking().FirstOrDefault();
 
                 _DbContext.DepartmentTrainingAreas.Remove(DEPTA);
 

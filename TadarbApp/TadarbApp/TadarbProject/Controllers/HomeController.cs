@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using TadarbProject.Data;
 using TadarbProject.Models;
 using TadarbProject.Models.ViewModels;
@@ -30,7 +31,7 @@ namespace TadarbProject.Controllers
         {
 
 
-            IEnumerable<UserAcount> userAcount = _DbContext.UserAcounts.ToList();
+            IEnumerable<UserAcount> userAcount = _DbContext.UserAcounts.AsNoTracking().ToList();
 
 
 
@@ -56,7 +57,7 @@ namespace TadarbProject.Controllers
 
             }
 
-            var UserInDb = _DbContext.UserAcounts.Where(item => item.UserType.Equals("System_Admin") && item.UserEmail.Equals(user.UserEmail) && item.UserPassword.Equals(user.UserPassword)).FirstOrDefault();
+            var UserInDb = _DbContext.UserAcounts.Where(item => item.UserType.Equals("System_Admin") && item.UserEmail.Equals(user.UserEmail) && item.UserPassword.Equals(user.UserPassword)).AsNoTracking().FirstOrDefault();
 
             if (UserInDb != null)
             {
@@ -68,7 +69,7 @@ namespace TadarbProject.Controllers
             }
 
 
-            var UserInDb2 = _DbContext.UserAcounts.Where(item => item.UserType.Equals("Company_Admin") && item.UserEmail.Equals(user.UserEmail) && item.UserPassword.Equals(user.UserPassword)).FirstOrDefault();
+            var UserInDb2 = _DbContext.UserAcounts.Where(item => item.UserType.Equals("Company_Admin") && item.UserEmail.Equals(user.UserEmail) && item.UserPassword.Equals(user.UserPassword)).AsNoTracking().FirstOrDefault();
 
 
             if (UserInDb2 != null)
@@ -81,7 +82,7 @@ namespace TadarbProject.Controllers
 
             }
 
-            var UserInDb3 = _DbContext.UserAcounts.Where(item => item.UserType.Equals("Branch_Admin") && item.UserEmail.Equals(user.UserEmail) && item.UserPassword.Equals(user.UserPassword)).FirstOrDefault();
+            var UserInDb3 = _DbContext.UserAcounts.Where(item => item.UserType.Equals("Branch_Admin") && item.UserEmail.Equals(user.UserEmail) && item.UserPassword.Equals(user.UserPassword)).AsNoTracking().FirstOrDefault();
 
 
             if (UserInDb3 != null)
@@ -95,7 +96,7 @@ namespace TadarbProject.Controllers
             }
 
 
-            var UserInDb4 = _DbContext.UserAcounts.Where(item => item.UserType.Equals("University_Admin") && item.UserEmail.Equals(user.UserEmail) && item.UserPassword.Equals(user.UserPassword)).FirstOrDefault();
+            var UserInDb4 = _DbContext.UserAcounts.Where(item => item.UserType.Equals("University_Admin") && item.UserEmail.Equals(user.UserEmail) && item.UserPassword.Equals(user.UserPassword)).AsNoTracking().FirstOrDefault();
 
 
             if (UserInDb4 != null)
@@ -108,7 +109,7 @@ namespace TadarbProject.Controllers
 
             }
 
-            var UserInDb5 = _DbContext.UserAcounts.Where(item => item.UserType.Equals("College_Admin") && item.UserEmail.Equals(user.UserEmail) && item.UserPassword.Equals(user.UserPassword)).FirstOrDefault();
+            var UserInDb5 = _DbContext.UserAcounts.Where(item => item.UserType.Equals("College_Admin") && item.UserEmail.Equals(user.UserEmail) && item.UserPassword.Equals(user.UserPassword)).AsNoTracking().FirstOrDefault();
 
 
             if (UserInDb5 != null)
@@ -121,7 +122,7 @@ namespace TadarbProject.Controllers
 
             }
 
-            var UserInDb6 = _DbContext.UserAcounts.Where(item => item.UserType.Equals("DepUni_Admin") && item.UserEmail.Equals(user.UserEmail) && item.UserPassword.Equals(user.UserPassword)).FirstOrDefault();
+            var UserInDb6 = _DbContext.UserAcounts.Where(item => item.UserType.Equals("DepUni_Admin") && item.UserEmail.Equals(user.UserEmail) && item.UserPassword.Equals(user.UserPassword)).AsNoTracking().FirstOrDefault();
 
 
             if (UserInDb6 != null)
@@ -134,7 +135,7 @@ namespace TadarbProject.Controllers
 
             }
 
-            var UserInDb7 = _DbContext.UserAcounts.Where(item => item.UserType.Equals("Training_Supervisor") && item.UserEmail.Equals(user.UserEmail) && item.UserPassword.Equals(user.UserPassword)).FirstOrDefault();
+            var UserInDb7 = _DbContext.UserAcounts.Where(item => item.UserType.Equals("Training_Supervisor") && item.UserEmail.Equals(user.UserEmail) && item.UserPassword.Equals(user.UserPassword)).AsNoTracking().FirstOrDefault();
 
 
             if (UserInDb7 != null)
@@ -146,7 +147,7 @@ namespace TadarbProject.Controllers
                 return RedirectToAction("Index", "TrainingSupervisor");
 
             }
-            var UserInDb8 = _DbContext.UserAcounts.Where(item => item.UserType.Equals("Academic_supervisor") && item.UserEmail.Equals(user.UserEmail) && item.UserPassword.Equals(user.UserPassword)).FirstOrDefault();
+            var UserInDb8 = _DbContext.UserAcounts.Where(item => item.UserType.Equals("Academic_supervisor") && item.UserEmail.Equals(user.UserEmail) && item.UserPassword.Equals(user.UserPassword)).AsNoTracking().FirstOrDefault();
 
 
             if (UserInDb8 != null)
@@ -158,7 +159,7 @@ namespace TadarbProject.Controllers
                 return RedirectToAction("Index", "AcadmicSupervisor");
 
             }
-            var UserInDb9 = _DbContext.UserAcounts.Where(item => item.UserType.Equals("Student") && item.UserEmail.Equals(user.UserEmail) && item.UserPassword.Equals(user.UserPassword)).FirstOrDefault();
+            var UserInDb9 = _DbContext.UserAcounts.Where(item => item.UserType.Equals("Student") && item.UserEmail.Equals(user.UserEmail) && item.UserPassword.Equals(user.UserPassword)).AsNoTracking().FirstOrDefault();
 
 
             if (UserInDb9 != null)
@@ -191,11 +192,11 @@ namespace TadarbProject.Controllers
 
                 OrganizationTypeListItems = _DbContext.OrganizationTypes.ToList().Select(u => new SelectListItem { Text = u.TypeName, Value = u.TypeId.ToString() }),
 
-                CountryListItems = _DbContext.Countries.ToList().Select(u => new SelectListItem { Text = u.CountryName, Value = u.CountryId.ToString() }),
+                CountryListItems = _DbContext.Countries.AsNoTracking().ToList().Select(u => new SelectListItem { Text = u.CountryName, Value = u.CountryId.ToString() }),
 
                 // CityListItems = _DbContext.Cities.ToList().Select(u => new SelectListItem { Text = u.CityName, Value = u.CityId.ToString() }),
 
-                FieldListItems = _DbContext.FieldOfSpecialtiesMaster.ToList().Select(u => new SelectListItem { Text = u.FieldName, Value = u.FieldId.ToString() })
+                FieldListItems = _DbContext.FieldOfSpecialtiesMaster.AsNoTracking().ToList().Select(u => new SelectListItem { Text = u.FieldName, Value = u.FieldId.ToString() })
             };
 
             ViewData["EmailSend"] = false;
@@ -368,7 +369,7 @@ namespace TadarbProject.Controllers
                 return Json(new { Exists = false });
             }
 
-            var item = _DbContext.UserAcounts.Where(item => item.UserEmail.Equals(Email)).FirstOrDefault();
+            var item = _DbContext.UserAcounts.Where(item => item.UserEmail.Equals(Email)).AsNoTracking().FirstOrDefault();
 
             if (item == null)
             {
@@ -389,7 +390,7 @@ namespace TadarbProject.Controllers
                 return Json(new { Exists = false });
             }
 
-            var item = _DbContext.UserAcounts.Where(item => item.Phone.Equals(Phone)).FirstOrDefault();
+            var item = _DbContext.UserAcounts.Where(item => item.Phone.Equals(Phone)).AsNoTracking().FirstOrDefault();
 
             if (item == null)
             {
@@ -419,7 +420,7 @@ namespace TadarbProject.Controllers
                 }
 
 
-                ).ToList();
+                ).AsNoTracking().ToList();
 
 
 

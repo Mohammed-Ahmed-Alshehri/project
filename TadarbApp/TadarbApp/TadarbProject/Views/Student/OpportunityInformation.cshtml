@@ -76,11 +76,11 @@
         <div class="col-sm-8" style="margin-right:2cm">
 
             <form method="post">
-                <div class="card  container pt-4" >
+                <div class="card  container pt-4">
                     <div class="card-header  ml-0  row " style="background-color:#325D73">
                         <div class="col-12 col-md-6 text-end pt-4" style="color:white">
                             <h5>
-                                التخصص: 
+                                التخصص:
                                 @Model.TrainingOpportunity.DetailFiled_DetailFiledId
                             </h5>
 
@@ -94,16 +94,16 @@
                         <div class="container rounded p-2">
                             <div class="row">
                                 <div class="col-12 col-lg-3 offset-lg-1 text-center">
-                                    <img src="/images/AppImages/log.png" width="80%" height="75%" title="" alt="" style="position:center">
+                                    <img src="~/@Model.TrainingOpportunity.Branch.organization.LogoPath" title="" alt="" style="position:center; width:60%; height:40%">
                                 </div>
                                 <div class="col-8 col-lg-8">
 
                                     <div class="row text-center pl-2 " style="font-size:25px">
                                         <div class="p-1 col-3 bg-secondary border-bottom">
-                                            <div>@Model.TrainingOpportunity.StartDate</div>
+                                            <div>بداية التسجيل </div>
                                         </div>
                                         <div class="p-1 col-3 bg-secondary border-bottom">
-                                            <div>@Model.TrainingOpportunity.EndDate</div>
+                                            <div>:نهاية التسجيل</div>
                                         </div>
                                         <div class="p-1 col-3 bg-secondary border-bottom">
                                             <div>عدد المقاعد:  </div>
@@ -115,16 +115,19 @@
 
                                     <div class="row text-center pl-2" style="color:darkslateblue; font-weight:bold; font-size:20px">
                                         <div class="p-1 col-3 bg-secondary">
-                                            <div>بداية التسجيل </div>
+                                            <div>@Model.TrainingOpportunity.StartDate.ToShortDateString()</div>
                                         </div>
                                         <div class="p-1 col-3 bg-secondary">
-                                            <div> :نهاية التسجيل @Model.TrainingOpportunity.EndRegisterDate</div>
+                                            <div>@Model.TrainingOpportunity.EndRegisterDate.ToShortDateString()</div>
                                         </div>
                                         <div class="p-1 col-3 bg-secondary">
                                             <div>@Model.TrainingOpportunity.AvailableOpportunities</div>
                                         </div>
                                         <div class="p-1 col-3 bg-secondary">
-                                            <div>اعرض المدينة ي كوكو</div>
+                                            <div>
+                                                @Model.TrainingOpportunity.Branch.city.Country.CountryName ,
+                                                @Model.TrainingOpportunity.Branch.city.CityName
+                                            </div>
                                         </div>
                                     </div>
 
@@ -132,10 +135,10 @@
 
                                     <div class="row text-center pl-2" style="font-size:25px">
                                         <div class="p-1 col-3 bg-secondary border-bottom">
-                                            <div>Model.TrainingOpportunity.StartRegisterDate</div>
+                                            <div>@Model.TrainingOpportunity.StartRegisterDate.ToShortDateString()</div>
                                         </div>
                                         <div class="p-1 col-3 bg-secondary border-bottom">
-                                            <div>@Model.TrainingOpportunity.EndRegisterDate</div>
+                                            <div>@Model.TrainingOpportunity.EndRegisterDate.ToShortDateString()</div>
                                         </div>
                                         <div class="p-1 col-3 bg-secondary border-bottom">
                                             <div>عدد الاسابيع:</div>
@@ -162,10 +165,13 @@
                                     <br /><br />
                                     <div class="row pl-2   ">
                                         <p class="text-secondary h5">وصف الفرصة :</p>
-<p> @Model.TrainingOpportunity.OpportunityDescription</p>                                    </div>
+                                        <p> @Model.TrainingOpportunity.OpportunityDescription</p>
+                                    </div>
                                     <br /><br /><br />
                                     <div class="row pl-2  h5">
                                         <p class="text-secondary">الموقع :</p>
+
+                                        <div style="height:28vh; width:100%;" id="map"></div>
                                     </div>
 
                                 </div>
@@ -178,18 +184,18 @@
 
 
                     <br /><br /><br /><br /><br /><br />
-                    <div class="card-footer align-content-center" >
+                    <div class="card-footer align-content-center">
                         <div class="row ">
-                            <div class="col-md-12" >
+                            <div class="col-md-12">
                                 <br />
                                 <input asp-for="TrainingOpportunity.TrainingOpportunityId" hidden />
-                               
+
 
 
                                 Message #general
                                 <div class="form-group ">
 
-                                    <button type="submit" asp-controller="Student" asp-action="RequsetOnOpportunity"  asp style="font-size:20px" class="btn btn-primary btn-lg">قبول الطلب</button>
+                                    <button type="submit" asp-controller="Student" asp-action="RequsetOnOpportunity" asp style="font-size:20px" class="btn btn-primary btn-lg">قبول الطلب</button>
 
                                     &nbsp;&nbsp;
 
@@ -233,7 +239,37 @@
             });
         });
 
+
+
+        var log = @Model.TrainingOpportunity.Branch.Location.Split(',').First();
+        var lat = @Model.TrainingOpportunity.Branch.Location.Split(',').Last();
+
+
+        const MapLatAndLng = { lat: log, lng: lat }
+
+        function initMap() {
+
+
+            map = new google.maps.Map(document.getElementById("map"), {
+                center: MapLatAndLng,
+                zoom: 15, disableDefaultUI: true
+
+            });
+
+
+
+
+
+            marker = new google.maps.Marker({
+                position: MapLatAndLng,
+                map,
+                title: "موقعك الحالي",
+            });
+
+        }
+
     </script>
 
-
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBnE545dObN0paZx1wsNqm5TaWx3DkVj7g&callback=initMap&v=weekly&language=ar&region=SA"
+            defer></script>
     }
