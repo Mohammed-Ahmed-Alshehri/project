@@ -1,0 +1,193 @@
+﻿@model IEnumerable<TrainingOpportunity>
+
+
+
+@{
+    ViewData["Title"] = "الصفحة الرئيسية";
+}
+
+<head>
+
+    <link rel="stylesheet" href="~/css/Addbranches.css" asp-append-version="true" />
+
+
+</head>
+
+<partial name="_Notification" />
+<body style="background: linear-gradient(#1c4c64,#5590ad);">
+
+    <div class="row" style=" background-repeat: no-repeat;
+            background-size: cover;
+            height: 100vh; width: 100vw; /*padding:50px 5px 5px 5px;*/">
+
+        <div class="col-sm-4" style="z-index:2;">
+
+            <div class="vertical-nav bg-white" id="sidebar">
+                <div class="py-4 px-3 mb-4 bg-light">
+                    <div class="media d-flex align-items-center">
+                        <img src="~/@ViewBag.OrganizationImage" alt="..." width="65" class="mr-3 rounded-circle img-thumbnail shadow-sm">
+                        <div class="media-body">
+                            <h4 class="m-0">@ViewBag.OrganizationName</h4>
+                        </div>
+                    </div>
+                </div>
+                <h5> مرحبا بك @ViewBag.Username </h5>
+
+                <p class="text-gray font-weight-bold text-uppercase px-3 small pb-4 mb-0">القائمة</p>
+
+                <ul class="nav flex-column bg-white mb-0">
+                    <li class="nav-item">
+                        <a asp-action="index" class="nav-link text-dark font-italic bg-light">
+                            <i class="fa-solid fa-house text-primary"></i>
+                            الصفحة الرئيسية
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark font-italic ">
+                            <i class="fa fa-address-card mr-3 text-primary fa-fw"></i>
+
+                            إدارة الفرص
+
+
+                        </a>
+
+                        <ul>
+
+                            <li class="nav-item"> <a class="nav-link text-dark font-italic " asp-controller="" asp-action="">عرض الفرص الجديدة </a></li>
+                            <li class="nav-item"> <a class="nav-link text-dark font-italic " asp-controller="" asp-action=""> عرض حالة القبول </a></li>
+                        </ul>
+
+
+
+
+                    </li>
+                    <li class="nav-item">
+                        <a asp-controller="" asp-action="" class="nav-link text-dark font-italic ">
+                            <i class="fa fa-address-card mr-3 text-primary fa-fw"></i>
+                            إدارة الاقسام
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-controller="" asp-action="" class="nav-link text-dark font-italic ">
+                            <i class="fa fa-address-card mr-3 text-primary fa-fw"></i>
+                            ارفاق التقارير
+                        </a>
+                    </li>
+
+
+
+
+
+
+                </ul>
+
+
+            </div>
+
+
+            <!-- End vertical navbar2 -->
+            <!-- Page content holder2 -->
+            <div class="page-content p-1" id="content">
+                <!-- Toggle button2 -->
+                <button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i class="fa fa-bars mr-2"></i><small class="text-uppercase font-weight-bold">القائمة</small></button>
+            </div>
+
+
+        </div>
+
+        <div class="col-sm-6">
+
+
+
+            <div class="row pb-3">
+
+                @foreach (var item in Model)
+                {
+                    <div class="col-lg-4 col-md-8">
+
+
+                        <div class="row p-2">
+
+
+                            <div class="col-12 p-1" style="border:1px solid #008cba; border-radius:5px;">
+
+                                <div class="card">
+
+                                    <img src="~/@item.Department.organization.LogoPath" class="card-img-top rounded" />
+
+                                    <div class="card-body">
+                                        <div class="pl-1">
+
+                                            <p class="card-title h5 text-primary">
+                                                <h3>@item.DetailFiled.SpecializationName</h3>
+                                            </p>
+                                            <br>
+                                            <p class="card-title h5 " style="color:#1c4c64">
+                                                عدد المقاعد المتاحة: <b>@item.AvailableOpportunities</b>
+                                            </p>
+                                        </div>
+                                        <br>
+                                        <div class="pl-1 h5">
+
+                                            <p>
+                                                بداية التدريب:  <b>@item.StartDate.ToShortDateString()</b>
+
+                                            </p>
+
+                                            <p>
+                                                نهاية التدريب:  <b>@item.EndDate.ToShortDateString()</b>
+
+                                            </p>
+                                            <p>
+                                                نهاية فترة التسجيل:  <b>@item.EndRegisterDate.ToShortDateString()</b>
+
+                                            </p>
+                                        </div>
+
+                                    </div>
+
+                                    <br>
+                                    <div>
+
+                                        <a asp-controller="Student" asp-action="OpportunityInformation" asp-route-id="@item.TrainingOpportunityId" class=" btn form-control " style="background-color:#B8B474; color:black;  font-size:20px; border-radius:40;">التفاصيل </a>
+                                    </div>
+                                    <br>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                }
+
+
+
+            </div>
+
+
+
+
+
+
+            <div class="col-sm-2"></div>
+        </div>
+    </div>
+</body>
+@section Scripts{
+
+
+
+    <script>
+        $(function () {
+            // Sidebar toggle behaviorr
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar, #content').toggleClass('active');
+            });
+        });
+
+    </script>
+
+
+    }
+

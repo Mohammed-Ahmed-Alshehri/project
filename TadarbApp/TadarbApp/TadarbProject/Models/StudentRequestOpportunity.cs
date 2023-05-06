@@ -33,7 +33,7 @@ namespace TadarbProject.Models
         [Required]
         public DateTime RequestDate { get; set; } = DateTime.Now.Date;
 
-        [Required]
+       
         public DateTime? DecisionDate { get; set; } = null;
 
 

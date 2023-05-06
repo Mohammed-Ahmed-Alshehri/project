@@ -81,12 +81,12 @@
                         <div class="col-12 col-md-6 text-end pt-4" style="color:white">
                             <h5>
                                 التخصص:
-                                @Model.TrainingOpportunity.DetailFiled_DetailFiledId
+                                @Model.TrainingOpportunity.DetailFiled.SpecializationName
                             </h5>
 
                         </div>
                         <div class="col-12 col-md-6 text-end pt-4" style="color:white">
-                            <h5>نوع التدريب:  @Model.TrainingOpportunity.TrainingType_TrainingTypeId</h5>
+                            <h5>نوع التدريب:  @Model.TrainingOpportunity.trainingType.TypeName</h5>
 
                         </div>
                     </div>
@@ -106,7 +106,7 @@
                                             <div>نهاية التدريب :</div>
                                         </div>
                                         <div class="p-1 col-3 bg-secondary border-bottom">
-                                            <div>عدد المقاعد:  </div>
+                                            <div>عدد المقاعدالمتاحة:  </div>
                                         </div>
                                         <div class="p-1 col-3 bg-secondary border-bottom">
                                             <div>المدينة: </div>
@@ -197,11 +197,11 @@
                                 
                                 <div class="form-group ">
 
-                                    <button type="submit" asp-controller="Student" asp-action="RequsetOnOpportunity" asp style="font-size:20px" class="btn btn-primary btn-lg">قبول الطلب</button>
+                                    <button type="submit" asp-controller="Student" asp-action="RequsetOnOpportunity" asp style="font-size:20px" class="btn btn-primary btn-lg">التسجيل بالفرصة</button>
 
                                     &nbsp;&nbsp;
 
-                                    <button type="button" style="font-size:20px" class="btn btn-secondary btn-lg ">الرجوع للخلف</button>
+                                    <button type="submit" asp-controller="Student" asp-action="Index" class=" btn  btn-lg" style="background-color:#B8B474; color:black;  font-size:20px; border-radius:40;">الرجوع للخلف</button>
 
                                 </div>
 

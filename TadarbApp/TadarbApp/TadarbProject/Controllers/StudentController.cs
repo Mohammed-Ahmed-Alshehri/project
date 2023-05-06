@@ -33,6 +33,27 @@ namespace TadarbProject.Controllers
 
             var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Department.Organization_OrganizationId).AsNoTracking().FirstOrDefault();
 
+
+
+            ViewBag.OrganizationName = OrganizationOfR.OrganizationName + " - " + Department.DepartmentName;
+            ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
+            ViewBag.Username = user.FullName;
+
+
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult ViewOpportunities()
+        {
+            ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
+            int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
+            var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).AsNoTracking().FirstOrDefault();
+            var UnverTre = _DbContext.UniversitiesTraineeStudents.Where(item => item.UserAccount_UserId == RUserId).AsNoTracking().FirstOrDefault();
+            var Department = _DbContext.Departments.Where(item => item.DepartmentId == UnverTre.Department_DepartmentId).AsNoTracking().FirstOrDefault();
+
+            var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Department.Organization_OrganizationId).AsNoTracking().FirstOrDefault();
+
             var DepartmentTrainingAreas = _DbContext.DepartmentTrainingAreas.Where(item => item.Department_DepartmenId == Department.DepartmentId).AsNoTracking().FirstOrDefault();
 
             var DetailFiled = _DbContext.FieldOfSpecialtiesDetails.Where(item => item.DetailFieldId == DepartmentTrainingAreas.TrainArea_DetailFiledId).AsNoTracking().FirstOrDefault();
@@ -53,9 +74,40 @@ namespace TadarbProject.Controllers
             return View(Opportunities);
         }
 
+        [HttpGet]
+        public IActionResult ViewOpportunitiesStatus()
+        {
+            ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
+            int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
+            var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).AsNoTracking().FirstOrDefault();
+            var UnverTre = _DbContext.UniversitiesTraineeStudents.Where(item => item.UserAccount_UserId == RUserId).FirstOrDefault();
+            var Department = _DbContext.Departments.Where(item => item.DepartmentId == UnverTre.Department_DepartmentId).AsNoTracking().FirstOrDefault();
+
+            var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Department.Organization_OrganizationId).AsNoTracking().FirstOrDefault();
+
+            var Req = _DbContext.StudentRequestsOnOpportunities.Where(item => item.Trainee_TraineeId == UnverTre.TraineeId).FirstOrDefault();
+
+            var reqlist = _DbContext.StudentRequestsOnOpportunities.Where(item => item.Trainee_TraineeId == UnverTre.TraineeId).ToList();
+
+            var OPertunty = _DbContext.TrainingOpportunities.Where(item => item.TrainingOpportunityId == Req.TrainingOpportunity_TrainingOpportunityId)
+                .Include(item => item.Branch.organization)
+                .Include(item => item.DetailFiled).FirstOrDefault();
+
+            TrainingOpportunityVM viwooper = new()
+            {
+                TrainingOpportunity= OPertunty,
+                StudentRequestsOnOpportunities=Req,
+
+            };    
 
 
+               ViewBag.OrganizationName = OrganizationOfR.OrganizationName + " - " + Department.DepartmentName;
+            ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
+            ViewBag.Username = user.FullName;
 
+
+            return View(viwooper);
+        }
 
         public IActionResult OpportunityInformation(int? id)
         {
@@ -104,17 +156,17 @@ namespace TadarbProject.Controllers
             int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
             var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).AsNoTracking().FirstOrDefault();
             var UnverTre = _DbContext.UniversitiesTraineeStudents.Where(item => item.UserAccount_UserId == RUserId).AsNoTracking().FirstOrDefault();
-            //var opert = _DbContext.TrainingOpportunities.Where(item => item.TrainingOpportunityId == trainingOpportunityVN.TrainingOpportunity.TrainingOpportunityId).FirstOrDefault();
+            var opert = _DbContext.TrainingOpportunities.Where(item => item.TrainingOpportunityId == trainingOpportunityVN.TrainingOpportunity.TrainingOpportunityId).FirstOrDefault();
 
 
-            //var reqoper = _DbContext.StudentRequestsOnOpportunities.Where(item => item.Trainee_TraineeId == UnverTre.TraineeId).FirstOrDefault();
+            var reqoper = _DbContext.StudentRequestsOnOpportunities.Where(item => item.Trainee_TraineeId == UnverTre.TraineeId && item.TrainingOpportunity_TrainingOpportunityId == opert.TrainingOpportunityId).FirstOrDefault();
 
-            //if (reqoper != null)
-            //{
-            //    TempData["error"] = "تم التقديم بالفرصة مسبقا ";
+            if (reqoper != null)
+            {
+                TempData["error"] = "تم التقديم بالفرصة مسبقا ";
 
-            //    return View();
-            //}
+                return RedirectToAction("ViewOpportunities");
+            }
 
             var RequestOpportunity = new StudentRequestOpportunity
             {
@@ -133,7 +185,7 @@ namespace TadarbProject.Controllers
 
             TempData["success"] = "تم التسجيل بالفرصة بنجاح";
 
-            return RedirectToAction("Index");
+            return RedirectToAction("ViewOpportunities");
 
 
 
