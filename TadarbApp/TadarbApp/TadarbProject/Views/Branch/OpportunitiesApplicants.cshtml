@@ -129,7 +129,7 @@
                                 <h4 class="card-title float-start">
                                 </h4>
                                 <div class="table-search float-start">
-                                    <button class="btn  btn-info" type="submit" onclick="FillTable()" style="color:black;border:0px;font-size:18px;background-color:lightblue">ظهور الكل</button>
+                                    <button class="btn  btn-info" type="submit" onclick="Clear()" style="color:black;border:0px;font-size:18px;background-color:lightblue">ظهور الكل</button>
                                 </div>
 
                                 <div class="col-sm-6">
@@ -143,14 +143,17 @@
 
                                         <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" style="display:none" checked>
                                         <label class="btn btn-outline-primary" for="btnradio1" style="display:none"></label>
-                                        &nbsp;&nbsp;
-                                        <label class="btn btn-info rounded-start">
-                                            <input class="btn btn-info " type="radio" name="status" value="ذكر" onclick="ChangeGender('ذكر')"> الطلاب
+
+                                        <label class="btn btn-info rounded-end">
+                                            <input class="btn btn-info " type="radio" name="status" id="Rm" value="ذكر" onclick="ChangeGender('ذكر')"> الطلاب
                                         </label>
-                                        &nbsp;&nbsp;
-                                        <label class="btn " style="background-color:#faa7e7">
-                                            <input type="radio" name="status" value="انثى" onclick="ChangeGender('انثى')"> الطالبات
+
+                                        <label class="btn rounded-start" style="background-color:#faa7e7">
+                                            <input type="radio" name="status" value="انثى" id="Rf" onclick="ChangeGender('انثى')"> الطالبات
                                         </label>
+
+                                        <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off" style="display:none" checked>
+                                        <label class="btn btn-outline-primary" for="btnradio4" style="display:none"></label>
 
                                     </div>
                                 </div>
@@ -178,7 +181,7 @@
                                             <th>
                                                 المعدل التراكمي
 
-                                                <i class="btn fa-solid fa-arrow-down-long float-l-start fa-xs p-0  " onclick="SortDwongpa()"> </i>  <i class=" btn fa-solid fa-arrow-up-long float-l-start fa-xs p-0" onclick="SortUpgpa()"></i>
+                                                <i class="btn fa-solid fa-arrow-down-long float-l-start fa-xs p-0 " onclick="Changetype(1)"> </i>  <i class=" btn fa-solid fa-arrow-up-long float-l-start fa-xs p-0" onclick="Changetype(2)"></i>
                                             </th>
 
                                             <th>تفاصيل الطالب</th>
@@ -220,69 +223,38 @@
         });
 
 
-        var gen = "";
+        var type = 0;
+        var Gender = "";
 
-        function ChangeGender(x) {
-
-
-
-            gen = x;
-
-            BasedOnstSatus(gen);
-        }
-
-        function BasedOnstSatus(Gender) {
-            var body = "";
-            var sa = '';
-
-            $(document).ready(function () {
-
-                $.ajax({
-                    type: "GET",
-                    url: "@Url.Action("GetByGender")",
-                    dataType: "json",
-                    data: { gender: Gender },
+        FillTable(Gender, type);
 
 
-                    success: function (data) {
+        function ChangeGender(v) {
 
+            Gender = v;
 
-
-                        $.each(data.list, function (key, value) {
-
-
-
-
-                            body += "<tr> <td class='text - nowrap'>  <div class='font - weight - 600'> <div class='font - weight - 600'> " + value.user.fullName + "</div></div></td>" +
-                                "<td class='text - center'>" + value.universityStudentNumber + "</td>"
-                                + "<td class='text - nowrap'> " + value.completedHours + "</td>"
-                                + "<td class='text - nowrap'> " + value.gender + "</td>"
-                                + "<td class='text - nowrap'> " + value.gpa + "</td>"
-                                + "<td class='text - nowrap'>" + value.user.phone + "</td>"
-                                + "<td class='text - nowrap'>" + value.user.userEmail + "</td>"
-                                + "</tr>";
-
-
-
-
-                        });
-
-
-                        ////$('#tbody')= body;
-                        //$('#tbody').val() = body;
-                        $("#Tbody").html(body);
-
-
-                    }
-                });
-
-            });
+            FillTable(Gender, type);
         }
 
 
+        function Changetype(x) {
+
+            type = x;
+
+            FillTable(Gender, type);
+        }
+
+        function Clear() {
 
 
-        function FillTable() {
+            type = 0;
+            Gender = "";
+
+
+            FillTable(Gender, type);
+        }
+
+        function FillTable(gender, Updw) {
 
             var body = "";
 
@@ -293,8 +265,7 @@
                     url: "@Url.Action("GetStudentsList")",
                     type: 'GET',
                     dataType: "json",
-                    data: { id: @ViewBag.OpportunitiyId },
-
+                    data: { id: @ViewBag.OpportunitiyId , gr: gender, UPOrDw: Updw },
 
                     success: function (data) {
 
@@ -312,196 +283,6 @@
 
 
 
-
-                        });
-
-
-
-                        $("#Tbody").html(body);
-
-
-
-                    }
-
-
-                });
-
-            });
-
-        }
-
-        function SortDwon() {
-            var body = "";
-
-            $(document).ready(function () {
-
-                $.ajax({
-
-                    url: "@Url.Action("GetStudentsListDown")",
-                    type: 'GET',
-                    dataType: "json",
-
-
-                    success: function (data) {
-
-                        $.each(data.students, function (key, value) {
-
-
-
-                            body += "<tr> <td class='text - nowrap'>  <div class='font - weight - 600'> <div class='font - weight - 600'> " + value.user.fullName + "</div></div></td>" +
-                                "<td class='text - center'>" + value.universityStudentNumber + "</td>"
-                                + "<td class='text - nowrap'> " + value.completedHours + "</td>"
-                                + "<td class='text - nowrap'> " + value.gender + "</td>"
-                                + "<td class='text - nowrap'> " + value.gpa + "</td>"
-                                + "<td class='text - nowrap'>" + value.user.phone + "</td>"
-                                + "<td class='text - nowrap'>" + value.user.userEmail + "</td>"
-                                + "</tr>";
-
-
-                            // console.log(value);
-
-                        });
-
-
-
-                        $("#Tbody").html(body);
-
-
-
-                    }
-
-
-                });
-
-            });
-
-        }
-
-
-        function SortUp() {
-            var body = "";
-
-            $(document).ready(function () {
-
-                $.ajax({
-
-                    url: "@Url.Action("GetStudentsListUp")",
-                    type: 'GET',
-                    dataType: "json",
-
-
-                    success: function (data) {
-
-                        $.each(data.students, function (key, value) {
-
-
-
-                            body += "<tr> <td class='text - nowrap'>  <div class='font - weight - 600'> <div class='font - weight - 600'> " + value.user.fullName + "</div></div></td>" +
-                                "<td class='text - center'>" + value.universityStudentNumber + "</td>"
-                                + "<td class='text - nowrap'> " + value.completedHours + "</td>"
-                                + "<td class='text - nowrap'> " + value.gender + "</td>"
-                                + "<td class='text - nowrap'> " + value.gpa + "</td>"
-                                + "<td class='text - nowrap'>" + value.user.phone + "</td>"
-                                + "<td class='text - nowrap'>" + value.user.userEmail + "</td>"
-                                + "</tr>";
-
-
-                            // console.log(value);
-
-                        });
-
-
-
-                        $("#Tbody").html(body);
-
-
-
-                    }
-
-
-                });
-
-            });
-
-        }
-
-
-        function SortDwongpa() {
-            var body = "";
-
-            $(document).ready(function () {
-
-                $.ajax({
-
-                    url: "@Url.Action("GetStudentsListDowngpa")",
-                    type: 'GET',
-                    dataType: "json",
-
-
-                    success: function (data) {
-
-                        $.each(data.students, function (key, value) {
-
-
-
-                            body += "<tr> <td class='text - nowrap'>  <div class='font - weight - 600'> <div class='font - weight - 600'> " + value.user.fullName + "</div></div></td>" +
-                                "<td class='text - center'>" + value.universityStudentNumber + "</td>"
-                                + "<td class='text - nowrap'> " + value.completedHours + "</td>"
-                                + "<td class='text - nowrap'> " + value.gender + "</td>"
-                                + "<td class='text - nowrap'> " + value.gpa + "</td>"
-                                + "<td class='text - nowrap'>" + value.user.phone + "</td>"
-                                + "<td class='text - nowrap'>" + value.user.userEmail + "</td>"
-                                + "</tr>";
-
-
-                            // console.log(value);
-
-                        });
-
-
-
-                        $("#Tbody").html(body);
-
-
-
-                    }
-
-
-                });
-
-            });
-
-        }
-
-        function SortUpgpa() {
-            var body = "";
-
-            $(document).ready(function () {
-
-                $.ajax({
-
-                    url: "@Url.Action("GetStudentsListUpgpa")",
-                    type: 'GET',
-                    dataType: "json",
-
-
-                    success: function (data) {
-
-                        $.each(data.students, function (key, value) {
-
-
-
-                            body += "<tr> <td class='text - nowrap'>  <div class='font - weight - 600'> <div class='font - weight - 600'> " + value.user.fullName + "</div></div></td>" +
-                                "<td class='text - center'>" + value.universityStudentNumber + "</td>"
-                                + "<td class='text - nowrap'> " + value.completedHours + "</td>"
-                                + "<td class='text - nowrap'> " + value.gender + "</td>"
-                                + "<td class='text - nowrap'> " + value.gpa + "</td>"
-                                + "<td class='text - nowrap'>" + value.user.phone + "</td>"
-                                + "<td class='text - nowrap'>" + value.user.userEmail + "</td>"
-                                + "</tr>";
-
-
-                            // console.log(value);
 
                         });
 
