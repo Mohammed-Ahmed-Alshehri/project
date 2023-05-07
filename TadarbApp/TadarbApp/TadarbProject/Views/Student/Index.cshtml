@@ -20,7 +20,7 @@
             background-size: cover;
             height: 100vh; width: 100vw; /*padding:50px 5px 5px 5px;*/">
 
-        <div class="col-sm-2" style="z-index:2;">
+        <div class="col-sm-4" style="z-index:2;">
 
             <div class="vertical-nav bg-white" id="sidebar">
                 <div class="py-4 px-3 mb-4 bg-light">
@@ -45,10 +45,6 @@
 
                     <li class="nav-item">
 
-
-
-
-
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                             <i class="fa fa-address-card mr-3 text-primary fa-fw"></i>
@@ -58,40 +54,19 @@
                         </a>
                         <div class="dropdown-menu" style="">
 
-
                             <a class="dropdown-item" asp-action="ViewOpportunities">عرض الفرص الجديدة </a>
                             <a class=" dropdown-item" asp-action="ViewOpportunitiesStatus"> عرض حالة القبول </a>
-
 
                         </div>
 
                     </li>
 
-
-
-
-
-
-
-
-
-                    </li>
-                    <li class="nav-item">
-                        <a asp-controller="" asp-action="" class="nav-link text-dark font-italic ">
-                            <i class="fa fa-address-card mr-3 text-primary fa-fw"></i>
-                            إدارة الاقسام
-                        </a>
-                    </li>
                     <li class="nav-item">
                         <a asp-controller="" asp-action="" class="nav-link text-dark font-italic ">
                             <i class="fa fa-address-card mr-3 text-primary fa-fw"></i>
                             ارفاق التقارير
                         </a>
                     </li>
-
-
-
-
 
 
                 </ul>
@@ -110,58 +85,95 @@
 
         </div>
 
-        <div class="col-sm-4"></div>
+        
 
-        <div class="col-sm-9">
+        <div class="col-sm-4">
             <form asp-action="EditAccount" method="get">
                 <div class="card " style="border-radius: 25px; margin-top:2cm; margin-bottom:3cm; padding:5px 5px 5px 5px ; border-color:black;">
-                <div class="card-header" style="text-align: center;">
-                    <h3>معلومات الكتدرب</h3>
+                <div class="card-header" >
+                        <h3 style="text-align: center;">معلومات المتدرب</h3>
+                        <input asp-for="@Model.TraineeId" hidden />
+
+                        <button class="btn " style="text-align: left;" type="submit">  <i class="fa-solid fa-user-gear fa-2x"></i></button>
                     </div>
+                    <br />
+                    <div class="card-body row container">
+                        <div class="container rounded p-3">
+                            <div class="row">
+                                <div class="col-12 col-lg-1 offset-lg-1 text-center">
+                                   
+                                </div>
+                    <div class="col-12 col-lg-12" >
+
+                        <div class="row text-center pl-2 " style="font-size:25px">
+                            <div class="p-1 col-4 bg-secondary border-bottom">
+                                <div>اسم المتدرب:</div>
+                            </div>
+                            <div class="p-1 col-4 bg-secondary border-bottom">
+                             <div>المشرف الاكاديمي :</div>
+                            </div>
+                            <div class="p-1 col-4 bg-secondary border-bottom">
+                                <div>الرقم الجامعي : </div>
+                            </div>
+
+                            
+                        </div>
+
+                        <div class="row text-center pl-2" style="color:darkslateblue; font-weight:bold; font-size:19px">
+                            <div class="p-1 col-4 bg-secondary">
+                                <div>@Model.user.FullName</div>
+                            </div>
+                            <div class="p-1 col-4 bg-secondary">
+                                <div>@Model.department.User.FullName</div>
+                            </div>
+                            <div class="p-1 col-4 bg-secondary">
+                                <div>@Model.UniversityStudentNumber</div>
+                            </div>
+                            
+                        </div>
+                                    <div class="row text-center pl-2 " style="font-size:25px">
+                                        <div class="p-1 col-4 bg-secondary border-bottom">
+                                            <div>الايميل الجامعي:</div>
+                                        </div>
+                                        <div class="p-1 col-4 bg-secondary border-bottom">
+                                            <div>القسم :</div>
+                                        </div>
+                                        <div class="p-1 col-4 bg-secondary border-bottom">
+                                            <div>التخصص:  </div>
+                                        </div>
 
 
-                    <input asp-for="@Model.TraineeId" hidden />
-                    
-                <button class="btn p-1 " type="submit"  >  <i class="fa-solid fa-user-gear fa-2x"></i></button>
+                                    </div>
+
+                                    <div class="row text-center pl-2" style="color:darkslateblue; font-weight:bold; font-size:19px">
+                                        <div class="p-1 col-4 bg-secondary">
+                                            <div>@Model.user.UserEmail</div>
+                                        </div>
+                                        <div class="p-1 col-4 bg-secondary">
+                                            <div>@Model.department.DepartmentName</div>
+                                        </div>
+                                        <div class="p-1 col-4 bg-secondary">
+                                            <div>نظم معلومات</div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                </div>
+                                </div>
+             </div>
+                    <br />
+             </div>
                
-                <div class="row">
-
-
-                                <div>
-                             اسم المتدرب   @Model.user.FullName
-                                </div>
-                                <div>
-                                  المشرف  @Model.department.User.FullName
-                                </div>
-                            </div>
-                <div class="row">
-                            
-                                @Model.user.UserEmail
-                            
-                  
-                             الرقم الجامعي   @Model.UniversityStudentNumber
-
-                                </div>
-
-                القسم   @Model.department.DepartmentName
-
-                            </div>
-
             </form>
-
-
-
             
 
-@*                        <div class="col-sm-2"></div>
-*@
+             <div class="col-sm-4"></div>
 
         </div>
        
     </div>
 </body>
 @section Scripts{
-
 
 
     <script>
