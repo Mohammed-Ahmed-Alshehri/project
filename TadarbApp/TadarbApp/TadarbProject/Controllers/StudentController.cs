@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TadarbProject.Data;
 using TadarbProject.Models;
@@ -92,6 +91,20 @@ namespace TadarbProject.Controllers
 
                 var extension = Path.GetExtension(CvFile.FileName);
 
+
+                //her to check if the Posted item (product) has an  existing file if true then delete it before creating a new file.
+                if (Student.CV_Path != null)
+                {
+                    var OldCVPath = Path.Combine(wwwRootPath, Student.CV_Path.TrimStart('\\'));
+
+                    if (System.IO.File.Exists(OldCVPath))
+                    {
+                        System.IO.File.Delete(OldCVPath);
+                    }
+                }
+
+
+                //her is to Create a file to has the user uploaded file
                 using (var fileStreams = new FileStream(Path.Combine(uploadTo, fileName + extension), FileMode.Create))
                 {
                     CvFile.CopyTo(fileStreams);
@@ -117,6 +130,18 @@ namespace TadarbProject.Controllers
 
                 var extension = Path.GetExtension(CvFile.FileName);
 
+                //her to check if the Posted item (product) has an  existing file if true then delete it before creating a new file.
+                if (Student.CV_Path != null)
+                {
+                    var OldCVPath = Path.Combine(wwwRootPath, Student.CV_Path.TrimStart('\\'));
+
+                    if (System.IO.File.Exists(OldCVPath))
+                    {
+                        System.IO.File.Delete(OldCVPath);
+                    }
+                }
+
+                //her is to Create a file to has the user uploaded file
                 using (var fileStreams = new FileStream(Path.Combine(uploadTo, fileName + extension), FileMode.Create))
                 {
                     CvFile.CopyTo(fileStreams);
@@ -140,6 +165,17 @@ namespace TadarbProject.Controllers
                 var uploadTo = Path.Combine(wwwRootPath, @"StudentDocments\OtherDocmnets\");
 
                 var extension = Path.GetExtension(otherDoc.FileName);
+
+                //her to check if the Posted item (product) has an  existing file if true then delete it before creating a new file.
+                if (Student.ExtraDocuments_Path != null)
+                {
+                    var OldExtraDocumentsPath = Path.Combine(wwwRootPath, Student.ExtraDocuments_Path.TrimStart('\\'));
+
+                    if (System.IO.File.Exists(OldExtraDocumentsPath))
+                    {
+                        System.IO.File.Delete(OldExtraDocumentsPath);
+                    }
+                }
 
                 using (var fileStreams = new FileStream(Path.Combine(uploadTo, fileName + extension), FileMode.Create))
                 {

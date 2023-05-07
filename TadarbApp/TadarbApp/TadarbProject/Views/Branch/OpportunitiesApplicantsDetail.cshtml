@@ -71,7 +71,7 @@
                         </a>
                     </li>
 
-                    
+
                 </ul>
 
 
@@ -90,21 +90,21 @@
 
         </div>
 
-        <div class="col-sm-8" >
-            
+        <div class="col-sm-8">
+
             <form method="post">
                 <div class="card  container ">
-                    
+
                     <div class="card-body row ">
                         <div class="container">
                             <div class="card-header  ml-0  row " style="background-color:#325D73">
                                 <div class="col-12 col-md-6 text-end pt-4 " style="color:white">
                                     <h4>
-                                      معلومات الطالب
+                                        معلومات الطالب
                                     </h4>
 
                                 </div>
-                                
+
                             </div>
                             <div class="row">
                                 <div class="col-12 col-lg-3 offset-lg-1 text-center">
@@ -128,7 +128,7 @@
                                         <div class="p-1 col-4 bg-secondary border-bottom">
                                             <div>التخصص:  </div>
                                         </div>
-                                        
+
                                     </div>
 
                                     <div class="row text-center pl-2" style="color:darkslateblue; font-weight:bold; font-size:20px">
@@ -141,7 +141,7 @@
                                         <div class="p-1 col-4 bg-secondary">
                                             <div>@Model.department.DepartmentName</div>
                                         </div>
-                                        
+
                                     </div>
 
                                     <div class="row text-center pl-2" style="font-size:25px">
@@ -180,7 +180,7 @@
                                         <div class="p-1 col-4 bg-secondary border-bottom">
                                             <div><i class="fa-regular fa-clock"></i> عدد الساعات :</div>
                                         </div>
-                                        
+
                                     </div>
 
                                     <div class="row text-center pl-2" style="color:darkslateblue; font-weight:bold; font-size:20px">
@@ -193,7 +193,7 @@
                                         <div class="p-1 col-4 bg-secondary">
                                             <div>@Model.CompletedHours</div>
                                         </div>
-                                        
+
                                     </div>
                                     <br /><br />
                                     <div class="row pl-2   ">
@@ -201,17 +201,36 @@
                                         <p class="">وصف مهارات الطالب</p>
                                     </div>
                                     <br />
-                                    <button type="submit"  asp style="font-size:18px" class="btn btn-primary btn-lg">تنزيل السيرة الذاتية</button>
+                                    <button type="button" asp style="font-size:18px" class="btn btn-primary btn-lg" onclick="showCV()">عرض السيرة الذاتية</button>
                                     &nbsp;&nbsp;
-                                    <button type="submit"  asp style="font-size:18px" class="btn btn-primary btn-lg">ملفات اخرى</button>
+                                    <button type="button" asp style="font-size:18px" class="btn btn-primary btn-lg" onclick="showExtra()">ملفات اخرى</button>
                                 </div>
 
-
+                                <h5 style="display:none" id="ExtraDMessage"> لايوجد ملف مرفق </h5>
 
                             </div>
 
                             <br />
-                            
+
+                            <object data="~/@Model.CV_Path" type="application/pdf" id="Dcv" width="100%" height="500px" style="display:none">
+
+                                <p>Unable to display PDF file. <a href="~/@Model.CV_Path">Download</a> instead.</p>
+
+                            </object>
+
+
+                            <object data="~/@Model.ExtraDocuments_Path" type="application/pdf" id="Extra" width="100%" height="500px" style="display:none">
+
+                                <p>Unable to display PDF file. <a href="~/@Model.ExtraDocuments_Path">Download</a> instead.</p>
+
+                            </object>
+
+
+                            <input asp-for="ExtraDocuments_Path" id="ExtraV" hidden />
+
+
+
+
                         </div>
                     </div>
 
@@ -225,12 +244,12 @@
 
                                 <div class="form-group text-xxl-center">
 
-                                    <button type="submit"  asp style="font-size:20px" class="btn btn-primary btn-lg">قبول</button>
+                                    <button type="submit" asp style="font-size:20px" class="btn btn-primary btn-lg">قبول</button>
 
                                     &nbsp;&nbsp;
-                                    <button type="submit"  asp style="font-size:20px" class="btn btn-primary btn-lg">رفض</button>
+                                    <button type="submit" asp style="font-size:20px" class="btn btn-primary btn-lg">رفض</button>
                                     &nbsp;&nbsp;
-                                    <button type="submit"  asp style="font-size:20px" class="btn btn-primary btn-lg">الرجوع الى الخلف</button>
+                                    <button type="submit" asp style="font-size:20px" class="btn btn-primary btn-lg">الرجوع الى الخلف</button>
                                 </div>
 
                             </div>
@@ -245,11 +264,12 @@
 
 
     </div>
-    
+
     <div class="col-sm-2"></div>
-    </div>
+
     <br />
     <br />
+
 </body>
 
 @section Scripts{
@@ -265,12 +285,34 @@
         });
 
 
+        function showCV() {
+            document.getElementById("Extra").style.display = "none";
+            document.getElementById("ExtraDMessage").style.display = "none";
+            document.getElementById("Dcv").style.display = "block";
+        }
 
-        
+        function showExtra() {
+            var Extravl = document.getElementById("ExtraV").value;
 
-        
+
+
+            if (Extravl == "") {
+
+                document.getElementById("Extra").style.display = "none";
+                document.getElementById("Dcv").style.display = "none";
+                document.getElementById("ExtraDMessage").style.display = "block";
+            }
+
+            else {
+                document.getElementById("Dcv").style.display = "none";
+                document.getElementById("ExtraDMessage").style.display = "none";
+                document.getElementById("Extra").style.display = "block";
+            }
+
+        }
+
 
     </script>
 
-    
+
     }

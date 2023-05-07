@@ -9,7 +9,31 @@
 
 
 </head>
+<style>
+    .notification {
+        background-color: #555;
+        color: white;
+        text-decoration: none;
+     
+        position: relative;
+        display: inline-block;
+        border-radius: 2px;
+    }
 
+        .notification:hover {
+            background: red;
+        }
+
+        .notification .badge {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            padding: 5px 10px;
+            border-radius: 50%;
+            background: red;
+            color: white;
+        }
+</style>
 <body style="background: linear-gradient(#1c4c64,#5590ad);">
 
     <partial name="_Notification" />
@@ -51,7 +75,7 @@
                         </a>
                     </li>
 
-                   
+
                     <li class="nav-item">
                         <a asp-controller="branch" asp-action="ViewDepartmentFiledSpecialties" class="nav-link text-dark font-italic ">
                             <i class="fa-solid fa-book-open-reader"></i>
@@ -106,12 +130,15 @@
                             <thead>
                                 <tr>
 
-                                    <th> وصف الفرصة </th>
-                                    <th> تخصص الفرصة </th>
+                                    <th>وصف الفرصة</th>
+                                    <th>تخصص الفرصة</th>
+                                    <th>المقاعد المتاحة</th>
+                                    <th>اكتمال عدد المقاعد</th>
+                                    <th>امكانية التسجيل</th>
                                     <th>تاريخ بداية التدريب</th>
-                                    <th class="text-center">تاريخ نهاية التدريب</th>
-                                    <th class="text-center">تعديل </th>
-                                    <th class="text-center">تفاصيل  </th>
+                                    <th>تاريخ نهاية التدريب</th>
+                                    <th>تعديل</th>
+                                    <th>تفاصيل</th>
 
                                 </tr>
                             </thead>
@@ -119,38 +146,83 @@
                                 @foreach (var item in Model)
                                 {
                                     <tr>
-                                        <td class="text-nowrap">
-                                            <div class="font-weight-600">
-                                                <div class="font-weight-600 ">
-                                                    @item.OpportunityDescription
-                                                </div>
+                                        <td>
 
-                                            </div>
+                                            @item.OpportunityDescription
+
+
+
                                         </td>
 
-                                        <td class="text-nowrap">
-                                            <div class="font-weight-600">
-                                                <div class="font-weight-600 ">
-                                                    @item.DetailFiled.SpecializationName
-                                                </div>
+                                        <td>
 
-                                            </div>
+                                            @item.DetailFiled.SpecializationName
+
                                         </td>
-                                        <td class="text-nowrap">  @item.StartDate.ToShortDateString()	</td>
-                                        <td class="text-center">
+
+                                        <td>
+
+                                            @item.AvailableOpportunities
+
+                                        </td>
+
+                                        <td>
+
+                                            @if (@item.OpportunityStatus == "Available")
+                                            {
+                                                <p>متاحة</p>
+                                            }
+
+                                            @if (@item.OpportunityStatus == "Complete")
+                                            {
+                                                <p>اكتمل العدد</p>
+                                            }
+
+
+                                        </td>
+
+                                        <td>
+
+                                            @if (@item.AbilityofSubmissionStatus == "Available")
+                                            {
+                                                <p>متاحة</p>
+                                            }
+
+                                            @if (@item.AbilityofSubmissionStatus == "Stop")
+                                            {
+                                                <p>انتهى التسجيل</p>
+                                            }
+
+
+                                        </td>
+
+
+                                        <td>
+                                            @item.StartDate.ToShortDateString()
+
+                                        </td>
+
+                                        <td>
                                             @item.EndDate.Date.ToShortDateString()
                                         </td>
-                                        <td class="text-center">
+
+                                        <td>
                                             <a class="btn btn-primary" href="//localhost:7122/Branch/EditOpportunities?id=@item.TrainingOpportunityId" fdprocessedid=" ezqldw"><i class="fa-regular fa-pen-to-square"></i></a>
 
                                         </td>
-                                        <td class="text-center">
-                                            <a class="btn" style="background-color:#ecd436;" href="//localhost:7122/Branch/OpportunitiesApplicants?id=@item.TrainingOpportunityId">
-                                                <i class="fa-solid fa-1x fa-person-circle-check" style="color:black;"></i>
-                                                
-                                    </a>
+
+                                        <td>
+
+                                            <a class="btn notification" style="background-color:#ecd436;" href="//localhost:7122/Branch/OpportunitiesApplicants?id=@item.TrainingOpportunityId">
+                                                <span class="badge">3</span>
+
+                                                <i class="fa-solid  fa-person-circle-check" style="color:black;"></i>
+
+                                            </a>
 
                                         </td>
+
+
                                     </tr>
 
 
