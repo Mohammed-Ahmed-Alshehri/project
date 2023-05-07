@@ -48,7 +48,7 @@
                         </a>
                     </li>
 
-                    
+
                     <li class="nav-item">
                         <a asp-controller="branch" asp-action="ViewDepartmentFiledSpecialties" class="nav-link text-dark font-italic ">
                             <i class="fa-solid fa-book-open-reader"></i>
@@ -95,43 +95,41 @@
                             <div class=" mb-4 pb-2">
                                 <br />
 
-                              
+
 
                             </div>
                             <input asp-for="TrainingOpportunity.CreatedByEmployeeId" id="OpertuntiyId" hidden />
 
-                            
+
 
 
                             <div class="row">
                                 <div class="col-md-6 mb-4 pb-2">
 
-                                <label for="SelectDepartment" class="form-label" style="font-size:20px;"> القسم العام</label>
+                                    <label for="SelectDepartment" class="form-label" style="font-size:20px;"> القسم العام</label>
                                     <select class="form-select" id="DepartmentNameID" asp-for="@Model.TrainingOpportunity.Department_DepartmentId" asp-items="@Model.DepartmentListItems" required>
-                                    <option selected disabled value="">-- اختيار القسم --</option>
-                                   
-                                </select>
-                                <div class="invalid-feedback">
-                                    الرجاء  إختيار القسم
-                                </div>
-                            </div>
+                                        <option selected disabled value="">-- اختيار القسم --</option>
 
-                          
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        الرجاء  إختيار القسم
+                                    </div>
+                                </div>
+
+
                                 <div class="col-md-6 mb-4 pb-2">
-                            <div class="form-group" style="text-align: right;">
+                                    <div class="form-group" style="text-align: right;">
 
                                         <label for="SpecializationName" class="form-label " style="font-size:20px;">التخصص</label>
                                         <select class="form-select" id="SpecializationNameID" required>
-                                   
-
-                                </select>
-                                <div class="invalid-feedback">
-                                    الرجاء  إختيار التخصصص
-                                </div>
+                                        </select>
+                                        <div class="invalid-feedback">
+                                            الرجاء  إختيار التخصصص
+                                        </div>
                                         <input asp-for="TrainingOpportunity.DetailFiled_DetailFiledId" id="OrganizationMainBranchCityId" hidden />
-                            </div>
+                                    </div>
 
-                            </div>
+                                </div>
                             </div>
 
                             <div class=" mb-4 pb-2">
@@ -152,32 +150,32 @@
                             <div class="row">
                                 <div class="col-md-6 mb-4 pb-2">
                                     <div class="form-group" style="text-align: right;">
-                                <i class="fa-solid fa-user"></i>
-                                <label for="form-SupervisorNameID" class="form-label" style="font-size:20px;">تعيين مشرف تدريبي</label>
-                                        <select class="form-select" asp-for="@Model.TrainingOpportunity.SupervisorEmployeeId"  asp-items="@Model.UserListItems" required>
-                                    <option selected disabled value="">--المشرفين--</option>
+                                        <i class="fa-solid fa-user"></i>
+                                        <label for="form-SupervisorNameID" class="form-label" style="font-size:20px;">تعيين مشرف تدريبي</label>
+                                        <select class="form-select" asp-for="@Model.TrainingOpportunity.SupervisorEmployeeId" asp-items="@Model.UserListItems" required>
+                                            <option selected disabled value="">--المشرفين--</option>
 
-                                </select>
-                                <div class="invalid-feedback">
-                                    الرجاء إختيار مشرف تدريبي
+                                        </select>
+                                        <div class="invalid-feedback">
+                                            الرجاء إختيار مشرف تدريبي
+                                        </div>
+
+                                    </div>
                                 </div>
-
-                            </div>
-                            </div>
 
                                 <div class="col-md-6 mb-4 pb-2">
                                     <div class="form-group" style="text-align: right;">
 
-                                <label for="TypeTraining" class="form-label " style="font-size:20px;">نوع التدريب</label>
-                                <select class="form-select" asp-for="@Model.TrainingOpportunity.TrainingType_TrainingTypeId" asp-items="@Model.TrainingTypeListItems" id="TypeTrainingID" required>
-                                    <option selected disabled value="">--التدريب--</option>
-                                 
-                                </select>
-                                <div class="invalid-feedback">
-                                    الرجاء  إختيار نوع التدريب
+                                        <label for="TypeTraining" class="form-label " style="font-size:20px;">نوع التدريب</label>
+                                        <select class="form-select" asp-for="@Model.TrainingOpportunity.TrainingType_TrainingTypeId" asp-items="@Model.TrainingTypeListItems" id="TypeTrainingID" required>
+                                            <option selected disabled value="">--التدريب--</option>
+
+                                        </select>
+                                        <div class="invalid-feedback">
+                                            الرجاء  إختيار نوع التدريب
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                            </div>
 
                             </div>
 
@@ -185,18 +183,18 @@
 
                             <div class="row">
                                 <div class="col-md-4 mb-4 pb-2">
-                             
-                                <br />
 
-                                <div class="form-outline" style="text-align: right;">
-                                    <i class="fa-solid fa-chair"></i>
-                                    <label class="form-label" for="OrganizationName" style="font-size:20px;">عدد المقاعد</label>
-                                    <input type="number" asp-for="@Model.TrainingOpportunity.TotalNumberOfSeats"  id="OrganizationNameID" class="form-control form-control-lg" required /> 
-                                    <div class="invalid-feedback" style="text-align: right;"> الرجاء يجب إدخال عدد المقاعد </div>
+                                    <br />
+
+                                    <div class="form-outline" style="text-align: right;">
+                                        <i class="fa-solid fa-chair"></i>
+                                        <label class="form-label" for="OrganizationName" style="font-size:20px;">عدد المقاعد</label>
+                                        <input type="number" asp-for="@Model.TrainingOpportunity.TotalNumberOfSeats" id="OrganizationNameID" class="form-control form-control-lg" required />
+                                        <div class="invalid-feedback" style="text-align: right;"> الرجاء يجب إدخال عدد المقاعد </div>
+
+                                    </div>
 
                                 </div>
-
-                            </div>
                                 <div class="col-md-4 mb-4 pb-2">
 
                                     <br />
@@ -210,31 +208,32 @@
                                     </div>
 
                                 </div>
-                                 <div class="col-md-4 mb-4 pb-2">
-                             
-                                <br />
+                                <div class="col-md-4 mb-4 pb-2">
 
-                                <div class="form-outline" style="text-align: right;">
-                                    <i class="fa-solid fa-calendar-week"></i>
+                                    <br />
+
+                                    <div class="form-outline" style="text-align: right;">
+                                        <i class="fa-solid fa-calendar-week"></i>
                                         <label class="form-label" for="OrganizationName" style="font-size:20px;">عدد اسابيع التدريب</label>
                                         <input type="number" asp-for="@Model.TrainingOpportunity.MinimumWeeks" id="OrganizationNameID" class="form-control form-control-lg" required />
                                         <div class="invalid-feedback" style="text-align: right;"> الرجاء يجب إدخال عدد اسابيع التدريب </div>
 
-                                </div>
+                                    </div>
 
-                            </div>
+                                </div>
                             </div>
 
                             <div class=" col-md-6 mb-2 pb-2">
                                 <i class="fa-regular fa-calendar-days"></i>
                                 <label for="3" class="form-label mt-4" style="font-size:20px;">تاريخ بداية الفرصة</label> <br />
                                 <div>
-                                    <input placeholder="Select date" asp-for="@Model.TrainingOpportunity.StartDate" type="date" id="example" class="form-control">
+                                    <input placeholder="Select date" asp-for="@Model.TrainingOpportunity.StartDate" type="date" id="example" class="form-control" required>
 
+                                    <div class="invalid-feedback">
+                                        الرجاء  تحديد وقت بداية الفرصة
+                                    </div>
                                 </div>
-                                <div class="invalid-feedback">
-                                    الرجاء  تحديد وقت البداية
-                                </div>
+
 
                             </div>
 
@@ -244,12 +243,13 @@
                                 <i class="fa-regular fa-calendar-days"></i>
                                 <label for="3" class="form-label mt-4" style="font-size:20px;">تاريخ نهاية الفرصة</label> <br />
                                 <div>
-                                    <input placeholder="Select date" asp-for="@Model.TrainingOpportunity.EndDate" type="date" id="example" class="form-control">
+                                    <input placeholder="Select date" asp-for="@Model.TrainingOpportunity.EndDate" type="date" id="example" class="form-control" required>
 
+                                    <div class="invalid-feedback">
+                                        الرجاء  تحديد وقت نهاية الفرصة
+                                    </div>
                                 </div>
-                                <div class="invalid-feedback">
-                                    الرجاء  تحديد وقت النهاية
-                                </div>
+
 
                             </div>
 
@@ -257,12 +257,13 @@
                                 <i class="fa-regular fa-calendar-days"></i>
                                 <label for="3" class="form-label mt-4" style="font-size:20px;">تاريخ بداية التسجيل </label> <br />
                                 <div>
-                                    <input placeholder="Select date" asp-for="@Model.TrainingOpportunity.StartRegisterDate" type="date" id="example" class="form-control">
+                                    <input placeholder="Select date" asp-for="@Model.TrainingOpportunity.StartRegisterDate" type="date" id="example" class="form-control" required>
 
+                                    <div class="invalid-feedback">
+                                        الرجاء  تحديد تاريخ بداية التسجيل
+                                    </div>
                                 </div>
-                                <div class="invalid-feedback">
-                                    الرجاء  تحديد بداية التسجيل
-                                </div>
+
 
                             </div>
 
@@ -272,12 +273,12 @@
                                 <i class="fa-regular fa-calendar-days"></i>
                                 <label for="3" class="form-label mt-4" style="font-size:20px;">تاريخ نهاية التسجيل</label> <br />
                                 <div>
-                                    <input placeholder="Select date" asp-for="@Model.TrainingOpportunity.EndRegisterDate" type="date" id="example" class="form-control">
+                                    <input placeholder="Select date" asp-for="@Model.TrainingOpportunity.EndRegisterDate" type="date" id="example" class="form-control" required>
+                                    <div class="invalid-feedback">
+                                        الرجاء  تحديد تاريخ نهاية التسجيل
+                                    </div>
+                                </div>
 
-                                </div>
-                                <div class="invalid-feedback">
-                                    الرجاء  تحديد نهاية التسجيل
-                                </div>
 
                             </div>
 
@@ -310,7 +311,7 @@
 </body>
 
 @section Scripts
-{
+    {
 
     <script>
         $(function () {
@@ -352,7 +353,7 @@
 
                         for (var i = 0; i < data.specialities.length; i++) {
 
-                          
+
 
                             s += '<option value="' + data.specialities[i].detailFieldId + '">' + data.specialities[i].specializationName + '</option>';
                         }
@@ -376,6 +377,28 @@
 
 
 
-      
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+        (function () {
+            'use strict'
 
-    </script>                  }
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.querySelectorAll('.needs-validation')
+
+            // Loop over them and prevent submission
+            Array.prototype.slice.call(forms)
+                .forEach(function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (!form.checkValidity()) {
+                            event.preventDefault()
+                            event.stopPropagation()
+                        }
+
+                        form.classList.add('was-validated')
+                    }, false)
+                })
+        })()
+
+
+
+    </script>
+                  }

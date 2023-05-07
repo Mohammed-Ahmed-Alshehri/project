@@ -689,13 +689,17 @@ namespace TadarbProject.Controllers
 
             var oper = _DbContext.TrainingOpportunities.Where(item => item.CreatedByEmployee == employee).AsNoTracking().FirstOrDefault();
 
-            var ReqStudent = _DbContext.StudentRequestsOnOpportunities.Where(item => item.Trainee_TraineeId == UniversityTraineeStudent.TraineeId).AsNoTracking().FirstOrDefault();
+            //var ReqStudent = _DbContext.StudentRequestsOnOpportunities.Where(item => item.Trainee_TraineeId == UniversityTraineeStudent.TraineeId).AsNoTracking().FirstOrDefault();
 
             var ReqStudentList = _DbContext.StudentRequestsOnOpportunities.Where(item => item.Trainee_TraineeId == UniversityTraineeStudent.TraineeId).AsNoTracking().ToList();
 
+            
+            //var ReqCompany = _DbContext.StudentRequestsOnOpportunities.Where(item => item.TrainingOpportunity_TrainingOpportunityId == oper.TrainingOpportunityId).AsNoTracking().FirstOrDefault();
 
-            var ReqCompany = _DbContext.StudentRequestsOnOpportunities.Where(item => item.TrainingOpportunity_TrainingOpportunityId == oper.TrainingOpportunityId).AsNoTracking().FirstOrDefault();
+              var Requ = _DbContext.StudentRequestsOnOpportunities.Where(item => item.Trainee_TraineeId == UniversityTraineeStudent.TraineeId &&
+                   item.TrainingOpportunity_TrainingOpportunityId == oper.TrainingOpportunityId ).AsNoTracking().FirstOrDefault();
 
+            
 
             if (desison == "accept")
             {
@@ -711,7 +715,7 @@ namespace TadarbProject.Controllers
                     return RedirectToAction("index");
                 }
 
-                if(ReqStudent.StudentRequestOpportunityId == ReqCompany.StudentRequestOpportunityId)
+                if(Requ!=null)
                 {
                     
                     var applay = new StudentRequestOpportunity
@@ -719,19 +723,43 @@ namespace TadarbProject.Controllers
                         DecisionStatus = "approved",
                         DecisionDate = DateTime.Now
                     };
+                    //_DbContext.StudentRequestsOnOpportunities.Update(applay);
+
+                    var seat = new TrainingOpportunity
+                    {
+                        ApprovedOpportunities =+1,
+                        RequestedOpportunities=-1,
+
+
+                    };
 
                 }
 
 
 
-                //if (ReqStudentList.Count != ReqCompany.StudentRequestOpportunityId)
+
+                //for(int i; ReqStudentList.Count; ++i)
                 //{
+                //    var applay = new StudentRequestOpportunity
+                //    {
+                //        DecisionStatus = "system disable",
+
+                //    };
+                //}
+
+                //foreach (var item in ReqStudentList) {
 
                 //    var applay = new StudentRequestOpportunity
                 //    {
                 //        DecisionStatus = "system disable",
-                       
+
                 //    };
+
+                //}
+                //if (ReqStudentList.Count==)
+                //{
+
+
 
 
                 //}

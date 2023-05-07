@@ -87,14 +87,14 @@
 
         
 
-        <div class="col-sm-4">
+        <div class="col-sm-6">
             <form asp-action="EditAccount" method="get">
-                <div class="card " style="border-radius: 25px; margin-top:2cm; margin-bottom:3cm; padding:5px 5px 5px 5px ; border-color:black;">
+                <div class="card " style="border-radius: 25px;  margin-bottom:3cm; padding:5px 5px 5px 5px ; border-color:black; width:auto; height:auto;" >
                 <div class="card-header" >
                         <h3 style="text-align: center;">معلومات المتدرب</h3>
                         <input asp-for="@Model.TraineeId" hidden />
 
-                        <button class="btn " style="text-align: left;" type="submit">  <i class="fa-solid fa-user-gear fa-2x"></i></button>
+                        <button class="btn " style="text-align: right;" type="submit">  <i class="fa-solid fa-user-gear fa-2x"></i></button>
                     </div>
                     <br />
                     <div class="card-body row container">
@@ -167,7 +167,7 @@
             </form>
             
 
-             <div class="col-sm-4"></div>
+             <div class="col-sm-2"></div>
 
         </div>
        
@@ -188,4 +188,5 @@
 
 
     }
+
 
