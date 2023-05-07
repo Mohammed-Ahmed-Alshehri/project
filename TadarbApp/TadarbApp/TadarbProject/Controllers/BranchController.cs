@@ -674,6 +674,91 @@ namespace TadarbProject.Controllers
             return View(Student);
         }
 
+        [HttpPost]
+        public IActionResult AcceptReject(UniversityTraineeStudent UniversityTraineeStudent,String desison)
+        {
+            int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
+            var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).AsNoTracking().FirstOrDefault();
+            var Branch = _DbContext.OrganizationBranches_TrainProv.Where(item => item.Responsible_UserId == RUserId).AsNoTracking().FirstOrDefault();
+
+            var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Branch.Organization_OrganizationId).AsNoTracking().FirstOrDefault();
+
+            var Department = _DbContext.Departments.Where(item => item.Responsible_UserId == RUserId).AsNoTracking().ToList();
+
+            var employee = _DbContext.Employees.Where(item => item.UserAccount_UserId == RUserId).AsNoTracking().FirstOrDefault();
+
+            var oper = _DbContext.TrainingOpportunities.Where(item => item.CreatedByEmployee == employee).AsNoTracking().FirstOrDefault();
+
+            var ReqStudent = _DbContext.StudentRequestsOnOpportunities.Where(item => item.Trainee_TraineeId == UniversityTraineeStudent.TraineeId).AsNoTracking().FirstOrDefault();
+
+            var ReqStudentList = _DbContext.StudentRequestsOnOpportunities.Where(item => item.Trainee_TraineeId == UniversityTraineeStudent.TraineeId).AsNoTracking().ToList();
+
+
+            var ReqCompany = _DbContext.StudentRequestsOnOpportunities.Where(item => item.TrainingOpportunity_TrainingOpportunityId == oper.TrainingOpportunityId).AsNoTracking().FirstOrDefault();
+
+
+            if (desison == "accept")
+            {
+                if (oper.OpportunityStatus != "Available")
+                {
+                    TempData["error"] = "عدد المقاعد مكتملة ";
+                    return RedirectToAction("index");
+                }
+
+                if (oper.AbilityofSubmissionStatus != "Available")
+                {
+                    TempData["error"] = " عذرا الفرصة غير متاحة ";
+                    return RedirectToAction("index");
+                }
+
+                if(ReqStudent.StudentRequestOpportunityId == ReqCompany.StudentRequestOpportunityId)
+                {
+                    
+                    var applay = new StudentRequestOpportunity
+                    {
+                        DecisionStatus = "approved",
+                        DecisionDate = DateTime.Now
+                    };
+
+                }
+
+
+
+                //if (ReqStudentList.Count != ReqCompany.StudentRequestOpportunityId)
+                //{
+
+                //    var applay = new StudentRequestOpportunity
+                //    {
+                //        DecisionStatus = "system disable",
+                       
+                //    };
+
+
+                //}
+
+
+
+
+
+                TempData["error"] = "في غلط ";
+                return RedirectToAction("index");
+            }
+
+            if (desison == "reject")
+            {
+
+             
+
+
+                TempData["error"] = "في غلط ";
+                return RedirectToAction("index");
+            }
+
+           
+
+            return View();
+        }
+
 
 
         #region

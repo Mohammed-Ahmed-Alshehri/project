@@ -92,7 +92,7 @@
 
         <div class="col-sm-8">
 
-            <form method="post">
+            <form asp-action="AcceptReject" method="post">
                 <div class="card  container ">
 
                     <div class="card-body row ">
@@ -244,12 +244,12 @@
 
                                 <div class="form-group text-xxl-center">
 
-                                    <button type="submit" asp style="font-size:20px" class="btn btn-primary btn-lg">قبول</button>
+                                    <button type="submit" asp style="font-size:20px" value="accept" name="desison" class="btn btn-success btn-lg">قبول</button>
 
                                     &nbsp;&nbsp;
-                                    <button type="submit" asp style="font-size:20px" class="btn btn-primary btn-lg">رفض</button>
+                                    <button type="submit" asp style="font-size:20px" value="reject" name="desison" class="btn btn-danger btn-lg">رفض</button>
                                     &nbsp;&nbsp;
-                                    <button type="submit" asp style="font-size:20px" class="btn btn-primary btn-lg">الرجوع الى الخلف</button>
+                                    <button type="submit" asp style="font-size:20px" asp-action="index" class="btn btn-secondary btn-lg">الرجوع الى الخلف</button>
                                 </div>
 
                             </div>
