@@ -16,11 +16,8 @@
 
 <partial name="_Notification" />
 <body style="background: linear-gradient(#1c4c64,#5590ad); ">
-
     <div class="row">
-
         <div class="col-sm-2" style="z-index:2;">
-
             <div class="vertical-nav bg-white" id="sidebar">
                 <div class="py-4 px-3 mb-4 bg-light">
                     <div class="media d-flex align-items-center">
@@ -33,7 +30,6 @@
                 <h5> مرحبا بك @ViewBag.Username </h5>
 
                 <p class="text-gray font-weight-bold text-uppercase px-3 small pb-4 mb-0">القائمة</p>
-
 
                 <ul class="nav flex-column bg-white mb-0">
                     <li class="nav-item">
@@ -56,7 +52,6 @@
                         </a>
                     </li>
 
-
                     <li class="nav-item">
                         <a asp-controller="branch" asp-action="ViewDepartmentFiledSpecialties" class="nav-link text-dark font-italic ">
                             <i class="fa-solid fa-book-open-reader text-primary"></i>
@@ -71,11 +66,7 @@
                         </a>
                     </li>
 
-
                 </ul>
-
-
-
 
             </div>
 
@@ -90,7 +81,7 @@
 
         </div>
 
-        <div class="col-sm-8">
+        <div class="col-sm-8" >
 
             <form asp-action="AcceptReject" method="post">
                 <div class="card  container ">
@@ -108,7 +99,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-12 col-lg-3 offset-lg-1 text-center">
-                                    <img src="~/@Model.department.universityCollege.organization.LogoPath" title="" alt="" style="position:center; width:100%; height:auto">
+                                    <img src="~/@Model.department.universityCollege.organization.LogoPath" title="" alt="" style="position:center; width:70%; height:auto">
                                 </div>
                                 <div class="col-8 col-lg-8">
 
