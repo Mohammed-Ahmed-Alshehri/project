@@ -269,17 +269,21 @@
 
                     success: function (data) {
 
-                        $.each(data.students, function (key, value) {
+
+                        console.log(data.req);
 
 
+                        $.each(data.req, function (key, value) {
 
-                            body += "<tr> <td class='text - nowrap'>  <div class='font - weight - 600'> <div class='font - weight - 600'> " + value.user.fullName + "</div></div></td>"
-                                + "<td class='text - nowrap'> " + value.department.universityCollege.organization.organizationName + "</td>"
-                                + "<td class='text - nowrap'> " + value.department.departmentName + "</td>"
-                                + "<td class='text - nowrap'> " + value.gender + "</td>"
-                                + "<td class='text - nowrap'> " + value.department.universityCollege.city.country.countryName + ", " + value.department.universityCollege.city.cityName + "</td>"
-                                + "<td class='text - nowrap'> " + value.gpa + "</td>"
-                                + "<td class='text - nowrap'> " + '<a class="btn btn-outline-primary" href="//localhost:7122/Branch/OpportunitiesApplicantsDetail/?id=' + value.traineeId + ' " >تفاصيل الطلب</a>' + '</td></tr>';
+                            console.log(value.trainingOpportunity_TrainingOpportunityId)
+
+                            body += "<tr> <td class='text - nowrap'>  <div class='font - weight - 600'> <div class='font - weight - 600'> " + value.student.user.fullName + "</div></div></td>"
+                                + "<td class='text - nowrap'> " + value.student.department.universityCollege.organization.organizationName + "</td>"
+                                + "<td class='text - nowrap'> " + value.student.department.departmentName + "</td>"
+                                + "<td class='text - nowrap'> " + value.student.gender + "</td>"
+                                + "<td class='text - nowrap'> " + value.student.department.universityCollege.city.country.countryName + ", " + value.student.department.universityCollege.city.cityName + "</td>"
+                                + "<td class='text - nowrap'> " + value.student.gpa + "</td>"
+                                + "<td class='text - nowrap'> " + '<a class="btn btn-outline-primary" href="//localhost:7122/Branch/OpportunitiesApplicantsDetail/?id=' + value.student.traineeId + '&opid=' + value.trainingOpportunity_TrainingOpportunityId +' " >تفاصيل الطلب</a>' + '</td></tr>';
 
 
 

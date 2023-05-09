@@ -40,7 +40,7 @@ namespace TadarbProject.Controllers
 
 
                 TempData["error"] = "حالة الحساب غير نشط " +
-                    "الرجاء تعديل كلمة المرور ";
+                    "الرجاء تعديل كلمة المرور وإضافة سيرة ذاتية ";
                 return RedirectToAction("EditAccount");
 
             }
@@ -328,13 +328,22 @@ namespace TadarbProject.Controllers
 
             var reqoper = _DbContext.StudentRequestsOnOpportunities.Where(item => item.Trainee_TraineeId == UnverTre.TraineeId && item.TrainingOpportunity_TrainingOpportunityId == opert.TrainingOpportunityId).FirstOrDefault();
 
+            var studentreq = _DbContext.StudentRequestsOnOpportunities.Where(item => item.Trainee_TraineeId == UnverTre.TraineeId ).FirstOrDefault();
+
             if (reqoper != null)
             {
                 TempData["error"] = "تم التقديم بالفرصة مسبقا ";
 
                 return RedirectToAction("ViewOpportunities");
             }
+            if(studentreq != null) { 
+            if (studentreq.DecisionStatus != "waiting")
+            {
+                TempData["error"] = "تم قبولك بفرصة اخرى لا تستطيع التفديم ";
 
+                return RedirectToAction("ViewOpportunities");
+            }
+            }
             var RequestOpportunity = new StudentRequestOpportunity
             {
 
@@ -347,6 +356,9 @@ namespace TadarbProject.Controllers
 
             _DbContext.StudentRequestsOnOpportunities.Add(RequestOpportunity);
 
+            opert.RequestedOpportunities = opert.RequestedOpportunities + 1;
+
+            _DbContext.TrainingOpportunities.Update(opert);
 
             _DbContext.SaveChanges();
 

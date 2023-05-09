@@ -90,12 +90,7 @@
                         </a>
                     </li>
 
-                    <li class="nav-item">
-                        <a asp-controller="branch" asp-action="OpportunitiesApplicants" class="nav-link text-dark font-italic ">
-                            <i class="fa-solid fa-square-poll-horizontal"></i>
-                            ادارة طلبات المتقدمين
-                        </a>
-                    </li>
+                 
                 </ul>
 
 
@@ -212,7 +207,9 @@
                                         </td>
 
                                         <td>
-
+                                            <input asp-for="@item.TrainingOpportunityId" hidden/>
+                                     
+      
                                             <a class="btn notification" style="background-color:#ecd436;" href="//localhost:7122/Branch/OpportunitiesApplicants?id=@item.TrainingOpportunityId">
                                                 <span class="badge">@item.RequestedOpportunities</span>
 

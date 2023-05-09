@@ -1,4 +1,4 @@
-﻿@model UniversityTraineeStudent
+﻿@model StudentRequestOpportunity
 
 
 
@@ -85,7 +85,8 @@
 
             <form asp-action="AcceptReject" method="post">
                 <div class="card  container ">
-                    
+                    <input asp-for="@Model.StudentRequestOpportunityId" hidden />
+
                     <div class="card-body row ">
                         <div class="container">
                             <div class="card-header  ml-0  row " style="background-color:#325D73">
@@ -99,7 +100,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-12 col-lg-3 offset-lg-1 text-center">
-                                    <img src="~/@Model.department.universityCollege.organization.LogoPath" title="" alt="" style="position:center; width:70%; height:auto">
+                                    <img src="~/@Model.student.department.universityCollege.organization.LogoPath" title="" alt="" style="position:center; width:70%; height:auto">
                                 </div>
                                 <div class="col-8 col-lg-8">
 
@@ -124,13 +125,13 @@
 
                                     <div class="row text-center pl-2" style="color:darkslateblue; font-weight:bold; font-size:20px">
                                         <div class="p-1 col-4 bg-secondary">
-                                            <div>@Model.user.FullName</div>
+                                            <div>@Model.student.user.FullName</div>
                                         </div>
                                         <div class="p-1 col-4 bg-secondary">
-                                            <div>@Model.department.universityCollege.organization.OrganizationName</div>
+                                            <div>@Model.student.department.universityCollege.organization.OrganizationName</div>
                                         </div>
                                         <div class="p-1 col-4 bg-secondary">
-                                            <div>@Model.department.DepartmentName</div>
+                                            <div>@Model.student.department.DepartmentName</div>
                                         </div>
 
                                     </div>
@@ -150,13 +151,13 @@
 
                                     <div class="row text-center pl-2" style="color:darkslateblue; font-weight:bold; font-size:20px">
                                         <div class="p-1 col-4 bg-secondary">
-                                            <div>@Model.user.UserEmail</div>
+                                            <div>@Model.student.user.UserEmail</div>
                                         </div>
                                         <div class="p-1 col-4 bg-secondary">
-                                            <div>@Model.user.Phone</div>
+                                            <div>@Model.student.user.Phone</div>
                                         </div>
                                         <div class="p-1 col-4 bg-secondary">
-                                            <div>@Model.Gender</div>
+                                            <div>@Model.student.Gender</div>
                                         </div>
 
                                     </div>
@@ -176,13 +177,13 @@
 
                                     <div class="row text-center pl-2" style="color:darkslateblue; font-weight:bold; font-size:20px">
                                         <div class="p-1 col-4 bg-secondary">
-                                            <div>@Model.department.universityCollege.city.CityName</div>
+                                            <div>@Model.student.department.universityCollege.city.CityName</div>
                                         </div>
                                         <div class="p-1 col-4 bg-secondary">
-                                            <div>@Model.GPA</div>
+                                            <div>@Model.student.GPA</div>
                                         </div>
                                         <div class="p-1 col-4 bg-secondary">
-                                            <div>@Model.CompletedHours</div>
+                                            <div>@Model.student.CompletedHours</div>
                                         </div>
 
                                     </div>
@@ -203,21 +204,21 @@
 
                             <br />
 
-                            <object data="~/@Model.CV_Path" type="application/pdf" id="Dcv" width="100%" height="500px" style="display:none">
+                            <object data="~/@Model.student.CV_Path" type="application/pdf" id="Dcv" width="100%" height="500px" style="display:none">
 
-                                <p>Unable to display PDF file. <a href="~/@Model.CV_Path">Download</a> instead.</p>
-
-                            </object>
-
-
-                            <object data="~/@Model.ExtraDocuments_Path" type="application/pdf" id="Extra" width="100%" height="500px" style="display:none">
-
-                                <p>Unable to display PDF file. <a href="~/@Model.ExtraDocuments_Path">Download</a> instead.</p>
+                                <p>Unable to display PDF file. <a href="~/@Model.student.CV_Path">Download</a> instead.</p>
 
                             </object>
 
 
-                            <input asp-for="ExtraDocuments_Path" id="ExtraV" hidden />
+                            <object data="~/@Model.student.ExtraDocuments_Path" type="application/pdf" id="Extra" width="100%" height="500px" style="display:none">
+
+                                <p>Unable to display PDF file. <a href="~/@Model.student.ExtraDocuments_Path">Download</a> instead.</p>
+
+                            </object>
+
+
+                            <input asp-for="student.ExtraDocuments_Path" id="ExtraV" hidden />
 
 
 
@@ -231,7 +232,15 @@
                         <div class="row ">
                             <div class="col-md-12">
                                 <br />
-                                <input asp-for="TraineeId" hidden />
+                                <input asp-for="student.TraineeId" hidden />
+
+                                <input asp-for="@Model.StudentRequestOpportunityId" hidden />
+                                <input asp-for="@Model.Trainee_TraineeId" hidden />
+                                <input asp-for="@Model.TrainingOpportunity_TrainingOpportunityId" hidden />
+
+
+                                <input asp-for="TrainingOpportunity_TrainingOpportunityId" hidden />
+
 
                                 <div class="form-group text-xxl-center">
 

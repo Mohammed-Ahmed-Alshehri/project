@@ -1408,6 +1408,22 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\StudentDocments\CV\446dbe89-3530-4147-9327-87be7d585fb9.pdf))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\StudentDocments\CV\45be229d-cf8e-493f-9ae9-7b3ebbe17f10.pdf))">
+      <SourceType>Package</SourceType>
+      <SourceId>TadarbProject</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/TadarbProject</BasePath>
+      <RelativePath>StudentDocments/CV/45be229d-cf8e-493f-9ae9-7b3ebbe17f10.pdf</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\StudentDocments\CV\45be229d-cf8e-493f-9ae9-7b3ebbe17f10.pdf))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\StudentDocments\CV\45ed676a-fa77-41f5-ba46-a31a0b660061.pdf))">
       <SourceType>Package</SourceType>
       <SourceId>TadarbProject</SourceId>
@@ -1439,6 +1455,22 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\StudentDocments\CV\5ed7d84b-5582-4dea-be63-968578ba6a96.pdf))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\StudentDocments\CV\88ab83bf-758b-4a9f-9d10-07e8e5ac0931.pdf))">
+      <SourceType>Package</SourceType>
+      <SourceId>TadarbProject</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/TadarbProject</BasePath>
+      <RelativePath>StudentDocments/CV/88ab83bf-758b-4a9f-9d10-07e8e5ac0931.pdf</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\StudentDocments\CV\88ab83bf-758b-4a9f-9d10-07e8e5ac0931.pdf))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\StudentDocments\CV\8c3511f0-e807-4a79-ac80-7c5a6e800fba.pdf))">
       <SourceType>Package</SourceType>
