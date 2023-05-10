@@ -400,6 +400,7 @@ namespace TadarbProject.Controllers
 
             if (id != null || id != 0)
             {
+                TrainingOpportunityVM.StudentRequestsOnOpportunities= _DbContext.StudentRequestsOnOpportunities.Where(u => u.TrainingOpportunity_TrainingOpportunityId == id).AsNoTracking().FirstOrDefault();
 
                 TrainingOpportunityVM.TrainingOpportunity = _DbContext.TrainingOpportunities.Where(u => u.TrainingOpportunityId == id).AsNoTracking().FirstOrDefault();
 
@@ -436,16 +437,38 @@ namespace TadarbProject.Controllers
         public IActionResult EditOpportunities(TrainingOpportunityVM TrainingOpportunityVM)
         {
 
+
             if (!ModelState.IsValid)
             {
                 return View(TrainingOpportunityVM);
             }
 
+
             var Opportunity = _DbContext.TrainingOpportunities.Where(u => u.TrainingOpportunityId == TrainingOpportunityVM.TrainingOpportunity.TrainingOpportunityId).AsNoTracking().FirstOrDefault();
 
 
+            var newavilabenow = Opportunity.AvailableOpportunities + TrainingOpportunityVM.TrainingOpportunity.AvailableOpportunities;
+            var totalseatupdate = Opportunity.TotalNumberOfSeats + TrainingOpportunityVM.TrainingOpportunity.AvailableOpportunities;
 
-            Opportunity.OpportunityDescription = TrainingOpportunityVM.TrainingOpportunity.OpportunityDescription;
+            if (newavilabenow < 0)
+            {
+                TempData["error"] = "عذرا لا تستطيع تقليل عدد المقاعد المتاحة لهذا الحد  ";
+
+                return RedirectToAction("ViewOpportunities");
+            }
+
+            if (newavilabenow == 0)
+            {
+                Opportunity.OpportunityStatus = "Complete";
+
+            }
+
+            if (Opportunity.AvailableOpportunities < 1)
+            {
+                Opportunity.OpportunityStatus = "Available";
+            }
+
+                Opportunity.OpportunityDescription = TrainingOpportunityVM.TrainingOpportunity.OpportunityDescription;
 
 
             Opportunity.TrainingType_TrainingTypeId = TrainingOpportunityVM.TrainingOpportunity.TrainingType_TrainingTypeId;
@@ -453,7 +476,9 @@ namespace TadarbProject.Controllers
 
             Opportunity.SupervisorEmployeeId = TrainingOpportunityVM.TrainingOpportunity.SupervisorEmployeeId;
 
-            Opportunity.TotalNumberOfSeats = TrainingOpportunityVM.TrainingOpportunity.TotalNumberOfSeats;
+            Opportunity.TotalNumberOfSeats = totalseatupdate;
+
+            Opportunity.AvailableOpportunities = newavilabenow;
 
             Opportunity.MinimumHours = TrainingOpportunityVM.TrainingOpportunity.MinimumHours;
 
@@ -475,7 +500,8 @@ namespace TadarbProject.Controllers
 
 
             _DbContext.SaveChanges();
-
+            TempData["success"] = "تم تعديل الفرصة بنجاح ";
+   
             return RedirectToAction("ViewOpportunities");
 
 

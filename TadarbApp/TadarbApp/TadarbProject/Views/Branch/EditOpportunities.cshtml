@@ -90,10 +90,10 @@
                         <input asp-for="TrainingOpportunity.TrainingOpportunityId" id="TrainingOpportunityId" hidden />
                         <input asp-for="TrainingOpportunity.Branch_BranchId" id="Branch_BranchId" hidden />
                         <input asp-for="TrainingOpportunity.CreatedByEmployeeId" id="CreatedByEmployeeId" hidden />
-                        @*        <input asp-for="TrainingOpportunity.SupervisorEmployeeId" id="SupervisorEmployeeId" hidden /*@>
+                        @*        <input asp-for="TrainingOpportunity.SupervisorEmployeeId" id="SupervisorEmployeeId" hidden /*@
                         <input asp-for="TrainingOpportunity.Department_DepartmentId" id="Department_DepartmentId" hidden />
                         <input asp-for="TrainingOpportunity.DetailFiled_DetailFiledId" id="DetailFiled_DetailFiledId" hidden />
-                        @*   <input asp-for="TrainingOpportunity.TrainingType_TrainingTypeId" id="TrainingType_TrainingTypeId" hidden />*@
+                           <input asp-for="StudentRequestsOnOpportunities.StudentRequestOpportunityId" id="TrainingType_TrainingTypeId" hidden />
                         @*  <input asp-for="UserListItems" id="OpertuntiyId" hidden />
                         <input asp-for="DepartmentListItems" id="OpertuntiyId" hidden />
                         <input asp-for="DetailFieldsListItems" id="OpertuntiyId" hidden />
@@ -200,8 +200,8 @@
 
                                     <div class="form-outline" style="text-align: right;">
                                         <i class="fa-solid fa-chair"></i>
-                                        <label class="form-label" for="OrganizationName" style="font-size:20px;">عدد المقاعد</label>
-                                        <input type="number" asp-for="@Model.TrainingOpportunity.TotalNumberOfSeats" id="OrganizationNameID" class="form-control form-control-lg" required />
+                                        <label class="form-label" for="OrganizationName" style="font-size:20px;">عدد المقاعد الحالية(  زيادة عدد المقاعد )</label>
+                                        <input type="number" asp-for="@Model.TrainingOpportunity.AvailableOpportunities" id="OrganizationNameID" class="form-control form-control-lg" required />
                                         <div class="invalid-feedback" style="text-align: right;"> الرجاء يجب إدخال عدد المقاعد </div>
 
                                     </div>
