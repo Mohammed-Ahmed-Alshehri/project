@@ -134,7 +134,7 @@
 
                                 <div class="col-sm-6">
 
-                                    <input class="form-control" id="filterInput" type="text" placeholder="البحث بواسطة الاسم أو الرقم الجامعي" aria-label="default input example"><br />
+                                    <input class="form-control" id="filterInput" type="text" placeholder="البحث بواسطة الاسم أو اسم الجامعة" aria-label="default input example"><br />
 
                                     <button class="btn  btn-outline-primary" type="submit" onclick="FillTableSearch()" style="background-color:#e6e291;color:black;border:0px;font-size:18px;">ابحث</button>
 
@@ -304,23 +304,24 @@
 
         function FillTableSearch() {
 
-            var NameOrNumber = document.getElementById("filterInput").value;
+            var Filter = document.getElementById("filterInput").value;
 
-            if (NameOrNumber == "") {
+            if (Filter == "") {
                 return;
             }
 
             var body = "";
 
+
+
             $(document).ready(function () {
 
                 $.ajax({
 
-                    url: "@Url.Action("GetStudentsByNameOrNumber")",
+                    url: "@Url.Action("GetStudentsListByFilter")",
                     type: 'GET',
-                    data: { filter: NameOrNumber },
                     dataType: "json",
-
+                    data: { id: @ViewBag.OpportunitiyId , filter: Filter },
 
                     success: function (data) {
 
@@ -328,17 +329,16 @@
 
 
 
-                            body += "<tr> <td class='text - nowrap'>  <div class='font - weight - 600'> <div class='font - weight - 600'> " + value.user.fullName + "</div></div></td>" +
-                                "<td class='text - center'>" + value.universityStudentNumber + "</td>"
-                                + "<td class='text - nowrap'> " + value.completedHours + "</td>"
+                            body += "<tr> <td class='text - nowrap'>  <div class='font - weight - 600'> <div class='font - weight - 600'> " + value.user.fullName + "</div></div></td>"
+                                + "<td class='text - nowrap'> " + value.department.universityCollege.organization.organizationName + "</td>"
+                                + "<td class='text - nowrap'> " + value.department.departmentName + "</td>"
                                 + "<td class='text - nowrap'> " + value.gender + "</td>"
+                                + "<td class='text - nowrap'> " + value.department.universityCollege.city.country.countryName + ", " + value.department.universityCollege.city.cityName + "</td>"
                                 + "<td class='text - nowrap'> " + value.gpa + "</td>"
-                                + "<td class='text - nowrap'>" + value.user.phone + "</td>"
-                                + "<td class='text - nowrap'>" + value.user.userEmail + "</td>"
-                                + "</tr>";
+                                + "<td class='text - nowrap'> " + '<a class="btn btn-outline-primary" href="//localhost:7122/Branch/OpportunitiesApplicantsDetail/?id=' + value.traineeId + '&Oid=' + @ViewBag.OpportunitiyId + ' " >تفاصيل الطلب</a>' + '</td></tr>';
 
 
-                            //console.log(value);
+
 
                         });
 
@@ -356,6 +356,7 @@
             });
 
         }
+
 
 
 

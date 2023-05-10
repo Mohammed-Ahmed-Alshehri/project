@@ -861,8 +861,23 @@ namespace TadarbProject.Controllers
                 return Json(new { success = false });
             }
 
+            if (op.AvailableOpportunities == 0)
+            {
+                TempData["error"] = "الفرصه مكتملة المقاعد";
+                return Json(new { success = false });
+            }
 
+            if (op.AbilityofSubmissionStatus.Equals("stop"))
+            {
+                TempData["error"] = "انتهى  تاريخ التسجيل في الفرصه";
+                return Json(new { success = false });
+            }
 
+            if (op.OpportunityStatus.Equals("complete"))
+            {
+                TempData["error"] = "الفرصه مكتملة المقاعد";
+                return Json(new { success = false });
+            }
 
             _DbContext.Database.ExecuteSqlRaw("UPDATE StudentRequestsOnOpportunities SET DecisionDate = GETDATE() , DecisionStatus = 'system disable' " +
                 $"WHERE Trainee_TraineeId = {Request.Trainee_TraineeId} AND StudentRequestOpportunityId != {Request.StudentRequestOpportunityId}");
@@ -1245,6 +1260,45 @@ namespace TadarbProject.Controllers
 
                 return Json(new { Students });
             }
+
+
+            return Json(new { Students });
+        }
+
+
+
+        [HttpGet]
+        public IActionResult GetStudentsListByFilter(int? id, string? filter)
+        {
+
+
+            IEnumerable<UniversityTraineeStudent> Students = Enumerable.Empty<UniversityTraineeStudent>();
+
+
+
+            Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE TraineeId IN " +
+                $"(SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities WHERE TrainingOpportunity_TrainingOpportunityId  ={id} AND DecisionStatus='waiting') " +
+                $"AND UserAccount_UserId IN (SELECT UserAccount_UserId FROM UserAcounts WHERE FullName = '{filter}' )")
+              .AsNoTracking().Include(item => item.user)
+              .AsNoTracking().Include(item => item.department.universityCollege.organization)
+              .AsNoTracking().Include(item => item.department.universityCollege.city.Country).ToList();
+
+
+            if (Students.Count() != 0)
+            {
+                return Json(new { Students });
+            }
+
+
+
+            Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw("SELECT * FROM UniversitiesTraineeStudents WHERE TraineeId IN " +
+                $"(SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities WHERE TrainingOpportunity_TrainingOpportunityId ={id} AND DecisionStatus='waiting') " +
+                $"AND Department_DepartmentId IN (SELECT Department_DepartmentId FROM Departments WHERE Organization_OrganizationId " +
+                $"IN( SELECT OrganizationId FROM Organizations WHERE OrganizationName = '{filter}'))")
+                .AsNoTracking().Include(item => item.user)
+                .AsNoTracking().Include(item => item.department.universityCollege.organization)
+                .AsNoTracking().Include(item => item.department.universityCollege.city.Country).ToList();
+
 
 
             return Json(new { Students });
