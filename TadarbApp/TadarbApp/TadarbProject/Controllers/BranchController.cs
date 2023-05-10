@@ -400,7 +400,7 @@ namespace TadarbProject.Controllers
 
             if (id != null || id != 0)
             {
-                TrainingOpportunityVM.StudentRequestsOnOpportunities= _DbContext.StudentRequestsOnOpportunities.Where(u => u.TrainingOpportunity_TrainingOpportunityId == id).AsNoTracking().FirstOrDefault();
+                TrainingOpportunityVM.StudentRequestsOnOpportunities = _DbContext.StudentRequestsOnOpportunities.Where(u => u.TrainingOpportunity_TrainingOpportunityId == id).AsNoTracking().FirstOrDefault();
 
                 TrainingOpportunityVM.TrainingOpportunity = _DbContext.TrainingOpportunities.Where(u => u.TrainingOpportunityId == id).AsNoTracking().FirstOrDefault();
 
@@ -468,7 +468,7 @@ namespace TadarbProject.Controllers
                 Opportunity.OpportunityStatus = "Available";
             }
 
-                Opportunity.OpportunityDescription = TrainingOpportunityVM.TrainingOpportunity.OpportunityDescription;
+            Opportunity.OpportunityDescription = TrainingOpportunityVM.TrainingOpportunity.OpportunityDescription;
 
 
             Opportunity.TrainingType_TrainingTypeId = TrainingOpportunityVM.TrainingOpportunity.TrainingType_TrainingTypeId;
@@ -501,7 +501,7 @@ namespace TadarbProject.Controllers
 
             _DbContext.SaveChanges();
             TempData["success"] = "تم تعديل الفرصة بنجاح ";
-   
+
             return RedirectToAction("ViewOpportunities");
 
 
@@ -798,7 +798,7 @@ namespace TadarbProject.Controllers
 
                 _DbContext.SaveChanges();
 
-                TempData["success"] = "تم رفض طلب المتدرب بنجاح ";
+                TempData["success"] = "تم رفض طلب المتدرب بنجاح";
                 return RedirectToAction("ViewOpportunities");
             }
 
@@ -830,6 +830,11 @@ namespace TadarbProject.Controllers
             }
 
 
+            if (Request.DecisionStatus == "approved")
+            {
+                TempData["error"] = "تم قبول الطالب مسبقا";
+                return Json(new { success = false });
+            }
 
             var op = _DbContext.TrainingOpportunities.Where(item => item.TrainingOpportunityId == Request.TrainingOpportunity_TrainingOpportunityId).AsNoTracking().FirstOrDefault();
 
@@ -873,6 +878,12 @@ namespace TadarbProject.Controllers
 
             if (Request == null)
             {
+                return Json(new { success = false });
+            }
+
+            if (Request.DecisionStatus == "approved")
+            {
+                TempData["error"] = "تم قبول الطالب مسبقا";
                 return Json(new { success = false });
             }
 
@@ -1206,85 +1217,171 @@ namespace TadarbProject.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetStudentsList(int? id, string? gr, int? UPOrDw)
+        public IActionResult GetStudentsList(int? id, string? gr, int? UPOrDw, int? ArOrWa)
         {
 
 
             IEnumerable<UniversityTraineeStudent> Students = Enumerable.Empty<UniversityTraineeStudent>();
 
-            if (gr == null && UPOrDw == 0)
+            if (ArOrWa == 0)
             {
+                if (gr == null && UPOrDw == 0)
+                {
 
-                Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE TraineeId IN " +
-               $"(SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities WHERE TrainingOpportunity_TrainingOpportunityId ={id} AND DecisionStatus='waiting')")
-                  .AsNoTracking().Include(item => item.user)
-                  .AsNoTracking().Include(item => item.department.universityCollege.organization)
-                  .AsNoTracking().Include(item => item.department.universityCollege.city.Country).ToList();
+                    Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE TraineeId IN " +
+                   $"(SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities WHERE TrainingOpportunity_TrainingOpportunityId ={id} AND DecisionStatus='waiting')")
+                      .AsNoTracking().Include(item => item.user)
+                      .AsNoTracking().Include(item => item.department.universityCollege.organization)
+                      .AsNoTracking().Include(item => item.department.universityCollege.city.Country).ToList();
 
-                return Json(new { Students });
+                    return Json(new { Students });
+                }
+
+                if (gr != null && UPOrDw == 0)
+                {
+
+                    Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE TraineeId IN " +
+                   $"(SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities WHERE TrainingOpportunity_TrainingOpportunityId ={id} AND DecisionStatus='waiting') AND Gender ='{gr}' ")
+                      .AsNoTracking().Include(item => item.user)
+                      .AsNoTracking().Include(item => item.department.universityCollege.organization)
+                      .AsNoTracking().Include(item => item.department.universityCollege.city.Country).ToList();
+
+                    return Json(new { Students });
+                }
+
+
+
+                if (gr != null && UPOrDw == 1)
+                {
+
+                    Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE TraineeId IN " +
+                   $"(SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities WHERE TrainingOpportunity_TrainingOpportunityId ={id} AND DecisionStatus='waiting' ) AND Gender ='{gr}' ")
+                      .AsNoTracking().Include(item => item.user)
+                      .AsNoTracking().Include(item => item.department.universityCollege.organization)
+                      .AsNoTracking().Include(item => item.department.universityCollege.city.Country).OrderBy(item => item.GPA).ToList();
+
+                    return Json(new { Students });
+                }
+
+                if (gr != null && UPOrDw == 2)
+                {
+
+                    Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE TraineeId IN " +
+                   $"(SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities WHERE TrainingOpportunity_TrainingOpportunityId ={id} AND DecisionStatus='waiting' ) AND Gender ='{gr}' ")
+                      .AsNoTracking().Include(item => item.user)
+                      .AsNoTracking().Include(item => item.department.universityCollege.organization)
+                      .AsNoTracking().Include(item => item.department.universityCollege.city.Country).OrderByDescending(item => item.GPA).ToList();
+
+                    return Json(new { Students });
+                }
+
+
+                if (gr == null && UPOrDw == 1)
+                {
+
+                    Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE TraineeId IN " +
+                   $"(SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities WHERE TrainingOpportunity_TrainingOpportunityId ={id} AND DecisionStatus='waiting') ")
+                      .AsNoTracking().Include(item => item.user)
+                      .AsNoTracking().Include(item => item.department.universityCollege.organization)
+                      .AsNoTracking().Include(item => item.department.universityCollege.city.Country).OrderBy(item => item.GPA).ToList();
+
+                    return Json(new { Students });
+                }
+
+                if (gr == null && UPOrDw == 2)
+                {
+
+                    Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE TraineeId IN " +
+                   $"(SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities WHERE TrainingOpportunity_TrainingOpportunityId ={id} AND DecisionStatus='waiting' ) ")
+                      .AsNoTracking().Include(item => item.user)
+                      .AsNoTracking().Include(item => item.department.universityCollege.organization)
+                      .AsNoTracking().Include(item => item.department.universityCollege.city.Country).OrderByDescending(item => item.GPA).ToList();
+
+                    return Json(new { Students });
+                }
+
             }
 
-            if (gr != null && UPOrDw == 0)
+
+
+            if (ArOrWa == 1)
             {
+                if (gr == null && UPOrDw == 0)
+                {
 
-                Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE TraineeId IN " +
-               $"(SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities WHERE TrainingOpportunity_TrainingOpportunityId ={id} AND DecisionStatus='waiting') AND Gender ='{gr}' ")
-                  .AsNoTracking().Include(item => item.user)
-                  .AsNoTracking().Include(item => item.department.universityCollege.organization)
-                  .AsNoTracking().Include(item => item.department.universityCollege.city.Country).ToList();
+                    Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE TraineeId IN " +
+                   $"(SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities WHERE TrainingOpportunity_TrainingOpportunityId ={id} AND DecisionStatus='approved')")
+                      .AsNoTracking().Include(item => item.user)
+                      .AsNoTracking().Include(item => item.department.universityCollege.organization)
+                      .AsNoTracking().Include(item => item.department.universityCollege.city.Country).ToList();
 
-                return Json(new { Students });
-            }
+                    return Json(new { Students });
+                }
 
+                if (gr != null && UPOrDw == 0)
+                {
 
+                    Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE TraineeId IN " +
+                   $"(SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities WHERE TrainingOpportunity_TrainingOpportunityId ={id} AND DecisionStatus='approved') AND Gender ='{gr}' ")
+                      .AsNoTracking().Include(item => item.user)
+                      .AsNoTracking().Include(item => item.department.universityCollege.organization)
+                      .AsNoTracking().Include(item => item.department.universityCollege.city.Country).ToList();
 
-            if (gr != null && UPOrDw == 1)
-            {
-
-                Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE TraineeId IN " +
-               $"(SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities WHERE TrainingOpportunity_TrainingOpportunityId ={id} AND DecisionStatus='waiting' ) AND Gender ='{gr}' ")
-                  .AsNoTracking().Include(item => item.user)
-                  .AsNoTracking().Include(item => item.department.universityCollege.organization)
-                  .AsNoTracking().Include(item => item.department.universityCollege.city.Country).OrderBy(item => item.GPA).ToList();
-
-                return Json(new { Students });
-            }
-
-            if (gr != null && UPOrDw == 2)
-            {
-
-                Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE TraineeId IN " +
-               $"(SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities WHERE TrainingOpportunity_TrainingOpportunityId ={id} AND DecisionStatus='waiting' ) AND Gender ='{gr}' ")
-                  .AsNoTracking().Include(item => item.user)
-                  .AsNoTracking().Include(item => item.department.universityCollege.organization)
-                  .AsNoTracking().Include(item => item.department.universityCollege.city.Country).OrderByDescending(item => item.GPA).ToList();
-
-                return Json(new { Students });
-            }
+                    return Json(new { Students });
+                }
 
 
-            if (gr == null && UPOrDw == 1)
-            {
 
-                Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE TraineeId IN " +
-               $"(SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities WHERE TrainingOpportunity_TrainingOpportunityId ={id} AND DecisionStatus='waiting') ")
-                  .AsNoTracking().Include(item => item.user)
-                  .AsNoTracking().Include(item => item.department.universityCollege.organization)
-                  .AsNoTracking().Include(item => item.department.universityCollege.city.Country).OrderBy(item => item.GPA).ToList();
+                if (gr != null && UPOrDw == 1)
+                {
 
-                return Json(new { Students });
-            }
+                    Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE TraineeId IN " +
+                   $"(SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities WHERE TrainingOpportunity_TrainingOpportunityId ={id} AND DecisionStatus='approved' ) AND Gender ='{gr}' ")
+                      .AsNoTracking().Include(item => item.user)
+                      .AsNoTracking().Include(item => item.department.universityCollege.organization)
+                      .AsNoTracking().Include(item => item.department.universityCollege.city.Country).OrderBy(item => item.GPA).ToList();
 
-            if (gr == null && UPOrDw == 2)
-            {
+                    return Json(new { Students });
+                }
 
-                Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE TraineeId IN " +
-               $"(SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities WHERE TrainingOpportunity_TrainingOpportunityId ={id} AND DecisionStatus='waiting' ) ")
-                  .AsNoTracking().Include(item => item.user)
-                  .AsNoTracking().Include(item => item.department.universityCollege.organization)
-                  .AsNoTracking().Include(item => item.department.universityCollege.city.Country).OrderByDescending(item => item.GPA).ToList();
+                if (gr != null && UPOrDw == 2)
+                {
 
-                return Json(new { Students });
+                    Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE TraineeId IN " +
+                   $"(SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities WHERE TrainingOpportunity_TrainingOpportunityId ={id} AND DecisionStatus='approved' ) AND Gender ='{gr}' ")
+                      .AsNoTracking().Include(item => item.user)
+                      .AsNoTracking().Include(item => item.department.universityCollege.organization)
+                      .AsNoTracking().Include(item => item.department.universityCollege.city.Country).OrderByDescending(item => item.GPA).ToList();
+
+                    return Json(new { Students });
+                }
+
+
+                if (gr == null && UPOrDw == 1)
+                {
+
+                    Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE TraineeId IN " +
+                   $"(SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities WHERE TrainingOpportunity_TrainingOpportunityId ={id} AND DecisionStatus='approved') ")
+                      .AsNoTracking().Include(item => item.user)
+                      .AsNoTracking().Include(item => item.department.universityCollege.organization)
+                      .AsNoTracking().Include(item => item.department.universityCollege.city.Country).OrderBy(item => item.GPA).ToList();
+
+                    return Json(new { Students });
+                }
+
+                if (gr == null && UPOrDw == 2)
+                {
+
+                    Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE TraineeId IN " +
+                   $"(SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities WHERE TrainingOpportunity_TrainingOpportunityId ={id} AND DecisionStatus='approved' ) ")
+                      .AsNoTracking().Include(item => item.user)
+                      .AsNoTracking().Include(item => item.department.universityCollege.organization)
+                      .AsNoTracking().Include(item => item.department.universityCollege.city.Country).OrderByDescending(item => item.GPA).ToList();
+
+                    return Json(new { Students });
+                }
+
+
             }
 
 

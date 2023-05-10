@@ -129,15 +129,21 @@
                                 <h4 class="card-title float-start">
                                 </h4>
                                 <div class="table-search float-start">
-                                    <button class="btn  btn-info" type="submit" onclick="Clear()" style="color:black;border:0px;font-size:18px;background-color:lightblue">ظهور الكل</button>
+                                    <button class="btn  btn-info" type="submit" onclick="Clear()" style="color:black;border:0px;font-size:18px;background-color:lightblue">الطلاب المتقدمين</button>
                                 </div>
 
-                                <div class="col-sm-6">
+                                <div class="col-6">
 
-                                    <input class="form-control" id="filterInput" type="text" placeholder="البحث بواسطة الاسم أو اسم الجامعة" aria-label="default input example"><br />
 
-                                    <button class="btn  btn-outline-primary" type="submit" onclick="FillTableSearch()" style="background-color:#e6e291;color:black;border:0px;font-size:18px;">ابحث</button>
+                                    <div class="input-group mb-3">
+                                        <input id="filterInput" type="text" class="form-control rounded-end" placeholder="البحث بواسطة الاسم أو اسم الجامعة" aria-label="Recipient's username" aria-describedby="button-addon2">
+                                        &nbsp;
 
+                                        <button class="btn btn-primary rounded-start" type="submit" onclick="FillTableSearch()" style="background-color:#e6e291;color:black;border:0px;font-size:18px;">
+                                            ابحث
+                                            <i class="fa-solid fa-magnifying-glass"></i>
+                                        </button>
+                                    </div>
 
                                     <div class="btn-group " role="group" aria-label="Basic radio toggle button group" style:"font-size:18px">
 
@@ -156,7 +162,18 @@
                                         <label class="btn btn-outline-primary" for="btnradio4" style="display:none"></label>
 
                                     </div>
+
+
+
                                 </div>
+
+
+                                <div class="float-start ">
+                                    <button class="btn  btn-info" type="submit" onclick="Changetype2(1)" style="color:black;border:0px;font-size:18px;background-color:lightblue">الطلاب المقبولين</button>
+                                </div>
+
+
+
 
                             </div>
 
@@ -224,16 +241,16 @@
 
 
         var type = 0;
+        var type2 = 0;
         var Gender = "";
 
-        FillTable(Gender, type);
-
+        FillTable(Gender, type, type2);
 
         function ChangeGender(v) {
 
             Gender = v;
 
-            FillTable(Gender, type);
+            FillTable(Gender, type, type2);
         }
 
 
@@ -241,20 +258,28 @@
 
             type = x;
 
-            FillTable(Gender, type);
+            FillTable(Gender, type, type2);
+        }
+
+        function Changetype2(x) {
+
+            type2 = x;
+
+            FillTable(Gender, type, type2);
         }
 
         function Clear() {
 
 
             type = 0;
+            type2 = 0;
             Gender = "";
 
 
-            FillTable(Gender, type);
+            FillTable(Gender, type, type2);
         }
 
-        function FillTable(gender, Updw) {
+        function FillTable(gender, Updw , AOrW) {
 
             var body = "";
 
@@ -265,7 +290,7 @@
                     url: "@Url.Action("GetStudentsList")",
                     type: 'GET',
                     dataType: "json",
-                    data: { id: @ViewBag.OpportunitiyId , gr: gender, UPOrDw: Updw },
+                    data: { id: @ViewBag.OpportunitiyId , gr: gender, UPOrDw: Updw, ArOrWa: AOrW },
 
                     success: function (data) {
 
