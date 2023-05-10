@@ -16,8 +16,11 @@
 
 <partial name="_Notification" />
 <body style="background: linear-gradient(#1c4c64,#5590ad); ">
+
     <div class="row">
+
         <div class="col-sm-2" style="z-index:2;">
+
             <div class="vertical-nav bg-white" id="sidebar">
                 <div class="py-4 px-3 mb-4 bg-light">
                     <div class="media d-flex align-items-center">
@@ -30,6 +33,7 @@
                 <h5> مرحبا بك @ViewBag.Username </h5>
 
                 <p class="text-gray font-weight-bold text-uppercase px-3 small pb-4 mb-0">القائمة</p>
+
 
                 <ul class="nav flex-column bg-white mb-0">
                     <li class="nav-item">
@@ -52,6 +56,7 @@
                         </a>
                     </li>
 
+
                     <li class="nav-item">
                         <a asp-controller="branch" asp-action="ViewDepartmentFiledSpecialties" class="nav-link text-dark font-italic ">
                             <i class="fa-solid fa-book-open-reader text-primary"></i>
@@ -66,7 +71,11 @@
                         </a>
                     </li>
 
+
                 </ul>
+
+
+
 
             </div>
 
@@ -81,11 +90,10 @@
 
         </div>
 
-        <div class="col-sm-8" >
+        <div class="col-sm-8">
 
-            <form asp-action="AcceptReject" method="post">
+            <form method="post">
                 <div class="card  container ">
-                    <input asp-for="@Model.StudentRequestOpportunityId" hidden />
 
                     <div class="card-body row ">
                         <div class="container">
@@ -100,7 +108,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-12 col-lg-3 offset-lg-1 text-center">
-                                    <img src="~/@Model.student.department.universityCollege.organization.LogoPath" title="" alt="" style="position:center; width:70%; height:auto">
+                                    <img src="~/@Model.student.department.universityCollege.organization.LogoPath" title="" alt="" style="position:center; width:100%; height:auto">
                                 </div>
                                 <div class="col-8 col-lg-8">
 
@@ -234,22 +242,14 @@
                                 <br />
                                 <input asp-for="student.TraineeId" hidden />
 
-                                <input asp-for="@Model.StudentRequestOpportunityId" hidden />
-                                <input asp-for="@Model.Trainee_TraineeId" hidden />
-                                <input asp-for="@Model.TrainingOpportunity_TrainingOpportunityId" hidden />
-
-
-                                <input asp-for="TrainingOpportunity_TrainingOpportunityId" hidden />
-
-
                                 <div class="form-group text-xxl-center">
 
-                                    <button type="submit" asp style="font-size:20px" value="accept" name="desison" class="btn btn-success btn-lg">قبول</button>
+                                    <button type="button" onclick="Accept(@Model.StudentRequestOpportunityId)" style="font-size:20px" class="btn btn-primary btn-lg">قبول</button>
 
                                     &nbsp;&nbsp;
-                                    <button type="submit" asp style="font-size:20px" value="reject" name="desison" class="btn btn-danger btn-lg">رفض</button>
+                                    <button type="button" onclick="Reject(@Model.StudentRequestOpportunityId)" style="font-size:20px" class="btn btn-primary btn-lg">رفض</button>
                                     &nbsp;&nbsp;
-                                    <button type="submit" asp style="font-size:20px" asp-action="index" class="btn btn-secondary btn-lg">الرجوع الى الخلف</button>
+                                    <button type="submit" style="font-size:20px" class="btn btn-primary btn-lg">الرجوع الى الخلف</button>
                                 </div>
 
                             </div>
@@ -311,6 +311,72 @@
 
         }
 
+        function Accept(RID) {
+
+
+            $.ajax({
+                url: "@Url.Action("Accept")",
+                type: 'POST',
+                data: { Rid: RID },
+
+                success: function (data) {
+
+                    if (data.success) {
+
+
+
+                        window.location.replace(`//localhost:7122/Branch/OpportunitiesApplicants?id=@Model.TrainingOpportunity_TrainingOpportunityId`);
+
+
+
+                    }
+                    else {
+
+                        // toastr.error(data.message);
+                    }
+
+
+                }
+
+
+            });
+
+
+        }
+
+
+        function Reject(RID) {
+
+
+            $.ajax({
+                url: "@Url.Action("Reject")",
+                type: 'POST',
+                data: { Rid: RID },
+
+                success: function (data) {
+
+                    if (data.success) {
+
+
+
+                        window.location.replace(`//localhost:7122/Branch/OpportunitiesApplicants?id=@Model.TrainingOpportunity_TrainingOpportunityId`);
+
+
+
+                    }
+                    else {
+
+                        // toastr.error(data.message);
+                    }
+
+
+                }
+
+
+            });
+
+
+        }
 
     </script>
 

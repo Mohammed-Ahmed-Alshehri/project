@@ -328,7 +328,7 @@ namespace TadarbProject.Controllers
 
             var reqoper = _DbContext.StudentRequestsOnOpportunities.Where(item => item.Trainee_TraineeId == UnverTre.TraineeId && item.TrainingOpportunity_TrainingOpportunityId == opert.TrainingOpportunityId).FirstOrDefault();
 
-            var studentreq = _DbContext.StudentRequestsOnOpportunities.Where(item => item.Trainee_TraineeId == UnverTre.TraineeId ).FirstOrDefault();
+            var studentreq = _DbContext.StudentRequestsOnOpportunities.Where(item => item.Trainee_TraineeId == UnverTre.TraineeId).FirstOrDefault();
 
             if (reqoper != null)
             {
@@ -336,13 +336,14 @@ namespace TadarbProject.Controllers
 
                 return RedirectToAction("ViewOpportunities");
             }
-            if(studentreq != null) { 
-            if (studentreq.DecisionStatus != "waiting")
+            if (studentreq != null)
             {
-                TempData["error"] = "تم قبولك بفرصة اخرى لا تستطيع التفديم ";
+                if (studentreq.DecisionStatus != "waiting")
+                {
+                    TempData["error"] = "تم قبولك بفرصة اخرى لا تستطيع التفديم ";
 
-                return RedirectToAction("ViewOpportunities");
-            }
+                    return RedirectToAction("ViewOpportunities");
+                }
             }
             var RequestOpportunity = new StudentRequestOpportunity
             {
