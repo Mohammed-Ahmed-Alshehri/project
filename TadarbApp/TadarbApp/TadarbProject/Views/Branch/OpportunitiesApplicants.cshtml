@@ -30,6 +30,10 @@
         right: 253px;
         top: 65px;
     }
+
+
+
+
 </style>
 
 <partial name="_Notification" />
@@ -129,7 +133,7 @@
                                 <h4 class="card-title float-start">
                                 </h4>
                                 <div class="table-search float-start">
-                                    <button class="btn  btn-info" type="submit" onclick="Clear()" style="color:black;border:0px;font-size:18px;background-color:lightblue">الطلاب المتقدمين</button>
+                                    <button class="btn   selected" type="submit" onclick="Clear()" style="background-color:lightblue">الطلاب المتقدمين</button>
                                 </div>
 
                                 <div class="col-6">
@@ -139,10 +143,11 @@
                                         <input id="filterInput" type="text" class="form-control rounded-end" placeholder="البحث بواسطة الاسم أو اسم الجامعة" aria-label="Recipient's username" aria-describedby="button-addon2">
                                         &nbsp;
 
-                                        <button class="btn btn-primary rounded-start" type="submit" onclick="FillTableSearch()" style="background-color:#e6e291;color:black;border:0px;font-size:18px;">
+                                        <button class="btn btn-primary rounded-start" type="submit" onclick="Search()" style="background-color:#e6e291;color:black;border:0px;font-size:18px;">
                                             ابحث
                                             <i class="fa-solid fa-magnifying-glass"></i>
                                         </button>
+
                                     </div>
 
                                     <div class="btn-group " role="group" aria-label="Basic radio toggle button group" style:"font-size:18px">
@@ -167,9 +172,17 @@
 
                                 </div>
 
+                           
+
+                                <div class="float-end  mt-2" dir="rtl" >
+
+                                   عدد الطلاب:
+                                   <p id="STCOUNT" style="display:inline"></p>
+                                </div>
+
 
                                 <div class="float-start ">
-                                    <button class="btn  btn-info" type="submit" onclick="Changetype2(1)" style="color:black;border:0px;font-size:18px;background-color:lightblue">الطلاب المقبولين</button>
+                                    <button class="btn  " type="submit" onclick="Changetype2(1)" style="background-color:lightblue">الطلاب المقبولين</button>
                                 </div>
 
 
@@ -279,10 +292,10 @@
             FillTable(Gender, type, type2);
         }
 
-        function FillTable(gender, Updw , AOrW) {
+        function FillTable(gender, Updw, AOrW) {
 
             var body = "";
-
+            var c = 0;
             $(document).ready(function () {
 
                 $.ajax({
@@ -304,16 +317,26 @@
                                 + "<td class='text - nowrap'> " + value.gender + "</td>"
                                 + "<td class='text - nowrap'> " + value.department.universityCollege.city.country.countryName + ", " + value.department.universityCollege.city.cityName + "</td>"
                                 + "<td class='text - nowrap'> " + value.gpa + "</td>"
-                                + "<td class='text - nowrap'> " + '<a class="btn btn-outline-primary" href="//localhost:7122/Branch/OpportunitiesApplicantsDetail/?id=' + value.traineeId + '&Oid=' + @ViewBag.OpportunitiyId + ' " >تفاصيل الطلب</a>' + '</td></tr>';
+                                + "<td class='text - nowrap'> " + '<a class="btn btn-outline-primary" href="//localhost:7122/Branch/OpportunitiesApplicantsDetail/?id=' + value.traineeId + '&Oid=' + @ViewBag.OpportunitiyId + ' " >تفاصيل الطلب</a>' + '</td></tr>'
+                                + "";
 
 
+                            if (key == 0) {
+                                c = 1;
+                            } else {
+                                c = key + 1;
+                            }
 
 
                         });
 
 
-
                         $("#Tbody").html(body);
+
+                    
+
+                        $("#STCOUNT").html(c);
+                        
 
 
 
@@ -327,7 +350,7 @@
         }
 
 
-        function FillTableSearch() {
+        function Search() {
 
             var Filter = document.getElementById("filterInput").value;
 
@@ -335,8 +358,15 @@
                 return;
             }
 
-            var body = "";
+            FillTableSearch(Filter, type2);
+        }
 
+
+
+        function FillTableSearch(fil, AOrW) {
+
+            var body = "";
+            var c = 0;
 
 
             $(document).ready(function () {
@@ -346,7 +376,7 @@
                     url: "@Url.Action("GetStudentsListByFilter")",
                     type: 'GET',
                     dataType: "json",
-                    data: { id: @ViewBag.OpportunitiyId , filter: Filter },
+                    data: { id: @ViewBag.OpportunitiyId , ArOrWa: AOrW, filter: fil },
 
                     success: function (data) {
 
@@ -363,11 +393,21 @@
                                 + "<td class='text - nowrap'> " + '<a class="btn btn-outline-primary" href="//localhost:7122/Branch/OpportunitiesApplicantsDetail/?id=' + value.traineeId + '&Oid=' + @ViewBag.OpportunitiyId + ' " >تفاصيل الطلب</a>' + '</td></tr>';
 
 
-
-
+                            if (key == 0)
+                            {
+                                c = 1;
+                            }else{
+                                c = key+1;
+                            }
+                            
+                            
                         });
 
+                      
+                       
 
+                        $("#STCOUNT").html(c);
+                       
 
                         $("#Tbody").html(body);
 

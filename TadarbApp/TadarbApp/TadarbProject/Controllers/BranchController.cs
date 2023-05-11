@@ -402,7 +402,8 @@ namespace TadarbProject.Controllers
             {
                 TrainingOpportunityVM.StudentRequestsOnOpportunities = _DbContext.StudentRequestsOnOpportunities.Where(u => u.TrainingOpportunity_TrainingOpportunityId == id).AsNoTracking().FirstOrDefault();
 
-                TrainingOpportunityVM.TrainingOpportunity = _DbContext.TrainingOpportunities.Where(u => u.TrainingOpportunityId == id).AsNoTracking().FirstOrDefault();
+                TrainingOpportunityVM.TrainingOpportunity = _DbContext.TrainingOpportunities.Where(u => u.TrainingOpportunityId == id)
+                    .Include(item => item.Department).Include(item => item.DetailFiled).AsNoTracking().FirstOrDefault();
 
 
                 TrainingOpportunityVM.DepartmentListItems = _DbContext.Departments.FromSqlRaw($"SELECT * FROM Departments WHERE Responsible_UserId  = {Branch.Responsible_UserId} AND DepartmentName !='قسم ادارة مشرفين التدريب';")
@@ -447,26 +448,28 @@ namespace TadarbProject.Controllers
             var Opportunity = _DbContext.TrainingOpportunities.Where(u => u.TrainingOpportunityId == TrainingOpportunityVM.TrainingOpportunity.TrainingOpportunityId).AsNoTracking().FirstOrDefault();
 
 
-            var newavilabenow = Opportunity.AvailableOpportunities + TrainingOpportunityVM.TrainingOpportunity.AvailableOpportunities;
-            var totalseatupdate = Opportunity.TotalNumberOfSeats + TrainingOpportunityVM.TrainingOpportunity.AvailableOpportunities;
 
-            if (newavilabenow < 0)
+            if (TrainingOpportunityVM.TrainingOpportunity.AvailableOpportunities < 0)
             {
                 TempData["error"] = "عذرا لا تستطيع تقليل عدد المقاعد المتاحة لهذا الحد  ";
 
                 return RedirectToAction("ViewOpportunities");
             }
 
-            if (newavilabenow == 0)
-            {
-                Opportunity.OpportunityStatus = "Complete";
 
-            }
-
-            if (Opportunity.AvailableOpportunities < 1)
+            if (Opportunity.AvailableOpportunities == 0 && TrainingOpportunityVM.TrainingOpportunity.AvailableOpportunities > 0)
             {
                 Opportunity.OpportunityStatus = "Available";
+
             }
+
+            if (Opportunity.AvailableOpportunities > 0 && TrainingOpportunityVM.TrainingOpportunity.AvailableOpportunities == 0)
+            {
+                Opportunity.OpportunityStatus = "Complete";
+            }
+
+            var totalseatupdate = Opportunity.TotalNumberOfSeats + TrainingOpportunityVM.TrainingOpportunity.AvailableOpportunities;
+
 
             Opportunity.OpportunityDescription = TrainingOpportunityVM.TrainingOpportunity.OpportunityDescription;
 
@@ -478,7 +481,7 @@ namespace TadarbProject.Controllers
 
             Opportunity.TotalNumberOfSeats = totalseatupdate;
 
-            Opportunity.AvailableOpportunities = newavilabenow;
+            Opportunity.AvailableOpportunities = TrainingOpportunityVM.TrainingOpportunity.AvailableOpportunities;
 
             Opportunity.MinimumHours = TrainingOpportunityVM.TrainingOpportunity.MinimumHours;
 
@@ -1391,36 +1394,71 @@ namespace TadarbProject.Controllers
 
 
         [HttpGet]
-        public IActionResult GetStudentsListByFilter(int? id, string? filter)
+        public IActionResult GetStudentsListByFilter(int? id, int? ArOrWa, string? filter)
         {
 
 
             IEnumerable<UniversityTraineeStudent> Students = Enumerable.Empty<UniversityTraineeStudent>();
 
 
-
-            Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE TraineeId IN " +
-                $"(SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities WHERE TrainingOpportunity_TrainingOpportunityId  ={id} AND DecisionStatus='waiting') " +
-                $"AND UserAccount_UserId IN (SELECT UserAccount_UserId FROM UserAcounts WHERE FullName = '{filter}' )")
-              .AsNoTracking().Include(item => item.user)
-              .AsNoTracking().Include(item => item.department.universityCollege.organization)
-              .AsNoTracking().Include(item => item.department.universityCollege.city.Country).ToList();
-
-
-            if (Students.Count() != 0)
+            if (ArOrWa == 0)
             {
+                Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE TraineeId IN " +
+                $"(SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities WHERE TrainingOpportunity_TrainingOpportunityId  ={id} AND DecisionStatus='waiting') " +
+                $"AND UserAccount_UserId IN (SELECT UserId FROM UserAcounts WHERE FullName = '{filter}' )")
+                .AsNoTracking().Include(item => item.user)
+                .AsNoTracking().Include(item => item.department.universityCollege.organization)
+                .AsNoTracking().Include(item => item.department.universityCollege.city.Country).ToList();
+
+
+                if (Students.Count() != 0)
+                {
+                    return Json(new { Students });
+                }
+
+
+
+                Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw("SELECT * FROM UniversitiesTraineeStudents WHERE TraineeId IN " +
+                    $"(SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities WHERE TrainingOpportunity_TrainingOpportunityId ={id} AND DecisionStatus='waiting') " +
+                    $"AND Department_DepartmentId IN (SELECT Department_DepartmentId FROM Departments WHERE Organization_OrganizationId " +
+                    $"IN( SELECT OrganizationId FROM Organizations WHERE OrganizationName = '{filter}'))")
+                    .AsNoTracking().Include(item => item.user)
+                    .AsNoTracking().Include(item => item.department.universityCollege.organization)
+                    .AsNoTracking().Include(item => item.department.universityCollege.city.Country).ToList();
+
                 return Json(new { Students });
             }
 
 
 
-            Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw("SELECT * FROM UniversitiesTraineeStudents WHERE TraineeId IN " +
-                $"(SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities WHERE TrainingOpportunity_TrainingOpportunityId ={id} AND DecisionStatus='waiting') " +
-                $"AND Department_DepartmentId IN (SELECT Department_DepartmentId FROM Departments WHERE Organization_OrganizationId " +
-                $"IN( SELECT OrganizationId FROM Organizations WHERE OrganizationName = '{filter}'))")
+            if (ArOrWa == 1)
+            {
+                Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE TraineeId IN " +
+                $"(SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities WHERE TrainingOpportunity_TrainingOpportunityId  ={id} AND DecisionStatus='approved') " +
+                $"AND UserAccount_UserId IN (SELECT UserId FROM UserAcounts WHERE FullName = '{filter}' )")
                 .AsNoTracking().Include(item => item.user)
                 .AsNoTracking().Include(item => item.department.universityCollege.organization)
                 .AsNoTracking().Include(item => item.department.universityCollege.city.Country).ToList();
+
+
+                if (Students.Count() != 0)
+                {
+                    return Json(new { Students });
+                }
+
+
+
+                Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw("SELECT * FROM UniversitiesTraineeStudents WHERE TraineeId IN " +
+                    $"(SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities WHERE TrainingOpportunity_TrainingOpportunityId ={id} AND DecisionStatus='approved') " +
+                    $"AND Department_DepartmentId IN (SELECT Department_DepartmentId FROM Departments WHERE Organization_OrganizationId " +
+                    $"IN( SELECT OrganizationId FROM Organizations WHERE OrganizationName = '{filter}'))")
+                    .AsNoTracking().Include(item => item.user)
+                    .AsNoTracking().Include(item => item.department.universityCollege.organization)
+                    .AsNoTracking().Include(item => item.department.universityCollege.city.Country).ToList();
+
+                return Json(new { Students });
+
+            }
 
 
 

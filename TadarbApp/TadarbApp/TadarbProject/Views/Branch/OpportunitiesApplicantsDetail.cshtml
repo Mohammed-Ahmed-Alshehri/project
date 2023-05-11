@@ -249,7 +249,7 @@
                                     &nbsp;&nbsp;
                                     <button type="button" onclick="Reject(@Model.StudentRequestOpportunityId)" style="font-size:20px" class="btn btn-primary btn-lg">رفض</button>
                                     &nbsp;&nbsp;
-                                    <button type="submit" style="font-size:20px" class="btn btn-primary btn-lg">الرجوع الى الخلف</button>
+                                    <button type="button" onclick="GoBack()" style="font-size:20px" class="btn btn-primary btn-lg">الرجوع الى الخلف</button>
                                 </div>
 
                             </div>
@@ -376,6 +376,12 @@
             });
 
 
+        }
+
+
+        function GoBack()
+        {
+            window.location.replace(`//localhost:7122/Branch/OpportunitiesApplicants?id=@Model.TrainingOpportunity_TrainingOpportunityId`);
         }
 
     </script>
