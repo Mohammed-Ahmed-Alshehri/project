@@ -57,7 +57,7 @@
                         </div>
 
                     </li>
-                   
+
                     <li class="nav-item">
                         <a asp-controller="" asp-action="" class="nav-link text-dark font-italic ">
                             <i class="fa fa-address-card mr-3 text-primary fa-fw"></i>
@@ -179,7 +179,7 @@
                                     </div>
                                     <br /><br />
 
-                                    
+
 
                                 </div>
 
@@ -209,11 +209,13 @@
 
 
 
-                                
+
                                 <div class="form-group  text-xxl-center">
 
-                                    <button type="submit" asp-controller="Student" asp-action="RequsetOnOpportunity" asp style="font-size:20px" class="btn btn-primary btn-lg">التسجيل بالفرصة</button>
+                                    <button id="ActualButton" type="submit" asp-controller="Student" asp-action="RequsetOnOpportunity" style="font-size:20px;  display:none" class="btn btn-primary btn-lg">التسجيل بالفرصة</button>
 
+
+                                    <button type="button" style="font-size:20px;" class="btn btn-primary btn-lg" onclick="confirm()">التسجيل بالفرصة</button>
                                     &nbsp;&nbsp;
 
                                     <button type="submit" asp-controller="Student" asp-action="Index" class=" btn  btn-lg" style="background-color:#B8B474; color:black;  font-size:20px; border-radius:40;">الرجوع للخلف</button>
@@ -280,9 +282,36 @@
             marker = new google.maps.Marker({
                 position: MapLatAndLng,
                 map,
-                title: "موقعك الحالي",
+                title: "موقع مكان التدريب",
             });
 
+        }
+
+
+        function c() {
+            var bt = document.getElementById("ActualButton");
+
+            bt.click()
+        }
+
+        function confirm() {
+
+            Swal.fire({
+                title: 'تاكيد التسجيل',
+                text: "",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'نعم , تاكيد التسجيل !',
+                cancelButtonText: 'الغاء'
+            }).then((result) => {
+
+                if (result.isConfirmed) {
+                    c();
+                }
+
+            })
         }
 
     </script>

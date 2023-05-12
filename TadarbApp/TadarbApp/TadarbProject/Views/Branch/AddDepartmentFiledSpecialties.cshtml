@@ -235,9 +235,9 @@
                 allSelect.push(item.value);
             });
 
-            //  console.log(allSelect.toString().length);
+            //console.log(allSelect.toString()[allSelect.toString().indexOf(',') -1 ])
 
-            if (allSelect.toString()[allSelect.toString().indexOf(',') + 1] == null) {
+            if (allSelect.toString()[allSelect.toString().indexOf(',') + 1] == null || allSelect.toString()[allSelect.toString().indexOf(',') - 1] == null) {
 
                 return;
             }

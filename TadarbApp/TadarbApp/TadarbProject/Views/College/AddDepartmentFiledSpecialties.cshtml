@@ -235,7 +235,7 @@
 
             //console.log(allSelect.toString()[allSelect.toString().indexOf(',')+1] == null);
 
-            if (allSelect.toString()[allSelect.toString().indexOf(',') + 1] == null) {
+            if (allSelect.toString()[allSelect.toString().indexOf(',') + 1] == null || allSelect.toString()[allSelect.toString().indexOf(',') - 1] == null) {
 
                 return;
             }
