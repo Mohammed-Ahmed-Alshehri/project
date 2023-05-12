@@ -1,4 +1,6 @@
-﻿@{
+﻿@model Employee
+
+@{
     ViewData["Title"] = "الصفحة الرئيسية";
 }
 
@@ -72,48 +74,78 @@
 
         </div>
 
-        <div class="col-sm-6">
-            <div class="row">
+  
+         <form asp-action="EditAccount" method="get">
+            <div class="card-body row container">
+                <div class="container rounded p-3">
+                    <div class="row">
 
-                <div class="col-md-6 mb-4 pb-2">
-                    <div class="card text-white bg-warning mb-3 text-center" style="max-width: 30rem; ">
-                        <div class="card-header" style="font-size:25px">  طلبات الالحتاق</div>
-                        <div class="card-body">
-                            <h class="card-title" style="font-size:50px">60</h>
-                            <p class="card-text"></p>
+                        <button class="btn " style="text-align: right;" type="submit">  <i class="fa-solid fa-user-gear fa-2x"></i></button>
+                        <div class="col-12 col-lg-1 offset-lg-1 text-center">
+                        </div>
+                        <div class="col-12 col-lg-12">
+
+                            <div class="row text-center pl-2 " style="font-size:25px">
+                                <div class="p-1 col-4 bg-secondary border-bottom">
+                                    <div>اسم المشرف:</div>
+                                </div>
+                                
+                                <div class="p-1 col-4 bg-secondary border-bottom">
+                                    <div>الرقم الوظيفي : </div>
+                                </div>
+
+
+                            </div>
+
+                            <div class="row text-center pl-2" style="color:black; background-color:#C0C0C0
+; font-weight:bold; font-size:19px">
+                                <div class="p-1 col-4 ">
+                                    <div>@Model.userAcount.FullName</div>
+                                </div>
+                               
+                                <div class="p-1 col-4 ">
+                                    <div>@Model.SSN</div>
+                                </div>
+
+                            </div>
+                            <div class="row text-center pl-2 " style="font-size:25px">
+                            <div class="p-1 col-4 bg-secondary border-bottom">
+                                <div>البريد الالكتروني :</div>
+                            </div>
+                                <div class="p-1 col-4 bg-secondary border-bottom">
+                                    <div>القسم :</div>
+                                </div>
+                              
+
+
+                            </div>
+
+                            <div class="row text-center pl-4" style="color:black; background-color:#C0C0C0; font-weight:bold; font-size:19px">
+                            <div class="p-1 col-4 ">
+                                <div>@Model.userAcount.UserEmail</div>
+                            </div>
+                                <div class="p-1 col-4 ">
+                                    <div>@Model.department.DepartmentName</div>
+                                </div>
+                               
+
+                            </div>
+
+
+                       
+
                         </div>
                     </div>
-
-                    <div class="card text-white bg-info mb-3 text-center" style="max-width: 30rem;">
-                        <div class="card-header" style="font-size:25px">الفرص المتاحة</div>
-                        <div class="card-body">
-                            <h class="card-title" style="font-size:50px">60</h>
-                            <p class="card-text"></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 mb-4 pb-2">
-                    <div class="card bg-light mb-3 text-center" style="max-width: 30rem; ">
-                        <div class="card-header" style="font-size:25px">طلاب تم تدريبهم </div>
-                        <div class="card-body">
-                            <h class="card-title" style="font-size:50px">60</h>
-                            <p class="card-text"></p>
-                        </div>
-                    </div>
-
-                    <div class="card text-white bg-dark mb-3 text-center" style="max-width: 30rem;">
-                        <div class="card-header" style="font-size:25px">طلاب قيد التدريب </div>
-                        <div class="card-body">
-                            <h class="card-title" style="font-size:50px">60</h>
-                            <p class="card-text"></p>
-                        </div>
-                    </div>
-
                 </div>
             </div>
 
+
+
             <div class="col-sm-2"></div>
-        </div>
+        
+        </form>
+    </div>
+
     </div>
 </body>
 @section Scripts{

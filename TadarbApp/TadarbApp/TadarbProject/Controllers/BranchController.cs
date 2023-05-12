@@ -142,7 +142,7 @@ namespace TadarbProject.Controllers
                 Phone = employeeVM.userAcount.Phone,
                 City_CityId = Branch.City_CityId,
                 UserType = "Training_Supervisor",
-                ActivationStatus = "Active"
+                ActivationStatus = "Not_Active"
 
             };
 

@@ -176,13 +176,13 @@
 
                                     <div class="row text-center pl-4" style="color:black; background-color:#C0C0C0; font-weight:bold; font-size:19px">
                                         <div class="p-1 col-4 ">
-                                            <div>4.9</div>
+                                            <div>@Model.GPA</div>
                                         </div>
                                         <div class="p-1 col-4 ">
-                                            <div>150</div>
+                                            <div>@Model.CompletedHours</div>
                                         </div>
                                         <div class="p-1 col-4 ">
-                                            <div>المدينة المنورة</div>
+                                            <div>@Model.user.City.Country.CountryName , @Model.user.City.CityName</div>
                                         </div>
 
                                     </div>
