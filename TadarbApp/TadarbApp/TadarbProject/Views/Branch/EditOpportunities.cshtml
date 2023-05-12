@@ -235,33 +235,7 @@
                                 </div>
                             </div>
 
-                            <div class=" col-md-6 mb-2 pb-2">
-                                <i class="fa-regular fa-calendar-days"></i>
-                                <label for="3" class="form-label mt-4" style="font-size:20px;">تاريخ بداية الفرصة</label> <br />
-                                <div>
-                                    <input placeholder="Select date" asp-for="@Model.TrainingOpportunity.StartDate" type="date" id="example" class="form-control">
-
-                                </div>
-                                <div class="invalid-feedback">
-                                    الرجاء  تحديد وقت البداية
-                                </div>
-
-                            </div>
-
-
-
-                            <div class=" col-md-6 mb-2 pb-2">
-                                <i class="fa-regular fa-calendar-days"></i>
-                                <label for="3" class="form-label mt-4" style="font-size:20px;">تاريخ نهاية الفرصة</label> <br />
-                                <div>
-                                    <input placeholder="Select date" asp-for="@Model.TrainingOpportunity.EndDate" type="date" id="example" class="form-control">
-
-                                </div>
-                                <div class="invalid-feedback">
-                                    الرجاء  تحديد وقت النهاية
-                                </div>
-
-                            </div>
+                           
 
                             <div class=" col-md-6 mb-2 pb-2">
                                 <i class="fa-regular fa-calendar-days"></i>
@@ -291,6 +265,34 @@
 
                             </div>
 
+                            <div class=" col-md-6 mb-2 pb-2">
+                                <i class="fa-regular fa-calendar-days"></i>
+                                <label for="3" class="form-label mt-4" style="font-size:20px;">تاريخ بداية التدريب</label> <br />
+                                <div>
+                                    <input placeholder="Select date" asp-for="@Model.TrainingOpportunity.StartDate" type="date" id="example" class="form-control">
+
+                                </div>
+                                <div class="invalid-feedback">
+                                    الرجاء  تحديد وقت البداية
+                                </div>
+
+                            </div>
+
+
+
+                            <div class=" col-md-6 mb-2 pb-2">
+                                <i class="fa-regular fa-calendar-days"></i>
+                                <label for="3" class="form-label mt-4" style="font-size:20px;">تاريخ نهاية التدريب</label> <br />
+                                <div>
+                                    <input placeholder="Select date" asp-for="@Model.TrainingOpportunity.EndDate" type="date" id="example" class="form-control">
+
+                                </div>
+                                <div class="invalid-feedback">
+                                    الرجاء  تحديد وقت النهاية
+                                </div>
+
+                            </div>
+
 
                         </div>
 
@@ -302,6 +304,8 @@
                         <div class="d-flex justify-content-center">
 
                             <button type="submit" class="btn btn-lg " asp-route-id="@Model.TrainingOpportunity.TrainingOpportunityId" style="background-color:#e6e291; font-size:18px;">تعديل </button>
+
+                            <button type="submit" class="btn btn-lg btn-secondary " asp-action="ViewOpportunities" style=" font-size:18px;">العودة الى الخلف </button>
 
                         </div>
 

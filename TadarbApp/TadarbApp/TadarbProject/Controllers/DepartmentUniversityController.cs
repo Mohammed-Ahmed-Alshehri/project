@@ -175,6 +175,51 @@ namespace TadarbProject.Controllers
             return View();
         }
 
+        [HttpGet]
+        public IActionResult DetailStudent(int? id)
+        {
+
+            if (id == null)
+            {
+
+                return NotFound();
+            }
+
+            ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
+
+            int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
+
+            var user = _DbContext.UserAcounts.Where(item => item.UserId == id).AsNoTracking().FirstOrDefault();
+
+
+            var Department = _DbContext.Departments.Where(item => item.Responsible_UserId == RUserId).AsNoTracking().FirstOrDefault();
+
+            var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Department.Organization_OrganizationId).AsNoTracking().FirstOrDefault();
+
+            ViewBag.OrganizationName = OrganizationOfR.OrganizationName + " - " + Department.DepartmentName;
+            ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
+       
+
+            var student = _DbContext.UniversitiesTraineeStudents.Where(item => item.TraineeId == id).Include(item => item.user).AsNoTracking().FirstOrDefault();
+
+            ViewBag.StudentName = student.user.FullName;
+            ViewBag.uninumber = student.UniversityStudentNumber;
+
+
+
+
+
+            var Req = _DbContext.StudentRequestsOnOpportunities.Where(item => item.Trainee_TraineeId == id)
+                .Include(item => item.trainingOpportunity.DetailFiled)
+                .Include(item => item.trainingOpportunity.trainingType)
+                .Include(item => item.trainingOpportunity.Branch.organization)
+                .AsNoTracking().ToList();
+
+
+
+            return View(Req);
+
+        }
 
         [HttpGet]
         public IActionResult AddStudents()
@@ -404,6 +449,11 @@ namespace TadarbProject.Controllers
         {
             /* var list = _DbContext.Organizations.ToList();*/
 
+            int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
+
+
+            var Department = _DbContext.Departments.Where(item => item.Responsible_UserId == RUserId).AsNoTracking().FirstOrDefault();
+
             IEnumerable<UniversityTraineeStudent> list;
 
 
@@ -412,7 +462,7 @@ namespace TadarbProject.Controllers
             if (gender == "ذكر")
             {
 
-                list = _DbContext.UniversitiesTraineeStudents.Where(item => item.Gender.Equals(gender)).AsNoTracking().Include(item => item.user).AsNoTracking().ToList();
+                list = _DbContext.UniversitiesTraineeStudents.Where(item => item.Gender.Equals(gender) && item.Department_DepartmentId == Department.DepartmentId).AsNoTracking().Include(item => item.user).AsNoTracking().ToList();
 
                 return Json(new { list });
             }
@@ -420,7 +470,7 @@ namespace TadarbProject.Controllers
             if (gender == "انثى")
             {
 
-                list = _DbContext.UniversitiesTraineeStudents.Where(item => item.Gender.Equals(gender)).AsNoTracking().Include(item => item.user).AsNoTracking().ToList();
+                list = _DbContext.UniversitiesTraineeStudents.Where(item => item.Gender.Equals(gender) && item.Department_DepartmentId == Department.DepartmentId).AsNoTracking().Include(item => item.user).AsNoTracking().ToList();
 
                 return Json(new { list });
             }

@@ -172,6 +172,8 @@
                                             <th>رقم الهاتف</th>
 
                                             <th>البريد الالكتروني</th>
+
+                                            <th> تقديمات الطالب </th>
                                         </tr>
 
                                     </thead>
@@ -271,9 +273,11 @@
                                 + "<td class='text - nowrap'> " + value.gender + "</td>"
                                 + "<td class='text - nowrap'> " + value.gpa + "</td>"
                                 + "<td class='text - nowrap'>" + value.user.phone + "</td>"
-                                + "<td class='text - nowrap'>" + value.user.userEmail + "</td>"
-                                + "</tr>";
-
+                                + "<td class='text - nowrap'>" + value.user.userEmail + '</td><td class=text-center font-weight-600  >' +
+                                '<a class="btn btn-outline-primary" href="//localhost:7122/DepartmentUniversity/DetailStudent?id=' +
+                                value.traineeId
+                                + ' " >تفاصيل الطالب</a>' + '</td></tr>';
+                            + "</tr>";
 
 
 
@@ -311,6 +315,7 @@
 
                         $.each(data.students, function (key, value) {
 
+                            console.log(value);
 
 
                             body += "<tr> <td class='text - nowrap'>  <div class='font - weight - 600'> <div class='font - weight - 600'> " + value.user.fullName + "</div></div></td>" +
@@ -319,7 +324,10 @@
                                 + "<td class='text - nowrap'> " + value.gender + "</td>"
                                 + "<td class='text - nowrap'> " + value.gpa + "</td>"
                                 + "<td class='text - nowrap'>" + value.user.phone + "</td>"
-                                + "<td class='text - nowrap'>" + value.user.userEmail + "</td>"
+                                + "<td class='text - nowrap'>" + value.user.userEmail + '</td><td class=text-center font-weight-600  >' +
+                                '<a class="btn btn-outline-primary" href="//localhost:7122/DepartmentUniversity/DetailStudent?id=' +
+                                value.traineeId
+                                + ' " >تفاصيل الطالب</a>' + '</td></tr>';
                                 + "</tr>";
 
 
@@ -366,9 +374,11 @@
                                 + "<td class='text - nowrap'> " + value.gender + "</td>"
                                 + "<td class='text - nowrap'> " + value.gpa + "</td>"
                                 + "<td class='text - nowrap'>" + value.user.phone + "</td>"
-                                + "<td class='text - nowrap'>" + value.user.userEmail + "</td>"
-                                + "</tr>";
-
+                                + "<td class='text - nowrap'>" + value.user.userEmail + '</td><td class=text-center font-weight-600  >' +
+                                '<a class="btn btn-outline-primary" href="//localhost:7122/DepartmentUniversity/DetailStudent?id=' +
+                                value.traineeId
+                                + ' " >تفاصيل الطالب</a>' + '</td></tr>';
+                            + "</tr>";
 
                             // console.log(value);
 
@@ -414,9 +424,11 @@
                                 + "<td class='text - nowrap'> " + value.gender + "</td>"
                                 + "<td class='text - nowrap'> " + value.gpa + "</td>"
                                 + "<td class='text - nowrap'>" + value.user.phone + "</td>"
-                                + "<td class='text - nowrap'>" + value.user.userEmail + "</td>"
-                                + "</tr>";
-
+                                + "<td class='text - nowrap'>" + value.user.userEmail + '</td><td class=text-center font-weight-600  >' +
+                                '<a class="btn btn-outline-primary" href="//localhost:7122/DepartmentUniversity/DetailStudent?id=' +
+                                value.traineeId
+                                + ' " >تفاصيل الطالب</a>' + '</td></tr>';
+                            + "</tr>";
 
                             // console.log(value);
 
@@ -462,8 +474,11 @@
                                 + "<td class='text - nowrap'> " + value.gender + "</td>"
                                 + "<td class='text - nowrap'> " + value.gpa + "</td>"
                                 + "<td class='text - nowrap'>" + value.user.phone + "</td>"
-                                + "<td class='text - nowrap'>" + value.user.userEmail + "</td>"
-                                + "</tr>";
+                                + "<td class='text - nowrap'>" + value.user.userEmail + '</td><td class=text-center font-weight-600  >' +
+                                '<a class="btn btn-outline-primary" href="//localhost:7122/DepartmentUniversity/DetailStudent?id=' +
+                                value.traineeId
+                                + ' " >تفاصيل الطالب</a>' + '</td></tr>';
+                            + "</tr>";
 
 
                             // console.log(value);
@@ -509,8 +524,11 @@
                                 + "<td class='text - nowrap'> " + value.gender + "</td>"
                                 + "<td class='text - nowrap'> " + value.gpa + "</td>"
                                 + "<td class='text - nowrap'>" + value.user.phone + "</td>"
-                                + "<td class='text - nowrap'>" + value.user.userEmail + "</td>"
-                                + "</tr>";
+                                + "<td class='text - nowrap'>" + value.user.userEmail + '</td><td class=text-center font-weight-600  >' +
+                                '<a class="btn btn-outline-primary" href="//localhost:7122/DepartmentUniversity/DetailStudent?id=' +
+                                value.traineeId
+                                + ' " >تفاصيل الطالب</a>' + '</td></tr>';
+                            + "</tr>";
 
 
                             // console.log(value);
@@ -565,9 +583,11 @@
                                 + "<td class='text - nowrap'> " + value.gender + "</td>"
                                 + "<td class='text - nowrap'> " + value.gpa + "</td>"
                                 + "<td class='text - nowrap'>" + value.user.phone + "</td>"
-                                + "<td class='text - nowrap'>" + value.user.userEmail + "</td>"
-                                + "</tr>";
-
+                                + "<td class='text - nowrap'>" + value.user.userEmail + '</td><td class=text-center font-weight-600  >' +
+                                '<a class="btn btn-outline-primary" href="//localhost:7122/DepartmentUniversity/DetailStudent?id=' +
+                                value.traineeId
+                                + ' " >تفاصيل الطلب</a>' + '</td></tr>';
+                            + "</tr>";
 
                             //console.log(value);
 
