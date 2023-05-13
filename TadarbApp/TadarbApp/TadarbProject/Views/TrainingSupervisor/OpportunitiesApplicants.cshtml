@@ -1,0 +1,405 @@
+﻿@*@{
+    ViewData["Title"] = "قائمة  الطلاب الراغبين بالتدريب";
+}*@
+
+<head>
+
+    <link rel="stylesheet" href="~/css/Addbranches.css" asp-append-version="true" />
+
+</head>
+
+<style>
+    .triangle-up {
+        width: 0;
+        height: 0;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-bottom: 20px solid #555;
+        position: relative;
+        right: 253px;
+        top: 60px;
+    }
+
+    .triangle-down {
+        width: 0;
+        height: 0;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-top: 20px solid #555;
+        position: relative;
+        right: 253px;
+        top: 65px;
+    }
+
+
+
+
+</style>
+
+<partial name="_Notification" />
+<body style="background: linear-gradient(#1c4c64,#5590ad);">
+
+    <div class="row" style=" background-repeat: no-repeat;
+            background-size: cover;
+            height: 100vh; width: 100vw; /padding:50px 5px 5px 5px;/">
+
+        <div class="col-sm-2" style="z-index:2;">
+
+            <div class="vertical-nav bg-white" id="sidebar">
+                <div class="py-4 px-3 mb-4 bg-light">
+                    <div class="media d-flex align-items-center">
+                        <img src="~/@ViewBag.OrganizationImage" alt="..." width="65" class="mr-3 rounded-circle img-thumbnail shadow-sm">
+                        <div class="media-body">
+                            <h4 class="m-0">@ViewBag.OrganizationName</h4>
+                        </div>
+                    </div>
+                </div>
+                <h5> مرحبا بك @ViewBag.Username </h5>
+                <p class="text-gray font-weight-bold text-uppercase px-3 small pb-4 mb-0">القائمة</p>
+
+                <ul class="nav flex-column bg-white mb-0">
+                    <li class="nav-item">
+                        <a asp-controller="TrainingSupervisor" asp-action="index" class="nav-link text-dark font-italic bg-light">
+                            <i class="fa-solid fa-house  mr-3 text-primary fa-fw "></i>
+                            الصفحة الرئيسية
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a asp-controller="TrainingSupervisor" asp-action="ViewOpportunities" class="nav-link text-dark font-italic ">
+                            <i class="fa fa-cubes mr-3 text-primary fa-fw"></i>
+                            إدارة مسؤولين الفروع
+
+                        </a>
+                    </li>
+
+                    
+                </ul>
+
+
+            </div>
+
+
+            <!-- End vertical navbar1 -->
+            <!-- Page content holder1 -->
+            <div class="page-content p-1" id="content">
+                <!-- Toggle button1 -->
+                <button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i class="fa fa-bars mr-2"></i><small class="text-uppercase font-weight-bold">القائمة</small></button>
+            </div>
+
+        </div>
+
+        <div class="col-sm-9">
+            <div class="card " style="border-radius: 25px; margin-top:2cm; margin-bottom:3cm; padding:5px 5px 5px 5px ; border-color:black;">
+                <div class="card-header" style="text-align: center;">
+                    <h3> طلاب في قيد التدريب</h3>
+
+
+
+
+                </div>
+
+
+                <div class="row m-lg-5 mt-0">
+                    <div class="col-md-12 d-flex">
+
+                        <div class="card card-table flex-fill">
+                            <div class="card-header">
+                                <h4 class="card-title float-start">
+                                </h4>
+                                <div class="table-search float-start">
+                                    <button class="btn   selected" type="submit" onclick="Clear()" style="background-color:lightblue">  الكل</button>
+                                </div>
+
+                                <div class="col-6">
+
+
+                                    <div class="input-group mb-3">
+                                        <input id="filterInput" type="text" class="form-control rounded-end" placeholder="البحث بواسطة الاسم كامل" aria-label="Recipient's username" aria-describedby="button-addon2">
+                                        &nbsp;
+
+                                        <button class="btn btn-primary rounded-start" type="submit" onclick="Search()" style="background-color:#e6e291;color:black;border:0px;font-size:18px;">
+                                            ابحث
+                                            <i class="fa-solid fa-magnifying-glass"></i>
+                                        </button>
+
+                                    </div>
+
+                                    <div class="btn-group " role="group" aria-label="Basic radio toggle button group" style:"font-size:18px">
+
+                                        <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" style="display:none" checked>
+                                        <label class="btn btn-outline-primary" for="btnradio1" style="display:none"></label>
+
+                                        <label class="btn btn-info rounded-end">
+                                            <input class="btn btn-info " type="radio" name="status" id="Rm" value="ذكر" onclick="ChangeGender('ذكر')"> الطلاب
+                                        </label>
+
+                                        <label class="btn rounded-start" style="background-color:#faa7e7">
+                                            <input type="radio" name="status" value="انثى" id="Rf" onclick="ChangeGender('انثى')"> الطالبات
+                                        </label>
+
+                                        <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off" style="display:none" checked>
+                                        <label class="btn btn-outline-primary" for="btnradio4" style="display:none"></label>
+
+                                    </div>
+
+
+
+                                </div>
+
+                           
+
+                                <div class="float-end  mt-2" dir="rtl" >
+
+                                   عدد الطلاب:
+                                   <p id="STCOUNT" style="display:inline"></p>
+                                </div>
+
+
+                            
+
+
+
+
+                            </div>
+
+
+                            <div class="card-body">
+                            </div>
+                            <div class="table-responsive no-radius">
+
+                                <table class="table table-striped table-bordered table-sm" cellspacing="0" width="100%" style="font-size:18px">
+                                    <thead>
+                                        <tr>
+
+                                            <th>اسم الطالب</th>
+
+                                            <th>الجامعة</th>
+                                            <th>التخصص</th>
+
+                                            <th> الجنس </th>
+
+                                            <th> مكان السكن </th>
+
+                                            <th>
+                                                المعدل التراكمي
+
+                                                <i class="btn fa-solid fa-arrow-down-long float-l-start fa-xs p-0 " onclick="Changetype(1)"> </i>  <i class=" btn fa-solid fa-arrow-up-long float-l-start fa-xs p-0" onclick="Changetype(2)"></i>
+                                            </th>
+
+                                            <th>متابعة الطالب</th>
+
+
+                                    </thead>
+
+                                    <tbody id="Tbody">
+                                    </tbody>
+
+
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-sm-1"></div>
+
+
+            </div>
+        </div>
+    </div>
+</body>
+@section Scripts{
+
+
+
+    <script>
+
+        //Changetype2(1);
+
+        $(function () {
+            // Sidebar toggle behavior
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar, #content').toggleClass('active');
+            });
+        });
+
+
+        var type = 0;
+        var type2 = 1;
+        var Gender = "";
+
+        FillTable(Gender, type, type2);
+
+        function ChangeGender(v) {
+
+            Gender = v;
+
+            FillTable(Gender, type, type2);
+        }
+
+
+        function Changetype(x) {
+
+            type = x;
+
+            FillTable(Gender, type, type2);
+        }
+
+        function Changetype2(x) {
+
+            type2 = x;
+
+            FillTable(Gender, type, type2);
+        }
+
+        function Clear() {
+
+
+            type = 0;
+            type2 = 1;
+            Gender = "";
+
+
+            FillTable(Gender, type, type2);
+        }
+
+        function FillTable(gender, Updw, AOrW) {
+
+            var body = "";
+            var c = 0;
+            $(document).ready(function () {
+
+                $.ajax({
+
+                    url: "@Url.Action("GetStudentsList")",
+                    type: 'GET',
+                    dataType: "json",
+                    data: { id: @ViewBag.OpportunitiyId , gr: gender, UPOrDw: Updw, ArOrWa: AOrW },
+
+                    success: function (data) {
+
+                        $.each(data.students, function (key, value) {
+
+
+
+                            body += "<tr> <td class='text - nowrap'>  <div class='font - weight - 600'> <div class='font - weight - 600'> " + value.user.fullName + "</div></div></td>"
+                                + "<td class='text - nowrap'> " + value.department.universityCollege.organization.organizationName + "</td>"
+                                + "<td class='text - nowrap'> " + value.department.departmentName + "</td>"
+                                + "<td class='text - nowrap'> " + value.gender + "</td>"
+                                + "<td class='text - nowrap'> " + value.department.universityCollege.city.country.countryName + ", " + value.department.universityCollege.city.cityName + "</td>"
+                                + "<td class='text - nowrap'> " + value.gpa + "</td>"
+                                + "<td class='text - nowrap'> " + '<a class="btn btn-outline-primary"    >تابع الطالب</a>' + '</td></tr>'
+                                + "";
+
+
+                            if (key == 0) {
+                                c = 1;
+                            } else {
+                                c = key + 1;
+                            }
+
+
+                        });
+
+
+                        $("#Tbody").html(body);
+
+                    
+
+                        $("#STCOUNT").html(c);
+                        
+
+
+
+                    }
+
+
+                });
+
+            });
+
+        }
+
+
+        function Search() {
+
+            var Filter = document.getElementById("filterInput").value;
+
+            if (Filter == "") {
+                return;
+            }
+
+            FillTableSearch(Filter, type2);
+        }
+
+
+
+        function FillTableSearch(fil, AOrW) {
+
+            var body = "";
+            var c = 0;
+
+
+            $(document).ready(function () {
+
+                $.ajax({
+
+                    url: "@Url.Action("GetStudentsListByFilter")",
+                    type: 'GET',
+                    dataType: "json",
+                    data: { id: @ViewBag.OpportunitiyId , ArOrWa: AOrW, filter: fil },
+
+                    success: function (data) {
+
+                        $.each(data.students, function (key, value) {
+
+
+
+                            body += "<tr> <td class='text - nowrap'>  <div class='font - weight - 600'> <div class='font - weight - 600'> " + value.user.fullName + "</div></div></td>"
+                                + "<td class='text - nowrap'> " + value.department.universityCollege.organization.organizationName + "</td>"
+                                + "<td class='text - nowrap'> " + value.department.departmentName + "</td>"
+                                + "<td class='text - nowrap'> " + value.gender + "</td>"
+                                + "<td class='text - nowrap'> " + value.department.universityCollege.city.country.countryName + ", " + value.department.universityCollege.city.cityName + "</td>"
+                                + "<td class='text - nowrap'> " + value.gpa + "</td>"
+                                + "<td class='text - nowrap'> " + '<a class="btn btn-outline-primary "  >تابع الطالب</a>' + '</td></tr>';
+
+
+                            if (key == 0)
+                            {
+                                c = 1;
+                            }else{
+                                c = key+1;
+                            }
+                            
+                            
+                        });
+
+                      
+                       
+
+                        $("#STCOUNT").html(c);
+                       
+
+                        $("#Tbody").html(body);
+
+
+
+                    }
+
+
+                });
+
+            });
+
+        }
+
+
+
+
+
+    </script>
+
+
+    }

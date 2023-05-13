@@ -1,0 +1,217 @@
+﻿@model IEnumerable<TrainingOpportunity>
+
+@{
+    ViewData["Title"] = "اضافة حساب مشرف تدريبي";
+}
+<head>
+
+    <link rel="stylesheet" href="~/css/Addbranches.css" asp-append-version="true" />
+
+
+</head>
+<style>
+    .notification {
+        background-color: #555;
+        color: white;
+        text-decoration: none;
+     
+        position: relative;
+        display: inline-block;
+        border-radius: 2px;
+    }
+
+        .notification:hover {
+            background: red;
+        }
+
+        .notification .badge {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            padding: 5px 10px;
+            border-radius: 50%;
+            background: red;
+            color: white;
+        }
+</style>
+<body style="background: linear-gradient(#1c4c64,#5590ad);">
+
+    <partial name="_Notification" />
+    <div class="row">
+
+        <div class="col-sm-3" style="z-index:2;">
+
+            <div class="vertical-nav bg-white" id="sidebar">
+                <div class="py-4 px-3 mb-4 bg-light">
+                    <div class="media d-flex align-items-center">
+                        <img src="~/@ViewBag.OrganizationImage" alt="..." width="65" class="mr-3 rounded-circle img-thumbnail shadow-sm">
+                        <div class="media-body">
+                            <h4 class="m-0">@ViewBag.OrganizationName</h4>
+                        </div>
+                    </div>
+                </div>
+                <h5> مرحبا بك @ViewBag.Username </h5>
+
+                <p class="text-gray font-weight-bold text-uppercase px-3 small pb-4 mb-0">القائمة</p>
+
+                <ul class="nav flex-column bg-white mb-0">
+                    <li class="nav-item">
+                        <a asp-controller="TrainingSupervisor" asp-action="index" class="nav-link text-dark font-italic ">
+                            <i class="fa-solid fa-house  mr-3 text-primary fa-fw "></i>
+                            الصفحة الرئيسية
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a asp-controller="TrainingSupervisor" asp-action="ViewOpportunities" class="nav-link text-dark font-italic  ">
+                            <i class="fa fa-cubes mr-3 text-primary fa-fw"></i>
+                            إدارة مسؤولين الفروع
+
+                        </a>
+                    </li>
+                    
+
+                 
+                </ul>
+
+
+            </div>
+
+
+            <!-- End vertical navbar1 -->
+            <!-- Page content holder1 -->
+            <div class="page-content p-1" id="content">
+                <!-- Toggle button -->
+                <button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i class="fa fa-bars mr-2"></i><small class="text-uppercase font-weight-bold">القائمة</small></button>
+            </div>
+
+
+        </div>
+
+        <div class="col-sm-8">
+            <div class="card " style="border-radius: 25px; margin-top:2cm; margin-bottom:3cm; padding:5px 5px 5px 5px ; border-color:black;">
+                <div class="card-header" style="text-align: center;">
+                    <h3>الفرص المشرف عليها</h3>
+
+
+                     
+
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive no-radius">
+
+                        <table class="table table-hover table-center" style="font-size:18px">
+                            <thead>
+                                <tr>
+
+                                    <th>وصف الفرصة</th>
+                                    <th>تخصص الفرصة</th>
+                                    <th>عدد المتدربين</th>
+                                    <th>امكانية التسجيل</th>
+                                    <th>تاريخ بداية التدريب</th>
+                                    <th>تاريخ نهاية التدريب</th>
+                                   
+                                    <th>تفاصيل</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+
+                                            @item.OpportunityDescription
+
+
+
+                                        </td>
+
+                                        <td>
+
+                                            @item.DetailFiled.SpecializationName
+
+                                        </td>
+
+                                        <td>
+                                            @if (@item.ApprovedOpportunities == 0)
+                                            {
+                                                <p>لا يوجد طلاب مسجلين</p>
+                                            }else
+                                            @item.ApprovedOpportunities
+
+                                        </td>
+
+                                        
+
+                                        <td>
+
+                                            @if (@item.AbilityofSubmissionStatus == "Available")
+                                            {
+                                                <p>متاحة</p>
+                                            }
+
+                                            @if (@item.AbilityofSubmissionStatus == "Stop")
+                                            {
+                                                <p>انتهى التسجيل</p>
+                                            }
+
+
+                                        </td>
+
+
+                                        <td>
+                                            @item.StartDate.ToShortDateString()
+
+                                        </td>
+
+                                        <td>
+                                            @item.EndDate.Date.ToShortDateString()
+                                        </td>
+
+                                         
+
+                                        <td>
+                                            <input asp-for="@item.TrainingOpportunityId" hidden/>
+
+
+                                            <a class="btn btn-info" href="//localhost:7122/TrainingSupervisor/OpportunitiesApplicants?id=@item.TrainingOpportunityId">
+
+                                                <i class="fa-solid fa-chalkboard-user" style="color:black"></i>
+                                            </a>
+
+                                        </td>
+
+
+                                    </tr>
+
+
+                                }
+
+
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-sm-1"></div>
+    </div>
+</body>
+
+@section Scripts
+    {
+
+    <script>
+        $(function () {
+            // Sidebar toggle behavior
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar, #content').toggleClass('active');
+            });
+        });
+
+    </script>
+}
