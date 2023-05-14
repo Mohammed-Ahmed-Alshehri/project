@@ -44,7 +44,7 @@ namespace TadarbProject.Controllers
             var Employee = _DbContext.Employees.Where(item => item.UserAccount_UserId == RUserId).Include(item => item.userAcount).
                 Include(item => item.department).AsNoTracking().FirstOrDefault();
 
-            var Department = _DbContext.Departments.Where(item => item.DepartmentId == Employee.Department_DepartmentId).AsNoTracking().FirstOrDefault();
+            var Department = _DbContext.Departments.Where(item => item.DepartmentId == Employee.Department_DepartmentId).Include(item => item.OrganizationBranch).AsNoTracking().FirstOrDefault();
 
 
             var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Department.Organization_OrganizationId).AsNoTracking().FirstOrDefault();
@@ -54,6 +54,7 @@ namespace TadarbProject.Controllers
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
             ViewBag.Username = user.FullName;
 
+            ViewBag.Department = Department.OrganizationBranch.BranchName;
 
             return View(Employee);
 

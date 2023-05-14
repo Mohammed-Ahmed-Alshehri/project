@@ -6,6 +6,10 @@
 
     <link rel="stylesheet" href="~/css/Addbranches.css" asp-append-version="true" />
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intro.js/7.0.1/introjs.min.css" />
+     
+
+<link rel="stylesheet" href="https://unpkg.com/driver.js/dist/driver.min.css">
 
 </head>
 
@@ -18,7 +22,7 @@
 
     <div class="col-sm-4" style="z-index:2;">
 
-        <div class="vertical-nav bg-white" id="sidebar">
+            <div class="vertical-nav bg-white" style="position:absolute" id="sidebar">
             <div class="py-4 px-3 mb-4 bg-light">
                 <div class="media d-flex align-items-center">
                     <img src="~/@ViewBag.OrganizationImage" alt="..." width="65" class="mr-3 rounded-circle img-thumbnail shadow-sm">
@@ -27,24 +31,24 @@
                     </div>
                 </div>
             </div>
-                <h5> مرحبا بك @ViewBag.Username </h5>
+                <h5  > مرحبا بك @ViewBag.Username </h5>
 
             <p class="text-gray font-weight-bold text-uppercase px-3 small pb-4 mb-0">القائمة</p>
 
             <ul class="nav flex-column bg-white mb-0">
-                <li class="nav-item">
+                <li class="nav-item" >
                     <a asp-controller="Branch" asp-action="Index" class="nav-link text-dark font-italic bg-light">
                             <i class="fa-solid fa-house text-primary"></i>
                         الصفحة الرئيسية
                     </a>
                 </li>
-                 <li class="nav-item">
+                    <li class="nav-item" id="fff">
                         <a asp-controller="Branch" asp-action="ManageDepartment" class="nav-link text-dark font-italic ">
                         <i class="fa fa-address-card mr-3 text-primary fa-fw"></i>
                         إدارة الاقسام
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" id="ff2">
                     <a asp-controller="Branch" asp-action="ViewSupervisorsUser" class="nav-link text-dark font-italic ">
                         <i class="fa-solid fa-building-user"></i>
                          إدارة مشرفين التدريب
@@ -54,14 +58,14 @@
                 </li>
 
                
-                <li class="nav-item">
+                <li class="nav-item" id="ff3">
                     <a asp-controller="branch" asp-action="ViewDepartmentFiledSpecialties" class="nav-link text-dark font-italic ">
                         <i class="fa-solid fa-book-open-reader"></i>
                         إدارة التخصصات
                     </a>
                 </li>
 
-                    <li class="nav-item">
+                    <li class="nav-item" id="ff4">
                         <a asp-controller="branch" asp-action="ViewOpportunities" class="nav-link text-dark font-italic ">
                             <i class="fa-solid fa-person-chalkboard"></i>
                             إدارة الفرص
@@ -70,8 +74,13 @@
 
                  
             </ul>
-
-
+            <div>
+                <a class="btn m-5" id="btn1">
+                    <i class="fa-solid fa-person-circle-question"></i>
+                  احتاج مساعدة
+                    
+                </a>
+                </div>
         </div>
 
 
@@ -86,7 +95,6 @@
     </div>
 
     <div class="col-sm-6">
-       
 
 
         @*        content page 
@@ -98,6 +106,8 @@
 @section Scripts{
 
 
+    <script src="https://unpkg.com/driver.js/dist/driver.min.js"></script>
+
 
     <script>
         $(function () {
@@ -107,7 +117,81 @@
             });
         });
 
-    </script>
+        //var driver = new Driver();
 
+        // btn1 example
+        document.getElementById('btn1')
+            .addEventListener('click', function (event) {
+                event.stopPropagation();
+
+                const driver = new Driver();
+                // Define Steps
+                
+                            animate: false
+                driver.defineSteps([
+                    {
+                        element: '#fff',
+                        popover: {
+                            //className: 'first-step-popover-class',
+                            title: 'أولاً : اضف قسم ',
+                            description: 'الرجاء اضافة جميع الاقسام في هذا الفرع',
+                            position: 'left',
+                             closeBtnText: 'اغلق', // Text on the close button for this step
+                            nextBtnText: 'التالي', // Next button text for this step
+                            prevBtnText: 'السابق', // Previous button text for this step
+                            doneBtnText: 'انتهيت', // Text on the final button
+
+
+                        }
+                    },
+                    {
+                        element: '#ff2',
+                        popover: {
+                            title: 'ثانياً : اضافة المشرفين',
+                            description: 'الرجاء اضافة المشرفين لتعيينهم بالفرصة  التدريبية لاحقاً',
+                            position: 'left',
+                             closeBtnText: 'اغلق', // Text on the close button for this step
+                            nextBtnText: 'التالي', // Next button text for this step
+                            prevBtnText: 'السابق', // Previous button text for this step
+                            doneBtnText: 'انتهيت', // Text on the final button
+
+                        }
+                    },
+                    {
+                        element: '#ff3',
+                        popover: {
+                            title: 'ثالثاً : اضف التخصصات ',
+                            description: 'الرجاء تعيين تخصصات لكل قسم.. علما بأن التخصصات المتاحة لديك سبق وان اضافها لك مسوؤل الشركة',
+                            position: 'left',
+                            closeBtnText: 'اغلق', // Text on the close button for this step
+                            doneBtnText: 'انتهيت', // Text on the final button
+
+                             nextBtnText: 'التالي', // Next button text for this step
+                            prevBtnText: 'السابق', // Previous button text for this step
+                        }
+                    },
+                    {
+                        element: '#ff4',
+                        popover: {
+                            title: ' رابعاً : اضافة فرص تدريبية والموافقة على المتقدمين  ',
+                            description: ' بعد اكمال جميع الخطوات السابقة  تستطيع الان اضافة فرصة للتدريب وادارتها ',
+                            position: 'left',
+                            doneBtnText: 'انتهيت', // Text on the final button
+                            closeBtnText: 'اغلق', // Text on the close button for this step
+                            nextBtnText: 'التالي', // Next button text for this step
+                            prevBtnText: 'السابق', // Previous button text for this step
+                        }
+                    },
+                ]);
+                // Begin to guide
+                driver.start();
+
+
+
+
+
+
+            });
+    </script>
 
     }
