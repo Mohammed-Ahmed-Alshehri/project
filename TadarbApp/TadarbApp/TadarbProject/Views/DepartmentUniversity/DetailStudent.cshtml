@@ -143,6 +143,11 @@
                                                 <span class="badge bg-danger"> تم الرفض </span>
                                             }
 
+                                            @if (@item.DecisionStatus == "CancelBeforeApprove")
+                                            {
+                                                <span class="badge bg-danger"> تم الغاء الطلب من قبلك </span>
+                                            }
+
 
                                         </td>
 

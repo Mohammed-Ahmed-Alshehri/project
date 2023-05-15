@@ -106,7 +106,7 @@
 
                                     <th class="text-center">حالة الطلب 	</th>
 
-
+                                    <th class="text-center">الغاء الطلب  	</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -151,10 +151,21 @@
                                                 <span class="badge bg-danger"> تم الرفض </span>
                                             }
 
+                                            @if (@item.DecisionStatus == "CancelBeforeApprove")
+                                            {
+                                                <span class="badge bg-danger"> تم الغاء الطلب من قبلك </span>
+                                            }
+
 
                                         </td>
 
+                                        <td class="text-center">
 
+                                            <button type="button" class="btn" style="background-color:#e6e291;" onclick="Cancel(@item.StudentRequestOpportunityId)">
+                                                <i class="fa-regular fa-rectangle-xmark"></i>
+                                            </button>
+
+                                        </td>
                                     </tr>
 
                                 }
@@ -180,6 +191,59 @@
                 $('#sidebar, #content').toggleClass('active');
             });
         });
+
+
+
+
+        function Cancel(Id) {
+
+
+
+            Swal.fire({
+                title: 'تأكيد الالغاء',
+                text: "",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'تأكيد.!',
+                cancelButtonText: 'الغاء',
+            }).then((result) => {
+                if (result.isConfirmed) {
+
+               
+
+
+                    $.ajax({
+                        url: "@Url.Action("StudentCancelBefore")",
+                        type: 'POST',
+                        data: { id: Id },
+
+                        success: function (data) {
+
+                
+
+
+
+                                window.location.replace('//localhost:7122/Student/ViewOpportunitiesStatus');
+
+
+
+
+
+
+                          
+                        }
+
+
+                    });
+
+
+
+                }
+            })
+        }
+
 
     </script>
 

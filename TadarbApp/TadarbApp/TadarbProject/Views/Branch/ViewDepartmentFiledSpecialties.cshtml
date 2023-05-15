@@ -130,7 +130,18 @@
 
     <script>
 
-        FillTable();
+
+        window.addEventListener("load", (event) => {
+
+            FillTable();
+
+        });
+
+        document.addEventListener("load", (event) => {
+
+            FillTable();
+
+        });
 
         $(function () {
             // Sidebar toggle behavior

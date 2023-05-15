@@ -890,6 +890,13 @@ namespace TadarbProject.Controllers
                 return Json(new { success = false });
             }
 
+
+            if (Request.DecisionStatus == "CancelBeforeApprove")
+            {
+                TempData["error"] = "الطالب قام بالغاء الطلب";
+                return Json(new { success = false });
+            }
+
             Request.DecisionStatus = "approved";
             Request.DecisionDate = DateTime.Now.Date;
 
@@ -919,9 +926,13 @@ namespace TadarbProject.Controllers
                 return Json(new { success = false });
             }
 
+
+            //----------------------------------------------------------------------
+
             _DbContext.Database.ExecuteSqlRaw("UPDATE StudentRequestsOnOpportunities SET DecisionDate = GETDATE() , DecisionStatus = 'system disable' " +
                 $"WHERE Trainee_TraineeId = {Request.Trainee_TraineeId} AND StudentRequestOpportunityId != {Request.StudentRequestOpportunityId}");
 
+            //----------------------------------------------------------------------
 
             op.ApprovedOpportunities = op.ApprovedOpportunities + 1;
             op.RequestedOpportunities = op.RequestedOpportunities - 1;
@@ -1405,7 +1416,7 @@ namespace TadarbProject.Controllers
             {
                 Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE TraineeId IN " +
                 $"(SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities WHERE TrainingOpportunity_TrainingOpportunityId  ={id} AND DecisionStatus='waiting') " +
-                $"AND UserAccount_UserId IN (SELECT UserId FROM UserAcounts WHERE FullName = '{filter}' )")
+                $"AND UserAccount_UserId IN (SELECT UserId FROM UserAcounts WHERE FullName  like '{filter}%' )")
                 .AsNoTracking().Include(item => item.user)
                 .AsNoTracking().Include(item => item.department.universityCollege.organization)
                 .AsNoTracking().Include(item => item.department.universityCollege.city.Country).ToList();
@@ -1435,7 +1446,7 @@ namespace TadarbProject.Controllers
             {
                 Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE TraineeId IN " +
                 $"(SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities WHERE TrainingOpportunity_TrainingOpportunityId  ={id} AND DecisionStatus='approved') " +
-                $"AND UserAccount_UserId IN (SELECT UserId FROM UserAcounts WHERE FullName = '{filter}' )")
+                $"AND UserAccount_UserId IN (SELECT UserId FROM UserAcounts WHERE FullName like '{filter}%' )")
                 .AsNoTracking().Include(item => item.user)
                 .AsNoTracking().Include(item => item.department.universityCollege.organization)
                 .AsNoTracking().Include(item => item.department.universityCollege.city.Country).ToList();

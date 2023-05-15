@@ -242,7 +242,7 @@ namespace TadarbProject.Controllers
             ViewBag.OrganizationName = OrganizationOfR.OrganizationName + " - " + Department.DepartmentName;
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
             ViewBag.Username = user.FullName;
-             
+
 
 
             return View(Opportunities);
@@ -378,7 +378,50 @@ namespace TadarbProject.Controllers
 
 
 
+        #region
+        public IActionResult StudentCancelBefore(int? id)
+        {
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
 
+
+            var req = _DbContext.StudentRequestsOnOpportunities.Where(item => item.StudentRequestOpportunityId == id).Include(item => item.trainingOpportunity).AsNoTracking().FirstOrDefault();
+
+            if (req == null)
+            {
+                return Json(new { success = false });
+            }
+
+            if (req.DecisionStatus != "waiting")
+            {
+                TempData["error"] = "لايمكن الغاء الطلب";
+
+                return Json(new { success = false });
+
+            }
+            req.DecisionDate = DateTime.Now.Date;
+            req.DecisionStatus = "CancelBeforeApprove";
+
+            _DbContext.StudentRequestsOnOpportunities.Update(req);
+
+
+            req.trainingOpportunity.RequestedOpportunities = req.trainingOpportunity.RequestedOpportunities - 1;
+
+            _DbContext.TrainingOpportunities.Update(req.trainingOpportunity);
+
+
+            _DbContext.SaveChanges();
+
+
+
+            return Json(new { success = true });
+        }
+
+
+
+        #endregion
 
 
 
