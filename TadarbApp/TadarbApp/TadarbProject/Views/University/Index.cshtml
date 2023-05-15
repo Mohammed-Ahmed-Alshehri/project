@@ -16,7 +16,7 @@
 
         <div class="col-sm-4" style="z-index:2;">
 
-            <div class="vertical-nav bg-white" id="sidebar">
+            <div class="vertical-nav bg-white" style="position:absolute" id="sidebar">
                 <div class="py-4 px-3 mb-4 bg-light">
                     <div class="media d-flex align-items-center">
                         <img src="~/@ViewBag.OrganizationImage" alt="..." width="65" class="mr-3 rounded-circle img-thumbnail shadow-sm">
@@ -36,20 +36,20 @@
                             الصفحة الرئيسية
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" id="fff"> 
                         <a asp-controller="University" asp-action="ViewSpecialities" class="nav-link text-dark font-italic ">
                             <i class="fa fa-address-card mr-3 text-primary fa-fw"></i>
                             إدارة مجالات التدريب
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" id="ff2">
                         <a asp-controller="University" asp-action="ViewUsers" class="nav-link text-dark font-italic  ">
                             <i class="fa-solid fa-user-group "></i>
                             إدارة الموظفين
 
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" id="ff3">
                         <a asp-controller="University" asp-action="ViewColleges" class="nav-link text-dark font-italic ">
                             <i class="fa fa-cubes mr-3 text-primary fa-fw"></i>
                             إدارة الكليات
@@ -58,6 +58,13 @@
                     </li>
 
                 </ul>
+                <div>
+                    <a class="btn " id="btn1">
+                        <i class="fa-solid fa-person-circle-question"></i>
+                        احتاج مساعدة
+
+                    </a>
+                </div>
 
 
             </div>
@@ -97,6 +104,69 @@
             });
         });
 
+
+        // giude tour
+        document.getElementById('btn1')
+            .addEventListener('click', function (event) {
+                event.stopPropagation();
+
+                const driver = new Driver();
+                // Define Steps
+
+                animate: false
+                driver.defineSteps([
+                    {
+                        element: '#fff',
+                        popover: {
+                            //className: 'first-step-popover-class',
+                            title: 'أولاً : اضف المجالات  ',
+                            description: 'الرجاء اضافة جميع المجالات  التي تمتلكها الجامعة .. علما بأن جميع المجالات والتخصصات المضافة هي التي ستظهر  للكلية ',
+                            position: 'left',
+                            closeBtnText: 'اغلق', // Text on the close button for this step
+                            nextBtnText: 'التالي', // Next button text for this step
+                            prevBtnText: 'السابق', // Previous button text for this step
+                            doneBtnText: 'انتهيت', // Text on the final button
+
+
+                        }
+                    },
+                    {
+                        element: '#ff2',
+                        popover: {
+                            title: 'ثانياً : اضافة موظف مسؤول عن الكلية',
+                            description: 'الرجاء اضافة المسؤول عن الكلية  ليتم تعيينه بالكلية المناسب لاحقاً',
+                            position: 'left',
+                            closeBtnText: 'اغلق', // Text on the close button for this step
+                            nextBtnText: 'التالي', // Next button text for this step
+                            prevBtnText: 'السابق', // Previous button text for this step
+                            doneBtnText: 'انتهيت', // Text on the final button
+
+                        }
+                    },
+                    {
+                        element: '#ff3',
+                        popover: {
+                            title: 'ثالثاً : اضف الكليات  ',
+                            description: 'الرجاء اضافة الكليات وتعيين مسؤول عن هذا الكلية , علما بان المجال المضاف بالكلية لا يعني حصر الكلية بتخصصات معينه ',
+                            position: 'left',
+                            closeBtnText: 'اغلق', // Text on the close button for this step
+                            doneBtnText: 'انتهيت', // Text on the final button
+
+                            nextBtnText: 'التالي', // Next button text for this step
+                            prevBtnText: 'السابق', // Previous button text for this step
+                        }
+                    },
+
+                ]);
+                // Begin to guide
+                driver.start();
+
+
+
+
+
+
+            });
     </script>
 
 

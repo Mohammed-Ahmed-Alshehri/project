@@ -18,7 +18,7 @@
 
         <div class="col-sm-4" style="z-index:2;">
 
-            <div class="vertical-nav bg-white" id="sidebar">
+            <div class="vertical-nav bg-white" style="position:absolute" id="sidebar">
                 <div class="py-4 px-3 mb-4 bg-light">
                     <div class="media d-flex align-items-center">
                         <img src="~/@ViewBag.OrganizationImage" alt="..." width="65" class="mr-3 rounded-circle img-thumbnail shadow-sm">
@@ -39,7 +39,7 @@
                             الصفحة الرئيسية
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" id="fff">
                         <a asp-controller="Company" asp-action="ViewSpecialities" class="nav-link text-dark font-italic ">
                             <i class="fa-brands fa-buffer mr-3  fa-fw  "></i>
 
@@ -47,14 +47,14 @@
                             إدارة مجالات التدريب
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" id="ff2">
                         <a asp-controller="Company" asp-action="viewUsers" class="nav-link text-dark font-italic">
                             <i class="fa-solid fa-user-group "></i>
                             إدارة الموظفين
 
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" id="ff3">
                         <a asp-controller="Company" asp-action="Viewbranches" class="nav-link text-dark font-italic ">
                             <i class="fa-solid fa-building  mr-3  fa-fw "></i>
                             إدارة الفروع
@@ -63,7 +63,13 @@
                   
                 </ul>
 
-              
+                <div>
+                    <a class="btn " id="btn1">
+                        <i class="fa-solid fa-person-circle-question"></i>
+                        احتاج مساعدة
+
+                    </a>
+                </div>
 
 
             </div>
@@ -135,6 +141,68 @@
             });
         });
 
+        // giude tour
+        document.getElementById('btn1')
+            .addEventListener('click', function (event) {
+                event.stopPropagation();
+
+                const driver = new Driver();
+                // Define Steps
+
+                animate: false
+                driver.defineSteps([
+                    {
+                        element: '#fff',
+                        popover: {
+                            //className: 'first-step-popover-class',
+                            title: 'أولاً : اضف المجالات  ',
+                            description: 'الرجاء اضافة جميع المجالات  التي تمتلكها الشركة .. علما بأن التخصصات المضافة هي التي ستظهر  للفروع ',
+                            position: 'left',
+                            closeBtnText: 'اغلق', // Text on the close button for this step
+                            nextBtnText: 'التالي', // Next button text for this step
+                            prevBtnText: 'السابق', // Previous button text for this step
+                            doneBtnText: 'انتهيت', // Text on the final button
+
+
+                        }
+                    },
+                    {
+                        element: '#ff2',
+                        popover: {
+                            title: 'ثانياً : اضافة موظف مسؤول عن الفرع',
+                            description: 'الرجاء اضافة المسؤول عن الفرع  ليتم تعيينه بالفرع المناسب لاحقاً',
+                            position: 'left',
+                            closeBtnText: 'اغلق', // Text on the close button for this step
+                            nextBtnText: 'التالي', // Next button text for this step
+                            prevBtnText: 'السابق', // Previous button text for this step
+                            doneBtnText: 'انتهيت', // Text on the final button
+
+                        }
+                    },
+                    {
+                        element: '#ff3',
+                        popover: {
+                            title: 'ثالثاً : اضف الفروع  ',
+                            description: 'الرجاء اضافة الفروع وتعيين مسؤول عن هذا الفرع ',
+                            position: 'left',
+                            closeBtnText: 'اغلق', // Text on the close button for this step
+                            doneBtnText: 'انتهيت', // Text on the final button
+
+                            nextBtnText: 'التالي', // Next button text for this step
+                            prevBtnText: 'السابق', // Previous button text for this step
+                        }
+                    },
+                     
+                ]);
+                // Begin to guide
+                driver.start();
+
+
+
+
+
+
+            });
     </script>
 
 
