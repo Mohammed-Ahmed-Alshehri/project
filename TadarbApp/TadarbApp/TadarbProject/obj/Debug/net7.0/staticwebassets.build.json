@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "yHHYDaWyu3+D9+osLA2cn4ABslp8u4hWCmEun0AU4HI=",
+  "Hash": "Bwlub3J5UX3y3ypf1dd9GsnnUZNJS5J7IfhPHVnj0Sw=",
   "Source": "TadarbProject",
   "BasePath": "_content/TadarbProject",
   "Mode": "Default",
@@ -1919,6 +1919,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\StudentDocments\\CV\\e20fbc61-9503-4ea4-b682-06739a26a6e6.pdf"
+    },
+    {
+      "Identity": "C:\\Users\\abeee\\Desktop\\Tadarb\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\StudentDocments\\CV\\f156d061-ccc9-439d-b49c-cae8e19ea2d2.pdf",
+      "SourceId": "TadarbProject",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\abeee\\Desktop\\Tadarb\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "BasePath": "_content/TadarbProject",
+      "RelativePath": "StudentDocments/CV/f156d061-ccc9-439d-b49c-cae8e19ea2d2.pdf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\StudentDocments\\CV\\f156d061-ccc9-439d-b49c-cae8e19ea2d2.pdf"
     },
     {
       "Identity": "C:\\Users\\abeee\\Desktop\\Tadarb\\project\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\StudentDocments\\CV\\fbeb277b-d3ed-4374-be3c-ae9ae1e13ab7.pdf",

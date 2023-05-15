@@ -328,24 +328,40 @@ namespace TadarbProject.Controllers
             var opert = _DbContext.TrainingOpportunities.Where(item => item.TrainingOpportunityId == trainingOpportunityVN.TrainingOpportunity.TrainingOpportunityId).FirstOrDefault();
 
 
-            var reqoper = _DbContext.StudentRequestsOnOpportunities.Where(item => item.Trainee_TraineeId == UnverTre.TraineeId && item.TrainingOpportunity_TrainingOpportunityId == opert.TrainingOpportunityId).FirstOrDefault();
+            var reqoper = _DbContext.StudentRequestsOnOpportunities.Where(item => item.Trainee_TraineeId == UnverTre.TraineeId && item.TrainingOpportunity_TrainingOpportunityId == opert.TrainingOpportunityId 
+          ).ToList();
 
-            var studentreq = _DbContext.StudentRequestsOnOpportunities.Where(item => item.Trainee_TraineeId == UnverTre.TraineeId).FirstOrDefault();
+            var studentreq = _DbContext.StudentRequestsOnOpportunities.Where(item => item.Trainee_TraineeId == UnverTre.TraineeId).ToList();
+
+           
 
             if (reqoper != null)
             {
-                TempData["error"] = "تم التقديم بالفرصة مسبقا ";
+                foreach (var i in reqoper)
+                {
+                    if (i.DecisionStatus == "approved" || i.DecisionStatus == "system disable" || i.DecisionStatus == "waiting")
+                    {
+                        TempData["error"] = "تم التقديم بالفرصة مسبقا ";
 
-                return RedirectToAction("ViewOpportunities");
+                        return RedirectToAction("ViewOpportunities");
+                    }
+
+                }
             }
             if (studentreq != null)
             {
-                if (studentreq.DecisionStatus != "waiting")
-                {
-                    TempData["error"] = "تم قبولك بفرصة اخرى لا تستطيع التفديم ";
 
-                    return RedirectToAction("ViewOpportunities");
+                foreach (var i in studentreq)
+                {
+                    if (i.DecisionStatus == "approved")
+                    {
+                        TempData["error"] = "تم قبولك بفرصة اخرى لا تستطيع التفديم ";
+
+                        return RedirectToAction("ViewOpportunities");
+                    }
+
                 }
+                
             }
             var RequestOpportunity = new StudentRequestOpportunity
             {
