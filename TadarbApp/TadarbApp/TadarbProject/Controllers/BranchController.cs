@@ -652,14 +652,15 @@ namespace TadarbProject.Controllers
 
             var Department = _DbContext.Departments.Where(item => item.Responsible_UserId == RUserId).AsNoTracking().ToList();
 
+            var Approv = _DbContext.TrainingOpportunities.Where(item => item.TrainingOpportunityId == id ).AsNoTracking().FirstOrDefault();
 
             ViewBag.OrganizationName = OrganizationOfR.OrganizationName + " - " + Branch.BranchName;
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
             ViewBag.Username = user.FullName;
-
+            ViewBag.Applicant = Approv.RequestedOpportunities;
+            ViewBag.Approved = Approv.ApprovedOpportunities;
             ViewBag.OpportunitiyId = id;
-
-
+           
 
             return View();
         }
