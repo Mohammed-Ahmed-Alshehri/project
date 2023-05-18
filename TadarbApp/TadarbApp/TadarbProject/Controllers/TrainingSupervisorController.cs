@@ -77,7 +77,7 @@ namespace TadarbProject.Controllers
         [HttpPost]
         public IActionResult EditAccount(UserAcount UserAcount)
         {
-            
+
 
             ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
 
@@ -109,7 +109,7 @@ namespace TadarbProject.Controllers
             var Emplyee = _DbContext.Employees.Where(item => item.UserAccount_UserId == RUserId).FirstOrDefault();
 
             var Department = _DbContext.Departments.Where(item => item.DepartmentId == Emplyee.Department_DepartmentId).Include(item => item.OrganizationBranch).AsNoTracking().FirstOrDefault();
-            
+
 
 
             var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Department.Organization_OrganizationId).AsNoTracking().FirstOrDefault();
@@ -154,7 +154,7 @@ namespace TadarbProject.Controllers
             ViewBag.Username = user.FullName;
 
 
-        
+
 
             ViewBag.OpportunitiyId = id;
 

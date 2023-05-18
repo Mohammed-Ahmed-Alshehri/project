@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TadarbProject.Data;
 using TadarbProject.Models;
@@ -47,7 +46,7 @@ namespace TadarbProject.Controllers
 
             }
 
-          
+
             ViewBag.OrganizationName = OrganizationOfR.OrganizationName;
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
             ViewBag.Username = user.FullName;
@@ -74,20 +73,20 @@ namespace TadarbProject.Controllers
         public IActionResult EditAccount(UserAcount UserAcount)
         {
 
-            
+
             ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
 
             int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
             var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).AsNoTracking().FirstOrDefault();
 
-           
+
             user.UserPassword = UserAcount.UserPassword;
 
             user.ActivationStatus = "Active";
 
             _DbContext.UserAcounts.Update(user);
 
-          
+
             _DbContext.SaveChanges();
 
             return RedirectToAction("Index");

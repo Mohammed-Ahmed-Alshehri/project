@@ -53,7 +53,7 @@
                         </div>
 
                     </li>
-                    
+
                     <li class="nav-item">
                         <a asp-controller="" asp-action="" class="nav-link text-dark font-italic ">
                             <i class="fa fa-address-card mr-3 text-primary fa-fw"></i>
@@ -88,7 +88,7 @@
                     <h3>حالة التقديم على الفرص</h3>
 
 
-                    
+
 
                 </div>
                 <div class="card-body">
@@ -107,6 +107,9 @@
                                     <th class="text-center">حالة الطلب 	</th>
 
                                     <th class="text-center">الغاء الطلب  	</th>
+
+
+                                    <th class="text-center">قبول الطلب   	</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -151,18 +154,71 @@
                                                 <span class="badge bg-danger"> تم الرفض </span>
                                             }
 
-                                            @if (@item.DecisionStatus == "CancelBeforeApprove")
+                                            @if (@item.DecisionStatus == "CancelBeforeApprove" || @item.DecisionStatus == "CancelAftereApprove")
                                             {
                                                 <span class="badge bg-danger"> تم الغاء الطلب من قبلك </span>
                                             }
 
+                                            @if (@item.DecisionStatus == "waitingStudentApprove")
+                                            {
+                                                <span class="badge bg-info"> 
+                                                    @{
+                                                        var datelift = DateTime.Now.Date - item.DecisionDate ;
+                                                        string day = "";
+
+                                                        if (item.DecisionDate == DateTime.Now.Date.AddDays(-3))
+                                                        {
+                                                           day = "0";
+                                                        }
+
+                                                        if (item.DecisionDate == DateTime.Now.Date.AddDays(-2))
+                                                        {
+                                                            day = "يوم واحد";
+                                                        }
+
+                                                        if (item.DecisionDate == DateTime.Now.Date.AddDays(-1))
+                                                        {
+                                                            day = "يومان";
+                                                        }
+
+                                                        if (item.DecisionDate == DateTime.Now.Date)
+                                                        {
+                                                            day = "ثلاثة ايام";
+                                                        }
+
+
+                                            
+                                                     
+                                                    }
+
+
+
+
+                                                    في انتظار موافقك متاحه لمدة @day
+                                                </span>
+                                            }
+
+
+
+                                        
+                                        </td>
+
+                                        <td class="text-center">
+
+
+
+                                            <button type="button" class="btn" onclick="Cancel(@item.StudentRequestOpportunityId,'@item.DecisionStatus')" style="background-color:#e6e291;">
+                                                <i class="fa-regular fa-rectangle-xmark"></i>
+                                            </button>
 
                                         </td>
 
                                         <td class="text-center">
 
-                                            <button type="button" class="btn" style="background-color:#e6e291;" onclick="Cancel(@item.StudentRequestOpportunityId)">
-                                                <i class="fa-regular fa-rectangle-xmark"></i>
+
+
+                                            <button type="button" class="btn" onclick="Approval(@item.StudentRequestOpportunityId,'@item.DecisionStatus')" style="background-color:#e6e291;">
+                                                <i class="fa-regular fa-square-check"></i>
                                             </button>
 
                                         </td>
@@ -195,8 +251,156 @@
 
 
 
-        function Cancel(Id) {
+        function Cancel(Id, BEOrAF) {
 
+            console.log(BEOrAF);
+
+            if (BEOrAF == "waiting") {
+                CancelBefor(Id);
+                return;
+            }
+
+            if (BEOrAF == "waitingStudentApprove") {
+                CancelAfter(Id);
+                return;
+            }
+
+            else {
+
+                Swal.fire(
+                    'الخيار هذا غير متاحة لهاذه الفرصة',
+                    '',
+                    ''
+                )
+            }
+
+        }
+
+
+
+        function CancelBefor(Id) {
+
+            Swal.fire({
+                title: 'تأكيد الالغاء',
+                text: "",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'تأكيد.!',
+                cancelButtonText: 'الغاء',
+            }).then((result) => {
+                if (result.isConfirmed) {
+
+
+
+
+                    $.ajax({
+                        url: "@Url.Action("StudentCancelBefore")",
+                        type: 'POST',
+                        data: { id: Id },
+
+                        success: function (data) {
+
+
+
+
+
+                            window.location.replace('//localhost:7122/Student/ViewOpportunitiesStatus');
+
+
+
+
+
+
+
+                        }
+
+
+                    });
+
+
+
+                }
+            })
+
+
+        }
+
+
+        function CancelAfter(Id) {
+
+            Swal.fire({
+                title: 'تأكيد الالغاء',
+                text: "",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'تأكيد.!',
+                cancelButtonText: 'الغاء',
+            }).then((result) => {
+                if (result.isConfirmed) {
+
+
+
+
+                    $.ajax({
+                        url: "@Url.Action("StudentCancelAfter")",
+                        type: 'POST',
+                        data: { id: Id },
+
+                        success: function (data) {
+
+
+
+
+
+                            window.location.replace('//localhost:7122/Student/ViewOpportunitiesStatus');
+
+
+
+
+
+
+
+                        }
+
+
+                    });
+
+
+
+                }
+            })
+
+
+        }
+
+
+        function Approval(Id, BEOrAF) {
+
+
+            console.log(BEOrAF);
+
+            if (BEOrAF == "waitingStudentApprove") {
+                        ActualApproval(Id);
+                return;
+            }
+
+            else {
+
+                Swal.fire(
+                    'الخيار هذا غير متاحة لهاذه الفرصة',
+                    '',
+                    ''
+                )
+            }
+
+        }
+
+
+        function ActualApproval(Id ) {
 
 
             Swal.fire({
@@ -211,28 +415,28 @@
             }).then((result) => {
                 if (result.isConfirmed) {
 
-               
+
 
 
                     $.ajax({
-                        url: "@Url.Action("StudentCancelBefore")",
+                        url: "@Url.Action("Approval")",
                         type: 'POST',
                         data: { id: Id },
 
                         success: function (data) {
 
-                
-
-
-
-                                window.location.replace('//localhost:7122/Student/ViewOpportunitiesStatus');
 
 
 
 
+                            window.location.replace('//localhost:7122/Student/ViewOpportunitiesStatus');
 
 
-                          
+
+
+
+
+
                         }
 
 
@@ -242,6 +446,7 @@
 
                 }
             })
+
         }
 
 

@@ -328,26 +328,49 @@ namespace TadarbProject.Controllers
             var opert = _DbContext.TrainingOpportunities.Where(item => item.TrainingOpportunityId == trainingOpportunityVN.TrainingOpportunity.TrainingOpportunityId).FirstOrDefault();
 
 
-            var reqoper = _DbContext.StudentRequestsOnOpportunities.Where(item => item.Trainee_TraineeId == UnverTre.TraineeId && item.TrainingOpportunity_TrainingOpportunityId == opert.TrainingOpportunityId 
+            var reqoper = _DbContext.StudentRequestsOnOpportunities.Where(item => item.Trainee_TraineeId == UnverTre.TraineeId && item.TrainingOpportunity_TrainingOpportunityId == opert.TrainingOpportunityId
           ).ToList();
 
             var studentreq = _DbContext.StudentRequestsOnOpportunities.Where(item => item.Trainee_TraineeId == UnverTre.TraineeId).ToList();
 
-           
+
 
             if (reqoper != null)
             {
                 foreach (var i in reqoper)
                 {
-                    if (i.DecisionStatus == "approved" || i.DecisionStatus == "system disable" || i.DecisionStatus == "waiting")
+                    if (i.DecisionStatus == "waiting")
                     {
                         TempData["error"] = "تم التقديم بالفرصة مسبقا ";
 
                         return RedirectToAction("ViewOpportunities");
                     }
 
+                    if (i.DecisionStatus == "waitingStudentApprove")
+                    {
+                        TempData["error"] = "تم قبولك بالفرصة الرجاء الموافقة ";
+
+                        return RedirectToAction("ViewOpportunities");
+                    }
+
+                    if (i.DecisionStatus == "approved")
+                    {
+                        TempData["error"] = "تم قبولك بالفرصة مسبقا ";
+
+                        return RedirectToAction("ViewOpportunities");
+                    }
+
+
+                    if (i.DecisionStatus == "system disable" || i.DecisionStatus == "rejected")
+                    {
+                        TempData["error"] = "لايمكنك التقديم على هذه الفرصة ";
+
+                        return RedirectToAction("ViewOpportunities");
+                    }
+
                 }
             }
+
             if (studentreq != null)
             {
 
@@ -361,8 +384,10 @@ namespace TadarbProject.Controllers
                     }
 
                 }
-                
+
             }
+
+
             var RequestOpportunity = new StudentRequestOpportunity
             {
 
@@ -435,6 +460,146 @@ namespace TadarbProject.Controllers
             return Json(new { success = true });
         }
 
+
+
+
+        public IActionResult StudentCancelAfter(int? id)
+        {
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
+
+
+            var req = _DbContext.StudentRequestsOnOpportunities.Where(item => item.StudentRequestOpportunityId == id).Include(item => item.trainingOpportunity).AsNoTracking().FirstOrDefault();
+
+            if (req == null)
+            {
+                return Json(new { success = false });
+            }
+
+            if (req.DecisionStatus != "waitingStudentApprove")
+            {
+                TempData["error"] = "لايمكن الغاء الطلب";
+
+                return Json(new { success = false });
+
+            }
+
+            req.DecisionDate = DateTime.Now.Date;
+            req.DecisionStatus = "CancelAftereApprove";
+
+            _DbContext.StudentRequestsOnOpportunities.Update(req);
+
+
+            req.trainingOpportunity.RequestedOpportunities = req.trainingOpportunity.RequestedOpportunities - 1;
+
+            req.trainingOpportunity.AvailableOpportunities = req.trainingOpportunity.AvailableOpportunities + 1;
+
+
+            _DbContext.TrainingOpportunities.Update(req.trainingOpportunity);
+
+
+            _DbContext.SaveChanges();
+
+
+
+            return Json(new { success = true });
+        }
+
+
+
+
+
+        public IActionResult Approval(int? id)
+        {
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
+
+
+            var req = _DbContext.StudentRequestsOnOpportunities.Where(item => item.StudentRequestOpportunityId == id).Include(item => item.trainingOpportunity).AsNoTracking().FirstOrDefault();
+
+            if (req == null)
+            {
+                return Json(new { success = false });
+            }
+
+            if (req.DecisionStatus != "waitingStudentApprove")
+            {
+                TempData["error"] = "لايمكن الغاء الطلب";
+
+                return Json(new { success = false });
+
+            }
+
+
+            req.DecisionDate = DateTime.Now.Date;
+            req.DecisionStatus = "approved";
+
+            _DbContext.StudentRequestsOnOpportunities.Update(req);
+
+
+            _DbContext.SaveChanges();
+
+
+
+
+            ////----------------------------------------------------------------------
+
+            //_DbContext.Database.ExecuteSqlRaw("UPDATE StudentRequestsOnOpportunities SET DecisionDate = GETDATE() , DecisionStatus = 'system disable' " +
+            //    $"WHERE Trainee_TraineeId = {req.Trainee_TraineeId} AND StudentRequestOpportunityId != {req.StudentRequestOpportunityId} AND DecisionStatus = 'waitingStudentApprove' OR DecisionStatus = 'waiting'");
+
+            ////----------------------------------------------------------------------
+
+            req.trainingOpportunity.ApprovedOpportunities = req.trainingOpportunity.ApprovedOpportunities + 1;
+
+            req.trainingOpportunity.RequestedOpportunities = req.trainingOpportunity.RequestedOpportunities - 1;
+
+
+
+            _DbContext.TrainingOpportunities.Update(req.trainingOpportunity);
+
+            ///// لكي تعدل الفرص الاخرى التي نم ايقافها على الطالب وتعديل رقم المتقدمين عليها
+            var RequestList = _DbContext.StudentRequestsOnOpportunities.Where(item => item.Trainee_TraineeId == req.Trainee_TraineeId).Include(item => item.trainingOpportunity).AsNoTracking().ToList();
+
+            foreach (var i in RequestList)
+            {
+
+                if (i.DecisionStatus == "waiting" || i.DecisionStatus == "waitingStudentApprove")
+                {
+                    i.trainingOpportunity.AvailableOpportunities = i.trainingOpportunity.AvailableOpportunities + 1;
+
+                    i.DecisionDate = DateTime.Now.Date;
+                    i.DecisionStatus = "system disable";
+
+                    _DbContext.StudentRequestsOnOpportunities.Update(i);
+                    _DbContext.TrainingOpportunities.Update(i.trainingOpportunity);
+
+                    _DbContext.SaveChanges();
+                }
+
+
+
+                //  _DbContext.Database.ExecuteSqlRaw("UPDATE TrainingOpportunities SET RequestedOpportunities =(SELECT COUNT(*) FROM UniversitiesTraineeStudents WHERE TraineeId IN " +
+                //$"(SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities WHERE TrainingOpportunity_TrainingOpportunityId={i.TrainingOpportunity_TrainingOpportunityId} " +
+                //$"AND DecisionStatus = 'waiting' OR DecisionStatus = 'waitingStudentApprove')) WHERE TrainingOpportunityId={i.TrainingOpportunity_TrainingOpportunityId}");
+
+
+
+
+            }
+
+
+
+
+            _DbContext.SaveChanges();
+
+
+
+            return Json(new { success = true });
+        }
 
 
         #endregion

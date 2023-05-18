@@ -701,115 +701,6 @@ namespace TadarbProject.Controllers
         }
 
 
-        [HttpPost]
-        public IActionResult AcceptReject(StudentRequestOpportunity StudentRequestOpportunity, string desison)
-        {
-            int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
-            var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).AsNoTracking().FirstOrDefault();
-            var Branch = _DbContext.OrganizationBranches_TrainProv.Where(item => item.Responsible_UserId == RUserId).AsNoTracking().FirstOrDefault();
-
-            var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Branch.Organization_OrganizationId).AsNoTracking().FirstOrDefault();
-
-            var Department = _DbContext.Departments.Where(item => item.Responsible_UserId == RUserId).AsNoTracking().ToList();
-
-            var employee = _DbContext.Employees.Where(item => item.UserAccount_UserId == RUserId).AsNoTracking().FirstOrDefault();
-
-            var op = _DbContext.TrainingOpportunities.Where(item => item.TrainingOpportunityId == StudentRequestOpportunity.TrainingOpportunity_TrainingOpportunityId).AsNoTracking().FirstOrDefault();
-
-            //var ReqStudent = _DbContext.StudentRequestsOnOpportunities.Where(item => item.Trainee_TraineeId == UniversityTraineeStudent.TraineeId).AsNoTracking().FirstOrDefault();
-
-            var ReqStudentList = _DbContext.StudentRequestsOnOpportunities.Where(item => item.Trainee_TraineeId == StudentRequestOpportunity.Trainee_TraineeId).AsNoTracking().ToList();
-
-            //var ReqCompany = _DbContext.StudentRequestsOnOpportunities.Where(item => item.TrainingOpportunity_TrainingOpportunityId == oper.TrainingOpportunityId).AsNoTracking().FirstOrDefault();
-
-            var Requ = _DbContext.StudentRequestsOnOpportunities.Where(item => item.StudentRequestOpportunityId == StudentRequestOpportunity.StudentRequestOpportunityId).AsNoTracking().FirstOrDefault();
-
-            var NotRequ = _DbContext.StudentRequestsOnOpportunities.Where(item => item.Trainee_TraineeId == StudentRequestOpportunity.Trainee_TraineeId
-            && item.TrainingOpportunity_TrainingOpportunityId != StudentRequestOpportunity.TrainingOpportunity_TrainingOpportunityId).AsNoTracking().ToList();
-
-
-            if (desison == "accept")
-            {
-                if (op.OpportunityStatus != "Available")
-                {
-                    TempData["error"] = "عدد المقاعد مكتملة ";
-                    return RedirectToAction("index");
-                }
-
-                if (op.AbilityofSubmissionStatus != "Available")
-                {
-                    TempData["error"] = " عذرا الفرصة غير متاحة ";
-                    return RedirectToAction("index");
-                }
-
-                if (Requ.DecisionStatus == "waiting")
-                {
-
-
-                    Requ.DecisionStatus = "approved";
-                    Requ.DecisionDate = DateTime.Now;
-
-                    _DbContext.StudentRequestsOnOpportunities.Update(Requ);
-
-
-
-                    op.ApprovedOpportunities = op.ApprovedOpportunities + 1;
-                    op.RequestedOpportunities = op.RequestedOpportunities - 1;
-                    op.AvailableOpportunities = op.AvailableOpportunities - 1;
-                    if (op.AvailableOpportunities < 1)
-                    {
-                        op.OpportunityStatus = "Complete";
-                    }
-
-
-                    _DbContext.TrainingOpportunities.Update(op);
-
-                    _DbContext.SaveChanges();
-
-                    foreach (var i in NotRequ)
-                    {
-                        i.DecisionStatus = "system disable";
-                        _DbContext.StudentRequestsOnOpportunities.Update(i);
-                        _DbContext.SaveChanges();
-                    }
-
-
-                    TempData["success"] = "تم قبول طلب المتدرب بنجاح ";
-                    return RedirectToAction("ViewOpportunities");
-
-                }
-
-                TempData["error"] = "عذرا تم  قبول المتدرب بفرصة اخرى";
-                return RedirectToAction("ViewOpportunities");
-
-            }
-
-            if (desison == "reject")
-            {
-
-                Requ.DecisionStatus = "rejected";
-
-                _DbContext.StudentRequestsOnOpportunities.Update(Requ);
-
-
-
-                op.RequestedOpportunities = op.RequestedOpportunities - 1;
-                op.RejectedOpportunities = op.RejectedOpportunities + 1;
-
-
-                _DbContext.TrainingOpportunities.Update(op);
-
-                _DbContext.SaveChanges();
-
-                TempData["success"] = "تم رفض طلب المتدرب بنجاح";
-                return RedirectToAction("ViewOpportunities");
-            }
-
-
-
-            return View();
-        }
-
 
 
 
@@ -891,13 +782,19 @@ namespace TadarbProject.Controllers
             }
 
 
+            if (Request.DecisionStatus == "waitingStudentApprove")
+            {
+                TempData["error"] = "تم قبول الطالب مسبقا";
+                return Json(new { success = false });
+            }
+
             if (Request.DecisionStatus == "CancelBeforeApprove")
             {
                 TempData["error"] = "الطالب قام بالغاء الطلب";
                 return Json(new { success = false });
             }
 
-            Request.DecisionStatus = "approved";
+            Request.DecisionStatus = "waitingStudentApprove";
             Request.DecisionDate = DateTime.Now.Date;
 
             var op = _DbContext.TrainingOpportunities.Where(item => item.TrainingOpportunityId == Request.TrainingOpportunity_TrainingOpportunityId).AsNoTracking().FirstOrDefault();
@@ -927,15 +824,17 @@ namespace TadarbProject.Controllers
             }
 
 
-            //----------------------------------------------------------------------
+            ////----------------------------------------------------------------------
 
-            _DbContext.Database.ExecuteSqlRaw("UPDATE StudentRequestsOnOpportunities SET DecisionDate = GETDATE() , DecisionStatus = 'system disable' " +
-                $"WHERE Trainee_TraineeId = {Request.Trainee_TraineeId} AND StudentRequestOpportunityId != {Request.StudentRequestOpportunityId}");
+            //_DbContext.Database.ExecuteSqlRaw("UPDATE StudentRequestsOnOpportunities SET DecisionDate = GETDATE() , DecisionStatus = 'system disable' " +
+            //    $"WHERE Trainee_TraineeId = {Request.Trainee_TraineeId} AND StudentRequestOpportunityId != {Request.StudentRequestOpportunityId}");
 
-            //----------------------------------------------------------------------
+            ////----------------------------------------------------------------------
 
-            op.ApprovedOpportunities = op.ApprovedOpportunities + 1;
+            //op.ApprovedOpportunities = op.ApprovedOpportunities + 1;
+
             op.RequestedOpportunities = op.RequestedOpportunities - 1;
+
             op.AvailableOpportunities = op.AvailableOpportunities - 1;
             if (op.AvailableOpportunities < 1)
 
@@ -949,16 +848,16 @@ namespace TadarbProject.Controllers
 
             _DbContext.SaveChanges();
 
+            ///// لكي تعدل الفرص الاخرى التي نم ايقافها على الطالب وتعديل رقم المتقدمين عليها
+            //var RequestList = _DbContext.StudentRequestsOnOpportunities.Where(item => item.Trainee_TraineeId == Request.Trainee_TraineeId).AsNoTracking().ToList();
 
-            var RequestList = _DbContext.StudentRequestsOnOpportunities.Where(item => item.Trainee_TraineeId == Request.Trainee_TraineeId).AsNoTracking().ToList();
+            //foreach (var i in RequestList)
+            //{
+            //    _DbContext.Database.ExecuteSqlRaw("UPDATE TrainingOpportunities SET RequestedOpportunities =(SELECT COUNT(*) FROM UniversitiesTraineeStudents WHERE TraineeId IN " +
+            //  $"(SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities WHERE TrainingOpportunity_TrainingOpportunityId={i.TrainingOpportunity_TrainingOpportunityId} " +
+            //  $"AND DecisionStatus = 'waiting')) WHERE TrainingOpportunityId={i.TrainingOpportunity_TrainingOpportunityId}");
 
-            foreach (var i in RequestList)
-            {
-                _DbContext.Database.ExecuteSqlRaw("UPDATE TrainingOpportunities SET RequestedOpportunities =(SELECT COUNT(*) FROM UniversitiesTraineeStudents WHERE TraineeId IN " +
-              $"(SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities WHERE TrainingOpportunity_TrainingOpportunityId={i.TrainingOpportunity_TrainingOpportunityId} " +
-              $"AND DecisionStatus = 'waiting')) WHERE TrainingOpportunityId={i.TrainingOpportunity_TrainingOpportunityId}");
-
-            }
+            //}
 
 
 
