@@ -52,5 +52,13 @@ namespace TadarbProject.Data
 
         public DbSet<StudentRequestOpportunity> StudentRequestsOnOpportunities { get; set; }
 
+
+
+        public DbSet<AssessmentType> AssessmentTypes { get; set; }
+
+
+        public DbSet<DepartmentAssessmentTypeMaster> DepartmentsAssessmentTypeMaster { get; set; }
+
+        public DbSet<DepartmentAssessmentTypeDetail> DepartmentsAssessmentTypeDetail { get; set; }
     }
 }
