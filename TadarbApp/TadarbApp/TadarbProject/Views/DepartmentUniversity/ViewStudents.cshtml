@@ -114,6 +114,23 @@
                                 <div class="table-search float-start">
                                     <button class="btn  btn-info" type="submit" onclick="Clear()" style="color:black;border:0px;font-size:18px;background-color:lightblue">ظهور الكل</button>
 
+
+
+                                    <button class="btn  btn-info" type="submit" onclick="ChangeStudentRequestStatus(1)" style="color:black;border:0px;font-size:18px;background-color:lightblue">الطلاب المتقدمين</button>
+
+
+
+                                    <button class="btn  btn-info" type="submit" onclick="ChangeStudentRequestStatus(2)" style="color:black;border:0px;font-size:18px;background-color:lightblue">الطلاب غير المتقدمين</button>
+
+
+                                    <button class="btn  btn-info" type="submit" onclick="ChangeStudentRequestStatus(3)" style="color:black;border:0px;font-size:18px;background-color:lightblue">الطلاب المرفوضين </button>
+
+
+
+                                    <button class="btn  btn-info" type="submit" onclick="ChangeStudentRequestStatus(4)" style="color:black;border:0px;font-size:18px;background-color:lightblue">الطلاب المقبولين</button>
+
+
+
                                 </div>
 
                                 <div class="col-sm-6">
@@ -218,14 +235,26 @@
 
         var UOrDHOUERS = 0;
 
-        FillTable(Gender, UOrDGPA, UOrDHOUERS);
+        var StudentRequestStatus = 0;
+
+
+        FillTable(Gender, UOrDGPA, UOrDHOUERS, StudentRequestStatus);
+
+
+        function ChangeStudentRequestStatus(v) {
+
+            StudentRequestStatus = v;
+
+            FillTable(Gender, UOrDGPA, UOrDHOUERS, StudentRequestStatus);
+        }
 
 
         function ChangeGender(v) {
 
             Gender = v;
 
-            FillTable(Gender, UOrDGPA, UOrDHOUERS);
+
+            FillTable(Gender, UOrDGPA, UOrDHOUERS, StudentRequestStatus);
         }
 
 
@@ -234,7 +263,8 @@
             UOrDGPA = x;
 
 
-            FillTable(Gender, UOrDGPA, UOrDHOUERS);
+            
+            FillTable(Gender, UOrDGPA, UOrDHOUERS, StudentRequestStatus);
         }
 
         function ChangeUOrDHOUERS(x) {
@@ -242,7 +272,8 @@
             UOrDHOUERS = x;
 
 
-            FillTable(Gender, UOrDGPA, UOrDHOUERS);
+
+            FillTable(Gender, UOrDGPA, UOrDHOUERS, StudentRequestStatus);
         }
 
         function Clear() {
@@ -254,13 +285,15 @@
 
             UOrDHOUERS = 0;
 
+            StudentRequestStatus = 0;
 
-            FillTable(Gender, UOrDGPA, UOrDHOUERS);
+
+            FillTable(Gender, UOrDGPA, UOrDHOUERS, StudentRequestStatus);
         }
 
 
 
-        function FillTable(gr, updwG, updwH) {
+        function FillTable(gr, updwG, updwH , StRqSa) {
 
             var body = "";
 
@@ -271,7 +304,7 @@
                     url: "@Url.Action("GetStudentsList")",
                     type: 'GET',
                     dataType: "json",
-                    data: { gender: gr, UpdwGPA: updwG, UpdwHOUERS: updwH },
+                    data: { gender: gr, UpdwGPA: updwG, UpdwHOUERS: updwH, StutReqStatus: StRqSa },
 
 
                     success: function (data) {

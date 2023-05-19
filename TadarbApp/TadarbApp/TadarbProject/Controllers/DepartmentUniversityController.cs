@@ -315,7 +315,7 @@ namespace TadarbProject.Controllers
 
 
         [HttpGet]
-        public IActionResult GetStudentsList(string? gender, int? UpdwGPA, int? UpdwHOUERS)
+        public IActionResult GetStudentsList(string? gender, int? UpdwGPA, int? UpdwHOUERS, int? StutReqStatus)
         {
 
 
@@ -332,217 +332,1175 @@ namespace TadarbProject.Controllers
 
             IEnumerable<UniversityTraineeStudent> Students = Enumerable.Empty<UniversityTraineeStudent>();
 
-
-            if (gender == null && UpdwGPA == 0 && UpdwHOUERS == 0)
+            if (StutReqStatus == 0)
             {
-
-                Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId}")
-                           .AsNoTracking().Include(item => item.user).AsNoTracking().ToList();
-
-                return Json(new { Students });
-            }
-
-            if (gender == null && UpdwGPA != 0 && UpdwHOUERS != 0)
-            {
-
-
-
-                if (UpdwHOUERS == 1 && UpdwGPA == 1)
+                if (gender == null && UpdwGPA == 0 && UpdwHOUERS == 0)
                 {
-                    Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId} ")
-                        .AsNoTracking().Include(item => item.user).AsNoTracking().OrderBy(item => item.CompletedHours).ThenBy(item => item.GPA).ToList();
 
-                    return Json(new { Students });
-                }
-
-                if (UpdwHOUERS == 2 && UpdwGPA == 1)
-                {
-                    Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId} ")
-                              .AsNoTracking().Include(item => item.user).AsNoTracking().OrderByDescending(item => item.CompletedHours).ThenBy(item => item.GPA).ToList();
-
-
-                    return Json(new { Students });
-                }
-
-                if (UpdwHOUERS == 1 && UpdwGPA == 2)
-                {
-                    Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId} ")
-                              .AsNoTracking().Include(item => item.user).AsNoTracking().OrderBy(item => item.CompletedHours).ThenByDescending(item => item.GPA).ToList();
-
-
-                    return Json(new { Students });
-                }
-
-
-                if (UpdwHOUERS == 2 && UpdwGPA == 2)
-                {
-                    Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId} ")
-                              .AsNoTracking().Include(item => item.user).AsNoTracking().OrderByDescending(item => item.CompletedHours).ThenByDescending(item => item.GPA).ToList();
-
-
-                    return Json(new { Students });
-                }
-
-
-
-
-
-
-
-            }
-
-            if (gender == null && UpdwGPA == 0 && UpdwHOUERS != 0)
-            {
-
-
-
-                if (UpdwHOUERS == 1)
-                {
                     Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId}")
-                        .AsNoTracking().Include(item => item.user).AsNoTracking().OrderBy(item => item.CompletedHours).ToList();
+                               .AsNoTracking().Include(item => item.user).AsNoTracking().ToList();
 
                     return Json(new { Students });
                 }
 
-                if (UpdwHOUERS == 2)
+
+                if (gender == null && UpdwGPA != 0 && UpdwHOUERS != 0)
                 {
-                    Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId}")
-                        .AsNoTracking().Include(item => item.user).AsNoTracking().OrderByDescending(item => item.CompletedHours).ToList();
+
+
+
+                    if (UpdwHOUERS == 1 && UpdwGPA == 1)
+                    {
+                        Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId} ")
+                            .AsNoTracking().Include(item => item.user).AsNoTracking().OrderBy(item => item.CompletedHours).ThenBy(item => item.GPA).ToList();
+
+                        return Json(new { Students });
+                    }
+
+                    if (UpdwHOUERS == 2 && UpdwGPA == 1)
+                    {
+                        Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId} ")
+                                  .AsNoTracking().Include(item => item.user).AsNoTracking().OrderByDescending(item => item.CompletedHours).ThenBy(item => item.GPA).ToList();
+
+
+                        return Json(new { Students });
+                    }
+
+                    if (UpdwHOUERS == 1 && UpdwGPA == 2)
+                    {
+                        Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId} ")
+                                  .AsNoTracking().Include(item => item.user).AsNoTracking().OrderBy(item => item.CompletedHours).ThenByDescending(item => item.GPA).ToList();
+
+
+                        return Json(new { Students });
+                    }
+
+
+                    if (UpdwHOUERS == 2 && UpdwGPA == 2)
+                    {
+                        Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId} ")
+                                  .AsNoTracking().Include(item => item.user).AsNoTracking().OrderByDescending(item => item.CompletedHours).ThenByDescending(item => item.GPA).ToList();
+
+
+                        return Json(new { Students });
+                    }
+
+
+
+
+
+
+
+                }
+
+
+                if (gender == null && UpdwGPA == 0 && UpdwHOUERS != 0)
+                {
+
+
+
+                    if (UpdwHOUERS == 1)
+                    {
+                        Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId}")
+                            .AsNoTracking().Include(item => item.user).AsNoTracking().OrderBy(item => item.CompletedHours).ToList();
+
+                        return Json(new { Students });
+                    }
+
+                    if (UpdwHOUERS == 2)
+                    {
+                        Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId}")
+                            .AsNoTracking().Include(item => item.user).AsNoTracking().OrderByDescending(item => item.CompletedHours).ToList();
+
+                        return Json(new { Students });
+                    }
+
+
+                }
+
+
+                if (gender == null && UpdwGPA != 0 && UpdwHOUERS == 0)
+                {
+
+
+
+                    if (UpdwGPA == 1)
+                    {
+                        Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId}")
+                            .AsNoTracking().Include(item => item.user).AsNoTracking().OrderBy(item => item.GPA).ToList();
+
+                        return Json(new { Students });
+                    }
+
+                    if (UpdwGPA == 2)
+                    {
+                        Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId}")
+                            .AsNoTracking().Include(item => item.user).AsNoTracking().OrderByDescending(item => item.GPA).ToList();
+
+                        return Json(new { Students });
+                    }
+
+
+                }
+
+
+                if (gender != null && UpdwGPA == 0 && UpdwHOUERS == 0)
+                {
+
+                    Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId} AND Gender ='{gender}'")
+                               .AsNoTracking().Include(item => item.user).AsNoTracking().ToList();
 
                     return Json(new { Students });
                 }
 
+                if (gender != null && UpdwGPA != 0 && UpdwHOUERS == 0)
+                {
+
+
+
+                    if (UpdwGPA == 1)
+                    {
+                        Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId} AND Gender ='{gender}'")
+                            .AsNoTracking().Include(item => item.user).AsNoTracking().OrderBy(item => item.GPA).ToList();
+
+                        return Json(new { Students });
+                    }
+
+                    if (UpdwGPA == 2)
+                    {
+                        Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId} AND Gender ='{gender}'")
+                            .AsNoTracking().Include(item => item.user).AsNoTracking().OrderByDescending(item => item.GPA).ToList();
+
+                        return Json(new { Students });
+                    }
+
+
+                }
+
+                if (gender != null && UpdwGPA == 0 && UpdwHOUERS != 0)
+                {
+
+
+
+                    if (UpdwHOUERS == 1)
+                    {
+                        Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId} AND Gender ='{gender}'")
+                            .AsNoTracking().Include(item => item.user).AsNoTracking().OrderBy(item => item.CompletedHours).ToList();
+
+                        return Json(new { Students });
+                    }
+
+                    if (UpdwHOUERS == 2)
+                    {
+                        Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId} AND Gender ='{gender}'")
+                            .AsNoTracking().Include(item => item.user).AsNoTracking().OrderByDescending(item => item.CompletedHours).ToList();
+
+                        return Json(new { Students });
+                    }
+
+
+                }
+
+                if (gender != null && UpdwGPA != 0 && UpdwHOUERS != 0)
+                {
+
+
+
+                    if (UpdwHOUERS == 1 && UpdwGPA == 1)
+                    {
+                        Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId} AND Gender ='{gender}'")
+                            .AsNoTracking().Include(item => item.user).AsNoTracking().OrderBy(item => item.CompletedHours).ThenBy(item => item.GPA).ToList();
+
+                        return Json(new { Students });
+                    }
+
+                    if (UpdwHOUERS == 2 && UpdwGPA == 1)
+                    {
+                        Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId} AND Gender ='{gender}'")
+                                  .AsNoTracking().Include(item => item.user).AsNoTracking().OrderByDescending(item => item.CompletedHours).ThenBy(item => item.GPA).ToList();
+
+
+                        return Json(new { Students });
+                    }
+
+                    if (UpdwHOUERS == 1 && UpdwGPA == 2)
+                    {
+                        Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId} AND Gender ='{gender}'")
+                                  .AsNoTracking().Include(item => item.user).AsNoTracking().OrderBy(item => item.CompletedHours).ThenByDescending(item => item.GPA).ToList();
+
+
+                        return Json(new { Students });
+                    }
+
+
+                    if (UpdwHOUERS == 2 && UpdwGPA == 2)
+                    {
+                        Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId} AND Gender ='{gender}'")
+                                  .AsNoTracking().Include(item => item.user).AsNoTracking().OrderByDescending(item => item.CompletedHours).ThenByDescending(item => item.GPA).ToList();
+
+
+                        return Json(new { Students });
+                    }
+
+
+
+                }
 
             }
 
-            if (gender == null && UpdwGPA != 0 && UpdwHOUERS == 0)
+
+            if (StutReqStatus == 1)
             {
-
-
-
-                if (UpdwGPA == 1)
+                if (gender == null && UpdwGPA == 0 && UpdwHOUERS == 0)
                 {
-                    Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId}")
-                        .AsNoTracking().Include(item => item.user).AsNoTracking().OrderBy(item => item.GPA).ToList();
+
+                    Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId}" +
+                        $"AND TraineeId IN (SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities  WHERE DecisionStatus = 'waitingStudentApprove' OR DecisionStatus = 'waiting')")
+                               .AsNoTracking().Include(item => item.user).AsNoTracking().ToList();
 
                     return Json(new { Students });
                 }
 
-                if (UpdwGPA == 2)
+
+                if (gender == null && UpdwGPA != 0 && UpdwHOUERS != 0)
                 {
-                    Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId}")
-                        .AsNoTracking().Include(item => item.user).AsNoTracking().OrderByDescending(item => item.GPA).ToList();
+
+
+
+                    if (UpdwHOUERS == 1 && UpdwGPA == 1)
+                    {
+                        Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId}" +
+                            $"AND TraineeId IN (SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities  WHERE DecisionStatus = 'waitingStudentApprove' OR DecisionStatus = 'waiting')")
+                            .AsNoTracking().Include(item => item.user).AsNoTracking().OrderBy(item => item.CompletedHours).ThenBy(item => item.GPA).ToList();
+
+                        return Json(new { Students });
+                    }
+
+                    if (UpdwHOUERS == 2 && UpdwGPA == 1)
+                    {
+                        Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId} " +
+                            $"AND TraineeId IN (SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities  WHERE DecisionStatus = 'waitingStudentApprove' OR DecisionStatus = 'waiting')")
+                                  .AsNoTracking().Include(item => item.user).AsNoTracking().OrderByDescending(item => item.CompletedHours).ThenBy(item => item.GPA).ToList();
+
+
+                        return Json(new { Students });
+                    }
+
+                    if (UpdwHOUERS == 1 && UpdwGPA == 2)
+                    {
+                        Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId} " +
+                            $"AND TraineeId IN (SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities  WHERE DecisionStatus = 'waitingStudentApprove' OR DecisionStatus = 'waiting')")
+                                  .AsNoTracking().Include(item => item.user).AsNoTracking().OrderBy(item => item.CompletedHours).ThenByDescending(item => item.GPA).ToList();
+
+
+                        return Json(new { Students });
+                    }
+
+
+                    if (UpdwHOUERS == 2 && UpdwGPA == 2)
+                    {
+                        Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId}" +
+                            $"AND TraineeId IN (SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities  WHERE DecisionStatus = 'waitingStudentApprove' OR DecisionStatus = 'waiting')")
+                                  .AsNoTracking().Include(item => item.user).AsNoTracking().OrderByDescending(item => item.CompletedHours).ThenByDescending(item => item.GPA).ToList();
+
+
+                        return Json(new { Students });
+                    }
+
+
+
+
+
+
+
+                }
+
+
+                if (gender == null && UpdwGPA == 0 && UpdwHOUERS != 0)
+                {
+
+
+
+                    if (UpdwHOUERS == 1)
+                    {
+                        Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId}" +
+                            $"AND TraineeId IN (SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities  WHERE DecisionStatus = 'waitingStudentApprove' OR DecisionStatus = 'waiting')")
+                            .AsNoTracking().Include(item => item.user).AsNoTracking().OrderBy(item => item.CompletedHours).ToList();
+
+                        return Json(new { Students });
+                    }
+
+                    if (UpdwHOUERS == 2)
+                    {
+                        Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId}" +
+                            $"AND TraineeId IN (SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities  WHERE DecisionStatus = 'waitingStudentApprove' OR DecisionStatus = 'waiting')")
+                            .AsNoTracking().Include(item => item.user).AsNoTracking().OrderByDescending(item => item.CompletedHours).ToList();
+
+                        return Json(new { Students });
+                    }
+
+
+                }
+
+
+                if (gender == null && UpdwGPA != 0 && UpdwHOUERS == 0)
+                {
+
+
+
+                    if (UpdwGPA == 1)
+                    {
+                        Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId}" +
+                            $"AND TraineeId IN (SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities  WHERE DecisionStatus = 'waitingStudentApprove' OR DecisionStatus = 'waiting')")
+                            .AsNoTracking().Include(item => item.user).AsNoTracking().OrderBy(item => item.GPA).ToList();
+
+                        return Json(new { Students });
+                    }
+
+                    if (UpdwGPA == 2)
+                    {
+                        Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId}" +
+                            $"AND TraineeId IN (SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities  WHERE DecisionStatus = 'waitingStudentApprove' OR DecisionStatus = 'waiting')")
+                            .AsNoTracking().Include(item => item.user).AsNoTracking().OrderByDescending(item => item.GPA).ToList();
+
+                        return Json(new { Students });
+                    }
+
+
+                }
+
+
+                if (gender != null && UpdwGPA == 0 && UpdwHOUERS == 0)
+                {
+
+                    Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId} AND Gender ='{gender}'" +
+                        $"AND TraineeId IN (SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities  WHERE DecisionStatus = 'waitingStudentApprove' OR DecisionStatus = 'waiting')")
+                               .AsNoTracking().Include(item => item.user).AsNoTracking().ToList();
 
                     return Json(new { Students });
                 }
 
+                if (gender != null && UpdwGPA != 0 && UpdwHOUERS == 0)
+                {
+
+
+
+                    if (UpdwGPA == 1)
+                    {
+                        Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId} AND Gender ='{gender}'" +
+                            $"AND TraineeId IN (SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities  WHERE DecisionStatus = 'waitingStudentApprove' OR DecisionStatus = 'waiting')")
+                            .AsNoTracking().Include(item => item.user).AsNoTracking().OrderBy(item => item.GPA).ToList();
+
+                        return Json(new { Students });
+                    }
+
+                    if (UpdwGPA == 2)
+                    {
+                        Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId} AND Gender ='{gender}'" +
+                            $"AND TraineeId IN (SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities  WHERE DecisionStatus = 'waitingStudentApprove' OR DecisionStatus = 'waiting')")
+                            .AsNoTracking().Include(item => item.user).AsNoTracking().OrderByDescending(item => item.GPA).ToList();
+
+                        return Json(new { Students });
+                    }
+
+
+                }
+
+                if (gender != null && UpdwGPA == 0 && UpdwHOUERS != 0)
+                {
+
+
+
+                    if (UpdwHOUERS == 1)
+                    {
+                        Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId} AND Gender ='{gender}'" +
+                            $"AND TraineeId IN (SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities  WHERE DecisionStatus = 'waitingStudentApprove' OR DecisionStatus = 'waiting')")
+                            .AsNoTracking().Include(item => item.user).AsNoTracking().OrderBy(item => item.CompletedHours).ToList();
+
+                        return Json(new { Students });
+                    }
+
+                    if (UpdwHOUERS == 2)
+                    {
+                        Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId} AND Gender ='{gender}'" +
+                            $"AND TraineeId IN (SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities  WHERE DecisionStatus = 'waitingStudentApprove' OR DecisionStatus = 'waiting')")
+                            .AsNoTracking().Include(item => item.user).AsNoTracking().OrderByDescending(item => item.CompletedHours).ToList();
+
+                        return Json(new { Students });
+                    }
+
+
+                }
+
+                if (gender != null && UpdwGPA != 0 && UpdwHOUERS != 0)
+                {
+
+
+
+                    if (UpdwHOUERS == 1 && UpdwGPA == 1)
+                    {
+                        Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId} AND Gender ='{gender}'" +
+                            $"AND TraineeId IN (SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities  WHERE DecisionStatus = 'waitingStudentApprove' OR DecisionStatus = 'waiting')")
+                            .AsNoTracking().Include(item => item.user).AsNoTracking().OrderBy(item => item.CompletedHours).ThenBy(item => item.GPA).ToList();
+
+                        return Json(new { Students });
+                    }
+
+                    if (UpdwHOUERS == 2 && UpdwGPA == 1)
+                    {
+                        Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId} AND Gender ='{gender}'" +
+                            $"AND TraineeId IN (SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities  WHERE DecisionStatus = 'waitingStudentApprove' OR DecisionStatus = 'waiting')")
+                                  .AsNoTracking().Include(item => item.user).AsNoTracking().OrderByDescending(item => item.CompletedHours).ThenBy(item => item.GPA).ToList();
+
+
+                        return Json(new { Students });
+                    }
+
+                    if (UpdwHOUERS == 1 && UpdwGPA == 2)
+                    {
+                        Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId} AND Gender ='{gender}'" +
+                            $"AND TraineeId IN (SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities  WHERE DecisionStatus = 'waitingStudentApprove' OR DecisionStatus = 'waiting')")
+                                  .AsNoTracking().Include(item => item.user).AsNoTracking().OrderBy(item => item.CompletedHours).ThenByDescending(item => item.GPA).ToList();
+
+
+                        return Json(new { Students });
+                    }
+
+
+                    if (UpdwHOUERS == 2 && UpdwGPA == 2)
+                    {
+                        Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId} AND Gender ='{gender}'" +
+                            $"AND TraineeId IN (SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities  WHERE DecisionStatus = 'waitingStudentApprove' OR DecisionStatus = 'waiting')")
+                                  .AsNoTracking().Include(item => item.user).AsNoTracking().OrderByDescending(item => item.CompletedHours).ThenByDescending(item => item.GPA).ToList();
+
+
+                        return Json(new { Students });
+                    }
+
+
+
+                }
 
             }
 
 
-            if (gender != null && UpdwGPA == 0 && UpdwHOUERS == 0)
+            if (StutReqStatus == 2)
             {
+                if (gender == null && UpdwGPA == 0 && UpdwHOUERS == 0)
+                {
 
-                Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId} AND Gender ='{gender}'")
-                           .AsNoTracking().Include(item => item.user).AsNoTracking().ToList();
+                    Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId}" +
+                        $"AND TraineeId NOT IN (SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities)")
+                               .AsNoTracking().Include(item => item.user).AsNoTracking().ToList();
 
-                return Json(new { Students });
+                    return Json(new { Students });
+                }
+
+
+                if (gender == null && UpdwGPA != 0 && UpdwHOUERS != 0)
+                {
+
+
+
+                    if (UpdwHOUERS == 1 && UpdwGPA == 1)
+                    {
+                        Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId} " +
+                            $"AND TraineeId NOT IN (SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities)")
+                            .AsNoTracking().Include(item => item.user).AsNoTracking().OrderBy(item => item.CompletedHours).ThenBy(item => item.GPA).ToList();
+
+                        return Json(new { Students });
+                    }
+
+                    if (UpdwHOUERS == 2 && UpdwGPA == 1)
+                    {
+                        Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId} " +
+                            $"AND TraineeId NOT IN (SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities)")
+                                  .AsNoTracking().Include(item => item.user).AsNoTracking().OrderByDescending(item => item.CompletedHours).ThenBy(item => item.GPA).ToList();
+
+
+                        return Json(new { Students });
+                    }
+
+                    if (UpdwHOUERS == 1 && UpdwGPA == 2)
+                    {
+                        Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId} " +
+                            $"AND TraineeId NOT IN (SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities)")
+                                  .AsNoTracking().Include(item => item.user).AsNoTracking().OrderBy(item => item.CompletedHours).ThenByDescending(item => item.GPA).ToList();
+
+
+                        return Json(new { Students });
+                    }
+
+
+                    if (UpdwHOUERS == 2 && UpdwGPA == 2)
+                    {
+                        Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId} " +
+                            $"AND TraineeId NOT IN (SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities)")
+                                  .AsNoTracking().Include(item => item.user).AsNoTracking().OrderByDescending(item => item.CompletedHours).ThenByDescending(item => item.GPA).ToList();
+
+
+                        return Json(new { Students });
+                    }
+
+
+                }
+
+
+                if (gender == null && UpdwGPA == 0 && UpdwHOUERS != 0)
+                {
+
+
+
+                    if (UpdwHOUERS == 1)
+                    {
+                        Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId}" +
+                            $"AND TraineeId NOT IN (SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities)")
+                            .AsNoTracking().Include(item => item.user).AsNoTracking().OrderBy(item => item.CompletedHours).ToList();
+
+                        return Json(new { Students });
+                    }
+
+                    if (UpdwHOUERS == 2)
+                    {
+                        Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId}" +
+                            $"AND TraineeId NOT IN (SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities)")
+                            .AsNoTracking().Include(item => item.user).AsNoTracking().OrderByDescending(item => item.CompletedHours).ToList();
+
+                        return Json(new { Students });
+                    }
+
+
+                }
+
+
+                if (gender == null && UpdwGPA != 0 && UpdwHOUERS == 0)
+                {
+
+
+
+                    if (UpdwGPA == 1)
+                    {
+                        Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId}" +
+                            $"AND TraineeId NOT IN (SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities)")
+                            .AsNoTracking().Include(item => item.user).AsNoTracking().OrderBy(item => item.GPA).ToList();
+
+                        return Json(new { Students });
+                    }
+
+                    if (UpdwGPA == 2)
+                    {
+                        Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId}" +
+                            $"AND TraineeId NOT IN (SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities)")
+                            .AsNoTracking().Include(item => item.user).AsNoTracking().OrderByDescending(item => item.GPA).ToList();
+
+                        return Json(new { Students });
+                    }
+
+
+                }
+
+
+                if (gender != null && UpdwGPA == 0 && UpdwHOUERS == 0)
+                {
+
+                    Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId} AND Gender ='{gender}'" +
+                        $"AND TraineeId NOT IN (SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities)")
+                               .AsNoTracking().Include(item => item.user).AsNoTracking().ToList();
+
+                    return Json(new { Students });
+                }
+
+                if (gender != null && UpdwGPA != 0 && UpdwHOUERS == 0)
+                {
+
+
+
+                    if (UpdwGPA == 1)
+                    {
+                        Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId} AND Gender ='{gender}'" +
+                            $"AND TraineeId NOT IN (SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities)")
+                            .AsNoTracking().Include(item => item.user).AsNoTracking().OrderBy(item => item.GPA).ToList();
+
+                        return Json(new { Students });
+                    }
+
+                    if (UpdwGPA == 2)
+                    {
+                        Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId} AND Gender ='{gender}'" +
+                            $"AND TraineeId NOT IN (SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities)")
+                            .AsNoTracking().Include(item => item.user).AsNoTracking().OrderByDescending(item => item.GPA).ToList();
+
+                        return Json(new { Students });
+                    }
+
+
+                }
+
+                if (gender != null && UpdwGPA == 0 && UpdwHOUERS != 0)
+                {
+
+
+
+                    if (UpdwHOUERS == 1)
+                    {
+                        Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId} AND Gender ='{gender}'" +
+                            $"AND TraineeId NOT IN (SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities)")
+                            .AsNoTracking().Include(item => item.user).AsNoTracking().OrderBy(item => item.CompletedHours).ToList();
+
+                        return Json(new { Students });
+                    }
+
+                    if (UpdwHOUERS == 2)
+                    {
+                        Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId} AND Gender ='{gender}'" +
+                            $"AND TraineeId NOT IN (SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities)")
+                            .AsNoTracking().Include(item => item.user).AsNoTracking().OrderByDescending(item => item.CompletedHours).ToList();
+
+                        return Json(new { Students });
+                    }
+
+
+                }
+
+                if (gender != null && UpdwGPA != 0 && UpdwHOUERS != 0)
+                {
+
+
+
+                    if (UpdwHOUERS == 1 && UpdwGPA == 1)
+                    {
+                        Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId} AND Gender ='{gender}'" +
+                            $"AND TraineeId NOT IN (SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities)")
+                            .AsNoTracking().Include(item => item.user).AsNoTracking().OrderBy(item => item.CompletedHours).ThenBy(item => item.GPA).ToList();
+
+                        return Json(new { Students });
+                    }
+
+                    if (UpdwHOUERS == 2 && UpdwGPA == 1)
+                    {
+                        Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId} AND Gender ='{gender}'" +
+                            $"AND TraineeId NOT IN (SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities)")
+                                  .AsNoTracking().Include(item => item.user).AsNoTracking().OrderByDescending(item => item.CompletedHours).ThenBy(item => item.GPA).ToList();
+
+
+                        return Json(new { Students });
+                    }
+
+                    if (UpdwHOUERS == 1 && UpdwGPA == 2)
+                    {
+                        Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId} AND Gender ='{gender}'" +
+                            $"AND TraineeId NOT IN (SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities)")
+                                  .AsNoTracking().Include(item => item.user).AsNoTracking().OrderBy(item => item.CompletedHours).ThenByDescending(item => item.GPA).ToList();
+
+
+                        return Json(new { Students });
+                    }
+
+
+                    if (UpdwHOUERS == 2 && UpdwGPA == 2)
+                    {
+                        Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId} AND Gender ='{gender}'" +
+                            $"AND TraineeId NOT IN (SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities)")
+                                  .AsNoTracking().Include(item => item.user).AsNoTracking().OrderByDescending(item => item.CompletedHours).ThenByDescending(item => item.GPA).ToList();
+
+
+                        return Json(new { Students });
+                    }
+
+
+
+                }
+
             }
 
-            if (gender != null && UpdwGPA != 0 && UpdwHOUERS == 0)
+
+
+            if (StutReqStatus == 3)
+
             {
-
-
-
-                if (UpdwGPA == 1)
+                if (gender == null && UpdwGPA == 0 && UpdwHOUERS == 0)
                 {
-                    Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId} AND Gender ='{gender}'")
-                        .AsNoTracking().Include(item => item.user).AsNoTracking().OrderBy(item => item.GPA).ToList();
+
+                    Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId} " +
+                        $"AND TraineeId IN (SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities  WHERE DecisionStatus = 'rejected' OR DecisionStatus = 'system disable' OR  DecisionStatus = 'CancelBeforeApprove' OR  DecisionStatus = 'CancelAftereApprove')" +
+                        $"AND TraineeId NOT IN (SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities  WHERE DecisionStatus = 'approved')")
+                               .AsNoTracking().Include(item => item.user).AsNoTracking().ToList();
 
                     return Json(new { Students });
                 }
 
-                if (UpdwGPA == 2)
+
+                if (gender == null && UpdwGPA != 0 && UpdwHOUERS != 0)
                 {
-                    Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId} AND Gender ='{gender}'")
-                        .AsNoTracking().Include(item => item.user).AsNoTracking().OrderByDescending(item => item.GPA).ToList();
+
+
+
+                    if (UpdwHOUERS == 1 && UpdwGPA == 1)
+                    {
+                        Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId} " +
+                            $"AND TraineeId IN (SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities  WHERE DecisionStatus = 'rejected' OR DecisionStatus = 'system disable' OR  DecisionStatus = 'CancelBeforeApprove' OR  DecisionStatus = 'CancelAftereApprove')" +
+                            $"AND TraineeId NOT IN (SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities  WHERE DecisionStatus = 'approved')")
+                            .AsNoTracking().Include(item => item.user).AsNoTracking().OrderBy(item => item.CompletedHours).ThenBy(item => item.GPA).ToList();
+
+                        return Json(new { Students });
+                    }
+
+                    if (UpdwHOUERS == 2 && UpdwGPA == 1)
+                    {
+                        Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId} " +
+                            $"AND TraineeId IN (SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities  WHERE DecisionStatus = 'rejected' OR DecisionStatus = 'system disable' OR  DecisionStatus = 'CancelBeforeApprove' OR  DecisionStatus = 'CancelAftereApprove')" +
+                            $"AND TraineeId NOT IN (SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities  WHERE DecisionStatus = 'approved')")
+                                  .AsNoTracking().Include(item => item.user).AsNoTracking().OrderByDescending(item => item.CompletedHours).ThenBy(item => item.GPA).ToList();
+
+
+                        return Json(new { Students });
+                    }
+
+                    if (UpdwHOUERS == 1 && UpdwGPA == 2)
+                    {
+                        Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId} " +
+                            $"AND TraineeId IN (SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities  WHERE DecisionStatus = 'rejected' OR DecisionStatus = 'system disable' OR  DecisionStatus = 'CancelBeforeApprove' OR  DecisionStatus = 'CancelAftereApprove')" +
+                            $"AND TraineeId NOT IN (SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities  WHERE DecisionStatus = 'approved')")
+                                  .AsNoTracking().Include(item => item.user).AsNoTracking().OrderBy(item => item.CompletedHours).ThenByDescending(item => item.GPA).ToList();
+
+
+                        return Json(new { Students });
+                    }
+
+
+                    if (UpdwHOUERS == 2 && UpdwGPA == 2)
+                    {
+                        Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId} " +
+                            $"AND TraineeId IN (SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities  WHERE DecisionStatus = 'rejected' OR DecisionStatus = 'system disable' OR  DecisionStatus = 'CancelBeforeApprove' OR  DecisionStatus = 'CancelAftereApprove')" +
+                            $"AND TraineeId NOT IN (SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities  WHERE DecisionStatus = 'approved')")
+                                  .AsNoTracking().Include(item => item.user).AsNoTracking().OrderByDescending(item => item.CompletedHours).ThenByDescending(item => item.GPA).ToList();
+
+
+                        return Json(new { Students });
+                    }
+
+
+
+
+
+
+
+                }
+
+
+                if (gender == null && UpdwGPA == 0 && UpdwHOUERS != 0)
+                {
+
+
+
+                    if (UpdwHOUERS == 1)
+                    {
+                        Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId}" +
+                         $" AND TraineeId IN (SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities  WHERE DecisionStatus = 'rejected' OR DecisionStatus = 'system disable' OR  DecisionStatus = 'CancelBeforeApprove' OR  DecisionStatus = 'CancelAftereApprove')" +
+                         $"AND TraineeId NOT IN (SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities  WHERE DecisionStatus = 'approved')")
+                         .AsNoTracking().Include(item => item.user).AsNoTracking().OrderBy(item => item.CompletedHours).ToList();
+                        return Json(new { Students });
+                    }
+
+                    if (UpdwHOUERS == 2)
+                    {
+                        Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId}" +
+                            $" AND TraineeId IN (SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities  WHERE DecisionStatus = 'rejected' OR DecisionStatus = 'system disable' OR  DecisionStatus = 'CancelBeforeApprove' OR  DecisionStatus = 'CancelAftereApprove')" +
+                            $"AND TraineeId NOT IN (SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities  WHERE DecisionStatus = 'approved')")
+                            .AsNoTracking().Include(item => item.user).AsNoTracking().OrderByDescending(item => item.CompletedHours).ToList();
+
+                        return Json(new { Students });
+                    }
+
+
+                }
+
+
+                if (gender == null && UpdwGPA != 0 && UpdwHOUERS == 0)
+                {
+
+
+
+                    if (UpdwGPA == 1)
+                    {
+                        Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId}" +
+                            $"AND TraineeId IN (SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities  WHERE DecisionStatus = 'rejected' OR DecisionStatus = 'system disable' OR  DecisionStatus = 'CancelBeforeApprove' OR  DecisionStatus = 'CancelAftereApprove')" +
+                            $"AND TraineeId NOT IN (SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities  WHERE DecisionStatus = 'approved')")
+                            .AsNoTracking().Include(item => item.user).AsNoTracking().OrderBy(item => item.GPA).ToList();
+
+                        return Json(new { Students });
+                    }
+
+                    if (UpdwGPA == 2)
+                    {
+                        Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId}" +
+                            $"AND TraineeId IN (SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities  WHERE DecisionStatus = 'rejected' OR DecisionStatus = 'system disable' OR  DecisionStatus = 'CancelBeforeApprove' OR  DecisionStatus = 'CancelAftereApprove')" +
+                            $"AND TraineeId NOT IN (SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities  WHERE DecisionStatus = 'approved')")
+                            .AsNoTracking().Include(item => item.user).AsNoTracking().OrderByDescending(item => item.GPA).ToList();
+
+                        return Json(new { Students });
+                    }
+
+
+                }
+
+
+                if (gender != null && UpdwGPA == 0 && UpdwHOUERS == 0)
+                {
+
+                    Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId} AND Gender ='{gender}'" +
+                        $"AND TraineeId IN (SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities  WHERE DecisionStatus = 'rejected' OR DecisionStatus = 'system disable' OR  DecisionStatus = 'CancelBeforeApprove' OR  DecisionStatus = 'CancelAftereApprove')" +
+                        $"AND TraineeId NOT IN (SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities  WHERE DecisionStatus = 'approved')")
+                               .AsNoTracking().Include(item => item.user).AsNoTracking().ToList();
 
                     return Json(new { Students });
                 }
 
+                if (gender != null && UpdwGPA != 0 && UpdwHOUERS == 0)
+                {
+
+
+
+                    if (UpdwGPA == 1)
+                    {
+                        Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId} AND Gender ='{gender}'" +
+                            $"AND TraineeId IN (SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities  WHERE DecisionStatus = 'rejected' OR DecisionStatus = 'system disable' OR  DecisionStatus = 'CancelBeforeApprove' OR  DecisionStatus = 'CancelAftereApprove')" +
+                            $"AND TraineeId NOT IN (SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities  WHERE DecisionStatus = 'approved')")
+                            .AsNoTracking().Include(item => item.user).AsNoTracking().OrderBy(item => item.GPA).ToList();
+
+                        return Json(new { Students });
+                    }
+
+                    if (UpdwGPA == 2)
+                    {
+                        Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId} AND Gender ='{gender}'" +
+                            $"AND TraineeId IN (SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities  WHERE DecisionStatus = 'rejected' OR DecisionStatus = 'system disable' OR  DecisionStatus = 'CancelBeforeApprove' OR  DecisionStatus = 'CancelAftereApprove')" +
+                            $"AND TraineeId NOT IN (SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities  WHERE DecisionStatus = 'approved')")
+                            .AsNoTracking().Include(item => item.user).AsNoTracking().OrderByDescending(item => item.GPA).ToList();
+
+                        return Json(new { Students });
+                    }
+
+
+                }
+
+                if (gender != null && UpdwGPA == 0 && UpdwHOUERS != 0)
+                {
+
+
+
+                    if (UpdwHOUERS == 1)
+                    {
+                        Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId} AND Gender ='{gender}'" +
+                            $"AND TraineeId IN (SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities  WHERE DecisionStatus = 'rejected' OR DecisionStatus = 'system disable' OR  DecisionStatus = 'CancelBeforeApprove' OR  DecisionStatus = 'CancelAftereApprove')" +
+                            $"AND TraineeId NOT IN (SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities  WHERE DecisionStatus = 'approved')")
+                            .AsNoTracking().Include(item => item.user).AsNoTracking().OrderBy(item => item.CompletedHours).ToList();
+
+                        return Json(new { Students });
+                    }
+
+                    if (UpdwHOUERS == 2)
+                    {
+                        Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId} AND Gender ='{gender}'" +
+                            $"AND TraineeId IN (SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities  WHERE DecisionStatus = 'rejected' OR DecisionStatus = 'system disable' OR  DecisionStatus = 'CancelBeforeApprove' OR  DecisionStatus = 'CancelAftereApprove')" +
+                            $"AND TraineeId NOT IN (SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities  WHERE DecisionStatus = 'approved')")
+                            .AsNoTracking().Include(item => item.user).AsNoTracking().OrderByDescending(item => item.CompletedHours).ToList();
+
+                        return Json(new { Students });
+                    }
+
+
+                }
+
+                if (gender != null && UpdwGPA != 0 && UpdwHOUERS != 0)
+                {
+
+
+
+                    if (UpdwHOUERS == 1 && UpdwGPA == 1)
+                    {
+                        Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId} AND Gender ='{gender}'" +
+                            $"AND TraineeId IN (SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities  WHERE DecisionStatus = 'rejected' OR DecisionStatus = 'system disable' OR  DecisionStatus = 'CancelBeforeApprove' OR  DecisionStatus = 'CancelAftereApprove')" +
+                            $"AND TraineeId NOT IN (SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities  WHERE DecisionStatus = 'approved')")
+                            .AsNoTracking().Include(item => item.user).AsNoTracking().OrderBy(item => item.CompletedHours).ThenBy(item => item.GPA).ToList();
+
+                        return Json(new { Students });
+                    }
+
+                    if (UpdwHOUERS == 2 && UpdwGPA == 1)
+                    {
+                        Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId} AND Gender ='{gender}'" +
+                            $"AND TraineeId IN (SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities  WHERE DecisionStatus = 'rejected' OR DecisionStatus = 'system disable' OR  DecisionStatus = 'CancelBeforeApprove' OR  DecisionStatus = 'CancelAftereApprove')" +
+                            $"AND TraineeId NOT IN (SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities  WHERE DecisionStatus = 'approved')")
+                                  .AsNoTracking().Include(item => item.user).AsNoTracking().OrderByDescending(item => item.CompletedHours).ThenBy(item => item.GPA).ToList();
+
+
+                        return Json(new { Students });
+                    }
+
+                    if (UpdwHOUERS == 1 && UpdwGPA == 2)
+                    {
+                        Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId} AND Gender ='{gender}'" +
+                            $"AND TraineeId IN (SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities  WHERE DecisionStatus = 'rejected' OR DecisionStatus = 'system disable' OR  DecisionStatus = 'CancelBeforeApprove' OR  DecisionStatus = 'CancelAftereApprove')" +
+                            $"AND TraineeId NOT IN (SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities  WHERE DecisionStatus = 'approved')")
+                                  .AsNoTracking().Include(item => item.user).AsNoTracking().OrderBy(item => item.CompletedHours).ThenByDescending(item => item.GPA).ToList();
+
+
+                        return Json(new { Students });
+                    }
+
+
+                    if (UpdwHOUERS == 2 && UpdwGPA == 2)
+                    {
+                        Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId} AND Gender ='{gender}'" +
+                            $"AND TraineeId IN (SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities  WHERE DecisionStatus = 'rejected' OR DecisionStatus = 'system disable' OR  DecisionStatus = 'CancelBeforeApprove' OR  DecisionStatus = 'CancelAftereApprove')" +
+                            $"AND TraineeId NOT IN (SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities  WHERE DecisionStatus = 'approved')")
+                                  .AsNoTracking().Include(item => item.user).AsNoTracking().OrderByDescending(item => item.CompletedHours).ThenByDescending(item => item.GPA).ToList();
+
+
+                        return Json(new { Students });
+                    }
+
+
+
+                }
 
             }
 
-            if (gender != null && UpdwGPA == 0 && UpdwHOUERS != 0)
+
+            if (StutReqStatus == 4)
             {
-
-
-
-                if (UpdwHOUERS == 1)
+                if (gender == null && UpdwGPA == 0 && UpdwHOUERS == 0)
                 {
-                    Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId} AND Gender ='{gender}'")
-                        .AsNoTracking().Include(item => item.user).AsNoTracking().OrderBy(item => item.CompletedHours).ToList();
+
+                    Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId}" +
+                        $"AND TraineeId IN (SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities  WHERE DecisionStatus = 'approved')")
+                               .AsNoTracking().Include(item => item.user).AsNoTracking().ToList();
 
                     return Json(new { Students });
                 }
 
-                if (UpdwHOUERS == 2)
+
+                if (gender == null && UpdwGPA != 0 && UpdwHOUERS != 0)
                 {
-                    Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId} AND Gender ='{gender}'")
-                        .AsNoTracking().Include(item => item.user).AsNoTracking().OrderByDescending(item => item.CompletedHours).ToList();
+
+
+
+                    if (UpdwHOUERS == 1 && UpdwGPA == 1)
+                    {
+                        Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId}" +
+                            $"AND TraineeId IN (SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities  WHERE DecisionStatus = 'approved')")
+                            .AsNoTracking().Include(item => item.user).AsNoTracking().OrderBy(item => item.CompletedHours).ThenBy(item => item.GPA).ToList();
+
+                        return Json(new { Students });
+                    }
+
+                    if (UpdwHOUERS == 2 && UpdwGPA == 1)
+                    {
+                        Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId} " +
+                            $"AND TraineeId IN (SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities  WHERE DecisionStatus = 'approved')")
+                                  .AsNoTracking().Include(item => item.user).AsNoTracking().OrderByDescending(item => item.CompletedHours).ThenBy(item => item.GPA).ToList();
+
+
+                        return Json(new { Students });
+                    }
+
+                    if (UpdwHOUERS == 1 && UpdwGPA == 2)
+                    {
+                        Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId} " +
+                            $"AND TraineeId IN (SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities  WHERE DecisionStatus = 'approved')")
+                                  .AsNoTracking().Include(item => item.user).AsNoTracking().OrderBy(item => item.CompletedHours).ThenByDescending(item => item.GPA).ToList();
+
+
+                        return Json(new { Students });
+                    }
+
+
+                    if (UpdwHOUERS == 2 && UpdwGPA == 2)
+                    {
+                        Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId}" +
+                            $"AND TraineeId IN (SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities  WHERE DecisionStatus = 'approved')")
+                                  .AsNoTracking().Include(item => item.user).AsNoTracking().OrderByDescending(item => item.CompletedHours).ThenByDescending(item => item.GPA).ToList();
+
+
+                        return Json(new { Students });
+                    }
+
+
+
+
+
+
+
+                }
+
+
+                if (gender == null && UpdwGPA == 0 && UpdwHOUERS != 0)
+                {
+
+
+
+                    if (UpdwHOUERS == 1)
+                    {
+                        Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId}" +
+                            $"AND TraineeId IN (SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities  WHERE DecisionStatus = 'approved')")
+                            .AsNoTracking().Include(item => item.user).AsNoTracking().OrderBy(item => item.CompletedHours).ToList();
+
+                        return Json(new { Students });
+                    }
+
+                    if (UpdwHOUERS == 2)
+                    {
+                        Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId}" +
+                            $"AND TraineeId IN (SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities  WHERE DecisionStatus = 'approved')")
+                            .AsNoTracking().Include(item => item.user).AsNoTracking().OrderByDescending(item => item.CompletedHours).ToList();
+
+                        return Json(new { Students });
+                    }
+
+
+                }
+
+
+                if (gender == null && UpdwGPA != 0 && UpdwHOUERS == 0)
+                {
+
+
+
+                    if (UpdwGPA == 1)
+                    {
+                        Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId}" +
+                            $"AND TraineeId IN (SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities  WHERE DecisionStatus = 'approved')")
+                            .AsNoTracking().Include(item => item.user).AsNoTracking().OrderBy(item => item.GPA).ToList();
+
+                        return Json(new { Students });
+                    }
+
+                    if (UpdwGPA == 2)
+                    {
+                        Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId}" +
+                            $"AND TraineeId IN (SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities  WHERE DecisionStatus = 'approved')")
+                            .AsNoTracking().Include(item => item.user).AsNoTracking().OrderByDescending(item => item.GPA).ToList();
+
+                        return Json(new { Students });
+                    }
+
+
+                }
+
+
+                if (gender != null && UpdwGPA == 0 && UpdwHOUERS == 0)
+                {
+
+                    Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId} AND Gender ='{gender}'" +
+                        $"AND TraineeId IN (SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities  WHERE DecisionStatus = 'approved')")
+                               .AsNoTracking().Include(item => item.user).AsNoTracking().ToList();
 
                     return Json(new { Students });
                 }
 
+                if (gender != null && UpdwGPA != 0 && UpdwHOUERS == 0)
+                {
+
+
+
+                    if (UpdwGPA == 1)
+                    {
+                        Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId} AND Gender ='{gender}'" +
+                            $"AND TraineeId IN (SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities  WHERE DecisionStatus = 'approved')")
+                            .AsNoTracking().Include(item => item.user).AsNoTracking().OrderBy(item => item.GPA).ToList();
+
+                        return Json(new { Students });
+                    }
+
+                    if (UpdwGPA == 2)
+                    {
+                        Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId} AND Gender ='{gender}'" +
+                            $"AND TraineeId IN (SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities  WHERE DecisionStatus = 'approved')")
+                            .AsNoTracking().Include(item => item.user).AsNoTracking().OrderByDescending(item => item.GPA).ToList();
+
+                        return Json(new { Students });
+                    }
+
+
+                }
+
+                if (gender != null && UpdwGPA == 0 && UpdwHOUERS != 0)
+                {
+
+
+
+                    if (UpdwHOUERS == 1)
+                    {
+                        Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId} AND Gender ='{gender}'" +
+                            $"AND TraineeId IN (SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities  WHERE DecisionStatus = 'approved')")
+                            .AsNoTracking().Include(item => item.user).AsNoTracking().OrderBy(item => item.CompletedHours).ToList();
+
+                        return Json(new { Students });
+                    }
+
+                    if (UpdwHOUERS == 2)
+                    {
+                        Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId} AND Gender ='{gender}'" +
+                            $"AND TraineeId IN (SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities  WHERE DecisionStatus = 'approved')")
+                            .AsNoTracking().Include(item => item.user).AsNoTracking().OrderByDescending(item => item.CompletedHours).ToList();
+
+                        return Json(new { Students });
+                    }
+
+
+                }
+
+                if (gender != null && UpdwGPA != 0 && UpdwHOUERS != 0)
+                {
+
+
+
+                    if (UpdwHOUERS == 1 && UpdwGPA == 1)
+                    {
+                        Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId} AND Gender ='{gender}'" +
+                            $"AND TraineeId IN (SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities  WHERE DecisionStatus = 'approved')")
+                            .AsNoTracking().Include(item => item.user).AsNoTracking().OrderBy(item => item.CompletedHours).ThenBy(item => item.GPA).ToList();
+
+                        return Json(new { Students });
+                    }
+
+                    if (UpdwHOUERS == 2 && UpdwGPA == 1)
+                    {
+                        Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId} AND Gender ='{gender}'" +
+                            $"AND TraineeId IN (SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities  WHERE DecisionStatus = 'approved')")
+                                  .AsNoTracking().Include(item => item.user).AsNoTracking().OrderByDescending(item => item.CompletedHours).ThenBy(item => item.GPA).ToList();
+
+
+                        return Json(new { Students });
+                    }
+
+                    if (UpdwHOUERS == 1 && UpdwGPA == 2)
+                    {
+                        Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId} AND Gender ='{gender}'" +
+                            $"AND TraineeId IN (SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities  WHERE DecisionStatus = 'approved')")
+                                  .AsNoTracking().Include(item => item.user).AsNoTracking().OrderBy(item => item.CompletedHours).ThenByDescending(item => item.GPA).ToList();
+
+
+                        return Json(new { Students });
+                    }
+
+
+                    if (UpdwHOUERS == 2 && UpdwGPA == 2)
+                    {
+                        Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId} AND Gender ='{gender}'" +
+                            $"AND TraineeId IN (SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities  WHERE DecisionStatus = 'approved')")
+                                  .AsNoTracking().Include(item => item.user).AsNoTracking().OrderByDescending(item => item.CompletedHours).ThenByDescending(item => item.GPA).ToList();
+
+
+                        return Json(new { Students });
+                    }
+
+
+
+                }
 
             }
-
-            if (gender != null && UpdwGPA != 0 && UpdwHOUERS != 0)
-            {
-
-
-
-                if (UpdwHOUERS == 1 && UpdwGPA == 1)
-                {
-                    Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId} AND Gender ='{gender}'")
-                        .AsNoTracking().Include(item => item.user).AsNoTracking().OrderBy(item => item.CompletedHours).ThenBy(item => item.GPA).ToList();
-
-                    return Json(new { Students });
-                }
-
-                if (UpdwHOUERS == 2 && UpdwGPA == 1)
-                {
-                    Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId} AND Gender ='{gender}'")
-                              .AsNoTracking().Include(item => item.user).AsNoTracking().OrderByDescending(item => item.CompletedHours).ThenBy(item => item.GPA).ToList();
-
-
-                    return Json(new { Students });
-                }
-
-                if (UpdwHOUERS == 1 && UpdwGPA == 2)
-                {
-                    Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId} AND Gender ='{gender}'")
-                              .AsNoTracking().Include(item => item.user).AsNoTracking().OrderBy(item => item.CompletedHours).ThenByDescending(item => item.GPA).ToList();
-
-
-                    return Json(new { Students });
-                }
-
-
-                if (UpdwHOUERS == 2 && UpdwGPA == 2)
-                {
-                    Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId} AND Gender ='{gender}'")
-                              .AsNoTracking().Include(item => item.user).AsNoTracking().OrderByDescending(item => item.CompletedHours).ThenByDescending(item => item.GPA).ToList();
-
-
-                    return Json(new { Students });
-                }
-
-
-
-            }
-
-
 
 
 
