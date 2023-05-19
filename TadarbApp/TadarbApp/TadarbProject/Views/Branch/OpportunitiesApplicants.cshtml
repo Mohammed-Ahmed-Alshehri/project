@@ -31,7 +31,7 @@
         top: 65px;
     }
 
- 
+
     .notification {
         background-color: #555;
         color: white;
@@ -41,20 +41,19 @@
         border-radius: 2px;
     }
 
-    .notification:hover {
-        background: red;
-    }
+        .notification:hover {
+            background: red;
+        }
 
-    .notification .badge {
-        position: absolute;
-        top: -10px;
-        right: -10px;
-        padding: 5px 10px;
-        border-radius: 50%;
-        background: red;
-        color: white;
-    }
-
+        .notification .badge {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            padding: 5px 10px;
+            border-radius: 50%;
+            background: red;
+            color: white;
+        }
 
 </style>
 
@@ -115,7 +114,7 @@
                         </a>
                     </li>
 
-                    
+
                 </ul>
 
 
@@ -196,12 +195,12 @@
 
                                 </div>
 
-                           
 
-                                <div class="float-end  mt-2" dir="rtl" >
 
-                                   عدد الطلاب:
-                                   <p id="STCOUNT" style="display:inline"></p>
+                                <div class="float-end  mt-2" dir="rtl">
+
+                                    عدد الطلاب:
+                                    <p id="STCOUNT" style="display:inline"></p>
                                 </div>
 
 
@@ -360,10 +359,10 @@
 
                         $("#Tbody").html(body);
 
-                    
+
 
                         $("#STCOUNT").html(c);
-                        
+
 
 
 
@@ -420,21 +419,20 @@
                                 + "<td class='text - nowrap'> " + '<a class="btn btn-outline-primary" href="//localhost:7122/Branch/OpportunitiesApplicantsDetail/?id=' + value.traineeId + '&Oid=' + @ViewBag.OpportunitiyId + ' " >تفاصيل الطلب</a>' + '</td></tr>';
 
 
-                            if (key == 0)
-                            {
+                            if (key == 0) {
                                 c = 1;
-                            }else{
-                                c = key+1;
+                            } else {
+                                c = key + 1;
                             }
-                            
-                            
+
+
                         });
 
-                      
-                       
+
+
 
                         $("#STCOUNT").html(c);
-                       
+
 
                         $("#Tbody").html(body);
 

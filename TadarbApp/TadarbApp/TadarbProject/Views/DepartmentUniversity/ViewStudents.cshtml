@@ -112,13 +112,13 @@
                                 <h4 class="card-title float-start">
                                 </h4>
                                 <div class="table-search float-start">
-                                <button class="btn  btn-info" type="submit" onclick="FillTable()" style="color:black;border:0px;font-size:18px;background-color:lightblue">ظهور الكل</button>
+                                    <button class="btn  btn-info" type="submit" onclick="Clear()" style="color:black;border:0px;font-size:18px;background-color:lightblue">ظهور الكل</button>
 
                                 </div>
 
                                 <div class="col-sm-6">
 
-                                    <input class="form-control" id="filterInput" type="text" placeholder="البحث بواسطة الاسم أو الرقم الجامعي" aria-label="default input example"><br/>
+                                    <input class="form-control" id="filterInput" type="text" placeholder="البحث بواسطة الاسم أو الرقم الجامعي" aria-label="default input example"><br />
 
                                     <button class="btn  btn-outline-primary" type="submit" onclick="FillTableSearch()" style="background-color:#e6e291;color:black;border:0px;font-size:18px;">ابحث</button>
 
@@ -158,7 +158,7 @@
 
                                             <th>
                                                 عدد الساعات
-                                                <i class="btn fa-solid fa-arrow-down-long float-l-start fa-xs p-0  " onclick="SortDwon()"> </i>  <i class=" btn fa-solid fa-arrow-up-long float-l-start fa-xs p-0" onclick="SortUp()"></i>
+                                                <i class="btn fa-solid fa-arrow-down-long float-l-start fa-xs p-0  " onclick="ChangeUOrDHOUERS(2)"> </i>  <i class=" btn fa-solid fa-arrow-up-long float-l-start fa-xs p-0" onclick="ChangeUOrDHOUERS(1)"></i>
                                             </th>
 
                                             <th> الجنس </th>
@@ -166,7 +166,7 @@
                                             <th>
                                                 المعدل التراكمي
 
-                                                <i class="btn fa-solid fa-arrow-down-long float-l-start fa-xs p-0  " onclick="SortDwongpa()"> </i>  <i class=" btn fa-solid fa-arrow-up-long float-l-start fa-xs p-0" onclick="SortUpgpa()"></i>
+                                                <i class="btn fa-solid fa-arrow-down-long float-l-start fa-xs p-0  " onclick="ChangeUOrDGPA(2)"> </i>  <i class=" btn fa-solid fa-arrow-up-long float-l-start fa-xs p-0" onclick="ChangeUOrDGPA(1)"></i>
                                             </th>
 
                                             <th>رقم الهاتف</th>
@@ -202,7 +202,7 @@
 
     <script>
 
-        FillTable();
+
 
         $(function () {
             // Sidebar toggle behavior
@@ -212,93 +212,55 @@
         });
 
 
-        var gen = "";
+        var Gender = "";
 
-        function ChangeGender(x) {
+        var UOrDGPA = 0;
+
+        var UOrDHOUERS = 0;
+
+        FillTable(Gender, UOrDGPA, UOrDHOUERS);
 
 
+        function ChangeGender(v) {
 
-            gen = x;
+            Gender = v;
 
-            BasedOnstSatus(gen);
+            FillTable(Gender, UOrDGPA, UOrDHOUERS);
         }
 
-        function BasedOnstSatus(Gender) {
-            var body = "";
-            var sa = '';
 
-            $(document).ready(function () {
+        function ChangeUOrDGPA(x) {
 
-                $.ajax({
-                    type: "GET",
-                    url: "@Url.Action("GetByGender")",
-                    dataType: "json",
-                    data: { gender: Gender },
+            UOrDGPA = x;
 
 
-                    success: function (data) {
+            FillTable(Gender, UOrDGPA, UOrDHOUERS);
+        }
 
-                        //console.log(data.list);
+        function ChangeUOrDHOUERS(x) {
 
-                        $.each(data.list, function (key, value) {
-
-                            //console.log(data.list);
-
-                            //    console.log(value);
+            UOrDHOUERS = x;
 
 
+            FillTable(Gender, UOrDGPA, UOrDHOUERS);
+        }
 
-                            //console.log(value.user.fullName);
-                            //console.log(value.gender);
-                            //console.log(value.completedHours);
-                            //console.log(value.gender);
-                            //console.log(value.gpa);
-                            //console.log(value.user.phone);
-                            //console.log(value.user.userEmail);
+        function Clear() {
 
 
-                            //if (value.activationStatus == "Active")
-                            //    sa = 'نشط';
-                            //if (value.activationStatus == "Not_Active")
-                            //    sa = 'غير نشط';
+            Gender = "";
 
-                            //if (value.activationStatus == "Rejected")
-                            //    sa = 'مرفوض';
+            UOrDGPA = 0;
 
-                            //body +=
-
-                            body += "<tr> <td class='text - nowrap'>  <div class='font - weight - 600'> <div class='font - weight - 600'> " + value.user.fullName + "</div></div></td>" +
-                                "<td class='text - center'>" + value.universityStudentNumber + "</td>"
-                                + "<td class='text - nowrap'> " + value.completedHours + "</td>"
-                                + "<td class='text - nowrap'> " + value.gender + "</td>"
-                                + "<td class='text - nowrap'> " + value.gpa + "</td>"
-                                + "<td class='text - nowrap'>" + value.user.phone + "</td>"
-                                + "<td class='text - nowrap'>" + value.user.userEmail + '</td><td class=text-center font-weight-600  >' +
-                                '<a class="btn btn-outline-primary" href="//localhost:7122/DepartmentUniversity/DetailStudent?id=' +
-                                value.traineeId
-                                + ' " >تفاصيل الطالب</a>' + '</td></tr>';
-                            + "</tr>";
+            UOrDHOUERS = 0;
 
 
-
-                        });
-
-
-                        ////$('#tbody')= body;
-                        //$('#tbody').val() = body;
-                        $("#Tbody").html(body);
-
-
-                    }
-                });
-
-            });
+            FillTable(Gender, UOrDGPA, UOrDHOUERS);
         }
 
 
 
-
-        function FillTable() {
+        function FillTable(gr, updwG, updwH) {
 
             var body = "";
 
@@ -309,6 +271,7 @@
                     url: "@Url.Action("GetStudentsList")",
                     type: 'GET',
                     dataType: "json",
+                    data: { gender: gr, UpdwGPA: updwG, UpdwHOUERS: updwH },
 
 
                     success: function (data) {
@@ -328,7 +291,7 @@
                                 '<a class="btn btn-outline-primary" href="//localhost:7122/DepartmentUniversity/DetailStudent?id=' +
                                 value.traineeId
                                 + ' " >تفاصيل الطالب</a>' + '</td></tr>';
-                                + "</tr>";
+                            + "</tr>";
 
 
                             //console.log(value);
@@ -350,205 +313,7 @@
 
         }
 
-        function SortDwon() {
-            var body = "";
 
-            $(document).ready(function () {
-
-                $.ajax({
-
-                    url: "@Url.Action("GetStudentsListDown")",
-                    type: 'GET',
-                    dataType: "json",
-
-
-                    success: function (data) {
-
-                        $.each(data.students, function (key, value) {
-
-
-
-                            body += "<tr> <td class='text - nowrap'>  <div class='font - weight - 600'> <div class='font - weight - 600'> " + value.user.fullName + "</div></div></td>" +
-                                "<td class='text - center'>" + value.universityStudentNumber + "</td>"
-                                + "<td class='text - nowrap'> " + value.completedHours + "</td>"
-                                + "<td class='text - nowrap'> " + value.gender + "</td>"
-                                + "<td class='text - nowrap'> " + value.gpa + "</td>"
-                                + "<td class='text - nowrap'>" + value.user.phone + "</td>"
-                                + "<td class='text - nowrap'>" + value.user.userEmail + '</td><td class=text-center font-weight-600  >' +
-                                '<a class="btn btn-outline-primary" href="//localhost:7122/DepartmentUniversity/DetailStudent?id=' +
-                                value.traineeId
-                                + ' " >تفاصيل الطالب</a>' + '</td></tr>';
-                            + "</tr>";
-
-                            // console.log(value);
-
-                        });
-
-
-
-                        $("#Tbody").html(body);
-
-
-
-                    }
-
-
-                });
-
-            });
-
-        }
-
-
-        function SortUp() {
-            var body = "";
-
-            $(document).ready(function () {
-
-                $.ajax({
-
-                    url: "@Url.Action("GetStudentsListUp")",
-                    type: 'GET',
-                    dataType: "json",
-
-
-                    success: function (data) {
-
-                        $.each(data.students, function (key, value) {
-
-
-
-                            body += "<tr> <td class='text - nowrap'>  <div class='font - weight - 600'> <div class='font - weight - 600'> " + value.user.fullName + "</div></div></td>" +
-                                "<td class='text - center'>" + value.universityStudentNumber + "</td>"
-                                + "<td class='text - nowrap'> " + value.completedHours + "</td>"
-                                + "<td class='text - nowrap'> " + value.gender + "</td>"
-                                + "<td class='text - nowrap'> " + value.gpa + "</td>"
-                                + "<td class='text - nowrap'>" + value.user.phone + "</td>"
-                                + "<td class='text - nowrap'>" + value.user.userEmail + '</td><td class=text-center font-weight-600  >' +
-                                '<a class="btn btn-outline-primary" href="//localhost:7122/DepartmentUniversity/DetailStudent?id=' +
-                                value.traineeId
-                                + ' " >تفاصيل الطالب</a>' + '</td></tr>';
-                            + "</tr>";
-
-                            // console.log(value);
-
-                        });
-
-
-
-                        $("#Tbody").html(body);
-
-
-
-                    }
-
-
-                });
-
-            });
-
-        }
-
-
-        function SortDwongpa() {
-            var body = "";
-
-            $(document).ready(function () {
-
-                $.ajax({
-
-                    url: "@Url.Action("GetStudentsListDowngpa")",
-                    type: 'GET',
-                    dataType: "json",
-
-
-                    success: function (data) {
-
-                        $.each(data.students, function (key, value) {
-
-
-
-                            body += "<tr> <td class='text - nowrap'>  <div class='font - weight - 600'> <div class='font - weight - 600'> " + value.user.fullName + "</div></div></td>" +
-                                "<td class='text - center'>" + value.universityStudentNumber + "</td>"
-                                + "<td class='text - nowrap'> " + value.completedHours + "</td>"
-                                + "<td class='text - nowrap'> " + value.gender + "</td>"
-                                + "<td class='text - nowrap'> " + value.gpa + "</td>"
-                                + "<td class='text - nowrap'>" + value.user.phone + "</td>"
-                                + "<td class='text - nowrap'>" + value.user.userEmail + '</td><td class=text-center font-weight-600  >' +
-                                '<a class="btn btn-outline-primary" href="//localhost:7122/DepartmentUniversity/DetailStudent?id=' +
-                                value.traineeId
-                                + ' " >تفاصيل الطالب</a>' + '</td></tr>';
-                            + "</tr>";
-
-
-                            // console.log(value);
-
-                        });
-
-
-
-                        $("#Tbody").html(body);
-
-
-
-                    }
-
-
-                });
-
-            });
-
-        }
-
-        function SortUpgpa() {
-            var body = "";
-
-            $(document).ready(function () {
-
-                $.ajax({
-
-                    url: "@Url.Action("GetStudentsListUpgpa")",
-                    type: 'GET',
-                    dataType: "json",
-
-
-                    success: function (data) {
-
-                        $.each(data.students, function (key, value) {
-
-
-
-                            body += "<tr> <td class='text - nowrap'>  <div class='font - weight - 600'> <div class='font - weight - 600'> " + value.user.fullName + "</div></div></td>" +
-                                "<td class='text - center'>" + value.universityStudentNumber + "</td>"
-                                + "<td class='text - nowrap'> " + value.completedHours + "</td>"
-                                + "<td class='text - nowrap'> " + value.gender + "</td>"
-                                + "<td class='text - nowrap'> " + value.gpa + "</td>"
-                                + "<td class='text - nowrap'>" + value.user.phone + "</td>"
-                                + "<td class='text - nowrap'>" + value.user.userEmail + '</td><td class=text-center font-weight-600  >' +
-                                '<a class="btn btn-outline-primary" href="//localhost:7122/DepartmentUniversity/DetailStudent?id=' +
-                                value.traineeId
-                                + ' " >تفاصيل الطالب</a>' + '</td></tr>';
-                            + "</tr>";
-
-
-                            // console.log(value);
-
-                        });
-
-
-
-                        $("#Tbody").html(body);
-
-
-
-                    }
-
-
-                });
-
-            });
-
-        }
 
 
         function FillTableSearch() {

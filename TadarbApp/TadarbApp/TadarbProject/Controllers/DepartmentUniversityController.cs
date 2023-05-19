@@ -14,6 +14,7 @@ namespace TadarbProject.Controllers
         private readonly IHttpContextAccessor _HttpContextAccessor;
 
 
+
         public DepartmentUniversityController(AppDbContext DbContext, IEmailSender emailSender, IHttpContextAccessor HttpContextAccessor)
         {
             _DbContext = DbContext;
@@ -314,7 +315,7 @@ namespace TadarbProject.Controllers
 
 
         [HttpGet]
-        public IActionResult GetStudentsList()
+        public IActionResult GetStudentsList(string? gender, int? UpdwGPA, int? UpdwHOUERS)
         {
 
 
@@ -332,12 +333,225 @@ namespace TadarbProject.Controllers
             IEnumerable<UniversityTraineeStudent> Students = Enumerable.Empty<UniversityTraineeStudent>();
 
 
-            Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId}")
-                   .AsNoTracking().Include(item => item.user).AsNoTracking().ToList();
+            if (gender == null && UpdwGPA == 0 && UpdwHOUERS == 0)
+            {
+
+                Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId}")
+                           .AsNoTracking().Include(item => item.user).AsNoTracking().ToList();
+
+                return Json(new { Students });
+            }
+
+            if (gender == null && UpdwGPA != 0 && UpdwHOUERS != 0)
+            {
+
+
+
+                if (UpdwHOUERS == 1 && UpdwGPA == 1)
+                {
+                    Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId} ")
+                        .AsNoTracking().Include(item => item.user).AsNoTracking().OrderBy(item => item.CompletedHours).ThenBy(item => item.GPA).ToList();
+
+                    return Json(new { Students });
+                }
+
+                if (UpdwHOUERS == 2 && UpdwGPA == 1)
+                {
+                    Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId} ")
+                              .AsNoTracking().Include(item => item.user).AsNoTracking().OrderByDescending(item => item.CompletedHours).ThenBy(item => item.GPA).ToList();
+
+
+                    return Json(new { Students });
+                }
+
+                if (UpdwHOUERS == 1 && UpdwGPA == 2)
+                {
+                    Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId} ")
+                              .AsNoTracking().Include(item => item.user).AsNoTracking().OrderBy(item => item.CompletedHours).ThenByDescending(item => item.GPA).ToList();
+
+
+                    return Json(new { Students });
+                }
+
+
+                if (UpdwHOUERS == 2 && UpdwGPA == 2)
+                {
+                    Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId} ")
+                              .AsNoTracking().Include(item => item.user).AsNoTracking().OrderByDescending(item => item.CompletedHours).ThenByDescending(item => item.GPA).ToList();
+
+
+                    return Json(new { Students });
+                }
+
+
+
+
+
+
+
+            }
+
+            if (gender == null && UpdwGPA == 0 && UpdwHOUERS != 0)
+            {
+
+
+
+                if (UpdwHOUERS == 1)
+                {
+                    Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId}")
+                        .AsNoTracking().Include(item => item.user).AsNoTracking().OrderBy(item => item.CompletedHours).ToList();
+
+                    return Json(new { Students });
+                }
+
+                if (UpdwHOUERS == 2)
+                {
+                    Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId}")
+                        .AsNoTracking().Include(item => item.user).AsNoTracking().OrderByDescending(item => item.CompletedHours).ToList();
+
+                    return Json(new { Students });
+                }
+
+
+            }
+
+            if (gender == null && UpdwGPA != 0 && UpdwHOUERS == 0)
+            {
+
+
+
+                if (UpdwGPA == 1)
+                {
+                    Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId}")
+                        .AsNoTracking().Include(item => item.user).AsNoTracking().OrderBy(item => item.GPA).ToList();
+
+                    return Json(new { Students });
+                }
+
+                if (UpdwGPA == 2)
+                {
+                    Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId}")
+                        .AsNoTracking().Include(item => item.user).AsNoTracking().OrderByDescending(item => item.GPA).ToList();
+
+                    return Json(new { Students });
+                }
+
+
+            }
+
+
+            if (gender != null && UpdwGPA == 0 && UpdwHOUERS == 0)
+            {
+
+                Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId} AND Gender ='{gender}'")
+                           .AsNoTracking().Include(item => item.user).AsNoTracking().ToList();
+
+                return Json(new { Students });
+            }
+
+            if (gender != null && UpdwGPA != 0 && UpdwHOUERS == 0)
+            {
+
+
+
+                if (UpdwGPA == 1)
+                {
+                    Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId} AND Gender ='{gender}'")
+                        .AsNoTracking().Include(item => item.user).AsNoTracking().OrderBy(item => item.GPA).ToList();
+
+                    return Json(new { Students });
+                }
+
+                if (UpdwGPA == 2)
+                {
+                    Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId} AND Gender ='{gender}'")
+                        .AsNoTracking().Include(item => item.user).AsNoTracking().OrderByDescending(item => item.GPA).ToList();
+
+                    return Json(new { Students });
+                }
+
+
+            }
+
+            if (gender != null && UpdwGPA == 0 && UpdwHOUERS != 0)
+            {
+
+
+
+                if (UpdwHOUERS == 1)
+                {
+                    Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId} AND Gender ='{gender}'")
+                        .AsNoTracking().Include(item => item.user).AsNoTracking().OrderBy(item => item.CompletedHours).ToList();
+
+                    return Json(new { Students });
+                }
+
+                if (UpdwHOUERS == 2)
+                {
+                    Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId} AND Gender ='{gender}'")
+                        .AsNoTracking().Include(item => item.user).AsNoTracking().OrderByDescending(item => item.CompletedHours).ToList();
+
+                    return Json(new { Students });
+                }
+
+
+            }
+
+            if (gender != null && UpdwGPA != 0 && UpdwHOUERS != 0)
+            {
+
+
+
+                if (UpdwHOUERS == 1 && UpdwGPA == 1)
+                {
+                    Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId} AND Gender ='{gender}'")
+                        .AsNoTracking().Include(item => item.user).AsNoTracking().OrderBy(item => item.CompletedHours).ThenBy(item => item.GPA).ToList();
+
+                    return Json(new { Students });
+                }
+
+                if (UpdwHOUERS == 2 && UpdwGPA == 1)
+                {
+                    Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId} AND Gender ='{gender}'")
+                              .AsNoTracking().Include(item => item.user).AsNoTracking().OrderByDescending(item => item.CompletedHours).ThenBy(item => item.GPA).ToList();
+
+
+                    return Json(new { Students });
+                }
+
+                if (UpdwHOUERS == 1 && UpdwGPA == 2)
+                {
+                    Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId} AND Gender ='{gender}'")
+                              .AsNoTracking().Include(item => item.user).AsNoTracking().OrderBy(item => item.CompletedHours).ThenByDescending(item => item.GPA).ToList();
+
+
+                    return Json(new { Students });
+                }
+
+
+                if (UpdwHOUERS == 2 && UpdwGPA == 2)
+                {
+                    Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId ={Department.DepartmentId} AND Gender ='{gender}'")
+                              .AsNoTracking().Include(item => item.user).AsNoTracking().OrderByDescending(item => item.CompletedHours).ThenByDescending(item => item.GPA).ToList();
+
+
+                    return Json(new { Students });
+                }
+
+
+
+            }
+
+
+
+
 
 
             return Json(new { Students });
+
         }
+
+
 
         [HttpGet]
         public IActionResult GetStudentsListDown()
