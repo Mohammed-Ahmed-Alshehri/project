@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using TadarbProject.Data;
 using TadarbProject.Models;
@@ -41,6 +42,56 @@ namespace TadarbProject.Controllers
             return View();
         }
 
+        public IActionResult ManageAssessment()
+        {
+            ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
+            int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
+            var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).AsNoTracking().FirstOrDefault();
+            var Department = _DbContext.Departments.Where(item => item.Responsible_UserId == RUserId).AsNoTracking().FirstOrDefault();
+
+            var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Department.Organization_OrganizationId).AsNoTracking().FirstOrDefault();
+
+
+
+            ViewBag.OrganizationName = OrganizationOfR.OrganizationName + " - " + Department.DepartmentName;
+            ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
+            ViewBag.Username = user.FullName;
+
+            AssessmentVM assessmentVM = new AssessmentVM
+            {
+
+                AssessmentTypeListItems  = _DbContext.AssessmentTypes.AsNoTracking().ToList().Select(u => new SelectListItem { Text = u.AssessmentTypeName, Value = u.AssessmentTypeId.ToString() }),
+
+            };
+
+            return View(assessmentVM);
+        }
+        public IActionResult ManageAssessmentajax()
+        {
+            ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
+            int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
+            var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).AsNoTracking().FirstOrDefault();
+            var Department = _DbContext.Departments.Where(item => item.Responsible_UserId == RUserId).AsNoTracking().FirstOrDefault();
+
+            var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Department.Organization_OrganizationId).AsNoTracking().FirstOrDefault();
+
+
+
+            ViewBag.OrganizationName = OrganizationOfR.OrganizationName + " - " + Department.DepartmentName;
+            ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
+            ViewBag.Username = user.FullName;
+
+            //AssessmentVM assessmentVM = new AssessmentVM
+            //{
+
+            //    AssessmentTypeListItems = _DbContext.AssessmentTypes.AsNoTracking().ToList().Select(u => new SelectListItem { Text = u.AssessmentTypeName, Value = u.AssessmentTypeId.ToString() }),
+
+            //};
+
+            var Assiment = _DbContext.AssessmentTypes.AsNoTracking().ToList();
+
+            return Json(new { Assiment });
+        }
 
 
         [HttpGet]
