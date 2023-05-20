@@ -1,6 +1,4 @@
 ﻿
-
-
 .vertical-nav {
     min-width: 17rem;
     width: 17rem;
@@ -82,4 +80,8 @@ body {
 
 .text-gray {
     color: #aaa;
+}
+
+#card{
+   display:flex;
 }
