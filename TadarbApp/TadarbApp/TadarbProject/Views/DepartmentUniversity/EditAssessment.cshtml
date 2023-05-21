@@ -1,0 +1,448 @@
+﻿@model AssessmentVM
+@{
+    ViewData["Title"] = "تعديل ";
+}
+
+<head>
+
+    <link rel="stylesheet" href="~/css/Addbranches.css" asp-append-version="true" />
+
+
+</head>
+
+<partial name="_Notification" />
+<body style="background: linear-gradient(#1c4c64,#5590ad);">
+
+    <div class="row" >
+
+        <div class="col-sm-4" style="z-index:2;">
+
+            <div class="vertical-nav bg-white" id="sidebar">
+                <div class="py-4 px-3 mb-4 bg-light">
+                    <div class="media d-flex align-items-center">
+                        <img src="~/@ViewBag.OrganizationImage" alt="..." width="65" class="mr-3 rounded-circle img-thumbnail shadow-sm">
+                        <div class="media-body">
+                            <h4 class="m-0">@ViewBag.OrganizationName</h4>
+                        </div>
+                    </div>
+                </div>
+                <h5> مرحبا بك @ViewBag.Username </h5>
+                <p class="text-gray font-weight-bold text-uppercase px-3 small pb-4 mb-0">القائمة</p>
+
+                <ul class="nav flex-column bg-white mb-0">
+                    <li class="nav-item">
+                        <a asp-controller="DepartmentUniversity" asp-action="Index" class="nav-link text-dark font-italic bg-light ">
+                            <i class="fa-solid fa-house text-primary"></i>
+                            الصفحة الرئيسية
+                        </a>
+                    </li>
+
+
+                    <li class="nav-item">
+                        <a asp-controller="DepartmentUniversity" asp-action="ViewAcademicSupervisors" class="nav-link text-dark font-italic  ">
+                            <i class="fa-solid fa-users-gear"></i>
+                            إدارة المشرفين
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-controller="DepartmentUniversity" asp-action="ViewStudents" class="nav-link text-dark font-italic ">
+                            <i class="fa-solid fa-user-graduate"></i>
+
+                            إدارة الطلاب
+                        </a>
+
+                    </li>
+                    <li class="nav-item">
+                        <a asp-controller="DepartmentUniversity" asp-action="ViewAssessment" class="nav-link text-dark font-italic ">
+                            <i class="fa-solid fa-user-graduate"></i>
+
+                            تحديد التقييمات
+                        </a>
+                    </li>
+
+                </ul>
+
+
+            </div>
+
+
+            <!-- End vertical navbar -->
+            <!-- Page content holder -->
+            <div class="page-content p-1" id="content">
+                <!-- Toggle button -->
+                <button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i class="fa fa-bars mr-2"></i><small class="text-uppercase font-weight-bold">القائمة</small></button>
+            </div>
+
+
+        </div>
+
+        <div class="col-sm-5">
+            <div class="card" style="border-radius: 25px; margin-top:2cm; margin-bottom:3cm; padding:5px 5px 5px 5px ; border-color:black;background-color:#dfebf2">
+                <div class="card-body p-5">
+                    <div class="col-xs-12 ">
+                        <div class="panel panel-info">
+
+                            <div class="panel-heading text-center">
+
+                                <h1 class="panel-title">تعديل  التقيمات</h1>
+                            </div>
+                            <br /><br />
+                            <div class="panel-body">
+                                <form role="form">
+
+                                    <div class="list_wrapper">
+                                        <div class="row">
+                                            <div class="col-md-6 mb-4 pb-2">
+                                                <div class="form-outline" style="text-align: right;">
+                                                    <label class="form-label" style="font-size:20px;">
+                                                        عدد الساعات المطلوبة
+                                                    </label>
+                                                    <input name="list[0][]" type="number" asp-for="@Model.DepartmentAssessmentTypeMaster.RequireCompletionHours" max="100" id="RequireHours" placeholder="" class="form-control" />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 mb-4 pb-2">
+                                                <div class="form-outline" style="text-align: right;">
+                                                    <label class="form-label" style="font-size:20px;">التاريخ</label>
+                                                    <input name="list[0][]" asp-for="@Model.DepartmentAssessmentTypeMaster.StartActivationDate" type="date" id="ActivationDate" placeholder="" class="form-control" />
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6 mb-4 pb-2">
+                                                <div class="form-outline" style="text-align: right;">
+                                                    <label class="form-label" style="font-size:20px;"> الدرجات المتاحة للمشرف الاكاديمي</label>
+                                                    <input name="list[0][]" id="ASMark" asp-for="@Model.DepartmentAssessmentTypeMaster.AcademicSupervisorMarks" type="number" placeholder="" class="form-control" />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 mb-4 pb-2">
+                                                <div class="form-outline" style="text-align: right;">
+                                                    <label class="form-label" style="font-size:20px;">الدرجات المتاحة للمشرف التدريبي</label>
+                                                    <input name="list[0][]" asp-for="@Model.DepartmentAssessmentTypeMaster.TrainingSupervisorMarks" id="CSMark" type="number" placeholder="" class="form-control" />
+                                                </div>
+
+                                            </div>
+
+                                           
+                                        </div>
+                                        <button class="btn btn-primary list_add_button" type="button">اضافة</button>
+                                    </div>
+                                    <br /><br />
+
+
+
+                                    <div class="row">
+                                        <button type="button" value="Submit" class="btn" style="background-color:#e6e291; font-size:18px;" onclick="GetSelectedAssessment()">حفظ</button>
+                                    </div>
+
+                                </form>
+
+                                <p id="Message" style="display:none; color:firebrick"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-sm-3"></div>
+        </div>
+    </div>
+</body>
+@section Scripts{
+
+
+
+    <script>
+        view();
+        $(function () {
+            // Sidebar toggle behavior
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar, #content').toggleClass('active');
+            });
+        });
+
+        function view(){
+            var x = 1; //Initial field counter
+            var list_maxField = 7; //Input fields increment limitation
+
+
+            //View Detail
+
+            //Check maximum number of input fields
+            var list_fieldHTMLView = "";
+          
+
+                $.ajax({
+                    type: "GET",
+                    url: "@Url.Action("ViewAssessmentajax")",
+
+
+                    dataType: "json",
+                    success: function (data) {
+                        //console.log(data.detailAssigmnt[1]);
+                        //console.log(data.detailAssigmnt[1].assessmentType.assessmentTypeName);
+
+                        //console.log(data.detailAssigmnt.length);
+                        //if (x <= data.length){
+                        //    console.log(x);
+
+                        
+                        $.each(data.detailAssigmnt, function (key, value) {
+                            //console.log(value.requiredMark);
+                            //console.log(x);
+                            if (x <= data.detailAssigmnt.length) {
+                            list_fieldHTMLView += ' <div class="row"><div class="col-xs-4 col-sm-4 col-md-4"><div class="form-group"><label for="list[' + x + '][]"> </label> <a name="list[' + x + '][]" type="text" placeholder="ادخل الدرجة المناسبة للتقييم" value="' + value.assessmentType.assessmentTypeId + '" class="form-control AssessmentInName">' + value.assessmentType.assessmentTypeName + '</a> </div></div><div class="col-xs-7 col-sm-7 col-md-7"> <label for="list[' + x + '][]">الدرجة المطلوبة</label><div class="form-group"><input value="' + value.requiredMark + '" name="list[' + x + '][]" type="text" placeholder="ادخل الدرجة المناسبة للتقييم" class="form-control AssessmentInName"/></div></div> <div class="col-xs-1 col-sm-7 col-md-1"><label for="list[' + x + '][]"> حذف</label>   <div class="form-group">  <a href="javascript:void(0);" class="list_remove_button btn btn-danger">-</a>  </div> </div> </div>'; //New input field html
+                            x++;  //Increment field counter
+                            }
+
+                        });
+                        //}
+                        $('.list_wrapper').append(list_fieldHTMLView); //Add field html
+                        //assessmentTypeName
+                        //assessmentTypeId
+                    }
+                });
+
+
+
+
+          
+        }
+        $(document).ready(function () {
+            var x = 0; //Initial field counter
+            var list_maxField = 7; //Input fields increment limitation
+
+
+           
+
+
+
+            //Once add button is clicked
+            $('.list_add_button').click(function () {
+                //Check maximum number of input fields
+                var list_fieldHTML = "";
+                if (x < list_maxField) {
+
+                    $.ajax({
+                        type: "GET",
+                        url: "@Url.Action("ManageAssessmentajax")",
+
+
+                        dataType: "json",
+                        success: function (data) {
+
+                            //console.log(data.assiment[2].assessmentTypeName);
+                            //console.log(data.assiment[2].assessmentTypeId);
+
+                            list_fieldHTML += ' <div class="row"><div class="col-xs-4 col-sm-4 col-md-4"><div class="form-group"><label for="list[' + x + '][]">نوع التقييم</label> <select name="list[' + x + '][]" class="form-control AssessmentList"><option value="" selected disabled >--الرجاء اختار نوع التدريب--</<option><option value="' + data.assiment[0].assessmentTypeId + '">' + data.assiment[0].assessmentTypeName + '</option> <option value="' + data.assiment[1].assessmentTypeId + '">' + data.assiment[1].assessmentTypeName + '</option><option value="' + data.assiment[2].assessmentTypeId + '">' + data.assiment[2].assessmentTypeName + '</option> <option value="' + data.assiment[3].assessmentTypeId + '">' + data.assiment[3].assessmentTypeName + '</option> </select> </div></div><div class="col-xs-7 col-sm-7 col-md-7"> <label for="list[' + x + '][]">الدرجة المطلوبة</label><div class="form-group"><input name="list[' + x + '][]" type="text" placeholder="ادخل الدرجة المناسبة للتقييم" class="form-control AssessmentInName"/></div></div> <div class="col-xs-1 col-sm-7 col-md-1"><label for="list[' + x + '][]"> حذف</label>   <div class="form-group">  <a href="javascript:void(0);" class="list_remove_button btn btn-danger">-</a>  </div> </div> </div>'; //New input field html
+                            x++;  //Increment field counter
+
+                            $('.list_wrapper').append(list_fieldHTML); //Add field html
+
+
+
+                            //assessmentTypeName
+                            //assessmentTypeId
+                        }
+                    });
+
+
+
+
+                }
+
+
+
+
+            });
+
+            //Once remove button is clicked
+            $('.list_wrapper').on('click', '.list_remove_button', function () {
+                $(this).closest('div.row').remove(); //Remove field html
+                x--; //Decrement field counter
+            });
+        });
+
+        function GetSelectedAssessment() {
+
+            //console.log($("#RequireHours").val());
+
+            if ($("#CSMark").val() == "" || $("#ASMark").val() == "" || $("#RequireHours").val() == "" || $("#ActivationDate").val() == "") {
+
+                DisplayMessage(0);
+
+                return;
+            }
+
+            var AssessmentIds = [];
+
+            var AssessmentRequiredMarks = [];
+
+            $("select.AssessmentList").each(function () {
+                AssessmentIds.push(this.value);
+            });
+
+            // console.log(AssessmentIds.toLocaleString());
+
+            if (AssessmentIds.toLocaleString() == "") {
+
+                DisplayMessage(0);
+
+                return;
+            }
+
+            var inputs = $(".AssessmentInName");
+
+            for (var i = 0; i < inputs.length; i++) {
+                AssessmentRequiredMarks.push($(inputs[i]).val());
+            }
+
+
+
+            //console.log(AssessmentRequiredMarks.toLocaleString());
+
+            if (AssessmentRequiredMarks.toLocaleString() == "") {
+
+                DisplayMessage(0);
+
+                return;
+            }
+
+            var AssessmentRequiredMarksToAR = AssessmentRequiredMarks.toLocaleString().split(",");
+
+            var RequiredMarksSum = 0;
+
+            for (var i = 0; i < AssessmentRequiredMarksToAR.length; i++) {
+
+                RequiredMarksSum = RequiredMarksSum + parseInt(AssessmentRequiredMarksToAR[i]);
+            }
+
+
+            //console.log(RequiredMarksSum);
+
+            var CSMark = $("#CSMark").val();
+
+            var ASMark = $("#ASMark").val();
+            var ASAndCSMark = parseInt(ASMark);
+
+            //console.log(ASAndCSMark);
+
+            if (ASAndCSMark > RequiredMarksSum) {
+
+                DisplayMessage(1);
+                return;
+            }
+
+            if (ASAndCSMark < RequiredMarksSum) {
+
+                DisplayMessage(1);
+                return;
+            }
+
+
+
+
+            if (isNaN(RequiredMarksSum)) {
+
+                DisplayMessage(4);
+                return;
+            }
+
+            if (ASAndCSMark == RequiredMarksSum) {
+
+                DisplayMessage(3);
+
+            }
+
+            var StartActivationDate = $("#ActivationDate").val();
+
+            var RequireCompletionHours = $("#RequireHours").val();
+
+            var AcademicSupervisorMarks = $("#ASMark").val();
+
+            var TrainingSupervisorMarks = $("#CSMark").val();
+
+            var AssessmentIdsStar = AssessmentIds.toLocaleString();
+
+            var AssessmentRequiredMarksStar = AssessmentRequiredMarks.toLocaleString();
+
+            PostMasterAndDetails(StartActivationDate, RequireCompletionHours, AcademicSupervisorMarks, TrainingSupervisorMarks,
+                AssessmentIdsStar, AssessmentRequiredMarksStar);
+
+
+        }
+
+        function DisplayMessage(n) {
+
+            if (n == 0) {
+
+
+
+                document.getElementById("Message").innerText = "الرجاء تعبية البيانات.";
+
+                document.getElementById("Message").style.display = "block";
+
+                return;
+            }
+
+
+            if (n == 1) {
+
+
+
+                document.getElementById("Message").innerText = "مجموع الدرجات لا يساوي القيمة المدخلة.";
+
+                document.getElementById("Message").style.display = "block";
+
+                return;
+            }
+
+            if (n == 3) {
+
+
+
+                document.getElementById("Message").innerText = "";
+
+                document.getElementById("Message").style.display = "none";
+
+                return;
+            }
+
+            if (n == 4) {
+
+
+
+                document.getElementById("Message").innerText = "الرجاء ادخال تقسيم الدرجات  على المتطلبات.";
+
+                document.getElementById("Message").style.display = "block";
+
+                return;
+            }
+        }
+
+
+        function PostMasterAndDetails(SADate, ReqHours, AMarks, TMarks, AssessmentIds, AssessmentRequiredMarks) {
+
+            $(document).ready(function () {
+
+                $.ajax({
+
+                    type: "POST",
+                    datatype: "json",
+                    url: "@Url.Action("UpdateAssessmentTypeMasterAndItsDetail")",
+                    data: { StartDate: SADate, RequireHours: ReqHours, AcademicMarks: AMarks, TrainingMarks: TMarks, AssessmentTypeIds: AssessmentIds, RequiredMarks: AssessmentRequiredMarks },
+
+
+                });
+
+
+
+            });
+
+        }
+
+    </script>
+
+
+    }
