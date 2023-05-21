@@ -60,7 +60,7 @@ namespace TadarbProject.Controllers
             AssessmentVM assessmentVM = new AssessmentVM
             {
 
-                AssessmentTypeListItems  = _DbContext.AssessmentTypes.AsNoTracking().ToList().Select(u => new SelectListItem { Text = u.AssessmentTypeName, Value = u.AssessmentTypeId.ToString() }),
+                AssessmentTypeListItems = _DbContext.AssessmentTypes.AsNoTracking().ToList().Select(u => new SelectListItem { Text = u.AssessmentTypeName, Value = u.AssessmentTypeId.ToString() }),
 
             };
 
@@ -1754,8 +1754,91 @@ namespace TadarbProject.Controllers
 
 
             return Json(new { Students });
+
         }
 
+
+
+
+
+        [HttpPost]
+        public IActionResult AddAssessmentTypeMasterAndItsDetail(string? StartDate, string? RequireHours, string? AcademicMarks, string? TrainingMarks
+            , string? AssessmentTypeIds, string? RequiredMarks)
+        {
+            if (String.IsNullOrEmpty(StartDate) || String.IsNullOrEmpty(RequireHours) || String.IsNullOrEmpty(AcademicMarks) || String.IsNullOrEmpty(TrainingMarks)
+                || String.IsNullOrEmpty(AssessmentTypeIds) || String.IsNullOrEmpty(RequiredMarks))
+            {
+                return Json(new { success = false });
+            }
+
+            //Console.WriteLine(StartDate);
+
+            //Console.WriteLine(RequireHours);
+
+            //Console.WriteLine(AcademicMarks);
+
+            //Console.WriteLine(TrainingMarks);
+
+            //Console.WriteLine(AssessmentTypeIds);
+
+            //Console.WriteLine(RequiredMarks);
+
+            int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
+
+
+            var Department = _DbContext.Departments.Where(item => item.Responsible_UserId == RUserId).AsNoTracking().FirstOrDefault();
+
+            var Employee = _DbContext.Employees.Where(item => item.UserAccount_UserId == RUserId).AsNoTracking().FirstOrDefault();
+
+
+
+            DepartmentAssessmentTypeMaster DTypeMaster = new DepartmentAssessmentTypeMaster()
+            {
+                Department_DepartmentId = Department.DepartmentId,
+                Employee_EmployeeId = Employee.EmployeeId,
+                StartActivationDate = DateTime.Parse(StartDate),
+                RequireCompletionHours = int.Parse(RequireHours),
+                AcademicSupervisorMarks = int.Parse(AcademicMarks),
+                TrainingSupervisorMarks = int.Parse(TrainingMarks),
+
+            };
+
+
+            _DbContext.DepartmentsAssessmentTypeMaster.Add(DTypeMaster);
+
+            _DbContext.SaveChanges();
+
+            var DTypeMasterFromDb = _DbContext.DepartmentsAssessmentTypeMaster.Where(item => item.Department_DepartmentId == DTypeMaster.Department_DepartmentId).AsNoTracking()
+                .FirstOrDefault();
+
+            var AssessmentIds = AssessmentTypeIds.Split(",");
+            var RequiredMarksList = RequiredMarks.Split(",");
+
+            for (int i = 0; i < AssessmentIds.Length; i++)
+            {
+
+                //Console.WriteLine(AssessmentIds[i] + " AND " + RequiredMarksList[i]);
+
+                var DTypeDetail = new DepartmentAssessmentTypeDetail()
+                {
+
+                    DepartmentAssessmentTypeMaster_MasterId = DTypeMasterFromDb.DepartmentAssessmentTypeMasterId,
+                    AssessmentType_AssessmentTypeId = int.Parse(AssessmentIds[i]),
+                    RequiredMark = int.Parse(RequiredMarksList[i]),
+                };
+
+                _DbContext.DepartmentsAssessmentTypeDetail.Add(DTypeDetail);
+            }
+
+            _DbContext.SaveChanges();
+
+
+            TempData["success"] = "تم إضافة  تقسم الدرجات بنجاح";
+
+            return Json(new { success = true });
+
+
+        }
 
         #endregion
 

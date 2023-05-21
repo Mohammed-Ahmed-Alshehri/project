@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\yaaaz\\OneDrive\\Desktop\\proj\\project\\TadarbApp\\TadarbApp\\TadarbProject\\TadarbProject.csproj": {}
+    "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\TadarbProject.csproj": {}
   },
   "projects": {
-    "C:\\Users\\yaaaz\\OneDrive\\Desktop\\proj\\project\\TadarbApp\\TadarbApp\\TadarbProject\\TadarbProject.csproj": {
+    "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\TadarbProject.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\yaaaz\\OneDrive\\Desktop\\proj\\project\\TadarbApp\\TadarbApp\\TadarbProject\\TadarbProject.csproj",
+        "projectUniqueName": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\TadarbProject.csproj",
         "projectName": "TadarbProject",
-        "projectPath": "C:\\Users\\yaaaz\\OneDrive\\Desktop\\proj\\project\\TadarbApp\\TadarbApp\\TadarbProject\\TadarbProject.csproj",
-        "packagesPath": "C:\\Users\\yaaaz\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\yaaaz\\OneDrive\\Desktop\\proj\\project\\TadarbApp\\TadarbApp\\TadarbProject\\obj\\",
+        "projectPath": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\TadarbProject.csproj",
+        "packagesPath": "C:\\Users\\moham\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\yaaaz\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\moham\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -77,7 +77,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
         }
       }
     }

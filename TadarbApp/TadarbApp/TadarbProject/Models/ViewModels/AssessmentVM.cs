@@ -14,7 +14,7 @@ namespace TadarbProject.Models.ViewModels
         public IEnumerable<SelectListItem> AssessmentTypeListItems { get; set; }
 
 
-       
+
 
     }
 }

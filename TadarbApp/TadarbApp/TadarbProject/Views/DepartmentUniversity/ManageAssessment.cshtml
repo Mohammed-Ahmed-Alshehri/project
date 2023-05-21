@@ -107,7 +107,7 @@
                             </div>
 
                             <div class="panel-body">
-                                <form role="form" >
+                                <form role="form">
 
                                     <div class="list_wrapper">
                                         <div class="row">
@@ -116,7 +116,7 @@
 
                                                 <div class="form-group">
                                                     عدد الساعات المطلوبة
-                                                    <input name="list[0][]" type="number" max="100" placeholder="Type Item Name" class="form-control" />
+                                                    <input name="list[0][]" type="number" max="100" id="RequireHours" placeholder="Type Item Name" class="form-control" />
 
                                                 </div>
                                             </div>
@@ -124,21 +124,22 @@
 
                                                 <div class="form-group">
                                                     الدرجات المتاحة للمشرف الاكاديمي
-                                                    <input name="list[0][]" type="number" placeholder="Type Item Name" class="form-control" />
+                                                    <input name="list[0][]" id="ASMark" type="number" placeholder="Type Item Name" class="form-control" />
 
                                                 </div>
+
                                             </div>    <div class="col-xs-4 col-sm-4 col-md-4">
 
                                                 <div class="form-group">
                                                     الدرجات المتاحة للمشرف التدريبي
-                                                    <input name="list[0][]" type="number" placeholder="Type Item Name" class="form-control" />
+                                                    <input name="list[0][]" id="CSMark" type="number" placeholder="Type Item Name" class="form-control" />
 
                                                 </div>
                                             </div>    <div class="col-xs-4 col-sm-4 col-md-4">
 
                                                 <div class="form-group">
                                                     تاريخ اتاحة الفرصة
-                                                    <input name="list[0][]" type="date" placeholder="Type Item Name" class="form-control" />
+                                                    <input name="list[0][]" type="date" id="ActivationDate" placeholder="Type Item Name" class="form-control" />
 
                                                 </div>
                                             </div>
@@ -154,16 +155,20 @@
 
 
 
-                                    <input type="submit" value="Submit" class="btn btn-info btn-block">
+                                    <input type="button" value="Submit" class="btn btn-info btn-block" onclick="GetSelectedAssessment()">
+
+
                                 </form>
+
+                                <p id="Message" style="display:none; color:firebrick"></p>
                             </div>
                         </div>
                     </div>
                 </div>
 
+            </div>
+            <div class="col-sm-2"></div>
         </div>
-        <div class="col-sm-2"></div>
-    </div>
 </body>
 @section Scripts{
 
@@ -179,20 +184,17 @@
         });
 
 
-       
+
 
         $(document).ready(function () {
             var x = 0; //Initial field counter
-            var list_maxField = 7; //Input fields increment limitation  
-
-           
-            
+            var list_maxField = 7; //Input fields increment limitation
 
             //Once add button is clicked
             $('.list_add_button').click(function () {
                 //Check maximum number of input fields
                 var list_fieldHTML = "";
-                 if(x < list_maxField){
+                if (x < list_maxField) {
 
                     $.ajax({
                         type: "GET",
@@ -203,26 +205,26 @@
                         success: function (data) {
 
                             //console.log(data.assiment[0].assessmentTypeName);
-                            list_fieldHTML += ' <div class="row"><div class="col-xs-4 col-sm-4 col-md-4"><div class="form-group"><label for="list[' + x + '][]">نوع التقييم</label> <select name="list[' + x + '][]" class="form-control"><option value="" selected disabled >--الرجاء اختار نوع التدريب--</<option><option value="' + data.assiment[0].assessmentTypeId + '">' + data.assiment[0].assessmentTypeName + '</option> <option value="' + data.assiment[1].assessmentTypeId + '">' + data.assiment[1].assessmentTypeName + '</option><option value="' + data.assiment[2].assessmentTypeId + '">' + data.assiment[2].assessmentTypeName + '</option> <option value="' + data.assiment[3].assessmentTypeId + '">' + data.assiment[3].assessmentTypeName + '</option> </select> </div></div><div class="col-xs-7 col-sm-7 col-md-7"> <label for="list[' + x + '][]">الدرجة المطلوبة</label><div class="form-group"><input name="list[' + x + '][]" type="text" placeholder="ادخل الدرجة المناسبة للتقييم" class="form-control"/></div></div> <div class="col-xs-1 col-sm-7 col-md-1"><label for="list[' + x + '][]"> حذف</label>   <div class="form-group">  <a href="javascript:void(0);" class="list_remove_button btn btn-danger">-</a>  </div> </div> </div>'; //New input field html
+                            list_fieldHTML += ' <div class="row"><div class="col-xs-4 col-sm-4 col-md-4"><div class="form-group"><label for="list[' + x + '][]">نوع التقييم</label> <select name="list[' + x + '][]" class="form-control AssessmentList"><option value="" selected disabled >--الرجاء اختار نوع التدريب--</<option><option value="' + data.assiment[0].assessmentTypeId + '">' + data.assiment[0].assessmentTypeName + '</option> <option value="' + data.assiment[1].assessmentTypeId + '">' + data.assiment[1].assessmentTypeName + '</option><option value="' + data.assiment[2].assessmentTypeId + '">' + data.assiment[2].assessmentTypeName + '</option> <option value="' + data.assiment[3].assessmentTypeId + '">' + data.assiment[3].assessmentTypeName + '</option> </select> </div></div><div class="col-xs-7 col-sm-7 col-md-7"> <label for="list[' + x + '][]">الدرجة المطلوبة</label><div class="form-group"><input name="list[' + x + '][]" type="text" placeholder="ادخل الدرجة المناسبة للتقييم" class="form-control AssessmentInName"/></div></div> <div class="col-xs-1 col-sm-7 col-md-1"><label for="list[' + x + '][]"> حذف</label>   <div class="form-group">  <a href="javascript:void(0);" class="list_remove_button btn btn-danger">-</a>  </div> </div> </div>'; //New input field html
                             x++;  //Increment field counter
 
                             $('.list_wrapper').append(list_fieldHTML); //Add field html
 
-                           
-                           
+
+
                             //assessmentTypeName
                             //assessmentTypeId
-                            }
+                        }
                     });
 
-                    
+
 
 
                 }
-            
-                   
-                  
-                
+
+
+
+
             });
 
             //Once remove button is clicked
@@ -232,6 +234,189 @@
             });
         });
 
+
+
+
+        function GetSelectedAssessment() {
+
+            //console.log($("#RequireHours").val());
+
+            if ($("#CSMark").val() == "" || $("#ASMark").val() == "" || $("#RequireHours").val() == "" || $("#ActivationDate").val() == "") {
+
+                DisplayMessage(0);
+
+                return;
+            }
+
+            var AssessmentIds = [];
+
+            var AssessmentRequiredMarks = [];
+
+            $("select.AssessmentList").each(function () {
+                AssessmentIds.push(this.value);
+            });
+
+            // console.log(AssessmentIds.toLocaleString());
+
+            if (AssessmentIds.toLocaleString() == "") {
+
+                DisplayMessage(0);
+
+                return;
+            }
+
+            var inputs = $(".AssessmentInName");
+
+            for (var i = 0; i < inputs.length; i++) {
+                AssessmentRequiredMarks.push($(inputs[i]).val());
+            }
+
+
+
+            //console.log(AssessmentRequiredMarks.toLocaleString());
+
+            if (AssessmentRequiredMarks.toLocaleString() == "") {
+
+                DisplayMessage(0);
+
+                return;
+            }
+
+            var AssessmentRequiredMarksToAR = AssessmentRequiredMarks.toLocaleString().split(",");
+
+            var RequiredMarksSum = 0;
+
+            for (var i = 0; i < AssessmentRequiredMarksToAR.length; i++) {
+
+                RequiredMarksSum = RequiredMarksSum + parseInt(AssessmentRequiredMarksToAR[i]);
+            }
+
+
+            //console.log(RequiredMarksSum);
+
+            var CSMark = $("#CSMark").val();
+
+            var ASMark = $("#ASMark").val();
+            var ASAndCSMark = parseInt(CSMark) + parseInt(ASMark);
+
+            //console.log(ASAndCSMark);
+
+            if (ASAndCSMark > RequiredMarksSum) {
+
+                DisplayMessage(1);
+                return;
+            }
+
+            if (ASAndCSMark < RequiredMarksSum) {
+
+                DisplayMessage(1);
+                return;
+            }
+
+
+          
+
+            if (isNaN(RequiredMarksSum)) {
+
+                DisplayMessage(4);
+                return;
+            }
+
+            if (ASAndCSMark == RequiredMarksSum) {
+
+                DisplayMessage(3);
+
+            }
+
+            var StartActivationDate = $("#ActivationDate").val();
+
+            var RequireCompletionHours = $("#RequireHours").val();
+
+            var AcademicSupervisorMarks = $("#ASMark").val();
+
+            var TrainingSupervisorMarks = $("#CSMark").val();
+
+            var AssessmentIdsStar = AssessmentIds.toLocaleString();
+
+            var AssessmentRequiredMarksStar = AssessmentRequiredMarks.toLocaleString();
+
+            PostMasterAndDetails(StartActivationDate, RequireCompletionHours, AcademicSupervisorMarks, TrainingSupervisorMarks,
+                AssessmentIdsStar, AssessmentRequiredMarksStar);
+
+
+        }
+
+        function DisplayMessage(n) {
+
+
+
+
+            if (n == 0) {
+
+
+
+                document.getElementById("Message").innerText = "الرجاء تعبية البيانات.";
+
+                document.getElementById("Message").style.display = "block";
+
+                return;
+            }
+
+
+            if (n == 1) {
+
+
+
+                document.getElementById("Message").innerText = "مجموع الدرجات لا يساوي القيمة المدخلة.";
+
+                document.getElementById("Message").style.display = "block";
+
+                return;
+            }
+
+            if (n == 3) {
+
+
+
+                document.getElementById("Message").innerText = "";
+
+                document.getElementById("Message").style.display = "none";
+
+                return;
+            }
+
+            if (n == 4) {
+
+
+
+                document.getElementById("Message").innerText = "الرجاء ادخال تقسيم الدرجات  على المتطلبات.";
+
+                document.getElementById("Message").style.display = "block";
+
+                return;
+            }
+        }
+
+
+        function PostMasterAndDetails (SADate, ReqHours, AMarks, TMarks, AssessmentIds, AssessmentRequiredMarks) {
+
+            $(document).ready(function () {
+
+                $.ajax({
+
+                    type: "POST",
+                    datatype: "json",
+                    url: "@Url.Action("AddAssessmentTypeMasterAndItsDetail")",
+                    data: { StartDate: SADate, RequireHours: ReqHours, AcademicMarks: AMarks, TrainingMarks: TMarks, AssessmentTypeIds: AssessmentIds, RequiredMarks: AssessmentRequiredMarks },
+
+
+                });
+
+
+
+            });
+          
+        }
 
     </script>
 
