@@ -122,7 +122,7 @@ namespace TadarbProject.Controllers
             {
 
                 TempData["success"] = "لديك قائمة تقييمات تم تحديده مسبقا";
-                //return EditAssessment();
+
 
                 return RedirectToAction("EditAssessment");
             }
@@ -1866,7 +1866,6 @@ namespace TadarbProject.Controllers
             }
 
 
-
             if (!String.IsNullOrEmpty(StartDate))
             {
                 Mastr.StartActivationDate = DateTime.Parse(StartDate);
@@ -1934,7 +1933,6 @@ namespace TadarbProject.Controllers
                 for (int i = 0; i < AssessmentIds.Length; i++)
                 {
 
-                    //Console.WriteLine(AssessmentIds[i] + " AND " + RequiredMarksList[i]);
 
                     var DTypeDetail = new DepartmentAssessmentTypeDetail()
                     {
@@ -1972,18 +1970,6 @@ namespace TadarbProject.Controllers
             {
                 return Json(new { success = false });
             }
-
-            //Console.WriteLine(StartDate);
-
-            //Console.WriteLine(RequireHours);
-
-            //Console.WriteLine(AcademicMarks);
-
-            //Console.WriteLine(TrainingMarks);
-
-            //Console.WriteLine(AssessmentTypeIds);
-
-            //Console.WriteLine(RequiredMarks);
 
             int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
 

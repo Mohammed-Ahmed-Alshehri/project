@@ -240,7 +240,7 @@
                             for (var i = 0; i < data.assiment.length; i++) {
 
                                 Options += `<option value= ${data.assiment[i].assessmentTypeId}>${data.assiment[i].assessmentTypeName}</option>`;
-
+                               
                             }
 
                             list_fieldHTML += ' <div class="row"><div class="col-xs-4 col-sm-4 col-md-4"><div class="form-group"><label for="list[' + x + '][]">نوع التقييم</label> <select name="list[' + x + '][]" class="form-control AssessmentList"><option value="" selected disabled >--الرجاء اختار نوع التدريب--</<option>  "' + Options + '" </select> </div></div><div class="col-xs-7 col-sm-7 col-md-7"> <label for="list[' + x + '][]">الدرجة المطلوبة</label><div class="form-group"><input name="list[' + x + '][]" type="text" placeholder="ادخل الدرجة المناسبة للتقييم" class="form-control AssessmentRequiredMark "/></div></div> <div class="col-xs-1 col-sm-7 col-md-1 btn" onclick="DeleteTypeDetail(' + x + ')"><label for="list[' + x + '][]"> حذف</label>   <div class="form-group">  <a href="javascript:void(0);" class="list_remove_button btn btn-danger">-</a>  </div> </div> </div>'; //New input field html
@@ -459,6 +459,8 @@
         function PostMasterAndDetails(SADate, ReqHours, AMarks, TMarks, AssessmentIds, AssessmentRequiredMarks, AssessmentRequiredMarksToUpdate) {
 
             $(document).ready(function () {
+
+
 
                 $.ajax({
 
