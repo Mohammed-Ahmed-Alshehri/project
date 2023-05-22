@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using System;
 using TadarbProject.Data;
 using TadarbProject.Models;
 using TadarbProject.Models.ViewModels;
@@ -54,7 +55,7 @@ namespace TadarbProject.Controllers
             var MasterAssigmnt = _DbContext.DepartmentsAssessmentTypeMaster.Where(item => item.Department_DepartmentId == Department.DepartmentId)
                 .AsNoTracking().FirstOrDefault();
 
-           
+
             ViewBag.OrganizationName = OrganizationOfR.OrganizationName + " - " + Department.DepartmentName;
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
             ViewBag.Username = user.FullName;
@@ -64,7 +65,7 @@ namespace TadarbProject.Controllers
 
             return View(DetailAssigmnt);
         }
-    
+
         public IActionResult EditAssessment()
         {
             ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
@@ -75,27 +76,22 @@ namespace TadarbProject.Controllers
 
             var MasterAssigmnt = _DbContext.DepartmentsAssessmentTypeMaster.Where(item => item.Department_DepartmentId == Department.DepartmentId)
                 .AsNoTracking().FirstOrDefault();
-          
+
 
             ViewBag.OrganizationName = OrganizationOfR.OrganizationName + " - " + Department.DepartmentName;
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
             ViewBag.Username = user.FullName;
 
 
-            var DetailAssigmnt = _DbContext.DepartmentsAssessmentTypeDetail.Where(item => item.DepartmentAssessmentTypeMaster_MasterId ==
-            MasterAssigmnt.DepartmentAssessmentTypeMasterId).Include(item => item.master).AsNoTracking().ToList();
-
-
-
 
             AssessmentVM assessmentVM = new AssessmentVM
             {
 
-                DepartmentAssessmentTypeMaster= MasterAssigmnt,
-              
+                DepartmentAssessmentTypeMaster = MasterAssigmnt,
+
             };
 
-        
+
 
             return View(assessmentVM);
         }
@@ -112,7 +108,7 @@ namespace TadarbProject.Controllers
             var MasterAssigmnt = _DbContext.DepartmentsAssessmentTypeMaster.Where(item => item.Department_DepartmentId == Department.DepartmentId)
                .AsNoTracking().FirstOrDefault();
 
-           
+
 
 
             ViewBag.OrganizationName = OrganizationOfR.OrganizationName + " - " + Department.DepartmentName;
@@ -128,7 +124,7 @@ namespace TadarbProject.Controllers
                 TempData["success"] = "لديك قائمة تقييمات تم تحديده مسبقا";
                 //return EditAssessment();
 
-               return RedirectToAction("EditAssessment");
+                return RedirectToAction("EditAssessment");
             }
 
             AssessmentVM assessmentVM = new AssessmentVM
@@ -145,78 +141,40 @@ namespace TadarbProject.Controllers
 
         public IActionResult ViewAssessmentajax()
         {
-            ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
+
             int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
             var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).AsNoTracking().FirstOrDefault();
             var Department = _DbContext.Departments.Where(item => item.Responsible_UserId == RUserId).AsNoTracking().FirstOrDefault();
 
-            var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Department.Organization_OrganizationId).AsNoTracking().FirstOrDefault();
-
-
-
-            ViewBag.OrganizationName = OrganizationOfR.OrganizationName + " - " + Department.DepartmentName;
-            ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
-            ViewBag.Username = user.FullName;
 
             var MasterAssigmnt = _DbContext.DepartmentsAssessmentTypeMaster.Where(item => item.Department_DepartmentId == Department.DepartmentId)
                 .AsNoTracking().FirstOrDefault();
 
             var DetailAssigmnt = _DbContext.DepartmentsAssessmentTypeDetail.Where(item => item.DepartmentAssessmentTypeMaster_MasterId ==
-            MasterAssigmnt.DepartmentAssessmentTypeMasterId).Include(item => item.master).Include(item => item.assessmentType).AsNoTracking().ToList();
+            MasterAssigmnt.DepartmentAssessmentTypeMasterId).Include(item => item.assessmentType).AsNoTracking().ToList();
 
 
 
             return Json(new { DetailAssigmnt });
         }
 
-        public IActionResult EditAssessmentajax()
-        {
-            ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
-            int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
-            var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).AsNoTracking().FirstOrDefault();
-            var Department = _DbContext.Departments.Where(item => item.Responsible_UserId == RUserId).AsNoTracking().FirstOrDefault();
-
-            var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Department.Organization_OrganizationId).AsNoTracking().FirstOrDefault();
 
 
-
-            ViewBag.OrganizationName = OrganizationOfR.OrganizationName + " - " + Department.DepartmentName;
-            ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
-            ViewBag.Username = user.FullName;
-
-            var MasterAssigmnt = _DbContext.DepartmentsAssessmentTypeMaster.Where(item => item.Department_DepartmentId == Department.DepartmentId)
-                .AsNoTracking().FirstOrDefault();
-
-            var DetailAssigmnt = _DbContext.DepartmentsAssessmentTypeDetail.Where(item => item.DepartmentAssessmentTypeMaster_MasterId ==
-            MasterAssigmnt.DepartmentAssessmentTypeMasterId).Include(item => item.master).AsNoTracking().ToList();
-
-          
-
-            return Json(new { DetailAssigmnt });
-        }
         public IActionResult ManageAssessmentajax()
         {
-            ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
+
             int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
             var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).AsNoTracking().FirstOrDefault();
             var Department = _DbContext.Departments.Where(item => item.Responsible_UserId == RUserId).AsNoTracking().FirstOrDefault();
 
-            var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Department.Organization_OrganizationId).AsNoTracking().FirstOrDefault();
 
 
 
-            ViewBag.OrganizationName = OrganizationOfR.OrganizationName + " - " + Department.DepartmentName;
-            ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
-            ViewBag.Username = user.FullName;
+            var MasterAssigmnt = _DbContext.DepartmentsAssessmentTypeMaster.Where(item => item.Department_DepartmentId == Department.DepartmentId)
+           .AsNoTracking().FirstOrDefault();
 
-            //AssessmentVM assessmentVM = new AssessmentVM
-            //{
-
-            //    AssessmentTypeListItems = _DbContext.AssessmentTypes.AsNoTracking().ToList().Select(u => new SelectListItem { Text = u.AssessmentTypeName, Value = u.AssessmentTypeId.ToString() }),
-
-            //};
-
-            var Assiment = _DbContext.AssessmentTypes.AsNoTracking().ToList();
+            var Assiment = _DbContext.AssessmentTypes.FromSqlRaw($"SELECT * FROM AssessmentTypes WHERE AssessmentTypeId NOT IN " +
+                $"(SELECT AssessmentType_AssessmentTypeId FROM DepartmentsAssessmentTypeDetail WHERE DepartmentAssessmentTypeMaster_MasterId ={MasterAssigmnt.DepartmentAssessmentTypeMasterId})").AsNoTracking().ToList();
 
             return Json(new { Assiment });
         }
@@ -1888,91 +1846,116 @@ namespace TadarbProject.Controllers
 
         [HttpPost]
         public IActionResult UpdateAssessmentTypeMasterAndItsDetail(string? StartDate, string? RequireHours, string? AcademicMarks, string? TrainingMarks
-            , string? AssessmentTypeIds, string? RequiredMarks)
+            , string? AssessmentTypeIds, string? RequiredMarks, string? RequiredMarksToUpdate)
         {
-            if (String.IsNullOrEmpty(StartDate) || String.IsNullOrEmpty(RequireHours) || String.IsNullOrEmpty(AcademicMarks) || String.IsNullOrEmpty(TrainingMarks)
-                || String.IsNullOrEmpty(AssessmentTypeIds) || String.IsNullOrEmpty(RequiredMarks))
-            {
-                return Json(new { success = false });
-            }
 
-            //Console.WriteLine(StartDate);
-
-            //Console.WriteLine(RequireHours);
-
-            //Console.WriteLine(AcademicMarks);
-
-            //Console.WriteLine(TrainingMarks);
-
-            //Console.WriteLine(AssessmentTypeIds);
-
-            //Console.WriteLine(RequiredMarks);
 
             int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
 
 
             var Department = _DbContext.Departments.Where(item => item.Responsible_UserId == RUserId).AsNoTracking().FirstOrDefault();
 
-            var Employee = _DbContext.Employees.Where(item => item.UserAccount_UserId == RUserId).AsNoTracking().FirstOrDefault();
 
-            var Mster = _DbContext.DepartmentsAssessmentTypeMaster.Where(item => item.Department_DepartmentId == Department.DepartmentId).AsNoTracking().FirstOrDefault();
-            var Detail = _DbContext.DepartmentsAssessmentTypeDetail.Where(item => item.DepartmentAssessmentTypeMaster_MasterId == Mster.DepartmentAssessmentTypeMasterId).AsNoTracking().FirstOrDefault();
+            var Mastr = _DbContext.DepartmentsAssessmentTypeMaster.Where(item => item.Department_DepartmentId == Department.DepartmentId).AsNoTracking().FirstOrDefault();
 
-           
-            //DepartmentAssessmentTypeMaster DTypeMaster = new DepartmentAssessmentTypeMaster()
-            //{
-            //    Department_DepartmentId = Department.DepartmentId,
-            //    Employee_EmployeeId = Employee.EmployeeId,
-            //    StartActivationDate = DateTime.Parse(StartDate),
-            //    RequireCompletionHours = int.Parse(RequireHours),
-            //    AcademicSupervisorMarks = int.Parse(AcademicMarks),
-            //    TrainingSupervisorMarks = int.Parse(TrainingMarks),
-
-            //};
-
-            Mster.StartActivationDate = DateTime.Parse(StartDate);
-            Mster.RequireCompletionHours = int.Parse(RequireHours);
-            Mster.AcademicSupervisorMarks = int.Parse(AcademicMarks);
-            Mster.TrainingSupervisorMarks = int.Parse(TrainingMarks);
-
-
-
-
-
-
-            _DbContext.DepartmentsAssessmentTypeMaster.Update(Mster);
-
-            _DbContext.SaveChanges();
-
-            //var DTypeMasterFromDb = _DbContext.DepartmentsAssessmentTypeMaster.Where(item => item.Department_DepartmentId == DTypeMaster.Department_DepartmentId).AsNoTracking()
-            //    .FirstOrDefault();
-
-            var AssessmentIds = AssessmentTypeIds.Split(",");
-            var RequiredMarksList = RequiredMarks.Split(",");
-
-            for (int i = 0; i < AssessmentIds.Length; i++)
+            if (Mastr == null)
             {
 
-                //Console.WriteLine(AssessmentIds[i] + " AND " + RequiredMarksList[i]);
+                return Json(new { success = false });
 
-                Detail.AssessmentType_AssessmentTypeId = int.Parse(AssessmentIds[i]);
-                Detail.RequiredMark = int.Parse(RequiredMarksList[i]);
-
-                //var DTypeDetail = new DepartmentAssessmentTypeDetail()
-                //{
-
-                //    DepartmentAssessmentTypeMaster_MasterId = DTypeMasterFromDb.DepartmentAssessmentTypeMasterId,
-                //    AssessmentType_AssessmentTypeId = int.Parse(AssessmentIds[i]),
-                //    RequiredMark = int.Parse(RequiredMarksList[i]),
-                //};
-
-                _DbContext.DepartmentsAssessmentTypeDetail.Update(Detail);
             }
+
+
+
+            if (!String.IsNullOrEmpty(StartDate))
+            {
+                Mastr.StartActivationDate = DateTime.Parse(StartDate);
+            }
+
+
+            if (!String.IsNullOrEmpty(RequireHours))
+            {
+                Mastr.RequireCompletionHours = int.Parse(RequireHours);
+            }
+
+
+            if (!String.IsNullOrEmpty(AcademicMarks))
+            {
+
+                Mastr.AcademicSupervisorMarks = int.Parse(AcademicMarks);
+            }
+
+            if (!String.IsNullOrEmpty(TrainingMarks))
+            {
+
+                Mastr.TrainingSupervisorMarks = int.Parse(TrainingMarks);
+            }
+
+
+            _DbContext.DepartmentsAssessmentTypeMaster.Update(Mastr);
 
             _DbContext.SaveChanges();
 
 
-            TempData["success"] = "تم إضافة  تقسم الدرجات بنجاح";
+            var DetailList = _DbContext.DepartmentsAssessmentTypeDetail.Where(item => item.DepartmentAssessmentTypeMaster_MasterId == Mastr.DepartmentAssessmentTypeMasterId).AsNoTracking().ToList();
+
+            var RequiredMarksToUpdateList = RequiredMarksToUpdate.Split(",");
+
+            if (!String.IsNullOrEmpty(RequiredMarksToUpdate))
+
+            {
+                for (int i = 0; i < DetailList.Count; i++)
+                {
+                    if (DetailList[i].RequiredMark != int.Parse(RequiredMarksToUpdateList[i]))
+
+                    {
+
+                        var DetailL = _DbContext.DepartmentsAssessmentTypeDetail.Find(DetailList[i].DepartmentAssessmentTypeDetailId);
+
+                        DetailL.RequiredMark = int.Parse(RequiredMarksToUpdateList[i]);
+
+                        _DbContext.DepartmentsAssessmentTypeDetail.Update(DetailL);
+
+                    }
+
+
+                }
+
+                _DbContext.SaveChanges();
+            }
+
+
+            if (!String.IsNullOrEmpty(AssessmentTypeIds) && !String.IsNullOrEmpty(RequiredMarks))
+            {
+
+                var AssessmentIds = AssessmentTypeIds.Split(",");
+                var RequiredMarksList = RequiredMarks.Split(",");
+
+                for (int i = 0; i < AssessmentIds.Length; i++)
+                {
+
+                    //Console.WriteLine(AssessmentIds[i] + " AND " + RequiredMarksList[i]);
+
+                    var DTypeDetail = new DepartmentAssessmentTypeDetail()
+                    {
+
+                        DepartmentAssessmentTypeMaster_MasterId = Mastr.DepartmentAssessmentTypeMasterId,
+                        AssessmentType_AssessmentTypeId = int.Parse(AssessmentIds[i]),
+                        RequiredMark = int.Parse(RequiredMarksList[i]),
+                    };
+
+                    _DbContext.DepartmentsAssessmentTypeDetail.Add(DTypeDetail);
+                }
+
+                _DbContext.SaveChanges();
+
+
+            }
+
+
+
+
+            TempData["success"] = "تم تعديل  تقسم الدرجات بنجاح";
 
             return Json(new { success = true });
 

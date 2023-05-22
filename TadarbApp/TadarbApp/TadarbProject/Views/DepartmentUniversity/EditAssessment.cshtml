@@ -13,7 +13,7 @@
 <partial name="_Notification" />
 <body style="background: linear-gradient(#1c4c64,#5590ad);">
 
-    <div class="row" >
+    <div class="row">
 
         <div class="col-sm-4" style="z-index:2;">
 
@@ -124,7 +124,7 @@
 
                                             </div>
 
-                                           
+
                                         </div>
                                         <button class="btn btn-primary list_add_button" type="button">اضافة</button>
                                     </div>
@@ -162,7 +162,7 @@
             });
         });
 
-        function view(){
+        function view() {
             var x = 1; //Initial field counter
             var list_maxField = 7; //Input fields increment limitation
 
@@ -171,50 +171,50 @@
 
             //Check maximum number of input fields
             var list_fieldHTMLView = "";
-          
-
-                $.ajax({
-                    type: "GET",
-                    url: "@Url.Action("ViewAssessmentajax")",
 
 
-                    dataType: "json",
-                    success: function (data) {
-                        //console.log(data.detailAssigmnt[1]);
-                        //console.log(data.detailAssigmnt[1].assessmentType.assessmentTypeName);
+            $.ajax({
+                type: "GET",
+                url: "@Url.Action("ViewAssessmentajax")",
 
-                        //console.log(data.detailAssigmnt.length);
-                        //if (x <= data.length){
-                        //    console.log(x);
 
-                        
-                        $.each(data.detailAssigmnt, function (key, value) {
-                            //console.log(value.requiredMark);
-                            //console.log(x);
-                            if (x <= data.detailAssigmnt.length) {
-                            list_fieldHTMLView += ' <div class="row"><div class="col-xs-4 col-sm-4 col-md-4"><div class="form-group"><label for="list[' + x + '][]"> </label> <a name="list[' + x + '][]" type="text" placeholder="ادخل الدرجة المناسبة للتقييم" value="' + value.assessmentType.assessmentTypeId + '" class="form-control AssessmentInName">' + value.assessmentType.assessmentTypeName + '</a> </div></div><div class="col-xs-7 col-sm-7 col-md-7"> <label for="list[' + x + '][]">الدرجة المطلوبة</label><div class="form-group"><input value="' + value.requiredMark + '" name="list[' + x + '][]" type="text" placeholder="ادخل الدرجة المناسبة للتقييم" class="form-control AssessmentInName"/></div></div> <div class="col-xs-1 col-sm-7 col-md-1"><label for="list[' + x + '][]"> حذف</label>   <div class="form-group">  <a href="javascript:void(0);" class="list_remove_button btn btn-danger">-</a>  </div> </div> </div>'; //New input field html
+                dataType: "json",
+                success: function (data) {
+                    //console.log(data.detailAssigmnt[1]);
+                    //console.log(data.detailAssigmnt[1].assessmentType.assessmentTypeName);
+
+                    //console.log(data.detailAssigmnt.length);
+                    //if (x <= data.length){
+                    //    console.log(x);
+
+
+                    $.each(data.detailAssigmnt, function (key, value) {
+                        //console.log(value.requiredMark);
+                        //console.log(x);
+                        if (x <= data.detailAssigmnt.length) {
+                            list_fieldHTMLView += ' <div class="row"><div class="col-xs-4 col-sm-4 col-md-4"><div class="form-group"><label for="list[' + x + '][]"> </label> <a name="list[' + x + '][]" type="text" placeholder="ادخل الدرجة المناسبة للتقييم" value="' + value.assessmentType.assessmentTypeId + '" class="form-control AssessmentInName">' + value.assessmentType.assessmentTypeName + '</a> </div></div><div class="col-xs-7 col-sm-7 col-md-7"> <label for="list[' + x + '][]">الدرجة المطلوبة</label><div class="form-group"><input value="' + value.requiredMark + '" name="list[' + x + '][]" type="text" placeholder="ادخل الدرجة المناسبة للتقييم" class="form-control AssessmentRequiredMarkToUpdate"/></div></div> <div class="col-xs-1 col-sm-7 col-md-1"> </div> </div> </div>'; //New input field html
                             x++;  //Increment field counter
-                            }
+                        }
 
-                        });
-                        //}
-                        $('.list_wrapper').append(list_fieldHTMLView); //Add field html
-                        //assessmentTypeName
-                        //assessmentTypeId
-                    }
-                });
-
-
+                    });
+                    //}
+                    $('.list_wrapper').append(list_fieldHTMLView); //Add field html
+                    //assessmentTypeName
+                    //assessmentTypeId
+                }
+            });
 
 
-          
+
+
+
         }
         $(document).ready(function () {
             var x = 0; //Initial field counter
             var list_maxField = 7; //Input fields increment limitation
 
 
-           
+
 
 
 
@@ -235,7 +235,17 @@
                             //console.log(data.assiment[2].assessmentTypeName);
                             //console.log(data.assiment[2].assessmentTypeId);
 
-                            list_fieldHTML += ' <div class="row"><div class="col-xs-4 col-sm-4 col-md-4"><div class="form-group"><label for="list[' + x + '][]">نوع التقييم</label> <select name="list[' + x + '][]" class="form-control AssessmentList"><option value="" selected disabled >--الرجاء اختار نوع التدريب--</<option><option value="' + data.assiment[0].assessmentTypeId + '">' + data.assiment[0].assessmentTypeName + '</option> <option value="' + data.assiment[1].assessmentTypeId + '">' + data.assiment[1].assessmentTypeName + '</option><option value="' + data.assiment[2].assessmentTypeId + '">' + data.assiment[2].assessmentTypeName + '</option> <option value="' + data.assiment[3].assessmentTypeId + '">' + data.assiment[3].assessmentTypeName + '</option> </select> </div></div><div class="col-xs-7 col-sm-7 col-md-7"> <label for="list[' + x + '][]">الدرجة المطلوبة</label><div class="form-group"><input name="list[' + x + '][]" type="text" placeholder="ادخل الدرجة المناسبة للتقييم" class="form-control AssessmentInName"/></div></div> <div class="col-xs-1 col-sm-7 col-md-1"><label for="list[' + x + '][]"> حذف</label>   <div class="form-group">  <a href="javascript:void(0);" class="list_remove_button btn btn-danger">-</a>  </div> </div> </div>'; //New input field html
+                            var Options = "";
+
+                            for (var i = 0; i < data.assiment.length; i++) {
+
+                                Options += `<option value= ${data.assiment[i].assessmentTypeId}>${data.assiment[i].assessmentTypeName}</option>`;
+
+                            }
+
+                            list_fieldHTML += ' <div class="row"><div class="col-xs-4 col-sm-4 col-md-4"><div class="form-group"><label for="list[' + x + '][]">نوع التقييم</label> <select name="list[' + x + '][]" class="form-control AssessmentList"><option value="" selected disabled >--الرجاء اختار نوع التدريب--</<option>  "' + Options + '" </select> </div></div><div class="col-xs-7 col-sm-7 col-md-7"> <label for="list[' + x + '][]">الدرجة المطلوبة</label><div class="form-group"><input name="list[' + x + '][]" type="text" placeholder="ادخل الدرجة المناسبة للتقييم" class="form-control AssessmentRequiredMark "/></div></div> <div class="col-xs-1 col-sm-7 col-md-1 btn" onclick="DeleteTypeDetail(' + x + ')"><label for="list[' + x + '][]"> حذف</label>   <div class="form-group">  <a href="javascript:void(0);" class="list_remove_button btn btn-danger">-</a>  </div> </div> </div>'; //New input field html
+
+
                             x++;  //Increment field counter
 
                             $('.list_wrapper').append(list_fieldHTML); //Add field html
@@ -268,16 +278,20 @@
 
             //console.log($("#RequireHours").val());
 
-            if ($("#CSMark").val() == "" || $("#ASMark").val() == "" || $("#RequireHours").val() == "" || $("#ActivationDate").val() == "") {
+            //if ($("#CSMark").val() == "" || $("#ASMark").val() == "" || $("#RequireHours").val() == "" || $("#ActivationDate").val() == "") {
 
-                DisplayMessage(0);
+            //    DisplayMessage(0);
 
-                return;
-            }
+            //    return;
+            //}
 
             var AssessmentIds = [];
 
             var AssessmentRequiredMarks = [];
+
+            var AssessmentRequiredMarksToBeUpdated = [];
+
+            //var AssessmentDetailIdsToBeDeleted = [];
 
             $("select.AssessmentList").each(function () {
                 AssessmentIds.push(this.value);
@@ -285,31 +299,49 @@
 
             // console.log(AssessmentIds.toLocaleString());
 
-            if (AssessmentIds.toLocaleString() == "") {
 
-                DisplayMessage(0);
 
-                return;
-            }
+            //if (AssessmentIds.toLocaleString() == "") {
 
-            var inputs = $(".AssessmentInName");
+            //    DisplayMessage(0);
+
+            //    return;
+            //}
+
+            var inputs = $(".AssessmentRequiredMark");
 
             for (var i = 0; i < inputs.length; i++) {
                 AssessmentRequiredMarks.push($(inputs[i]).val());
             }
 
 
+            var inputsToUD = $(".AssessmentRequiredMarkToUpdate");
 
-            //console.log(AssessmentRequiredMarks.toLocaleString());
+            for (var i = 0; i < inputsToUD.length; i++) {
+                AssessmentRequiredMarksToBeUpdated.push($(inputsToUD[i]).val());
+            }
 
-            if (AssessmentRequiredMarks.toLocaleString() == "") {
+
+
+            console.log(AssessmentRequiredMarks.toLocaleString)
+
+
+            console.log(AssessmentRequiredMarksToBeUpdated.toLocaleString());
+
+            if (AssessmentRequiredMarksToBeUpdated.toLocaleString() == "") {
 
                 DisplayMessage(0);
 
                 return;
             }
 
-            var AssessmentRequiredMarksToAR = AssessmentRequiredMarks.toLocaleString().split(",");
+            var AssessmentRequiredMarksToAR = AssessmentRequiredMarksToBeUpdated.toLocaleString().split(",");
+
+
+            if (AssessmentRequiredMarks.toLocaleString() != "") {
+
+                AssessmentRequiredMarksToAR.push(AssessmentRequiredMarks.toLocaleString().split(","));
+            }
 
             var RequiredMarksSum = 0;
 
@@ -319,7 +351,7 @@
             }
 
 
-            //console.log(RequiredMarksSum);
+            console.log(RequiredMarksSum);
 
             var CSMark = $("#CSMark").val();
 
@@ -367,8 +399,10 @@
 
             var AssessmentRequiredMarksStar = AssessmentRequiredMarks.toLocaleString();
 
+            var AssessmentRequiredMarksToBeUpdatedStar = AssessmentRequiredMarksToBeUpdated.toLocaleString();
+
             PostMasterAndDetails(StartActivationDate, RequireCompletionHours, AcademicSupervisorMarks, TrainingSupervisorMarks,
-                AssessmentIdsStar, AssessmentRequiredMarksStar);
+                AssessmentIdsStar, AssessmentRequiredMarksStar, AssessmentRequiredMarksToBeUpdatedStar);
 
 
         }
@@ -422,7 +456,7 @@
         }
 
 
-        function PostMasterAndDetails(SADate, ReqHours, AMarks, TMarks, AssessmentIds, AssessmentRequiredMarks) {
+        function PostMasterAndDetails(SADate, ReqHours, AMarks, TMarks, AssessmentIds, AssessmentRequiredMarks, AssessmentRequiredMarksToUpdate) {
 
             $(document).ready(function () {
 
@@ -431,12 +465,12 @@
                     type: "POST",
                     datatype: "json",
                     url: "@Url.Action("UpdateAssessmentTypeMasterAndItsDetail")",
-                    data: { StartDate: SADate, RequireHours: ReqHours, AcademicMarks: AMarks, TrainingMarks: TMarks, AssessmentTypeIds: AssessmentIds, RequiredMarks: AssessmentRequiredMarks },
+                    data: { StartDate: SADate, RequireHours: ReqHours, AcademicMarks: AMarks, TrainingMarks: TMarks, AssessmentTypeIds: AssessmentIds, RequiredMarks: AssessmentRequiredMarks, RequiredMarksToUpdate: AssessmentRequiredMarksToUpdate },
 
 
                 });
 
-
+                window.location.replace('@Url.ActionLink("ViewAssessment")');
 
             });
 
