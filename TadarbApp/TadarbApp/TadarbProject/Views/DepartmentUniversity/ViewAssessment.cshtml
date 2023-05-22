@@ -10,12 +10,12 @@
 
 </head>
 
-<partial name="_Notification"/>
+<partial name="_Notification" />
 
 
 <body style="background: linear-gradient(#1c4c64,#5590ad);">
 
-    <div class="row" >
+    <div class="row">
 
         <div class="col-sm-4" style="z-index:2;">
 
@@ -61,6 +61,13 @@
                             تحديد التقييمات
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a asp-controller="DepartmentUniversity" asp-action="ViewSemesters" class="nav-link text-dark font-italic ">
+                            <i class="fa-solid fa-user-graduate"></i>
+
+                           ادارة الشعب
+                        </a>
+                    </li>
 
                 </ul>
 
@@ -78,7 +85,7 @@
 
         </div>
 
-        <div class="col-sm-6">
+        <div class="col-sm-5">
             <div class="card " style="border-radius: 25px; margin-top:2cm; margin-bottom:3cm; padding:5px 5px 5px 5px ; border-color:black;">
                 <div class="card-header" style="text-align: center;">
                     <h3>مسؤولي التدريب</h3>
@@ -89,77 +96,94 @@
                     </a>
 
                 </div>
-                <div class="card-body">
-                    <div class="table-responsive no-radius">
-
-                        <table class="table table-hover table-center" style="font-size:18px">
-                            <thead>
-                                <tr>
-
-                                    <th>اسم المسؤول</th>
-                                    <th>رقم الهاتف	</th>
-                                    <th class="text-center">البريد الالكتروني	</th>
+                <div class="container">
+                    <div id="content" class="content p-0">
 
 
-                                </tr>
-                            </thead>
-                            <tbody>
+                        <div class="profile-container">
+                            <div class="row row-space-20">
+                                <div class="col-md-6">
+                                    <div class="tab-content p-0">
+                                        <div class="tab-pane active show" id="profile-about">
+                                            <table class="table table-profile">
+                                                <thead>
+                                                    <tr>
+                                                        <th colspan="2" style="font-size:22px">تفاصيل التقييم</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
 
-                                @*  <tr>
-                                <td class="text-nowrap">
-                                <div class="font-weight-600">
-                                <div class="font-weight-600 ">
-                                احمد حمدان
+                                                        <td class="value" style="font-size:20px">
+                                                            <div class="m-b-5">
+                                                                <b>عدد الساعات:</b> &nbsp;&nbsp;&nbsp;&nbsp;
+                                                                <span class="text-muted">120</span>
+                                                            </div>
+                                                            <br />
+                                                            <div>
+                                                                <b>التاريخ:</b>&nbsp; &nbsp;&nbsp;&nbsp;
+                                                                <span class="text-muted">2023/5/30</span>
+                                                            </div>
+                                                            <br />
+                                                            <div class="m-b-5">
+                                                                <b>درجة الاكاديمي:</b>&nbsp; &nbsp;&nbsp;&nbsp;
+                                                                <span class="text-muted">120</span>
+                                                            </div>
+                                                            <br />
+                                                            <div class="m-b-5">
+                                                                <b>درجةالتدريب:</b>&nbsp; &nbsp;&nbsp;&nbsp;
+                                                                <span class="text-muted">120</span>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+
+
+                                                </tbody>
+                                            </table>
+
+                                        </div>
+                                    </div>
                                 </div>
 
+
+                                <div class="col-md-6 hidden-xs hidden-sm">
+                                    <table class="table table-profile">
+                                        <thead>
+                                            <tr>
+                                                <th colspan="2" style="font-size:22px">تقييم الدرجات</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+
+                                                <td class="value" style="font-size:20px">
+                                                    <div class="m-b-5">
+                                                        <b>الحضور:</b>&nbsp;&nbsp;&nbsp;
+                                                        <input name="list[0][]" type="number" max="100" id="RequireHours" placeholder="" class="form" />
+                                                        <button class="btn float-lg-start " type="button" style="background-color:red;color:white">حذف</button>
+                                                    </div>
+                                                    <br /><br /><br /><br /><br />
+                                                </td>
+                                            </tr>
+
+
+                                        </tbody>
+                                    </table>
+
+                                    </ul>
                                 </div>
-                                </td>
-                                <td class="text-nowrap"> 0559683335	</td>
-                                <td class="text-center">
-                                aaa@fff.com
-                                </td>
-
-                                <td class="text-center">
-                                <button type="button" class="btn btn-danger" fdprocessedid="ezqldw"><i class="fa fa-trash-alt"></i></button>
-
-                                </td>
-                                </tr>*@
-
-
-
-                                @foreach (var item in Model)
-                                {
-                                    <tr>
-                                        <td class="text-nowrap">
-                                            <div class="font-weight-600">
-                                                <div class="font-weight-600 ">
-                                                   @item.master.TrainingSupervisorMarks :  اكاديمي
-                                                </div>
-
-                                            </div>
-                                        </td>
-                                        <td class="text-nowrap">
-
-                                            @item.master.TrainingSupervisorMarks  تدريبي
-                                        </td>
-                                        <td class="text-center">
-                                          ييي
-                                        </td>
-
-
-                                    </tr>
-
-                                }
-
-                            </tbody>
-                        </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
 
+
+            </div>
         </div>
 
-        <div class="col-sm-2"></div>
+
+
+        <div class="col-sm-3"></div>
     </div>
 </body>
 @section Scripts{
@@ -178,7 +202,7 @@
 
         //document.addEventListener("load", (event) => {
 
-        //    window.location.replace('@Url.ActionLink("ViewAssessment")');
+        //    window.location.replace('Url.ActionLink("ViewAssessment")');
 
         //});
 

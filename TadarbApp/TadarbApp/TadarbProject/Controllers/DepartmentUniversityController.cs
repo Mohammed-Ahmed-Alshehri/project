@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -12,15 +13,15 @@ namespace TadarbProject.Controllers
     public class DepartmentUniversityController : Controller
     {
         private readonly AppDbContext _DbContext;
+        private readonly IWebHostEnvironment _WebHostEnvironment;
         private readonly IEmailSender _emailSender;
         private readonly IHttpContextAccessor _HttpContextAccessor;
 
 
-
-        public DepartmentUniversityController(AppDbContext DbContext, IEmailSender emailSender, IHttpContextAccessor HttpContextAccessor)
+        public DepartmentUniversityController(AppDbContext DbContext, IEmailSender emailSender, IHttpContextAccessor HttpContextAccessor, IWebHostEnvironment webHostEnvironment)
         {
             _DbContext = DbContext;
-
+            _WebHostEnvironment = webHostEnvironment;
             _emailSender = emailSender;
             _HttpContextAccessor = HttpContextAccessor;
 
@@ -60,8 +61,15 @@ namespace TadarbProject.Controllers
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
             ViewBag.Username = user.FullName;
 
-            var DetailAssigmnt = _DbContext.DepartmentsAssessmentTypeDetail.Where(item => item.DepartmentAssessmentTypeMaster_MasterId ==
-            MasterAssigmnt.DepartmentAssessmentTypeMasterId).Include(item => item.master).AsNoTracking().ToList();
+
+            IEnumerable<DepartmentAssessmentTypeDetail> DetailAssigmnt = Enumerable.Empty<DepartmentAssessmentTypeDetail>(); 
+
+            if(MasterAssigmnt != null)
+            {
+                 DetailAssigmnt = _DbContext.DepartmentsAssessmentTypeDetail.Where(item => item.DepartmentAssessmentTypeMaster_MasterId ==
+                 MasterAssigmnt.DepartmentAssessmentTypeMasterId).Include(item => item.master).AsNoTracking().ToList();
+            }
+           
 
             return View(DetailAssigmnt);
         }
@@ -94,6 +102,150 @@ namespace TadarbProject.Controllers
 
 
             return View(assessmentVM);
+        }
+
+        public IActionResult ViewSemesters()
+        {
+            ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
+            int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
+            var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).AsNoTracking().FirstOrDefault();
+            var Department = _DbContext.Departments.Where(item => item.Responsible_UserId == RUserId).AsNoTracking().FirstOrDefault();
+            var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Department.Organization_OrganizationId).AsNoTracking().FirstOrDefault();
+
+           var Semesters = _DbContext.SemestersTrainingSettingMaster.Where(item => item.Department_DepartmenId ==
+                Department.DepartmentId).AsNoTracking().FirstOrDefault();
+
+
+            ViewBag.OrganizationName = OrganizationOfR.OrganizationName + " - " + Department.DepartmentName;
+            ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
+            ViewBag.Username = user.FullName;
+
+
+
+            IEnumerable<SemesterTrainingSettingMaster> Sem = Enumerable.Empty<SemesterTrainingSettingMaster>();
+
+            if (Semesters != null)
+            {
+                Sem = _DbContext.SemestersTrainingSettingMaster.Where(item => item.Department_DepartmenId ==
+                Department.DepartmentId).Include(item => item.trainingType).AsNoTracking().ToList();
+            }
+
+
+            return View(Sem);
+        }
+
+        public IActionResult AddSemesters()
+        {
+            ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
+            int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
+            var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).AsNoTracking().FirstOrDefault();
+            var Department = _DbContext.Departments.Where(item => item.Responsible_UserId == RUserId).AsNoTracking().FirstOrDefault();
+            var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Department.Organization_OrganizationId).AsNoTracking().FirstOrDefault();
+
+           
+
+
+            ViewBag.OrganizationName = OrganizationOfR.OrganizationName + " - " + Department.DepartmentName;
+            ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
+            ViewBag.Username = user.FullName;
+
+
+
+
+            SemesterMasterVM SemesterMasterVM = new SemesterMasterVM 
+            { 
+            TrainingTypeListItems = _DbContext.TrainingTypes.AsNoTracking().ToList().Select(u => new SelectListItem { Text = u.TypeName, Value = u.TrainingTypeId.ToString() }),
+
+              };
+
+
+
+
+
+            return View(SemesterMasterVM);
+        }
+
+        [HttpPost]
+        public IActionResult AddSemesters(SemesterMasterVM SemesterMasterVM , IFormFile? CvFile)
+        {
+            ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
+            int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
+            var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).AsNoTracking().FirstOrDefault();
+            var Department = _DbContext.Departments.Where(item => item.Responsible_UserId == RUserId).AsNoTracking().FirstOrDefault();
+            var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Department.Organization_OrganizationId).AsNoTracking().FirstOrDefault();
+            var Emplyee = _DbContext.Employees.Where(item => item.UserAccount_UserId == RUserId).AsNoTracking().FirstOrDefault();
+            //var SemesterMaste = _DbContext.SemestersTrainingSettingMaster.Where(item => item.Cre == RUserId).AsNoTracking().FirstOrDefault();
+
+
+
+
+            ViewBag.OrganizationName = OrganizationOfR.OrganizationName + " - " + Department.DepartmentName;
+            ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
+            ViewBag.Username = user.FullName;
+
+           //Startt UploadFile
+
+            string fileName = Guid.NewGuid().ToString();
+
+            string wwwRootPath = _WebHostEnvironment.WebRootPath;
+
+            var uploadTo = Path.Combine(wwwRootPath, @"SupervisionFiles\TrainingEvaluation\");
+
+            var extension = Path.GetExtension(CvFile.FileName);
+
+            //here is to Create a file to has the user uploaded file
+            using (var fileStreams = new FileStream(Path.Combine(uploadTo, fileName + extension), FileMode.Create))
+            {
+                CvFile.CopyTo(fileStreams);
+            }
+
+            //Here what will be in the database.
+            var DbLogoPath = @"SupervisionFiles\TrainingEvaluation\" + fileName + extension;
+          
+            //___________________________end upload____________
+
+
+
+            var Startdate = SemesterMasterVM.SemesterTrainingSettingMaster.StartDate;
+            var active = "Not_Active";
+            if (Startdate == DateTime.Now.Date)
+            {
+                
+                active = "Active";
+            }
+
+
+            
+            SemesterTrainingSettingMaster SemesterTrainingSettingMaster = new SemesterTrainingSettingMaster
+            {
+                Department_DepartmenId= Department.DepartmentId,
+                AcademicYear= SemesterMasterVM.SemesterTrainingSettingMaster.AcademicYear,
+                SemesterType= SemesterMasterVM.SemesterTrainingSettingMaster.SemesterType,
+                StartDate= Startdate,
+                EndDate = SemesterMasterVM.SemesterTrainingSettingMaster.EndDate,
+                ActivationStatus= active,
+                TrainingType_TrainingTypeId= SemesterMasterVM.SemesterTrainingSettingMaster.TrainingType_TrainingTypeId,
+                RequiredWeeks = SemesterMasterVM.SemesterTrainingSettingMaster.RequiredWeeks,
+                MinimumRequiredHours= SemesterMasterVM.SemesterTrainingSettingMaster.MinimumRequiredHours,
+                CreateDate=DateTime.Now.Date,
+                CreatedByEmployee_EmployeeId= Emplyee.EmployeeId,
+                EvaluationFileToTrainingSupervisor= DbLogoPath,
+
+
+            };
+
+
+            _DbContext.SemestersTrainingSettingMaster.Add(SemesterTrainingSettingMaster);
+
+            _DbContext.SaveChanges();
+
+
+
+            TempData["success"] = "تم إضافة شعبة بنجاح";
+
+            return RedirectToAction("ViewSemesters");
+
+         
         }
 
         public IActionResult ManageAssessment()
