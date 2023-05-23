@@ -1,4 +1,4 @@
-﻿@model IEnumerable<DepartmentAssessmentTypeDetail>
+﻿@model DepartmentAssessmentTypeMaster
 @{
     ViewData["Title"] = "عرض";
 }
@@ -65,7 +65,7 @@
                         <a asp-controller="DepartmentUniversity" asp-action="ViewSemesters" class="nav-link text-dark font-italic ">
                             <i class="fa-solid fa-user-graduate"></i>
 
-                           ادارة الشعب
+                            ادارة الشعب
                         </a>
                     </li>
 
@@ -105,7 +105,7 @@
                                 <div class="col-md-6">
                                     <div class="tab-content p-0">
                                         <div class="tab-pane active show" id="profile-about">
-                                            <table class="table table-profile">
+                                            <table class="table  table table-borderless">
                                                 <thead>
                                                     <tr>
                                                         <th colspan="2" style="font-size:22px">تفاصيل التقييم</th>
@@ -117,22 +117,22 @@
                                                         <td class="value" style="font-size:20px">
                                                             <div class="m-b-5">
                                                                 <b>عدد الساعات:</b> &nbsp;&nbsp;&nbsp;&nbsp;
-                                                                <span class="text-muted">120</span>
+                                                                <span class="text-muted">@Model.RequireCompletionHours</span>
                                                             </div>
                                                             <br />
                                                             <div>
                                                                 <b>التاريخ:</b>&nbsp; &nbsp;&nbsp;&nbsp;
-                                                                <span class="text-muted">2023/5/30</span>
+                                                                <span class="text-muted">@Model.StartActivationDate.ToShortDateString()</span>
                                                             </div>
                                                             <br />
                                                             <div class="m-b-5">
                                                                 <b>درجة الاكاديمي:</b>&nbsp; &nbsp;&nbsp;&nbsp;
-                                                                <span class="text-muted">120</span>
+                                                                <span class="text-muted">@Model.AcademicSupervisorMarks</span>
                                                             </div>
                                                             <br />
                                                             <div class="m-b-5">
                                                                 <b>درجةالتدريب:</b>&nbsp; &nbsp;&nbsp;&nbsp;
-                                                                <span class="text-muted">120</span>
+                                                                <span class="text-muted">@Model.TrainingSupervisorMarks</span>
                                                             </div>
                                                         </td>
                                                     </tr>
@@ -147,30 +147,21 @@
 
 
                                 <div class="col-md-6 hidden-xs hidden-sm">
-                                    <table class="table table-profile">
+                                    <table class="table table table-sm">
                                         <thead>
                                             <tr>
                                                 <th colspan="2" style="font-size:22px">تقييم الدرجات</th>
                                             </tr>
+
                                         </thead>
-                                        <tbody>
-                                            <tr>
-
-                                                <td class="value" style="font-size:20px">
-                                                    <div class="m-b-5">
-                                                        <b>الحضور:</b>&nbsp;&nbsp;&nbsp;
-                                                        <input name="list[0][]" type="number" max="100" id="RequireHours" placeholder="" class="form" />
-                                                        <button class="btn float-lg-start " type="button" style="background-color:red;color:white">حذف</button>
-                                                    </div>
-                                                    <br /><br /><br /><br /><br />
-                                                </td>
-                                            </tr>
 
 
+                                        <tbody id="Tbody" class="table-group-divider">
                                         </tbody>
+
                                     </table>
 
-                                    </ul>
+
                                 </div>
                             </div>
                         </div>
@@ -200,11 +191,11 @@
 
         //});
 
-        //document.addEventListener("load", (event) => {
+        document.addEventListener("load", (event) => {
 
-        //    window.location.replace('Url.ActionLink("ViewAssessment")');
+            window.location.replace('@Url.ActionLink("ViewAssessment")');
 
-        //});
+        });
 
         $(function () {
             // Sidebar toggle behavior
@@ -212,6 +203,65 @@
                 $('#sidebar, #content').toggleClass('active');
             });
         });
+
+        getAssessmentTypeDetail();
+
+        function getAssessmentTypeDetail() {
+            var tab = "";
+
+
+            $(document).ready(function () {
+                $.ajax({
+                    type: "GET",
+                    url: "@Url.Action("getAssessmentTypeDetail")",
+                    data: { id: @Model.DepartmentAssessmentTypeMasterId },
+
+                    dataType: "json",
+                    success: function (data) {
+                        var body = '';
+
+                        for (var i = 0; i < data.assessmentTypeDetail.length; i++) {
+
+                            tab += `"<tr> <td>  ${data.assessmentTypeDetail[i].assessmentType.assessmentTypeName}</td> <td> ${data.assessmentTypeDetail[i].requiredMark} </td>
+                                                                                                                                  </tr>`;
+
+                        }
+
+                        $("#Tbody").html(tab);
+
+
+                    }
+                });
+            });
+
+
+        }
+
+        function DeleteAssessmentTypeDetail(Id) {
+
+
+            Swal.fire({
+                title: 'تأكيد حذف',
+             
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'نعم احذف!',
+                cancelButtonText: 'الغاء'
+            }).then((result) => {
+                if (result.isConfirmed) {
+
+                    Swal.fire(
+                        'Deleted!',
+                        'Your file has been deleted.',
+                        'success'
+                    )
+                }
+            })
+
+
+        }
 
     </script>
 

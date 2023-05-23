@@ -1,8 +1,6 @@
-﻿using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using System;
 using TadarbProject.Data;
 using TadarbProject.Models;
 using TadarbProject.Models.ViewModels;
@@ -62,16 +60,16 @@ namespace TadarbProject.Controllers
             ViewBag.Username = user.FullName;
 
 
-            IEnumerable<DepartmentAssessmentTypeDetail> DetailAssigmnt = Enumerable.Empty<DepartmentAssessmentTypeDetail>(); 
+            IEnumerable<DepartmentAssessmentTypeDetail> DetailAssigmnt = Enumerable.Empty<DepartmentAssessmentTypeDetail>();
 
-            if(MasterAssigmnt != null)
+            if (MasterAssigmnt != null)
             {
-                 DetailAssigmnt = _DbContext.DepartmentsAssessmentTypeDetail.Where(item => item.DepartmentAssessmentTypeMaster_MasterId ==
-                 MasterAssigmnt.DepartmentAssessmentTypeMasterId).Include(item => item.master).AsNoTracking().ToList();
+                DetailAssigmnt = _DbContext.DepartmentsAssessmentTypeDetail.Where(item => item.DepartmentAssessmentTypeMaster_MasterId ==
+                MasterAssigmnt.DepartmentAssessmentTypeMasterId).Include(item => item.master).AsNoTracking().ToList();
             }
-           
 
-            return View(DetailAssigmnt);
+
+            return View(MasterAssigmnt);
         }
 
         public IActionResult EditAssessment()
@@ -112,8 +110,8 @@ namespace TadarbProject.Controllers
             var Department = _DbContext.Departments.Where(item => item.Responsible_UserId == RUserId).AsNoTracking().FirstOrDefault();
             var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Department.Organization_OrganizationId).AsNoTracking().FirstOrDefault();
 
-           var Semesters = _DbContext.SemestersTrainingSettingMaster.Where(item => item.Department_DepartmenId ==
-                Department.DepartmentId).AsNoTracking().FirstOrDefault();
+            var Semesters = _DbContext.SemestersTrainingSettingMaster.Where(item => item.Department_DepartmenId ==
+                 Department.DepartmentId).AsNoTracking().FirstOrDefault();
 
 
             ViewBag.OrganizationName = OrganizationOfR.OrganizationName + " - " + Department.DepartmentName;
@@ -142,7 +140,7 @@ namespace TadarbProject.Controllers
             var Department = _DbContext.Departments.Where(item => item.Responsible_UserId == RUserId).AsNoTracking().FirstOrDefault();
             var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Department.Organization_OrganizationId).AsNoTracking().FirstOrDefault();
 
-           
+
 
 
             ViewBag.OrganizationName = OrganizationOfR.OrganizationName + " - " + Department.DepartmentName;
@@ -152,11 +150,11 @@ namespace TadarbProject.Controllers
 
 
 
-            SemesterMasterVM SemesterMasterVM = new SemesterMasterVM 
-            { 
-            TrainingTypeListItems = _DbContext.TrainingTypes.AsNoTracking().ToList().Select(u => new SelectListItem { Text = u.TypeName, Value = u.TrainingTypeId.ToString() }),
+            SemesterMasterVM SemesterMasterVM = new SemesterMasterVM
+            {
+                TrainingTypeListItems = _DbContext.TrainingTypes.AsNoTracking().ToList().Select(u => new SelectListItem { Text = u.TypeName, Value = u.TrainingTypeId.ToString() }),
 
-              };
+            };
 
 
 
@@ -166,7 +164,7 @@ namespace TadarbProject.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddSemesters(SemesterMasterVM SemesterMasterVM , IFormFile? CvFile)
+        public IActionResult AddSemesters(SemesterMasterVM SemesterMasterVM, IFormFile? CvFile)
         {
             ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
             int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
@@ -183,7 +181,7 @@ namespace TadarbProject.Controllers
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
             ViewBag.Username = user.FullName;
 
-           //Startt UploadFile
+            //Startt UploadFile
 
             string fileName = Guid.NewGuid().ToString();
 
@@ -201,7 +199,7 @@ namespace TadarbProject.Controllers
 
             //Here what will be in the database.
             var DbLogoPath = @"SupervisionFiles\TrainingEvaluation\" + fileName + extension;
-          
+
             //___________________________end upload____________
 
 
@@ -210,26 +208,26 @@ namespace TadarbProject.Controllers
             var active = "Not_Active";
             if (Startdate == DateTime.Now.Date)
             {
-                
+
                 active = "Active";
             }
 
 
-            
+
             SemesterTrainingSettingMaster SemesterTrainingSettingMaster = new SemesterTrainingSettingMaster
             {
-                Department_DepartmenId= Department.DepartmentId,
-                AcademicYear= SemesterMasterVM.SemesterTrainingSettingMaster.AcademicYear,
-                SemesterType= SemesterMasterVM.SemesterTrainingSettingMaster.SemesterType,
-                StartDate= Startdate,
+                Department_DepartmenId = Department.DepartmentId,
+                AcademicYear = SemesterMasterVM.SemesterTrainingSettingMaster.AcademicYear,
+                SemesterType = SemesterMasterVM.SemesterTrainingSettingMaster.SemesterType,
+                StartDate = Startdate,
                 EndDate = SemesterMasterVM.SemesterTrainingSettingMaster.EndDate,
-                ActivationStatus= active,
-                TrainingType_TrainingTypeId= SemesterMasterVM.SemesterTrainingSettingMaster.TrainingType_TrainingTypeId,
+                ActivationStatus = active,
+                TrainingType_TrainingTypeId = SemesterMasterVM.SemesterTrainingSettingMaster.TrainingType_TrainingTypeId,
                 RequiredWeeks = SemesterMasterVM.SemesterTrainingSettingMaster.RequiredWeeks,
-                MinimumRequiredHours= SemesterMasterVM.SemesterTrainingSettingMaster.MinimumRequiredHours,
-                CreateDate=DateTime.Now.Date,
-                CreatedByEmployee_EmployeeId= Emplyee.EmployeeId,
-                EvaluationFileToTrainingSupervisor= DbLogoPath,
+                MinimumRequiredHours = SemesterMasterVM.SemesterTrainingSettingMaster.MinimumRequiredHours,
+                CreateDate = DateTime.Now.Date,
+                CreatedByEmployee_EmployeeId = Emplyee.EmployeeId,
+                EvaluationFileToTrainingSupervisor = DbLogoPath,
 
 
             };
@@ -245,7 +243,7 @@ namespace TadarbProject.Controllers
 
             return RedirectToAction("ViewSemesters");
 
-         
+
         }
 
         public IActionResult ManageAssessment()
@@ -325,8 +323,21 @@ namespace TadarbProject.Controllers
             var MasterAssigmnt = _DbContext.DepartmentsAssessmentTypeMaster.Where(item => item.Department_DepartmentId == Department.DepartmentId)
            .AsNoTracking().FirstOrDefault();
 
-            var Assiment = _DbContext.AssessmentTypes.FromSqlRaw($"SELECT * FROM AssessmentTypes WHERE AssessmentTypeId NOT IN " +
-                $"(SELECT AssessmentType_AssessmentTypeId FROM DepartmentsAssessmentTypeDetail WHERE DepartmentAssessmentTypeMaster_MasterId ={MasterAssigmnt.DepartmentAssessmentTypeMasterId})").AsNoTracking().ToList();
+            IEnumerable<AssessmentType> Assiment = Enumerable.Empty<AssessmentType>();
+
+            if(MasterAssigmnt != null)
+            {
+
+                Assiment = _DbContext.AssessmentTypes.FromSqlRaw($"SELECT * FROM AssessmentTypes WHERE AssessmentTypeId NOT IN " +
+                    $"(SELECT AssessmentType_AssessmentTypeId FROM DepartmentsAssessmentTypeDetail WHERE DepartmentAssessmentTypeMaster_MasterId ={MasterAssigmnt.DepartmentAssessmentTypeMasterId})").AsNoTracking().ToList();
+
+                return Json(new { Assiment });
+
+            }
+
+            Assiment = _DbContext.AssessmentTypes.AsNoTracking().ToList();
+
+
 
             return Json(new { Assiment });
         }
@@ -2179,6 +2190,32 @@ namespace TadarbProject.Controllers
 
 
         }
+
+
+        [HttpGet]
+        public IActionResult getAssessmentTypeDetail(int? id)
+        {
+
+            IEnumerable<DepartmentAssessmentTypeDetail> AssessmentTypeDetail = Enumerable.Empty<DepartmentAssessmentTypeDetail>();
+
+            if (id == null || id == 0)
+            {
+
+                return Json(new { AssessmentTypeDetail });
+
+            }
+
+
+            AssessmentTypeDetail = _DbContext.DepartmentsAssessmentTypeDetail.Where(item => item.DepartmentAssessmentTypeMaster_MasterId == id).Include(item=> item.assessmentType).AsNoTracking().ToList();
+
+
+
+
+
+            return Json(new { AssessmentTypeDetail });
+
+        }
+
 
         #endregion
 
