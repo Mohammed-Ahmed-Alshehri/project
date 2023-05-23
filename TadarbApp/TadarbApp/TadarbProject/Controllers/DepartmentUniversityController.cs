@@ -51,8 +51,28 @@ namespace TadarbProject.Controllers
 
             var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Department.Organization_OrganizationId).AsNoTracking().FirstOrDefault();
 
+
+
+
             var MasterAssigmnt = _DbContext.DepartmentsAssessmentTypeMaster.Where(item => item.Department_DepartmentId == Department.DepartmentId)
-                .AsNoTracking().FirstOrDefault();
+               .AsNoTracking().FirstOrDefault();
+
+
+
+            if (MasterAssigmnt == null)
+            {
+
+
+                TempData["error"] = "ليس لديك قائمة تقييمات الرجا اضافتها";
+
+
+                return RedirectToAction("ManageAssessment");
+
+
+                //return View(new DepartmentAssessmentTypeMaster());
+            }
+
+
 
 
             ViewBag.OrganizationName = OrganizationOfR.OrganizationName + " - " + Department.DepartmentName;
@@ -60,19 +80,19 @@ namespace TadarbProject.Controllers
             ViewBag.Username = user.FullName;
 
 
-            IEnumerable<DepartmentAssessmentTypeDetail> DetailAssigmnt = Enumerable.Empty<DepartmentAssessmentTypeDetail>();
+            //IEnumerable<DepartmentAssessmentTypeDetail> DetailAssigmnt = Enumerable.Empty<DepartmentAssessmentTypeDetail>();
 
-            if (MasterAssigmnt != null)
-            {
-                DetailAssigmnt = _DbContext.DepartmentsAssessmentTypeDetail.Where(item => item.DepartmentAssessmentTypeMaster_MasterId ==
-                MasterAssigmnt.DepartmentAssessmentTypeMasterId).Include(item => item.master).AsNoTracking().ToList();
-            }
+            //if (MasterAssigmnt != null)
+            //{
+            //    DetailAssigmnt = _DbContext.DepartmentsAssessmentTypeDetail.Where(item => item.DepartmentAssessmentTypeMaster_MasterId ==
+            //    MasterAssigmnt.DepartmentAssessmentTypeMasterId).Include(item => item.master).AsNoTracking().ToList();
+            //}
 
 
             return View(MasterAssigmnt);
         }
 
-        
+
 
 
 
@@ -90,12 +110,12 @@ namespace TadarbProject.Controllers
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
             ViewBag.Username = user.FullName;
             ViewBag.Departmentid = Department.DepartmentId;
-           var Semester = _DbContext.SemestersTrainingSettingMaster.Where(item => item.SemesterTrainingSettingMasterId == id).AsNoTracking().FirstOrDefault();
+            var Semester = _DbContext.SemestersTrainingSettingMaster.Where(item => item.SemesterTrainingSettingMasterId == id).AsNoTracking().FirstOrDefault();
 
 
             SemesterMasterVM SemesterMasterVM = new SemesterMasterVM
             {
-                SemesterTrainingSettingMaster= Semester,
+                SemesterTrainingSettingMaster = Semester,
                 EmplyeeListItems = _DbContext.Employees.Where(item => item.Department_DepartmentId == Department.DepartmentId)
                  .Include(item => item.userAcount).AsNoTracking().ToList().Select(u => new SelectListItem { Text = u.userAcount.FullName, Value = u.EmployeeId.ToString() }),
 
@@ -359,7 +379,7 @@ namespace TadarbProject.Controllers
 
             IEnumerable<AssessmentType> Assiment = Enumerable.Empty<AssessmentType>();
 
-            if(MasterAssigmnt != null)
+            if (MasterAssigmnt != null)
             {
 
                 Assiment = _DbContext.AssessmentTypes.FromSqlRaw($"SELECT * FROM AssessmentTypes WHERE AssessmentTypeId NOT IN " +
@@ -645,7 +665,7 @@ namespace TadarbProject.Controllers
         }
 
 
-        public IActionResult ViewStudentCheckAjak(string? ids)
+        public IActionResult ViewStudentCheckAjak(string? id)
         {
 
             int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
@@ -654,44 +674,36 @@ namespace TadarbProject.Controllers
             var Branch = _DbContext.OrganizationBranches_TrainProv.Where(item => item.Responsible_UserId == RUserId).AsNoTracking().FirstOrDefault();
 
 
-            //if (!string.IsNullOrEmpty(ids))
-            //{
 
-            //    string[] Ids = ids.Split(",");
+            var StudentDetail = _DbContext.StudentRequestsOnOpportunities.FromSqlRaw($"Select * From StudentRequestsOnOpportunities where DecisionStatus='approved' AND " +
+                $"Trainee_TraineeId IN (Select TraineeId from UniversitiesTraineeStudents where Department_DepartmentId ={id}) " +
+                $" AND StudentRequestOpportunityId NOT IN (Select StudentRequest_StudentRequestId from SemestersStudentAndEvaluationDetails) ").
+            Include(item => item.student.user).Select(item => new
 
-            //    var FId = Convert.ToInt32(Ids[1]);
-            //    var DId = Convert.ToInt32(Ids[0]);
+            {
 
-                //Console.WriteLine(FId);
+                StudentName = item.student.user.FullName,
 
-                var StudentDetail = _DbContext.StudentRequestsOnOpportunities.FromSqlRaw($"Select * From StudentRequestsOnOpportunities where DecisionStatus='approved' AND " +
-                    $"Trainee_TraineeId IN (Select TraineeId from UniversitiesTraineeStudents where Department_DepartmentId ={ids}) " +
-                    $" AND StudentRequestOpportunityId NOT IN (Select StudentRequest_StudentRequestId from SemestersStudentAndEvaluationDetails) ").
-                Include(item => item.student.user).Select(item => new
+                RequestId = item.StudentRequestOpportunityId,
+                
 
-                {
-                   
-                    StudentName = item.student.user.FullName,
-
-                    Studentid = item.Trainee_TraineeId,
-
-                }
+            }
 
 
-                ).AsNoTracking().ToList();
+            ).AsNoTracking().ToList();
 
 
-                return Json(new { StudentDetail });
+            return Json(new { StudentDetail });
 
 
-         
 
 
-          
+
+
         }
 
 
-        public IActionResult AddStudentAndSuper(string dFieldIds)
+        public IActionResult AddStudentAndSuper(string dFieldIds ,int Mid  )
         {
 
             if (dFieldIds != "[]")
@@ -703,46 +715,33 @@ namespace TadarbProject.Controllers
                     dFieldIds = dFieldIds.Replace(c, string.Empty);
                 }
 
-              
-
-
 
                 string[] Ids = dFieldIds.Split(",");
 
-        
 
-
-
-                int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
-
-                var RUser = _DbContext.UserAcounts.Find(RUserId);
-
-                var Dpaerment = _DbContext.Departments.Where(item => item.Responsible_UserId == RUserId).AsNoTracking().FirstOrDefault();
-
+ 
 
                 int Emplyeid = Convert.ToInt32(Ids[0]);
-           
 
-                var SemesterMater = _DbContext.SemestersTrainingSettingMaster.Where(item => item.Department_DepartmenId == Dpaerment.DepartmentId)
-                    .AsNoTracking().FirstOrDefault();
 
+          
 
 
                 foreach (var i in Ids.Skip(1))
                 {
                     int id = Convert.ToInt32(i);
 
-                    var RequsetOper = _DbContext.StudentRequestsOnOpportunities.Where(item => item.Trainee_TraineeId == id )
+                    var RequsetOper = _DbContext.StudentRequestsOnOpportunities.Where(item => item.Trainee_TraineeId == id)
                      .AsNoTracking().Include(item => item.trainingOpportunity).FirstOrDefault();
 
                     var DTA = new SemesterStudentAndEvaluationDetail
                     {
-                       SemesterMaster_SemesterMasterId= SemesterMater.SemesterTrainingSettingMasterId,
-                       StudentRequest_StudentRequestId= RequsetOper.StudentRequestOpportunityId,
-                       AcademicSupervisor_EmployeeId= Emplyeid,
-                       TrainingSupervisor_EmployeeId= RequsetOper.trainingOpportunity.SupervisorEmployeeId,
+                        SemesterMaster_SemesterMasterId = Mid,
+                        StudentRequest_StudentRequestId = RequsetOper.StudentRequestOpportunityId,
+                        AcademicSupervisor_EmployeeId = Emplyeid,
+                        TrainingSupervisor_EmployeeId = RequsetOper.trainingOpportunity.SupervisorEmployeeId,
 
-                       GeneralTrainingStatus= "Company Approved",
+                        GeneralTrainingStatus = "Company Approved",
 
 
 
@@ -754,7 +753,7 @@ namespace TadarbProject.Controllers
                     _DbContext.SaveChanges();
                 }
 
-                  TempData["success"] = "تم تعيين المشرف الاكاديمي للطلاب ";
+                TempData["success"] = "تم تعيين المشرف الاكاديمي للطلاب ";
 
 
             }
@@ -2362,7 +2361,7 @@ namespace TadarbProject.Controllers
             }
 
 
-            AssessmentTypeDetail = _DbContext.DepartmentsAssessmentTypeDetail.Where(item => item.DepartmentAssessmentTypeMaster_MasterId == id).Include(item=> item.assessmentType).AsNoTracking().ToList();
+            AssessmentTypeDetail = _DbContext.DepartmentsAssessmentTypeDetail.Where(item => item.DepartmentAssessmentTypeMaster_MasterId == id).Include(item => item.assessmentType).AsNoTracking().ToList();
 
 
 

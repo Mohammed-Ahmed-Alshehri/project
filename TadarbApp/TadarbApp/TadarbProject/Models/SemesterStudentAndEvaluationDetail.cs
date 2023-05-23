@@ -42,7 +42,7 @@ namespace TadarbProject.Models
         public Employee EmployeeTrainingSupervisor { get; set; }
 
 
-    
+
         public int? TrainingSupervisorEvaluationMark { get; set; }
 
         public int? CompletedStudyHour { get; set; }

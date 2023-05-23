@@ -143,6 +143,7 @@
                             </div>
                         </div>
 
+                        <p id="Message" style="color:firebrick" ></p>
                     </div>
                 </div>
 
@@ -172,6 +173,8 @@
 
         </div>
 
+
+        <input asp-for="SemesterTrainingSettingMaster.SemesterTrainingSettingMasterId" id="MasterId" hidden />
 
     </div>
 
@@ -230,7 +233,7 @@
                 $.ajax({
                     type: "GET",
                     url: "@Url.Action("ViewStudentCheckAjak")",
-                    data: { ids: @ViewBag.Departmentid },
+                    data: { id: @ViewBag.Departmentid },
 
                     dataType: "json",
                     success: function (data) {
@@ -245,7 +248,7 @@
                                 "</div></div></td>"
 
                                 + "<td class='text-center'>" +
-                                "<input class='form-check-input' type='checkbox' value='" + data.studentDetail[i].studentid + "'> <label>إضافة</label><td></tr>"
+                                "<input class='form-check-input' type='checkbox' value='" + data.studentDetail[i].requestId + "'> <label>إضافة</label><td></tr>"
                         }
 
                         $("#Tbody").html(body);
@@ -268,6 +271,12 @@
             var select = document.getElementById('EmpoleeAcadmic');
             var IDvalue = select.options[select.selectedIndex].value;
 
+            if (IDvalue == ""){
+
+                DisplayMessage(1);
+
+                return;
+            }
             result.push(parseInt(IDvalue));
 
             checkBoxes.forEach(item => { // loop all the checkbox item
@@ -278,10 +287,12 @@
             })
 
             if (result.length > 1) {
-
+                DisplayMessage(0);
                 SendSP(result);
+            }else{
+                DisplayMessage(2);
             }
-
+            
 
 
 
@@ -289,9 +300,57 @@
         }
 
 
+        function DisplayMessage(n) {
+
+            if (n == 0) {
+
+
+                document.getElementById("Message").innerText = "";
+
+                document.getElementById("Message").style.display = "none";
+                return;
+            }
+
+
+            if (n == 1) {
+
+
+                document.getElementById("Message").innerText = "الرجاء اختار مشرف.";
+
+                document.getElementById("Message").style.display = "block";
+
+                return;
+            }
+
+            if (n == 2) {
+
+
+
+                document.getElementById("Message").innerText = "الرجاء اختار طلاب.";
+
+                document.getElementById("Message").style.display = "block";
+
+
+       
+           
+
+                return;
+            }
+
+      
+        }
+
+
 
         function SendSP(Array) {
 
+
+            if (Array == "[]" ){
+
+                return;
+            }
+
+            var MId = document.getElementById("MasterId").value;
 
 
 
@@ -300,14 +359,14 @@
                 type: "POST",
                 datatype: "json",
                 url: "@Url.Action("AddStudentAndSuper")",
-                data: { dFieldIds: JSON.stringify(Array) },
+                data: { dFieldIds: JSON.stringify(Array), Mid:MId },
 
 
             });
 
             window.location.replace('@Url.ActionLink("ViewSemesters")');
 
-            // window.location.replace('//localhost:7122/Branch/ViewDepartmentFiledSpecialties');
+           
         }
 
 
