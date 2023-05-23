@@ -42,8 +42,8 @@ namespace TadarbProject.Models
         public Employee EmployeeTrainingSupervisor { get; set; }
 
 
-        [Required]
-        public int TrainingSupervisorEvaluationMark { get; set; }
+    
+        public int? TrainingSupervisorEvaluationMark { get; set; }
 
         public int? CompletedStudyHour { get; set; }
 
@@ -52,7 +52,7 @@ namespace TadarbProject.Models
 
 
         [Required]
-        public string GeneralTrainingStatus { get; set; } = "Company approved";
+        public string GeneralTrainingStatus { get; set; } = "Company Approved";
 
 
         public string? TrainingSupervisorEvaluationFilePath { get; set; }

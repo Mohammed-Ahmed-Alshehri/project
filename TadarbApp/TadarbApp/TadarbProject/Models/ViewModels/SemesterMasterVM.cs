@@ -12,9 +12,13 @@ namespace TadarbProject.Models.ViewModels
 
         public Employee Employee { get; set; }
 
+        public SemesterStudentAndEvaluationDetail SemesterStudentAndEvaluationDetail { get; set; }
 
         [ValidateNever]
         public IEnumerable<SelectListItem> TrainingTypeListItems { get; set; }
+
+        [ValidateNever]
+        public IEnumerable<SelectListItem> EmplyeeListItems { get; set; }
 
     }
 }

@@ -72,6 +72,40 @@ namespace TadarbProject.Controllers
             return View(MasterAssigmnt);
         }
 
+        
+
+
+
+        public IActionResult SemeterEvalDetail(int? id)
+        {
+            ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
+            int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
+            var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).AsNoTracking().FirstOrDefault();
+            var Department = _DbContext.Departments.Where(item => item.Responsible_UserId == RUserId).AsNoTracking().FirstOrDefault();
+            var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Department.Organization_OrganizationId).AsNoTracking().FirstOrDefault();
+
+
+
+            ViewBag.OrganizationName = OrganizationOfR.OrganizationName + " - " + Department.DepartmentName;
+            ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
+            ViewBag.Username = user.FullName;
+            ViewBag.Departmentid = Department.DepartmentId;
+           var Semester = _DbContext.SemestersTrainingSettingMaster.Where(item => item.SemesterTrainingSettingMasterId == id).AsNoTracking().FirstOrDefault();
+
+
+            SemesterMasterVM SemesterMasterVM = new SemesterMasterVM
+            {
+                SemesterTrainingSettingMaster= Semester,
+                EmplyeeListItems = _DbContext.Employees.Where(item => item.Department_DepartmentId == Department.DepartmentId)
+                 .Include(item => item.userAcount).AsNoTracking().ToList().Select(u => new SelectListItem { Text = u.userAcount.FullName, Value = u.EmployeeId.ToString() }),
+
+            };
+
+
+
+            return View(SemesterMasterVM);
+        }
+
         public IActionResult EditAssessment()
         {
             ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
@@ -607,6 +641,128 @@ namespace TadarbProject.Controllers
 
             TempData["success"] = "تم إضافة حساب طالب بنجاح";
             return RedirectToAction("ViewStudents");
+
+        }
+
+
+        public IActionResult ViewStudentCheckAjak(string? ids)
+        {
+
+            int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
+
+
+            var Branch = _DbContext.OrganizationBranches_TrainProv.Where(item => item.Responsible_UserId == RUserId).AsNoTracking().FirstOrDefault();
+
+
+            //if (!string.IsNullOrEmpty(ids))
+            //{
+
+            //    string[] Ids = ids.Split(",");
+
+            //    var FId = Convert.ToInt32(Ids[1]);
+            //    var DId = Convert.ToInt32(Ids[0]);
+
+                //Console.WriteLine(FId);
+
+                var StudentDetail = _DbContext.StudentRequestsOnOpportunities.FromSqlRaw($"Select * From StudentRequestsOnOpportunities where DecisionStatus='approved' AND " +
+                    $"Trainee_TraineeId IN (Select TraineeId from UniversitiesTraineeStudents where Department_DepartmentId ={ids}) " +
+                    $" AND StudentRequestOpportunityId NOT IN (Select StudentRequest_StudentRequestId from SemestersStudentAndEvaluationDetails) ").
+                Include(item => item.student.user).Select(item => new
+
+                {
+                   
+                    StudentName = item.student.user.FullName,
+
+                    Studentid = item.Trainee_TraineeId,
+
+                }
+
+
+                ).AsNoTracking().ToList();
+
+
+                return Json(new { StudentDetail });
+
+
+         
+
+
+          
+        }
+
+
+        public IActionResult AddStudentAndSuper(string dFieldIds)
+        {
+
+            if (dFieldIds != "[]")
+            {
+                var charsToRemove = new string[] { "[", "]" };
+
+                foreach (var c in charsToRemove)
+                {
+                    dFieldIds = dFieldIds.Replace(c, string.Empty);
+                }
+
+              
+
+
+
+                string[] Ids = dFieldIds.Split(",");
+
+        
+
+
+
+                int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
+
+                var RUser = _DbContext.UserAcounts.Find(RUserId);
+
+                var Dpaerment = _DbContext.Departments.Where(item => item.Responsible_UserId == RUserId).AsNoTracking().FirstOrDefault();
+
+
+                int Emplyeid = Convert.ToInt32(Ids[0]);
+           
+
+                var SemesterMater = _DbContext.SemestersTrainingSettingMaster.Where(item => item.Department_DepartmenId == Dpaerment.DepartmentId)
+                    .AsNoTracking().FirstOrDefault();
+
+
+
+                foreach (var i in Ids.Skip(1))
+                {
+                    int id = Convert.ToInt32(i);
+
+                    var RequsetOper = _DbContext.StudentRequestsOnOpportunities.Where(item => item.Trainee_TraineeId == id )
+                     .AsNoTracking().Include(item => item.trainingOpportunity).FirstOrDefault();
+
+                    var DTA = new SemesterStudentAndEvaluationDetail
+                    {
+                       SemesterMaster_SemesterMasterId= SemesterMater.SemesterTrainingSettingMasterId,
+                       StudentRequest_StudentRequestId= RequsetOper.StudentRequestOpportunityId,
+                       AcademicSupervisor_EmployeeId= Emplyeid,
+                       TrainingSupervisor_EmployeeId= RequsetOper.trainingOpportunity.SupervisorEmployeeId,
+
+                       GeneralTrainingStatus= "Company Approved",
+
+
+
+
+                    };
+
+
+                    _DbContext.SemestersStudentAndEvaluationDetails.Add(DTA);
+                    _DbContext.SaveChanges();
+                }
+
+                  TempData["success"] = "تم تعيين المشرف الاكاديمي للطلاب ";
+
+
+            }
+
+
+
+
+            return Json(new { Exists = false });
 
         }
 

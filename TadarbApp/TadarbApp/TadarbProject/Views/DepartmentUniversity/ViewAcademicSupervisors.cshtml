@@ -1,4 +1,4 @@
-﻿@model IEnumerable<UserAcount>
+﻿@model IEnumerable<SemesterStudentAndEvaluationDetail>
 @{
     ViewData["Title"] = "قائمة المسؤولين  عن التدريب";
 }
@@ -52,7 +52,7 @@
                     </a>
                 </li>
                     <li class="nav-item">
-                        <a asp-controller="DepartmentUniversity" asp-action="ManageAssessment" class="nav-link text-dark font-italic ">
+                        <a asp-controller="DepartmentUniversity" asp-action="ViewAssessment" class="nav-link text-dark font-italic ">
                             <i class="fa-solid fa-user-graduate"></i>
 
                             تحديد التقييمات
@@ -62,7 +62,7 @@
                         <a asp-controller="DepartmentUniversity" asp-action="ViewSemesters" class="nav-link text-dark font-italic ">
                             <i class="fa-solid fa-user-graduate"></i>
 
-                            ادارة الشعب
+                            ادارة الفصول
                         </a>
                     </li>
                    
@@ -100,34 +100,16 @@
                             <thead>
                                 <tr>
 
-                                    <th>اسم المسؤول</th>
-                                    <th>رقم الهاتف	</th>
-                                    <th class="text-center">البريد الالكتروني	</th>
+                                    <th>اسم المشرف</th>
+                                    
+                                    <th class="text-center"> الطلاب المضافين	</th>
 
 
                                 </tr>
                             </thead>
                             <tbody>
 
-                                @*  <tr>
-                                <td class="text-nowrap">
-                                <div class="font-weight-600">
-                                <div class="font-weight-600 ">
-                                احمد حمدان
-                                </div>
-
-                                </div>
-                                </td>
-                                <td class="text-nowrap"> 0559683335	</td>
-                                <td class="text-center">
-                                aaa@fff.com
-                                </td>
-
-                                <td class="text-center">
-                                <button type="button" class="btn btn-danger" fdprocessedid="ezqldw"><i class="fa fa-trash-alt"></i></button>
-
-                                </td>
-                                </tr>*@
+                                
 
 
 
@@ -137,14 +119,14 @@
                                         <td class="text-nowrap">
                                             <div class="font-weight-600">
                                                 <div class="font-weight-600 ">
-                                                    @item.FullName
+                                              @*      @item.FullName*@
                                                 </div>
 
                                             </div>
                                         </td>
-                                        <td class="text-nowrap"> @item.Phone	</td>
+                                     
                                         <td class="text-center">
-                                            @item.UserEmail
+                                         @*   @item.UserEmail*@
                                         </td>
 
 

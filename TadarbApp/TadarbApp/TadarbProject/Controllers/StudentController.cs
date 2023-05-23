@@ -555,7 +555,7 @@ namespace TadarbProject.Controllers
 
             req.trainingOpportunity.ApprovedOpportunities = req.trainingOpportunity.ApprovedOpportunities + 1;
 
-            req.trainingOpportunity.RequestedOpportunities = req.trainingOpportunity.RequestedOpportunities - 1;
+            //req.trainingOpportunity.RequestedOpportunities = req.trainingOpportunity.RequestedOpportunities - 1;
 
 
 
