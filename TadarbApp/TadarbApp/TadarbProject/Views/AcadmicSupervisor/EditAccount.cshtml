@@ -89,9 +89,8 @@
 
 
     <script>
-
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
         (function () {
-
             'use strict'
 
             // Fetch all the forms we want to apply custom Bootstrap validation styles to
@@ -101,28 +100,21 @@
             Array.prototype.slice.call(forms)
                 .forEach(function (form) {
                     form.addEventListener('submit', function (event) {
-
                         if (!form.checkValidity()) {
-
-                            event.preventDefault();
-                            event.stopPropagation();
+                            event.preventDefault()
+                            event.stopPropagation()
                         }
+
                         if (CustomValidation3()) {
 
                             event.preventDefault();
                             event.stopPropagation();
                         }
 
-
-
-
                         form.classList.add('was-validated')
                     }, false)
                 })
         })()
-
-
-        //document.querySelector('#UserEmailID').addEventListener('blur', CustomValidation);
 
 
         function CustomValidation3() {
@@ -139,6 +131,11 @@
                 CMassage.innerHTML = "يجب أن تكون كلمة المرور متطابقة";
                 return true;
             }
+
+
+
+
+
             else {
 
                 confirmPassword.classList.add('is-valid');
@@ -152,11 +149,9 @@
 
             return false;
 
-      
-
+        }
 
     </script>
-
 
     }
 

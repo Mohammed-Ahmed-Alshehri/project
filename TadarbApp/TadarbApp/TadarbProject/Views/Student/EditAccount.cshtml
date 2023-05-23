@@ -47,7 +47,7 @@
                         <div class="mb-4 pb-2">
                             <i class="fa-solid fa-lock"></i>
                             <label class="form-label" for="UserPassword" style="font-size:20px;"> كلمة المرور الجديدة <span style="color:red">* </span> </label>
-                            <input type="password" id="UserPasswordID" class="form-control form-control-lg" />
+                            <input type="password" id="UserPasswordID" class="form-control form-control-lg" required />
                             <div class="invalid-feedback" id="PasswordMassage" style="text-align: right;"> الرجاء إدخال كلمة المرور </div>
 
                         </div>
@@ -55,7 +55,7 @@
                         <div class="mb-4 pb-2">
                             <i class="fa-solid fa-lock"></i>
                             <label class="form-label" for="ConfirmUserPassword" style="font-size:20px;">تأكيد كلمة المرور <span style="color:red">* </span> </label>
-                            <input asp-for="user.UserPassword" type="password" type="password" id="ConfirmUserPasswordID" class="form-control form-control-lg" />
+                            <input asp-for="user.UserPassword" type="password" type="password" id="ConfirmUserPasswordID" class="form-control form-control-lg" required/>
                             <div class="invalid-feedback" id="ConfirmPasswordMassage" style="text-align: right;"> الرجاء تأكيد كلمة المرور </div>
                         </div>
 
@@ -70,7 +70,7 @@
                             <label for="LogoPathFile" class="form-label mt-4" style="font-size:20px;">  إرفاق السيرة الذاتية <span style="color:red">* </span> </label>
 
                             @* //(imgFile)هنا اسم الملف الصورة مهم يطابق الاسم في الكنترولر لنه سيتم ارساله مع المودل.*@
-                            <input type="file" id="uploadField" name="CvFile" class="form-control" accept=".pdf" />
+                            <input type="file" id="uploadField" name="CvFile" class="form-control" accept=".pdf" required />
                             <div class="invalid-feedback" style="text-align: right;"> الرجاء إرفاق الملف بصيغة(.pdf) </div>
 
                         </div>
@@ -106,10 +106,10 @@
 
 
 
+
     <script>
-
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
         (function () {
-
             'use strict'
 
             // Fetch all the forms we want to apply custom Bootstrap validation styles to
@@ -119,28 +119,21 @@
             Array.prototype.slice.call(forms)
                 .forEach(function (form) {
                     form.addEventListener('submit', function (event) {
-
                         if (!form.checkValidity()) {
-
-                            event.preventDefault();
-                            event.stopPropagation();
+                            event.preventDefault()
+                            event.stopPropagation()
                         }
+
                         if (CustomValidation3()) {
 
                             event.preventDefault();
                             event.stopPropagation();
                         }
 
-
-
-
                         form.classList.add('was-validated')
                     }, false)
                 })
         })()
-
-
-        //document.querySelector('#UserEmailID').addEventListener('blur', CustomValidation);
 
 
         function CustomValidation3() {
@@ -157,6 +150,11 @@
                 CMassage.innerHTML = "يجب أن تكون كلمة المرور متطابقة";
                 return true;
             }
+
+
+
+
+
             else {
 
                 confirmPassword.classList.add('is-valid');
@@ -172,7 +170,7 @@
 
         }
 
-
+    
 
 
 
