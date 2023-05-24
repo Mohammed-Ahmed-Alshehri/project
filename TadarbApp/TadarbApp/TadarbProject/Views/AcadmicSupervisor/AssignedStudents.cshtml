@@ -1,21 +1,22 @@
-﻿@model IEnumerable<SemesterTrainingSettingMaster>
+﻿@model IEnumerable<StudentRequestOpportunity>
+
 @{
-    ViewData["Title"] = "قائمة الشعب ";
+    ViewData["Title"] = "قائمة الطلاب ";
 }
 
 <head>
 
     <link rel="stylesheet" href="~/css/Addbranches.css" asp-append-version="true" />
 
-   
+
 </head>
 
 <partial name="_Notification" />
 <body style="background: linear-gradient(#1c4c64,#5590ad);">
 
-    <div class="row" >
+    <div class="row">
 
-        <div class="col-sm-3" style="z-index:2;">
+        <div class="col-sm-4" style="z-index:2;">
 
             <div class="vertical-nav bg-white" id="sidebar">
                 <div class="py-4 px-3 mb-4 bg-light">
@@ -38,33 +39,34 @@
                     </li>
 
 
-                   <li class="nav-item">
-                        <a asp-controller="DepartmentUniversity" asp-action="ViewAcademicSupervisors" class="nav-link text-dark font-italic    ">
-                            <i class="fa-solid fa-users-gear "></i>
-                           إدارة المشرفين
-                    </a>
-                </li>
-                   <li class="nav-item">
-                    <a asp-controller="DepartmentUniversity" asp-action="ViewStudents" class="nav-link text-dark font-italic ">
+                    <li class="nav-item">
+                        <a asp-controller="DepartmentUniversity" asp-action="ViewAcademicSupervisors" class="nav-link text-dark font-italic  bg-light  ">
+                            <i class="fa-solid fa-users-gear text-primary"></i>
+                            إدارة المشرفين
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-controller="DepartmentUniversity" asp-action="ViewStudents" class="nav-link text-dark font-italic ">
                             <i class="fa-solid fa-user-graduate"></i>
 
-                        إدارة الطلاب
-                    </a>
-                </li>
-                   <li class="nav-item">
-                        <a asp-controller="DepartmentUniversity" asp-action="ViewAssessment" class="nav-link text-dark font-italic ">
+                            إدارة الطلاب
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-controller="DepartmentUniversity" asp-action="ManageAssessment" class="nav-link text-dark font-italic ">
                             <i class="fa-solid fa-user-graduate"></i>
 
-                        تحديد التقييمات 
-                    </a>
-                </li>
+                            تحديد التقييمات
+                        </a>
+                    </li>
                     <li class="nav-item">
                         <a asp-controller="DepartmentUniversity" asp-action="ViewSemesters" class="nav-link text-dark font-italic ">
                             <i class="fa-solid fa-user-graduate"></i>
 
-                           ادارة الفصول
+                            ادارة الشعب
                         </a>
                     </li>
+
                 </ul>
 
 
@@ -81,14 +83,14 @@
 
         </div>
 
-        <div class="col-sm-8">
+        <div class="col-sm-6">
             <div class="card " style="border-radius: 25px; margin-top:2cm; margin-bottom:3cm; padding:5px 5px 5px 5px ; border-color:black;">
                 <div class="card-header" style="text-align: center;">
-                    <h3>تفاصيل الشعب   </h3>
+                    <h3>مسؤولي التدريب</h3>
 
 
-                    <a asp-controller="DepartmentUniversity" asp-action="AddSemesters" class="table-search float-end">
-                        <button class="btn " style="background-color:#1c4c64; color:white;font-size:18px" type="submit" >  اضافة شعبة جديدة <i class="fa fa-add"></i></button>
+                    <a asp-controller="DepartmentUniversity" asp-action="AddAcademicSupervisor" class="table-search float-end">
+                        <button class="btn " style="background-color:#1c4c64; color:white;font-size:18px" type="submit" asp>  اضافة مسؤول جديد <i class="fa fa-add"></i></button>
                     </a>
 
                 </div>
@@ -98,17 +100,14 @@
                         <table class="table table-hover table-center" style="font-size:18px">
                             <thead>
                                 <tr>
+                                    <th>اسم الطالب</th>
+                                    <th>الرقم الجامعي</th>
+                                    <th>رقم الهاتف	</th>
+                                    <th class="">البريد الالكتروني	</th>
 
-                                    <th>الفصل </th>
-                                    <th> السنه</th>
-                                    <th> تاريخ بداية الفصل</th>
-                                    <th> تاريخ نهاية الفصل</th>
-                                    <th> نوع التدريب</th>
-                                    <th> عدد الاسابيع</th>
-                                    <th> عدد الساعات </th>
+                                    <th class="">جهة التدريب</th>
+                                    <th class="text-center">الطلاب</th>
 
-                                    <th class="text-center">الحالة	</th>
-                                    <th class="text-center">تعيين طلاب بالشعبة	</th>
 
                                 </tr>
                             </thead>
@@ -123,37 +122,26 @@
                                         <td class="text-nowrap">
                                             <div class="font-weight-600">
                                                 <div class="font-weight-600 ">
-                                                    @item.SemesterType
+                                                    @item.student.user.FullName
                                                 </div>
 
                                             </div>
                                         </td>
-                                        <td class="text-nowrap"> @item.AcademicYear	</td>
-                                        <td class="text-nowrap"> @item.StartDate.ToShortDateString()	</td>
-                                        <td class="text-nowrap"> @item.EndDate.ToShortDateString()	</td>
-                                        <td class="text-nowrap"> @item.trainingType.TypeName	</td>
-                                        <td class="text-center"> @item.RequiredWeeks	</td>
-                                        <td class="text-center"> @item.MinimumRequiredHours	</td>
 
+                                        <td class="text-nowrap">      @item.student.UniversityStudentNumber	</td>
+
+                                        <td class="text-nowrap">      @item.student.user.Phone	</td>
+
+                                        <td class="text-nowrap"> @item.student.user.UserEmail	</td>
+
+                                        <td class="text-nowrap">  @item.trainingOpportunity.Branch.organization.OrganizationName  -   @item.trainingOpportunity.Branch.BranchName	 </td>
                                         <td class="text-center">
-
-
-                                            @if (@item.ActivationStatus == "Active")
-                                            {
-                                                <span class="badge bg-success"> نشط </span>
-                                            }
-                                            @if (@item.ActivationStatus == "Not_Active")
-                                            {
-                                                <span class="badge bg-danger">   غير نشط </span>
-                                            }
-                                        </td>
-
-                                        <td class="text-center">
-                                            <a href="//localhost:7122/DepartmentUniversity/SemeterEvalDetail?id=@item.SemesterTrainingSettingMasterId" class="btn btn-primary">
-                                                <i class="bi bi-person-plus-fill"></i>
+                                            <a href="" class="btn btn-primary">
+                                                <i class="bi bi-people-fill"></i>
                                             </a>
                                         </td>
-                                      
+
+
                                     </tr>
 
                                 }
@@ -165,7 +153,7 @@
             </div>
 
         </div>
-        <div class="col-sm-1"></div>
+        <div class="col-sm-2"></div>
     </div>
 </body>
 @section Scripts{

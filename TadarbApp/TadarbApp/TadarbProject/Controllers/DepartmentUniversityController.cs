@@ -14,8 +14,11 @@ namespace TadarbProject.Controllers
         private readonly IWebHostEnvironment _WebHostEnvironment;
         private readonly IEmailSender _emailSender;
         private readonly IHttpContextAccessor _HttpContextAccessor;
-
-
+        private static string Name = "";
+        private static int UserId = 0;
+        private static UserAcount User;
+        private static Department department;
+        private static Organization OrganizationOfR;
         public DepartmentUniversityController(AppDbContext DbContext, IEmailSender emailSender, IHttpContextAccessor HttpContextAccessor, IWebHostEnvironment webHostEnvironment)
         {
             _DbContext = DbContext;
@@ -26,30 +29,36 @@ namespace TadarbProject.Controllers
         }
         public IActionResult Index()
         {
-            ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
-            int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
-            var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).AsNoTracking().FirstOrDefault();
-            var Department = _DbContext.Departments.Where(item => item.Responsible_UserId == RUserId).AsNoTracking().FirstOrDefault();
 
-            var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Department.Organization_OrganizationId).AsNoTracking().FirstOrDefault();
+            Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
 
+            ViewBag.Name = Name;
 
+            UserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
 
-            ViewBag.OrganizationName = OrganizationOfR.OrganizationName + " - " + Department.DepartmentName;
+            int RUserId = UserId;
+
+            User = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).AsNoTracking().FirstOrDefault();
+
+            department = _DbContext.Departments.Where(item => item.Responsible_UserId == RUserId).AsNoTracking().FirstOrDefault();
+
+            OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == department.Organization_OrganizationId).AsNoTracking().FirstOrDefault();
+
+            ViewBag.OrganizationName = OrganizationOfR.OrganizationName + " - " + department.DepartmentName;
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
-            ViewBag.Username = user.FullName;
+            ViewBag.Username = User.FullName;
 
             return View();
         }
 
         public IActionResult ViewAssessment()
         {
-            ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
-            int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
-            var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).AsNoTracking().FirstOrDefault();
-            var Department = _DbContext.Departments.Where(item => item.Responsible_UserId == RUserId).AsNoTracking().FirstOrDefault();
+            ViewBag.Name = Name;
+            int RUserId = UserId;
+            var user = User;
+            var Department = department;
 
-            var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Department.Organization_OrganizationId).AsNoTracking().FirstOrDefault();
+            var OrganizationOfRs = OrganizationOfR;
 
 
 
