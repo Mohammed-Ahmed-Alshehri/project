@@ -274,10 +274,10 @@
                     url: "@Url.Action("GetStudentsList")",
                     type: 'GET',
                     dataType: "json",
-                    data: { id: @ViewBag.OpportunitiyId , gr: gender, UPOrDw: Updw, ArOrWa: AOrW },
+                    data: { id: @ViewBag.MasterId , gr: gender, UPOrDw: Updw, ArOrWa: AOrW },
 
                     success: function (data) {
-
+                        console.log(data)
                         $.each(data.students, function (key, value) {
 
 
@@ -334,64 +334,64 @@
 
 
 
-        function FillTableSearch(fil, AOrW) {
+        //function FillTableSearch(fil, AOrW) {
 
-            var body = "";
-            var c = 0;
-
-
-            $(document).ready(function () {
-
-                $.ajax({
-
-                    url: "@Url.Action("GetStudentsListByFilter")",
-                    type: 'GET',
-                    dataType: "json",
-                    data: { id: @ViewBag.OpportunitiyId , ArOrWa: AOrW, filter: fil },
-
-                    success: function (data) {
-
-                        $.each(data.students, function (key, value) {
+        //    var body = "";
+        //    var c = 0;
 
 
+        //    $(document).ready(function () {
 
-                            body += "<tr> <td class='text - nowrap'>  <div class='font - weight - 600'> <div class='font - weight - 600'> " + value.user.fullName + "</div></div></td>"
-                                + "<td class='text - nowrap'> " + value.department.universityCollege.organization.organizationName + "</td>"
-                                + "<td class='text - nowrap'> " + value.department.departmentName + "</td>"
-                                + "<td class='text - nowrap'> " + value.gender + "</td>"
-                                + "<td class='text - nowrap'> " + value.department.universityCollege.city.country.countryName + ", " + value.department.universityCollege.city.cityName + "</td>"
-                                + "<td class='text - nowrap'> " + value.gpa + "</td>"
-                                + "<td class='text - nowrap'> " + '<a class="btn btn-outline-primary "  >تابع الطالب</a>' + '</td></tr>';
+        //        $.ajax({
+
+        //            url: "@Url.Action("GetStudentsListByFilter")",
+        //            type: 'GET',
+        //            dataType: "json",
+        //            data: { id: @ViewBag.OpportunitiyId , ArOrWa: AOrW, filter: fil },
+
+        //            success: function (data) {
+
+        //                $.each(data.students, function (key, value) {
 
 
-                            if (key == 0)
-                            {
-                                c = 1;
-                            }else{
-                                c = key+1;
-                            }
+
+        //                    body += "<tr> <td class='text - nowrap'>  <div class='font - weight - 600'> <div class='font - weight - 600'> " + value.user.fullName + "</div></div></td>"
+        //                        + "<td class='text - nowrap'> " + value.department.universityCollege.organization.organizationName + "</td>"
+        //                        + "<td class='text - nowrap'> " + value.department.departmentName + "</td>"
+        //                        + "<td class='text - nowrap'> " + value.gender + "</td>"
+        //                        + "<td class='text - nowrap'> " + value.department.universityCollege.city.country.countryName + ", " + value.department.universityCollege.city.cityName + "</td>"
+        //                        + "<td class='text - nowrap'> " + value.gpa + "</td>"
+        //                        + "<td class='text - nowrap'> " + '<a class="btn btn-outline-primary "  >تابع الطالب</a>' + '</td></tr>';
+
+
+        //                    if (key == 0)
+        //                    {
+        //                        c = 1;
+        //                    }else{
+        //                        c = key+1;
+        //                    }
                             
                             
-                        });
+        //                });
 
                       
                        
 
-                        $("#STCOUNT").html(c);
+        //                $("#STCOUNT").html(c);
                        
 
-                        $("#Tbody").html(body);
+        //                $("#Tbody").html(body);
 
 
 
-                    }
+        //            }
 
 
-                });
+        //        });
 
-            });
+        //    });
 
-        }
+        //}
 
 
 

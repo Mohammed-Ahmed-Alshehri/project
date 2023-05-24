@@ -83,7 +83,10 @@
                 <div class="card-body p-5">
                     <h2 class=" text-center mb-5">إضافة مشرف اكاديمي</h2>
 
-                    <form asp-controller="DepartmentUniversity" asp-action="AddSemesters" method="post" class="needs-validation" enctype="multipart/form-data" novalidate>
+                    <form asp-controller="DepartmentUniversity" asp-action="EditSemesters" method="post" class="needs-validation" enctype="multipart/form-data" novalidate>
+
+                        <input asp-for="SemesterTrainingSettingMaster.SemesterTrainingSettingMasterId" required hidden/>
+
 
                         <div class="row">
 
@@ -183,7 +186,7 @@
                         <br />
                         <div class="row">
 
-                            <button type="submit" class="btn" style="background-color:#e6e291; font-size:18px;">إضافة فصل </button>
+                            <button type="submit" class="btn" style="background-color:#e6e291; font-size:18px;"> تعديل الفصل </button>
 
                         </div>
 

@@ -302,13 +302,140 @@ namespace TadarbProject.Controllers
 
 
 
-            TempData["success"] = "تم إضافة شعبة بنجاح";
+            TempData["success"] = "تم إضافة الفصل بنجاح";
 
             return RedirectToAction("ViewSemesters");
 
 
         }
+        public IActionResult EditSemesters(int? id)
+        {
+            ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
+            int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
+            var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).AsNoTracking().FirstOrDefault();
+            var Department = _DbContext.Departments.Where(item => item.Responsible_UserId == RUserId).AsNoTracking().FirstOrDefault();
+            var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Department.Organization_OrganizationId).AsNoTracking().FirstOrDefault();
 
+
+
+
+            ViewBag.OrganizationName = OrganizationOfR.OrganizationName + " - " + Department.DepartmentName;
+            ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
+            ViewBag.Username = user.FullName;
+
+
+
+
+            SemesterMasterVM SemesterMasterVM = new SemesterMasterVM
+            {
+               SemesterTrainingSettingMaster = _DbContext.SemestersTrainingSettingMaster.Where(item => item.SemesterTrainingSettingMasterId == id).AsNoTracking().FirstOrDefault(),
+              TrainingTypeListItems = _DbContext.TrainingTypes.AsNoTracking().ToList().Select(u => new SelectListItem { Text = u.TypeName, Value = u.TrainingTypeId.ToString() }),
+
+            };
+
+
+
+
+
+            return View(SemesterMasterVM);
+        }
+        [HttpPost]
+        public IActionResult EditSemesters(SemesterMasterVM SemesterMasterVM, IFormFile? CvFile)
+        {
+            ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
+            int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
+            var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).AsNoTracking().FirstOrDefault();
+            var Department = _DbContext.Departments.Where(item => item.Responsible_UserId == RUserId).AsNoTracking().FirstOrDefault();
+            var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Department.Organization_OrganizationId).AsNoTracking().FirstOrDefault();
+            var Emplyee = _DbContext.Employees.Where(item => item.UserAccount_UserId == RUserId).AsNoTracking().FirstOrDefault();
+            var SemesterMaste = _DbContext.SemestersTrainingSettingMaster
+                .Where(item => item.SemesterTrainingSettingMasterId == SemesterMasterVM.SemesterTrainingSettingMaster.SemesterTrainingSettingMasterId)
+                .AsNoTracking().FirstOrDefault();
+
+
+
+
+            ViewBag.OrganizationName = OrganizationOfR.OrganizationName + " - " + Department.DepartmentName;
+            ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
+            ViewBag.Username = user.FullName;
+
+            //Startt UploadFile
+
+            string fileName = Guid.NewGuid().ToString();
+
+            string wwwRootPath = _WebHostEnvironment.WebRootPath;
+
+            var uploadTo = Path.Combine(wwwRootPath, @"SupervisionFiles\TrainingEvaluation\");
+
+            var extension = Path.GetExtension(CvFile.FileName);
+
+           
+
+            //her to check if the Posted item (product) has an  existing file if true then delete it before creating a new file.
+            if (SemesterMaste.EvaluationFileToTrainingSupervisor != null)
+            {
+                var OldCVPath = Path.Combine(wwwRootPath, SemesterMaste.EvaluationFileToTrainingSupervisor.TrimStart('\\'));
+
+                if (System.IO.File.Exists(OldCVPath))
+                {
+                    System.IO.File.Delete(OldCVPath);
+                }
+            }
+
+            //here is to Create a file to has the user uploaded file
+            using (var fileStreams = new FileStream(Path.Combine(uploadTo, fileName + extension), FileMode.Create))
+            {
+                CvFile.CopyTo(fileStreams);
+            }
+
+            //Here what will be in the database.
+            var DbLogoPath = @"SupervisionFiles\TrainingEvaluation\" + fileName + extension;
+
+            //___________________________end upload____________
+
+
+
+            var Startdate = SemesterMasterVM.SemesterTrainingSettingMaster.StartDate;
+            var active = "Not_Active";
+            if (Startdate == DateTime.Now.Date)
+            {
+
+                active = "Active";
+            }
+
+
+
+
+                SemesterMaste.Department_DepartmenId = Department.DepartmentId;
+
+                SemesterMaste.AcademicYear = SemesterMasterVM.SemesterTrainingSettingMaster.AcademicYear;
+                SemesterMaste.SemesterType = SemesterMasterVM.SemesterTrainingSettingMaster.SemesterType;
+                SemesterMaste.StartDate = Startdate;
+                SemesterMaste.EndDate = SemesterMasterVM.SemesterTrainingSettingMaster.EndDate;
+                SemesterMaste.ActivationStatus = active;
+                SemesterMaste.TrainingType_TrainingTypeId = SemesterMasterVM.SemesterTrainingSettingMaster.TrainingType_TrainingTypeId;
+                SemesterMaste.RequiredWeeks = SemesterMasterVM.SemesterTrainingSettingMaster.RequiredWeeks;
+                SemesterMaste.MinimumRequiredHours = SemesterMasterVM.SemesterTrainingSettingMaster.MinimumRequiredHours;
+                SemesterMaste.CreateDate = DateTime.Now.Date;
+                SemesterMaste.CreatedByEmployee_EmployeeId = Emplyee.EmployeeId;
+                SemesterMaste.EvaluationFileToTrainingSupervisor = DbLogoPath;
+
+
+           
+
+
+            _DbContext.SemestersTrainingSettingMaster.Update(SemesterMaste);
+
+            _DbContext.SaveChanges();
+
+
+
+            TempData["success"] = "تم تعديل الفصل بنجاح";
+
+            return RedirectToAction("ViewSemesters");
+
+
+        }
         public IActionResult ManageAssessment()
         {
             ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");

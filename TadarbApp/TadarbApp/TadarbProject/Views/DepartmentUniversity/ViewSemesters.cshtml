@@ -108,7 +108,9 @@
                                     <th> عدد الساعات </th>
 
                                     <th class="text-center">الحالة	</th>
-                                    <th class="text-center">تعيين طلاب بالشعبة	</th>
+                                    <th class="text-center">تعيين طلاب بالفصل	</th>
+                                    <th class="text-center">تعديل	</th>
+                                    <th class="text-center">حذف	</th>
 
                                 </tr>
                             </thead>
@@ -153,7 +155,15 @@
                                                 <i class="bi bi-person-plus-fill"></i>
                                             </a>
                                         </td>
-                                      
+                                        <td class="text-center">
+                                            <a class="btn btn-info" href="//localhost:7122/DepartmentUniversity/EditSemesters?id=@item.SemesterTrainingSettingMasterId">  <i class="fa-solid fa-pen-to-square"></i></a>
+                                        </td>
+
+                                        <td class="text-center">
+                                            <a class="btn btn-danger"> <i class="fa-solid fa-trash-can"></i> </a>
+
+                                        </td>
+
                                     </tr>
 
                                 }

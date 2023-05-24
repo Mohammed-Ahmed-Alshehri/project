@@ -2352,12 +2352,12 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SupervisionFiles\TrainingEvaluation\42574f2e-f879-484f-a438-e75bdfb86b04.pdf))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SupervisionFiles\TrainingEvaluation\5eadcd81-1597-49c1-bc09-711e08ed7a9f.pdf))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SupervisionFiles\TrainingEvaluation\497f8765-d81a-4dd6-9aec-4c230ec4d30f.pdf))">
       <SourceType>Package</SourceType>
       <SourceId>TadarbProject</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/TadarbProject</BasePath>
-      <RelativePath>SupervisionFiles/TrainingEvaluation/5eadcd81-1597-49c1-bc09-711e08ed7a9f.pdf</RelativePath>
+      <RelativePath>SupervisionFiles/TrainingEvaluation/497f8765-d81a-4dd6-9aec-4c230ec4d30f.pdf</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
@@ -2366,7 +2366,7 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SupervisionFiles\TrainingEvaluation\5eadcd81-1597-49c1-bc09-711e08ed7a9f.pdf))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SupervisionFiles\TrainingEvaluation\497f8765-d81a-4dd6-9aec-4c230ec4d30f.pdf))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SupervisionFiles\TrainingEvaluation\647aa64d-9c89-4896-a279-15a5ac0bce7b.pdf))">
       <SourceType>Package</SourceType>
@@ -2384,12 +2384,12 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SupervisionFiles\TrainingEvaluation\647aa64d-9c89-4896-a279-15a5ac0bce7b.pdf))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SupervisionFiles\TrainingEvaluation\6f9c6034-df18-4177-b403-4838338d6a19.pdf))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SupervisionFiles\TrainingEvaluation\858aecaa-5afb-4166-ae7b-947afbc0bbc6.pdf))">
       <SourceType>Package</SourceType>
       <SourceId>TadarbProject</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/TadarbProject</BasePath>
-      <RelativePath>SupervisionFiles/TrainingEvaluation/6f9c6034-df18-4177-b403-4838338d6a19.pdf</RelativePath>
+      <RelativePath>SupervisionFiles/TrainingEvaluation/858aecaa-5afb-4166-ae7b-947afbc0bbc6.pdf</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
@@ -2398,7 +2398,7 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SupervisionFiles\TrainingEvaluation\6f9c6034-df18-4177-b403-4838338d6a19.pdf))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SupervisionFiles\TrainingEvaluation\858aecaa-5afb-4166-ae7b-947afbc0bbc6.pdf))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SupervisionFiles\TrainingEvaluation\94dc1919-ca75-49d2-bcde-b402c8a80268.pdf))">
       <SourceType>Package</SourceType>
