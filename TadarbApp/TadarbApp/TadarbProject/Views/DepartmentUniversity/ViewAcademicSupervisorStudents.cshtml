@@ -1,7 +1,7 @@
-﻿@model IEnumerable<UserAcount>
+﻿@model IEnumerable<StudentRequestOpportunity>
 
 @{
-    ViewData["Title"] = "قائمة المسؤولين  عن التدريب";
+    ViewData["Title"] = "قائمة الطلاب المسجلين لدى المشرف";
 }
 
 <head>
@@ -14,7 +14,7 @@
 <partial name="_Notification" />
 <body style="background: linear-gradient(#1c4c64,#5590ad);">
 
-    <div class="row" >
+    <div class="row">
 
         <div class="col-sm-4" style="z-index:2;">
 
@@ -39,19 +39,19 @@
                     </li>
 
 
-                   <li class="nav-item">
+                    <li class="nav-item">
                         <a asp-controller="DepartmentUniversity" asp-action="ViewAcademicSupervisors" class="nav-link text-dark font-italic  bg-light  ">
                             <i class="fa-solid fa-users-gear text-primary"></i>
-                           إدارة المشرفين
-                    </a>
-                </li>
-                   <li class="nav-item">
-                    <a asp-controller="DepartmentUniversity" asp-action="ViewStudents" class="nav-link text-dark font-italic ">
+                            إدارة المشرفين
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-controller="DepartmentUniversity" asp-action="ViewStudents" class="nav-link text-dark font-italic ">
                             <i class="fa-solid fa-user-graduate"></i>
 
-                        إدارة الطلاب
-                    </a>
-                </li>
+                            إدارة الطلاب
+                        </a>
+                    </li>
                     <li class="nav-item">
                         <a asp-controller="DepartmentUniversity" asp-action="ManageAssessment" class="nav-link text-dark font-italic ">
                             <i class="fa-solid fa-user-graduate"></i>
@@ -66,7 +66,7 @@
                             ادارة الشعب
                         </a>
                     </li>
-                   
+
                 </ul>
 
 
@@ -101,39 +101,37 @@
                             <thead>
                                 <tr>
 
-                                    <th>اسم المسؤول</th>
+                                    <th>اسم الطالب</th>
                                     <th>رقم الهاتف	</th>
-                                    <th class="text-center">البريد الالكتروني	</th>
-                                    <th class="text-center">الطلاب</th>
+                                    <th class="text-center">الرقم الجامعي	</th>
+                                   
 
 
                                 </tr>
                             </thead>
                             <tbody>
 
-                             
+
 
 
                                 @foreach (var item in Model)
                                 {
                                     <tr>
+
                                         <td class="text-nowrap">
                                             <div class="font-weight-600">
                                                 <div class="font-weight-600 ">
-                                                    @item.FullName
+                                                    @item.student.user.FullName
                                                 </div>
 
                                             </div>
                                         </td>
-                                        <td class="text-nowrap"> @item.Phone	</td>
 
-                                        <td class="text-nowrap"> @item.UserEmail	</td>
+                                 
 
-                                        <td class="text-center">
-                                            <a href="//localhost:7122/DepartmentUniversity/ViewAcademicSupervisorStudents?id=@item.UserId" class="btn btn-primary">
-                                                <i class="bi bi-people-fill"></i>
-                                            </a>
-                                        </td>
+                                        <td class="text-nowrap"> @item.student.user.Phone	</td>
+
+                                        <td class="text-nowrap"> @item.student.UniversityStudentNumber	</td>
 
 
                                     </tr>

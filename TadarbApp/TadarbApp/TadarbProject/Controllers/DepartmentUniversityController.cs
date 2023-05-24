@@ -665,6 +665,45 @@ namespace TadarbProject.Controllers
         }
 
 
+
+        [HttpGet]
+        public IActionResult ViewAcademicSupervisorStudents(int? id)
+        {
+
+            if (id == 0 || id == null)
+            {
+                return NotFound();
+            }
+
+            ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
+
+            int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
+
+            var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).AsNoTracking().FirstOrDefault();
+
+
+            var Department = _DbContext.Departments.Where(item => item.Responsible_UserId == RUserId).AsNoTracking().FirstOrDefault();
+
+            var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Department.Organization_OrganizationId).AsNoTracking().FirstOrDefault();
+
+            ViewBag.OrganizationName = OrganizationOfR.OrganizationName + " - " + Department.DepartmentName;
+            ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
+            ViewBag.Username = user.FullName;
+
+            IEnumerable<StudentRequestOpportunity> students = Enumerable.Empty<StudentRequestOpportunity>();
+
+
+            students = _DbContext.StudentRequestsOnOpportunities.FromSqlRaw("SELECT * FROM StudentRequestsOnOpportunities WHERE StudentRequestOpportunityId IN " +
+                "(SELECT StudentRequest_StudentRequestId FROM SemestersStudentAndEvaluationDetails WHERE AcademicSupervisor_EmployeeId =" +
+                $"(SELECT EmployeeId FROM Employees where UserAccount_UserId = {id}))").Include(item => item.student.user).AsNoTracking().ToList();
+
+
+
+            return View(students);
+
+        }
+
+
         public IActionResult ViewStudentCheckAjak(string? id)
         {
 
@@ -685,7 +724,7 @@ namespace TadarbProject.Controllers
                 StudentName = item.student.user.FullName,
 
                 RequestId = item.StudentRequestOpportunityId,
-                
+
 
             }
 
@@ -703,7 +742,7 @@ namespace TadarbProject.Controllers
         }
 
 
-        public IActionResult AddStudentAndSuper(string dFieldIds ,int Mid  )
+        public IActionResult AddStudentAndSuper(string dFieldIds, int Mid)
         {
 
             if (dFieldIds != "[]")
@@ -719,25 +758,25 @@ namespace TadarbProject.Controllers
                 string[] Ids = dFieldIds.Split(",");
 
 
- 
+
 
                 int Emplyeid = Convert.ToInt32(Ids[0]);
 
 
-          
+
 
 
                 foreach (var i in Ids.Skip(1))
                 {
                     int id = Convert.ToInt32(i);
 
-                    var RequsetOper = _DbContext.StudentRequestsOnOpportunities.Where(item => item.Trainee_TraineeId == id)
+                    var RequsetOper = _DbContext.StudentRequestsOnOpportunities.Where(item => item.StudentRequestOpportunityId == id)
                      .AsNoTracking().Include(item => item.trainingOpportunity).FirstOrDefault();
 
                     var DTA = new SemesterStudentAndEvaluationDetail
                     {
                         SemesterMaster_SemesterMasterId = Mid,
-                        StudentRequest_StudentRequestId = RequsetOper.StudentRequestOpportunityId,
+                        StudentRequest_StudentRequestId = id,
                         AcademicSupervisor_EmployeeId = Emplyeid,
                         TrainingSupervisor_EmployeeId = RequsetOper.trainingOpportunity.SupervisorEmployeeId,
 
