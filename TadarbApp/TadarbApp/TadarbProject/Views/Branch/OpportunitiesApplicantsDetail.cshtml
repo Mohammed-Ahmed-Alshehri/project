@@ -108,11 +108,11 @@
                             </div>
                             <div class="row">
                                 <div class="col-12 col-lg-3 offset-lg-1 text-center">
-                                    <img src="~/@Model.student.department.universityCollege.organization.LogoPath" title="" alt="" style="position:center; width:100%; height:auto">
+                                    <img src="~/@Model.student.department.universityCollege.organization.LogoPath" title="" alt="" style="position:center; width:60%; height:auto">
                                 </div>
                                 <div class="col-8 col-lg-8">
 
-                                    <div class="row text-center pl-2 " style="font-size:25px">
+                                    <div class="row text-center pl-2 " style="font-size:20px">
                                         <div class="p-1 col-4 bg-secondary border-bottom">
                                             <div><i class="fa-solid fa-user"></i> اسم الطالب   :</div>
                                         </div>
@@ -131,7 +131,7 @@
 
                                     </div>
 
-                                    <div class="row text-center pl-2" style="color:darkslateblue; font-weight:bold; font-size:20px">
+                                    <div class="row text-center pl-2" style="color:darkslateblue; font-weight:bold; font-size:16px">
                                         <div class="p-1 col-4 bg-secondary">
                                             <div>@Model.student.user.FullName</div>
                                         </div>
@@ -144,7 +144,7 @@
 
                                     </div>
 
-                                    <div class="row text-center pl-2" style="font-size:25px">
+                                    <div class="row text-center pl-2" style="font-size:20px">
                                         <div class="p-1 col-4 bg-secondary border-bottom">
                                             <div><i class="fa-regular fa-envelope"></i> البريد الإلكتروني:</div>
                                         </div>
@@ -157,7 +157,7 @@
 
                                     </div>
 
-                                    <div class="row text-center pl-2" style="color:darkslateblue; font-weight:bold; font-size:20px">
+                                    <div class="row text-center pl-2" style="color:darkslateblue; font-weight:bold; font-size:16px">
                                         <div class="p-1 col-4 bg-secondary">
                                             <div>@Model.student.user.UserEmail</div>
                                         </div>
@@ -170,7 +170,7 @@
 
                                     </div>
 
-                                    <div class="row text-center pl-2" style="font-size:25px">
+                                    <div class="row text-center pl-2" style="font-size:20px">
                                         <div class="p-1 col-4 bg-secondary border-bottom">
                                             <div><i class="fa-solid fa-building-user"></i> المدينة:</div>
                                         </div>
@@ -183,7 +183,7 @@
 
                                     </div>
 
-                                    <div class="row text-center pl-2" style="color:darkslateblue; font-weight:bold; font-size:20px">
+                                    <div class="row text-center pl-2" style="color:darkslateblue; font-weight:bold; font-size:16px">
                                         <div class="p-1 col-4 bg-secondary">
                                             <div>@Model.student.department.universityCollege.city.CityName</div>
                                         </div>
@@ -201,9 +201,9 @@
                                         <p class="">وصف مهارات الطالب</p>
                                     </div>
                                     <br />
-                                    <button type="button" asp style="font-size:18px" class="btn btn-primary btn-lg" onclick="showCV()">عرض السيرة الذاتية</button>
+                                    <button type="button" asp style="font-size:18px; background-color:#1c4c64; color:white;" class="btn " onclick="showCV()" >عرض السيرة الذاتية</button>
                                     &nbsp;&nbsp;
-                                    <button type="button" asp style="font-size:18px" class="btn btn-primary btn-lg" onclick="showExtra()">ملفات اخرى</button>
+                                    <button type="button" asp style="font-size:18px;background-color:#1c4c64; color:white;" class="btn " onclick="showExtra()">ملفات اخرى</button>
                                 </div>
 
                                 <h5 style="display:none" id="ExtraDMessage"> لايوجد ملف مرفق </h5>
@@ -244,12 +244,12 @@
 
                                 <div class="form-group text-xxl-center">
 
-                                    <button type="button" onclick="Accept(@Model.StudentRequestOpportunityId)" style="font-size:20px" class="btn btn-primary btn-lg">قبول</button>
+                                    <button type="button" onclick="Accept(@Model.StudentRequestOpportunityId)" style="font-size:18px;background-color:darkgreen;color:white" class="btn ">قبول</button>
 
                                     &nbsp;&nbsp;
-                                    <button type="button" onclick="Reject(@Model.StudentRequestOpportunityId)" style="font-size:20px" class="btn btn-primary btn-lg">رفض</button>
+                                    <button type="button" onclick="Reject(@Model.StudentRequestOpportunityId)" style="font-size:18px;background-color:darkred;color:white" class="btn ">رفض</button>
                                     &nbsp;&nbsp;
-                                    <button type="button" onclick="GoBack()" style="font-size:20px" class="btn btn-primary btn-lg">الرجوع الى الخلف</button>
+                                    <button type="button" onclick="GoBack()" style="font-size:18px; background-color:grey;color:white" class="btn ">الرجوع الى الخلف</button>
                                 </div>
 
                             </div>

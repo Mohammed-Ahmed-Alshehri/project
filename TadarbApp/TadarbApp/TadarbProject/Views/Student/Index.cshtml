@@ -18,7 +18,7 @@
 
     <div class="row">
 
-        <div class="col-sm-4" style="z-index:2;">
+        <div class="col-sm-3" style="z-index:2;">
 
             <div class="vertical-nav bg-white" id="sidebar">
                 <div class="py-4 px-3 mb-4 bg-light">
@@ -83,121 +83,206 @@
 
         </div>
 
-        
+
 
         <div class="col-sm-6">
             <form asp-action="EditAccount" method="get">
-                <div class="card " style="border-radius: 25px;  margin-bottom:3cm; padding:5px 5px 5px 5px ; border-color:black; width:auto; height:auto;" >
-                <div class="card-header" >
+                <div class="card " style="border-radius: 25px;  margin-bottom:3cm; padding:5px 5px 5px 5px ; border-color:black; width:auto; height:auto;">
+                    <div class="card-header">
                         <h3 style="text-align: center;">معلومات المتدرب</h3>
                         <input asp-for="@Model.TraineeId" hidden />
 
                         <button class="btn " style="text-align: right;" type="submit">  <i class="fa-solid fa-user-gear fa-2x"></i></button>
                     </div>
                     <br />
-                    <div class="card-body row container">
-                        <div class="container rounded p-3">
-                            <div class="row">
-                                <div class="col-12 col-lg-1 offset-lg-1 text-center">
-                                   
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-3">
+
+                                <div class="osahan-account-page-left shadow-sm bg-white h-100">
+                                    <div class="border-bottom p-4">
+                                        <div class="osahan-user text-center">
+                                            <div class="osahan-user-media">
+
+                                                <div class="osahan-user-media-body">
+
+                                                    <br /><br /><br /><br /><br /><br /><br />
+                                                    <h6 class="mb-2"></h6>
+                                                    <p class="mb-1" style="font-size:22px">@Model.user.FullName</p>
+                                                    <p class="mb-1" style="font-size:22px">@Model.UniversityStudentNumber</p>
+                                                    <p class="mb-1" style="font-size:22px">@Model.user.UserEmail</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <ul class="nav nav-tabs flex-column border-0 pt-4 pl-4 pb-4" id="myTab" role="tablist">
+                                    </ul>
                                 </div>
-                    <div class="col-12 col-lg-12" >
-
-                        <div class="row text-center pl-2 " style="font-size:25px">
-                            <div class="p-1 col-4 bg-secondary border-bottom">
-                                <div>اسم المتدرب:</div>
-                            </div>
-                            <div class="p-1 col-4 bg-secondary border-bottom">
-                             <div>المشرف الاكاديمي :</div>
-                            </div>
-                            <div class="p-1 col-4 bg-secondary border-bottom">
-                                <div>الرقم الجامعي : </div>
                             </div>
 
-                            
+
+                            <div class="col-md-9">
+                                <div class="osahan-account-page-right shadow-sm bg-white p-4 h-100">
+                                    <div class="tab-content" id="myTabContent">
+                                        <div class="tab-pane fade active show" id="payments" role="tabpanel" aria-labelledby="payments-tab">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="bg-white card payments-item mb-4 shadow-sm">
+                                                        <div class="gold-members p-4">
+                                                            <a href="#">
+                                                            </a>
+                                                            <div class="media">
+                                                                <div class="media-body">
+                                                                    <a>
+                                                                        <i class="icofont-visa icofont-4x"></i>
+                                                                    </a>
+                                                                    <a style="font-size:22px">
+                                                                        <h class="mb-1">التخصص:</h>
+                                                                        <p>نظم معلومات</p>
+                                                                    </a>
+
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="col-md-6">
+                                                    <div class="bg-white card payments-item mb-4 shadow-sm">
+                                                        <div class="gold-members p-4">
+                                                            <a href="#">
+                                                            </a>
+                                                            <div class="media">
+                                                                <div class="media-body">
+                                                                    <a>
+                                                                        <i class="icofont-mastercard icofont-4x"></i>
+                                                                    </a>
+                                                                    <a style="font-size:22px">
+                                                                        <h class="mb-1">القسم :</h>
+                                                                        <p>@Model.department.DepartmentName</p>
+                                                                    </a>
+
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="row pt-2 pb-2">
+                                                <div class="col-md-6">
+                                                    <div class="bg-white card payments-item mb-4 shadow-sm">
+                                                        <div class="gold-members p-4">
+                                                            <a href="#">
+                                                            </a>
+                                                            <div class="media">
+                                                                <div class="media-body">
+                                                                    <a href="#">
+                                                                        <i class="icofont-american-express icofont-4x"></i>
+                                                                    </a>
+                                                                    <a style="font-size:22px">
+                                                                        <h class="mb-1">المعدل التراكمي:</h>
+                                                                        <p>@Model.GPA</p>
+                                                                    </a>
+
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="bg-white card payments-item mb-4 shadow-sm">
+                                                        <div class="gold-members p-4">
+                                                            <a href="#">
+                                                            </a>
+                                                            <div class="media">
+                                                                <div class="media-body">
+                                                                    <a href="#">
+                                                                        <i class="icofont-mastercard icofont-4x"></i>
+                                                                    </a>
+                                                                    <a style="font-size:22px">
+                                                                        <h class="mb-1">عدد الساعات :</h>
+                                                                        <p>@Model.CompletedHours</p>
+                                                                    </a>
+
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="bg-white card payments-item mb-4 shadow-sm">
+                                                        <div class="gold-members p-4">
+                                                            <a href="#">
+                                                            </a>
+                                                            <div class="media">
+                                                                <div class="media-body">
+                                                                    <a href="#">
+                                                                        <i class="icofont-visa icofont-4x"></i>
+                                                                    </a>
+                                                                    <a style="font-size:22px">
+                                                                        <h class="mb-1">المدينة:</h>
+                                                                        <p>@Model.user.City.Country.CountryName , @Model.user.City.CityName</p>
+                                                                    </a>
+
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="col-md-6">
+                                                    <div class="bg-white card payments-item mb-4 shadow-sm">
+                                                        <div class="gold-members p-4">
+                                                            <a href="#">
+                                                            </a>
+                                                            <div class="media">
+                                                                <div class="media-body">
+                                                                    <a href="#">
+                                                                        <i class="icofont-mastercard icofont-4x"></i>
+                                                                    </a>
+                                                                    <a style="font-size:22px">
+                                                                        <h class="mb-1">المشرف الاكاديمي :</h>
+                                                                        <p>@Model.department.User.FullName</p>
+                                                                    </a>
+
+                                                                </div>
+                                                            </div>
+
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-
-                                    <div class="row text-center pl-2" style="color:black; background-color:#C0C0C0
-; font-weight:bold; font-size:19px">
-                            <div class="p-1 col-4 ">
-                                <div>@Model.user.FullName</div>
-                            </div>
-                            <div class="p-1 col-4 ">
-                                <div>@Model.department.User.FullName</div>
-                            </div>
-                            <div class="p-1 col-4 ">
-                                <div>@Model.UniversityStudentNumber</div>
-                            </div>
-                            
-                        </div>
-                                    <div class="row text-center pl-2 " style="font-size:25px">
-                                        <div class="p-1 col-4 bg-secondary border-bottom">
-                                            <div>الايميل الجامعي:</div>
-                                        </div>
-                                        <div class="p-1 col-4 bg-secondary border-bottom">
-                                            <div>القسم :</div>
-                                        </div>
-                                        <div class="p-1 col-4 bg-secondary border-bottom">
-                                            <div>التخصص:  </div>
-                                        </div>
-
-
-                                    </div>
-
-                                    <div class="row text-center pl-4" style="color:black; background-color:#C0C0C0; font-weight:bold; font-size:19px">
-                                        <div class="p-1 col-4 ">
-                                            <div>@Model.user.UserEmail</div>
-                                        </div>
-                                        <div class="p-1 col-4 ">
-                                            <div>@Model.department.DepartmentName</div>
-                                        </div>
-                                        <div class="p-1 col-4 ">
-                                            <div>نظم معلومات</div>
-                                        </div>
-
-                                    </div>
-
-
-                                    <div class="row text-center pl-2 " style="font-size:25px; "  >
-                                        <div class="p-1 col-4 bg-secondary border-bottom">
-                                            <div> المعدل التراكمي:</div>
-                                        </div>
-                                        <div class="p-1 col-4 bg-secondary border-bottom">
-                                            <div>عدد الساعات :</div>
-                                        </div>
-                                        <div class="p-1 col-4 bg-secondary border-bottom">
-                                            <div> المدينة </div>
-                                        </div>
-
-
-                                    </div>
-
-                                    <div class="row text-center pl-4" style="color:black; background-color:#C0C0C0; font-weight:bold; font-size:19px">
-                                        <div class="p-1 col-4 ">
-                                            <div>@Model.GPA</div>
-                                        </div>
-                                        <div class="p-1 col-4 ">
-                                            <div>@Model.CompletedHours</div>
-                                        </div>
-                                        <div class="p-1 col-4 ">
-                                            <div>@Model.user.City.Country.CountryName , @Model.user.City.CityName</div>
-                                        </div>
-
-                                    </div>
-                                </div>
-                                </div>
-                                </div>
-             </div>
+                    </div>
                     <br />
-             </div>
-               
-            </form>
-            
+                </div>
 
-             <div class="col-sm-2"></div>
+            </form>
+
+
+            <div class="col-sm-3"></div>
 
         </div>
-       
+
     </div>
 </body>
 @section Scripts{
