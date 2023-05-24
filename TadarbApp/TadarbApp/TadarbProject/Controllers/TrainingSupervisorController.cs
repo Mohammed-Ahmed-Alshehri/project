@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TadarbProject.Data;
 using TadarbProject.Models;
@@ -11,14 +12,16 @@ namespace TadarbProject.Controllers
         private readonly AppDbContext _DbContext;
         private readonly IEmailSender _emailSender;
         private readonly IHttpContextAccessor _HttpContextAccessor;
+        private readonly IWebHostEnvironment _WebHostEnvironment;
 
 
-        public TrainingSupervisorController(AppDbContext DbContext, IEmailSender emailSender, IHttpContextAccessor HttpContextAccessor)
+        public TrainingSupervisorController(AppDbContext DbContext, IEmailSender emailSender, IHttpContextAccessor HttpContextAccessor, IWebHostEnvironment webHostEnvironment)
         {
             _DbContext = DbContext;
 
             _emailSender = emailSender;
             _HttpContextAccessor = HttpContextAccessor;
+            _WebHostEnvironment = webHostEnvironment;
 
         }
         public IActionResult Index()
@@ -146,10 +149,11 @@ namespace TadarbProject.Controllers
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
             ViewBag.Username = user.FullName;
 
-     
+
             var SemesterMaster = _DbContext.SemestersTrainingSettingMaster.FromSqlRaw($" Select * from SemestersTrainingSettingMaster where SemesterTrainingSettingMasterId IN " +
-                $"(Select SemesterMaster_SemesterMasterId  From SemestersStudentAndEvaluationDetails where TrainingSupervisor_EmployeeId = { Emplyee.EmployeeId} ) AND ActivationStatus = 'Active'  ").Include(item => item.departmet.universityCollege.organization)
+                $"(Select SemesterMaster_SemesterMasterId  From SemestersStudentAndEvaluationDetails where TrainingSupervisor_EmployeeId = {Emplyee.EmployeeId} ) AND ActivationStatus = 'Active'  ").Include(item => item.departmet.universityCollege.organization)
                 .AsNoTracking().ToList();
+
 
 
 
@@ -157,9 +161,12 @@ namespace TadarbProject.Controllers
 
         }
 
+
+
+
         #region
 
-        public IActionResult OpportunitiesApplicants(int? id)
+        public IActionResult OpportunitiesApplicants(int? id, string EvaluationFile)
         {
             if (id == null || id == 0)
             {
@@ -174,23 +181,15 @@ namespace TadarbProject.Controllers
 
             var Department = _DbContext.Departments.Where(item => item.DepartmentId == Emplyee.Department_DepartmentId).Include(item => item.OrganizationBranch).AsNoTracking().FirstOrDefault();
 
-
-
             var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Department.Organization_OrganizationId).AsNoTracking().FirstOrDefault();
-
-            
-
 
             ViewBag.OrganizationName = OrganizationOfR.OrganizationName + " - " + Department.OrganizationBranch.BranchName;
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
             ViewBag.Username = user.FullName;
 
-
-
-
             ViewBag.MasterId = id;
 
-
+            ViewBag.EvaluationFile = EvaluationFile;
 
             return View();
         }
@@ -381,75 +380,41 @@ namespace TadarbProject.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetStudentsListByFilter(int? id, int? ArOrWa, string? filter)
+        public IActionResult GetStudentsListByFilter(int? id, string? filter)
         {
 
 
             IEnumerable<UniversityTraineeStudent> Students = Enumerable.Empty<UniversityTraineeStudent>();
 
 
-            if (ArOrWa == 0)
+
+            Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"Select * from UniversitiesTraineeStudents Where TraineeId IN " +
+                  $" (Select Trainee_TraineeId from StudentRequestsOnOpportunities where StudentRequestOpportunityId IN " +
+                  $" (Select StudentRequest_StudentRequestId from SemestersStudentAndEvaluationDetails where SemesterMaster_SemesterMasterId = {id})) " +
+                  $" AND UserAccount_UserId IN (SELECT UserId FROM UserAcounts WHERE FullName = '{filter}')")
+            .AsNoTracking().Include(item => item.user)
+            .AsNoTracking().Include(item => item.department.universityCollege.organization)
+            .AsNoTracking().Include(item => item.department.universityCollege.city.Country).ToList();
+
+
+            if (Students.Count() != 0)
             {
-                Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE TraineeId IN " +
-                $"(SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities WHERE TrainingOpportunity_TrainingOpportunityId  ={id} AND DecisionStatus='waiting') " +
-                $"AND UserAccount_UserId IN (SELECT UserId FROM UserAcounts WHERE FullName = '{filter}' )")
-                .AsNoTracking().Include(item => item.user)
-                .AsNoTracking().Include(item => item.department.universityCollege.organization)
-                .AsNoTracking().Include(item => item.department.universityCollege.city.Country).ToList();
-
-
-                if (Students.Count() != 0)
-                {
-                    return Json(new { Students });
-                }
-
-
-
-                Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw("SELECT * FROM UniversitiesTraineeStudents WHERE TraineeId IN " +
-                    $"(SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities WHERE TrainingOpportunity_TrainingOpportunityId ={id} AND DecisionStatus='waiting') " +
-                    $"AND Department_DepartmentId IN (SELECT Department_DepartmentId FROM Departments WHERE Organization_OrganizationId " +
-                    $"IN( SELECT OrganizationId FROM Organizations WHERE OrganizationName = '{filter}'))")
-                    .AsNoTracking().Include(item => item.user)
-                    .AsNoTracking().Include(item => item.department.universityCollege.organization)
-                    .AsNoTracking().Include(item => item.department.universityCollege.city.Country).ToList();
-
                 return Json(new { Students });
             }
 
 
-
-            if (ArOrWa == 1)
-            {
-                Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE TraineeId IN " +
-                $"(SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities WHERE TrainingOpportunity_TrainingOpportunityId  ={id} AND DecisionStatus='approved') " +
-                $"AND UserAccount_UserId IN (SELECT UserId FROM UserAcounts WHERE FullName = '{filter}' )")
-                .AsNoTracking().Include(item => item.user)
-                .AsNoTracking().Include(item => item.department.universityCollege.organization)
-                .AsNoTracking().Include(item => item.department.universityCollege.city.Country).ToList();
-
-
-                if (Students.Count() != 0)
-                {
-                    return Json(new { Students });
-                }
-
-
-
-                Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw("SELECT * FROM UniversitiesTraineeStudents WHERE TraineeId IN " +
-                    $"(SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities WHERE TrainingOpportunity_TrainingOpportunityId ={id} AND DecisionStatus='approved') " +
-                    $"AND Department_DepartmentId IN (SELECT Department_DepartmentId FROM Departments WHERE Organization_OrganizationId " +
-                    $"IN( SELECT OrganizationId FROM Organizations WHERE OrganizationName = '{filter}'))")
-                    .AsNoTracking().Include(item => item.user)
-                    .AsNoTracking().Include(item => item.department.universityCollege.organization)
-                    .AsNoTracking().Include(item => item.department.universityCollege.city.Country).ToList();
-
-                return Json(new { Students });
-
-            }
-
-
+            Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"Select * from UniversitiesTraineeStudents Where TraineeId IN " +
+                  $" (Select Trainee_TraineeId from StudentRequestsOnOpportunities where StudentRequestOpportunityId IN " +
+                  $" (Select StudentRequest_StudentRequestId from SemestersStudentAndEvaluationDetails where SemesterMaster_SemesterMasterId = {id})) " +
+                  $" AND Department_DepartmentId IN (SELECT Department_DepartmentId FROM Departments WHERE Organization_OrganizationId IN " +
+                  $"( SELECT OrganizationId FROM Organizations WHERE OrganizationName = '{filter}'))")
+                     .AsNoTracking().Include(item => item.user)
+                     .AsNoTracking().Include(item => item.department.universityCollege.organization)
+                     .AsNoTracking().Include(item => item.department.universityCollege.city.Country).ToList();
 
             return Json(new { Students });
+
+
         }
 
         #endregion

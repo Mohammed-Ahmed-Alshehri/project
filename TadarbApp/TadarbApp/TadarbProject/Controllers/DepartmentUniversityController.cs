@@ -328,8 +328,8 @@ namespace TadarbProject.Controllers
 
             SemesterMasterVM SemesterMasterVM = new SemesterMasterVM
             {
-               SemesterTrainingSettingMaster = _DbContext.SemestersTrainingSettingMaster.Where(item => item.SemesterTrainingSettingMasterId == id).AsNoTracking().FirstOrDefault(),
-              TrainingTypeListItems = _DbContext.TrainingTypes.AsNoTracking().ToList().Select(u => new SelectListItem { Text = u.TypeName, Value = u.TrainingTypeId.ToString() }),
+                SemesterTrainingSettingMaster = _DbContext.SemestersTrainingSettingMaster.Where(item => item.SemesterTrainingSettingMasterId == id).AsNoTracking().FirstOrDefault(),
+                TrainingTypeListItems = _DbContext.TrainingTypes.AsNoTracking().ToList().Select(u => new SelectListItem { Text = u.TypeName, Value = u.TrainingTypeId.ToString() }),
 
             };
 
@@ -369,7 +369,7 @@ namespace TadarbProject.Controllers
 
             var extension = Path.GetExtension(CvFile.FileName);
 
-           
+
 
             //her to check if the Posted item (product) has an  existing file if true then delete it before creating a new file.
             if (SemesterMaste.EvaluationFileToTrainingSupervisor != null)
@@ -406,22 +406,22 @@ namespace TadarbProject.Controllers
 
 
 
-                SemesterMaste.Department_DepartmenId = Department.DepartmentId;
+            SemesterMaste.Department_DepartmenId = Department.DepartmentId;
 
-                SemesterMaste.AcademicYear = SemesterMasterVM.SemesterTrainingSettingMaster.AcademicYear;
-                SemesterMaste.SemesterType = SemesterMasterVM.SemesterTrainingSettingMaster.SemesterType;
-                SemesterMaste.StartDate = Startdate;
-                SemesterMaste.EndDate = SemesterMasterVM.SemesterTrainingSettingMaster.EndDate;
-                SemesterMaste.ActivationStatus = active;
-                SemesterMaste.TrainingType_TrainingTypeId = SemesterMasterVM.SemesterTrainingSettingMaster.TrainingType_TrainingTypeId;
-                SemesterMaste.RequiredWeeks = SemesterMasterVM.SemesterTrainingSettingMaster.RequiredWeeks;
-                SemesterMaste.MinimumRequiredHours = SemesterMasterVM.SemesterTrainingSettingMaster.MinimumRequiredHours;
-                SemesterMaste.CreateDate = DateTime.Now.Date;
-                SemesterMaste.CreatedByEmployee_EmployeeId = Emplyee.EmployeeId;
-                SemesterMaste.EvaluationFileToTrainingSupervisor = DbLogoPath;
+            SemesterMaste.AcademicYear = SemesterMasterVM.SemesterTrainingSettingMaster.AcademicYear;
+            SemesterMaste.SemesterType = SemesterMasterVM.SemesterTrainingSettingMaster.SemesterType;
+            SemesterMaste.StartDate = Startdate;
+            SemesterMaste.EndDate = SemesterMasterVM.SemesterTrainingSettingMaster.EndDate;
+            SemesterMaste.ActivationStatus = active;
+            SemesterMaste.TrainingType_TrainingTypeId = SemesterMasterVM.SemesterTrainingSettingMaster.TrainingType_TrainingTypeId;
+            SemesterMaste.RequiredWeeks = SemesterMasterVM.SemesterTrainingSettingMaster.RequiredWeeks;
+            SemesterMaste.MinimumRequiredHours = SemesterMasterVM.SemesterTrainingSettingMaster.MinimumRequiredHours;
+            SemesterMaste.CreateDate = DateTime.Now.Date;
+            SemesterMaste.CreatedByEmployee_EmployeeId = Emplyee.EmployeeId;
+            SemesterMaste.EvaluationFileToTrainingSupervisor = DbLogoPath;
 
 
-           
+
 
 
             _DbContext.SemestersTrainingSettingMaster.Update(SemesterMaste);

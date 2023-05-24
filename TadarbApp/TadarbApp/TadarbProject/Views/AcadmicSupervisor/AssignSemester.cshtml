@@ -14,7 +14,6 @@
         background-color: #555;
         color: white;
         text-decoration: none;
-     
         position: relative;
         display: inline-block;
         border-radius: 2px;
@@ -69,9 +68,9 @@
 
                         </a>
                     </li>
-                    
 
-                 
+
+
                 </ul>
 
 
@@ -91,28 +90,28 @@
         <div class="col-sm-8">
             <div class="card " style="border-radius: 25px; margin-top:2cm; margin-bottom:3cm; padding:5px 5px 5px 5px ; border-color:black;">
                 <div class="card-header" style="text-align: center;">
-                    <h3>الجامعات </h3>
+                    <h3>الفرص المشرف عليها</h3>
 
 
-                     
+
 
                 </div>
                 <div class="card-body">
                     <div class="table-responsive no-radius">
 
-                        <table class="table table-hover table-center" style="font-size:18px">
+                        <table class="table table-hover" style="font-size:18px">
                             <thead>
                                 <tr>
 
-                                    <th>شعار الجامعة</th>
-                                    
-                                    <th>اسم الجامعة</th>
+                                    <th>وصف الفرصة</th>
+                                    <th>تخصص الفرصة</th>
+                                    @*<*@@*th>عدد المتدربين</th>
+                                    <th>امكانية التسجيل</th>
+                                    <th>تاريخ بداية التدريب</th>
+                                    <th>تاريخ نهاية التدريب</th>*@
 
-                                    <th class="text-center" >اسم الكلية</th>
-
-
-                                   
-                                    <th class="text-center" >مشاهدة طلاب الجامعة</th>
+                                    <th>الطلاب</th>
+                                    <th>رفع الواجبات للفصل.</th>
 
                                 </tr>
                             </thead>
@@ -120,29 +119,38 @@
                                 @foreach (var item in Model)
                                 {
                                     <tr>
-                                        <td class="text-nowrap" >
+                                        <td>
 
-                                          <img src="~/@item.departmet.universityCollege.organization.LogoPath" height="80" >
-                  
+                                            @item.SemesterType
+
+
+
                                         </td>
 
                                         <td>
 
-                                            @item.departmet.universityCollege.organization.OrganizationName
-                                        </td class="text-nowrap" >
-
-                                        <td class="text-center" >
-                                            @item.departmet.universityCollege.CollegeName
+                                            @item.AcademicYear
 
                                         </td>
 
-                                        
-
-                                        <td class="text-center" >
-                                            <input asp-for="@item.SemesterTrainingSettingMasterId" hidden/>
 
 
-                                            <a class="btn btn-info" href="//localhost:7122/TrainingSupervisor/OpportunitiesApplicants?id=@item.SemesterTrainingSettingMasterId&EvaluationFile=@item.EvaluationFileToTrainingSupervisor">
+
+                                        <td>
+
+                                            <a class="btn btn-info" href="//localhost:7122/AcadmicSupervisor/AssignedStudents?Mid=@item.SemesterTrainingSettingMasterId">
+
+                                                <i class="fa-solid fa-chalkboard-user" style="color:black"></i>
+                                            </a>
+
+                                        </td>
+
+
+
+
+                                        <td>
+
+                                            <a class="btn btn-info" href="//localhost:7122/AcadmicSupervisor/AssignAssignments?Mid=@item.SemesterTrainingSettingMasterId">
 
                                                 <i class="fa-solid fa-chalkboard-user" style="color:black"></i>
                                             </a>

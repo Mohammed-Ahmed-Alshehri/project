@@ -31,9 +31,6 @@
         top: 65px;
     }
 
-
-
-
 </style>
 
 <partial name="_Notification" />
@@ -71,13 +68,11 @@
                         </a>
                     </li>
 
-                    
+
                 </ul>
 
 
             </div>
-
-
             <!-- End vertical navbar1 -->
             <!-- Page content holder1 -->
             <div class="page-content p-1" id="content">
@@ -94,7 +89,6 @@
 
 
 
-
                 </div>
 
 
@@ -107,6 +101,19 @@
                                 </h4>
                                 <div class="table-search float-start">
                                     <button class="btn   selected" type="submit" onclick="Clear()" style="background-color:lightblue">  الكل</button>
+                                    <br />
+                                    <br />
+                                    <br />
+
+                                    @*                                    "SupervisionFiles\\TrainingEvaluation\\376825e5-8279-4d8d-8661-2d8a768602b2.pdf"
+                                    *@
+
+                                    <a href="@Url.Content($"~/{ViewBag.EvaluationFile}")" class="btn btn-info" download>
+                                        <i class="bi bi-file-earmark-arrow-down-fill"></i> تحميل ملف التقيم
+                                        <br />
+                                        الخاص بمنسوبي الجامعة.
+                                    </a>
+
                                 </div>
 
                                 <div class="col-6">
@@ -145,16 +152,16 @@
 
                                 </div>
 
-                           
 
-                                <div class="float-end  mt-2" dir="rtl" >
 
-                                   عدد الطلاب:
-                                   <p id="STCOUNT" style="display:inline"></p>
+                                <div class="float-end  mt-2" dir="rtl">
+
+                                    عدد الطلاب:
+                                    <p id="STCOUNT" style="display:inline"></p>
                                 </div>
 
 
-                            
+
 
 
 
@@ -304,10 +311,10 @@
 
                         $("#Tbody").html(body);
 
-                    
+
 
                         $("#STCOUNT").html(c);
-                        
+
 
 
 
@@ -329,69 +336,68 @@
                 return;
             }
 
-            FillTableSearch(Filter, type2);
+            FillTableSearch(Filter);
         }
 
 
 
-        //function FillTableSearch(fil, AOrW) {
+        function FillTableSearch(fil) {
 
-        //    var body = "";
-        //    var c = 0;
-
-
-        //    $(document).ready(function () {
-
-        //        $.ajax({
-
-        //            url: "@Url.Action("GetStudentsListByFilter")",
-        //            type: 'GET',
-        //            dataType: "json",
-        //            data: { id: @ViewBag.OpportunitiyId , ArOrWa: AOrW, filter: fil },
-
-        //            success: function (data) {
-
-        //                $.each(data.students, function (key, value) {
+            var body = "";
+            var c = 0;
 
 
+            $(document).ready(function () {
 
-        //                    body += "<tr> <td class='text - nowrap'>  <div class='font - weight - 600'> <div class='font - weight - 600'> " + value.user.fullName + "</div></div></td>"
-        //                        + "<td class='text - nowrap'> " + value.department.universityCollege.organization.organizationName + "</td>"
-        //                        + "<td class='text - nowrap'> " + value.department.departmentName + "</td>"
-        //                        + "<td class='text - nowrap'> " + value.gender + "</td>"
-        //                        + "<td class='text - nowrap'> " + value.department.universityCollege.city.country.countryName + ", " + value.department.universityCollege.city.cityName + "</td>"
-        //                        + "<td class='text - nowrap'> " + value.gpa + "</td>"
-        //                        + "<td class='text - nowrap'> " + '<a class="btn btn-outline-primary "  >تابع الطالب</a>' + '</td></tr>';
+                $.ajax({
 
+                    url: "@Url.Action("GetStudentsListByFilter")",
+                    type: 'GET',
+                    dataType: "json",
+                    data: { id: @ViewBag.MasterId , filter: fil },
 
-        //                    if (key == 0)
-        //                    {
-        //                        c = 1;
-        //                    }else{
-        //                        c = key+1;
-        //                    }
-                            
-                            
-        //                });
+                    success: function (data) {
 
-                      
-                       
-
-        //                $("#STCOUNT").html(c);
-                       
-
-        //                $("#Tbody").html(body);
+                        $.each(data.students, function (key, value) {
 
 
 
-        //            }
+                            body += "<tr> <td class='text - nowrap'>  <div class='font - weight - 600'> <div class='font - weight - 600'> " + value.user.fullName + "</div></div></td>"
+                                + "<td class='text - nowrap'> " + value.department.universityCollege.organization.organizationName + "</td>"
+                                + "<td class='text - nowrap'> " + value.department.departmentName + "</td>"
+                                + "<td class='text - nowrap'> " + value.gender + "</td>"
+                                + "<td class='text - nowrap'> " + value.department.universityCollege.city.country.countryName + ", " + value.department.universityCollege.city.cityName + "</td>"
+                                + "<td class='text - nowrap'> " + value.gpa + "</td>"
+                                + "<td class='text - nowrap'> " + '<a class="btn btn-outline-primary "  >تابع الطالب</a>' + '</td></tr>';
 
 
-        //        });
+                            if (key == 0) {
+                                c = 1;
+                            } else {
+                                c = key + 1;
+                            }
 
-        //    });
 
-        //}
+                        });
+
+
+
+
+                        $("#STCOUNT").html(c);
+
+
+                        $("#Tbody").html(body);
+
+
+
+                    }
+
+
+                });
+
+            });
+
+        }
 
 
 
