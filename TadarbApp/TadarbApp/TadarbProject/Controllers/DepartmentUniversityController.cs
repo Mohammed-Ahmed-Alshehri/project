@@ -678,6 +678,8 @@ namespace TadarbProject.Controllers
 
             ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
 
+
+
             int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
 
             var user = _DbContext.UserAcounts.Where(item => item.UserId == id).AsNoTracking().FirstOrDefault();
@@ -688,7 +690,10 @@ namespace TadarbProject.Controllers
             var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Department.Organization_OrganizationId).AsNoTracking().FirstOrDefault();
 
             ViewBag.OrganizationName = OrganizationOfR.OrganizationName + " - " + Department.DepartmentName;
+
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
+            //ViewBag.Username = user.FullName;
+
 
 
             var student = _DbContext.UniversitiesTraineeStudents.Where(item => item.TraineeId == id).Include(item => item.user).AsNoTracking().FirstOrDefault();
