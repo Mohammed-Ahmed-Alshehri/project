@@ -287,10 +287,16 @@ namespace TadarbProject.Controllers
 
             IEnumerable<DepartmentAssessmentTypeDetail> DepartmentsAssessmentTypes = Enumerable.Empty<DepartmentAssessmentTypeDetail>();
 
+            int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
+
+            var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).AsNoTracking().FirstOrDefault();
+
+            var Employee = _DbContext.Employees.Where(item => item.UserAccount_UserId == RUserId).Include(item => item.userAcount).Include(item => item.department).AsNoTracking().FirstOrDefault();
 
             DepartmentsAssessmentTypes = _DbContext.DepartmentsAssessmentTypeDetail.FromSqlRaw("SELECT * FROM DepartmentsAssessmentTypeDetail WHERE DepartmentAssessmentTypeMaster_MasterId = " +
                  $"(SELECT DepartmentAssessmentTypeMasterId FROM DepartmentsAssessmentTypeMaster WHERE Department_DepartmentId = {Did}) " +
-                 $"AND DepartmentAssessmentTypeDetailId IN (SELECT  DepartmentAssessmentTypeDetail_DetailId FROM StudentSemesterEvaluationMarks)")
+                 $"AND DepartmentAssessmentTypeDetailId IN (SELECT  DepartmentAssessmentTypeDetail_DetailId FROM StudentSemesterEvaluationMarks WHERE SemesterStudentAndEvaluationDetail_DetailId IN " +
+                 $"(SELECT SemesterStudentAndEvaluationDetailId FROM SemestersStudentAndEvaluationDetails WHERE AcademicSupervisor_EmployeeId = {Employee.EmployeeId} ))")
                 .Include(item => item.assessmentType).AsNoTracking().ToList();
 
 
