@@ -34,27 +34,21 @@
 
                 <ul class="nav flex-column bg-white mb-0">
                     <li class="nav-item">
-                        <a asp-controller="TrainingSupervisor" asp-action="index" class="nav-link text-dark font-italic bg-light">
+                        <a asp-controller="TrainingSupervisor" asp-action="index" class="nav-link text-dark font-italic ">
                             <i class="fa-solid fa-house  mr-3 text-primary fa-fw "></i>
                             الصفحة الرئيسية
                         </a>
                     </li>
 
-                     <li class="nav-item">
-                        <a asp-controller="TrainingSupervisor" asp-action="ViewOpportunities" class="nav-link text-dark font-italic ">
-                    <i class="fa fa-cubes mr-3 text-primary fa-fw"></i>
-                    إدارة مسؤولين الفروع
-
-                    </a>
-                          </li>
-
-                    @*
                     <li class="nav-item">
-                    <a asp-controller="" asp-action="" class="nav-link text-dark font-italic ">
-                    <i class="fa fa-cubes mr-3 text-primary fa-fw"></i>
-                    إدارة الفروع
-                    </a>
-                    </li>*@
+                        <a asp-controller="TrainingSupervisor" asp-action="ViewOpportunities" class="nav-link text-dark font-italic  ">
+                            <i class="fa fa-cubes mr-3 text-primary fa-fw"></i>
+                            الفرص المسجلة
+
+                        </a>
+                    </li>
+
+
 
                 </ul>
 
@@ -79,7 +73,7 @@
             <form asp-action="EditAccount" method="get">
                 <div class="card " style="border-radius: 25px;  margin-bottom:3cm; padding:5px 5px 5px 5px ; border-color:black; width:auto; height:auto;">
                     <div class="card-header">
-                        <h3 style="text-align: center;">معلومات المشرف</h3>
+                        <h3 style="text-align: center;">معلوماتي</h3>
                        
 
                         <button class="btn " style="text-align: right;" type="submit">  <i class="fa-solid fa-user-gear fa-2x"></i></button>

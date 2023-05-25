@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<StudentSemesterEvaluationMark>
 @{
-    ViewData["Title"] = "قائمة مشرفين التدريب";
+    ViewData["Title"] = "قائمة المهام المطلوبة";
 }
 
 <head>
@@ -31,37 +31,34 @@
 
                 <ul class="nav flex-column bg-white mb-0">
                     <li class="nav-item">
-                        <a asp-controller="Branch" asp-action="Index" class="nav-link text-dark font-italic ">
-                            <i class="fa-solid fa-house"></i>
+                        <a asp-action="index" class="nav-link text-dark font-italic bg-light">
+                            <i class="fa-solid fa-house text-primary"></i>
                             الصفحة الرئيسية
                         </a>
                     </li>
+
                     <li class="nav-item">
-                        <a asp-controller="Branch" asp-action="ManageDepartment" class="nav-link text-dark font-italic ">
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                             <i class="fa fa-address-card mr-3 text-primary fa-fw"></i>
-                            إدارة الاقسام
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a asp-controller="Branch" asp-action="ViewSupervisorsUser" class="nav-link text-dark font-italic bg-light">
-                            <i class="fa-solid fa-building-user text-primary"></i>
-                            إدارة مشرفين التدريب
 
-                        </a>
-                    </li>
-
-
-                    <li class="nav-item">
-                        <a asp-controller="branch" asp-action="ViewDepartmentFiledSpecialties" class="nav-link text-dark font-italic ">
-                            <i class="fa-solid fa-book-open-reader"></i>
-                            إدارة التخصصات
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a asp-controller="branch" asp-action="ViewOpportunities" class="nav-link text-dark font-italic  ">
-                            <i class="fa-solid fa-person-chalkboard text-primary"></i>
                             إدارة الفرص
+
+                        </a>
+                        <div class="dropdown-menu" style="">
+
+                            <a class="dropdown-item" asp-action="ViewOpportunities">عرض الفرص الجديدة </a>
+                            <a class=" dropdown-item" asp-action="ViewOpportunitiesStatus"> عرض حالة القبول </a>
+
+                        </div>
+
+                    </li>
+
+                    <li class="nav-item">
+                        <a asp-controller="Student" asp-action="ViewAssignments" class="nav-link text-dark font-italic ">
+                            <i class="fa fa-address-card mr-3 text-primary fa-fw"></i>
+                            ارفاق التقارير
                         </a>
                     </li>
 
@@ -85,12 +82,10 @@
         <div class="col-sm-6">
             <div class="card " style="border-radius: 25px; margin-top:2cm; margin-bottom:3cm; padding:5px 5px 5px 5px ; border-color:black;">
                 <div class="card-header" style="text-align: center;">
-                    <h3> الموظفين</h3>
+                    <h3> المهام المطلوبة</h3>
 
 
-                    <a asp-controller="Branch" asp-action="AddSupervisorUser" class="table-search float-end">
-                        <button class="btn " style="background-color:#1c4c64; color:white;font-size:18px" type="submit" asp>  إضافة مشرف جديد <i class="fa fa-add"></i></button>
-                    </a>
+                   
 
                 </div>
                 <div class="card-body">
@@ -100,9 +95,9 @@
                             <thead>
                                 <tr>
 
-                                    <th>اسم الواجب</th>
+                                    <th>اسم التقرير</th>
                                   
-                                    <th class="text-center">الدرجة</th>
+                                    <th class="text-center">عرض</th>
 
 
                                 </tr>

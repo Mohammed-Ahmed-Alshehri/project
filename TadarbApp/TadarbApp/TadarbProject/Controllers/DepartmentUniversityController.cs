@@ -831,6 +831,7 @@ namespace TadarbProject.Controllers
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
             ViewBag.Username = user.FullName;
 
+
             IEnumerable<StudentRequestOpportunity> students = Enumerable.Empty<StudentRequestOpportunity>();
 
 

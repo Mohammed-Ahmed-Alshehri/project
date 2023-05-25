@@ -37,7 +37,7 @@
 
                     <li class="nav-item">
                         <a asp-controller="DepartmentUniversity" asp-action="ViewAcademicSupervisors" class="nav-link text-dark font-italic  bg-light   ">
-                            <i class="fa-solid fa-users-gear text-primary"></i>
+                            <i class="fa-solid fa-users-gear "></i>
                             إدارة المشرفين
                         </a>
                     </li>
@@ -56,10 +56,10 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a asp-controller="DepartmentUniversity" asp-action="ViewSemesters" class="nav-link text-dark font-italic ">
-                            <i class="fa-solid fa-user-graduate"></i>
+                        <a asp-controller="DepartmentUniversity" asp-action="ViewSemesters" class="nav-link text-dark font-italic bg-light">
+                            <i class="fa-solid fa-user-graduate text-primary"></i>
 
-                            ادارة الفصول
+                            إدارة الفصول الدراسية
                         </a>
                     </li>
                 </ul>
@@ -81,7 +81,7 @@
         <div class="col-sm-6">
             <div class="card" style="border-radius: 25px; margin-top:2cm; margin-bottom:3cm; padding:5px 5px 5px 5px ; border-color:black;background-color:#dfebf2">
                 <div class="card-body p-5">
-                    <h2 class=" text-center mb-5">إضافة مشرف اكاديمي</h2>
+                    <h2 class=" text-center mb-5">إضافة فصل دراسي جديد</h2>
 
                     <form asp-controller="DepartmentUniversity" asp-action="AddSemesters" method="post" class="needs-validation" enctype="multipart/form-data" novalidate>
 
@@ -92,7 +92,7 @@
 
                                 <div class="form-outline" style="text-align: right;">
                                     <i class="fa-solid fa-user"></i>
-                                    <label class="form-label" for="FullName"  style="font-size:20px;">السنة</label>
+                                    <label class="form-label" for="FullName"  style="font-size:20px;">السنة الدراسية</label>
 
                                     <input asp-for="SemesterTrainingSettingMaster.AcademicYear" placeholder="2023" type="text" id="FullNameID" class="form-control form-control-lg" required />
 
@@ -148,7 +148,7 @@
 
                         <div class="mb-4 pb-2">
 
-                            <label for="LogoPathFile" class="form-label mt-4" style="font-size:20px;"> ارفق ملف التقييم الخاص للمشرف التدريبي </label>
+                            <label for="LogoPathFile" class="form-label mt-4" style="font-size:20px;"> أرفق ملف التقييم الخاص للمشرف التدريبي </label>
 
                             @* //(imgFile)هنا اسم الملف الصورة مهم يطابق الاسم في الكنترولر لنه سيتم ارساله مع المودل.*@
                             <input type="file" id="uploadField"  name="CvFile" class="form-control" accept=".pdf" required />

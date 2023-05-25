@@ -28,32 +28,29 @@
 
                 <p class="text-gray font-weight-bold text-uppercase px-3 small pb-4 mb-0">القائمة</p>
 
+
                 <ul class="nav flex-column bg-white mb-0">
                     <li class="nav-item">
-                        <a asp-controller="Company" asp-action="Index" class="nav-link text-dark font-italic ">
-                            <<i class="fa-solid fa-house  mr-3  fa-fw "></i>
+                        <a asp-controller="AcadmicSupervisor" asp-action="index" class="nav-link text-dark font-italic bg-light">
+                            <i class="fa-solid fa-house  mr-3 text-primary fa-fw "></i>
                             الصفحة الرئيسية
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a asp-controller="Company" asp-action="ViewSpecialities" class="nav-link text-dark font-italic bg-light">
-                            <i class="fa-brands fa-buffer mr-3 text-primary  fa-fw  "></i>
-                            إدارة مجالات التدريب
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a asp-controller="Company" asp-action="viewUsers" class="nav-link text-dark font-italic ">
-                            <i class="fa-solid fa-user-group "></i>
-                            إدارة الموظفين
 
-                        </a>
-                    </li>
                     <li class="nav-item">
-                        <a asp-controller="Company" asp-action="Viewbranches" class="nav-link text-dark font-italic ">
-                            <i class="fa-solid fa-building  mr-3  fa-fw "></i>
-                            إدارة الفروع
+                        <a asp-controller="AcadmicSupervisor" asp-action="AssignedStudents" class="nav-link text-dark font-italic bg-light">
+                            <i class="fa-solid fa-house  mr-3 text-primary fa-fw "></i>
+                            طلابي
                         </a>
                     </li>
+
+                    <li class="nav-item">
+                        <a asp-controller="AcadmicSupervisor" asp-action="AssignSemester" class="nav-link text-dark font-italic bg-light">
+                            <i class="fa-solid fa-house  mr-3 text-primary fa-fw "></i>
+                            تسجيل الفصول
+                        </a>
+                    </li>
+
 
                 </ul>
             </div>

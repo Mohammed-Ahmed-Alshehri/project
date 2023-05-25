@@ -30,42 +30,29 @@
                 <h5> مرحبا بك @ViewBag.Username </h5>
                 <p class="text-gray font-weight-bold text-uppercase px-3 small pb-4 mb-0">القائمة</p>
 
+
                 <ul class="nav flex-column bg-white mb-0">
                     <li class="nav-item">
-                        <a asp-controller="DepartmentUniversity" asp-action="Index" class="nav-link text-dark font-italic  ">
-                            <i class="fa-solid fa-house"></i>
+                        <a asp-controller="AcadmicSupervisor" asp-action="index" class="nav-link text-dark font-italic bg-light">
+                            <i class="fa-solid fa-house  mr-3 text-primary fa-fw "></i>
                             الصفحة الرئيسية
                         </a>
                     </li>
 
-
                     <li class="nav-item">
-                        <a asp-controller="DepartmentUniversity" asp-action="ViewAcademicSupervisors" class="nav-link text-dark font-italic  bg-light  ">
-                            <i class="fa-solid fa-users-gear text-primary"></i>
-                            إدارة المشرفين
+                        <a asp-controller="AcadmicSupervisor" asp-action="AssignedStudents" class="nav-link text-dark font-italic bg-light">
+                            <i class="fa-solid fa-house  mr-3 text-primary fa-fw "></i>
+                            طلابي
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a asp-controller="DepartmentUniversity" asp-action="ViewStudents" class="nav-link text-dark font-italic ">
-                            <i class="fa-solid fa-user-graduate"></i>
 
-                            إدارة الطلاب
+                    <li class="nav-item">
+                        <a asp-controller="AcadmicSupervisor" asp-action="AssignSemester" class="nav-link text-dark font-italic bg-light">
+                            <i class="fa-solid fa-house  mr-3 text-primary fa-fw "></i>
+                            تسجييل الفصول
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a asp-controller="DepartmentUniversity" asp-action="ManageAssessment" class="nav-link text-dark font-italic ">
-                            <i class="fa-solid fa-user-graduate"></i>
 
-                            تحديد التقييمات
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a asp-controller="DepartmentUniversity" asp-action="ViewSemesters" class="nav-link text-dark font-italic ">
-                            <i class="fa-solid fa-user-graduate"></i>
-
-                            ادارة الشعب
-                        </a>
-                    </li>
 
                 </ul>
 
@@ -86,7 +73,7 @@
         <div class="col-sm-6">
             <div class="card " style="border-radius: 25px; margin-top:2cm; margin-bottom:3cm; padding:5px 5px 5px 5px ; border-color:black;">
                 <div class="card-header" style="text-align: center;">
-                    <h3>مسؤولي التدريب</h3>
+                    <h3>قائنة الطلاب المسجلين</h3>
 
 
                     <a asp-controller="DepartmentUniversity" asp-action="AddAcademicSupervisor" class="table-search float-end">
