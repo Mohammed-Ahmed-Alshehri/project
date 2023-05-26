@@ -105,6 +105,7 @@ namespace TadarbProject.Controllers
                     {
                         System.IO.File.Delete(OldCVPath);
                     }
+
                 }
 
 
@@ -428,10 +429,8 @@ namespace TadarbProject.Controllers
             var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).AsNoTracking().FirstOrDefault();
             var UnverTre = _DbContext.UniversitiesTraineeStudents.Where(item => item.UserAccount_UserId == RUserId).AsNoTracking().FirstOrDefault();
             var Department = _DbContext.Departments.Where(item => item.DepartmentId == UnverTre.Department_DepartmentId).AsNoTracking().FirstOrDefault();
-
             var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Department.Organization_OrganizationId).AsNoTracking().FirstOrDefault();
 
-            var Student = _DbContext.UniversitiesTraineeStudents.Where(item=> item.UserAccount_UserId == RUserId).AsNoTracking().FirstOrDefault();
 
             ViewBag.OrganizationName = OrganizationOfR.OrganizationName + " - " + Department.DepartmentName;
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
@@ -442,11 +441,73 @@ namespace TadarbProject.Controllers
 
             Assignments = _DbContext.StudentSemesterEvaluationMarks.FromSqlRaw("SELECT * FROM StudentSemesterEvaluationMarks WHERE SemesterStudentAndEvaluationDetail_DetailId IN" +
                 "(SELECT SemesterStudentAndEvaluationDetailId FROM SemestersStudentAndEvaluationDetails WHERE StudentRequest_StudentRequestId = " +
-                $"(SELECT StudentRequestOpportunityId FROM StudentRequestsOnOpportunities WHERE Trainee_TraineeId = {Student.TraineeId} AND DecisionStatus ='approved'))")
+                $"(SELECT StudentRequestOpportunityId FROM StudentRequestsOnOpportunities WHERE Trainee_TraineeId = {UnverTre.TraineeId} AND DecisionStatus ='approved'))")
                 .Include(item => item.assessmentTypeDetail.assessmentType).AsNoTracking().ToList();
 
 
             return View(Assignments);
+        }
+
+
+        [HttpGet]
+        public IActionResult SubmitAssignment(int? SSEMId)
+        {
+
+            if (SSEMId == 0 || SSEMId == null)
+            {
+                return NotFound();
+            }
+
+            ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
+            int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
+            var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).AsNoTracking().FirstOrDefault();
+            var UnverTre = _DbContext.UniversitiesTraineeStudents.Where(item => item.UserAccount_UserId == RUserId).AsNoTracking().FirstOrDefault();
+            var Department = _DbContext.Departments.Where(item => item.DepartmentId == UnverTre.Department_DepartmentId).AsNoTracking().FirstOrDefault();
+            var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Department.Organization_OrganizationId).AsNoTracking().FirstOrDefault();
+
+
+            ViewBag.OrganizationName = OrganizationOfR.OrganizationName + " - " + Department.DepartmentName;
+            ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
+            ViewBag.Username = user.FullName;
+
+
+
+            var Assignment = _DbContext.StudentSemesterEvaluationMarks.Where(item => item.StudentSemesterEvaluationMarkId == SSEMId)
+                 .Include(item => item.assessmentTypeDetail.assessmentType).AsNoTracking().FirstOrDefault();
+
+            if (Assignment == null)
+            {
+                return NotFound();
+            }
+
+
+            return View(Assignment);
+
+        }
+
+        [HttpPost]
+        public IActionResult SubmitAssignment(StudentSemesterEvaluationMark obj)
+        {
+
+
+
+            ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
+            int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
+            var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).AsNoTracking().FirstOrDefault();
+            var UnverTre = _DbContext.UniversitiesTraineeStudents.Where(item => item.UserAccount_UserId == RUserId).AsNoTracking().FirstOrDefault();
+            var Department = _DbContext.Departments.Where(item => item.DepartmentId == UnverTre.Department_DepartmentId).AsNoTracking().FirstOrDefault();
+            var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Department.Organization_OrganizationId).AsNoTracking().FirstOrDefault();
+
+
+            ViewBag.OrganizationName = OrganizationOfR.OrganizationName + " - " + Department.DepartmentName;
+            ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
+            ViewBag.Username = user.FullName;
+
+
+
+
+            return View();
+
         }
 
 

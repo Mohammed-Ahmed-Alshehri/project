@@ -7,13 +7,14 @@
 
     <link rel="stylesheet" href="~/css/Addbranches.css" asp-append-version="true" />
 
-   
+
 </head>
 
 <partial name="_Notification" />
+
 <body style="background: linear-gradient(#1c4c64,#5590ad);">
 
-    <div class="row" >
+    <div class="row">
 
         <div class="col-sm-3" style="z-index:2;">
 
@@ -38,26 +39,26 @@
                     </li>
 
 
-                   <li class="nav-item">
+                    <li class="nav-item">
                         <a asp-controller="DepartmentUniversity" asp-action="ViewAcademicSupervisors" class="nav-link text-dark font-italic    ">
                             <i class="fa-solid fa-users-gear "></i>
-                           إدارة المشرفين
-                    </a>
-                </li>
-                   <li class="nav-item">
-                    <a asp-controller="DepartmentUniversity" asp-action="ViewStudents" class="nav-link text-dark font-italic ">
+                            إدارة المشرفين
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-controller="DepartmentUniversity" asp-action="ViewStudents" class="nav-link text-dark font-italic ">
                             <i class="fa-solid fa-user-graduate"></i>
 
-                        إدارة الطلاب
-                    </a>
-                </li>
-                   <li class="nav-item">
+                            إدارة الطلاب
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a asp-controller="DepartmentUniversity" asp-action="ViewAssessment" class="nav-link text-dark font-italic ">
                             <i class="fa-solid fa-user-graduate"></i>
 
-                        تحديد التقييمات 
-                    </a>
-                </li>
+                            تحديد التقييمات
+                        </a>
+                    </li>
                     <li class="nav-item">
                         <a asp-controller="DepartmentUniversity" asp-action="ViewSemesters" class="nav-link text-dark font-italic bg-light ">
                             <i class="fa-solid fa-user-graduate text-primary"></i>
@@ -88,7 +89,7 @@
 
 
                     <a asp-controller="DepartmentUniversity" asp-action="AddSemesters" class="table-search float-end">
-                        <button class="btn " style="background-color:#1c4c64; color:white;font-size:18px" type="submit" >  إضافة فصل دراسي جديد <i class="fa fa-add"></i></button>
+                        <button class="btn " style="background-color:#1c4c64; color:white;font-size:18px" type="submit">  إضافة فصل دراسي جديد <i class="fa fa-add"></i></button>
                     </a>
 
                 </div>
@@ -160,7 +161,8 @@
                                         </td>
 
                                         <td class="text-center">
-                                            <a class="btn btn-danger"> <i class="fa-solid fa-trash-can"></i> </a>
+
+                                            <a class="btn btn-danger" href="@Url.Action("SubmitAssignment",new {SSEMId=item.SemesterTrainingSettingMasterId})"> <i class="fa-solid fa-trash-can"></i> </a>
 
                                         </td>
 
@@ -189,6 +191,64 @@
                 $('#sidebar, #content').toggleClass('active');
             });
         });
+
+        document.addEventListener("load", (event) => {
+
+            window.location.replace('@Url.ActionLink("ViewSemesters")');
+
+        });
+
+        function DeleteMaster(MId) {
+
+            Swal.fire({
+                title: 'تأكيد حذف الفصل الدراسي.',
+                icon: 'warning',
+                iconHtml: '!',
+                confirmButtonText: 'نعم',
+                cancelButtonText: 'لا',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+            }).then((result) => {
+                if (result.isConfirmed) {
+
+                    $(document).ready(function () {
+
+                        $.ajax({
+
+                            type: "POST",
+                            datatype: "json",
+                            url: "@Url.Action("DeleteSemesterMaster")",
+                            data: { SMid: MId },
+                            success: function (data) {
+
+                                if (data.success)
+                                {
+                                    window.location.replace('@Url.ActionLink("ViewSemesters")');
+                                }else{
+
+                                    Swal.fire({
+                                        title: 'لايمكن حذف فصل دراسي فيه طلاب مسجلين.',
+                                        icon: 'error',
+                                        confirmButtonText: 'نعم',
+                                        
+                                    })
+                                }
+
+                              
+
+                               
+                            }
+
+
+                        });
+
+
+
+                    });
+                }
+            })
+        }
 
     </script>
 

@@ -1,10 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using System.Security.Cryptography;
 using TadarbProject.Data;
 using TadarbProject.Models;
-using TadarbProject.Models.ViewModels;
 using TEST2.Services;
 
 namespace TadarbProject.Controllers

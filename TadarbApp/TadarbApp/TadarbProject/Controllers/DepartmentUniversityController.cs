@@ -14,8 +14,8 @@ namespace TadarbProject.Controllers
         private readonly IWebHostEnvironment _WebHostEnvironment;
         private readonly IEmailSender _emailSender;
         private readonly IHttpContextAccessor _HttpContextAccessor;
-        private static string Name = "";
-        private static int UserId = 0;
+        private static string Name;
+        private static int UserId;
         private static UserAcount User;
         private static Department department;
         private static Organization OrganizationOfR;
@@ -269,12 +269,11 @@ namespace TadarbProject.Controllers
 
             var Startdate = SemesterMasterVM.SemesterTrainingSettingMaster.StartDate;
             var active = "Not_Active";
-            if (Startdate == DateTime.Now.Date)
+            if (Startdate == DateTime.Now.Date || Startdate < DateTime.Now.Date)
             {
 
                 active = "Active";
             }
-
 
 
             SemesterTrainingSettingMaster SemesterTrainingSettingMaster = new SemesterTrainingSettingMaster
@@ -316,9 +315,6 @@ namespace TadarbProject.Controllers
             var Department = _DbContext.Departments.Where(item => item.Responsible_UserId == RUserId).AsNoTracking().FirstOrDefault();
             var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Department.Organization_OrganizationId).AsNoTracking().FirstOrDefault();
 
-
-
-
             ViewBag.OrganizationName = OrganizationOfR.OrganizationName + " - " + Department.DepartmentName;
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
             ViewBag.Username = user.FullName;
@@ -359,51 +355,54 @@ namespace TadarbProject.Controllers
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
             ViewBag.Username = user.FullName;
 
-            //Startt UploadFile
 
-            string fileName = Guid.NewGuid().ToString();
-
-            string wwwRootPath = _WebHostEnvironment.WebRootPath;
-
-            var uploadTo = Path.Combine(wwwRootPath, @"SupervisionFiles\TrainingEvaluation\");
-
-            var extension = Path.GetExtension(CvFile.FileName);
-
-
-
-            //her to check if the Posted item (product) has an  existing file if true then delete it before creating a new file.
-            if (SemesterMaste.EvaluationFileToTrainingSupervisor != null)
+            if (CvFile != null)
             {
-                var OldCVPath = Path.Combine(wwwRootPath, SemesterMaste.EvaluationFileToTrainingSupervisor.TrimStart('\\'));
 
-                if (System.IO.File.Exists(OldCVPath))
+                //Startt UploadFile
+
+                string fileName = Guid.NewGuid().ToString();
+
+                string wwwRootPath = _WebHostEnvironment.WebRootPath;
+
+                var uploadTo = Path.Combine(wwwRootPath, @"SupervisionFiles\TrainingEvaluation\");
+
+                var extension = Path.GetExtension(CvFile.FileName);
+
+
+                //her to check if the Posted item (product) has an  existing file if true then delete it before creating a new file.
+                if (SemesterMaste.EvaluationFileToTrainingSupervisor != null)
                 {
-                    System.IO.File.Delete(OldCVPath);
+                    var OldCVPath = Path.Combine(wwwRootPath, SemesterMaste.EvaluationFileToTrainingSupervisor.TrimStart('\\'));
+
+                    if (System.IO.File.Exists(OldCVPath))
+                    {
+                        System.IO.File.Delete(OldCVPath);
+                    }
                 }
+
+                //here is to Create a file to has the user uploaded file
+                using (var fileStreams = new FileStream(Path.Combine(uploadTo, fileName + extension), FileMode.Create))
+                {
+                    CvFile.CopyTo(fileStreams);
+                }
+
+                //Here what will be in the database.
+                SemesterMaste.EvaluationFileToTrainingSupervisor = @"SupervisionFiles\TrainingEvaluation\" + fileName + extension;
+
+                //___________________________end upload____________
+
+
             }
-
-            //here is to Create a file to has the user uploaded file
-            using (var fileStreams = new FileStream(Path.Combine(uploadTo, fileName + extension), FileMode.Create))
-            {
-                CvFile.CopyTo(fileStreams);
-            }
-
-            //Here what will be in the database.
-            var DbLogoPath = @"SupervisionFiles\TrainingEvaluation\" + fileName + extension;
-
-            //___________________________end upload____________
-
 
 
             var Startdate = SemesterMasterVM.SemesterTrainingSettingMaster.StartDate;
             var active = "Not_Active";
-            if (Startdate == DateTime.Now.Date)
+            if (Startdate == DateTime.Now.Date || Startdate < DateTime.Now.Date)
             {
 
                 active = "Active";
             }
-
-
 
 
             SemesterMaste.Department_DepartmenId = Department.DepartmentId;
@@ -418,16 +417,11 @@ namespace TadarbProject.Controllers
             SemesterMaste.MinimumRequiredHours = SemesterMasterVM.SemesterTrainingSettingMaster.MinimumRequiredHours;
             SemesterMaste.CreateDate = DateTime.Now.Date;
             SemesterMaste.CreatedByEmployee_EmployeeId = Emplyee.EmployeeId;
-            SemesterMaste.EvaluationFileToTrainingSupervisor = DbLogoPath;
-
-
-
 
 
             _DbContext.SemestersTrainingSettingMaster.Update(SemesterMaste);
 
             _DbContext.SaveChanges();
-
 
 
             TempData["success"] = "تم تعديل الفصل بنجاح";
@@ -2552,6 +2546,47 @@ namespace TadarbProject.Controllers
 
         }
 
+
+
+        [HttpPost]
+        public IActionResult DeleteSemesterMaster(int? SMid)
+        {
+
+            if (SMid == null || SMid == 0)
+            {
+                return Json(new { success = false });
+            }
+
+
+            var SemesterMasterStudentCount = _DbContext.SemestersStudentAndEvaluationDetails.Where(item => item.SemesterMaster_SemesterMasterId == SMid).AsNoTracking().Count();
+
+            if (SemesterMasterStudentCount != 0)
+            {
+                return Json(new { success = false });
+            }
+
+
+            var ToBeDeletedSM = _DbContext.SemestersTrainingSettingMaster.Find(SMid);
+
+            if (ToBeDeletedSM.EvaluationFileToTrainingSupervisor != null)
+            {
+
+                string wwwRootPath = _WebHostEnvironment.WebRootPath;
+
+                var OldCVPath = Path.Combine(wwwRootPath, ToBeDeletedSM.EvaluationFileToTrainingSupervisor.TrimStart('\\'));
+
+                if (System.IO.File.Exists(OldCVPath))
+                {
+                    System.IO.File.Delete(OldCVPath);
+                }
+            }
+
+            _DbContext.SemestersTrainingSettingMaster.Remove(ToBeDeletedSM);
+
+            _DbContext.SaveChanges();
+
+            return Json(new { success = true });
+        }
 
         #endregion
 

@@ -1,0 +1,126 @@
+﻿@model StudentSemesterEvaluationMark
+
+@{
+    ViewData["Title"] = "تسليم الواجب";
+}
+
+<head>
+
+    <link rel="stylesheet" href="~/css/Addbranches.css" asp-append-version="true" />
+
+
+</head>
+
+<body style="background: linear-gradient(#1c4c64,#5590ad);">
+
+    <div class="row">
+
+        <div class="col-sm-3" style="z-index:2;">
+
+            <div class="vertical-nav bg-white" id="sidebar">
+                <div class="py-4 px-3 mb-4 bg-light">
+                    <div class="media d-flex align-items-center">
+                        <img src="~/@ViewBag.OrganizationImage" alt="..." width="65" class="mr-3 rounded-circle img-thumbnail shadow-sm">
+                        <div class="media-body">
+                            <h4 class="m-0">@ViewBag.OrganizationName</h4>
+                        </div>
+                    </div>
+                </div>
+                <h5> مرحبا بك @ViewBag.Username </h5>
+                <p class="text-gray font-weight-bold text-uppercase px-3 small pb-4 mb-0">القائمة</p>
+
+                <ul class="nav flex-column bg-white mb-0">
+                    <li class="nav-item">
+                        <a asp-controller="DepartmentUniversity" asp-action="Index" class="nav-link text-dark font-italic  ">
+                            <i class="fa-solid fa-house"></i>
+                            الصفحة الرئيسية
+                        </a>
+                    </li>
+
+
+                    <li class="nav-item">
+                        <a asp-controller="DepartmentUniversity" asp-action="ViewAcademicSupervisors" class="nav-link text-dark font-italic    ">
+                            <i class="fa-solid fa-users-gear "></i>
+                            إدارة المشرفين
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-controller="DepartmentUniversity" asp-action="ViewStudents" class="nav-link text-dark font-italic ">
+                            <i class="fa-solid fa-user-graduate"></i>
+
+                            إدارة الطلاب
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-controller="DepartmentUniversity" asp-action="ViewAssessment" class="nav-link text-dark font-italic ">
+                            <i class="fa-solid fa-user-graduate"></i>
+
+                            تحديد التقييمات
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-controller="DepartmentUniversity" asp-action="ViewSemesters" class="nav-link text-dark font-italic bg-light ">
+                            <i class="fa-solid fa-user-graduate text-primary"></i>
+
+                            إدارة الفصول الدراسية
+                        </a>
+                    </li>
+                </ul>
+
+
+            </div>
+
+
+            <!-- End vertical navbar -->
+            <!-- Page content holder -->
+            <div class="page-content p-1" id="content">
+                <!-- Toggle button -->
+                <button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i class="fa fa-bars mr-2"></i><small class="text-uppercase font-weight-bold">القائمة</small></button>
+            </div>
+
+
+        </div>
+
+        <div class="col-sm-8">
+            <div class="card " style="border-radius: 25px; margin-top:2cm; margin-bottom:3cm; padding:5px 5px 5px 5px ; border-color:black;">
+                <div class="card-header" style="text-align: center;">
+                    <h3>معلومات الفصول الدراسية   </h3>
+
+
+
+                </div>
+
+                <div class="card-body">
+                
+                        <p>نوع التقرير: @Model.assessmentTypeDetail.assessmentType.AssessmentTypeName</p>
+
+                    @{
+                        var stdmark = "لم يتم التقيم";
+                        if (Model.StudentMark != null)
+                            stdmark = Model.StudentMark.ToString();
+                    }
+                    <p>الدرجة: @stdmark من اصل @Model.assessmentTypeDetail.RequiredMark</p>
+               
+
+                    <form asp-controller="Student" asp-action="EditSemesters" method="post" enctype="multipart/form-data">
+
+
+                        <div class="mb-3">
+
+                            <label for="uploadField" class="form-label">ارفاق ملف التقرير</label>
+                            <input type="file" id="uploadField" name="ReportFile" class="form-control" accept=".pdf" />
+
+                        </div>
+                       
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+
+                </div>
+
+
+            </div>
+
+        </div>
+        <div class="col-sm-1"></div>
+    </div>
+</body>
