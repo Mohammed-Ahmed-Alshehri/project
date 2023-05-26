@@ -102,7 +102,7 @@
                     <p>الدرجة: @stdmark من اصل @Model.assessmentTypeDetail.RequiredMark</p>
                
 
-                    <form asp-controller="Student" asp-action="EditSemesters" method="post" enctype="multipart/form-data">
+                    <form asp-controller="Student" asp-action="SubmitAssignment" method="post" enctype="multipart/form-data" id="form">
 
 
                         <div class="mb-3">
@@ -111,12 +111,25 @@
                             <input type="file" id="uploadField" name="ReportFile" class="form-control" accept=".pdf" />
 
                         </div>
+
+                        <input asp-for="StudentSemesterEvaluationMarkId" hidden />
+                        <input asp-for="SemesterStudentAndEvaluationDetail_DetailId" hidden />
+                        <input asp-for="DepartmentAssessmentTypeDetail_DetailId" hidden />
+                        <input asp-for="StudentMark" hidden />
+                        <input asp-for="SupportiveDocumentsPath" hidden  id="HasFile"/>
                        
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
 
+
+                    <div class="container-fluid" style="height:50vh; display:none" id="filediv"  >
+                        <iframe src="~/@Model.SupportiveDocumentsPath" type="application/pdf" style="border:none; height:100%; width:100%"></iframe>
+                    </div>
+
                 </div>
 
+            
+               
 
             </div>
 
@@ -124,3 +137,32 @@
         <div class="col-sm-1"></div>
     </div>
 </body>
+
+
+@section Scripts
+{
+
+    <script>
+
+        ViewUploadShowfile();
+
+        function ViewUploadShowfile()
+        
+        {
+
+            if (document.getElementById('HasFile').value == "")
+            {
+
+                document.getElementById('form').style.display = "block";
+                document.getElementById('filediv').style.display = "none";
+               
+            }else
+            {
+                document.getElementById('filediv').style.display = "block";
+                document.getElementById('form').style.display = "none";
+            }
+        }
+
+   </script>
+}
+

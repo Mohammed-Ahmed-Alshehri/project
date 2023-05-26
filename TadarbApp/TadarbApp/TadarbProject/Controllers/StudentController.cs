@@ -486,7 +486,7 @@ namespace TadarbProject.Controllers
         }
 
         [HttpPost]
-        public IActionResult SubmitAssignment(StudentSemesterEvaluationMark obj)
+        public IActionResult SubmitAssignment(StudentSemesterEvaluationMark obj, IFormFile? ReportFile)
         {
 
 
@@ -506,7 +506,31 @@ namespace TadarbProject.Controllers
 
 
 
-            return View();
+            //Startt UploadFile
+
+            string fileName = Guid.NewGuid().ToString();
+
+            string wwwRootPath = _WebHostEnvironment.WebRootPath;
+
+            var uploadTo = Path.Combine(wwwRootPath, @"StudentDocments\Assignments\");
+
+            var extension = Path.GetExtension(ReportFile.FileName);
+
+            //here is to Create a file to has the user uploaded file
+            using (var fileStreams = new FileStream(Path.Combine(uploadTo, fileName + extension), FileMode.Create))
+            {
+                ReportFile.CopyTo(fileStreams);
+            }
+
+            //Here what will be in the database.
+            obj.SupportiveDocumentsPath = @"StudentDocments\Assignments\" + fileName + extension;
+
+
+            _DbContext.StudentSemesterEvaluationMarks.Update(obj);
+
+            _DbContext.SaveChanges();
+
+            return RedirectToAction("ViewAssignments");
 
         }
 

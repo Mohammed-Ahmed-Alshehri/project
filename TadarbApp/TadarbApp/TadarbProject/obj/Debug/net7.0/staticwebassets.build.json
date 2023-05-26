@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "mMqQ7vY4qCvovVDLDp8ZJjIeRUM1Es0X5x9D/gdRoSc=",
+  "Hash": "w5uv4XFpLHBxjRfmlU4cCWK+OKOb9o23jHDxKBpCpaI=",
   "Source": "TadarbProject",
   "BasePath": "_content/TadarbProject",
   "Mode": "Default",
@@ -1664,6 +1664,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\StudentDocments\\Assignments\\713b3332-43fc-49df-90db-d14c8828e020.pdf",
+      "SourceId": "TadarbProject",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "BasePath": "_content/TadarbProject",
+      "RelativePath": "StudentDocments/Assignments/713b3332-43fc-49df-90db-d14c8828e020.pdf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\StudentDocments\\Assignments\\713b3332-43fc-49df-90db-d14c8828e020.pdf"
+    },
+    {
+      "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\StudentDocments\\Assignments\\af851aef-7bbf-42c5-8003-c025fadc8170.pdf",
+      "SourceId": "TadarbProject",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\",
+      "BasePath": "_content/TadarbProject",
+      "RelativePath": "StudentDocments/Assignments/af851aef-7bbf-42c5-8003-c025fadc8170.pdf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\StudentDocments\\Assignments\\af851aef-7bbf-42c5-8003-c025fadc8170.pdf"
     },
     {
       "Identity": "C:\\Users\\moham\\Desktop\\IS15\\GitHub\\TadarbApp\\TadarbApp\\TadarbProject\\wwwroot\\StudentDocments\\CV\\0de907f4-a846-462a-a01c-b50af7146eab.pdf",
