@@ -1,7 +1,7 @@
 ﻿@model StudentSemesterEvaluationMark
 
 @{
-    ViewData["Title"] = "تسليم الواجب";
+    ViewData["Title"] = " تقييم الواجب";
 }
 
 <head>
@@ -119,29 +119,32 @@
                     <p>الدرجة: @stdmark من اصل @Model.assessmentTypeDetail.RequiredMark</p>
 
 
-                    <form asp-controller="Student" asp-action="SubmitAssignment" method="post" enctype="multipart/form-data" id="form" style="display:@SohwForm">
+                  
 
 
-                        <div class="mb-3">
+                    <div class="container-fluid" id="filediv" style="display:@ShowDoc; height:50vh;">
+                        <iframe src="~/@Model.SupportiveDocumentsPath" type="application/pdf" style="border:none; height:100%; width:100%"></iframe>
+                    </div>
 
-                            <label for="uploadField" class="form-label">ارفاق ملف التقرير</label>
-                            <input type="file" id="uploadField" name="ReportFile" class="form-control" accept=".pdf" />
+
+
+                    <form asp-controller="AcadmicSupervisor" asp-action="EvaluateStudentAssignment" method="post" id="form" class="mt-5">
+
+
+                        <div class="mb-5">
+
+                            <label for="uploadField" class="form-label">تقيم التقرير من  @Model.assessmentTypeDetail.RequiredMark </label>
+                            <input asp-for="StudentMark"  type="number" id="uploadField" class="form-control"  />
 
                         </div>
 
                         <input asp-for="StudentSemesterEvaluationMarkId" hidden />
                         <input asp-for="SemesterStudentAndEvaluationDetail_DetailId" hidden />
                         <input asp-for="DepartmentAssessmentTypeDetail_DetailId" hidden />
-                        <input asp-for="StudentMark" hidden />
                         <input asp-for="SupportiveDocumentsPath" hidden id="HasFile" />
 
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary" asp-route-StuRqId="@ViewBag.CurrentStuRqId" style="width:8vh">تقيم</button>
                     </form>
-
-
-                    <div class="container-fluid" id="filediv" style="display:@ShowDoc; height:50vh;">
-                        <iframe src="~/@Model.SupportiveDocumentsPath" type="application/pdf" style="border:none; height:100%; width:100%"></iframe>
-                    </div>
 
                 </div>
 

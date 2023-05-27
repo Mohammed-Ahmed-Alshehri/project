@@ -217,6 +217,154 @@ namespace TadarbProject.Controllers
         }
 
 
+
+        [HttpGet]
+        public IActionResult AssignedStudentAssignments(int? StuRqId)
+        {
+
+            if (StuRqId == 0 || StuRqId == null)
+            {
+                return NotFound();
+            }
+
+            ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
+
+            int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
+
+            var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).AsNoTracking().FirstOrDefault();
+
+            var Employee = _DbContext.Employees.Where(item => item.UserAccount_UserId == RUserId).Include(item => item.userAcount).Include(item => item.department).AsNoTracking().FirstOrDefault();
+
+            var Department = _DbContext.Departments.Where(item => item.DepartmentId == Employee.Department_DepartmentId).AsNoTracking().FirstOrDefault();
+
+
+            var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Department.Organization_OrganizationId).AsNoTracking().FirstOrDefault();
+
+            ViewBag.OrganizationName = OrganizationOfR.OrganizationName + " - " + Department.DepartmentName;
+            ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
+            ViewBag.Username = user.FullName;
+
+
+            IEnumerable<StudentSemesterEvaluationMark> Assignments = Enumerable.Empty<StudentSemesterEvaluationMark>();
+
+
+            Assignments = _DbContext.StudentSemesterEvaluationMarks.FromSqlRaw("SELECT * FROM StudentSemesterEvaluationMarks WHERE SemesterStudentAndEvaluationDetail_DetailId IN" +
+                $"(SELECT SemesterStudentAndEvaluationDetailId FROM SemestersStudentAndEvaluationDetails WHERE StudentRequest_StudentRequestId = {StuRqId})")
+                .Include(item => item.assessmentTypeDetail.assessmentType).AsNoTracking().ToList();
+
+
+            ViewBag.CurrentStuRqId = StuRqId;
+
+            return View(Assignments);
+
+        }
+
+
+        [HttpGet]
+        public IActionResult EvaluateStudentAssignment(int? SSEMId, int? StuRqId)
+        {
+
+            if (SSEMId == 0 || SSEMId == null)
+            {
+                return NotFound();
+            }
+
+            ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
+
+            int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
+
+            var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).AsNoTracking().FirstOrDefault();
+
+            var Employee = _DbContext.Employees.Where(item => item.UserAccount_UserId == RUserId).Include(item => item.userAcount).Include(item => item.department).AsNoTracking().FirstOrDefault();
+
+            var Department = _DbContext.Departments.Where(item => item.DepartmentId == Employee.Department_DepartmentId).AsNoTracking().FirstOrDefault();
+
+
+            var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Department.Organization_OrganizationId).AsNoTracking().FirstOrDefault();
+
+            ViewBag.OrganizationName = OrganizationOfR.OrganizationName + " - " + Department.DepartmentName;
+            ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
+            ViewBag.Username = user.FullName;
+
+
+
+
+            var Assignment = _DbContext.StudentSemesterEvaluationMarks.Where(item => item.StudentSemesterEvaluationMarkId == SSEMId)
+                .Include(item => item.assessmentTypeDetail.assessmentType).AsNoTracking().FirstOrDefault();
+
+
+            ViewBag.CurrentStuRqId = StuRqId;
+
+            return View(Assignment);
+
+        }
+
+
+        [HttpPost]
+        public IActionResult EvaluateStudentAssignment(StudentSemesterEvaluationMark Assignment, int? StuRqId)
+        {
+
+
+            if (Assignment == null)
+            {
+                return NotFound();
+            }
+
+
+            ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
+
+            int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
+
+            var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).AsNoTracking().FirstOrDefault();
+
+            var Employee = _DbContext.Employees.Where(item => item.UserAccount_UserId == RUserId).Include(item => item.userAcount).Include(item => item.department).AsNoTracking().FirstOrDefault();
+
+            var Department = _DbContext.Departments.Where(item => item.DepartmentId == Employee.Department_DepartmentId).AsNoTracking().FirstOrDefault();
+
+
+            var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Department.Organization_OrganizationId).AsNoTracking().FirstOrDefault();
+
+            ViewBag.OrganizationName = OrganizationOfR.OrganizationName + " - " + Department.DepartmentName;
+            ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
+            ViewBag.Username = user.FullName;
+
+
+
+            if (Assignment.StudentMark == null)
+            {
+                return RedirectToAction("AssignedStudentAssignments", new { StuRqId = StuRqId });
+            }
+
+            var StudentAndEvaluationDetails = _DbContext.SemestersStudentAndEvaluationDetails.Where(item => item.SemesterStudentAndEvaluationDetailId == Assignment.SemesterStudentAndEvaluationDetail_DetailId)
+                .AsNoTracking().FirstOrDefault();
+
+
+            if (StudentAndEvaluationDetails.AcademicSupervisorEvaluationMark == null)
+            {
+                StudentAndEvaluationDetails.AcademicSupervisorEvaluationMark = 0;
+            }
+
+            var oldAssignment = _DbContext.StudentSemesterEvaluationMarks.Where(item => item.StudentSemesterEvaluationMarkId == Assignment.StudentSemesterEvaluationMarkId).AsNoTracking().FirstOrDefault();
+
+            if (oldAssignment.StudentMark != null)
+            {
+                StudentAndEvaluationDetails.AcademicSupervisorEvaluationMark -= oldAssignment.StudentMark;
+            }
+
+            StudentAndEvaluationDetails.AcademicSupervisorEvaluationMark += Assignment.StudentMark;
+
+            _DbContext.StudentSemesterEvaluationMarks.Update(Assignment);
+            _DbContext.SemestersStudentAndEvaluationDetails.Update(StudentAndEvaluationDetails);
+            _DbContext.SaveChanges();
+
+
+
+
+            return RedirectToAction("AssignedStudentAssignments", new { StuRqId = StuRqId });
+
+        }
+
+
         #region
 
 

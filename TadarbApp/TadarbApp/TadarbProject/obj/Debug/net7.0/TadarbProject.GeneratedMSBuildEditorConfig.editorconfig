@@ -20,6 +20,10 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNhZG1pY1N1cGVydmlzb3JcQXNzaWduQXNzaWdubWVudHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/moham/Desktop/IS15/GitHub/TadarbApp/TadarbApp/TadarbProject/Views/AcadmicSupervisor/AssignedStudentAssignments.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNhZG1pY1N1cGVydmlzb3JcQXNzaWduZWRTdHVkZW50QXNzaWdubWVudHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/moham/Desktop/IS15/GitHub/TadarbApp/TadarbApp/TadarbProject/Views/AcadmicSupervisor/AssignedStudents.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNhZG1pY1N1cGVydmlzb3JcQXNzaWduZWRTdHVkZW50cy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -30,6 +34,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/moham/Desktop/IS15/GitHub/TadarbApp/TadarbApp/TadarbProject/Views/AcadmicSupervisor/EditAccount.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNhZG1pY1N1cGVydmlzb3JcRWRpdEFjY291bnQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/moham/Desktop/IS15/GitHub/TadarbApp/TadarbApp/TadarbProject/Views/AcadmicSupervisor/EvaluateStudentAssignment.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNhZG1pY1N1cGVydmlzb3JcRXZhbHVhdGVTdHVkZW50QXNzaWdubWVudC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/moham/Desktop/IS15/GitHub/TadarbApp/TadarbApp/TadarbProject/Views/AcadmicSupervisor/Index.cshtml]

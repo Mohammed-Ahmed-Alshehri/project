@@ -1,7 +1,6 @@
-﻿@model IEnumerable<StudentRequestOpportunity>
-
+﻿@model IEnumerable<StudentSemesterEvaluationMark>
 @{
-    ViewData["Title"] = "قائمة الطلاب ";
+    ViewData["Title"] = "قائمة المهام المطلوبة";
 }
 
 <head>
@@ -30,26 +29,36 @@
                 <h5> مرحبا بك @ViewBag.Username </h5>
                 <p class="text-gray font-weight-bold text-uppercase px-3 small pb-4 mb-0">القائمة</p>
 
-
                 <ul class="nav flex-column bg-white mb-0">
                     <li class="nav-item">
-                        <a asp-controller="AcadmicSupervisor" asp-action="index" class="nav-link text-dark font-italic bg-light">
-                            <i class="fa-solid fa-house  mr-3 text-primary fa-fw "></i>
+                        <a asp-action="index" class="nav-link text-dark font-italic bg-light">
+                            <i class="fa-solid fa-house text-primary"></i>
                             الصفحة الرئيسية
                         </a>
                     </li>
 
                     <li class="nav-item">
-                        <a asp-controller="AcadmicSupervisor" asp-action="AssignedStudents" class="nav-link text-dark font-italic bg-light">
-                            <i class="fa-solid fa-house  mr-3 text-primary fa-fw "></i>
-                            طلابي
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-address-card mr-3 text-primary fa-fw"></i>
+
+                            إدارة الفرص
+
                         </a>
+                        <div class="dropdown-menu" style="">
+
+                            <a class="dropdown-item" asp-action="ViewOpportunities">عرض الفرص الجديدة </a>
+                            <a class=" dropdown-item" asp-action="ViewOpportunitiesStatus"> عرض حالة القبول </a>
+
+                        </div>
+
                     </li>
 
                     <li class="nav-item">
-                        <a asp-controller="AcadmicSupervisor" asp-action="AssignSemester" class="nav-link text-dark font-italic bg-light">
-                            <i class="fa-solid fa-house  mr-3 text-primary fa-fw "></i>
-                            تسجييل الفصول
+                        <a asp-controller="Student" asp-action="ViewAssignments" class="nav-link text-dark font-italic ">
+                            <i class="fa fa-address-card mr-3 text-primary fa-fw"></i>
+                            ارفاق التقارير
                         </a>
                     </li>
 
@@ -60,7 +69,7 @@
             </div>
 
 
-            <!-- End vertical navbar -->
+            <!-- End vertical navbar1 -->
             <!-- Page content holder -->
             <div class="page-content p-1" id="content">
                 <!-- Toggle button -->
@@ -73,12 +82,10 @@
         <div class="col-sm-6">
             <div class="card " style="border-radius: 25px; margin-top:2cm; margin-bottom:3cm; padding:5px 5px 5px 5px ; border-color:black;">
                 <div class="card-header" style="text-align: center;">
-                    <h3>قائنة الطلاب المسجلين</h3>
+                    <h3> المهام المطلوبة</h3>
 
 
-                    <a asp-controller="DepartmentUniversity" asp-action="AddAcademicSupervisor" class="table-search float-end">
-                        <button class="btn " style="background-color:#1c4c64; color:white;font-size:18px" type="submit" asp>  اضافة مسؤول جديد <i class="fa fa-add"></i></button>
-                    </a>
+
 
                 </div>
                 <div class="card-body">
@@ -87,19 +94,15 @@
                         <table class="table table-hover table-center" style="font-size:18px">
                             <thead>
                                 <tr>
-                                    <th>اسم الطالب</th>
-                                    <th>الرقم الجامعي</th>
-                                    <th>رقم الهاتف	</th>
-                                    <th class="">البريد الالكتروني	</th>
 
-                                    <th class="">جهة التدريب</th>
-                                    <th class="text-center">عرض التقارير</th>
+                                    <th>اسم التقرير</th>
+
+                                    <th class="text-center">عرض</th>
 
 
                                 </tr>
                             </thead>
                             <tbody>
-
 
 
 
@@ -109,23 +112,16 @@
                                         <td class="text-nowrap">
                                             <div class="font-weight-600">
                                                 <div class="font-weight-600 ">
-                                                    @item.student.user.FullName
+                                                    @item.assessmentTypeDetail.assessmentType.AssessmentTypeName
                                                 </div>
 
                                             </div>
                                         </td>
 
-                                        <td class="text-nowrap">      @item.student.UniversityStudentNumber	</td>
-
-                                        <td class="text-nowrap">      @item.student.user.Phone	</td>
-
-                                        <td class="text-nowrap"> @item.student.user.UserEmail	</td>
-
-                                        <td class="text-nowrap">  @item.trainingOpportunity.Branch.organization.OrganizationName  -   @item.trainingOpportunity.Branch.BranchName	 </td>
                                         <td class="text-center">
-                                            <a href="@Url.Action("AssignedStudentAssignments",new {StuRqId=item.StudentRequestOpportunityId})" class="btn btn-primary">
-                                                <i class="bi bi-file-earmark-check"></i>
-                                            </a>
+
+                                            <a class="btn btn-info" href="@Url.Action("EvaluateStudentAssignment",new {SSEMId=item.StudentSemesterEvaluationMarkId , StuRqId=ViewBag.CurrentStuRqId})"> <i class="bi bi-file-earmark-text"></i> </a>
+
                                         </td>
 
 
