@@ -44,16 +44,16 @@
                     <li class="nav-item">
 
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                            <i class="fa fa-address-card mr-3  fa-fw"></i>
+                        <a class="nav-link dropdown-toggle" style="color:black" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa-solid fa-bars-progress"></i>
 
                             إدارة الفرص
 
                         </a>
                         <div class="dropdown-menu" style="">
 
-                            <a class="dropdown-item" asp-action="ViewOpportunities">عرض الفرص الجديدة </a>
-                            <a class=" dropdown-item" asp-action="ViewOpportunitiesStatus"> عرض حالة القبول </a>
+                            <a class="dropdown-item" asp-action="ViewOpportunities" style="color:black">عرض الفرص الجديدة </a>
+                            <a class=" dropdown-item" asp-action="ViewOpportunitiesStatus" style="color:black"> عرض حالة القبول </a>
 
                         </div>
 
@@ -61,7 +61,7 @@
 
                     <li class="nav-item">
                         <a asp-controller="Student" asp-action="ViewAssignments" class="nav-link text-dark font-italic ">
-                            <i class="fa fa-address-card mr-3 text-primary fa-fw"></i>
+                            <i class="fa fa-address-card mr-3  fa-fw"></i>
                             ارفاق التقارير
                         </a>
                     </li>
@@ -88,7 +88,7 @@
         <div class="col-sm-8">
             <form asp-action="EditAccount" method="get">
                 <div class="card " style="border-radius: 25px;  margin-bottom:3cm; padding:5px 5px 5px 5px ; border-color:black; width:auto; height:auto;">
-                    <div class="card-header">
+                    <div class="card-header" >
                         <h3 style="text-align: center;">معلومات المتدرب</h3>
                         <input asp-for="@Model.TraineeId" hidden />
 
@@ -107,7 +107,7 @@
                                                 <div class="osahan-user-media-body">
 
                                                     <br /><br />
-                                                    
+                                                   
                                                     <p class="mb-1" style="font-size:22px">@Model.user.FullName</p>
                                                     <h class="mb-1">الرقم الجامعي</h>
 
@@ -248,7 +248,7 @@
 
 
                                                 <div class="col-md-6">
-                                                    <div class="bg-white card payments-item mb-4 shadow-sm">
+                                                    <div class="bg-white card payments-item mb-4 shadow-sm ">
                                                         <div class="gold-members p-4">
                                                             <a href="#">
                                                             </a>

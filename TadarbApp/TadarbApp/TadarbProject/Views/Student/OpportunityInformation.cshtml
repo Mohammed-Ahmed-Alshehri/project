@@ -43,16 +43,16 @@
                         </a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                            <i class="fa fa-address-card mr-3 text-primary fa-fw"></i>
+                        <a class="nav-link dropdown-toggle bg-light" style="color:black" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa-solid fa-bars-progress text-primary"></i>
 
                             إدارة الفرص
 
                         </a>
                         <div class="dropdown-menu" style="">
 
-                            <a class="dropdown-item" asp-action="ViewOpportunities">عرض الفرص الجديدة </a>
-                            <a class=" dropdown-item" asp-action="ViewOpportunitiesStatus"> عرض حالة القبول </a>
+                            <a class="dropdown-item" asp-action="ViewOpportunities" style="color:black">عرض الفرص الجديدة </a>
+                            <a class=" dropdown-item" asp-action="ViewOpportunitiesStatus" style="color:black"> عرض حالة القبول </a>
 
                         </div>
 
@@ -60,7 +60,7 @@
 
                     <li class="nav-item">
                         <a asp-controller="Student" asp-action="ViewAssignments" class="nav-link text-dark font-italic ">
-                            <i class="fa fa-address-card mr-3 text-primary fa-fw"></i>
+                            <i class="fa fa-address-card mr-3  fa-fw"></i>
                             ارفاق التقارير
                         </a>
                     </li>
@@ -218,7 +218,7 @@
                                     <button type="button" style="font-size:20px;" class="btn btn-primary btn-lg" onclick="confirm()">التسجيل بالفرصة</button>
                                     &nbsp;&nbsp;
 
-                                    <button type="submit" asp-controller="Student" asp-action="Index" class=" btn  btn-lg" style="background-color:darkgray; color:black;  font-size:20px; border-radius:40;">الرجوع للخلف</button>
+                                    <button type="submit" asp-controller="Student" asp-action="index" class=" btn  btn-lg" style="background-color:gray; color:black;font-size:20px; border-radius:40;">الرجوع للخلف</button>
 
                                 </div>
 

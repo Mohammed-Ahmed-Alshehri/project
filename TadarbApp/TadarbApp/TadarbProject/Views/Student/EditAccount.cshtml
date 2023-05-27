@@ -20,7 +20,7 @@
         <div class="col-sm-4">
             <div class="card" style="border-radius: 25px; margin-top:2cm; margin-bottom:3cm; padding:5px 5px 5px 5px ; border-color:black;background-color:#dfebf2">
                 <div class="card-body p-5">
-                    <h2 class=" text-center mb-5"> تعديل المعلومات</h2>
+                    <h2 class=" text-center mb-5"> تعديل معلومات الحساب</h2>
 
                     <form asp-controller="Student" asp-action="EditAccount" method="post" class="needs-validation" enctype="multipart/form-data" novalidate>
                         <input asp-for="@Model.TraineeId" hidden />
@@ -60,13 +60,13 @@
                         </div>
 
                         <div class="mb-4 pb-2">
-                            <i class="fa-solid fa-lock"></i>
+                            <i class="fa-solid fa-file-pen"></i>
                             <label class="form-label" for="Skils" style="font-size:20px;">وصف المهارات </label>
                             <textarea id="Skils" asp-for="SkillsDescription" class="form-control form-control-lg"></textarea>
                         </div>
 
                         <div class="mb-4 pb-2">
-
+                            <i class="fa-solid fa-file-arrow-up"></i>
                             <label for="LogoPathFile" class="form-label mt-4" style="font-size:20px;">  إرفاق السيرة الذاتية <span style="color:red">* </span> </label>
 
                             @* //(imgFile)هنا اسم الملف الصورة مهم يطابق الاسم في الكنترولر لنه سيتم ارساله مع المودل.*@
@@ -76,7 +76,7 @@
                         </div>
 
                         <div class="mb-4 pb-2">
-
+                            <i class="fa-solid fa-file-medical"></i>
                             <label for="uploadFieldop" class="form-label mt-4" style="font-size:20px;"> إرفاق ملفات اخرى</label>
 
                             @* //(imgFile)هنا اسم الملف الصورة مهم يطابق الاسم في الكنترولر لنه سيتم ارساله مع المودل.*@
