@@ -105,14 +105,14 @@
                         </div>
 
                         <div class="mb-4 pb-2">
-                            <i class="fa-regular fa-id-card"></i>
+                            <i class="fa-solid fa-clock"></i>
                             <label class="form-label" for="CompletedHours" style="font-size:20px;">عدد الساعات المكتسبة </label>
                             <input type="number" asp-for="UniversityTraineeStudent.CompletedHours" id="CompletedHours" class="form-control form-control-lg" required />
                             <div class="invalid-feedback" style="text-align: right;"> الرجاء إدخال عدد الساعات المكتسبة </div>
                         </div>
 
                         <div class="mb-4 pb-2">
-                            <i class="fa-regular fa-id-card"></i>
+                            
                             <label class="form-label" for="EmployeeSSN" style="font-size:20px;">الرقم الجامعي </label>
                             <input type="number" asp-for="UniversityTraineeStudent.UniversityStudentNumber" id="EmployeeSSN" class="form-control form-control-lg" required />
                             <div class="invalid-feedback" style="text-align: right;"> الرجاء إدخال الرقم الجامعي </div>
@@ -120,7 +120,7 @@
 
 
                         <div class="mb-4 pb-2">
-                            <i class="fa-regular fa-id-card"></i>
+                            
                             <label class="form-label" for="STUGPA" style="font-size:20px;">المعدل التراكمي  </label>
                             <input type="number" min="1.5" max="5.0" step="any" asp-for="UniversityTraineeStudent.GPA" id="STUGPA" class="form-control form-control-lg" required />
                             <div class="invalid-feedback" style="text-align: right;"> الرجاء إدخال المعدل التراكمي </div>
@@ -129,11 +129,11 @@
 
                         <div class="mb-4 pb-2">
 
-                            <i class="fa-regular fa-id-card"></i>
+                           
 
-                            <label class="form-label" for="STUbtn" style="font-size:20px;"> تحديد نوع الطالب </label>
-
-                            <br />
+@*                            <label class="form-label" for="STUbtn" style="font-size:20px;"> </label>
+*@
+                            <br /> 
                             <div class="btn-group" style="width:60%" role="group" id="STUbtn" aria-label="Basic radio toggle button group">
                                 <div class="btn-group" style="width:60%" role="group" id="STUbtn" aria-label="Basic radio toggle button group">
 
@@ -154,11 +154,13 @@
                                 </div>
 
                                 <input type="text" asp-for="UniversityTraineeStudent.Gender" id="STUGender" class="form-control form-control-lg" required hidden />
-
+                                &nbsp;&nbsp;
                                 <div class="invalid-feedback" style="text-align: right;"> الرجاء تحديد النوع </div>
 
                             </div>
-
+                            </div>
+                            
+                            
 
                             <div class="mb-4 pb-2">
                                 <i class="fa-solid fa-phone"></i>

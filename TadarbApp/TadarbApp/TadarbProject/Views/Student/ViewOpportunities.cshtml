@@ -55,9 +55,9 @@
                         </div>
 
                     </li>
-                    
+
                     <li class="nav-item">
-                        <a asp-controller="" asp-action="" class="nav-link text-dark font-italic ">
+                        <a asp-controller="Student" asp-action="ViewAssignments" class="nav-link text-dark font-italic ">
                             <i class="fa fa-address-card mr-3 text-primary fa-fw"></i>
                             ارفاق التقارير
                         </a>
@@ -93,11 +93,11 @@
                             <div class="col-12 p-1" style="border:1px solid #008cba; border-radius:5px;">
                                 <div class="card" id="card">
 
-                                    <img src="~/@item.Department.organization.LogoPath" class="card-img-top rounded" width="300" height="300" />
+                                    <img src="~/@item.Department.organization.LogoPath" class="card-img-top rounded" width="250" height="250" />
                                     <div class="card-body">
                                         <div class="pl-1">
                                             <p class="card-title" >
-                                                <h3 style="width:80%">@item.DetailFiled.SpecializationName</h3>
+                                                <h3 style="width:auto">@item.DetailFiled.SpecializationName</h3>
                                             </p>
                                             <br>
                                             <p class="card-title h5 " style="color:#1c4c64">

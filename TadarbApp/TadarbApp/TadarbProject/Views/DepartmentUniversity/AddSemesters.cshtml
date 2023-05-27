@@ -91,7 +91,7 @@
                                 <br />
 
                                 <div class="form-outline" style="text-align: right;">
-                                    <i class="fa-solid fa-user"></i>
+                                    <i class="fa-solid fa-calendar-days"></i>
                                     <label class="form-label" for="FullName"  style="font-size:20px;">السنة الدراسية</label>
 
                                     <input asp-for="SemesterTrainingSettingMaster.AcademicYear" placeholder="2023" type="text" id="FullNameID" class="form-control form-control-lg" required />
@@ -119,7 +119,7 @@
                         </div>
 
                         <div class="mb-4 pb-2">
-                            <i class="fa-regular fa-id-card"></i>
+                            <i class="fa-regular fa-calendar"></i>
                             <label class="form-label" for="EmployeeSSN" style="font-size:20px;"> تاريخ بداية الفصل </label>
                             <input type="date" asp-for="SemesterTrainingSettingMaster.StartDate" id="EmployeeSSN" class="form-control form-control-lg" required />
                             <div class="invalid-feedback" style="text-align: right;"> الرجاء إدخال تاريخ بداية الفصل </div>
@@ -127,7 +127,7 @@
 
 
                         <div class="mb-4 pb-2">
-                            <i class="fa-solid fa-phone"></i>
+                            <i class="fa-regular fa-calendar"></i>
                             <label class="form-label" for="UserPhone" style="font-size:20px;">تاريخ نهاية الفصل</label>
                             <input type="date" asp-for="SemesterTrainingSettingMaster.EndDate" id="PhoneID" maxlength="10" class="form-control form-control-lg" required />
                             <div class="invalid-feedback" id="PhoneIDMassage" style="text-align: right;"> الرجاء إدخال تاريخ نهاية الفصل </div>
@@ -147,7 +147,7 @@
                         </div>
 
                         <div class="mb-4 pb-2">
-
+                            <i class="fa-solid fa-file"></i>
                             <label for="LogoPathFile" class="form-label mt-4" style="font-size:20px;"> أرفق ملف التقييم الخاص للمشرف التدريبي </label>
 
                             @* //(imgFile)هنا اسم الملف الصورة مهم يطابق الاسم في الكنترولر لنه سيتم ارساله مع المودل.*@
@@ -158,7 +158,7 @@
 
 
                         <div class="mb-4 pb-2">
-                            <i class="fa-solid fa-at"></i>
+                            <i class="fa-solid fa-calendar-week"></i>
                             <label class="form-label" for="UserEmail" style="font-size:20px;">عدد الاسابيع المطلوبة</label>
                             <input type="number" asp-for="SemesterTrainingSettingMaster.RequiredWeeks" id="UserEmailID" class="form-control form-control-lg" required />
                             <div class="invalid-feedback" id="UserEmailMassage" style="text-align: right;"> الرجاء إدخال عدد الاسابيع المطلوبة </div>
@@ -166,7 +166,7 @@
 
 
                         <div class="mb-4 pb-2">
-                            <i class="fa-solid fa-lock"></i>
+                            <i class="fa-solid fa-clock"></i>
                             <label class="form-label" for="UserPassword" style="font-size:20px;">عدد الساعات المطلوبة</label>
                             <input type="number" asp-for="SemesterTrainingSettingMaster.MinimumRequiredHours" id="UserPasswordID" class="form-control form-control-lg" required />
                             <div class="invalid-feedback" id="PasswordMassage" style="text-align: right;">الرجاء إدخال عدد الساعات المطلوبة  </div>

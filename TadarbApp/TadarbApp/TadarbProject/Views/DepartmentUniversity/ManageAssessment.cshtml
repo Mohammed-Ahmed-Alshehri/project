@@ -29,8 +29,9 @@
 <partial name="_Notification" />
 <body style="background: linear-gradient(#1c4c64,#5590ad);">
 
+    <div class="row">
 
-        <div class="col-sm-4" style="z-index:2;">
+        <div class="col-sm-3" style="z-index:2;">
 
             <div class="vertical-nav bg-white" id="sidebar">
                 <div class="py-4 px-3 mb-4 bg-light">
@@ -96,8 +97,8 @@
 
 
         </div>
-        <div class="col-sm-5">
-            <div class="card" style="border-radius: 25px; margin-top:2cm; margin-bottom:3cm; padding:5px 5px 5px 5px ; border-color:black;background-color:#dfebf2">
+        <div class="col-sm-7">
+            <div class="card" style="border-radius: 25px; margin-top:1cm; margin-bottom:3cm; padding:5px 5px 5px 5px ; border-color:black;background-color:#dfebf2">
                 <div class="card-body p-5">
                     <div class="col-xs-12 ">
                         <div class="panel panel-info">
@@ -164,9 +165,10 @@
                 </div>
 
             </div>
-        </div>
-    <div class="col-sm-3"></div>
-
+       
+    <div class="col-sm-2"></div>
+    </div>
+    </div>
 </body>
 @section Scripts{
 
@@ -203,7 +205,7 @@
                         success: function (data) {
 
                             //console.log(data.assiment[0].assessmentTypeName);
-                            list_fieldHTML += ' <div class="row"><div class="col-xs-4 col-sm-4 col-md-4"><div class="form-group"><label for="list[' + x + '][]">نوع التقييم</label> <select name="list[' + x + '][]" class="form-control AssessmentList"><option value="" selected disabled >--الرجاء اختار نوع التدريب--</<option><option value="' + data.assiment[0].assessmentTypeId + '">' + data.assiment[0].assessmentTypeName + '</option> <option value="' + data.assiment[1].assessmentTypeId + '">' + data.assiment[1].assessmentTypeName + '</option><option value="' + data.assiment[2].assessmentTypeId + '">' + data.assiment[2].assessmentTypeName + '</option> <option value="' + data.assiment[3].assessmentTypeId + '">' + data.assiment[3].assessmentTypeName + '</option> </select> </div></div><div class="col-xs-7 col-sm-7 col-md-7"> <label for="list[' + x + '][]">الدرجة المطلوبة</label><div class="form-group"><input name="list[' + x + '][]" type="text" placeholder="ادخل الدرجة المناسبة للتقييم" class="form-control AssessmentInName"/></div></div> <div class="col-xs-1 col-sm-7 col-md-1"><label for="list[' + x + '][]"> حذف</label>   <div class="form-group">  <a href="javascript:void(0);" class="list_remove_button btn btn-danger">-</a>  </div> </div> </div>'; //New input field html
+                            list_fieldHTML += ' <div class="row"><div class="col-xs-4 col-sm-4 col-md-4"><div class="form-group"><label for="list[' + x + '][]">نوع التقييم</label> <select name="list[' + x + '][]" class="form-control AssessmentList"><option value="" selected disabled >--الرجاء اختيار نوع التقييم--</<option><option value="' + data.assiment[0].assessmentTypeId + '">' + data.assiment[0].assessmentTypeName + '</option> <option value="' + data.assiment[1].assessmentTypeId + '">' + data.assiment[1].assessmentTypeName + '</option><option value="' + data.assiment[2].assessmentTypeId + '">' + data.assiment[2].assessmentTypeName + '</option> <option value="' + data.assiment[3].assessmentTypeId + '">' + data.assiment[3].assessmentTypeName + '</option> </select> </div></div><div class="col-xs-7 col-sm-7 col-md-7"> <label for="list[' + x + '][]">الدرجة المطلوبة</label><div class="form-group"><input name="list[' + x + '][]" type="text" placeholder="ادخل الدرجة المناسبة للتقييم" class="form-control AssessmentInName"/></div></div> <div class="col-xs-1 col-sm-7 col-md-1"><label for="list[' + x + '][]"> إزالة</label>   <div class="form-group">  <a href="javascript:void(0);" class="list_remove_button btn btn-danger">-</a>  </div> </div> </div>'; //New input field html
                             x++;  //Increment field counter
 
                             $('.list_wrapper').append(list_fieldHTML); //Add field html

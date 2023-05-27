@@ -48,40 +48,38 @@
 
                 <ul class="nav flex-column bg-white mb-0">
                     <li class="nav-item">
-                        <a asp-controller="DepartmentUniversity" asp-action="Index" class="nav-link text-dark font-italic  ">
-                            <i class="fa-solid fa-house"></i>
+                        <a asp-action="index" class="nav-link text-dark font-italic ">
+                            <i class="fa-solid fa-house "></i>
                             الصفحة الرئيسية
                         </a>
                     </li>
 
+                    <li class="nav-item">
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-address-card mr-3 text-primary fa-fw"></i>
+
+                            إدارة الفرص
+
+                        </a>
+                        <div class="dropdown-menu" style="">
+
+                            <a class="dropdown-item" asp-action="ViewOpportunities">عرض الفرص الجديدة </a>
+                            <a class=" dropdown-item" asp-action="ViewOpportunitiesStatus"> عرض حالة القبول </a>
+
+                        </div>
+
+                    </li>
 
                     <li class="nav-item">
-                        <a asp-controller="DepartmentUniversity" asp-action="ViewAcademicSupervisors" class="nav-link text-dark font-italic    ">
-                            <i class="fa-solid fa-users-gear "></i>
-                            إدارة المشرفين
+                        <a asp-controller="Student" asp-action="ViewAssignments" class="nav-link text-dark font-italic bg-light ">
+                            <i class="fa fa-address-card mr-3 text-primary fa-fw"></i>
+                            ارفاق التقارير
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a asp-controller="DepartmentUniversity" asp-action="ViewStudents" class="nav-link text-dark font-italic ">
-                            <i class="fa-solid fa-user-graduate"></i>
 
-                            إدارة الطلاب
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a asp-controller="DepartmentUniversity" asp-action="ViewAssessment" class="nav-link text-dark font-italic ">
-                            <i class="fa-solid fa-user-graduate"></i>
 
-                            تحديد التقييمات
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a asp-controller="DepartmentUniversity" asp-action="ViewSemesters" class="nav-link text-dark font-italic bg-light ">
-                            <i class="fa-solid fa-user-graduate text-primary"></i>
-
-                            إدارة الفصول الدراسية
-                        </a>
-                    </li>
                 </ul>
 
 
