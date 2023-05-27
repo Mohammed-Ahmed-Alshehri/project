@@ -16,7 +16,7 @@
 
     <div class="row">
 
-        <div class="col-sm-4" style="z-index:2;">
+        <div class="col-sm-3" style="z-index:2;">
 
             <div class="vertical-nav bg-white" id="sidebar">
                 <div class="py-4 px-3 mb-4 bg-light">
@@ -30,26 +30,25 @@
                 <h5> مرحبا بك @ViewBag.Username </h5>
                 <p class="text-gray font-weight-bold text-uppercase px-3 small pb-4 mb-0">القائمة</p>
 
-
                 <ul class="nav flex-column bg-white mb-0">
                     <li class="nav-item">
-                        <a asp-controller="AcadmicSupervisor" asp-action="index" class="nav-link text-dark font-italic bg-light">
-                            <i class="fa-solid fa-house  mr-3 text-primary fa-fw "></i>
+                        <a asp-controller="AcadmicSupervisor" asp-action="index" class="nav-link text-dark font-italic ">
+                            <i class="fa-solid fa-house  mr-3  fa-fw "></i>
                             الصفحة الرئيسية
                         </a>
                     </li>
 
                     <li class="nav-item">
-                        <a asp-controller="AcadmicSupervisor" asp-action="AssignedStudents" class="nav-link text-dark font-italic bg-light">
-                            <i class="fa-solid fa-house  mr-3 text-primary fa-fw "></i>
+                        <a asp-controller="AcadmicSupervisor" asp-action="AssignedStudents" class="nav-link text-dark font-italic">
+                            <i class="fa-solid fa-users-between-lines"></i>
                             طلابي
                         </a>
                     </li>
 
                     <li class="nav-item">
-                        <a asp-controller="AcadmicSupervisor" asp-action="AssignSemester" class="nav-link text-dark font-italic bg-light">
-                            <i class="fa-solid fa-house  mr-3 text-primary fa-fw "></i>
-                            تسجييل الفصول
+                        <a asp-controller="AcadmicSupervisor" asp-action="AssignSemester" class="nav-link text-dark font-italic bg-light ">
+                            <i class="fa-solid fa-users-rectangle text-primary"></i>
+                            تسجيل الفصول
                         </a>
                     </li>
 
@@ -70,15 +69,15 @@
 
         </div>
 
-        <div class="col-sm-6">
+        <div class="col-sm-8">
             <div class="card " style="border-radius: 25px; margin-top:2cm; margin-bottom:3cm; padding:5px 5px 5px 5px ; border-color:black;">
                 <div class="card-header" style="text-align: center;">
-                    <h3>قائنة الطلاب المسجلين</h3>
+                    <h3>قائمة الطلاب المسجلين</h3>
 
 
                     <a asp-controller="DepartmentUniversity" asp-action="AddAcademicSupervisor" class="table-search float-end">
-                        <button class="btn " style="background-color:#1c4c64; color:white;font-size:18px" type="submit" asp>  اضافة مسؤول جديد <i class="fa fa-add"></i></button>
-                    </a>
+@*                        <button class="btn " style="background-color:#1c4c64; color:white;font-size:18px" type="submit" asp>  اضافة مسؤول جديد <i class="fa fa-add"></i></button>
+*@                    </a>
 
                 </div>
                 <div class="card-body">
