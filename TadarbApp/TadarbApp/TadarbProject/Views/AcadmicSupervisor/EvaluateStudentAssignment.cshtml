@@ -15,18 +15,15 @@
     var SohwForm = "";
 
     var ShowDoc = "";
-    var showMsg = "";
 
     if (!String.IsNullOrEmpty(Model.SupportiveDocumentsPath))
     {
         SohwForm = "none";
         ShowDoc = "block";
-        showMsg = "none";
     }
     else
     {
         ShowDoc = "none";
-        showMsg = "block";
         SohwForm = "block";
     }
 }
@@ -48,20 +45,20 @@
                 </div>
                 <h5> مرحبا بك @ViewBag.Username </h5>
                 <p class="text-gray font-weight-bold text-uppercase px-3 small pb-4 mb-0">القائمة</p>
-               
+
                 <ul class="nav flex-column bg-white mb-0">
                     <li class="nav-item">
-                        <a asp-controller="AcadmicSupervisor" asp-action="index" class="nav-link text-dark font-italic bg-light">
-                            <i class="fa-solid fa-house  mr-3 text-primary fa-fw "></i>
+                        <a asp-controller="AcadmicSupervisor" asp-action="index" class="nav-link text-dark font-italic ">
+                            <i class="fa-solid fa-house  mr-3  "></i>
                             الصفحة الرئيسية
                         </a>
                     </li>
 
-                   
+
 
                     <li class="nav-item">
-                        <a asp-controller="AcadmicSupervisor" asp-action="AssignSemester" class="nav-link text-dark font-italic ">
-                            <i class="fa-solid fa-users-rectangle"></i>
+                        <a asp-controller="AcadmicSupervisor" asp-action="AssignSemester" class="nav-link text-dark font-italic bg-light ">
+                            <i class="fa-solid fa-users-rectangle text-primary fa-fw"></i>
                             الفصول المسجلة
                         </a>
                     </li>
@@ -83,44 +80,52 @@
 
         </div>
 
-        <div class="col-sm-8">
-            <div class="card " style="border-radius: 25px; margin-top:2cm; margin-bottom:3cm; padding:5px 5px 5px 5px ; border-color:black;">
-                <div class="card-header" style="text-align: center;">
-                    <h3>تقييم    </h3>
+        <div class="col-sm-7">
+            <div class="card" style="border-radius: 25px; margin-top:2cm; margin-bottom:3cm;  border-color:black;background-color:#f2f5fa">
+
+                <div class="card">
+
+                    <div class="card" style="background-color:#5590ad;">
+                        <br />
+                        <h3 style="text-align: center;color:white">عرض التقارير</h3>
+
+                    </div>
+                    <br /><br />
+                    <div class="row">
+
+                        <div class=" mb-4 pb-2">
 
 
+                            <div class="form-outline" style="text-align: center;">
 
-                </div>
-
-                <div class="card-body">
-
-                    <p>نوع التقرير: @Model.assessmentTypeDetail.assessmentType.AssessmentTypeName</p>
-
-                    @{
-                        var stdmark = "لم يتم التقيم";
-                        if (Model.StudentMark != null)
-                            stdmark = Model.StudentMark.ToString();
-                    }
-                    <p>الدرجة: @stdmark من اصل @Model.assessmentTypeDetail.RequiredMark</p>
+                                <label class="form-label" for="FullName" style="font-size:30px;">نوع التقرير:</label>
+                                <h5> @Model.assessmentTypeDetail.assessmentType.AssessmentTypeName</h5>
+                                @{
+                                    var stdmark = "لم يتم التقيم";
+                                    if (Model.StudentMark != null)
+                                        stdmark = Model.StudentMark.ToString();
+                                }
+                            </div>
 
 
+                        </div>
 
-                    <h4 style="display:@showMsg; color:firebrick;">لا يوجد ملف مرفق.</h4>
-
-                    <div class="container-fluid" id="filediv" style="display:@ShowDoc; height:50vh;">
-                        <iframe src="~/@Model.SupportiveDocumentsPath" type="application/pdf" style="border:none; height:100%; width:100%"></iframe>
                     </div>
 
+                    <div class="mb-4 pb-2" style="text-align: center;">
+
+                        <label class="form-label" for="EmployeeSSN" style="font-size:30px;">الدرجة:</label>
+                        <h5> @stdmark من اصل @Model.assessmentTypeDetail.RequiredMark</h5>
+                    </div>
 
 
                     <form asp-controller="AcadmicSupervisor" asp-action="EvaluateStudentAssignment" method="post" id="form" class="mt-5">
 
 
-                        <div class="mb-5">
-
-                            <label for="uploadField" class="form-label">تقيم التقرير من  @Model.assessmentTypeDetail.RequiredMark </label>
-                            <input asp-for="StudentMark"  type="number" id="uploadField" class="form-control"  />
-
+                        <div class="mb-4 pb-2" style="text-align: center;">
+                            <label for="uploadField" class="form-label" style="font-size:25px">تقيم التقرير من  @Model.assessmentTypeDetail.RequiredMark </label>
+                            <input asp-for="StudentMark" type="number" id="uploadField" class="form" />
+                            <button type="submit" class="btn  " asp-route-StuRqId="@ViewBag.CurrentStuRqId" style="  background-color:#e6e291">تقيم</button>
                         </div>
 
                         <input asp-for="StudentSemesterEvaluationMarkId" hidden />
@@ -128,18 +133,25 @@
                         <input asp-for="DepartmentAssessmentTypeDetail_DetailId" hidden />
                         <input asp-for="SupportiveDocumentsPath" hidden id="HasFile" />
 
-                        <button type="submit" class="btn btn-primary" asp-route-StuRqId="@ViewBag.CurrentStuRqId" style="width:8vh">تقيم</button>
+
                     </form>
 
+                    <br /><br />
+                    <div class="container-fluid" id="filediv" style="display:@ShowDoc; height:50vh;">
+                        <iframe src="~/@Model.SupportiveDocumentsPath" type="application/pdf" style="border:none; height:100%; width:100%"></iframe>
+                    </div>
                 </div>
 
 
 
-
+                <br />
+                <div class="row">
+                </div>
             </div>
 
         </div>
-        <div class="col-sm-1"></div>
+
+        <div class="col-sm-2"></div>
     </div>
 </body>
 
@@ -170,4 +182,3 @@
 
     </script>
 }
-

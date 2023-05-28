@@ -14,7 +14,7 @@
 </head>
 
 <partial name="_Notification" />
-<body style="background: linear-gradient(#1c4c64,#5590ad);">
+<body style="background: linear-gradient(#5590ad,white);">
 
     <div class="row">
 
@@ -87,51 +87,52 @@
 
         <div class="col-sm-8">
             <form asp-action="EditAccount" method="get">
-                <div class="card " style="border-radius: 25px;  margin-bottom:3cm; padding:5px 5px 5px 5px ; border-color:black; width:auto; height:auto;">
-                    <div class="card-header" >
-                        <h3 style="text-align: center;">معلومات المتدرب</h3>
+                <div class="card " style="border-radius: 25px;  margin-bottom:3cm; padding:5px 5px 5px 5px ; border-color:black; width:auto; height:auto;background-color:#eef3f6">
+                    <div class="card" style="background-color:#5590ad;border-radius: 18px;
+">
+                        <br />
+                        <h2 style="text-align: center;color:white">معلومات المتدرب</h2>
                         <input asp-for="@Model.TraineeId" hidden />
 
-                        <button class="btn " style="text-align: right;" type="submit">  <i class="fa-solid fa-user-gear fa-2x"></i></button>
+                        <button class="btn " style="text-align: right;" type="submit">  <i class="fa-solid fa-user-gear fa-2x" style="color: #ffffff;"></i></button>
                     </div>
                     <br />
                     <div class="container">
                         <div class="row">
                             <div class="col-md-3">
 
-                                <div class="osahan-account-page-left shadow-sm bg-white h-100">
-                                    <div class="border-bottom p-4">
-                                        <div class="osahan-user text-center">
-                                            <div class="osahan-user-media">
+                                <div class="osahan-account-page-left shadow-sm bg-white h-100" style="border-radius: 25px;border-style:solid">
 
-                                                <div class="osahan-user-media-body">
+                                    <div class="osahan-user text-center">
+                                        <div class="osahan-user-media">
 
-                                                    <br /><br />
-                                                   
-                                                    <p class="mb-1" style="font-size:22px">@Model.user.FullName</p>
-                                                    <h class="mb-1">الرقم الجامعي</h>
+                                            <div class="osahan-user-media-body">
 
-                                                    <p class="mb-1" style="font-size:22px">@Model.UniversityStudentNumber</p>
-                                                    <h class="mb-1">المعدل التراكمي</h>
+                                                <br /><br /><br /><br /><br /><br /><br />
 
-                                                    <p class="mb-1" style="font-size:22px">@Model.GPA</p>
-                                                </div>
+                                                <h4 class="mb-1" style="font-size:22px">@Model.user.FullName</h4>
+                                                <br />
+                                                <h4 class="mb-1">الرقم الجامعي</h4>
+
+                                                <h5 class="mb-1" style="font-size:22px">@Model.UniversityStudentNumber</h5>
+                                                <br />
+
                                             </div>
                                         </div>
+
                                     </div>
-                                    <ul class="nav nav-tabs flex-column border-0 pt-4 pl-4 pb-4" id="myTab" role="tablist">
-                                    </ul>
+
                                 </div>
                             </div>
 
 
                             <div class="col-md-9">
-                                <div class="osahan-account-page-right shadow-sm bg-white p-4 h-100">
+                                <div class="osahan-account-page-right  p-4 h-100" style="border-radius: 25px;border-color:#2a4856">
                                     <div class="tab-content" id="myTabContent">
                                         <div class="tab-pane fade active show" id="payments" role="tabpanel" aria-labelledby="payments-tab">
                                             <div class="row">
                                                 <div class="col-md-6">
-                                                    <div class="bg-white card payments-item mb-4 shadow-sm">
+                                                    <div class="bg-white card payments-item mb-4 " style="border-radius: 25px;border-color:#5590ad">
                                                         <div class="gold-members p-4">
                                                             <a href="#">
                                                             </a>
@@ -141,8 +142,8 @@
                                                                         <i class="icofont-visa icofont-4x"></i>
                                                                     </a>
                                                                     <a style="font-size:22px">
-                                                                        <h class="mb-1">التخصص:</h>
-                                                                        <p>نظم معلومات</p>
+                                                                        <h4 class="mb-1">المعدل التراكمي:</h4>
+                                                                        <h5 style="color:black"> @Model.GPA</h5>
                                                                     </a>
 
                                                                 </div>
@@ -154,7 +155,7 @@
 
 
                                                 <div class="col-md-6">
-                                                    <div class="bg-white card payments-item mb-4 shadow-sm">
+                                                    <div class="bg-white card payments-item mb-4 " style="border-radius: 25px;border-color:#5590ad">
                                                         <div class="gold-members p-4">
                                                             <a href="#">
                                                             </a>
@@ -164,8 +165,8 @@
                                                                         <i class="icofont-mastercard icofont-4x"></i>
                                                                     </a>
                                                                     <a style="font-size:22px">
-                                                                        <h class="mb-1">القسم :</h>
-                                                                        <p>@Model.department.DepartmentName</p>
+                                                                        <h4 class="mb-1">القسم :</h4>
+                                                                        <h5>@Model.department.DepartmentName</h5>
                                                                     </a>
 
                                                                 </div>
@@ -179,7 +180,7 @@
 
                                             <div class="row pt-2 pb-2">
                                                 <div class="col-md-6">
-                                                    <div class="bg-white card payments-item mb-4 shadow-sm">
+                                                    <div class="bg-white card payments-item mb-4 " style="border-radius: 25px;border-color:#5590ad">
                                                         <div class="gold-members p-4">
                                                             <a href="#">
                                                             </a>
@@ -189,8 +190,8 @@
                                                                         <i class="icofont-american-express icofont-4x"></i>
                                                                     </a>
                                                                     <a style="font-size:22px">
-                                                                        <h class="mb-1">الايميل الجامعي:</h>
-                                                                        <p>@Model.user.UserEmail</p>
+                                                                        <h4 class="mb-1">الايميل الجامعي:</h4>
+                                                                        <h5 style="color:black">@Model.user.UserEmail</h5>
                                                                     </a>
 
                                                                 </div>
@@ -201,7 +202,7 @@
                                                 </div>
 
                                                 <div class="col-md-6">
-                                                    <div class="bg-white card payments-item mb-4 shadow-sm">
+                                                    <div class="bg-white card payments-item mb-4 " style="border-radius: 25px;border-color:#5590ad">
                                                         <div class="gold-members p-4">
                                                             <a href="#">
                                                             </a>
@@ -211,8 +212,8 @@
                                                                         <i class="icofont-mastercard icofont-4x"></i>
                                                                     </a>
                                                                     <a style="font-size:22px">
-                                                                        <h class="mb-1">عدد الساعات :</h>
-                                                                        <p>@Model.CompletedHours</p>
+                                                                        <h4 class="mb-1">عدد الساعات :</h4>
+                                                                        <h5 style="color:black">@Model.CompletedHours</h5>
                                                                     </a>
 
                                                                 </div>
@@ -225,7 +226,7 @@
 
                                             <div class="row">
                                                 <div class="col-md-6">
-                                                    <div class="bg-white card payments-item mb-4 shadow-sm">
+                                                    <div class="bg-white card payments-item mb-4 " style="border-radius: 25px;border-color:#5590ad">
                                                         <div class="gold-members p-4">
                                                             <a href="#">
                                                             </a>
@@ -235,8 +236,8 @@
                                                                         <i class="icofont-visa icofont-4x"></i>
                                                                     </a>
                                                                     <a style="font-size:22px">
-                                                                        <h class="mb-1">المدينة:</h>
-                                                                        <p>@Model.user.City.Country.CountryName , @Model.user.City.CityName</p>
+                                                                        <h4 class="mb-1">المدينة:</h4>
+                                                                        <h5>@Model.user.City.Country.CountryName , @Model.user.City.CityName</h5>
                                                                     </a>
 
                                                                 </div>
@@ -248,7 +249,7 @@
 
 
                                                 <div class="col-md-6">
-                                                    <div class="bg-white card payments-item mb-4 shadow-sm ">
+                                                    <div class="bg-white card payments-item mb-4  " style="border-radius: 25px;border-color:#5590ad">
                                                         <div class="gold-members p-4">
                                                             <a href="#">
                                                             </a>
@@ -258,8 +259,8 @@
                                                                         <i class="icofont-mastercard icofont-4x"></i>
                                                                     </a>
                                                                     <a style="font-size:22px">
-                                                                        <h class="mb-1">المشرف الاكاديمي :</h>
-                                                                        <p>@Model.department.User.FullName</p>
+                                                                        <h4 class="mb-1">المشرف الاكاديمي :</h4>
+                                                                        <h5>@Model.department.User.FullName</h5>
                                                                     </a>
 
                                                                 </div>
@@ -304,5 +305,3 @@
 
 
     }
-
-

@@ -33,150 +33,145 @@
             color: white;
         }
 </style>
-<body style="background: linear-gradient(#1c4c64,#5590ad);">
+@foreach (var item in Model)
+{
+    <body style="background: linear-gradient(#1c4c64,#5590ad);">
 
-    <partial name="_Notification" />
-    <div class="row">
+        <partial name="_Notification" />
+        <div class="row">
 
-        <div class="col-sm-3" style="z-index:2;">
+            <div class="col-sm-3" style="z-index:2;">
 
-            <div class="vertical-nav bg-white" id="sidebar">
-                <div class="py-4 px-3 mb-4 bg-light">
-                    <div class="media d-flex align-items-center">
-                        <img src="~/@ViewBag.OrganizationImage" alt="..." width="65" class="mr-3 rounded-circle img-thumbnail shadow-sm">
-                        <div class="media-body">
-                            <h4 class="m-0">@ViewBag.OrganizationName</h4>
+
+                <div class="vertical-nav bg-white" id="sidebar">
+                    <div class="py-4 px-3 mb-4 bg-light">
+                        <div class="media d-flex align-items-center">
+                            <img src="~/@ViewBag.OrganizationImage" alt="..." width="65" class="mr-3 rounded-circle img-thumbnail shadow-sm">
+                            <div class="media-body">
+                                <h4 class="m-0">@ViewBag.OrganizationName</h4>
+                            </div>
                         </div>
                     </div>
+                    <h5> مرحبا بك @ViewBag.Username </h5>
+
+                    <p class="text-gray font-weight-bold text-uppercase px-3 small pb-4 mb-0">القائمة</p>
+
+                    <ul class="nav flex-column bg-white mb-0">
+                        <li class="nav-item">
+                            <a asp-controller="AcadmicSupervisor" asp-action="index" class="nav-link text-dark font-italic ">
+                                <i class="fa-solid fa-house  mr-3  fa-fw "></i>
+                                الصفحة الرئيسية
+                            </a>
+                        </li>
+
+
+
+                        <li class="nav-item">
+                            <a asp-controller="AcadmicSupervisor" asp-action="AssignSemester" class="nav-link text-dark font-italic bg-light ">
+                                <i class="fa-solid fa-users-rectangle text-primary"></i>
+                                الفصول المسجلة
+                            </a>
+                        </li>
+
+
+                    </ul>
+
+
                 </div>
-                <h5> مرحبا بك @ViewBag.Username </h5>
-
-                <p class="text-gray font-weight-bold text-uppercase px-3 small pb-4 mb-0">القائمة</p>
-
-                <ul class="nav flex-column bg-white mb-0">
-                    <li class="nav-item">
-                        <a asp-controller="AcadmicSupervisor" asp-action="index" class="nav-link text-dark font-italic ">
-                            <i class="fa-solid fa-house  mr-3  fa-fw "></i>
-                            الصفحة الرئيسية
-                        </a>
-                    </li>
-
-                   
-
-                    <li class="nav-item">
-                        <a asp-controller="AcadmicSupervisor" asp-action="AssignSemester" class="nav-link text-dark font-italic bg-light ">
-                            <i class="fa-solid fa-users-rectangle text-primary"></i>
-                            الفصول المسجلة
-                        </a>
-                    </li>
 
 
-                </ul>
+                <!-- End vertical navbar1 -->
+                <!-- Page content holder1 -->
+                <div class="page-content p-1" id="content">
+                    <!-- Toggle button -->
+                    <button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i class="fa fa-bars mr-2"></i><small class="text-uppercase font-weight-bold">القائمة</small></button>
+                </div>
 
 
             </div>
 
 
-            <!-- End vertical navbar1 -->
-            <!-- Page content holder1 -->
-            <div class="page-content p-1" id="content">
-                <!-- Toggle button -->
-                <button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i class="fa fa-bars mr-2"></i><small class="text-uppercase font-weight-bold">القائمة</small></button>
-            </div>
+            <div class="col-sm-7">
+                <div class="card" style="border-radius: 25px; height:auto; width:auto; margin-top:0.5cm; margin-bottom:3cm; padding:8px 8px 8px 8px ; border-color:black;background-color:#f2f5fa">
+                    <div class="card-body p-5">
+                        <h2 class=" text-center mb-5">معلومات الفصل الدراسي</h2>
 
 
-        </div>
-
-        <div class="col-sm-8">
-            <div class="card " style="border-radius: 25px; margin-top:2cm; margin-bottom:3cm; padding:5px 5px 5px 5px ; border-color:black;">
-                <div class="card-header" style="text-align: center;">
-                    <h3>الفصول المسجلة</h3>
+                        <div class="row  text-center mb-5">
+                            <div class="col-md-6 mb-4 pb-2">
 
 
+                                <div class="form-group  mb-4 pb-2">
+                                    <i class="fa-solid fa-toilet-portable"></i>
+                                    <label for="MasterFieldsID" class="form-label mt-4" style="font-size:20px; font-weight:bolder">نوع الفصل:</label>
+                                    <label for="MasterFieldsID" class="form-label mt-4" style="font-size:20px;color:black ; font-weight:bolder">@item.SemesterType</label>
 
 
-                </div>
-                <div class="card-body">
-                    <div class="table-responsive no-radius">
+                                </div>
 
-                        <table class="table table-hover" style="font-size:18px">
-                            <thead>
-                                <tr>
+                            </div>
 
-                                    <th>نوع الفصل</th>
-                                    <th>العام الدراسي</th>
-                                    @*<*@@*th>عدد المتدربين</th>
-                                    <th>امكانية التسجيل</th>
-                                    <th>تاريخ بداية التدريب</th>
-                                    <th>تاريخ نهاية التدريب</th>*@
-
-                                    <th>الطلاب</th>
-                                    <th>رفع تقرير للفصل</th>
-
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var item in Model)
-                                {
-                                    <tr>
-                                        <td>
-
-                                            @item.SemesterType
+                            <div class="col-md-6 mb-4 pb-2">
 
 
-
-                                        </td>
-
-                                        <td>
-
-                                            @item.AcademicYear
-
-                                        </td>
+                                <div class="form-group  mb-4 pb-2">
+                                    <i class="fa-solid fa-calendar-days"></i>
+                                    <label for="MasterFieldsID" class="form-label mt-4" style="font-size:20px; font-weight:bolder">العام الدراسي:</label>
+                                    <label for="MasterFieldsID" class="form-label mt-4" style="font-size:20px;color:black; font-weight:bolder">@item.AcademicYear</label>
 
 
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-6 mb-4 pb-2">
 
 
-                                        <td>
+                                <div class="form-group  mb-4 pb-2">
 
-                                            <a class="btn btn-info" href="//localhost:7122/AcadmicSupervisor/AssignedStudents?Mid=@item.SemesterTrainingSettingMasterId">
-
-                                                <i class="fa-solid fa-chalkboard-user" style="color:black"></i>
-                                            </a>
-
-                                        </td>
+                                    <label for="MasterFieldsID" class="form-label mt-4" style="font-size:20px; font-weight:bolder">قائمة الطلاب المسجلين:</label> <br />
+                                    <a class="btn btn-primary " style="width:5cm" href="//localhost:7122/AcadmicSupervisor/AssignedStudents?Mid=@item.SemesterTrainingSettingMasterId">
+                                        <i class="fa-solid fa-hospital-user fa-lg" style="color:white; ">&nbsp;<label>عرض القائمة</label></i>
+                                    </a>
 
 
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-6 mb-4 pb-2">
 
 
-                                        <td>
+                                <div class="form-group  mb-4 pb-2">
 
-                                            <a class="btn btn-info" href="//localhost:7122/AcadmicSupervisor/AssignAssignments?Mid=@item.SemesterTrainingSettingMasterId">
+                                    <label for="MasterFieldsID" class="form-label mt-4" style="font-size:20px; font-weight:bolder">قائمة التقارير المرفوعة:</label> <br />
+                                    <a class="btn btn-primary" style="width:5cm" href="//localhost:7122/AcadmicSupervisor/AssignAssignments?Mid=@item.SemesterTrainingSettingMasterId">
 
-                                                <i class="fa-solid fa-chalkboard-user" style="color:black"></i>
-                                            </a>
-
-                                        </td>
-
-
-                                    </tr>
+                                        <i class="fa-solid fa-file-arrow-up fa-lg" style="color: #ffffff;">&nbsp;<label>عرض التقارير</label></i>
+                                    </a>
 
 
-                                }
+                                </div>
+
+                            </div>
 
 
-
-
-                            </tbody>
-                        </table>
+                        </div>
                     </div>
+
+
+
+
+
                 </div>
             </div>
 
-        </div>
-        <div class="col-sm-1"></div>
-    </div>
-</body>
 
+
+            <div class="col-sm-1"></div>
+        </div>
+    </body>
+}
 @section Scripts
     {
 

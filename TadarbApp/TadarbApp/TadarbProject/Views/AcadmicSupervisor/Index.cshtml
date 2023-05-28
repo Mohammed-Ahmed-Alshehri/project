@@ -12,11 +12,11 @@
 </head>
 
 <partial name="_Notification" />
-<body style="background: linear-gradient(#1c4c64,#5590ad);">
+<body style="background: linear-gradient(#5590ad,white);">
 
     <div class="row">
 
-        <div class="col-sm-4" style="z-index:2;">
+        <div class="col-sm-3" style="z-index:2;">
 
             <div class="vertical-nav bg-white" id="sidebar">
                 <div class="py-4 px-3 mb-4 bg-light">
@@ -40,11 +40,11 @@
                         </a>
                     </li>
 
-                   
+
 
                     <li class="nav-item">
                         <a asp-controller="AcadmicSupervisor" asp-action="AssignSemester" class="nav-link text-dark font-italic ">
-                           <i class="fa-solid fa-users-rectangle"></i>
+                            <i class="fa-solid fa-users-rectangle"></i>
                             الفصول المسجلة
                         </a>
                     </li>
@@ -68,64 +68,124 @@
 
         </div>
 
-        <div class="col-sm-6">
+        <div class="col-sm-8">
             <form asp-action="EditAccount" method="get">
-                <div class="card " style="border-radius: 25px;  margin-bottom:3cm; padding:5px 5px 5px 5px ; border-color:black; width:auto; height:auto;">
-                    <div class="card-header">
-                        <h3 style="text-align: center;">معلومات المشرف</h3>
+                <div class="card " style="border-radius: 25px;  margin-bottom:8cm;margin-top:1cm; padding:5px 5px 5px 5px ; border-color:black; width:auto; height:auto;background-color:#eef3f6">
+                    <div class="card" style="background-color:#5590ad;border-radius: 18px;">
+                        <br />
+                        <h2 style="text-align: center;color:white">معلومات المشرف</h2>
 
 
-                        <button class="btn " style="text-align: right;" type="submit">  <i class="fa-solid fa-user-gear fa-2x"></i></button>
+                        <button class="btn " style="text-align: right;" type="submit">  <i class="fa-solid fa-user-gear fa-2x" style="color: #ffffff;"></i></button>
                     </div>
                     <br />
-                    <div class="card-body row container">
-                        <div class="container rounded p-3">
-                            <div class="row">
-                                <div class="col-12 col-lg-1 offset-lg-1 text-center">
-                                </div>
-                                <div class="col-12 col-lg-12">
+                    <div class="container">
+                        <div class="row">
 
-                                    <div class="row text-center pl-2 " style="font-size:25px">
-                                        <div class="p-1 col-6 bg-secondary border-bottom">
-                                            <div>اسم المشرف:</div>
-                                        </div>
-                                        <div class="p-1 col-6 bg-secondary border-bottom">
-                                            <div>الرقم الوظيفي :</div>
-                                        </div>
 
+
+                            <div class="col-md-12">
+                                <div class="osahan-account-page-center  p-4 h-90" style="border-radius: 25px;border-color:#2a4856">
+                                    <div class="tab-content" id="myTabContent">
+                                        <div class="tab-pane fade active show" id="payments" role="tabpanel" aria-labelledby="payments-tab">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="bg-white card payments-item mb-4 " style="border-radius: 25px;border-color:#5590ad">
+                                                        <div class="gold-members p-4">
+                                                            <a href="#">
+                                                            </a>
+                                                            <div class="media">
+                                                                <div class="media-body">
+                                                                    <a>
+                                                                        <i class="icofont-visa icofont-4x"></i>
+                                                                    </a>
+                                                                    <a style="font-size:22px">
+                                                                        <h4 class="mb-1">اسم المشرف:</h4>
+                                                                        <h5 style="color:black"> @Model.userAcount.FullName</h5>
+                                                                    </a>
+
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="col-md-6">
+                                                    <div class="bg-white card payments-item mb-4 " style="border-radius: 25px;border-color:#5590ad">
+                                                        <div class="gold-members p-4">
+                                                            <a href="#">
+                                                            </a>
+                                                            <div class="media">
+                                                                <div class="media-body">
+                                                                    <a>
+                                                                        <i class="icofont-mastercard icofont-4x"></i>
+                                                                    </a>
+                                                                    <a style="font-size:22px">
+                                                                        <h4 class="mb-1">الرقم الوظيفي  :</h4>
+                                                                        <h5>@Model.SSN</h5>
+                                                                    </a>
+
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="row pt-2 pb-2">
+                                                <div class="col-md-6">
+                                                    <div class="bg-white card payments-item mb-4 " style="border-radius: 25px;border-color:#5590ad">
+                                                        <div class="gold-members p-4">
+                                                            <a href="#">
+                                                            </a>
+                                                            <div class="media">
+                                                                <div class="media-body">
+                                                                    <a href="#">
+                                                                        <i class="icofont-american-express icofont-4x"></i>
+                                                                    </a>
+                                                                    <a style="font-size:22px">
+                                                                        <h4 class="mb-1">البريد الالكتروني:</h4>
+                                                                        <h5 style="color:black">@Model.userAcount.UserEmail</h5>
+                                                                    </a>
+
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="bg-white card payments-item mb-4 " style="border-radius: 25px;border-color:#5590ad">
+                                                        <div class="gold-members p-4">
+                                                            <a href="#">
+                                                            </a>
+                                                            <div class="media">
+                                                                <div class="media-body">
+                                                                    <a href="#">
+                                                                        <i class="icofont-mastercard icofont-4x"></i>
+                                                                    </a>
+                                                                    <a style="font-size:22px">
+                                                                        <h4 class="mb-1">القسم :</h4>
+                                                                        <h5 style="color:black">@Model.department.DepartmentName</h5>
+                                                                    </a>
+
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+
+                                        </div>
                                     </div>
-
-                                    <div class="row text-center pl-2" style="color:black; background-color:#C0C0C0
-                                    ; font-weight:bold; font-size:19px">
-                                        <div class="p-1 col-6 ">
-                                            <div>@Model.userAcount.FullName</div>
-                                        </div>
-                                        <div class="p-1 col-6 ">
-                                            <div>@Model.SSN</div>
-                                        </div>
-
-
-                                    </div>
-                                    <div class="row text-center pl-2 " style="font-size:25px">
-                                        <div class="p-1 col-6 bg-secondary border-bottom">
-                                            <div>البريد الالكتروني :</div>
-                                        </div>
-                                        <div class="p-1 col-6 bg-secondary border-bottom">
-                                            <div>القسم :</div>
-                                        </div>
-
-                                    </div>
-
-                                    <div class="row text-center pl-2" style="color:black; background-color:#C0C0C0; font-weight:bold; font-size:19px">
-                                        <div class="p-1 col-6 ">
-                                            <div>@Model.userAcount.UserEmail</div>
-                                        </div>
-                                        <div class="p-1 col-6 ">
-                                            <div>@Model.department.DepartmentName</div>
-                                        </div>
-
-                                    </div>
-
                                 </div>
                             </div>
                         </div>
@@ -136,7 +196,7 @@
             </form>
 
 
-            <div class="col-sm-2"></div>
+            <div class="col-sm-1"></div>
 
         </div>
 
@@ -157,5 +217,3 @@
 
 
     }
-
-

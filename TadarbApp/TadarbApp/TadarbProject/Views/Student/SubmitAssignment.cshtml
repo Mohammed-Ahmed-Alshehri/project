@@ -1,7 +1,7 @@
 ﻿@model StudentSemesterEvaluationMark
 
 @{
-    ViewData["Title"] = "تسليم الواجب";
+    ViewData["Title"] = "تسليم التقرير";
 }
 
 <head>
@@ -96,25 +96,44 @@
 
         </div>
 
-        <div class="col-sm-8">
-            <div class="card " style="border-radius: 25px; margin-top:2cm; margin-bottom:3cm; padding:5px 5px 5px 5px ; border-color:black;">
-                <div class="card-header" style="text-align: center;">
-                    <h3>معلومات الفصول الدراسية   </h3>
+        <div class="col-sm-7">
+            <div class="card" style="border-radius: 25px; margin-top:2cm; margin-bottom:3cm;  border-color:black;background-color:#f2f5fa">
+
+                <div class="card">
+
+                    <div class="card" style="background-color:#5590ad;">
+                        <br />
+                        <h3 style="text-align: center;color:white">تفاصيل التقرير</h3>
+
+                    </div>
+                    <br /><br />
+                    <div class="row">
+
+                        <div class=" mb-4 pb-2">
 
 
+                            <div class="form-outline" style="text-align: center;">
 
-                </div>
+                                <h4 class="form-label" for="FullName" style="font-size:30px;">نوع التقرير:</h4>
+                                <h5> @Model.assessmentTypeDetail.assessmentType.AssessmentTypeName</h5>
 
-                <div class="card-body">
+                                @{
+                                    var stdmark = "لم يتم التقيم";
+                                    if (Model.StudentMark != null)
+                                        stdmark = Model.StudentMark.ToString();
+                                }
+                            </div>
 
-                    <p>نوع التقرير: @Model.assessmentTypeDetail.assessmentType.AssessmentTypeName</p>
 
-                    @{
-                        var stdmark = "لم يتم التقيم";
-                        if (Model.StudentMark != null)
-                            stdmark = Model.StudentMark.ToString();
-                    }
-                    <p>الدرجة: @stdmark من اصل @Model.assessmentTypeDetail.RequiredMark</p>
+                        </div>
+
+                    </div>
+
+                    <div class="mb-4 pb-2" style="text-align: center;">
+
+                        <h4 class="form-label" for="EmployeeSSN" style="font-size:30px;">الدرجة:</h4>
+                        <h5> @stdmark من اصل @Model.assessmentTypeDetail.RequiredMark</h5>
+                    </div>
 
 
                     <form asp-controller="Student" asp-action="SubmitAssignment" method="post" enctype="multipart/form-data" id="form" style="display:@SohwForm">
@@ -122,7 +141,7 @@
 
                         <div class="mb-3">
 
-                            <label for="uploadField" class="form-label">ارفاق ملف التقرير</label>
+                            <h4 for="uploadField" class="form-label">ارفاق ملف التقرير</h4>
                             <input type="file" id="uploadField" name="ReportFile" class="form-control" accept=".pdf" />
 
                         </div>
@@ -133,23 +152,26 @@
                         <input asp-for="StudentMark" hidden />
                         <input asp-for="SupportiveDocumentsPath" hidden id="HasFile" />
 
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn " style="background-color:#e6e291"> إرفاق التقرير</button>
                     </form>
 
+                    <br />
 
                     <div class="container-fluid" id="filediv" style="display:@ShowDoc; height:50vh;">
                         <iframe src="~/@Model.SupportiveDocumentsPath" type="application/pdf" style="border:none; height:100%; width:100%"></iframe>
                     </div>
-
                 </div>
 
 
 
-
+                <br />
+                <div class="row">
+                </div>
             </div>
 
         </div>
-        <div class="col-sm-1"></div>
+
+        <div class="col-sm-2"></div>
     </div>
 </body>
 
@@ -180,4 +202,3 @@
 
     </script>
 }
-
