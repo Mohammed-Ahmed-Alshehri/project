@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<SemesterTrainingSettingMaster>
 
 @{
-    ViewData["Title"] = "اضافة حساب مشرف تدريبي";
+    ViewData["Title"] = "معلومات الفصل الدراسي";
 }
 <head>
 
@@ -61,17 +61,12 @@
                         </a>
                     </li>
 
-                    <li class="nav-item">
-                        <a asp-controller="AcadmicSupervisor" asp-action="AssignedStudents" class="nav-link text-dark font-italic">
-                            <i class="fa-solid fa-users-between-lines"></i>
-                            طلابي
-                        </a>
-                    </li>
+                   
 
                     <li class="nav-item">
                         <a asp-controller="AcadmicSupervisor" asp-action="AssignSemester" class="nav-link text-dark font-italic bg-light ">
                             <i class="fa-solid fa-users-rectangle text-primary"></i>
-                            تسجيل الفصول
+                            الفصول المسجلة
                         </a>
                     </li>
 
@@ -95,7 +90,7 @@
         <div class="col-sm-8">
             <div class="card " style="border-radius: 25px; margin-top:2cm; margin-bottom:3cm; padding:5px 5px 5px 5px ; border-color:black;">
                 <div class="card-header" style="text-align: center;">
-                    <h3>الفرص المشرف عليها</h3>
+                    <h3>الفصول المسجلة</h3>
 
 
 
@@ -108,8 +103,8 @@
                             <thead>
                                 <tr>
 
-                                    <th>وصف الفرصة</th>
-                                    <th>تخصص الفرصة</th>
+                                    <th>نوع الفصل</th>
+                                    <th>العام الدراسي</th>
                                     @*<*@@*th>عدد المتدربين</th>
                                     <th>امكانية التسجيل</th>
                                     <th>تاريخ بداية التدريب</th>
