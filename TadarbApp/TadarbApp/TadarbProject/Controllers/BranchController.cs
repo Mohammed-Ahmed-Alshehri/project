@@ -837,6 +837,7 @@ namespace TadarbProject.Controllers
             op.RequestedOpportunities = op.RequestedOpportunities - 1;
 
             op.AvailableOpportunities = op.AvailableOpportunities - 1;
+
             if (op.AvailableOpportunities < 1)
 
             {

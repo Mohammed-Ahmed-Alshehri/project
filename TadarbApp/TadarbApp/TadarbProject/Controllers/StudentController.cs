@@ -537,6 +537,7 @@ namespace TadarbProject.Controllers
 
 
         #region
+
         public IActionResult StudentCancelBefore(int? id)
         {
             if (id == null || id == 0)
@@ -686,7 +687,13 @@ namespace TadarbProject.Controllers
 
                 if (i.DecisionStatus == "waiting" || i.DecisionStatus == "waitingStudentApprove")
                 {
-                    i.trainingOpportunity.AvailableOpportunities = i.trainingOpportunity.AvailableOpportunities + 1;
+
+                    if(i.DecisionStatus == "waitingStudentApprove")
+
+                    {
+                        i.trainingOpportunity.AvailableOpportunities = i.trainingOpportunity.AvailableOpportunities + 1;
+                    }
+                   
 
                     i.DecisionDate = DateTime.Now.Date;
                     i.DecisionStatus = "system disable";
@@ -696,6 +703,8 @@ namespace TadarbProject.Controllers
 
                     _DbContext.SaveChanges();
                 }
+
+
 
 
 
