@@ -211,7 +211,9 @@
                     success: function (data) {
 
                         if (data.success) {
-                            GetOldAss();
+                            //GetOldAss();
+
+                            window.location.replace('@Url.Action("AssignAssignments",new {Mid = ViewBag.SemesterMasterId})');
                         }
 
 

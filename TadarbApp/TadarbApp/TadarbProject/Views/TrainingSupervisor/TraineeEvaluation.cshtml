@@ -1,0 +1,232 @@
+﻿@model SemesterStudentAndEvaluationDetail
+@{
+    ViewData["Title"] = "اضافة قسم جديد";
+}
+
+<head>
+
+    <link rel="stylesheet" href="~/css/AddSpecialities.css" asp-append-version="true" />
+
+
+</head>
+<partial name="_Notification" />
+<body style="background: linear-gradient(#1c4c64,#5590ad);">
+
+    <div class="row">
+
+        <div class="col-sm-4" style="z-index:2;">
+
+            <div class="vertical-nav bg-white" id="sidebar">
+                <div class="py-4 px-3 mb-4 bg-light">
+                    <div class="media d-flex align-items-center">
+                        <img src="~/@ViewBag.OrganizationImage" alt="..." width="65" class="mr-3 rounded-circle img-thumbnail shadow-sm">
+                        <div class="media-body">
+                            <h4 class="m-0">@ViewBag.OrganizationName</h4>
+                        </div>
+                    </div>
+                </div>
+                <h5> مرحبا بك @ViewBag.Username </h5>
+
+                <p class="text-gray font-weight-bold text-uppercase px-3 small pb-4 mb-0">القائمة</p>
+
+
+                <ul class="nav flex-column bg-white mb-0">
+                    <li class="nav-item">
+                        <a asp-controller="TrainingSupervisor" asp-action="index" class="nav-link text-dark font-italic ">
+                            <i class="fa-solid fa-house  mr-3 text-primary fa-fw "></i>
+                            الصفحة الرئيسية
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a asp-controller="TrainingSupervisor" asp-action="ViewOpportunities" class="nav-link text-dark font-italic  ">
+                            <i class="fa fa-cubes mr-3 text-primary fa-fw"></i>
+                            الفرص المسجلة
+
+                        </a>
+                    </li>
+
+
+
+                </ul>
+
+
+
+
+            </div>
+
+
+            <!-- End vertical navbar -->
+            <!-- Page content holder -->
+            <div class="page-content p-1" id="content">
+                <!-- Toggle button -->
+                <button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i class="fa fa-bars mr-2"></i><small class="text-uppercase font-weight-bold">القائمة</small></button>
+            </div>
+
+
+        </div>
+
+        <div class="col-sm-6">
+            <div class="card" style="border-radius: 25px; height:auto; width:auto; margin-top:0.5cm; margin-bottom:3cm; padding:8px 8px 8px 8px ; border-color:black;background-color:#dfebf2">
+                <div class="card-body p-5">
+                    <h2 class=" text-center mb-5">إضافة الأقسام التابعة للكلية</h2>
+
+
+                    <div class="row">
+
+
+                        <form method="post" asp-controller="TrainingSupervisor" asp-action="TraineeEvaluation" class="needs-validation" enctype="multipart/form-data" novalidate>
+
+
+                            <div class="row">
+                                <div class="col mb-4 pb-2">
+
+                                    <div class="form-group  mb-4 pb-2">
+
+                                        <label for="TrainingSupervisorEvaluationMark" class="form-label mt-4" style="font-size:20px">@ViewBag.MaxMark درجة الطالب من اصل </label>
+                                        <input id="TrainingSupervisorEvaluationMarkID"  asp-for="TrainingSupervisorEvaluationMark" type="number" class="form-control form-control-lg" min="0" max="@ViewBag.MaxMark" required />
+                                        <div class="invalid-feedback" style="text-align: right;"> الرجاء إدخال اسم القسم </div>
+
+
+                                    </div>
+
+                                </div>
+                                <div class="col mb-4 pb-2">
+
+                                    <div class="form-group  mb-4 pb-2">
+
+                                        <label for="CompletedStudyHourID" class="form-label mt-4" style="font-size:20px">:عدد اجمالي ساعات التدريب</label>
+                                        <input id="CompletedStudyHourID"  asp-for="CompletedStudyHour" type="number" class="form-control form-control-lg" min="0" max="@ViewBag.MaxMark" required />
+                                        <div class="invalid-feedback" style="text-align: right;"> الرجاء إدخال اسم القسم </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+ 
+                            <div class="row">
+
+                                <input id="TrainingSupervisorEvaluationFilePathID" name="EvaluationFile" class="form-control form-control-lg" type="file" accept=".pdf" required />
+
+                            </div>
+
+
+                            <div class="row">
+
+                                <label for="CompletedStudyHourID" class="form-label mt-4" style="font-size:20px">:عدد اجمالي ساعات التدريب</label>
+                                <textarea id="NotesID" asp-for="Notes" rows="3" class="form-control form-control-lg"> </textarea>
+
+                            </div>
+
+                            <br />
+                            <br />
+
+                            <div class="d-flex justify-content-center">
+
+                                <button type="button" class="btn btn-lg " onclick="check()" style="background-color:#e6e291; font-size:18px;">حفظ</button>
+
+                                <button type="submit" class="btn btn-lg" id="btnCh" style="background-color:#e6e291; font-size:18px;" hidden>حفظ</button>
+
+
+                            </div>
+                            <input asp-for="SemesterStudentAndEvaluationDetailId" hidden />
+                            <input asp-for="SemesterMaster_SemesterMasterId" hidden />
+                            <input asp-for="StudentRequest_StudentRequestId" hidden />
+                            <input asp-for="AcademicSupervisor_EmployeeId" hidden />
+
+                            <input asp-for="TrainingSupervisor_EmployeeId" hidden />
+                            <input asp-for="AcademicSupervisorEvaluationMark" hidden />
+                            <input asp-for="GeneralTrainingStatus" hidden />
+                            <input asp-for="TrainingSupervisorEvaluationFilePath" hidden />
+                        </form>
+
+
+
+
+                    </div>
+
+                    <p id="Massage" style="color:firebrick"></p>
+
+                    <input id="TrainingSupervisorMaxMark" value="@ViewBag.MaxMark" hidden />
+                
+
+                </div>
+
+
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-sm-2"></div>
+
+</body>
+
+
+@section Scripts{
+
+
+
+    <script>
+
+        //for moving navbar side
+
+        $(function () {
+            // Sidebar toggle behavior
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar, #content').toggleClass('active');
+            });
+        });
+
+
+
+        function check() {
+
+
+            if (document.getElementById("TrainingSupervisorEvaluationMarkID").value == "") {
+
+                document.getElementById("Massage").innerHTML = "الرجاء ادخال درجة للطالب";
+                return;
+            }
+
+            //console.log(typeof (document.getElementById("TrainingSupervisorEvaluationMarkID").value));
+
+            if (parseInt(document.getElementById("TrainingSupervisorEvaluationMarkID").value) > parseInt(document.getElementById("TrainingSupervisorMaxMark").value)) {
+
+
+                document.getElementById("Massage").innerHTML = "الرجاء ادخال درجة مابين 0 و" + document.getElementById("TrainingSupervisorMaxMark").value;
+                return;
+            }
+
+            if (parseInt(document.getElementById("TrainingSupervisorEvaluationMarkID").value) < 0) {
+
+                document.getElementById("Massage").innerHTML = "الرجاء ادخال درجة اكبر من الصفر";
+                return;
+            }
+
+
+            if (document.getElementById("CompletedStudyHourID").value == "") {
+
+                document.getElementById("Massage").innerHTML = "الرجاء ادخال عدد ساعات تدريب الطالب";
+                return;
+            }
+
+            if (parseInt(document.getElementById("CompletedStudyHourID").value) < 0) {
+
+                document.getElementById("Massage").innerHTML = "الرجاء ادخال عدد ساعات تدريب اكبر من الصفر";
+                return;
+            }
+
+            document.getElementById("Massage").innerHTML = "";
+
+            document.getElementById("btnCh").click();
+         
+        }
+
+    </script>
+
+
+}

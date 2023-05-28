@@ -211,7 +211,7 @@
 
                 <div class="col-sm-1"></div>
 
-
+                <a class="btn btn-outline-primary" href="@Url.Action("", new {id = 1})">تابع الطالب</a>
             </div>
         </div>
     </div>
@@ -296,7 +296,7 @@
                                 + "<td class='text - nowrap'> " + value.gender + "</td>"
                                 + "<td class='text - nowrap'> " + value.department.universityCollege.city.country.countryName + ", " + value.department.universityCollege.city.cityName + "</td>"
                                 + "<td class='text - nowrap'> " + value.gpa + "</td>"
-                                + "<td class='text - nowrap'> " + '<a class="btn btn-outline-primary"    >تابع الطالب</a>' + '</td></tr>'
+                                + "<td class='text - nowrap'> " + `<a class="btn btn-outline-primary" href='//localhost:7122/TrainingSupervisor/TraineeEvaluation?id=${value.traineeId}'>تابع الطالب</a>` + '</td></tr>'
                                 + "";
 
 

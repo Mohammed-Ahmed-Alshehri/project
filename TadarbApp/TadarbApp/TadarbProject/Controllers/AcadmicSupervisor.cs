@@ -199,7 +199,9 @@ namespace TadarbProject.Controllers
 
 
             DepartmentsAssessmentTypes = _DbContext.DepartmentsAssessmentTypeDetail.FromSqlRaw("SELECT * FROM DepartmentsAssessmentTypeDetail WHERE DepartmentAssessmentTypeMaster_MasterId = " +
-                 $"(SELECT DepartmentAssessmentTypeMasterId FROM DepartmentsAssessmentTypeMaster WHERE Department_DepartmentId = {Department.DepartmentId})")
+                 $"(SELECT DepartmentAssessmentTypeMasterId FROM DepartmentsAssessmentTypeMaster WHERE Department_DepartmentId = {Department.DepartmentId}) AND DepartmentAssessmentTypeDetailId  NOT IN " +
+                 $"(SELECT DepartmentAssessmentTypeDetail_DetailId FROM StudentSemesterEvaluationMarks WHERE SemesterStudentAndEvaluationDetail_DetailId IN " +
+                 $"(SELECT SemesterStudentAndEvaluationDetailId FROM SemestersStudentAndEvaluationDetails WHERE AcademicSupervisor_EmployeeId = {Employee.EmployeeId} ))")
                 .Include(item => item.assessmentType).AsNoTracking().ToList();
 
             ViewBag.DepartmentsAssessmentTypesList = DepartmentsAssessmentTypes.Select(item => new SelectListItem

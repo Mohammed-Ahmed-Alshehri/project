@@ -100,7 +100,7 @@ namespace TadarbProject.Controllers
 
         }
 
-
+        [HttpGet]
         public IActionResult ViewOpportunities()
         {
 
@@ -128,6 +128,7 @@ namespace TadarbProject.Controllers
             return View(Opportunities);
 
         }
+        [HttpGet]
         public IActionResult ViewOpportunitiesByUni(int? id)
         {
 
@@ -160,11 +161,7 @@ namespace TadarbProject.Controllers
 
         }
 
-
-
-
-        #region
-
+        [HttpGet]
         public IActionResult OpportunitiesApplicants(int? id, string EvaluationFile)
         {
             if (id == null || id == 0)
@@ -192,6 +189,118 @@ namespace TadarbProject.Controllers
 
             return View();
         }
+
+        [HttpGet]
+        public IActionResult TraineeEvaluation(int? id)
+        {
+
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
+
+            ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
+
+            int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
+            var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).AsNoTracking().FirstOrDefault();
+            var Emplyee = _DbContext.Employees.Where(item => item.UserAccount_UserId == RUserId).FirstOrDefault();
+
+            var Department = _DbContext.Departments.Where(item => item.DepartmentId == Emplyee.Department_DepartmentId).Include(item => item.OrganizationBranch).AsNoTracking().FirstOrDefault();
+
+
+
+            var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Department.Organization_OrganizationId).AsNoTracking().FirstOrDefault();
+
+
+            ViewBag.OrganizationName = OrganizationOfR.OrganizationName + " - " + Department.OrganizationBranch.BranchName;
+            ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
+            ViewBag.Username = user.FullName;
+
+
+            var TraineeRqu = _DbContext.StudentRequestsOnOpportunities.Where(item => item.Trainee_TraineeId == id && item.DecisionStatus == "approved").Include(item => item.student).AsNoTracking().FirstOrDefault();
+
+            var StudentAndEvaluationDetails = _DbContext.SemestersStudentAndEvaluationDetails.Where(item => item.StudentRequest_StudentRequestId == TraineeRqu.StudentRequestOpportunityId)
+                .AsNoTracking().FirstOrDefault();
+
+            var SetMaxMark = _DbContext.DepartmentsAssessmentTypeMaster.Where(item => item.Department_DepartmentId == TraineeRqu.student.Department_DepartmentId)
+                .AsNoTracking().FirstOrDefault().TrainingSupervisorMarks;
+
+            ViewBag.MaxMark = SetMaxMark;
+
+
+
+            return View(StudentAndEvaluationDetails);
+
+        }
+
+
+        [HttpPost]
+        public IActionResult TraineeEvaluation(SemesterStudentAndEvaluationDetail opj, IFormFile? EvaluationFile)
+        {
+
+            if (opj == null)
+            {
+                return NotFound();
+            }
+
+            if (EvaluationFile != null)
+            {
+                //Startt UploadFile
+
+                string fileName = Guid.NewGuid().ToString();
+
+                string wwwRootPath = _WebHostEnvironment.WebRootPath;
+
+                var uploadTo = Path.Combine(wwwRootPath, @"SupervisionFiles\TrainingSupervisorEvaluationFiles\");
+
+                var extension = Path.GetExtension(EvaluationFile.FileName);
+
+
+
+                if (opj.TrainingSupervisorEvaluationFilePath != null)
+                {
+                    var OldCVPath = Path.Combine(wwwRootPath, opj.TrainingSupervisorEvaluationFilePath.TrimStart('\\'));
+
+                    if (System.IO.File.Exists(OldCVPath))
+                    {
+                        System.IO.File.Delete(OldCVPath);
+                    }
+
+                }
+
+                //here is to Create a file to has the user uploaded file
+                using (var fileStreams = new FileStream(Path.Combine(uploadTo, fileName + extension), FileMode.Create))
+                {
+                    EvaluationFile.CopyTo(fileStreams);
+                }
+
+                //Here what will be in the database.
+                opj.TrainingSupervisorEvaluationFilePath = @"SupervisionFiles\TrainingSupervisorEvaluationFiles\" + fileName + extension;
+
+                //___________________________end upload____________
+
+
+
+            }
+
+
+
+
+            _DbContext.SemestersStudentAndEvaluationDetails.Update(opj);
+
+            _DbContext.SaveChanges();
+
+
+
+            return RedirectToAction("ViewOpportunities");
+
+        }
+
+
+
+        #region
+
+
 
 
         [HttpGet]

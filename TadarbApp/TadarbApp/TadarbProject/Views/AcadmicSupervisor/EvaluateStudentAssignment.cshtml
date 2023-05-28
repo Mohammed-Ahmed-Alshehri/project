@@ -15,15 +15,18 @@
     var SohwForm = "";
 
     var ShowDoc = "";
+    var showMsg = "";
 
     if (!String.IsNullOrEmpty(Model.SupportiveDocumentsPath))
     {
         SohwForm = "none";
         ShowDoc = "block";
+        showMsg = "none";
     }
     else
     {
         ShowDoc = "none";
+        showMsg = "block";
         SohwForm = "block";
     }
 }
@@ -101,8 +104,8 @@
                     <p>الدرجة: @stdmark من اصل @Model.assessmentTypeDetail.RequiredMark</p>
 
 
-                  
 
+                    <h4 style="display:@showMsg; color:firebrick;">لا يوجد ملف مرفق.</h4>
 
                     <div class="container-fluid" id="filediv" style="display:@ShowDoc; height:50vh;">
                         <iframe src="~/@Model.SupportiveDocumentsPath" type="application/pdf" style="border:none; height:100%; width:100%"></iframe>
