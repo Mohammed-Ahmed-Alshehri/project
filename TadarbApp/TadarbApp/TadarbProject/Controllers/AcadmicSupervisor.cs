@@ -131,6 +131,8 @@ namespace TadarbProject.Controllers
                 .Include(item => item.student.user).Include(item => item.trainingOpportunity.Branch.organization).AsNoTracking().ToList();
 
 
+            ViewBag.SemesterMasterId = Mid;
+
             return View(students);
 
         }
@@ -363,6 +365,44 @@ namespace TadarbProject.Controllers
 
 
             return RedirectToAction("AssignedStudentAssignments", new { StuRqId = StuRqId });
+
+        }
+
+
+
+        [HttpGet]
+        public IActionResult FollowUpDetails(int? SSEMId, int? StuRqId)
+        {
+
+            if (SSEMId == 0 || SSEMId == null)
+            {
+                return NotFound();
+            }
+
+            ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
+
+            int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
+
+            var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).AsNoTracking().FirstOrDefault();
+
+            var Employee = _DbContext.Employees.Where(item => item.UserAccount_UserId == RUserId).Include(item => item.userAcount).Include(item => item.department).AsNoTracking().FirstOrDefault();
+
+            var Department = _DbContext.Departments.Where(item => item.DepartmentId == Employee.Department_DepartmentId).AsNoTracking().FirstOrDefault();
+
+            var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Department.Organization_OrganizationId).AsNoTracking().FirstOrDefault();
+
+            ViewBag.OrganizationName = OrganizationOfR.OrganizationName + " - " + Department.DepartmentName;
+            ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
+            ViewBag.Username = user.FullName;
+
+
+            var SemestersStudentAndEvaluationDetails = _DbContext.SemestersStudentAndEvaluationDetails.Where(item => item.StudentRequest_StudentRequestId == StuRqId && item.SemesterMaster_SemesterMasterId == SSEMId
+            && item.AcademicSupervisor_EmployeeId == Employee.EmployeeId).Include(item => item.EmployeeTrainingSupervisor.userAcount).AsNoTracking().FirstOrDefault();
+
+
+
+
+            return View(SemestersStudentAndEvaluationDetails);
 
         }
 

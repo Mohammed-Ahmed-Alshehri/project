@@ -9,321 +9,325 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = TadarbProject
 build_property.RootNamespace = TadarbProject
-build_property.ProjectDir = C:\Users\hp\Desktop\TadarbAppGrad\project\TadarbApp\TadarbApp\TadarbProject\
+build_property.ProjectDir = C:\Users\moham\Desktop\IS15\GitHub\TadarbApp\TadarbApp\TadarbProject\
 build_property.RazorLangVersion = 7.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\hp\Desktop\TadarbAppGrad\project\TadarbApp\TadarbApp\TadarbProject
+build_property.MSBuildProjectDirectory = C:\Users\moham\Desktop\IS15\GitHub\TadarbApp\TadarbApp\TadarbProject
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/hp/Desktop/TadarbAppGrad/project/TadarbApp/TadarbApp/TadarbProject/Views/AcadmicSupervisor/AssignAssignments.cshtml]
+[C:/Users/moham/Desktop/IS15/GitHub/TadarbApp/TadarbApp/TadarbProject/Views/AcadmicSupervisor/AssignAssignments.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNhZG1pY1N1cGVydmlzb3JcQXNzaWduQXNzaWdubWVudHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/hp/Desktop/TadarbAppGrad/project/TadarbApp/TadarbApp/TadarbProject/Views/AcadmicSupervisor/AssignedStudentAssignments.cshtml]
+[C:/Users/moham/Desktop/IS15/GitHub/TadarbApp/TadarbApp/TadarbProject/Views/AcadmicSupervisor/AssignedStudentAssignments.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNhZG1pY1N1cGVydmlzb3JcQXNzaWduZWRTdHVkZW50QXNzaWdubWVudHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/hp/Desktop/TadarbAppGrad/project/TadarbApp/TadarbApp/TadarbProject/Views/AcadmicSupervisor/AssignedStudents.cshtml]
+[C:/Users/moham/Desktop/IS15/GitHub/TadarbApp/TadarbApp/TadarbProject/Views/AcadmicSupervisor/AssignedStudents.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNhZG1pY1N1cGVydmlzb3JcQXNzaWduZWRTdHVkZW50cy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/hp/Desktop/TadarbAppGrad/project/TadarbApp/TadarbApp/TadarbProject/Views/AcadmicSupervisor/AssignSemester.cshtml]
+[C:/Users/moham/Desktop/IS15/GitHub/TadarbApp/TadarbApp/TadarbProject/Views/AcadmicSupervisor/AssignSemester.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNhZG1pY1N1cGVydmlzb3JcQXNzaWduU2VtZXN0ZXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/hp/Desktop/TadarbAppGrad/project/TadarbApp/TadarbApp/TadarbProject/Views/AcadmicSupervisor/EditAccount.cshtml]
+[C:/Users/moham/Desktop/IS15/GitHub/TadarbApp/TadarbApp/TadarbProject/Views/AcadmicSupervisor/EditAccount.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNhZG1pY1N1cGVydmlzb3JcRWRpdEFjY291bnQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/hp/Desktop/TadarbAppGrad/project/TadarbApp/TadarbApp/TadarbProject/Views/AcadmicSupervisor/EvaluateStudentAssignment.cshtml]
+[C:/Users/moham/Desktop/IS15/GitHub/TadarbApp/TadarbApp/TadarbProject/Views/AcadmicSupervisor/EvaluateStudentAssignment.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNhZG1pY1N1cGVydmlzb3JcRXZhbHVhdGVTdHVkZW50QXNzaWdubWVudC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/hp/Desktop/TadarbAppGrad/project/TadarbApp/TadarbApp/TadarbProject/Views/AcadmicSupervisor/Index.cshtml]
+[C:/Users/moham/Desktop/IS15/GitHub/TadarbApp/TadarbApp/TadarbProject/Views/AcadmicSupervisor/FollowUpDetails.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNhZG1pY1N1cGVydmlzb3JcRm9sbG93VXBEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/moham/Desktop/IS15/GitHub/TadarbApp/TadarbApp/TadarbProject/Views/AcadmicSupervisor/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNhZG1pY1N1cGVydmlzb3JcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/hp/Desktop/TadarbAppGrad/project/TadarbApp/TadarbApp/TadarbProject/Views/Admin/Index.cshtml]
+[C:/Users/moham/Desktop/IS15/GitHub/TadarbApp/TadarbApp/TadarbProject/Views/Admin/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/hp/Desktop/TadarbAppGrad/project/TadarbApp/TadarbApp/TadarbProject/Views/Admin/OrganizationDetails.cshtml]
+[C:/Users/moham/Desktop/IS15/GitHub/TadarbApp/TadarbApp/TadarbProject/Views/Admin/OrganizationDetails.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cT3JnYW5pemF0aW9uRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/hp/Desktop/TadarbAppGrad/project/TadarbApp/TadarbApp/TadarbProject/Views/Branch/AddDepartmentFiledSpecialties.cshtml]
+[C:/Users/moham/Desktop/IS15/GitHub/TadarbApp/TadarbApp/TadarbProject/Views/Branch/AddDepartmentFiledSpecialties.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQnJhbmNoXEFkZERlcGFydG1lbnRGaWxlZFNwZWNpYWx0aWVzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/hp/Desktop/TadarbAppGrad/project/TadarbApp/TadarbApp/TadarbProject/Views/Branch/AddOpportunities.cshtml]
+[C:/Users/moham/Desktop/IS15/GitHub/TadarbApp/TadarbApp/TadarbProject/Views/Branch/AddOpportunities.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQnJhbmNoXEFkZE9wcG9ydHVuaXRpZXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/hp/Desktop/TadarbAppGrad/project/TadarbApp/TadarbApp/TadarbProject/Views/Branch/AddSupervisorUser.cshtml]
+[C:/Users/moham/Desktop/IS15/GitHub/TadarbApp/TadarbApp/TadarbProject/Views/Branch/AddSupervisorUser.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQnJhbmNoXEFkZFN1cGVydmlzb3JVc2VyLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/hp/Desktop/TadarbAppGrad/project/TadarbApp/TadarbApp/TadarbProject/Views/Branch/EditOpportunities.cshtml]
+[C:/Users/moham/Desktop/IS15/GitHub/TadarbApp/TadarbApp/TadarbProject/Views/Branch/EditOpportunities.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQnJhbmNoXEVkaXRPcHBvcnR1bml0aWVzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/hp/Desktop/TadarbAppGrad/project/TadarbApp/TadarbApp/TadarbProject/Views/Branch/Index.cshtml]
+[C:/Users/moham/Desktop/IS15/GitHub/TadarbApp/TadarbApp/TadarbProject/Views/Branch/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQnJhbmNoXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/hp/Desktop/TadarbAppGrad/project/TadarbApp/TadarbApp/TadarbProject/Views/Branch/ManageDepartment.cshtml]
+[C:/Users/moham/Desktop/IS15/GitHub/TadarbApp/TadarbApp/TadarbProject/Views/Branch/ManageDepartment.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQnJhbmNoXE1hbmFnZURlcGFydG1lbnQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/hp/Desktop/TadarbAppGrad/project/TadarbApp/TadarbApp/TadarbProject/Views/Branch/OpportunitiesApplicants.cshtml]
+[C:/Users/moham/Desktop/IS15/GitHub/TadarbApp/TadarbApp/TadarbProject/Views/Branch/OpportunitiesApplicants.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQnJhbmNoXE9wcG9ydHVuaXRpZXNBcHBsaWNhbnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/hp/Desktop/TadarbAppGrad/project/TadarbApp/TadarbApp/TadarbProject/Views/Branch/OpportunitiesApplicantsDetail.cshtml]
+[C:/Users/moham/Desktop/IS15/GitHub/TadarbApp/TadarbApp/TadarbProject/Views/Branch/OpportunitiesApplicantsDetail.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQnJhbmNoXE9wcG9ydHVuaXRpZXNBcHBsaWNhbnRzRGV0YWlsLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/hp/Desktop/TadarbAppGrad/project/TadarbApp/TadarbApp/TadarbProject/Views/Branch/ViewDepartmentFiledSpecialties.cshtml]
+[C:/Users/moham/Desktop/IS15/GitHub/TadarbApp/TadarbApp/TadarbProject/Views/Branch/ViewDepartmentFiledSpecialties.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQnJhbmNoXFZpZXdEZXBhcnRtZW50RmlsZWRTcGVjaWFsdGllcy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/hp/Desktop/TadarbAppGrad/project/TadarbApp/TadarbApp/TadarbProject/Views/Branch/ViewOpportunities.cshtml]
+[C:/Users/moham/Desktop/IS15/GitHub/TadarbApp/TadarbApp/TadarbProject/Views/Branch/ViewOpportunities.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQnJhbmNoXFZpZXdPcHBvcnR1bml0aWVzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/hp/Desktop/TadarbAppGrad/project/TadarbApp/TadarbApp/TadarbProject/Views/Branch/ViewSupervisorsUser.cshtml]
+[C:/Users/moham/Desktop/IS15/GitHub/TadarbApp/TadarbApp/TadarbProject/Views/Branch/ViewSupervisorsUser.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQnJhbmNoXFZpZXdTdXBlcnZpc29yc1VzZXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/hp/Desktop/TadarbAppGrad/project/TadarbApp/TadarbApp/TadarbProject/Views/College/AddDepartmentFiledSpecialties.cshtml]
+[C:/Users/moham/Desktop/IS15/GitHub/TadarbApp/TadarbApp/TadarbProject/Views/College/AddDepartmentFiledSpecialties.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29sbGVnZVxBZGREZXBhcnRtZW50RmlsZWRTcGVjaWFsdGllcy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/hp/Desktop/TadarbAppGrad/project/TadarbApp/TadarbApp/TadarbProject/Views/College/AddDepartmentUser.cshtml]
+[C:/Users/moham/Desktop/IS15/GitHub/TadarbApp/TadarbApp/TadarbProject/Views/College/AddDepartmentUser.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29sbGVnZVxBZGREZXBhcnRtZW50VXNlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/hp/Desktop/TadarbAppGrad/project/TadarbApp/TadarbApp/TadarbProject/Views/College/AddViewDepartmentUni.cshtml]
+[C:/Users/moham/Desktop/IS15/GitHub/TadarbApp/TadarbApp/TadarbProject/Views/College/AddViewDepartmentUni.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29sbGVnZVxBZGRWaWV3RGVwYXJ0bWVudFVuaS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/hp/Desktop/TadarbAppGrad/project/TadarbApp/TadarbApp/TadarbProject/Views/College/EditBDepartment.cshtml]
+[C:/Users/moham/Desktop/IS15/GitHub/TadarbApp/TadarbApp/TadarbProject/Views/College/EditBDepartment.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29sbGVnZVxFZGl0QkRlcGFydG1lbnQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/hp/Desktop/TadarbAppGrad/project/TadarbApp/TadarbApp/TadarbProject/Views/College/Index.cshtml]
+[C:/Users/moham/Desktop/IS15/GitHub/TadarbApp/TadarbApp/TadarbProject/Views/College/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29sbGVnZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/hp/Desktop/TadarbAppGrad/project/TadarbApp/TadarbApp/TadarbProject/Views/College/ViewDepartmentFiledSpecialties.cshtml]
+[C:/Users/moham/Desktop/IS15/GitHub/TadarbApp/TadarbApp/TadarbProject/Views/College/ViewDepartmentFiledSpecialties.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29sbGVnZVxWaWV3RGVwYXJ0bWVudEZpbGVkU3BlY2lhbHRpZXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/hp/Desktop/TadarbAppGrad/project/TadarbApp/TadarbApp/TadarbProject/Views/College/ViewDepartmentUser.cshtml]
+[C:/Users/moham/Desktop/IS15/GitHub/TadarbApp/TadarbApp/TadarbProject/Views/College/ViewDepartmentUser.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29sbGVnZVxWaWV3RGVwYXJ0bWVudFVzZXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/hp/Desktop/TadarbAppGrad/project/TadarbApp/TadarbApp/TadarbProject/Views/Company/Addbranches.cshtml]
+[C:/Users/moham/Desktop/IS15/GitHub/TadarbApp/TadarbApp/TadarbProject/Views/Company/Addbranches.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcGFueVxBZGRicmFuY2hlcy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/hp/Desktop/TadarbAppGrad/project/TadarbApp/TadarbApp/TadarbProject/Views/Company/AddSpecialities.cshtml]
+[C:/Users/moham/Desktop/IS15/GitHub/TadarbApp/TadarbApp/TadarbProject/Views/Company/AddSpecialities.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcGFueVxBZGRTcGVjaWFsaXRpZXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/hp/Desktop/TadarbAppGrad/project/TadarbApp/TadarbApp/TadarbProject/Views/Company/AddUsers.cshtml]
+[C:/Users/moham/Desktop/IS15/GitHub/TadarbApp/TadarbApp/TadarbProject/Views/Company/AddUsers.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcGFueVxBZGRVc2Vycy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/hp/Desktop/TadarbAppGrad/project/TadarbApp/TadarbApp/TadarbProject/Views/Company/EditBranche.cshtml]
+[C:/Users/moham/Desktop/IS15/GitHub/TadarbApp/TadarbApp/TadarbProject/Views/Company/EditBranche.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcGFueVxFZGl0QnJhbmNoZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/hp/Desktop/TadarbAppGrad/project/TadarbApp/TadarbApp/TadarbProject/Views/Company/Index.cshtml]
+[C:/Users/moham/Desktop/IS15/GitHub/TadarbApp/TadarbApp/TadarbProject/Views/Company/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcGFueVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/hp/Desktop/TadarbAppGrad/project/TadarbApp/TadarbApp/TadarbProject/Views/Company/ViewBranches.cshtml]
+[C:/Users/moham/Desktop/IS15/GitHub/TadarbApp/TadarbApp/TadarbProject/Views/Company/ViewBranches.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcGFueVxWaWV3QnJhbmNoZXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/hp/Desktop/TadarbAppGrad/project/TadarbApp/TadarbApp/TadarbProject/Views/Company/ViewSpecialities.cshtml]
+[C:/Users/moham/Desktop/IS15/GitHub/TadarbApp/TadarbApp/TadarbProject/Views/Company/ViewSpecialities.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcGFueVxWaWV3U3BlY2lhbGl0aWVzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/hp/Desktop/TadarbAppGrad/project/TadarbApp/TadarbApp/TadarbProject/Views/Company/ViewUsers.cshtml]
+[C:/Users/moham/Desktop/IS15/GitHub/TadarbApp/TadarbApp/TadarbProject/Views/Company/ViewUsers.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcGFueVxWaWV3VXNlcnMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/hp/Desktop/TadarbAppGrad/project/TadarbApp/TadarbApp/TadarbProject/Views/DepartmentUniversity/AddAcademicSupervisor.cshtml]
+[C:/Users/moham/Desktop/IS15/GitHub/TadarbApp/TadarbApp/TadarbProject/Views/DepartmentUniversity/AddAcademicSupervisor.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGVwYXJ0bWVudFVuaXZlcnNpdHlcQWRkQWNhZGVtaWNTdXBlcnZpc29yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/hp/Desktop/TadarbAppGrad/project/TadarbApp/TadarbApp/TadarbProject/Views/DepartmentUniversity/AddSemesters.cshtml]
+[C:/Users/moham/Desktop/IS15/GitHub/TadarbApp/TadarbApp/TadarbProject/Views/DepartmentUniversity/AddSemesters.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGVwYXJ0bWVudFVuaXZlcnNpdHlcQWRkU2VtZXN0ZXJzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/hp/Desktop/TadarbAppGrad/project/TadarbApp/TadarbApp/TadarbProject/Views/DepartmentUniversity/AddStudents.cshtml]
+[C:/Users/moham/Desktop/IS15/GitHub/TadarbApp/TadarbApp/TadarbProject/Views/DepartmentUniversity/AddStudents.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGVwYXJ0bWVudFVuaXZlcnNpdHlcQWRkU3R1ZGVudHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/hp/Desktop/TadarbAppGrad/project/TadarbApp/TadarbApp/TadarbProject/Views/DepartmentUniversity/DetailStudent.cshtml]
+[C:/Users/moham/Desktop/IS15/GitHub/TadarbApp/TadarbApp/TadarbProject/Views/DepartmentUniversity/DetailStudent.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGVwYXJ0bWVudFVuaXZlcnNpdHlcRGV0YWlsU3R1ZGVudC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/hp/Desktop/TadarbAppGrad/project/TadarbApp/TadarbApp/TadarbProject/Views/DepartmentUniversity/EditAssessment.cshtml]
+[C:/Users/moham/Desktop/IS15/GitHub/TadarbApp/TadarbApp/TadarbProject/Views/DepartmentUniversity/EditAssessment.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGVwYXJ0bWVudFVuaXZlcnNpdHlcRWRpdEFzc2Vzc21lbnQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/hp/Desktop/TadarbAppGrad/project/TadarbApp/TadarbApp/TadarbProject/Views/DepartmentUniversity/EditSemesters.cshtml]
+[C:/Users/moham/Desktop/IS15/GitHub/TadarbApp/TadarbApp/TadarbProject/Views/DepartmentUniversity/EditSemesters.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGVwYXJ0bWVudFVuaXZlcnNpdHlcRWRpdFNlbWVzdGVycy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/hp/Desktop/TadarbAppGrad/project/TadarbApp/TadarbApp/TadarbProject/Views/DepartmentUniversity/Index.cshtml]
+[C:/Users/moham/Desktop/IS15/GitHub/TadarbApp/TadarbApp/TadarbProject/Views/DepartmentUniversity/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGVwYXJ0bWVudFVuaXZlcnNpdHlcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/hp/Desktop/TadarbAppGrad/project/TadarbApp/TadarbApp/TadarbProject/Views/DepartmentUniversity/ManageAssessment.cshtml]
+[C:/Users/moham/Desktop/IS15/GitHub/TadarbApp/TadarbApp/TadarbProject/Views/DepartmentUniversity/ManageAssessment.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGVwYXJ0bWVudFVuaXZlcnNpdHlcTWFuYWdlQXNzZXNzbWVudC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/hp/Desktop/TadarbAppGrad/project/TadarbApp/TadarbApp/TadarbProject/Views/DepartmentUniversity/SemeterEvalDetail.cshtml]
+[C:/Users/moham/Desktop/IS15/GitHub/TadarbApp/TadarbApp/TadarbProject/Views/DepartmentUniversity/SemeterEvalDetail.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGVwYXJ0bWVudFVuaXZlcnNpdHlcU2VtZXRlckV2YWxEZXRhaWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/hp/Desktop/TadarbAppGrad/project/TadarbApp/TadarbApp/TadarbProject/Views/DepartmentUniversity/ViewAcademicSupervisors.cshtml]
+[C:/Users/moham/Desktop/IS15/GitHub/TadarbApp/TadarbApp/TadarbProject/Views/DepartmentUniversity/ViewAcademicSupervisors.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGVwYXJ0bWVudFVuaXZlcnNpdHlcVmlld0FjYWRlbWljU3VwZXJ2aXNvcnMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/hp/Desktop/TadarbAppGrad/project/TadarbApp/TadarbApp/TadarbProject/Views/DepartmentUniversity/ViewAcademicSupervisorStudents.cshtml]
+[C:/Users/moham/Desktop/IS15/GitHub/TadarbApp/TadarbApp/TadarbProject/Views/DepartmentUniversity/ViewAcademicSupervisorStudents.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGVwYXJ0bWVudFVuaXZlcnNpdHlcVmlld0FjYWRlbWljU3VwZXJ2aXNvclN0dWRlbnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/hp/Desktop/TadarbAppGrad/project/TadarbApp/TadarbApp/TadarbProject/Views/DepartmentUniversity/ViewAssessment.cshtml]
+[C:/Users/moham/Desktop/IS15/GitHub/TadarbApp/TadarbApp/TadarbProject/Views/DepartmentUniversity/ViewAssessment.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGVwYXJ0bWVudFVuaXZlcnNpdHlcVmlld0Fzc2Vzc21lbnQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/hp/Desktop/TadarbAppGrad/project/TadarbApp/TadarbApp/TadarbProject/Views/DepartmentUniversity/ViewSemesters.cshtml]
+[C:/Users/moham/Desktop/IS15/GitHub/TadarbApp/TadarbApp/TadarbProject/Views/DepartmentUniversity/ViewSemesters.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGVwYXJ0bWVudFVuaXZlcnNpdHlcVmlld1NlbWVzdGVycy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/hp/Desktop/TadarbAppGrad/project/TadarbApp/TadarbApp/TadarbProject/Views/DepartmentUniversity/ViewStudents.cshtml]
+[C:/Users/moham/Desktop/IS15/GitHub/TadarbApp/TadarbApp/TadarbProject/Views/DepartmentUniversity/ViewStudents.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGVwYXJ0bWVudFVuaXZlcnNpdHlcVmlld1N0dWRlbnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/hp/Desktop/TadarbAppGrad/project/TadarbApp/TadarbApp/TadarbProject/Views/Home/Index.cshtml]
+[C:/Users/moham/Desktop/IS15/GitHub/TadarbApp/TadarbApp/TadarbProject/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/hp/Desktop/TadarbAppGrad/project/TadarbApp/TadarbApp/TadarbProject/Views/Home/Login.cshtml]
+[C:/Users/moham/Desktop/IS15/GitHub/TadarbApp/TadarbApp/TadarbProject/Views/Home/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/hp/Desktop/TadarbAppGrad/project/TadarbApp/TadarbApp/TadarbProject/Views/Home/Registration.cshtml]
+[C:/Users/moham/Desktop/IS15/GitHub/TadarbApp/TadarbApp/TadarbProject/Views/Home/Registration.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxSZWdpc3RyYXRpb24uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/hp/Desktop/TadarbAppGrad/project/TadarbApp/TadarbApp/TadarbProject/Views/Shared/_Notification.cshtml]
+[C:/Users/moham/Desktop/IS15/GitHub/TadarbApp/TadarbApp/TadarbProject/Views/Shared/_Notification.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Ob3RpZmljYXRpb24uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/hp/Desktop/TadarbAppGrad/project/TadarbApp/TadarbApp/TadarbProject/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/moham/Desktop/IS15/GitHub/TadarbApp/TadarbApp/TadarbProject/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/hp/Desktop/TadarbAppGrad/project/TadarbApp/TadarbApp/TadarbProject/Views/Student/EditAccount.cshtml]
+[C:/Users/moham/Desktop/IS15/GitHub/TadarbApp/TadarbApp/TadarbProject/Views/Student/EditAccount.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3R1ZGVudFxFZGl0QWNjb3VudC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/hp/Desktop/TadarbAppGrad/project/TadarbApp/TadarbApp/TadarbProject/Views/Student/Index.cshtml]
+[C:/Users/moham/Desktop/IS15/GitHub/TadarbApp/TadarbApp/TadarbProject/Views/Student/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3R1ZGVudFxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/hp/Desktop/TadarbAppGrad/project/TadarbApp/TadarbApp/TadarbProject/Views/Student/OpportunityInformation.cshtml]
+[C:/Users/moham/Desktop/IS15/GitHub/TadarbApp/TadarbApp/TadarbProject/Views/Student/OpportunityInformation.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3R1ZGVudFxPcHBvcnR1bml0eUluZm9ybWF0aW9uLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/hp/Desktop/TadarbAppGrad/project/TadarbApp/TadarbApp/TadarbProject/Views/Student/SubmitAssignment.cshtml]
+[C:/Users/moham/Desktop/IS15/GitHub/TadarbApp/TadarbApp/TadarbProject/Views/Student/SubmitAssignment.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3R1ZGVudFxTdWJtaXRBc3NpZ25tZW50LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/hp/Desktop/TadarbAppGrad/project/TadarbApp/TadarbApp/TadarbProject/Views/Student/ViewAssignments.cshtml]
+[C:/Users/moham/Desktop/IS15/GitHub/TadarbApp/TadarbApp/TadarbProject/Views/Student/ViewAssignments.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3R1ZGVudFxWaWV3QXNzaWdubWVudHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/hp/Desktop/TadarbAppGrad/project/TadarbApp/TadarbApp/TadarbProject/Views/Student/ViewOpportunities.cshtml]
+[C:/Users/moham/Desktop/IS15/GitHub/TadarbApp/TadarbApp/TadarbProject/Views/Student/ViewOpportunities.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3R1ZGVudFxWaWV3T3Bwb3J0dW5pdGllcy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/hp/Desktop/TadarbAppGrad/project/TadarbApp/TadarbApp/TadarbProject/Views/Student/ViewOpportunitiesStatus.cshtml]
+[C:/Users/moham/Desktop/IS15/GitHub/TadarbApp/TadarbApp/TadarbProject/Views/Student/ViewOpportunitiesStatus.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3R1ZGVudFxWaWV3T3Bwb3J0dW5pdGllc1N0YXR1cy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/hp/Desktop/TadarbAppGrad/project/TadarbApp/TadarbApp/TadarbProject/Views/TrainingSupervisor/EditAccount.cshtml]
+[C:/Users/moham/Desktop/IS15/GitHub/TadarbApp/TadarbApp/TadarbProject/Views/TrainingSupervisor/EditAccount.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVHJhaW5pbmdTdXBlcnZpc29yXEVkaXRBY2NvdW50LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/hp/Desktop/TadarbAppGrad/project/TadarbApp/TadarbApp/TadarbProject/Views/TrainingSupervisor/Index.cshtml]
+[C:/Users/moham/Desktop/IS15/GitHub/TadarbApp/TadarbApp/TadarbProject/Views/TrainingSupervisor/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVHJhaW5pbmdTdXBlcnZpc29yXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/hp/Desktop/TadarbAppGrad/project/TadarbApp/TadarbApp/TadarbProject/Views/TrainingSupervisor/OpportunitiesApplicants.cshtml]
+[C:/Users/moham/Desktop/IS15/GitHub/TadarbApp/TadarbApp/TadarbProject/Views/TrainingSupervisor/OpportunitiesApplicants.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVHJhaW5pbmdTdXBlcnZpc29yXE9wcG9ydHVuaXRpZXNBcHBsaWNhbnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/hp/Desktop/TadarbAppGrad/project/TadarbApp/TadarbApp/TadarbProject/Views/TrainingSupervisor/TraineeEvaluation.cshtml]
+[C:/Users/moham/Desktop/IS15/GitHub/TadarbApp/TadarbApp/TadarbProject/Views/TrainingSupervisor/TraineeEvaluation.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVHJhaW5pbmdTdXBlcnZpc29yXFRyYWluZWVFdmFsdWF0aW9uLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/hp/Desktop/TadarbAppGrad/project/TadarbApp/TadarbApp/TadarbProject/Views/TrainingSupervisor/ViewOpportunities.cshtml]
+[C:/Users/moham/Desktop/IS15/GitHub/TadarbApp/TadarbApp/TadarbProject/Views/TrainingSupervisor/ViewOpportunities.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVHJhaW5pbmdTdXBlcnZpc29yXFZpZXdPcHBvcnR1bml0aWVzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/hp/Desktop/TadarbAppGrad/project/TadarbApp/TadarbApp/TadarbProject/Views/TrainingSupervisor/ViewOpportunitiesByUni.cshtml]
+[C:/Users/moham/Desktop/IS15/GitHub/TadarbApp/TadarbApp/TadarbProject/Views/TrainingSupervisor/ViewOpportunitiesByUni.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVHJhaW5pbmdTdXBlcnZpc29yXFZpZXdPcHBvcnR1bml0aWVzQnlVbmkuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/hp/Desktop/TadarbAppGrad/project/TadarbApp/TadarbApp/TadarbProject/Views/University/AddColleges.cshtml]
+[C:/Users/moham/Desktop/IS15/GitHub/TadarbApp/TadarbApp/TadarbProject/Views/University/AddColleges.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVW5pdmVyc2l0eVxBZGRDb2xsZWdlcy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/hp/Desktop/TadarbAppGrad/project/TadarbApp/TadarbApp/TadarbProject/Views/University/AddSpecialities.cshtml]
+[C:/Users/moham/Desktop/IS15/GitHub/TadarbApp/TadarbApp/TadarbProject/Views/University/AddSpecialities.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVW5pdmVyc2l0eVxBZGRTcGVjaWFsaXRpZXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/hp/Desktop/TadarbAppGrad/project/TadarbApp/TadarbApp/TadarbProject/Views/University/AddUsers.cshtml]
+[C:/Users/moham/Desktop/IS15/GitHub/TadarbApp/TadarbApp/TadarbProject/Views/University/AddUsers.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVW5pdmVyc2l0eVxBZGRVc2Vycy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/hp/Desktop/TadarbAppGrad/project/TadarbApp/TadarbApp/TadarbProject/Views/University/EditColleges.cshtml]
+[C:/Users/moham/Desktop/IS15/GitHub/TadarbApp/TadarbApp/TadarbProject/Views/University/EditColleges.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVW5pdmVyc2l0eVxFZGl0Q29sbGVnZXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/hp/Desktop/TadarbAppGrad/project/TadarbApp/TadarbApp/TadarbProject/Views/University/Index.cshtml]
+[C:/Users/moham/Desktop/IS15/GitHub/TadarbApp/TadarbApp/TadarbProject/Views/University/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVW5pdmVyc2l0eVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/hp/Desktop/TadarbAppGrad/project/TadarbApp/TadarbApp/TadarbProject/Views/University/ViewColleges.cshtml]
+[C:/Users/moham/Desktop/IS15/GitHub/TadarbApp/TadarbApp/TadarbProject/Views/University/ViewColleges.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVW5pdmVyc2l0eVxWaWV3Q29sbGVnZXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/hp/Desktop/TadarbAppGrad/project/TadarbApp/TadarbApp/TadarbProject/Views/University/ViewSpecialities.cshtml]
+[C:/Users/moham/Desktop/IS15/GitHub/TadarbApp/TadarbApp/TadarbProject/Views/University/ViewSpecialities.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVW5pdmVyc2l0eVxWaWV3U3BlY2lhbGl0aWVzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/hp/Desktop/TadarbAppGrad/project/TadarbApp/TadarbApp/TadarbProject/Views/University/ViewUsers.cshtml]
+[C:/Users/moham/Desktop/IS15/GitHub/TadarbApp/TadarbApp/TadarbProject/Views/University/ViewUsers.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVW5pdmVyc2l0eVxWaWV3VXNlcnMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/hp/Desktop/TadarbAppGrad/project/TadarbApp/TadarbApp/TadarbProject/Views/_ViewImports.cshtml]
+[C:/Users/moham/Desktop/IS15/GitHub/TadarbApp/TadarbApp/TadarbProject/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/hp/Desktop/TadarbAppGrad/project/TadarbApp/TadarbApp/TadarbProject/Views/_ViewStart.cshtml]
+[C:/Users/moham/Desktop/IS15/GitHub/TadarbApp/TadarbApp/TadarbProject/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/hp/Desktop/TadarbAppGrad/project/TadarbApp/TadarbApp/TadarbProject/Views/Shared/_Layout.cshtml]
+[C:/Users/moham/Desktop/IS15/GitHub/TadarbApp/TadarbApp/TadarbProject/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-mza6h9s6db

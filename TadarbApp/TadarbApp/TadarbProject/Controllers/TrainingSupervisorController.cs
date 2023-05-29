@@ -123,7 +123,20 @@ namespace TadarbProject.Controllers
 
             var Opportunities = _DbContext.TrainingOpportunities.Where(item => item.SupervisorEmployeeId == Emplyee.EmployeeId).Include(item => item.DetailFiled).AsNoTracking().ToList();
 
+            List<int> StudentNumber = new List<int>();
 
+            foreach (var item in Opportunities)
+            {
+
+                int count = _DbContext.SemestersStudentAndEvaluationDetails.FromSqlRaw($"SELECT * FROM SemestersStudentAndEvaluationDetails WHERE TrainingSupervisor_EmployeeId = {Emplyee.EmployeeId} AND StudentRequest_StudentRequestId IN " +
+                   $"(SELECT StudentRequestOpportunityId FROM StudentRequestsOnOpportunities WHERE TrainingOpportunity_TrainingOpportunityId = {item.TrainingOpportunityId} AND DecisionStatus ='approved')").AsNoTracking().Count();
+
+                StudentNumber.Add(count);
+            }
+
+
+
+            ViewBag.StudentNumber = StudentNumber;
 
             return View(Opportunities);
 

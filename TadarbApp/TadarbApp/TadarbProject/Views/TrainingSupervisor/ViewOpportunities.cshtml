@@ -117,12 +117,12 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach (var item in Model)
+                                @for (int i = 0; i < Model.Count(); i++ )
                                 {
                                     <tr>
                                         <td>
 
-                                            @item.OpportunityDescription
+                                            @Model.ElementAt(i).OpportunityDescription
 
 
 
@@ -130,16 +130,16 @@
 
                                         <td>
 
-                                            @item.DetailFiled.SpecializationName
+                                            @Model.ElementAt(i).DetailFiled.SpecializationName
 
                                         </td>
 
                                         <td>
-                                            @if (@item.ApprovedOpportunities == 0)
+                                            @if (ViewBag.StudentNumber[i] == 0)
                                             {
                                                 <p>لا يوجد طلاب مسجلين</p>
                                             }else
-                                            @item.ApprovedOpportunities
+                                            @ViewBag.StudentNumber[i]
 
                                         </td>
 
@@ -147,12 +147,12 @@
 
                                         <td>
 
-                                            @if (@item.AbilityofSubmissionStatus == "Available")
+                                                @if (@Model.ElementAt(i).AbilityofSubmissionStatus == "Available")
                                             {
                                                 <p>متاحة</p>
                                             }
 
-                                            @if (@item.AbilityofSubmissionStatus == "Stop")
+                                            @if (@Model.ElementAt(i).AbilityofSubmissionStatus == "Stop")
                                             {
                                                 <p>انتهى التسجيل</p>
                                             }
@@ -162,21 +162,21 @@
 
 
                                         <td>
-                                            @item.StartDate.ToShortDateString()
+                                            @Model.ElementAt(i).StartDate.ToShortDateString()
 
                                         </td>
 
                                         <td>
-                                            @item.EndDate.Date.ToShortDateString()
+                                            @Model.ElementAt(i).EndDate.Date.ToShortDateString()
                                         </td>
 
                                          
 
                                         <td>
-                                            <input asp-for="@item.TrainingOpportunityId" hidden/>
+                                            <input asp-for="@Model.ElementAt(i).TrainingOpportunityId" hidden />
 
 
-                                            <a class="btn btn-info" href="//localhost:7122/TrainingSupervisor/ViewOpportunitiesByUni?id=@item.TrainingOpportunityId">
+                                            <a class="btn btn-info" href="//localhost:7122/TrainingSupervisor/ViewOpportunitiesByUni?id= @Model.ElementAt(i).TrainingOpportunityId">
 
                                                 <i class="fa-solid fa-pen-to-square" style="color: #000000;"></i>
                                             </a>

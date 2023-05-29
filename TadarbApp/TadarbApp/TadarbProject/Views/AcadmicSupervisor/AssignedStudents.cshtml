@@ -78,7 +78,7 @@
                 <div class="card-body">
                     <div class="table-responsive no-radius">
 
-                        <table class="table table-hover table-center" style="font-size:18px">
+                        <table class="table table-hover " style="font-size:18px">
                             <thead>
                                 <tr>
                                     <th>اسم الطالب</th>
@@ -88,7 +88,7 @@
 
                                     <th class="">جهة التدريب</th>
                                     <th class="text-center">عرض التقارير</th>
-
+                                    <th class="text-center">عرض شامل المتابعة</th>
 
                                 </tr>
                             </thead>
@@ -116,12 +116,18 @@
                                         <td class="text-nowrap"> @item.student.user.UserEmail	</td>
 
                                         <td class="text-nowrap">  @item.trainingOpportunity.Branch.organization.OrganizationName  -   @item.trainingOpportunity.Branch.BranchName	 </td>
+
                                         <td class="text-center">
                                             <a href="@Url.Action("AssignedStudentAssignments",new {StuRqId=item.StudentRequestOpportunityId})" class="btn btn-primary">
                                                 <i class="bi bi-file-earmark-check"></i>
                                             </a>
                                         </td>
 
+                                        <td class="text-center">
+                                            <a href="@Url.Action("FollowUpDetails",new {StuRqId=item.StudentRequestOpportunityId , SSEMId = ViewBag.SemesterMasterId })" class="btn" style="background-color:#e6e291;">
+                                                <i class="bi bi-check-all"></i>
+                                            </a>
+                                        </td>
 
                                     </tr>
 

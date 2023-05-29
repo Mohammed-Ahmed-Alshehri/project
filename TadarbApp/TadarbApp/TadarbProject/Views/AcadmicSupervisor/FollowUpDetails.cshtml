@@ -1,0 +1,254 @@
+﻿@model SemesterStudentAndEvaluationDetail
+
+@{
+    ViewData["Title"] = " تقييم التقرير";
+}
+
+<head>
+
+    <link rel="stylesheet" href="~/css/Addbranches.css" asp-append-version="true" />
+
+
+</head>
+
+
+<body style="background: linear-gradient(#1c4c64,#5590ad);">
+
+    <div class="row">
+
+        <div class="col-sm-3" style="z-index:2;">
+
+            <div class="vertical-nav bg-white" id="sidebar">
+                <div class="py-4 px-3 mb-4 bg-light">
+                    <div class="media d-flex align-items-center">
+                        <img src="~/@ViewBag.OrganizationImage" alt="..." width="65" class="mr-3 rounded-circle img-thumbnail shadow-sm">
+                        <div class="media-body">
+                            <h4 class="m-0">@ViewBag.OrganizationName</h4>
+                        </div>
+                    </div>
+                </div>
+                <h5> مرحبا بك @ViewBag.Username </h5>
+                <p class="text-gray font-weight-bold text-uppercase px-3 small pb-4 mb-0">القائمة</p>
+
+                <ul class="nav flex-column bg-white mb-0">
+                    <li class="nav-item">
+                        <a asp-controller="AcadmicSupervisor" asp-action="index" class="nav-link text-dark font-italic ">
+                            <i class="fa-solid fa-house  mr-3  "></i>
+                            الصفحة الرئيسية
+                        </a>
+                    </li>
+
+
+
+                    <li class="nav-item">
+                        <a asp-controller="AcadmicSupervisor" asp-action="AssignSemester" class="nav-link text-dark font-italic bg-light ">
+                            <i class="fa-solid fa-users-rectangle text-primary fa-fw"></i>
+                            الفصول المسجلة
+                        </a>
+                    </li>
+
+
+                </ul>
+
+
+            </div>
+
+
+            <!-- End vertical navbar -->
+            <!-- Page content holder -->
+            <div class="page-content p-1" id="content">
+                <!-- Toggle button -->
+                <button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i class="fa fa-bars mr-2"></i><small class="text-uppercase font-weight-bold">القائمة</small></button>
+            </div>
+
+
+        </div>
+
+        <div class="col-sm-7">
+
+            <div class="card" style="border-radius: 25px; margin-top:2cm; margin-bottom:3cm;  border-color:black;background-color:#f2f5fa">
+
+                <div class="card">
+
+                    <div class="card" style="background-color:#5590ad;">
+                        <br />
+                        <h3 style="text-align: center;color:white">سجل المتابعة</h3>
+
+                    </div>
+                    <br />
+
+                    <div class="table-responsive  p-0" style="width:50%">
+
+                        <table class="table table-borderless align-content-center table-light rounded">
+
+                            <thead >
+                                <tr>
+                         
+                                    <th scope="col">اجمالي درجات التقارير</th>
+                                    <th scope="col">درجة تقيم مشرف التدريب</th>
+                                    <th scope="col">ساعات التدريب</th>
+                                    <th scope="col">ملاحظة المشرف</th>
+                                </tr>
+                            </thead>
+
+
+
+                            <tbody class="table-group-divider">
+                                <tr>
+                          
+                                    <td>@Model.AcademicSupervisorEvaluationMark</td>
+                                    @{
+                                        var Tmark = "لم يتم تقيمه بعد";
+
+                                        if (Model.TrainingSupervisorEvaluationMark != null)
+                                         Tmark = Model.TrainingSupervisorEvaluationMark.ToString();
+
+                                    }
+
+                                    <td>@Tmark</td>
+
+                                    @{
+                                        var Thours = "لم يتم تحديد الساعات بعد";
+
+                                        if (Model.CompletedStudyHour != null)
+                                            Thours = Model.CompletedStudyHour.ToString();
+
+                                    }
+
+                                    <td>@Thours</td>
+
+
+                                  
+
+                                    @{
+                                        var TNote = "";
+
+                                        if (Model.Notes != null)
+                                            TNote = Model.Notes.ToString();
+
+                                    }
+
+                                    <td>@TNote</td>
+                                </tr>
+                             
+                            
+                            </tbody>
+
+                        </table>
+
+                         
+
+                    </div>
+
+
+
+                    <div class="table-responsive  p-0" style="width:50%">
+
+                        <table class="table table-borderless align-content-center table-light rounded">
+
+                            <thead>
+                                <tr>
+
+                                    <th scope="col">اسم المشرف التدريبي</th>
+                                    <th scope="col">البريد الالكتروني</th>
+                                   
+                                </tr>
+                            </thead>
+
+
+
+                            <tbody class="table-group-divider">
+                                <tr>
+
+                                    <td>@Model.EmployeeTrainingSupervisor.userAcount.FullName</td>
+                                    <td>@Model.EmployeeTrainingSupervisor.userAcount.UserEmail</td>
+
+
+                                </tr>
+
+
+                            </tbody>
+
+                        </table>
+
+
+
+                    </div>
+                    <br /><br />
+
+                    @{
+                        var ShowDoc = "none";
+                        var showMsg = "block";
+                        if (!String.IsNullOrEmpty(Model.TrainingSupervisorEvaluationFilePath))
+                        {
+                            ShowDoc = "block";
+                            showMsg = "none";
+                            
+                        }
+                
+                    }
+
+                    <h5 style="">ملف التقيم المرفق من قبل المشرف:</h5>
+                    <div class="container-fluid" id="filediv" style="display:@ShowDoc; height:50vh;">
+                        <iframe src="~/@Model.TrainingSupervisorEvaluationFilePath" type="application/pdf" style="border:none; height:100%; width:100%"></iframe>
+                    </div>
+
+
+
+                    <h5 style="display:@showMsg; color:firebrick;">لا يوجد ملف مرفق.</h5>
+                </div>
+
+                <br />
+                <div class="row">
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-sm-2"></div>
+       
+    </div>
+
+</body>
+
+
+@section Scripts
+    {
+
+    <script>
+
+        // ViewUploadShowfile();
+
+        function check() {
+
+            var InputMark = document.getElementById("StudentMarkId").value;
+            var MaxMark = document.getElementById("StudentMarkMax").value;
+
+            if (parseInt(InputMark) < 0) {
+
+                document.getElementById("Message").textContent = "الرجاء ادخال قيمة صحيحة";
+
+                return;
+            }
+
+            if (InputMark == "") {
+
+                document.getElementById("Message").textContent = "الرجاء ادخال درجة التقييم";
+
+                return;
+            }
+
+            if (parseInt(InputMark) > parseInt(MaxMark)) {
+
+                document.getElementById("Message").textContent = "الرجاء ادخال الدرجة مابين ال 0 و " + MaxMark;
+
+                return;
+            }
+
+            document.getElementById("Message").textContent = "";
+
+            document.getElementById("SubmitBtn").click();
+        }
+
+    </script>
+}
