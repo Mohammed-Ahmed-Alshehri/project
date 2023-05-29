@@ -109,7 +109,7 @@
                             </div>
                             <br /><br />
                             <div class="panel-body">
-                                <form role="form">
+                                <form role="form" class="needs-validation" novalidate>
 
                                     <div class="list_wrapper">
                                         <div class="row">
@@ -118,13 +118,17 @@
                                                     <label class="form-label" style="font-size:20px;">
                                                         عدد الساعات المطلوبة
                                                     </label>
-                                                    <input name="list[0][]" type="number" max="100" id="RequireHours" placeholder="" class="form-control" />
+                                                    <input name="list[0][]" type="number" max="100" id="RequireHours" placeholder="" class="form-control" required />
+                                                    <div class="invalid-feedback" style="text-align: right;"> الرجاء إدخال عدد الساعات المطلوبة </div>
+
                                                 </div>
                                             </div>
                                             <div class="col-md-6 mb-4 pb-2">
                                                 <div class="form-outline" style="text-align: right;">
                                                     <label class="form-label" style="font-size:20px;">التاريخ</label>
-                                                    <input name="list[0][]" type="date" id="ActivationDate" placeholder="" class="form-control" />
+                                                    <input name="list[0][]" type="date" id="ActivationDate" placeholder="" class="form-control" required />
+                                                    <div class="invalid-feedback" style="text-align: right;"> الرجاء إدخال التاريخ </div>
+
                                                 </div>
 
                                             </div>
@@ -134,13 +138,17 @@
                                             <div class="col-md-6 mb-4 pb-2">
                                                 <div class="form-outline" style="text-align: right;">
                                                     <label class="form-label" style="font-size:20px;"> الدرجات المتاحة للمشرف الاكاديمي</label>
-                                                    <input name="list[0][]" id="ASMark" type="number" placeholder="" class="form-control" />
+                                                    <input name="list[0][]" id="ASMark" type="number" placeholder="" class="form-control" required />
+                                                    <div class="invalid-feedback" style="text-align: right;"> الرجاء إدخال الدرجات المتاحة للمشرف الأكاديمي </div>
+
                                                 </div>
                                             </div>
                                             <div class="col-md-6 mb-4 pb-2">
                                                 <div class="form-outline" style="text-align: right;">
                                                     <label class="form-label" style="font-size:20px;">الدرجات المتاحة للمشرف التدريبي</label>
-                                                    <input name="list[0][]" id="CSMark" type="number" placeholder="" class="form-control" />
+                                                    <input name="list[0][]" id="CSMark" type="number" placeholder="" class="form-control" required />
+                                                    <div class="invalid-feedback" style="text-align: right;"> الرجاء إدخال الدرجات المتاحة للمشرف التدريبي </div>
+
                                                 </div>
 
                                             </div>
@@ -417,6 +425,28 @@
             });
 
         }
+
+
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+(function () {
+  'use strict'
+
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  var forms = document.querySelectorAll('.needs-validation')
+
+  // Loop over them and prevent submission
+  Array.prototype.slice.call(forms)
+    .forEach(function (form) {
+      form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
+
+        form.classList.add('was-validated')
+      }, false)
+    })
+})()
 
     </script>
 

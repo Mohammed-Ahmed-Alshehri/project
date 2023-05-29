@@ -112,9 +112,9 @@
                         <div class=" mb-4 pb-2">
 
 
-                            <div class="form-outline" style="text-align: center;">
+                            <div class="form-outline" style="text-align: right;margin-right:1cm">
 
-                                <h4 class="form-label" for="FullName" style="font-size:30px;">نوع التقرير:</h4>
+                                <h5 class="form-label" for="FullName" style="font-size:25px;">نوع التقرير:</h5>
                                 <h5> @Model.assessmentTypeDetail.assessmentType.AssessmentTypeName</h5>
 
                                 @{
@@ -129,20 +129,22 @@
 
                     </div>
 
-                    <div class="mb-4 pb-2" style="text-align: center;">
+                    <div class="mb-4 pb-2" style="text-align: right;margin-right:1cm">
 
-                        <h4 class="form-label" for="EmployeeSSN" style="font-size:30px;">الدرجة:</h4>
+                        <h5 class="form-label" for="EmployeeSSN" style="font-size:25px;">الدرجة:</h5>
                         <h5> @stdmark من اصل @Model.assessmentTypeDetail.RequiredMark</h5>
                     </div>
 
 
-                    <form asp-controller="Student" asp-action="SubmitAssignment" method="post" enctype="multipart/form-data" id="form" style="display:@SohwForm">
+                    <form asp-controller="Student" asp-action="SubmitAssignment" method="post" enctype="multipart/form-data" id="form" style="display:@SohwForm; margin-right:1cm" class="needs-validation" novalidate>
 
 
-                        <div class="mb-3">
+                        <div class="mb-3" style="">
 
-                            <h4 for="uploadField" class="form-label">ارفاق ملف التقرير</h4>
-                            <input type="file" id="uploadField" name="ReportFile" class="form-control" accept=".pdf" />
+                            <h5 for="uploadField" class="form-label">ارفاق ملف التقرير</h5>
+                            <input type="file" id="uploadField" name="ReportFile" class="form-control" accept=".pdf" style="width:10cm" required />
+                            <div class="invalid-feedback" style="text-align: right;"> الرجاء إرفاق الملف بصيغة(.pdf) </div>
+
 
                         </div>
 
@@ -155,7 +157,7 @@
                         <button type="submit" class="btn " style="background-color:#e6e291"> إرفاق التقرير</button>
                     </form>
 
-                    <br />
+                    <br /><br /><br />
 
                     <div class="container-fluid" id="filediv" style="display:@ShowDoc; height:50vh;">
                         <iframe src="~/@Model.SupportiveDocumentsPath" type="application/pdf" style="border:none; height:100%; width:100%"></iframe>
@@ -180,6 +182,34 @@
     {
 
     <script>
+        $(function () {
+            // Sidebar toggle behavior
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar, #content').toggleClass('active');
+            });
+        });
+
+
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+        (function () {
+            'use strict'
+
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.querySelectorAll('.needs-validation')
+
+            // Loop over them and prevent submission
+            Array.prototype.slice.call(forms)
+                .forEach(function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (!form.checkValidity()) {
+                            event.preventDefault()
+                            event.stopPropagation()
+                        }
+
+                        form.classList.add('was-validated')
+                    }, false)
+                })
+        })()
 
         // ViewUploadShowfile();
 
@@ -199,6 +229,10 @@
          //        document.getElementById('form').style.display = "none";
          //    }
          //}
+
+        //for moving navbar side
+
+        
 
     </script>
 }

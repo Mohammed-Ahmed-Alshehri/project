@@ -25,22 +25,21 @@
 
                 <ul class="nav flex-column bg-white mb-0">
                     <li class="nav-item">
-                        <a asp-controller="DepartmentUniversity" asp-action="Index" class="nav-link text-dark font-italic bg-light ">
-                            <i class="fa-solid fa-house text-primary"></i>
+                        <a asp-controller="DepartmentUniversity" asp-action="Index" class="nav-link text-dark font-italic ">
+                            <i class="fa-solid fa-house"></i>
                             الصفحة الرئيسية
                         </a>
                     </li>
 
 
                     <li class="nav-item">
-                        <a asp-controller="DepartmentUniversity" asp-action="ViewAcademicSupervisors" class="nav-link text-dark font-italic  ">
-                            <i class="fa-solid fa-users-gear"></i>
+                        <a asp-controller="DepartmentUniversity" asp-action="ViewAcademicSupervisors" class="nav-link text-dark font-italic   ">
+                            <i class="fa-solid fa-users-gear "></i>
                             إدارة المشرفين
                         </a>
-                    </li>
                     <li class="nav-item">
                         <a asp-controller="DepartmentUniversity" asp-action="ViewStudents" class="nav-link text-dark font-italic ">
-                            <i class="fa-solid fa-user-graduate"></i>
+                            <i class="fa-solid fa-people-roof"></i>
 
                             إدارة الطلاب
                         </a>
@@ -48,14 +47,14 @@
                     </li>
                     <li class="nav-item">
                         <a asp-controller="DepartmentUniversity" asp-action="ViewAssessment" class="nav-link text-dark font-italic ">
-                            <i class="fa-solid fa-user-graduate"></i>
+                            <i class="fa-solid fa-chart-simple "></i>
 
                             تحديد التقييمات
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a asp-controller="DepartmentUniversity" asp-action="ViewSemesters" class="nav-link text-dark font-italic ">
-                            <i class="fa-solid fa-user-graduate"></i>
+                        <a asp-controller="DepartmentUniversity" asp-action="ViewSemesters" class="nav-link text-dark font-italic  bg-light ">
+                            <i class="fa-solid fa-door-closed text-primary"></i>
 
                             ادارة الفصول
                         </a>
@@ -81,6 +80,8 @@
         </div>
         <div class="col-sm-6">
 
+            <form class="needs-validation" novalidate>
+
             <div class="card" style="border-radius: 25px; height:auto; width:auto; margin-top:0.5cm; margin-bottom:3cm; padding:8px 8px 8px 8px ; border-color:black;background-color:#dfebf2">
                 <div class="card-body p-5">
                     <h2 class=" text-center mb-5"></h2>
@@ -99,7 +100,7 @@
                                     <option selected disabled value="">--المشرف الاكاديمي--</option>
 
                                 </select>
-                                <div class="invalid-feedback" style="text-align: right;"> الرجاء اختار مشرف اكاديمي  </div>
+                                <div class="invalid-feedback" style="text-align: right;"> الرجاء اختيار مشرف اكاديمي  </div>
 
 
                             </div>
@@ -169,7 +170,7 @@
                 <br />
 
             </div>
-
+            </form>
 
         </div>
 
@@ -315,7 +316,7 @@
             if (n == 1) {
 
 
-                document.getElementById("Message").innerText = "الرجاء اختار مشرف.";
+                document.getElementById("Message").innerText = "الرجاء اختيار مشرف.";
 
                 document.getElementById("Message").style.display = "block";
 
@@ -326,7 +327,7 @@
 
 
 
-                document.getElementById("Message").innerText = "الرجاء اختار طلاب.";
+                document.getElementById("Message").innerText = "الرجاء اختيار الطلاب.";
 
                 document.getElementById("Message").style.display = "block";
 
@@ -373,7 +374,27 @@
 
 
 
-                                // Example starter JavaScript for disabling form submissions if there are invalid fields
+
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+        (function () {
+            'use strict'
+
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.querySelectorAll('.needs-validation')
+
+            // Loop over them and prevent submission
+            Array.prototype.slice.call(forms)
+                .forEach(function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (!form.checkValidity()) {
+                            event.preventDefault()
+                            event.stopPropagation()
+                        }
+
+                        form.classList.add('was-validated')
+                    }, false)
+                })
+        })()
 
 
     </script>

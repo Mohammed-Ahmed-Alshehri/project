@@ -93,15 +93,15 @@
                         <h3 style="text-align: center;color:white">عرض التقارير</h3>
 
                     </div>
-                    <br /><br />
+                    <br />
                     <div class="row">
 
                         <div class=" mb-4 pb-2">
 
 
-                            <div class="form-outline" style="text-align: center;">
+                            <div class="form-outline" style="text-align: right;margin-right:1cm">
 
-                                <label class="form-label" for="FullName" style="font-size:30px;">نوع التقرير:</label>
+                                <label class="form-label" for="FullName" style="font-size:25px;">نوع التقرير:</label>
                                 <h5> @Model.assessmentTypeDetail.assessmentType.AssessmentTypeName</h5>
                                 @{
                                     var stdmark = "لم يتم التقيم";
@@ -115,28 +115,24 @@
 
                     </div>
 
-                    <div class="mb-4 pb-2" style="text-align: center;">
+                    <div class="mb-4 pb-2" style="text-align: right;margin-right:1cm">
 
-                        <label class="form-label" for="EmployeeSSN" style="font-size:30px;">الدرجة:</label>
+                        <label class="form-label" for="EmployeeSSN" style="font-size:25px;">الدرجة:</label>
                         <h5> @stdmark من اصل @Model.assessmentTypeDetail.RequiredMark</h5>
 
-                        <h4 style="display:@showMsg; color:firebrick;">لا يوجد ملف مرفق.</h4>
+                        <h5 style="display:@showMsg; color:firebrick;">لا يوجد ملف مرفق.</h5>
                     </div>
 
 
                     <form asp-controller="AcadmicSupervisor" asp-action="EvaluateStudentAssignment" method="post" id="form" class="mt-5">
 
-
-                        <div class="mb-4 pb-2 row" style="text-align: center;">
-
-                            <div class="col-2"></div>
+                        <div class="mb-4 pb-2 row" style="text-align: right;margin-right:1cm">
 
                             <div class="col-4">
-                               
 
-                                    <div class="row">
+                                <div class="row">
 
-                                   <label for="StudentMarkId" class="form-label" style="font-size:25px">تقيم التقرير من  @Model.assessmentTypeDetail.RequiredMark </label>
+                                    <label for="StudentMarkId" class="form-label" style="font-size:25px">تقيم التقرير من  @Model.assessmentTypeDetail.RequiredMark </label>
 
                                     <div class="col-10">
 
@@ -146,39 +142,30 @@
 
                                     <div class="col-2">
 
-                                        <button type="button" class="btn" onclick="check()" style="background-color:#e6e291">تقيم</button>
+                                        <button type="button" class="btn" onclick="check()" style="background-color:#e6e291">تقييم</button>
 
                                         <button type="submit" class="btn" id="SubmitBtn" asp-route-StuRqId="@ViewBag.CurrentStuRqId" style="background-color:#e6e291" hidden>تقيم</button>
 
                                     </div>
+                                    <p id="Message" style="color:firebrick;"></p>
+
 
                                 </div>
 
-                                 
-
-
                             </div>
-
-
-
 
                             <div class="col-7">
 
-                                <p id="Message" style="color:firebrick;"></p>
                             </div>
 
-                        
-
-                            <input id="StudentMarkMax" value="@Model.assessmentTypeDetail.RequiredMark" hidden/>
+                            <input id="StudentMarkMax" value="@Model.assessmentTypeDetail.RequiredMark" hidden />
 
                         </div>
-
 
                         <input asp-for="StudentSemesterEvaluationMarkId" hidden />
                         <input asp-for="SemesterStudentAndEvaluationDetail_DetailId" hidden />
                         <input asp-for="DepartmentAssessmentTypeDetail_DetailId" hidden />
                         <input asp-for="SupportiveDocumentsPath" hidden id="HasFile" />
-
 
                     </form>
 
@@ -187,8 +174,6 @@
                         <iframe src="~/@Model.SupportiveDocumentsPath" type="application/pdf" style="border:none; height:100%; width:100%"></iframe>
                     </div>
                 </div>
-
-
 
                 <br />
                 <div class="row">
@@ -214,23 +199,23 @@
             var InputMark = document.getElementById("StudentMarkId").value;
             var MaxMark = document.getElementById("StudentMarkMax").value;
 
-            if (parseInt(InputMark) < 0 ){
+            if (parseInt(InputMark) < 0) {
 
-                document.getElementById("Message").textContent ="الرجاء ادخال قيمة صحيحه";
+                document.getElementById("Message").textContent = "الرجاء ادخال قيمة صحيحة";
 
                 return;
             }
 
-            if (InputMark  == "") {
+            if (InputMark == "") {
 
-                document.getElementById("Message").textContent = "الرجاء ادخال قيمة";
+                document.getElementById("Message").textContent = "الرجاء ادخال درجة التقييم";
 
                 return;
             }
 
             if (parseInt(InputMark) > parseInt(MaxMark)) {
 
-                document.getElementById("Message").textContent = "الرجاء ادخال قيمة مابين ال 0 و " + MaxMark;
+                document.getElementById("Message").textContent = "الرجاء ادخال الدرجة مابين ال 0 و " + MaxMark;
 
                 return;
             }
@@ -238,7 +223,7 @@
             document.getElementById("Message").textContent = "";
 
             document.getElementById("SubmitBtn").click();
-         }
+        }
 
     </script>
 }
