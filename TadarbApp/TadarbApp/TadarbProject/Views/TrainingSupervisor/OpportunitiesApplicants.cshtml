@@ -38,7 +38,7 @@
 
     <div class="row">
 
-        <div class="col-sm-2" style="z-index:2;">
+        <div class="col-sm-3" style="z-index:2;">
 
             <div class="vertical-nav bg-white" id="sidebar">
                 <div class="py-4 px-3 mb-4 bg-light">
@@ -84,7 +84,7 @@
 
         </div>
 
-        <div class="col-sm-9">
+        <div class="col-sm-8">
             <div class="card " style="border-radius: 25px; margin-top:2cm; margin-bottom:3cm; padding:5px 5px 5px 5px ; border-color:black;">
                 <div class="card-header" style="text-align: center;">
                     <h3> طلاب  قيد التدريب</h3>
@@ -212,7 +212,7 @@
 
                 <div class="col-sm-1"></div>
 
-                <a class="btn btn-outline-primary" href="@Url.Action("", new {id = 1})">تابع الطالب</a>
+               
             </div>
         </div>
     </div>
@@ -283,7 +283,7 @@
                     url: "@Url.Action("GetStudentsList")",
                     type: 'GET',
                     dataType: "json",
-                    data: { id: @ViewBag.MasterId , gr: gender, UPOrDw: Updw, ArOrWa: AOrW },
+                    data: { id: @ViewBag.MasterId , OppId: @ViewBag.OpportunityId , gr: gender, UPOrDw: Updw, ArOrWa: AOrW },
 
                     success: function (data) {
                         console.log(data)
@@ -356,7 +356,7 @@
                     url: "@Url.Action("GetStudentsListByFilter")",
                     type: 'GET',
                     dataType: "json",
-                    data: { id: @ViewBag.MasterId , filter: fil },
+                    data: { id: @ViewBag.MasterId , OppId: @ViewBag.OpportunityId, filter: fil },
 
                     success: function (data) {
 

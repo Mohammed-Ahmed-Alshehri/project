@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Cryptography;
 using TadarbProject.Data;
 using TadarbProject.Models;
 using TEST2.Services;
@@ -129,7 +130,7 @@ namespace TadarbProject.Controllers
             {
 
                 int count = _DbContext.SemestersStudentAndEvaluationDetails.FromSqlRaw($"SELECT * FROM SemestersStudentAndEvaluationDetails WHERE TrainingSupervisor_EmployeeId = {Emplyee.EmployeeId} AND StudentRequest_StudentRequestId IN " +
-                   $"(SELECT StudentRequestOpportunityId FROM StudentRequestsOnOpportunities WHERE TrainingOpportunity_TrainingOpportunityId = {item.TrainingOpportunityId} AND DecisionStatus ='approved')").AsNoTracking().Count();
+                   $"(SELECT StudentRequestOpportunityId FROM StudentRequestsOnOpportunities WHERE TrainingOpportunity_TrainingOpportunityId = {item.TrainingOpportunityId} AND DecisionStatus ='approved')").AsNoTracking().ToList().Count();
 
                 StudentNumber.Add(count);
             }
@@ -164,18 +165,18 @@ namespace TadarbProject.Controllers
 
 
             var SemesterMaster = _DbContext.SemestersTrainingSettingMaster.FromSqlRaw($" Select * from SemestersTrainingSettingMaster where SemesterTrainingSettingMasterId IN " +
-                $"(Select SemesterMaster_SemesterMasterId  From SemestersStudentAndEvaluationDetails where TrainingSupervisor_EmployeeId = {Emplyee.EmployeeId} ) AND ActivationStatus = 'Active'  ").Include(item => item.departmet.universityCollege.organization)
+                $"(Select SemesterMaster_SemesterMasterId  From SemestersStudentAndEvaluationDetails where TrainingSupervisor_EmployeeId = {Emplyee.EmployeeId} ) AND ActivationStatus = 'Active' ").Include(item => item.departmet.universityCollege.organization)
                 .AsNoTracking().ToList();
 
 
-
+            ViewBag.OpportunityId = id;
 
             return View(SemesterMaster);
 
         }
 
         [HttpGet]
-        public IActionResult OpportunitiesApplicants(int? id, string EvaluationFile)
+        public IActionResult OpportunitiesApplicants(int? id, int? Oppid ,string EvaluationFile)
         {
             if (id == null || id == 0)
             {
@@ -197,6 +198,8 @@ namespace TadarbProject.Controllers
             ViewBag.Username = user.FullName;
 
             ViewBag.MasterId = id;
+
+            ViewBag.OpportunityId = Oppid;
 
             ViewBag.EvaluationFile = EvaluationFile;
 
@@ -317,7 +320,7 @@ namespace TadarbProject.Controllers
 
 
         [HttpGet]
-        public IActionResult GetStudentsList(int? id, string? gr, int? UPOrDw, int? ArOrWa)
+        public IActionResult GetStudentsList(int? id, int? OppId, string? gr, int? UPOrDw, int? ArOrWa)
         {
 
 
@@ -330,7 +333,7 @@ namespace TadarbProject.Controllers
 
                     Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"Select * from UniversitiesTraineeStudents Where TraineeId IN " +
                         $" (Select Trainee_TraineeId from StudentRequestsOnOpportunities where StudentRequestOpportunityId IN " +
-                        $" (Select StudentRequest_StudentRequestId from SemestersStudentAndEvaluationDetails where SemesterMaster_SemesterMasterId = {id}))")
+                        $" (Select StudentRequest_StudentRequestId from SemestersStudentAndEvaluationDetails where SemesterMaster_SemesterMasterId = {id}) AND TrainingOpportunity_TrainingOpportunityId = {OppId})")
                       .AsNoTracking().Include(item => item.user)
                       .AsNoTracking().Include(item => item.department.universityCollege.organization)
                       .AsNoTracking().Include(item => item.department.universityCollege.city.Country).ToList();
@@ -343,7 +346,7 @@ namespace TadarbProject.Controllers
 
                     Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"Select * from UniversitiesTraineeStudents Where TraineeId IN " +
                        $" (Select Trainee_TraineeId from StudentRequestsOnOpportunities where StudentRequestOpportunityId IN " +
-                       $" (Select StudentRequest_StudentRequestId from SemestersStudentAndEvaluationDetails where SemesterMaster_SemesterMasterId = {id})) AND Gender = '{gr}' ")
+                       $" (Select StudentRequest_StudentRequestId from SemestersStudentAndEvaluationDetails where SemesterMaster_SemesterMasterId = {id}) AND TrainingOpportunity_TrainingOpportunityId = {OppId}) AND Gender = '{gr}' ")
                      .AsNoTracking().Include(item => item.user)
                       .AsNoTracking().Include(item => item.department.universityCollege.organization)
                       .AsNoTracking().Include(item => item.department.universityCollege.city.Country).ToList();
@@ -358,7 +361,7 @@ namespace TadarbProject.Controllers
 
                     Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"Select * from UniversitiesTraineeStudents Where TraineeId IN " +
                        $" (Select Trainee_TraineeId from StudentRequestsOnOpportunities where StudentRequestOpportunityId IN " +
-                       $" (Select StudentRequest_StudentRequestId from SemestersStudentAndEvaluationDetails where SemesterMaster_SemesterMasterId = {id})) AND Gender = '{gr}' ")
+                       $" (Select StudentRequest_StudentRequestId from SemestersStudentAndEvaluationDetails where SemesterMaster_SemesterMasterId = {id}) AND TrainingOpportunity_TrainingOpportunityId = {OppId}) AND Gender = '{gr}' ")
                       .AsNoTracking().Include(item => item.user)
                       .AsNoTracking().Include(item => item.department.universityCollege.organization)
                       .AsNoTracking().Include(item => item.department.universityCollege.city.Country).OrderBy(item => item.GPA).ToList();
@@ -371,7 +374,7 @@ namespace TadarbProject.Controllers
 
                     Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"Select * from UniversitiesTraineeStudents Where TraineeId IN " +
                        $" (Select Trainee_TraineeId from StudentRequestsOnOpportunities where StudentRequestOpportunityId IN " +
-                       $" (Select StudentRequest_StudentRequestId from SemestersStudentAndEvaluationDetails where SemesterMaster_SemesterMasterId = {id})) AND Gender = '{gr}' ")
+                       $" (Select StudentRequest_StudentRequestId from SemestersStudentAndEvaluationDetails where SemesterMaster_SemesterMasterId = {id}) AND TrainingOpportunity_TrainingOpportunityId =  {OppId} ) AND Gender = '{gr}' ")
                       .AsNoTracking().Include(item => item.user)
                       .AsNoTracking().Include(item => item.department.universityCollege.organization)
                       .AsNoTracking().Include(item => item.department.universityCollege.city.Country).OrderByDescending(item => item.GPA).ToList();
@@ -385,7 +388,7 @@ namespace TadarbProject.Controllers
 
                     Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"Select * from UniversitiesTraineeStudents Where TraineeId IN " +
                         $" (Select Trainee_TraineeId from StudentRequestsOnOpportunities where StudentRequestOpportunityId IN " +
-                        $" (Select StudentRequest_StudentRequestId from SemestersStudentAndEvaluationDetails where SemesterMaster_SemesterMasterId = {id}))")
+                        $" (Select StudentRequest_StudentRequestId from SemestersStudentAndEvaluationDetails where SemesterMaster_SemesterMasterId = {id}) AND TrainingOpportunity_TrainingOpportunityId = {OppId})")
                       .AsNoTracking().Include(item => item.user)
                       .AsNoTracking().Include(item => item.department.universityCollege.organization)
                       .AsNoTracking().Include(item => item.department.universityCollege.city.Country).OrderBy(item => item.GPA).ToList();
@@ -398,7 +401,7 @@ namespace TadarbProject.Controllers
 
                     Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"Select * from UniversitiesTraineeStudents Where TraineeId IN " +
                         $" (Select Trainee_TraineeId from StudentRequestsOnOpportunities where StudentRequestOpportunityId IN " +
-                        $" (Select StudentRequest_StudentRequestId from SemestersStudentAndEvaluationDetails where SemesterMaster_SemesterMasterId = {id}))")
+                        $" (Select StudentRequest_StudentRequestId from SemestersStudentAndEvaluationDetails where SemesterMaster_SemesterMasterId = {id}) AND TrainingOpportunity_TrainingOpportunityId = {OppId})")
                       .AsNoTracking().Include(item => item.user)
                       .AsNoTracking().Include(item => item.department.universityCollege.organization)
                       .AsNoTracking().Include(item => item.department.universityCollege.city.Country).OrderByDescending(item => item.GPA).ToList();
@@ -417,7 +420,7 @@ namespace TadarbProject.Controllers
 
                     Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"Select * from UniversitiesTraineeStudents Where TraineeId IN " +
                        $" (Select Trainee_TraineeId from StudentRequestsOnOpportunities where StudentRequestOpportunityId IN " +
-                       $" (Select StudentRequest_StudentRequestId from SemestersStudentAndEvaluationDetails where SemesterMaster_SemesterMasterId = {id}))")
+                       $" (Select StudentRequest_StudentRequestId from SemestersStudentAndEvaluationDetails where SemesterMaster_SemesterMasterId = {id}) AND TrainingOpportunity_TrainingOpportunityId = {OppId})")
                      .AsNoTracking().Include(item => item.user)
                       .AsNoTracking().Include(item => item.department.universityCollege.organization)
                       .AsNoTracking().Include(item => item.department.universityCollege.city.Country).ToList();
@@ -430,7 +433,7 @@ namespace TadarbProject.Controllers
 
                     Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"Select * from UniversitiesTraineeStudents Where TraineeId IN " +
                         $" (Select Trainee_TraineeId from StudentRequestsOnOpportunities where StudentRequestOpportunityId IN " +
-                        $" (Select StudentRequest_StudentRequestId from SemestersStudentAndEvaluationDetails where SemesterMaster_SemesterMasterId = {id})) AND Gender = '{gr}'")
+                        $" (Select StudentRequest_StudentRequestId from SemestersStudentAndEvaluationDetails where SemesterMaster_SemesterMasterId = {id}) AND TrainingOpportunity_TrainingOpportunityId = {OppId}) AND Gender = '{gr}'")
                        .AsNoTracking().Include(item => item.user)
                       .AsNoTracking().Include(item => item.department.universityCollege.organization)
                       .AsNoTracking().Include(item => item.department.universityCollege.city.Country).ToList();
@@ -445,7 +448,7 @@ namespace TadarbProject.Controllers
 
                     Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"Select * from UniversitiesTraineeStudents Where TraineeId IN " +
                        $" (Select Trainee_TraineeId from StudentRequestsOnOpportunities where StudentRequestOpportunityId IN " +
-                       $" (Select StudentRequest_StudentRequestId from SemestersStudentAndEvaluationDetails where SemesterMaster_SemesterMasterId = {id})) AND Gender = '{gr}'")
+                       $" (Select StudentRequest_StudentRequestId from SemestersStudentAndEvaluationDetails where SemesterMaster_SemesterMasterId = {id}) AND TrainingOpportunity_TrainingOpportunityId = {OppId}) AND Gender = '{gr}'")
                       .AsNoTracking().Include(item => item.user)
                       .AsNoTracking().Include(item => item.department.universityCollege.organization)
                       .AsNoTracking().Include(item => item.department.universityCollege.city.Country).OrderBy(item => item.GPA).ToList();
@@ -458,7 +461,7 @@ namespace TadarbProject.Controllers
 
                     Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"Select * from UniversitiesTraineeStudents Where TraineeId IN " +
                        $" (Select Trainee_TraineeId from StudentRequestsOnOpportunities where StudentRequestOpportunityId IN " +
-                       $" (Select StudentRequest_StudentRequestId from SemestersStudentAndEvaluationDetails where SemesterMaster_SemesterMasterId = {id})) AND Gender = '{gr}' ")
+                       $" (Select StudentRequest_StudentRequestId from SemestersStudentAndEvaluationDetails where SemesterMaster_SemesterMasterId = {id}) AND TrainingOpportunity_TrainingOpportunityId = {OppId}) AND Gender = '{gr}' ")
                       .AsNoTracking().Include(item => item.user)
                       .AsNoTracking().Include(item => item.department.universityCollege.organization)
                       .AsNoTracking().Include(item => item.department.universityCollege.city.Country).OrderByDescending(item => item.GPA).ToList();
@@ -472,7 +475,7 @@ namespace TadarbProject.Controllers
 
                     Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"Select * from UniversitiesTraineeStudents Where TraineeId IN " +
                         $" (Select Trainee_TraineeId from StudentRequestsOnOpportunities where StudentRequestOpportunityId IN " +
-                        $" (Select StudentRequest_StudentRequestId from SemestersStudentAndEvaluationDetails where SemesterMaster_SemesterMasterId = {id}))")
+                        $" (Select StudentRequest_StudentRequestId from SemestersStudentAndEvaluationDetails where SemesterMaster_SemesterMasterId = {id}) AND TrainingOpportunity_TrainingOpportunityId = {OppId})")
                        .AsNoTracking().Include(item => item.user)
                       .AsNoTracking().Include(item => item.department.universityCollege.organization)
                       .AsNoTracking().Include(item => item.department.universityCollege.city.Country).OrderBy(item => item.GPA).ToList();
@@ -485,7 +488,7 @@ namespace TadarbProject.Controllers
 
                     Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"Select * from UniversitiesTraineeStudents Where TraineeId IN " +
                       $" (Select Trainee_TraineeId from StudentRequestsOnOpportunities where StudentRequestOpportunityId IN " +
-                      $" (Select StudentRequest_StudentRequestId from SemestersStudentAndEvaluationDetails where SemesterMaster_SemesterMasterId = {id}))")
+                      $" (Select StudentRequest_StudentRequestId from SemestersStudentAndEvaluationDetails where SemesterMaster_SemesterMasterId = {id}) AND TrainingOpportunity_TrainingOpportunityId = {OppId})")
                      .AsNoTracking().Include(item => item.user)
                       .AsNoTracking().Include(item => item.department.universityCollege.organization)
                       .AsNoTracking().Include(item => item.department.universityCollege.city.Country).OrderByDescending(item => item.GPA).ToList();
@@ -501,7 +504,7 @@ namespace TadarbProject.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetStudentsListByFilter(int? id, string? filter)
+        public IActionResult GetStudentsListByFilter(int? id, int? OppId ,string? filter)
         {
 
 
@@ -511,7 +514,7 @@ namespace TadarbProject.Controllers
 
             Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"Select * from UniversitiesTraineeStudents Where TraineeId IN " +
                   $" (Select Trainee_TraineeId from StudentRequestsOnOpportunities where StudentRequestOpportunityId IN " +
-                  $" (Select StudentRequest_StudentRequestId from SemestersStudentAndEvaluationDetails where SemesterMaster_SemesterMasterId = {id})) " +
+                  $" (Select StudentRequest_StudentRequestId from SemestersStudentAndEvaluationDetails where SemesterMaster_SemesterMasterId = {id}) AND TrainingOpportunity_TrainingOpportunityId={OppId})" +
                   $" AND UserAccount_UserId IN (SELECT UserId FROM UserAcounts WHERE FullName = '{filter}')")
             .AsNoTracking().Include(item => item.user)
             .AsNoTracking().Include(item => item.department.universityCollege.organization)
@@ -526,7 +529,7 @@ namespace TadarbProject.Controllers
 
             Students = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"Select * from UniversitiesTraineeStudents Where TraineeId IN " +
                   $" (Select Trainee_TraineeId from StudentRequestsOnOpportunities where StudentRequestOpportunityId IN " +
-                  $" (Select StudentRequest_StudentRequestId from SemestersStudentAndEvaluationDetails where SemesterMaster_SemesterMasterId = {id})) " +
+                  $" (Select StudentRequest_StudentRequestId from SemestersStudentAndEvaluationDetails where SemesterMaster_SemesterMasterId = {id}) AND TrainingOpportunity_TrainingOpportunityId={OppId} ) " +
                   $" AND Department_DepartmentId IN (SELECT Department_DepartmentId FROM Departments WHERE Organization_OrganizationId IN " +
                   $"( SELECT OrganizationId FROM Organizations WHERE OrganizationName = '{filter}'))")
                      .AsNoTracking().Include(item => item.user)

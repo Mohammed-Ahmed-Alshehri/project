@@ -231,12 +231,14 @@ namespace TadarbProject.Controllers
 
             var DetailFiled = _DbContext.FieldOfSpecialtiesDetails.Where(item => item.DetailFieldId == DepartmentTrainingAreas.TrainArea_DetailFiledId).AsNoTracking().FirstOrDefault();
 
-            //var Opportunities = _DbContext.TrainingOpportunities.Where(item => item.DetailFiled_DetailFiledId == DetailFiled.DetailFieldId).ToList();
 
-            var Opportunities = _DbContext.TrainingOpportunities.FromSqlRaw($"Select * from TrainingOpportunities WHERE DetailFiled_DetailFiledId IN" +
-                $"(SELECT TrainArea_DetailFiledId FROM DepartmentTrainingAreas WHERE Department_DepartmenId ={Department.DepartmentId}) " +
-                $" AND OpportunityStatus='Available' AND AbilityofSubmissionStatus='Available'").AsNoTracking().Include(item => item.DetailFiled)
-                .Include(item => item.Department.organization).AsNoTracking().ToList();
+
+            IEnumerable<TrainingOpportunity> Opportunities = Enumerable.Empty<TrainingOpportunity>();
+
+            Opportunities = _DbContext.TrainingOpportunities.FromSqlRaw($"Select * from TrainingOpportunities WHERE DetailFiled_DetailFiledId IN" +
+               $"(SELECT TrainArea_DetailFiledId FROM DepartmentTrainingAreas WHERE Department_DepartmenId ={Department.DepartmentId}) " +
+               $" AND OpportunityStatus='Available' AND AbilityofSubmissionStatus='Available'").AsNoTracking().Include(item => item.DetailFiled)
+               .Include(item => item.Department.organization).AsNoTracking().ToList();
 
 
 
@@ -688,12 +690,12 @@ namespace TadarbProject.Controllers
                 if (i.DecisionStatus == "waiting" || i.DecisionStatus == "waitingStudentApprove")
                 {
 
-                    if(i.DecisionStatus == "waitingStudentApprove")
+                    if (i.DecisionStatus == "waitingStudentApprove")
 
                     {
                         i.trainingOpportunity.AvailableOpportunities = i.trainingOpportunity.AvailableOpportunities + 1;
                     }
-                   
+
 
                     i.DecisionDate = DateTime.Now.Date;
                     i.DecisionStatus = "system disable";

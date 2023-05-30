@@ -141,7 +141,13 @@
                                             <input asp-for="@item.SemesterTrainingSettingMasterId" hidden/>
 
 
-                                            <a class="btn btn-info" href="//localhost:7122/TrainingSupervisor/OpportunitiesApplicants?id=@item.SemesterTrainingSettingMasterId&EvaluationFile=@item.EvaluationFileToTrainingSupervisor">
+                                           @* <a class="btn btn-info" href="//localhost:7122/TrainingSupervisor/OpportunitiesApplicants?id=@item.SemesterTrainingSettingMasterId&EvaluationFile=@item.EvaluationFileToTrainingSupervisor">
+
+                                                <i class="fa-solid fa-chalkboard-user" style="color:black"></i>
+                                            </a>*@
+
+                                            
+                                            <a class="btn btn-info" href="@Url.Action("OpportunitiesApplicants",new {id=@item.SemesterTrainingSettingMasterId , Oppid=ViewBag.OpportunityId, EvaluationFile=@item.EvaluationFileToTrainingSupervisor})">
 
                                                 <i class="fa-solid fa-chalkboard-user" style="color:black"></i>
                                             </a>
