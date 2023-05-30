@@ -13,7 +13,11 @@ namespace TadarbProject.Controllers
         private readonly AppDbContext _DbContext;
         private readonly IEmailSender _emailSender;
         private readonly IHttpContextAccessor _HttpContextAccessor;
-
+        private static string Name;
+        private static int UserId;
+        private static UserAcount User;
+        private static OrganizationBranch_TrainProv branch;
+        private static Organization organizationOfR;
 
         public BranchController(AppDbContext DbContext, IEmailSender emailSender, IHttpContextAccessor HttpContextAccessor)
         {
@@ -26,13 +30,26 @@ namespace TadarbProject.Controllers
         public IActionResult Index()
         {
 
-            ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
-            int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
-            var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).AsNoTracking().FirstOrDefault();
-            var Branch = _DbContext.OrganizationBranches_TrainProv.Where(item => item.Responsible_UserId == RUserId).AsNoTracking().FirstOrDefault();
 
-            var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Branch.Organization_OrganizationId).AsNoTracking().FirstOrDefault();
+            Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
 
+            ViewBag.Name = Name;
+
+            UserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
+
+            int RUserId = UserId;
+
+            User = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).AsNoTracking().FirstOrDefault();
+
+            var user = User;
+
+            branch = _DbContext.OrganizationBranches_TrainProv.Where(item => item.Responsible_UserId == RUserId).AsNoTracking().FirstOrDefault();
+
+            var Branch = branch;
+
+            organizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Branch.Organization_OrganizationId).AsNoTracking().FirstOrDefault();
+
+            var OrganizationOfR = organizationOfR;
 
             ViewBag.OrganizationName = OrganizationOfR.OrganizationName + " - " + Branch.BranchName;
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
@@ -45,36 +62,42 @@ namespace TadarbProject.Controllers
         public IActionResult ManageDepartment()
         {
 
-            ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
-            int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
-            var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).AsNoTracking().FirstOrDefault();
-            var Branch = _DbContext.OrganizationBranches_TrainProv.Where(item => item.Responsible_UserId == RUserId).AsNoTracking().FirstOrDefault();
+            ViewBag.Name = Name;
 
-            var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Branch.Organization_OrganizationId).AsNoTracking().FirstOrDefault();
+            int RUserId = UserId;
+
+            var user = User;
+
+            var Branch = branch;
+
+            var OrganizationOfR = organizationOfR;
 
 
             ViewBag.OrganizationName = OrganizationOfR.OrganizationName + " - " + Branch.BranchName;
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
             ViewBag.Username = user.FullName;
+
             return View();
         }
 
         [HttpGet]
         public IActionResult ViewSupervisorsUser()
         {
+            ViewBag.Name = Name;
 
-            ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
+            int RUserId = UserId;
 
-            int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
-            var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).FirstOrDefault();
-            var Branch = _DbContext.OrganizationBranches_TrainProv.Where(item => item.Responsible_UserId == RUserId).AsNoTracking().FirstOrDefault();
+            var user = User;
 
-            var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Branch.Organization_OrganizationId).AsNoTracking().FirstOrDefault();
+            var Branch = branch;
+
+            var OrganizationOfR = organizationOfR;
 
 
             ViewBag.OrganizationName = OrganizationOfR.OrganizationName + " - " + Branch.BranchName;
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
             ViewBag.Username = user.FullName;
+
             var DEPOfR = _DbContext.Departments.Where(item => item.Branch_BranchId == Branch.BranchId && item.DepartmentName.Equals("قسم ادارة مشرفين التدريب")).AsNoTracking().FirstOrDefault();
 
 
@@ -99,13 +122,16 @@ namespace TadarbProject.Controllers
         [HttpGet]
         public IActionResult AddSupervisorUser()
         {
-            ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
 
-            int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
-            var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).AsNoTracking().FirstOrDefault();
-            var Branch = _DbContext.OrganizationBranches_TrainProv.Where(item => item.Responsible_UserId == RUserId).AsNoTracking().FirstOrDefault();
+            ViewBag.Name = Name;
 
-            var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Branch.Organization_OrganizationId).AsNoTracking().FirstOrDefault();
+            int RUserId = UserId;
+
+            var user = User;
+
+            var Branch = branch;
+
+            var OrganizationOfR = organizationOfR;
 
 
             ViewBag.OrganizationName = OrganizationOfR.OrganizationName + " - " + Branch.BranchName;
@@ -116,15 +142,16 @@ namespace TadarbProject.Controllers
             return View();
 
         }
+
         [HttpPost]
         public IActionResult AddSupervisorUser(EmployeeVM employeeVM)
         {
-            int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
+            int RUserId = UserId;
 
-            var RUser = _DbContext.UserAcounts.Find(RUserId);
+            var RUser = User;
 
-            var Branch = _DbContext.OrganizationBranches_TrainProv.Where(item => item.Responsible_UserId == RUserId).AsNoTracking().FirstOrDefault();
-            var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Branch.Organization_OrganizationId).AsNoTracking().FirstOrDefault();
+            var Branch = branch;
+            var OrganizationOfR = organizationOfR;
 
 
             if (employeeVM == null)
@@ -192,22 +219,25 @@ namespace TadarbProject.Controllers
 
         }
 
+        [HttpGet]
         public IActionResult ViewOpportunities()
         {
+            ViewBag.Name = Name;
 
-            ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
+            int RUserId = UserId;
 
-            int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
-            var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).AsNoTracking().FirstOrDefault();
-            var Branch = _DbContext.OrganizationBranches_TrainProv.Where(item => item.Responsible_UserId == RUserId).AsNoTracking().FirstOrDefault();
-            var Emplyee = _DbContext.Employees.Where(item => item.UserAccount_UserId == RUserId).FirstOrDefault();
+            var user = User;
 
-            var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Branch.Organization_OrganizationId).AsNoTracking().FirstOrDefault();
+            var Branch = branch;
 
+            var OrganizationOfR = organizationOfR;
 
             ViewBag.OrganizationName = OrganizationOfR.OrganizationName + " - " + Branch.BranchName;
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
             ViewBag.Username = user.FullName;
+
+            var Emplyee = _DbContext.Employees.Where(item => item.UserAccount_UserId == RUserId).AsNoTracking().FirstOrDefault();
+
 
             var Opportunities = _DbContext.TrainingOpportunities.Where(item => item.CreatedByEmployeeId == Emplyee.EmployeeId).Include(item => item.DetailFiled).AsNoTracking().ToList();
 
@@ -267,22 +297,25 @@ namespace TadarbProject.Controllers
         {
 
 
-            ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
+            ViewBag.Name = Name;
 
-            int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
-            var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).AsNoTracking().FirstOrDefault();
-            var Branch = _DbContext.OrganizationBranches_TrainProv.Where(item => item.Responsible_UserId == RUserId).AsNoTracking().FirstOrDefault();
-            var Department = _DbContext.Departments.Where(item => item.Branch_BranchId == Branch.BranchId).AsNoTracking().FirstOrDefault();
+            int RUserId = UserId;
 
-            var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Branch.Organization_OrganizationId).AsNoTracking().FirstOrDefault();
+            var user = User;
 
+            var Branch = branch;
+
+            var OrganizationOfR = organizationOfR;
 
             ViewBag.OrganizationName = OrganizationOfR.OrganizationName + " - " + Branch.BranchName;
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
             ViewBag.Username = user.FullName;
+
             var Opportunity = new TrainingOpportunityVM();
 
             var DEPOfR = _DbContext.Departments.Where(item => item.Branch_BranchId == Branch.BranchId && item.DepartmentName.Equals("قسم ادارة مشرفين التدريب")).AsNoTracking().FirstOrDefault();
+
+            var Department = _DbContext.Departments.Where(item => item.Branch_BranchId == Branch.BranchId).AsNoTracking().FirstOrDefault();
 
             Opportunity.UserListItems = _DbContext.Employees.FromSqlRaw($"SELECT * FROM Employees WHERE Department_DepartmentId ={DEPOfR.DepartmentId}")
                 .Include(item => item.userAcount).AsNoTracking().ToList().Select(u => new SelectListItem { Text = u.userAcount.FullName, Value = u.EmployeeId.ToString() });
@@ -306,14 +339,13 @@ namespace TadarbProject.Controllers
         [HttpPost]
         public IActionResult AddOpportunities(TrainingOpportunityVM TrainingOpportunityVM)
         {
-            int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
-            var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).AsNoTracking().FirstOrDefault();
-            var Branch = _DbContext.OrganizationBranches_TrainProv.Where(item => item.Responsible_UserId == RUserId).AsNoTracking().FirstOrDefault();
+            int RUserId = UserId;
+            var user = User;
+            var Branch = branch;
 
             var Emplyee = _DbContext.Employees.Where(item => item.UserAccount_UserId == RUserId).AsNoTracking().FirstOrDefault();
 
-            var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Branch.Organization_OrganizationId).AsNoTracking().FirstOrDefault();
-
+            var OrganizationOfR = organizationOfR;
 
             if (TrainingOpportunityVM == null)
             {
@@ -369,13 +401,13 @@ namespace TadarbProject.Controllers
         public IActionResult EditOpportunities(int? id)
         {
 
-            int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
-            var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).AsNoTracking().FirstOrDefault();
-            var Branch = _DbContext.OrganizationBranches_TrainProv.Where(item => item.Responsible_UserId == RUserId).AsNoTracking().FirstOrDefault();
+            int RUserId = UserId;
+            var user = User;
+            var Branch = branch;
             var Department = _DbContext.Departments.Where(item => item.Branch_BranchId == Branch.BranchId).FirstOrDefault();
 
 
-            var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Branch.Organization_OrganizationId).AsNoTracking().FirstOrDefault();
+            var OrganizationOfR = organizationOfR;
 
             var Opertitnty = _DbContext.TrainingOpportunities.Where(item => item.TrainingOpportunityId == id).AsNoTracking().FirstOrDefault();
 
@@ -514,13 +546,13 @@ namespace TadarbProject.Controllers
         [HttpGet]
         public IActionResult AddDepartmentFiledSpecialties()
         {
-            ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
+            ViewBag.Name = Name;
 
-            int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
-            var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).AsNoTracking().FirstOrDefault();
-            var Branch = _DbContext.OrganizationBranches_TrainProv.Where(item => item.Responsible_UserId == RUserId).AsNoTracking().FirstOrDefault();
+            int RUserId = UserId;
+            var user = User;
+            var Branch = branch;
 
-            var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Branch.Organization_OrganizationId).AsNoTracking().FirstOrDefault();
+            var OrganizationOfR = organizationOfR;
 
 
             ViewBag.OrganizationName = OrganizationOfR.OrganizationName;
@@ -546,6 +578,7 @@ namespace TadarbProject.Controllers
 
         }
 
+        [HttpPost]
         public IActionResult AddDetailFields(string dFieldIds)
         {
 
@@ -568,9 +601,9 @@ namespace TadarbProject.Controllers
 
 
 
-                int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
+                int RUserId = UserId;
 
-                var RUser = _DbContext.UserAcounts.Find(RUserId);
+                var RUser = User;
 
 
                 int DEPId = Convert.ToInt32(Ids[0]);
@@ -615,13 +648,13 @@ namespace TadarbProject.Controllers
         [HttpGet]
         public IActionResult ViewDepartmentFiledSpecialties()
         {
-            ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
+            ViewBag.Name = Name;
 
-            int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
-            var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).AsNoTracking().FirstOrDefault();
-            var Branch = _DbContext.OrganizationBranches_TrainProv.Where(item => item.Responsible_UserId == RUserId).AsNoTracking().FirstOrDefault();
+            int RUserId = UserId;
+            var user = User;
+            var Branch = branch;
 
-            var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Branch.Organization_OrganizationId).AsNoTracking().FirstOrDefault();
+            var OrganizationOfR = organizationOfR;
 
             var Department = _DbContext.Departments.Where(item => item.Responsible_UserId == RUserId).AsNoTracking().ToList();
 
@@ -634,7 +667,7 @@ namespace TadarbProject.Controllers
             return View(Department);
         }
 
-
+        [HttpGet]
         public IActionResult OpportunitiesApplicants(int? id)
         {
             if (id == null || id == 0)
@@ -642,15 +675,15 @@ namespace TadarbProject.Controllers
                 return NotFound();
             }
 
-            ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
+            ViewBag.Name = Name;
 
-            int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
-            var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).AsNoTracking().FirstOrDefault();
-            var Branch = _DbContext.OrganizationBranches_TrainProv.Where(item => item.Responsible_UserId == RUserId).AsNoTracking().FirstOrDefault();
+            int RUserId = UserId;
+            var user = User;
+            var Branch = branch;
 
-            var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Branch.Organization_OrganizationId).AsNoTracking().FirstOrDefault();
+            var OrganizationOfR = organizationOfR;
 
-            var Department = _DbContext.Departments.Where(item => item.Responsible_UserId == RUserId).AsNoTracking().ToList();
+            // var Department = _DbContext.Departments.Where(item => item.Responsible_UserId == RUserId).AsNoTracking().ToList();
 
             var Approv = _DbContext.TrainingOpportunities.Where(item => item.TrainingOpportunityId == id).AsNoTracking().FirstOrDefault();
 
@@ -665,7 +698,7 @@ namespace TadarbProject.Controllers
             return View();
         }
 
-
+        [HttpGet]
         public IActionResult OpportunitiesApplicantsDetail(int? id, int? Oid)
         {
 
@@ -674,15 +707,15 @@ namespace TadarbProject.Controllers
             {
                 return NotFound();
             }
-            ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
+            ViewBag.Name = Name;
 
-            int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
-            var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).AsNoTracking().FirstOrDefault();
-            var Branch = _DbContext.OrganizationBranches_TrainProv.Where(item => item.Responsible_UserId == RUserId).AsNoTracking().FirstOrDefault();
+            int RUserId = UserId;
+            var user = User;
+            var Branch = branch;
 
-            var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Branch.Organization_OrganizationId).AsNoTracking().FirstOrDefault();
+            var OrganizationOfR = organizationOfR;
 
-            var Department = _DbContext.Departments.Where(item => item.Responsible_UserId == RUserId).AsNoTracking().ToList();
+            // var Department = _DbContext.Departments.Where(item => item.Responsible_UserId == RUserId).AsNoTracking().ToList();
 
 
             ViewBag.OrganizationName = OrganizationOfR.OrganizationName + " - " + Branch.BranchName;
@@ -700,10 +733,6 @@ namespace TadarbProject.Controllers
 
 
         }
-
-
-
-
 
 
 
@@ -868,15 +897,16 @@ namespace TadarbProject.Controllers
 
         }
 
+        [HttpGet]
         public IActionResult GetDetailFields(string? ids)
         {
 
-            int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
+            int RUserId = UserId;
 
 
-            var Branch = _DbContext.OrganizationBranches_TrainProv.Where(item => item.Responsible_UserId == RUserId).AsNoTracking().FirstOrDefault();
+            var Branch = branch;
 
-            var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Branch.Organization_OrganizationId).AsNoTracking().FirstOrDefault();
+            var OrganizationOfR = organizationOfR;
 
             if (!string.IsNullOrEmpty(ids))
             {
@@ -914,15 +944,16 @@ namespace TadarbProject.Controllers
         }
 
 
+        [HttpPost]
         public IActionResult AddDEP(string? name)
         {
 
-            int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
+            int RUserId = UserId;
 
 
-            var Branch = _DbContext.OrganizationBranches_TrainProv.Where(item => item.Responsible_UserId == RUserId).AsNoTracking().FirstOrDefault();
+            var Branch = branch;
 
-            var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Branch.Organization_OrganizationId).AsNoTracking().FirstOrDefault();
+            var OrganizationOfR = organizationOfR;
 
 
             if (!string.IsNullOrEmpty(name))
@@ -956,16 +987,16 @@ namespace TadarbProject.Controllers
 
 
 
-
+        [HttpGet]
         public IActionResult GetAllDEPs()
         {
 
-            int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
+            int RUserId = UserId;
 
 
-            var Branch = _DbContext.OrganizationBranches_TrainProv.Where(item => item.Responsible_UserId == RUserId).AsNoTracking().FirstOrDefault();
+            var Branch = branch;
 
-            var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Branch.Organization_OrganizationId).AsNoTracking().FirstOrDefault();
+            var OrganizationOfR = organizationOfR;
 
 
 
@@ -983,7 +1014,7 @@ namespace TadarbProject.Controllers
         }
 
 
-
+        [HttpPost]
         public IActionResult EditeDEP(string? id, string? name)
         {
 
@@ -1014,14 +1045,14 @@ namespace TadarbProject.Controllers
 
         }
 
-
+        [HttpGet]
         public IActionResult GetSpecialities()
         {
-            int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
+            int RUserId = UserId;
 
-            var OrganizationOfR = _DbContext.Organizations.Where(item => item.ResponsibleUserId == RUserId).AsNoTracking().FirstOrDefault();
+            var OrganizationOfR = organizationOfR;
 
-            var Branch = _DbContext.OrganizationBranches_TrainProv.Where(item => item.Responsible_UserId == RUserId).AsNoTracking().FirstOrDefault();
+            var Branch = branch;
 
             var departmentofb = _DbContext.Departments.Where(item => item.Branch_BranchId == Branch.BranchId).AsNoTracking().FirstOrDefault();
 
@@ -1040,10 +1071,6 @@ namespace TadarbProject.Controllers
 
 
 
-
-
-
-
             //return Json(new { DEPList });
 
 
@@ -1052,14 +1079,15 @@ namespace TadarbProject.Controllers
 
         }
 
+        [HttpGet]
         public IActionResult GetDepartmentTrainingArea()
 
         {
-            int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
+            int RUserId = UserId;
 
-            var OrganizationOfR = _DbContext.Organizations.Where(item => item.ResponsibleUserId == RUserId).AsNoTracking().FirstOrDefault();
+            var OrganizationOfR = organizationOfR;
 
-            var Branch = _DbContext.OrganizationBranches_TrainProv.Where(item => item.Responsible_UserId == RUserId).AsNoTracking().FirstOrDefault();
+            var Branch = branch;
 
             var departmentofb = _DbContext.Departments.Where(item => item.Branch_BranchId == Branch.BranchId).AsNoTracking().FirstOrDefault();
 
@@ -1071,18 +1099,16 @@ namespace TadarbProject.Controllers
 
 
 
-
-
             return Json(new { Departments });
 
 
 
         }
 
+
+        [HttpPost]
         public IActionResult DeleteDepartmentTrainingArea(int? id)
         {
-
-
 
             if (id != null || id == 0)
             {
@@ -1107,7 +1133,7 @@ namespace TadarbProject.Controllers
         }
 
 
-
+        [HttpGet]
         public IActionResult GetSpecialization(string? id)
         {
 

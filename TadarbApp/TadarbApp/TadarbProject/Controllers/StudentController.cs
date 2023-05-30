@@ -13,6 +13,12 @@ namespace TadarbProject.Controllers
         private readonly IWebHostEnvironment _WebHostEnvironment;
         private readonly IEmailSender _emailSender;
         private readonly IHttpContextAccessor _HttpContextAccessor;
+        private static string Name;
+        private static int UserId;
+        private static UserAcount User;
+        private static UniversityTraineeStudent trainee;
+        private static Department department;
+        private static Organization OrganizationOfR;
 
 
         public StudentController(AppDbContext DbContext, IEmailSender emailSender, IHttpContextAccessor HttpContextAccessor, IWebHostEnvironment webHostEnvironment)
@@ -26,14 +32,28 @@ namespace TadarbProject.Controllers
 
         public IActionResult Index()
         {
-            ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
-            int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
-            var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).AsNoTracking().FirstOrDefault();
-            var UnverTre = _DbContext.UniversitiesTraineeStudents.Where(item => item.UserAccount_UserId == RUserId).Include(item => item.user.City.Country).Include(item => item.department.User)
-                .AsNoTracking().FirstOrDefault();
-            var Department = _DbContext.Departments.Where(item => item.DepartmentId == UnverTre.Department_DepartmentId).AsNoTracking().FirstOrDefault();
+            Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
 
-            var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Department.Organization_OrganizationId).AsNoTracking().FirstOrDefault();
+            ViewBag.Name = Name;
+
+            UserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
+
+            int RUserId = UserId;
+
+            User = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).AsNoTracking().FirstOrDefault();
+
+            var user = User;
+
+            trainee = _DbContext.UniversitiesTraineeStudents.Where(item => item.UserAccount_UserId == RUserId).Include(item => item.user.City.Country).Include(item => item.department.User)
+                .AsNoTracking().FirstOrDefault();
+
+            var UnverTre = trainee;
+
+            department = _DbContext.Departments.Where(item => item.DepartmentId == UnverTre.Department_DepartmentId).AsNoTracking().FirstOrDefault();
+
+            var Department = department;
+
+            OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Department.Organization_OrganizationId).AsNoTracking().FirstOrDefault();
 
             if (user.ActivationStatus == "Not_Active")
             {
@@ -58,9 +78,9 @@ namespace TadarbProject.Controllers
         [HttpGet]
         public IActionResult EditAccount()
         {
-            ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
-            int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
-            var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).AsNoTracking().FirstOrDefault();
+            ViewBag.Name = Name;
+            int RUserId = UserId;
+            var user = User;
 
 
 
@@ -73,12 +93,11 @@ namespace TadarbProject.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult EditAccount(UniversityTraineeStudent UniversityTraineeStudent, IFormFile? CvFile, IFormFile? otherDoc)
         {
-            ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
+            ViewBag.Name = Name;
+            int RUserId = UserId;
+            var user = User;
 
-            int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
-            var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).AsNoTracking().FirstOrDefault();
-
-            var Student = _DbContext.UniversitiesTraineeStudents.Where(item => item.UserAccount_UserId == RUserId).Include(item => item.user).AsNoTracking().FirstOrDefault();
+            var Student = trainee;
 
 
 
@@ -219,13 +238,13 @@ namespace TadarbProject.Controllers
         [HttpGet]
         public IActionResult ViewOpportunities()
         {
-            ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
-            int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
-            var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).AsNoTracking().FirstOrDefault();
-            var UnverTre = _DbContext.UniversitiesTraineeStudents.Where(item => item.UserAccount_UserId == RUserId).AsNoTracking().FirstOrDefault();
-            var Department = _DbContext.Departments.Where(item => item.DepartmentId == UnverTre.Department_DepartmentId).AsNoTracking().FirstOrDefault();
+            ViewBag.Name = Name;
+            int RUserId = UserId;
+            var user = User;
+            var UnverTre = trainee;
+            var Department = department;
 
-            var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Department.Organization_OrganizationId).AsNoTracking().FirstOrDefault();
+
 
             var DepartmentTrainingAreas = _DbContext.DepartmentTrainingAreas.Where(item => item.Department_DepartmenId == Department.DepartmentId).AsNoTracking().FirstOrDefault();
 
@@ -254,14 +273,11 @@ namespace TadarbProject.Controllers
         [HttpGet]
         public IActionResult ViewOpportunitiesStatus()
         {
-            ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
-            int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
-            var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).AsNoTracking().FirstOrDefault();
-            var UnverTre = _DbContext.UniversitiesTraineeStudents.Where(item => item.UserAccount_UserId == RUserId).FirstOrDefault();
-            var Department = _DbContext.Departments.Where(item => item.DepartmentId == UnverTre.Department_DepartmentId).AsNoTracking().FirstOrDefault();
-
-            var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Department.Organization_OrganizationId).AsNoTracking().FirstOrDefault();
-
+            ViewBag.Name = Name;
+            int RUserId = UserId;
+            var user = User;
+            var UnverTre = trainee;
+            var Department = department;
 
 
             //var OPertunty = _DbContext.TrainingOpportunities.FromSqlRaw("SELECT * FROM TrainingOpportunities WHERE TrainingOpportunityId IN " +
@@ -280,6 +296,7 @@ namespace TadarbProject.Controllers
 
             return View(StudentReq);
         }
+        [HttpGet]
 
         public IActionResult OpportunityInformation(int? id)
         {
@@ -289,20 +306,18 @@ namespace TadarbProject.Controllers
                 return NotFound();
             }
 
-            ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
-            int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
-            var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).AsNoTracking().FirstOrDefault();
-            var UnverTre = _DbContext.UniversitiesTraineeStudents.Where(item => item.UserAccount_UserId == RUserId).AsNoTracking().FirstOrDefault();
-            var Department = _DbContext.Departments.Where(item => item.DepartmentId == UnverTre.Department_DepartmentId).AsNoTracking().FirstOrDefault();
+            ViewBag.Name = Name;
+            int RUserId = UserId;
+            var user = User;
+            var UnverTre = trainee;
+            var Department = department;
 
             var Opportunity = _DbContext.TrainingOpportunities
                 .Where(item => item.TrainingOpportunityId == id).Include(item => item.DetailFiled).Include(item => item.trainingType).Include(item => item.Branch.city.Country).Include(item => item.Branch.organization).AsNoTracking().FirstOrDefault();
 
 
 
-            //var OrganizationCompany = _DbContext.Organizations.FirstOrDefault(item => item.OrganizationId == 2);
-
-            var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Department.Organization_OrganizationId).AsNoTracking().FirstOrDefault();
+            //var OrganizationCompany = _DbContext.Organizations.FirstOrDefault(item => item.OrganizationId == 2);;
 
             TrainingOpportunityVM trainingOpportunityVM = new TrainingOpportunityVM
             {
@@ -321,13 +336,14 @@ namespace TadarbProject.Controllers
             return View(trainingOpportunityVM);
         }
 
-
+        [HttpGet]
         public IActionResult RequsetOnOpportunity(TrainingOpportunityVM trainingOpportunityVN)
         {
 
-            int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
-            var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).AsNoTracking().FirstOrDefault();
-            var UnverTre = _DbContext.UniversitiesTraineeStudents.Where(item => item.UserAccount_UserId == RUserId).AsNoTracking().FirstOrDefault();
+            int RUserId = UserId;
+            var user = User;
+            var UnverTre = trainee;
+
             var opert = _DbContext.TrainingOpportunities.Where(item => item.TrainingOpportunityId == trainingOpportunityVN.TrainingOpportunity.TrainingOpportunityId).FirstOrDefault();
 
 
@@ -421,18 +437,16 @@ namespace TadarbProject.Controllers
 
 
 
-
+        [HttpGet]
         public IActionResult ViewAssignments()
         {
 
 
-            ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
-            int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
-            var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).AsNoTracking().FirstOrDefault();
-            var UnverTre = _DbContext.UniversitiesTraineeStudents.Where(item => item.UserAccount_UserId == RUserId).AsNoTracking().FirstOrDefault();
-            var Department = _DbContext.Departments.Where(item => item.DepartmentId == UnverTre.Department_DepartmentId).AsNoTracking().FirstOrDefault();
-            var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Department.Organization_OrganizationId).AsNoTracking().FirstOrDefault();
-
+            ViewBag.Name = Name;
+            int RUserId = UserId;
+            var user = User;
+            var UnverTre = trainee;
+            var Department = department;
 
             ViewBag.OrganizationName = OrganizationOfR.OrganizationName + " - " + Department.DepartmentName;
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
@@ -460,18 +474,16 @@ namespace TadarbProject.Controllers
                 return NotFound();
             }
 
-            ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
-            int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
-            var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).AsNoTracking().FirstOrDefault();
-            var UnverTre = _DbContext.UniversitiesTraineeStudents.Where(item => item.UserAccount_UserId == RUserId).AsNoTracking().FirstOrDefault();
-            var Department = _DbContext.Departments.Where(item => item.DepartmentId == UnverTre.Department_DepartmentId).AsNoTracking().FirstOrDefault();
-            var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Department.Organization_OrganizationId).AsNoTracking().FirstOrDefault();
 
+            ViewBag.Name = Name;
+            int RUserId = UserId;
+            var user = User;
+            var UnverTre = trainee;
+            var Department = department;
 
             ViewBag.OrganizationName = OrganizationOfR.OrganizationName + " - " + Department.DepartmentName;
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
             ViewBag.Username = user.FullName;
-
 
 
             var Assignment = _DbContext.StudentSemesterEvaluationMarks.Where(item => item.StudentSemesterEvaluationMarkId == SSEMId)
@@ -493,19 +505,16 @@ namespace TadarbProject.Controllers
 
 
 
-            ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
-            int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
-            var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).AsNoTracking().FirstOrDefault();
-            var UnverTre = _DbContext.UniversitiesTraineeStudents.Where(item => item.UserAccount_UserId == RUserId).AsNoTracking().FirstOrDefault();
-            var Department = _DbContext.Departments.Where(item => item.DepartmentId == UnverTre.Department_DepartmentId).AsNoTracking().FirstOrDefault();
-            var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Department.Organization_OrganizationId).AsNoTracking().FirstOrDefault();
 
+            ViewBag.Name = Name;
+            int RUserId = UserId;
+            var user = User;
+            var UnverTre = trainee;
+            var Department = department;
 
             ViewBag.OrganizationName = OrganizationOfR.OrganizationName + " - " + Department.DepartmentName;
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
             ViewBag.Username = user.FullName;
-
-
 
 
             //Startt UploadFile
@@ -715,11 +724,7 @@ namespace TadarbProject.Controllers
                 //$"AND DecisionStatus = 'waiting' OR DecisionStatus = 'waitingStudentApprove')) WHERE TrainingOpportunityId={i.TrainingOpportunity_TrainingOpportunityId}");
 
 
-
-
             }
-
-
 
 
             _DbContext.SaveChanges();

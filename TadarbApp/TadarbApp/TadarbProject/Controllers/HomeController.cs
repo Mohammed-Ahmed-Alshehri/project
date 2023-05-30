@@ -31,12 +31,14 @@ namespace TadarbProject.Controllers
         {
 
 
-            IEnumerable<UserAcount> userAcount = _DbContext.UserAcounts.AsNoTracking().ToList();
+            //IEnumerable<UserAcount> userAcount = _DbContext.UserAcounts.AsNoTracking().ToList();
 
 
 
 
-            return View(userAcount);
+            //return View(userAcount);
+
+            return View();
         }
 
         [HttpGet]
