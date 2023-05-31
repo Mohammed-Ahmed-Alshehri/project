@@ -15,7 +15,7 @@
 <div class="row" >
     <div class="col-sm-4" style="z-index:2;">
 
-        <div class="vertical-nav bg-white" id="sidebar">
+        <div class="vertical-nav bg-white" style="position:absolute"  id="sidebar">
             <div class="py-4 px-3 mb-4 bg-light">
                 <div class="media d-flex align-items-center">
                     <img src="~/@ViewBag.OrganizationImage" alt="..." width="65" class="mr-3 rounded-circle img-thumbnail shadow-sm">
@@ -36,12 +36,12 @@
                 </li>
 
 
-                <li class="nav-item">
+                <li class="nav-item" id="fff">
                     <a asp-controller="DepartmentUniversity" asp-action="ViewAcademicSupervisors" class="nav-link text-dark font-italic  ">
                             <i class="fa-solid fa-users-gear"></i>
                            إدارة المشرفين
                     </a>
-                    <li class="nav-item">
+                    <li class="nav-item" id="ff2">
                         <a asp-controller="DepartmentUniversity" asp-action="ViewStudents" class="nav-link text-dark font-italic ">
                             <i class="fa-solid fa-people-roof"></i>
 
@@ -49,14 +49,14 @@
                         </a>
 
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" id="ff3"> 
                         <a asp-controller="DepartmentUniversity" asp-action="ViewAssessment" class="nav-link text-dark font-italic  ">
                             <i class="fa-solid fa-chart-simple "></i>
 
                             تحديد التقييمات
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" id="ff4">
                         <a asp-controller="DepartmentUniversity" asp-action="ViewSemesters" class="nav-link text-dark font-italic ">
                             <i class="fa-solid fa-door-closed"></i>
 
@@ -65,7 +65,13 @@
                     </li>
              
             </ul>
+                <div>
+                    <a class="btn " id="btn1">
+                        <i class="fa-solid fa-person-circle-question"></i>
+                        احتاج مساعدة
 
+                    </a>
+                </div>
 
         </div>
 
@@ -104,6 +110,80 @@
                 $('#sidebar, #content').toggleClass('active');
             });
         });
+
+        // giude tour
+        document.getElementById('btn1')
+            .addEventListener('click', function (event) {
+                event.stopPropagation();
+
+                const driver = new Driver();
+                // Define Steps
+
+                animate: false
+                driver.defineSteps([
+                    {
+                        element: '#fff',
+                        popover: {
+                            //className: 'first-step-popover-class',
+                            title: 'أولاً :  اضافة المشرفين ',
+                            description: 'الرجاء اضافة المشرفين الكاديميين لتعيينهم داخل الفصل لاحقاً',
+                            position: 'left',
+                            closeBtnText: 'اغلق', // Text on the close button for this step
+                            nextBtnText: 'التالي', // Next button text for this step
+                            prevBtnText: 'السابق', // Previous button text for this step
+                            doneBtnText: 'انتهيت', // Text on the final button
+
+
+                        }
+                    },
+                    {
+                        element: '#ff2',
+                        popover: {
+                            title: 'ثانياً : اضافة الطلاب',
+                            description: 'الرجاء اضافة الطلاب لتعيينهم بالفصل وتعيين مشرف اكاديمي لهم  لاحقاً',
+                            position: 'left',
+                            closeBtnText: 'اغلق', // Text on the close button for this step
+                            nextBtnText: 'التالي', // Next button text for this step
+                            prevBtnText: 'السابق', // Previous button text for this step
+                            doneBtnText: 'انتهيت', // Text on the final button
+
+                        }
+                    },
+                    {
+                        element: '#ff3',
+                        popover: {
+                            title: 'ثالثاً : اضف التقييمات ',
+                            description: 'الرجاء اضافة جميع التقييمات المطلوبة من الطالب .. علما بأن التقييمات ستظهر للمشرف الاكاديمي وسيعينها للطالب كا مطلوب او واجب',
+                            position: 'left',
+                            closeBtnText: 'اغلق', // Text on the close button for this step
+                            doneBtnText: 'انتهيت', // Text on the final button
+
+                            nextBtnText: 'التالي', // Next button text for this step
+                            prevBtnText: 'السابق', // Previous button text for this step
+                        }
+                    },
+                    {
+                        element: '#ff4',
+                        popover: {
+                            title: 'رابعاً :اضافة الفصل  ',
+                            description: '   اضف الفصل الدراسي المراد فية بداية التدريب , تعيين المشرفين للطلاب داخل هذا الفصل  (حالة الفصل تتغير حسب تاريخ البداية والنهاية للفصل) ',
+                            position: 'left',
+                            doneBtnText: 'انتهيت', // Text on the final button
+                            closeBtnText: 'اغلق', // Text on the close button for this step
+                            nextBtnText: 'التالي', // Next button text for this step
+                            prevBtnText: 'السابق', // Previous button text for this step
+                        }
+                    },
+                ]);
+                // Begin to guide
+                driver.start();
+
+
+
+
+
+
+            });
 
     </script>
 
