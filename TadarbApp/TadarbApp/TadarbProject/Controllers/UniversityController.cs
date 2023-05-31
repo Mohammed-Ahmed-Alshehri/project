@@ -30,8 +30,16 @@ namespace TadarbProject.Controllers
             _HttpContextAccessor = HttpContextAccessor;
 
         }
+
         public IActionResult Index()
         {
+
+            if (string.IsNullOrEmpty(_HttpContextAccessor.HttpContext.Session.GetString("Name")) || string.IsNullOrEmpty(_HttpContextAccessor.HttpContext.Session.GetInt32("UserId").ToString()))
+            {
+
+                return RedirectToAction("Login", "Home");
+
+            }
 
             Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
 
@@ -55,8 +63,17 @@ namespace TadarbProject.Controllers
             return View();
         }
 
+        [HttpGet]
         public IActionResult ViewColleges()
         {
+
+            if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(UserId.ToString()))
+            {
+
+                return RedirectToAction("Login", "Home");
+
+            }
+
             ViewBag.Name = Name;
 
             int RUserId = UserId;
@@ -75,9 +92,17 @@ namespace TadarbProject.Controllers
             return View(College);
 
         }
+
         [HttpGet]
         public IActionResult AddColleges()
         {
+            if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(UserId.ToString()))
+            {
+
+                return RedirectToAction("Login", "Home");
+
+            }
+
             ViewBag.Name = Name;
 
             int RUserId = UserId;
@@ -123,6 +148,7 @@ namespace TadarbProject.Controllers
 
 
         }
+
         [HttpPost]
         public IActionResult AddColleges(CollegeVM CollegeVM)
         {
@@ -181,6 +207,14 @@ namespace TadarbProject.Controllers
         [HttpGet]
         public IActionResult EditColleges(int? id)
         {
+
+            if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(UserId.ToString()))
+            {
+
+                return RedirectToAction("Login", "Home");
+
+            }
+
             ViewBag.Name = Name;
             int RUserId = UserId;
             var user = User;
@@ -228,8 +262,6 @@ namespace TadarbProject.Controllers
             return NotFound();
         }
 
-
-
         [HttpPost]
         public IActionResult EditColleges(CollegeVM collegeVM)
         {
@@ -256,6 +288,13 @@ namespace TadarbProject.Controllers
         [HttpGet]
         public IActionResult ViewSpecialities()
         {
+            if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(UserId.ToString()))
+            {
+
+                return RedirectToAction("Login", "Home");
+
+            }
+
             ViewBag.Name = Name;
             int RUserId = UserId;
             var user = User;
@@ -273,6 +312,13 @@ namespace TadarbProject.Controllers
         [HttpGet]
         public IActionResult AddSpecialities()
         {
+            if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(UserId.ToString()))
+            {
+
+                return RedirectToAction("Login", "Home");
+
+            }
+
             ViewBag.Name = Name;
             int RUserId = UserId;
             var user = User;
@@ -292,140 +338,6 @@ namespace TadarbProject.Controllers
             };
 
             return View(specialitiesVM);
-        }
-
-        [HttpGet]
-        public IActionResult GetDetailFields(string? id)
-        {
-
-            ViewBag.Name = Name;
-            int RUserId = UserId;
-            var user = User;
-
-            //var OrganizationOfR = _DbContext.Organizations.Where(item => item.ResponsibleUserId == RUserId).AsNoTracking().FirstOrDefault();
-
-
-
-
-
-            if (!string.IsNullOrEmpty(id))
-            {
-
-
-                //var HasFileds = _DbContext.OrganizationsProvidTrainingInArea.Where(item => item.Organization_OrganizationId == OrganizationOfR.OrganizationId).FirstOrDefault();
-
-                var Id = Convert.ToInt64(id);
-
-                var Detailfields = _DbContext.FieldOfSpecialtiesDetails.FromSqlRaw($"Select * from FieldOfSpecialtiesDetails WHERE Field_FieldId= {Id} AND DetailFieldId NOT IN" +
-                    $"(Select DetailField_DetailFieldId from OrganizationsProvidTrainingInArea WHERE Organization_OrganizationId={OrganizationOfR.OrganizationId})")
-                    .AsNoTracking().Select(item => new
-
-                    {
-                        DetailFieldId = item.DetailFieldId,
-
-                        SpecializationName = item.SpecializationName
-
-                    }
-
-
-                ).ToList();
-
-
-                return Json(new { Detailfields });
-
-
-            }
-
-
-            return Json(new { Exists = false });
-        }
-
-
-        [HttpGet]
-        public IActionResult AddDetailFields(string dFieldIds)
-        {
-
-            if (dFieldIds != "[]")
-            {
-                var charsToRemove = new string[] { "[", "]" };
-
-                foreach (var c in charsToRemove)
-                {
-                    dFieldIds = dFieldIds.Replace(c, string.Empty);
-                }
-
-
-
-
-
-                string[] Ids = dFieldIds.Split(",");
-
-                // Console.WriteLine(Ids[0]);
-
-
-
-
-                int RUserId = UserId;
-                var user = User;
-
-                // var OrganizationOfR = _DbContext.Organizations.Where(item => item.ResponsibleUserId == RUserId).AsNoTracking().FirstOrDefault();
-
-                foreach (var i in Ids)
-                {
-                    int id = Convert.ToInt32(i);
-
-                    var OPTA = new OrganizationProvidTrainingInArea
-                    {
-                        Organization_OrganizationId = OrganizationOfR.OrganizationId,
-                        DetailField_DetailFieldId = id
-
-
-                    };
-
-
-                    _DbContext.OrganizationsProvidTrainingInArea.Add(OPTA);
-                }
-
-                _DbContext.SaveChanges();
-
-            }
-
-
-
-
-            return RedirectToAction("ViewSpecialities");
-
-        }
-
-
-        [HttpPost]
-        public IActionResult DeleteFieldOfSpecialty(int? id)
-        {
-
-            if (id != null || id == 0)
-            {
-
-                int RUserId = UserId;
-                var user = User;
-
-                //var OrganizationOfR = _DbContext.Organizations.Where(item => item.ResponsibleUserId == RUserId).AsNoTracking().FirstOrDefault();
-
-
-                var OrgFOS = _DbContext.OrganizationsProvidTrainingInArea.Where(u => u.DetailField_DetailFieldId == id).AsNoTracking().FirstOrDefault();
-
-                _DbContext.OrganizationsProvidTrainingInArea.Remove(OrgFOS);
-
-
-                _DbContext.SaveChanges();
-
-
-                return Json(new { success = true, message = "تم الحذف بنجاح" });
-            }
-
-
-
-            return Json(new { success = false, message = "حصل خطاء لم يتم الحذف" });
-
         }
 
 
@@ -456,6 +368,13 @@ namespace TadarbProject.Controllers
         public IActionResult ViewUsers()
 
         {
+            if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(UserId.ToString()))
+            {
+
+                return RedirectToAction("Login", "Home");
+
+            }
+
             ViewBag.Name = Name;
             int RUserId = UserId;
             var user = User;
@@ -482,10 +401,16 @@ namespace TadarbProject.Controllers
         }
 
 
-
         [HttpGet]
         public IActionResult AddUsers()
         {
+            if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(UserId.ToString()))
+            {
+
+                return RedirectToAction("Login", "Home");
+
+            }
+
             ViewBag.Name = Name;
             int RUserId = UserId;
             var user = User;
@@ -497,9 +422,6 @@ namespace TadarbProject.Controllers
             ViewBag.Username = user.FullName;
             return View();
         }
-
-
-
 
 
 
@@ -590,6 +512,7 @@ namespace TadarbProject.Controllers
 
 
         #region
+
         [HttpGet]
         public IActionResult PhoneExists(string? Phone)
         {
@@ -658,6 +581,136 @@ namespace TadarbProject.Controllers
 
             return Json(new { Exists = false });
         }
+
+        [HttpGet]
+        public IActionResult GetDetailFields(string? id)
+        {
+
+            ViewBag.Name = Name;
+            int RUserId = UserId;
+            var user = User;
+
+            //var OrganizationOfR = _DbContext.Organizations.Where(item => item.ResponsibleUserId == RUserId).AsNoTracking().FirstOrDefault();
+
+            if (!string.IsNullOrEmpty(id))
+            {
+
+
+                //var HasFileds = _DbContext.OrganizationsProvidTrainingInArea.Where(item => item.Organization_OrganizationId == OrganizationOfR.OrganizationId).FirstOrDefault();
+
+                var Id = Convert.ToInt64(id);
+
+                var Detailfields = _DbContext.FieldOfSpecialtiesDetails.FromSqlRaw($"Select * from FieldOfSpecialtiesDetails WHERE Field_FieldId= {Id} AND DetailFieldId NOT IN" +
+                    $"(Select DetailField_DetailFieldId from OrganizationsProvidTrainingInArea WHERE Organization_OrganizationId={OrganizationOfR.OrganizationId})")
+                    .AsNoTracking().Select(item => new
+
+                    {
+                        DetailFieldId = item.DetailFieldId,
+
+                        SpecializationName = item.SpecializationName
+
+                    }
+
+
+                ).ToList();
+
+
+                return Json(new { Detailfields });
+
+
+            }
+
+
+            return Json(new { Exists = false });
+        }
+
+        [HttpPost]
+        public IActionResult AddDetailFields(string dFieldIds)
+        {
+
+            if (dFieldIds != "[]")
+            {
+                var charsToRemove = new string[] { "[", "]" };
+
+                foreach (var c in charsToRemove)
+                {
+                    dFieldIds = dFieldIds.Replace(c, string.Empty);
+                }
+
+
+
+
+
+                string[] Ids = dFieldIds.Split(",");
+
+                // Console.WriteLine(Ids[0]);
+
+
+
+
+                int RUserId = UserId;
+                var user = User;
+
+                // var OrganizationOfR = _DbContext.Organizations.Where(item => item.ResponsibleUserId == RUserId).AsNoTracking().FirstOrDefault();
+
+                foreach (var i in Ids)
+                {
+                    int id = Convert.ToInt32(i);
+
+                    var OPTA = new OrganizationProvidTrainingInArea
+                    {
+                        Organization_OrganizationId = OrganizationOfR.OrganizationId,
+                        DetailField_DetailFieldId = id
+
+
+                    };
+
+
+                    _DbContext.OrganizationsProvidTrainingInArea.Add(OPTA);
+                }
+
+                _DbContext.SaveChanges();
+
+            }
+
+
+
+
+            return RedirectToAction("ViewSpecialities");
+
+        }
+
+
+        [HttpPost]
+        public IActionResult DeleteFieldOfSpecialty(int? id)
+        {
+
+            if (id != null || id == 0)
+            {
+
+                int RUserId = UserId;
+                var user = User;
+
+                //var OrganizationOfR = _DbContext.Organizations.Where(item => item.ResponsibleUserId == RUserId).AsNoTracking().FirstOrDefault();
+
+
+                var OrgFOS = _DbContext.OrganizationsProvidTrainingInArea.Where(u => u.DetailField_DetailFieldId == id).AsNoTracking().FirstOrDefault();
+
+                _DbContext.OrganizationsProvidTrainingInArea.Remove(OrgFOS);
+
+
+                _DbContext.SaveChanges();
+
+
+                return Json(new { success = true, message = "تم الحذف بنجاح" });
+            }
+
+
+
+            return Json(new { success = false, message = "حصل خطاء لم يتم الحذف" });
+
+        }
+
 
         #endregion
 

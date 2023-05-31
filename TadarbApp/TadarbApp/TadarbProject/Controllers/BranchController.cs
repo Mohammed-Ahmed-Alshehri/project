@@ -30,6 +30,12 @@ namespace TadarbProject.Controllers
         public IActionResult Index()
         {
 
+            if (string.IsNullOrEmpty(_HttpContextAccessor.HttpContext.Session.GetString("Name")) || string.IsNullOrEmpty(_HttpContextAccessor.HttpContext.Session.GetInt32("UserId").ToString()))
+            {
+
+                return RedirectToAction("Login", "Home");
+
+            }
 
             Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
 
@@ -61,7 +67,12 @@ namespace TadarbProject.Controllers
         [HttpGet]
         public IActionResult ManageDepartment()
         {
+            if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(UserId.ToString()))
+            {
 
+                return RedirectToAction("Login", "Home");
+
+            }
             ViewBag.Name = Name;
 
             int RUserId = UserId;
@@ -83,6 +94,12 @@ namespace TadarbProject.Controllers
         [HttpGet]
         public IActionResult ViewSupervisorsUser()
         {
+            if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(UserId.ToString()))
+            {
+
+                return RedirectToAction("Login", "Home");
+
+            }
             ViewBag.Name = Name;
 
             int RUserId = UserId;
@@ -122,7 +139,12 @@ namespace TadarbProject.Controllers
         [HttpGet]
         public IActionResult AddSupervisorUser()
         {
+            if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(UserId.ToString()))
+            {
 
+                return RedirectToAction("Login", "Home");
+
+            }
             ViewBag.Name = Name;
 
             int RUserId = UserId;
@@ -222,6 +244,13 @@ namespace TadarbProject.Controllers
         [HttpGet]
         public IActionResult ViewOpportunities()
         {
+            if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(UserId.ToString()))
+            {
+
+                return RedirectToAction("Login", "Home");
+
+            }
+
             ViewBag.Name = Name;
 
             int RUserId = UserId;
@@ -248,54 +277,18 @@ namespace TadarbProject.Controllers
         }
 
 
-        [HttpGet]
-        public IActionResult EmailExists(string? Email)
-        {
-            if (Email == null)
-            {
-                return Json(new { Exists = false });
-            }
-
-            var item = _DbContext.UserAcounts.Where(item => item.UserEmail.Equals(Email)).AsNoTracking().FirstOrDefault();
-
-            if (item == null)
-            {
-                return Json(new { Exists = false });
-            }
-
-
-
-            return Json(new { Exists = true });
-        }
-
-
-        [HttpGet]
-        public IActionResult PhoneExists(string? Phone)
-        {
-            if (Phone == null)
-            {
-                return Json(new { Exists = false });
-            }
-
-            var item = _DbContext.UserAcounts.Where(item => item.Phone.Equals(Phone)).AsNoTracking().FirstOrDefault();
-
-            if (item == null)
-            {
-                return Json(new { Exists = false });
-            }
-
-
-
-            return Json(new { Exists = true });
-        }
-
-
 
 
         [HttpGet]
         public IActionResult AddOpportunities()
         {
 
+            if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(UserId.ToString()))
+            {
+
+                return RedirectToAction("Login", "Home");
+
+            }
 
             ViewBag.Name = Name;
 
@@ -339,6 +332,8 @@ namespace TadarbProject.Controllers
         [HttpPost]
         public IActionResult AddOpportunities(TrainingOpportunityVM TrainingOpportunityVM)
         {
+
+
             int RUserId = UserId;
             var user = User;
             var Branch = branch;
@@ -400,7 +395,12 @@ namespace TadarbProject.Controllers
         [HttpGet]
         public IActionResult EditOpportunities(int? id)
         {
+            if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(UserId.ToString()))
+            {
 
+                return RedirectToAction("Login", "Home");
+
+            }
             int RUserId = UserId;
             var user = User;
             var Branch = branch;
@@ -509,7 +509,16 @@ namespace TadarbProject.Controllers
             Opportunity.TrainingType_TrainingTypeId = TrainingOpportunityVM.TrainingOpportunity.TrainingType_TrainingTypeId;
 
 
-            Opportunity.SupervisorEmployeeId = TrainingOpportunityVM.TrainingOpportunity.SupervisorEmployeeId;
+            if(TrainingOpportunityVM.TrainingOpportunity.SupervisorEmployeeId != Opportunity.SupervisorEmployeeId)
+            {
+
+                _DbContext.Database.ExecuteSqlRaw($"UPDATE SemestersStudentAndEvaluationDetails SET TrainingSupervisor_EmployeeId = {TrainingOpportunityVM.TrainingOpportunity.SupervisorEmployeeId} WHERE  StudentRequest_StudentRequestId IN " +
+                    $"(SELECT StudentRequestOpportunityId FROM StudentRequestsOnOpportunities WHERE DecisionStatus ='approved' AND TrainingOpportunity_TrainingOpportunityId = {Opportunity.TrainingOpportunityId})");
+
+                Opportunity.SupervisorEmployeeId = TrainingOpportunityVM.TrainingOpportunity.SupervisorEmployeeId;
+            }
+
+        
 
             Opportunity.TotalNumberOfSeats = totalseatupdate;
 
@@ -546,6 +555,14 @@ namespace TadarbProject.Controllers
         [HttpGet]
         public IActionResult AddDepartmentFiledSpecialties()
         {
+
+            if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(UserId.ToString()))
+            {
+
+                return RedirectToAction("Login", "Home");
+
+            }
+
             ViewBag.Name = Name;
 
             int RUserId = UserId;
@@ -578,76 +595,20 @@ namespace TadarbProject.Controllers
 
         }
 
-        [HttpPost]
-        public IActionResult AddDetailFields(string dFieldIds)
-        {
-
-            if (dFieldIds != "[]")
-            {
-                var charsToRemove = new string[] { "[", "]" };
-
-                foreach (var c in charsToRemove)
-                {
-                    dFieldIds = dFieldIds.Replace(c, string.Empty);
-                }
-
-
-
-
-
-                string[] Ids = dFieldIds.Split(",");
-
-                // Console.WriteLine(Ids[0]);
-
-
-
-                int RUserId = UserId;
-
-                var RUser = User;
-
-
-                int DEPId = Convert.ToInt32(Ids[0]);
-                //   var OrganizationOfR = _DbContext.Organizations.Where(item => item.ResponsibleUserId == RUserId).FirstOrDefault();
-
-                var Department = _DbContext.Departments.Where(item => item.DepartmentId == DEPId).AsNoTracking().FirstOrDefault();
-
-
-
-
-                foreach (var i in Ids.Skip(1))
-                {
-                    int id = Convert.ToInt32(i);
-
-                    var DTA = new DepartmentTrainingArea
-                    {
-                        Department_DepartmenId = Department.DepartmentId,
-                        TrainArea_DetailFiledId = id,
-
-
-                    };
-
-
-                    _DbContext.DepartmentTrainingAreas.Add(DTA);
-                }
-
-                _DbContext.SaveChanges();
-                //TempData["success"] = "تم إضافة التخصصات  بنجاح";
-
-
-            }
-
-
-
-
-            return Json(new { Exists = false });
-
-        }
 
 
 
         [HttpGet]
         public IActionResult ViewDepartmentFiledSpecialties()
         {
+
+            if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(UserId.ToString()))
+            {
+
+                return RedirectToAction("Login", "Home");
+
+            }
+
             ViewBag.Name = Name;
 
             int RUserId = UserId;
@@ -670,6 +631,12 @@ namespace TadarbProject.Controllers
         [HttpGet]
         public IActionResult OpportunitiesApplicants(int? id)
         {
+            if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(UserId.ToString()))
+            {
+
+                return RedirectToAction("Login", "Home");
+
+            }
             if (id == null || id == 0)
             {
                 return NotFound();
@@ -701,7 +668,12 @@ namespace TadarbProject.Controllers
         [HttpGet]
         public IActionResult OpportunitiesApplicantsDetail(int? id, int? Oid)
         {
+            if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(UserId.ToString()))
+            {
 
+                return RedirectToAction("Login", "Home");
+
+            }
 
             if (id == null || id == 0)
             {
@@ -737,6 +709,48 @@ namespace TadarbProject.Controllers
 
 
         #region
+
+        [HttpGet]
+        public IActionResult EmailExists(string? Email)
+        {
+            if (Email == null)
+            {
+                return Json(new { Exists = false });
+            }
+
+            var item = _DbContext.UserAcounts.Where(item => item.UserEmail.Equals(Email)).AsNoTracking().FirstOrDefault();
+
+            if (item == null)
+            {
+                return Json(new { Exists = false });
+            }
+
+
+
+            return Json(new { Exists = true });
+        }
+
+
+        [HttpGet]
+        public IActionResult PhoneExists(string? Phone)
+        {
+            if (Phone == null)
+            {
+                return Json(new { Exists = false });
+            }
+
+            var item = _DbContext.UserAcounts.Where(item => item.Phone.Equals(Phone)).AsNoTracking().FirstOrDefault();
+
+            if (item == null)
+            {
+                return Json(new { Exists = false });
+            }
+
+
+
+            return Json(new { Exists = true });
+        }
+
 
         [HttpPost]
         public IActionResult Reject(int? Rid)
@@ -896,6 +910,74 @@ namespace TadarbProject.Controllers
             return Json(new { success = true });
 
         }
+
+
+
+        [HttpPost]
+        public IActionResult AddDetailFields(string dFieldIds)
+        {
+
+            if (dFieldIds != "[]")
+            {
+                var charsToRemove = new string[] { "[", "]" };
+
+                foreach (var c in charsToRemove)
+                {
+                    dFieldIds = dFieldIds.Replace(c, string.Empty);
+                }
+
+
+
+
+
+                string[] Ids = dFieldIds.Split(",");
+
+                // Console.WriteLine(Ids[0]);
+
+
+
+                int RUserId = UserId;
+
+                var RUser = User;
+
+
+                int DEPId = Convert.ToInt32(Ids[0]);
+                //   var OrganizationOfR = _DbContext.Organizations.Where(item => item.ResponsibleUserId == RUserId).FirstOrDefault();
+
+                var Department = _DbContext.Departments.Where(item => item.DepartmentId == DEPId).AsNoTracking().FirstOrDefault();
+
+
+
+
+                foreach (var i in Ids.Skip(1))
+                {
+                    int id = Convert.ToInt32(i);
+
+                    var DTA = new DepartmentTrainingArea
+                    {
+                        Department_DepartmenId = Department.DepartmentId,
+                        TrainArea_DetailFiledId = id,
+
+
+                    };
+
+
+                    _DbContext.DepartmentTrainingAreas.Add(DTA);
+                }
+
+                _DbContext.SaveChanges();
+                //TempData["success"] = "تم إضافة التخصصات  بنجاح";
+
+
+            }
+
+
+
+
+            return Json(new { Exists = false });
+
+        }
+
 
         [HttpGet]
         public IActionResult GetDetailFields(string? ids)

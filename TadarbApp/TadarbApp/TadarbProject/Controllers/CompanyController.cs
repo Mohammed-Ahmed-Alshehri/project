@@ -33,6 +33,13 @@ namespace TadarbProject.Controllers
         public IActionResult Index()
         {
 
+            if (string.IsNullOrEmpty(_HttpContextAccessor.HttpContext.Session.GetString("Name")) || string.IsNullOrEmpty(_HttpContextAccessor.HttpContext.Session.GetInt32("UserId").ToString()))
+            {
+
+                return RedirectToAction("Login", "Home");
+
+            }
+
             Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
 
             ViewBag.Name = Name;
@@ -58,6 +65,14 @@ namespace TadarbProject.Controllers
         [HttpGet]
         public IActionResult ViewSpecialities()
         {
+            if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(UserId.ToString()))
+            {
+
+                return RedirectToAction("Login", "Home");
+
+            }
+
+
             ViewBag.Name = Name;
             int RUserId = UserId;
             var user = User;
@@ -75,6 +90,13 @@ namespace TadarbProject.Controllers
         [HttpGet]
         public IActionResult AddSpecialities()
         {
+            if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(UserId.ToString()))
+            {
+
+                return RedirectToAction("Login", "Home");
+
+            }
+
             ViewBag.Name = Name;
             int RUserId = UserId;
             var user = User;
@@ -98,6 +120,13 @@ namespace TadarbProject.Controllers
         [HttpGet]
         public IActionResult ViewBranches()
         {
+            if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(UserId.ToString()))
+            {
+
+                return RedirectToAction("Login", "Home");
+
+            }
+
             ViewBag.Name = Name;
             int RUserId = UserId;
             var user = User;
@@ -117,6 +146,13 @@ namespace TadarbProject.Controllers
         [HttpGet]
         public IActionResult Addbranches()
         {
+            if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(UserId.ToString()))
+            {
+
+                return RedirectToAction("Login", "Home");
+
+            }
+
             ViewBag.Name = Name;
             int RUserId = UserId;
             var user = User;
@@ -208,6 +244,13 @@ namespace TadarbProject.Controllers
         [HttpGet]
         public IActionResult EditBranche(int? id)
         {
+            if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(UserId.ToString()))
+            {
+
+                return RedirectToAction("Login", "Home");
+
+            }
+
             ViewBag.Name = Name;
             int RUserId = UserId;
             var user = User;
@@ -278,6 +321,14 @@ namespace TadarbProject.Controllers
         public IActionResult ViewUsers()
 
         {
+
+            if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(UserId.ToString()))
+            {
+
+                return RedirectToAction("Login", "Home");
+
+            }
+
             ViewBag.Name = Name;
             int RUserId = UserId;
             var user = User;
@@ -306,6 +357,14 @@ namespace TadarbProject.Controllers
         [HttpGet]
         public IActionResult AddUsers()
         {
+
+            if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(UserId.ToString()))
+            {
+
+                return RedirectToAction("Login", "Home");
+
+            }
+
             ViewBag.Name = Name;
             int RUserId = UserId;
             var user = User;
@@ -315,10 +374,6 @@ namespace TadarbProject.Controllers
 
             return View();
         }
-
-
-
-
 
 
         [HttpPost]
@@ -407,30 +462,17 @@ namespace TadarbProject.Controllers
         }
 
 
-        [HttpGet]
-        public IActionResult PhoneExists(string? Phone)
-        {
-            if (Phone == null)
-            {
-                return Json(new { Exists = false });
-            }
-
-            var item = _DbContext.UserAcounts.Where(item => item.Phone.Equals(Phone)).AsNoTracking().FirstOrDefault();
-
-            if (item == null)
-            {
-                return Json(new { Exists = false });
-            }
-
-
-
-            return Json(new { Exists = true });
-        }
-
 
         [HttpGet]
         public IActionResult AddViewDepartment()
         {
+            if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(UserId.ToString()))
+            {
+
+                return RedirectToAction("Login", "Home");
+
+            }
+
             ViewBag.Name = Name;
             int RUserId = UserId;
             var user = User;
@@ -456,6 +498,26 @@ namespace TadarbProject.Controllers
 
         #region
 
+
+        [HttpGet]
+        public IActionResult PhoneExists(string? Phone)
+        {
+            if (Phone == null)
+            {
+                return Json(new { Exists = false });
+            }
+
+            var item = _DbContext.UserAcounts.Where(item => item.Phone.Equals(Phone)).AsNoTracking().FirstOrDefault();
+
+            if (item == null)
+            {
+                return Json(new { Exists = false });
+            }
+
+
+
+            return Json(new { Exists = true });
+        }
 
 
         [HttpGet]

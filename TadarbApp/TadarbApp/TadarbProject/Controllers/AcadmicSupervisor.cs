@@ -30,6 +30,15 @@ namespace TadarbProject.Controllers
         }
         public IActionResult Index()
         {
+
+            if (string.IsNullOrEmpty(_HttpContextAccessor.HttpContext.Session.GetString("Name")) || string.IsNullOrEmpty(_HttpContextAccessor.HttpContext.Session.GetInt32("UserId").ToString()))
+            {
+
+                return RedirectToAction("Login", "Home");
+
+            }
+
+
             Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
 
             ViewBag.Name = Name;
@@ -65,6 +74,14 @@ namespace TadarbProject.Controllers
         [HttpGet]
         public IActionResult EditAccount()
         {
+
+            if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(UserId.ToString()))
+            {
+
+                return RedirectToAction("Login", "Home");
+
+            }
+
             ViewBag.Name = Name;
             int RUserId = UserId;
             var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).AsNoTracking().FirstOrDefault();
@@ -77,13 +94,17 @@ namespace TadarbProject.Controllers
         [HttpPost]
         public IActionResult EditAccount(UserAcount UserAcount)
         {
+            if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(UserId.ToString()))
+            {
 
+                return RedirectToAction("Login", "Home");
+
+            }
 
             ViewBag.Name = Name;
 
             int RUserId = UserId;
             var user = User;
-
 
             user.UserPassword = UserAcount.UserPassword;
 
@@ -103,6 +124,13 @@ namespace TadarbProject.Controllers
         [HttpGet]
         public IActionResult AssignedStudents(int? Mid)
         {
+            if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(UserId.ToString()))
+            {
+
+                return RedirectToAction("Login", "Home");
+
+            }
+
             if (Mid == 0 || Mid == null)
             {
                 return NotFound();
@@ -143,6 +171,13 @@ namespace TadarbProject.Controllers
         [HttpGet]
         public IActionResult AssignSemester()
         {
+            if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(UserId.ToString()))
+            {
+
+                return RedirectToAction("Login", "Home");
+
+            }
+
             ViewBag.Name = Name;
 
             int RUserId = UserId;
@@ -172,6 +207,12 @@ namespace TadarbProject.Controllers
         [HttpGet]
         public IActionResult AssignAssignments(int? Mid)
         {
+            if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(UserId.ToString()))
+            {
+
+                return RedirectToAction("Login", "Home");
+
+            }
 
             if (Mid == 0 || Mid == null)
             {
@@ -220,6 +261,12 @@ namespace TadarbProject.Controllers
         [HttpGet]
         public IActionResult AssignedStudentAssignments(int? StuRqId)
         {
+            if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(UserId.ToString()))
+            {
+
+                return RedirectToAction("Login", "Home");
+
+            }
 
             if (StuRqId == 0 || StuRqId == null)
             {
@@ -257,6 +304,13 @@ namespace TadarbProject.Controllers
         [HttpGet]
         public IActionResult EvaluateStudentAssignment(int? SSEMId, int? StuRqId)
         {
+            if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(UserId.ToString()))
+            {
+
+                return RedirectToAction("Login", "Home");
+
+            }
+
 
             if (SSEMId == 0 || SSEMId == null)
             {
@@ -293,7 +347,12 @@ namespace TadarbProject.Controllers
         [HttpPost]
         public IActionResult EvaluateStudentAssignment(StudentSemesterEvaluationMark Assignment, int? StuRqId)
         {
+            if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(UserId.ToString()))
+            {
 
+                return RedirectToAction("Login", "Home");
+
+            }
 
             if (Assignment == null)
             {
@@ -355,6 +414,12 @@ namespace TadarbProject.Controllers
         [HttpGet]
         public IActionResult FollowUpDetails(int? SSEMId, int? StuRqId)
         {
+            if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(UserId.ToString()))
+            {
+
+                return RedirectToAction("Login", "Home");
+
+            }
 
             if (SSEMId == 0 || SSEMId == null)
             {

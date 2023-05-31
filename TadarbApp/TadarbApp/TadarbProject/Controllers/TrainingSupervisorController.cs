@@ -31,7 +31,12 @@ namespace TadarbProject.Controllers
         }
         public IActionResult Index()
         {
+            if (string.IsNullOrEmpty(_HttpContextAccessor.HttpContext.Session.GetString("Name")) || string.IsNullOrEmpty(_HttpContextAccessor.HttpContext.Session.GetInt32("UserId").ToString()))
+            {
 
+                return RedirectToAction("Login", "Home");
+
+            }
 
             Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
 
@@ -69,14 +74,21 @@ namespace TadarbProject.Controllers
             return View(employee);
 
         }
+
         [HttpGet]
         public IActionResult EditAccount()
         {
+
+            if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(UserId.ToString()))
+            {
+
+                return RedirectToAction("Login", "Home");
+
+            }
+
             ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
             int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
             var user = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).AsNoTracking().FirstOrDefault();
-
-
 
 
             ViewBag.Username = user.FullName;
@@ -84,6 +96,8 @@ namespace TadarbProject.Controllers
 
             return View();
         }
+
+
         [HttpPost]
         public IActionResult EditAccount(UserAcount UserAcount)
         {
@@ -111,6 +125,12 @@ namespace TadarbProject.Controllers
         [HttpGet]
         public IActionResult ViewOpportunities()
         {
+            if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(UserId.ToString()))
+            {
+
+                return RedirectToAction("Login", "Home");
+
+            }
 
             ViewBag.Name = Name;
 
@@ -149,6 +169,12 @@ namespace TadarbProject.Controllers
         [HttpGet]
         public IActionResult ViewOpportunitiesByUni(int? id)
         {
+            if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(UserId.ToString()))
+            {
+
+                return RedirectToAction("Login", "Home");
+
+            }
 
             ViewBag.Name = Name;
 
@@ -190,6 +216,13 @@ namespace TadarbProject.Controllers
         [HttpGet]
         public IActionResult OpportunitiesApplicants(int? id, int? Oppid, string EvaluationFile)
         {
+            if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(UserId.ToString()))
+            {
+
+                return RedirectToAction("Login", "Home");
+
+            }
+
             if (id == null || id == 0)
             {
                 return NotFound();
@@ -221,6 +254,13 @@ namespace TadarbProject.Controllers
         [HttpGet]
         public IActionResult TraineeEvaluation(int? id)
         {
+
+            if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(UserId.ToString()))
+            {
+
+                return RedirectToAction("Login", "Home");
+
+            }
 
             if (id == null || id == 0)
             {

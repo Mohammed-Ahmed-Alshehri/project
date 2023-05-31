@@ -32,6 +32,13 @@ namespace TadarbProject.Controllers
 
         public IActionResult Index()
         {
+            if (string.IsNullOrEmpty(_HttpContextAccessor.HttpContext.Session.GetString("Name")) || string.IsNullOrEmpty(_HttpContextAccessor.HttpContext.Session.GetInt32("UserId").ToString()))
+            {
+
+                return RedirectToAction("Login", "Home");
+
+            }
+
             Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
 
             ViewBag.Name = Name;
@@ -75,24 +82,34 @@ namespace TadarbProject.Controllers
 
             return View(UnverTre);
         }
+
+
         [HttpGet]
         public IActionResult EditAccount()
         {
+            if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(UserId.ToString()))
+            {
+
+                return RedirectToAction("Login", "Home");
+
+            }
+
             ViewBag.Name = Name;
             int RUserId = UserId;
             var user = User;
-
-
-
             ViewBag.Username = user.FullName;
 
             return View();
         }
 
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult EditAccount(UniversityTraineeStudent UniversityTraineeStudent, IFormFile? CvFile, IFormFile? otherDoc)
         {
+
+
+
             ViewBag.Name = Name;
             int RUserId = UserId;
             var user = User;
@@ -238,6 +255,13 @@ namespace TadarbProject.Controllers
         [HttpGet]
         public IActionResult ViewOpportunities()
         {
+            if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(UserId.ToString()))
+            {
+
+                return RedirectToAction("Login", "Home");
+
+            }
+
             ViewBag.Name = Name;
             int RUserId = UserId;
             var user = User;
@@ -273,6 +297,13 @@ namespace TadarbProject.Controllers
         [HttpGet]
         public IActionResult ViewOpportunitiesStatus()
         {
+            if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(UserId.ToString()))
+            {
+
+                return RedirectToAction("Login", "Home");
+
+            }
+
             ViewBag.Name = Name;
             int RUserId = UserId;
             var user = User;
@@ -296,10 +327,17 @@ namespace TadarbProject.Controllers
 
             return View(StudentReq);
         }
-        [HttpGet]
 
+
+        [HttpGet]
         public IActionResult OpportunityInformation(int? id)
         {
+            if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(UserId.ToString()))
+            {
+
+                return RedirectToAction("Login", "Home");
+
+            }
             if (id == null)
             {
 
@@ -336,7 +374,7 @@ namespace TadarbProject.Controllers
             return View(trainingOpportunityVM);
         }
 
-        [HttpGet]
+        [HttpPost]
         public IActionResult RequsetOnOpportunity(TrainingOpportunityVM trainingOpportunityVN)
         {
 
@@ -440,7 +478,12 @@ namespace TadarbProject.Controllers
         [HttpGet]
         public IActionResult ViewAssignments()
         {
+            if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(UserId.ToString()))
+            {
 
+                return RedirectToAction("Login", "Home");
+
+            }
 
             ViewBag.Name = Name;
             int RUserId = UserId;
@@ -469,6 +512,12 @@ namespace TadarbProject.Controllers
         public IActionResult SubmitAssignment(int? SSEMId)
         {
 
+            if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(UserId.ToString()))
+            {
+
+                return RedirectToAction("Login", "Home");
+
+            }
             if (SSEMId == 0 || SSEMId == null)
             {
                 return NotFound();
@@ -549,6 +598,7 @@ namespace TadarbProject.Controllers
 
         #region
 
+        [HttpPost]
         public IActionResult StudentCancelBefore(int? id)
         {
             if (id == null || id == 0)
@@ -589,9 +639,7 @@ namespace TadarbProject.Controllers
             return Json(new { success = true });
         }
 
-
-
-
+        [HttpPost]
         public IActionResult StudentCancelAfter(int? id)
         {
             if (id == null || id == 0)
@@ -636,10 +684,7 @@ namespace TadarbProject.Controllers
             return Json(new { success = true });
         }
 
-
-
-
-
+        [HttpPost]
         public IActionResult Approval(int? id)
         {
             if (id == null || id == 0)

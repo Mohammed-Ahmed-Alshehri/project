@@ -58,128 +58,162 @@ namespace TadarbProject.Controllers
                 return View();
 
             }
+            var UserInDb = _DbContext.UserAcounts.Where(item => item.UserEmail.Equals(user.UserEmail) && item.UserPassword.Equals(user.UserPassword)).AsNoTracking().FirstOrDefault();
 
-            var UserInDb = _DbContext.UserAcounts.Where(item => item.UserType.Equals("System_Admin") && item.UserEmail.Equals(user.UserEmail) && item.UserPassword.Equals(user.UserPassword)).AsNoTracking().FirstOrDefault();
+            ViewBag.LogInMassage = "";
 
-            if (UserInDb != null)
+            if (UserInDb == null)
+            {
+
+                ViewBag.LogInMassage = "معلومات التسجيل غير صحيحة.";
+
+                return View();
+            }
+
+            if (UserInDb.UserType.Equals("System_Admin"))
+
             {
                 _HttpContextAccessor.HttpContext.Session.SetString("Name", UserInDb.UserEmail);
 
                 _HttpContextAccessor.HttpContext.Session.SetInt32("UserId", UserInDb.UserId);
                 return RedirectToAction("Index", "Admin");
-
             }
 
 
-            var UserInDb2 = _DbContext.UserAcounts.Where(item => item.UserType.Equals("Company_Admin") && item.UserEmail.Equals(user.UserEmail) && item.UserPassword.Equals(user.UserPassword)).AsNoTracking().FirstOrDefault();
+            if (UserInDb.UserType.Equals("Company_Admin"))
 
-
-            if (UserInDb2 != null)
             {
-                _HttpContextAccessor.HttpContext.Session.SetString("Name", UserInDb2.UserEmail);
+                if (UserInDb.ActivationStatus.Equals("Not_Active"))
+                {
+                    ViewBag.LogInMassage = "الرجاء تأكيد الحساب من خلال البريد الالكتروني.";
+                    return View();
+                }
 
-                _HttpContextAccessor.HttpContext.Session.SetInt32("UserId", UserInDb2.UserId);
+                var Organization = _DbContext.Organizations.Where(item => item.ResponsibleUserId == UserInDb.UserId).AsNoTracking().FirstOrDefault();
+
+                if (Organization.ActivationStatus.Equals("Not_Active"))
+                {
+                    ViewBag.LogInMassage = "الحساب مسجل ولكن لم يتم اعتمادكم من قبل المنصه بعد.";
+                    return View();
+                }
+
+                _HttpContextAccessor.HttpContext.Session.SetString("Name", UserInDb.UserEmail);
+
+                _HttpContextAccessor.HttpContext.Session.SetInt32("UserId", UserInDb.UserId);
 
                 return RedirectToAction("Index", "Company");
-
             }
 
-            var UserInDb3 = _DbContext.UserAcounts.Where(item => item.UserType.Equals("Branch_Admin") && item.UserEmail.Equals(user.UserEmail) && item.UserPassword.Equals(user.UserPassword)).AsNoTracking().FirstOrDefault();
+            if (UserInDb.UserType.Equals("Branch_Admin"))
 
-
-            if (UserInDb3 != null)
             {
-                _HttpContextAccessor.HttpContext.Session.SetString("Name", UserInDb3.UserEmail);
+                var Branch = _DbContext.OrganizationBranches_TrainProv.Where(item => item.Responsible_UserId == UserInDb.UserId).AsNoTracking().FirstOrDefault();
 
-                _HttpContextAccessor.HttpContext.Session.SetInt32("UserId", UserInDb3.UserId);
+                if (Branch == null)
+                {
+                    ViewBag.LogInMassage = "حساب مسؤول الفرع مسجل ولكن لم يتم تعيينه على فرع بعد.";
+                    return View();
+                }
+
+                _HttpContextAccessor.HttpContext.Session.SetString("Name", UserInDb.UserEmail);
+
+                _HttpContextAccessor.HttpContext.Session.SetInt32("UserId", UserInDb.UserId);
 
                 return RedirectToAction("Index", "Branch");
-
             }
 
 
-            var UserInDb4 = _DbContext.UserAcounts.Where(item => item.UserType.Equals("University_Admin") && item.UserEmail.Equals(user.UserEmail) && item.UserPassword.Equals(user.UserPassword)).AsNoTracking().FirstOrDefault();
-
-
-            if (UserInDb4 != null)
+            if (UserInDb.UserType.Equals("University_Admin"))
             {
-                _HttpContextAccessor.HttpContext.Session.SetString("Name", UserInDb4.UserEmail);
 
-                _HttpContextAccessor.HttpContext.Session.SetInt32("UserId", UserInDb4.UserId);
+                if (UserInDb.ActivationStatus.Equals("Not_Active"))
+                {
+                    ViewBag.LogInMassage = "الرجاء تأكيد الحساب من خلال البريد الالكتروني.";
+                    return View();
+                }
+
+                var Organization = _DbContext.Organizations.Where(item => item.ResponsibleUserId == UserInDb.UserId).AsNoTracking().FirstOrDefault();
+
+                if (Organization.ActivationStatus.Equals("Not_Active"))
+                {
+                    ViewBag.LogInMassage = "الحساب مسجل ولكن لم يتم اعتمادكم من قبل المنصه بعد.";
+                    return View();
+                }
+
+                _HttpContextAccessor.HttpContext.Session.SetString("Name", UserInDb.UserEmail);
+
+                _HttpContextAccessor.HttpContext.Session.SetInt32("UserId", UserInDb.UserId);
 
                 return RedirectToAction("Index", "University");
 
             }
 
-            var UserInDb5 = _DbContext.UserAcounts.Where(item => item.UserType.Equals("College_Admin") && item.UserEmail.Equals(user.UserEmail) && item.UserPassword.Equals(user.UserPassword)).AsNoTracking().FirstOrDefault();
 
-
-            if (UserInDb5 != null)
+            if (UserInDb.UserType.Equals("College_Admin"))
             {
-                _HttpContextAccessor.HttpContext.Session.SetString("Name", UserInDb5.UserEmail);
 
-                _HttpContextAccessor.HttpContext.Session.SetInt32("UserId", UserInDb5.UserId);
+                var College = _DbContext.UniversityColleges.Where(item => item.Responsible_UserId == UserInDb.UserId).AsNoTracking().FirstOrDefault();
+
+                if (College == null)
+                {
+                    ViewBag.LogInMassage = "حساب مسؤول الكلية مسجل ولكن لم يتم تعيينه على كلية بعد.";
+                    return View();
+                }
+
+                _HttpContextAccessor.HttpContext.Session.SetString("Name", UserInDb.UserEmail);
+
+                _HttpContextAccessor.HttpContext.Session.SetInt32("UserId", UserInDb.UserId);
 
                 return RedirectToAction("Index", "College");
-
             }
 
-            var UserInDb6 = _DbContext.UserAcounts.Where(item => item.UserType.Equals("DepUni_Admin") && item.UserEmail.Equals(user.UserEmail) && item.UserPassword.Equals(user.UserPassword)).AsNoTracking().FirstOrDefault();
-
-
-            if (UserInDb6 != null)
+            if (UserInDb.UserType.Equals("DepUni_Admin"))
             {
-                _HttpContextAccessor.HttpContext.Session.SetString("Name", UserInDb6.UserEmail);
 
-                _HttpContextAccessor.HttpContext.Session.SetInt32("UserId", UserInDb6.UserId);
+                var department = _DbContext.Departments.Where(item => item.Responsible_UserId == UserInDb.UserId).AsNoTracking().FirstOrDefault();
+
+                if (department == null)
+                {
+                    ViewBag.LogInMassage = "حساب مسؤول القسم مسجل ولكن لم يتم تعيينه على قسم بعد.";
+                    return View();
+                }
+
+                _HttpContextAccessor.HttpContext.Session.SetString("Name", UserInDb.UserEmail);
+
+                _HttpContextAccessor.HttpContext.Session.SetInt32("UserId", UserInDb.UserId);
 
                 return RedirectToAction("Index", "DepartmentUniversity");
-
             }
 
-            var UserInDb7 = _DbContext.UserAcounts.Where(item => item.UserType.Equals("Training_Supervisor") && item.UserEmail.Equals(user.UserEmail) && item.UserPassword.Equals(user.UserPassword)).AsNoTracking().FirstOrDefault();
-
-
-            if (UserInDb7 != null)
+            if (UserInDb.UserType.Equals("Training_Supervisor"))
             {
-                _HttpContextAccessor.HttpContext.Session.SetString("Name", UserInDb7.UserEmail);
+                _HttpContextAccessor.HttpContext.Session.SetString("Name", UserInDb.UserEmail);
 
-                _HttpContextAccessor.HttpContext.Session.SetInt32("UserId", UserInDb7.UserId);
+                _HttpContextAccessor.HttpContext.Session.SetInt32("UserId", UserInDb.UserId);
 
                 return RedirectToAction("Index", "TrainingSupervisor");
-
             }
-            var UserInDb8 = _DbContext.UserAcounts.Where(item => item.UserType.Equals("Academic_supervisor") && item.UserEmail.Equals(user.UserEmail) && item.UserPassword.Equals(user.UserPassword)).AsNoTracking().FirstOrDefault();
 
 
-            if (UserInDb8 != null)
+            if (UserInDb.UserType.Equals("Academic_supervisor"))
             {
-                _HttpContextAccessor.HttpContext.Session.SetString("Name", UserInDb8.UserEmail);
+                _HttpContextAccessor.HttpContext.Session.SetString("Name", UserInDb.UserEmail);
 
-                _HttpContextAccessor.HttpContext.Session.SetInt32("UserId", UserInDb8.UserId);
+                _HttpContextAccessor.HttpContext.Session.SetInt32("UserId", UserInDb.UserId);
 
                 return RedirectToAction("Index", "AcadmicSupervisor");
-
             }
-            var UserInDb9 = _DbContext.UserAcounts.Where(item => item.UserType.Equals("Student") && item.UserEmail.Equals(user.UserEmail) && item.UserPassword.Equals(user.UserPassword)).AsNoTracking().FirstOrDefault();
 
-
-            if (UserInDb9 != null)
+            if (UserInDb.UserType.Equals("Student"))
             {
-                _HttpContextAccessor.HttpContext.Session.SetString("Name", UserInDb9.UserEmail);
+                _HttpContextAccessor.HttpContext.Session.SetString("Name", UserInDb.UserEmail);
 
-                _HttpContextAccessor.HttpContext.Session.SetInt32("UserId", UserInDb9.UserId);
+                _HttpContextAccessor.HttpContext.Session.SetInt32("UserId", UserInDb.UserId);
 
                 return RedirectToAction("Index", "Student");
-
             }
+
             return View();
-
-
-
-
-
-
 
 
         }

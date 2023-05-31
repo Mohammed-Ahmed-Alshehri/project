@@ -30,6 +30,15 @@ namespace TadarbProject.Controllers
         public IActionResult Index()
         {
 
+
+            if (string.IsNullOrEmpty(_HttpContextAccessor.HttpContext.Session.GetString("Name")) || string.IsNullOrEmpty(_HttpContextAccessor.HttpContext.Session.GetInt32("UserId").ToString()))
+            {
+
+                return RedirectToAction("Login", "Home");
+
+            }
+
+
             Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
 
             ViewBag.Name = Name;
@@ -64,6 +73,12 @@ namespace TadarbProject.Controllers
         [HttpGet]
         public IActionResult ViewDepartmentUser()
         {
+            if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(UserId.ToString()))
+            {
+
+                return RedirectToAction("Login", "Home");
+
+            }
 
             ViewBag.Name = Name;
 
@@ -101,6 +116,12 @@ namespace TadarbProject.Controllers
         [HttpGet]
         public IActionResult AddDepartmentUser()
         {
+            if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(UserId.ToString()))
+            {
+
+                return RedirectToAction("Login", "Home");
+
+            }
 
             ViewBag.Name = Name;
 
@@ -213,7 +234,13 @@ namespace TadarbProject.Controllers
         [HttpGet]
         public IActionResult AddViewDepartmentUni()
         {
-            //ViewBag.Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
+            if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(UserId.ToString()))
+            {
+
+                return RedirectToAction("Login", "Home");
+
+            }
+
             int RUserId = UserId;
             var user = User;
             var College = college;
@@ -315,6 +342,12 @@ namespace TadarbProject.Controllers
         [HttpGet]
         public IActionResult EditBDepartment(int? id)
         {
+            if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(UserId.ToString()))
+            {
+
+                return RedirectToAction("Login", "Home");
+
+            }
 
             int RUserId = UserId;
             var user = User;
@@ -395,6 +428,12 @@ namespace TadarbProject.Controllers
         [HttpGet]
         public IActionResult GetAllDEPs()
         {
+            if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(UserId.ToString()))
+            {
+
+                return RedirectToAction("Login", "Home");
+
+            }
 
             int RUserId = UserId;
 
@@ -421,6 +460,13 @@ namespace TadarbProject.Controllers
         [HttpGet]
         public IActionResult ViewDepartmentFiledSpecialties()
         {
+            if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(UserId.ToString()))
+            {
+
+                return RedirectToAction("Login", "Home");
+
+            }
+
             ViewBag.Name = Name;
 
             int RUserId = UserId;
@@ -443,8 +489,15 @@ namespace TadarbProject.Controllers
         [HttpGet]
         public IActionResult AddDepartmentFiledSpecialties()
         {
-            ViewBag.Name = Name;
+            if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(UserId.ToString()))
+            {
 
+                return RedirectToAction("Login", "Home");
+
+            }
+
+
+            ViewBag.Name = Name;
             int RUserId = UserId;
             var user = User;
             var College = college;

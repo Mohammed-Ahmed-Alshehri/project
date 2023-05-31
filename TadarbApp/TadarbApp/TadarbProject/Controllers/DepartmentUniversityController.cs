@@ -28,9 +28,17 @@ namespace TadarbProject.Controllers
             _HttpContextAccessor = HttpContextAccessor;
 
         }
+
+
         public IActionResult Index()
         {
 
+            if (string.IsNullOrEmpty(_HttpContextAccessor.HttpContext.Session.GetString("Name")) || string.IsNullOrEmpty(_HttpContextAccessor.HttpContext.Session.GetInt32("UserId").ToString()))
+            {
+
+                return RedirectToAction("Login", "Home");
+
+            }
             Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
 
             ViewBag.Name = Name;
@@ -54,8 +62,18 @@ namespace TadarbProject.Controllers
             return View();
         }
 
+
+        [HttpGet]
         public IActionResult ViewAssessment()
         {
+
+            if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(UserId.ToString()))
+            {
+
+                return RedirectToAction("Login", "Home");
+
+            }
+
             ViewBag.Name = Name;
             int RUserId = UserId;
             var user = User;
@@ -94,12 +112,16 @@ namespace TadarbProject.Controllers
             return View(MasterAssigmnt);
         }
 
-
-
-
-
+        [HttpGet]
         public IActionResult SemeterEvalDetail(int? id)
         {
+            if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(UserId.ToString()))
+            {
+
+                return RedirectToAction("Login", "Home");
+
+            }
+
             ViewBag.Name = Name;
             int RUserId = UserId;
             var user = User;
@@ -125,8 +147,15 @@ namespace TadarbProject.Controllers
             return View(SemesterMasterVM);
         }
 
+        [HttpGet]
         public IActionResult EditAssessment()
         {
+            if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(UserId.ToString()))
+            {
+
+                return RedirectToAction("Login", "Home");
+
+            }
             ViewBag.Name = Name;
             int RUserId = UserId;
             var user = User;
@@ -153,8 +182,16 @@ namespace TadarbProject.Controllers
             return View(assessmentVM);
         }
 
+        [HttpGet]
         public IActionResult ViewSemesters()
         {
+            if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(UserId.ToString()))
+            {
+
+                return RedirectToAction("Login", "Home");
+
+            }
+
             ViewBag.Name = Name;
             int RUserId = UserId;
             var user = User;
@@ -183,8 +220,16 @@ namespace TadarbProject.Controllers
             return View(Sem);
         }
 
+        [HttpGet]
         public IActionResult AddSemesters()
         {
+            if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(UserId.ToString()))
+            {
+
+                return RedirectToAction("Login", "Home");
+
+            }
+
             ViewBag.Name = Name;
             int RUserId = UserId;
             var user = User;
@@ -285,8 +330,19 @@ namespace TadarbProject.Controllers
 
 
         }
+
+
+        [HttpGet]
         public IActionResult EditSemesters(int? id)
         {
+
+            if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(UserId.ToString()))
+            {
+
+                return RedirectToAction("Login", "Home");
+
+            }
+
             ViewBag.Name = Name;
             int RUserId = UserId;
             var user = User;
@@ -312,6 +368,7 @@ namespace TadarbProject.Controllers
 
             return View(SemesterMasterVM);
         }
+
         [HttpPost]
         public IActionResult EditSemesters(SemesterMasterVM SemesterMasterVM, IFormFile? CvFile)
         {
@@ -402,8 +459,17 @@ namespace TadarbProject.Controllers
 
 
         }
+
+        [HttpGet]
         public IActionResult ManageAssessment()
         {
+            if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(UserId.ToString()))
+            {
+
+                return RedirectToAction("Login", "Home");
+
+            }
+
             ViewBag.Name = Name;
             int RUserId = UserId;
             var user = User;
@@ -437,61 +503,15 @@ namespace TadarbProject.Controllers
         }
 
 
-
-        public IActionResult ViewAssessmentajax()
-        {
-
-            int RUserId = UserId;
-            var user = User;
-            var Department = department;
-
-
-            var MasterAssigmnt = _DbContext.DepartmentsAssessmentTypeMaster.Where(item => item.Department_DepartmentId == Department.DepartmentId)
-                .AsNoTracking().FirstOrDefault();
-
-            var DetailAssigmnt = _DbContext.DepartmentsAssessmentTypeDetail.Where(item => item.DepartmentAssessmentTypeMaster_MasterId ==
-            MasterAssigmnt.DepartmentAssessmentTypeMasterId).Include(item => item.assessmentType).AsNoTracking().ToList();
-
-
-
-            return Json(new { DetailAssigmnt });
-        }
-
-
-
-        public IActionResult ManageAssessmentajax()
-        {
-
-            int RUserId = UserId;
-            var user = User;
-            var Department = department;
-
-            var MasterAssigmnt = _DbContext.DepartmentsAssessmentTypeMaster.Where(item => item.Department_DepartmentId == Department.DepartmentId)
-           .AsNoTracking().FirstOrDefault();
-
-            IEnumerable<AssessmentType> Assiment = Enumerable.Empty<AssessmentType>();
-
-            if (MasterAssigmnt != null)
-            {
-
-                Assiment = _DbContext.AssessmentTypes.FromSqlRaw($"SELECT * FROM AssessmentTypes WHERE AssessmentTypeId NOT IN " +
-                    $"(SELECT AssessmentType_AssessmentTypeId FROM DepartmentsAssessmentTypeDetail WHERE DepartmentAssessmentTypeMaster_MasterId ={MasterAssigmnt.DepartmentAssessmentTypeMasterId})").AsNoTracking().ToList();
-
-                return Json(new { Assiment });
-
-            }
-
-            Assiment = _DbContext.AssessmentTypes.AsNoTracking().ToList();
-
-
-
-            return Json(new { Assiment });
-        }
-
-
         [HttpGet]
         public IActionResult AddAcademicSupervisor()
         {
+            if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(UserId.ToString()))
+            {
+
+                return RedirectToAction("Login", "Home");
+
+            }
             ViewBag.Name = Name;
 
             var user = User;
@@ -560,10 +580,17 @@ namespace TadarbProject.Controllers
         }
 
 
-
-
+        [HttpGet]
         public IActionResult ViewAcademicSupervisors()
         {
+
+            if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(UserId.ToString()))
+            {
+
+                return RedirectToAction("Login", "Home");
+
+            }
+
             ViewBag.Name = Name;
             int RUserId = UserId;
             var user = User;
@@ -589,6 +616,12 @@ namespace TadarbProject.Controllers
         [HttpGet]
         public IActionResult ViewStudents()
         {
+            if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(UserId.ToString()))
+            {
+
+                return RedirectToAction("Login", "Home");
+
+            }
 
             ViewBag.Name = Name;
             int RUserId = UserId;
@@ -608,6 +641,12 @@ namespace TadarbProject.Controllers
         [HttpGet]
         public IActionResult DetailStudent(int? id)
         {
+            if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(UserId.ToString()))
+            {
+
+                return RedirectToAction("Login", "Home");
+
+            }
 
             if (id == null)
             {
@@ -647,6 +686,14 @@ namespace TadarbProject.Controllers
         [HttpGet]
         public IActionResult AddStudents()
         {
+
+            if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(UserId.ToString()))
+            {
+
+                return RedirectToAction("Login", "Home");
+
+            }
+
             ViewBag.Name = Name;
             int RUserId = UserId;
             var user = User;
@@ -730,6 +777,12 @@ namespace TadarbProject.Controllers
         [HttpGet]
         public IActionResult ViewAcademicSupervisorStudents(int? id)
         {
+            if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(UserId.ToString()))
+            {
+
+                return RedirectToAction("Login", "Home");
+
+            }
 
             if (id == 0 || id == null)
             {
@@ -759,6 +812,61 @@ namespace TadarbProject.Controllers
         }
 
 
+
+        #region
+
+        [HttpGet]
+        public IActionResult ViewAssessmentajax()
+        {
+
+            int RUserId = UserId;
+            var user = User;
+            var Department = department;
+
+
+            var MasterAssigmnt = _DbContext.DepartmentsAssessmentTypeMaster.Where(item => item.Department_DepartmentId == Department.DepartmentId)
+                .AsNoTracking().FirstOrDefault();
+
+            var DetailAssigmnt = _DbContext.DepartmentsAssessmentTypeDetail.Where(item => item.DepartmentAssessmentTypeMaster_MasterId ==
+            MasterAssigmnt.DepartmentAssessmentTypeMasterId).Include(item => item.assessmentType).AsNoTracking().ToList();
+
+
+
+            return Json(new { DetailAssigmnt });
+        }
+
+
+        [HttpGet]
+        public IActionResult ManageAssessmentajax()
+        {
+
+            int RUserId = UserId;
+            var user = User;
+            var Department = department;
+
+            var MasterAssigmnt = _DbContext.DepartmentsAssessmentTypeMaster.Where(item => item.Department_DepartmentId == Department.DepartmentId)
+           .AsNoTracking().FirstOrDefault();
+
+            IEnumerable<AssessmentType> Assiment = Enumerable.Empty<AssessmentType>();
+
+            if (MasterAssigmnt != null)
+            {
+
+                Assiment = _DbContext.AssessmentTypes.FromSqlRaw($"SELECT * FROM AssessmentTypes WHERE AssessmentTypeId NOT IN " +
+                    $"(SELECT AssessmentType_AssessmentTypeId FROM DepartmentsAssessmentTypeDetail WHERE DepartmentAssessmentTypeMaster_MasterId ={MasterAssigmnt.DepartmentAssessmentTypeMasterId})").AsNoTracking().ToList();
+
+                return Json(new { Assiment });
+
+            }
+
+            Assiment = _DbContext.AssessmentTypes.AsNoTracking().ToList();
+
+
+
+            return Json(new { Assiment });
+        }
+
+        [HttpGet]
         public IActionResult ViewStudentCheckAjak(string? id)
         {
 
@@ -790,13 +898,9 @@ namespace TadarbProject.Controllers
             return Json(new { StudentDetail });
 
 
-
-
-
-
         }
 
-
+        [HttpPost]
         public IActionResult AddStudentAndSuper(string dFieldIds, int Mid)
         {
 
@@ -814,11 +918,7 @@ namespace TadarbProject.Controllers
 
 
 
-
                 int Emplyeid = Convert.ToInt32(Ids[0]);
-
-
-
 
 
                 foreach (var i in Ids.Skip(1))
@@ -858,9 +958,6 @@ namespace TadarbProject.Controllers
             return Json(new { Exists = false });
 
         }
-
-
-        #region
 
 
         [HttpGet]
@@ -2058,8 +2155,6 @@ namespace TadarbProject.Controllers
 
         }
 
-
-
         [HttpGet]
         public IActionResult GetStudentsListDown()
         {
@@ -2191,8 +2286,6 @@ namespace TadarbProject.Controllers
 
             return Json(new { data = "No_data" });
         }
-
-
 
 
 
