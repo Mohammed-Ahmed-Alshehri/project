@@ -1,7 +1,7 @@
 ﻿@model SemesterStudentAndEvaluationDetail
 
 @{
-    ViewData["Title"] = " تقييم التقرير";
+    ViewData["Title"] = " سجل المتابعة";
 }
 
 <head>
@@ -72,7 +72,7 @@
 
                     <div class="card" style="background-color:#5590ad;">
                         <br />
-                        <h3 style="text-align: center;color:white">سجل المتابعة</h3>
+                        <h3 style="text-align: center;color:white">سجل المتابعة للطالب</h3>
 
                     </div>
                     <br />
@@ -85,9 +85,9 @@
                                 <tr>
                          
                                     <th scope="col">اجمالي درجات التقارير</th>
-                                    <th scope="col">درجة تقيم مشرف التدريب</th>
-                                    <th scope="col">ساعات التدريب</th>
-                                    <th scope="col">ملاحظة المشرف</th>
+                                    <th scope="col">درجة تقيم المشرف التدريبي</th>
+                                    <th scope="col">ساعات التدريب المكملة </th>
+                                    <th scope="col">ملاحظات المشرف</th>
                                 </tr>
                             </thead>
 
@@ -98,7 +98,7 @@
                           
                                     <td>@Model.AcademicSupervisorEvaluationMark</td>
                                     @{
-                                        var Tmark = "لم يتم تقيمه بعد";
+                                        var Tmark = "لم يتم تقييم الطالب بعد";
 
                                         if (Model.TrainingSupervisorEvaluationMark != null)
                                          Tmark = Model.TrainingSupervisorEvaluationMark.ToString();

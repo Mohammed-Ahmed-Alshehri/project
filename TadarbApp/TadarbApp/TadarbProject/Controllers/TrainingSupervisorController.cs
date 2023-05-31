@@ -354,6 +354,8 @@ namespace TadarbProject.Controllers
             _DbContext.SemestersStudentAndEvaluationDetails.Update(opj);
 
             _DbContext.SaveChanges();
+            TempData["success"] = "تم تقييم الطالب بنجاح";
+
 
 
 
