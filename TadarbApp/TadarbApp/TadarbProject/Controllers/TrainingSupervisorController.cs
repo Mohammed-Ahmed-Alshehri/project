@@ -287,7 +287,7 @@ namespace TadarbProject.Controllers
             var StudentAndEvaluationDetails = _DbContext.SemestersStudentAndEvaluationDetails.Where(item => item.StudentRequest_StudentRequestId == TraineeRqu.StudentRequestOpportunityId)
                 .AsNoTracking().FirstOrDefault();
 
-            var SetMaxMark = _DbContext.DepartmentsAssessmentTypeMaster.Where(item => item.Department_DepartmentId == TraineeRqu.student.Department_DepartmentId)
+            int SetMaxMark = _DbContext.DepartmentsAssessmentTypeMaster.Where(item => item.Department_DepartmentId == TraineeRqu.student.Department_DepartmentId)
                 .AsNoTracking().FirstOrDefault().TrainingSupervisorMarks;
 
             ViewBag.MaxMark = SetMaxMark;

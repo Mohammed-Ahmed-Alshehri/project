@@ -1,8 +1,4 @@
-﻿@model IEnumerable<TrainingOpportunity>
-
-
-
-@{
+﻿@{
     ViewData["Title"] = "الصفحة الرئيسية";
 }
 
@@ -16,7 +12,7 @@
 <partial name="_Notification" />
 <body style="background: linear-gradient(#1c4c64,#5590ad);">
 
-    <div class="row" >
+    <div class="row">
 
         <div class="col-sm-3" style="z-index:2;">
 
@@ -85,53 +81,85 @@
         </div>
 
         <div class="col-sm-8">
-            <div class="row pb-3" style="z-index:1;">
-                @foreach (var item in Model)
+
+
+            <label for="CountryName" class="form-label mt-4" style="font-size:20px;">الدولة</label>
+            <select asp-items="@ViewBag.CountryListItems" class="form-select" id="CountryNameID" required>
+                <option selected disabled value="">--الدولة--</option>
+
+            </select>
+
+            <label for="CityNameID" class="form-label mt-4" style="font-size:20px;">الفرع الرئيسي</label>
+            <select class="form-select" id="CityNameID" name="CityNameID" required>
+            </select>
+
+
+            <label for="DetailFiledId" class="form-label mt-4" style="font-size:20px;">الفرع الرئيسي</label>
+
+            <select asp-items="@ViewBag.DepartmentDetailFileds" class="form-select" id="DetailFiledId" name="DetailFiledId" required>
+
+                <option selected disabled value="">--التخصص--</option>
+
+            </select>
+
+
+            <input id="SelectedCityId" hidden />
+
+            <input id="SelectedDetailFiledId" hidden />
+
+            <button id="b1" class="btn btn-secondary" onclick="Search()"> البحث</button>
+
+            <button id="b2" class="btn btn-secondary" onclick="Clear()"> إظهار الكل</button>
+
+            <div class="row pb-3" style="z-index:1;" id="ConBody">
+
+                @*      @foreach (var item in Model)
                 {
-                    <div class="col-lg-4 col-md-8" >
-                        <div class="row p-2">
-                            <div class="col-12 p-1" style="border:1px solid #008cba; border-radius:5px;">
-                                <div class="card" id="card" >
+                <div class="col-lg-4 col-md-8">
+                <div class="row p-2">
 
-                                    <img src="~/@item.Department.organization.LogoPath" class="card-img-top rounded" width="150" height="130" />
-                                    <div class="card-body">
-                                        <div class="pl-1">
-                                            <p class="card-title" >
-                                                <h4 style="width:auto ;font-size:20px">@item.DetailFiled.SpecializationName</h4>
-                                            </p>
-                                            <br>
-                                            <p class="card-title h5 " style="color:#1c4c64">
-                                                عدد المقاعد المتاحة: <b>@item.AvailableOpportunities</b>
-                                            </p>
-                                        </div>
-                                        <br>
-                                        <div class="pl-1 h5">
-                                            <p>
-                                                بداية التدريب:  <b>@item.StartDate.ToShortDateString()</b>
-                                            </p>
+                <div class="col-12 p-1" style="border:1px solid #008cba; border-radius:5px;">
+                <div class="card" id="card">
 
-                                            <p>
-                                                نهاية التدريب:  <b>@item.EndDate.ToShortDateString()</b>
-                                            </p>
-                                            <p>
-                                                نهاية فترة التسجيل:  <b>@item.EndRegisterDate.ToShortDateString()</b>
+                <img src="~/@item.Department.organization.LogoPath" class="card-img-top rounded" width="150" height="130" />
+                <div class="card-body">
+                <div class="pl-1">
+                <p class="card-title">
+                <h4 style="width:auto ;font-size:20px">@item.DetailFiled.SpecializationName</h4>
+                </p>
+                <br>
+                <p class="card-title h5 " style="color:#1c4c64">
+                عدد المقاعد المتاحة: <b>@item.AvailableOpportunities</b>
+                </p>
+                </div>
+                <br>
+                <div class="pl-1 h5">
+                <p>
+                بداية التدريب:  <b>@item.StartDate.ToShortDateString()</b>
+                </p>
 
-                                            </p>
-                                        </div>
-                                    </div>
-                                    
-                                    <div>
-                                        <a asp-controller="Student" asp-action="OpportunityInformation" asp-route-id="@item.TrainingOpportunityId" class=" btn form-control " style="background-color:#B8B474; color:black;  font-size:20px; border-radius:40;">التفاصيل </a>
-                                    </div>
-                                    
-                                </div>
-                            </div>
+                <p>
+                نهاية التدريب:  <b>@item.EndDate.ToShortDateString()</b>
+                </p>
+                <p>
+                نهاية فترة التسجيل:  <b>@item.EndRegisterDate.ToShortDateString()</b>
 
-                        </div>
+                </p>
+                </div>
+                </div>
 
-                    </div>
+                <div>
+                <a asp-controller="Student" asp-action="OpportunityInformation" asp-route-id="@item.TrainingOpportunityId" class=" btn form-control " style="background-color:#B8B474; color:black;  font-size:20px; border-radius:40;">التفاصيل </a>
+                </div>
+
+                </div>
+                </div>
+
+                </div>
+
+                </div>
                 }
-
+                *@
 
 
             </div>
@@ -141,7 +169,7 @@
 
 
 
-            
+
         </div>
         <div class="col-sm-1"></div>
     </div>
@@ -157,6 +185,164 @@
                 $('#sidebar, #content').toggleClass('active');
             });
         });
+
+        var City = 0;
+
+        var DetailFiled = 0;
+
+        FillOpp(City, DetailFiled);
+
+        $('#CountryNameID').on('change', function () {
+
+
+
+            FillCity(this.value);
+        });
+
+
+        function FillCity(CId) {
+
+
+            $(document).ready(function () {
+                $.ajax({
+                    type: "GET",
+                    url: "@Url.Action("GetCities")",
+                    data: { id: CId },
+
+                    dataType: "json",
+                    success: function (data) {
+                        var s = '<option selected disabled value="">--مدينة الفرع الرئيسي--</option>';
+
+                        for (var i = 0; i < data.cities.length; i++) {
+                            s += '<option value="' + data.cities[i].cityId + '">' + data.cities[i].cityName + '</option>';
+                        }
+
+                        $("#CityNameID").html(s);
+
+                        $('#CityNameID').attr('hidden', false);
+                    }
+                });
+            });
+
+
+        }
+
+        $('#CityNameID').on('change', function () {
+
+
+            var d = document.getElementById("SelectedCityId").value = this.value;
+
+
+        });
+
+
+        $('#DetailFiledId').on('change', function () {
+
+
+            var d = document.getElementById("SelectedDetailFiledId").value = this.value;
+
+
+
+        });
+
+
+
+
+        function Search() {
+
+            City = parseInt(document.getElementById("SelectedCityId").value);
+            DetailFiled = parseInt(document.getElementById("SelectedDetailFiledId").value);
+            FillOpp(City, DetailFiled);
+        }
+
+
+        function Clear() {
+
+            City = 0;
+            DetailFiled = 0;
+
+            FillOpp(City, DetailFiled);
+        }
+
+        function FillOpp(CId, DfId) {
+
+            $(document).ready(function () {
+                $.ajax({
+                    type: "GET",
+                    url: "@Url.Action("GetOpportunities")",
+                    data: { CityID: CId, DetailFiledId: DfId }, dataType: "json",
+
+                    success: function (data) {
+                        var Con = "";
+
+                        if (data.exists) {
+
+                            for (var i = 0; i < data.opportunities.length; i++) {
+
+                                Con += `<div class="col-lg-4 col-md-8">
+                                                                             <div class="row p-2">
+                                                                              <div class="col-12 p-1" style="border:1px solid #008cba; border-radius:5px;">
+                                                                              <div class="card" id="card">
+                                                                                                      <img src="/${data.opportunities[i].department.organization.logoPath}" class="card-img-top rounded" width="150" height="130"/>
+                                                                               <div class="card-body">
+                                                                               <div class="pl-1">
+                                                                                <p class="card-title">
+                                                                                         <h4 style="width:auto ;font-size:20px">${data.opportunities[i].detailFiled.specializationName}</h4></p>
+                                                                                            <br>
+                                                                                  <p class="card-title h5" style="color:#1c4c64">
+                                                                                                           عدد المقاعد المتاحة: <b>${data.opportunities[i].availableOpportunities}</b></p></div>
+                                                                                        <br>
+                                                                                        <div class="pl-1 h5">
+                                                                                            <p>
+                                                                         بداية التدريب:  <b>${data.opportunities[i].startDate} </b>
+                                                                                            </p>
+
+                                                                                            <p>
+                                                                                                                        نهاية التدريب:  <b>${data.opportunities[i].endDate}</b>
+                                                                                            </p>
+                                                                                            <p>
+                                                                                                                        نهاية فترة التسجيل:  <b>${data.opportunities[i].endRegisterDate}</b>
+
+                                                                                            </p>
+
+                                                                                        </div>
+
+                                                                                    </div>
+
+                                                                                    <div>
+                                                                                    <a  href="/Student/OpportunityInformation/?id=${data.opportunities[i].trainingOpportunityId}" class="btn form-control" style="background-color:#B8B474; color:black;  font-size:20px; border-radius:40;">التفاصيل</a>
+                                                                                    </div>
+
+                                                                                </div>
+                                                                            </div>
+
+                                                                        </div>
+
+                                                                    </div>
+                                                                            `;
+
+                            }
+
+                        }
+
+                        if (!data.exists) {
+                            Con = `<div class="alert alert-dark d-flex align-items-center" role="alert">
+                   <i class="bi bi-exclamation-circle-fill"></i>
+              <div>
+                                              لا توجد فرص متاحة تناسب ${data.message}.
+                      </div>
+            </div>`
+                        }
+
+
+                        $("#ConBody").html(Con);
+
+
+                    }
+                });
+            });
+
+        }
 
     </script>
 

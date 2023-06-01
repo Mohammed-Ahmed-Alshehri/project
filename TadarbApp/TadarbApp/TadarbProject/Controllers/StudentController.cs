@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using TadarbProject.Data;
 using TadarbProject.Models;
@@ -18,7 +19,7 @@ namespace TadarbProject.Controllers
         private static UserAcount User;
         private static UniversityTraineeStudent trainee;
         private static Department department;
-        private static Organization OrganizationOfR;
+        private static Organization organizationOfR;
 
 
         public StudentController(AppDbContext DbContext, IEmailSender emailSender, IHttpContextAccessor HttpContextAccessor, IWebHostEnvironment webHostEnvironment)
@@ -60,7 +61,9 @@ namespace TadarbProject.Controllers
 
             var Department = department;
 
-            OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Department.Organization_OrganizationId).AsNoTracking().FirstOrDefault();
+            organizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Department.Organization_OrganizationId).AsNoTracking().FirstOrDefault();
+
+            var OrganizationOfR = organizationOfR;
 
             if (user.ActivationStatus == "Not_Active")
             {
@@ -267,31 +270,41 @@ namespace TadarbProject.Controllers
             var user = User;
             var UnverTre = trainee;
             var Department = department;
-
-
-
-            var DepartmentTrainingAreas = _DbContext.DepartmentTrainingAreas.Where(item => item.Department_DepartmenId == Department.DepartmentId).AsNoTracking().FirstOrDefault();
-
-            var DetailFiled = _DbContext.FieldOfSpecialtiesDetails.Where(item => item.DetailFieldId == DepartmentTrainingAreas.TrainArea_DetailFiledId).AsNoTracking().FirstOrDefault();
-
-
-
-            IEnumerable<TrainingOpportunity> Opportunities = Enumerable.Empty<TrainingOpportunity>();
-
-            Opportunities = _DbContext.TrainingOpportunities.FromSqlRaw($"Select * from TrainingOpportunities WHERE DetailFiled_DetailFiledId IN" +
-               $"(SELECT TrainArea_DetailFiledId FROM DepartmentTrainingAreas WHERE Department_DepartmenId ={Department.DepartmentId}) " +
-               $" AND OpportunityStatus='Available' AND AbilityofSubmissionStatus='Available'").AsNoTracking().Include(item => item.DetailFiled)
-               .Include(item => item.Department.organization).AsNoTracking().ToList();
-
-
+            var OrganizationOfR = organizationOfR;
 
             ViewBag.OrganizationName = OrganizationOfR.OrganizationName + " - " + Department.DepartmentName;
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
             ViewBag.Username = user.FullName;
 
+            IEnumerable<SelectListItem> CountryListItems = Enumerable.Empty<SelectListItem>();
+            CountryListItems = _DbContext.Countries.AsNoTracking().ToList().Select(u => new SelectListItem { Text = u.CountryName, Value = u.CountryId.ToString() });
+
+            ViewBag.CountryListItems = CountryListItems;
+
+            IEnumerable<SelectListItem> DepartmentDetailFileds = Enumerable.Empty<SelectListItem>();
+
+            DepartmentDetailFileds = _DbContext.FieldOfSpecialtiesDetails.FromSqlRaw("SELECT * FROM FieldOfSpecialtiesDetails WHERE DetailFieldId " +
+             $"IN (SELECT TrainArea_DetailFiledId FROM DepartmentTrainingAreas WHERE Department_DepartmenId ={Department.DepartmentId})")
+             .AsNoTracking().ToList().Select(u => new SelectListItem { Text = u.SpecializationName, Value = u.DetailFieldId.ToString() });
+
+            ViewBag.DepartmentDetailFileds = DepartmentDetailFileds;
+
+            //var DepartmentTrainingAreas = _DbContext.DepartmentTrainingAreas.Where(item => item.Department_DepartmenId == Department.DepartmentId).AsNoTracking().FirstOrDefault();
+
+            //var DetailFiled = _DbContext.FieldOfSpecialtiesDetails.Where(item => item.DetailFieldId == DepartmentTrainingAreas.TrainArea_DetailFiledId).AsNoTracking().FirstOrDefault();
+
+            //IEnumerable<TrainingOpportunity> Opportunities = Enumerable.Empty<TrainingOpportunity>();
+
+            //Opportunities = _DbContext.TrainingOpportunities.FromSqlRaw($"Select * from TrainingOpportunities WHERE DetailFiled_DetailFiledId IN" +
+            //   $"(SELECT TrainArea_DetailFiledId FROM DepartmentTrainingAreas WHERE Department_DepartmenId ={Department.DepartmentId}) " +
+            //   $" AND OpportunityStatus='Available' AND AbilityofSubmissionStatus='Available'").AsNoTracking().Include(item => item.DetailFiled)
+            //   .Include(item => item.Department.organization).AsNoTracking().ToList();
 
 
-            return View(Opportunities);
+
+
+
+            return View();
         }
 
         [HttpGet]
@@ -309,7 +322,7 @@ namespace TadarbProject.Controllers
             var user = User;
             var UnverTre = trainee;
             var Department = department;
-
+            var OrganizationOfR = organizationOfR;
 
             //var OPertunty = _DbContext.TrainingOpportunities.FromSqlRaw("SELECT * FROM TrainingOpportunities WHERE TrainingOpportunityId IN " +
             //    $"(SELECT TrainingOpportunity_TrainingOpportunityId FROM StudentRequestsOnOpportunities WHERE Trainee_TraineeId = {UnverTre.TraineeId});")
@@ -349,7 +362,7 @@ namespace TadarbProject.Controllers
             var user = User;
             var UnverTre = trainee;
             var Department = department;
-
+            var OrganizationOfR = organizationOfR;
             var Opportunity = _DbContext.TrainingOpportunities
                 .Where(item => item.TrainingOpportunityId == id).Include(item => item.DetailFiled).Include(item => item.trainingType).Include(item => item.Branch.city.Country).Include(item => item.Branch.organization).AsNoTracking().FirstOrDefault();
 
@@ -490,7 +503,7 @@ namespace TadarbProject.Controllers
             var user = User;
             var UnverTre = trainee;
             var Department = department;
-
+            var OrganizationOfR = organizationOfR;
             ViewBag.OrganizationName = OrganizationOfR.OrganizationName + " - " + Department.DepartmentName;
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
             ViewBag.Username = user.FullName;
@@ -529,7 +542,7 @@ namespace TadarbProject.Controllers
             var user = User;
             var UnverTre = trainee;
             var Department = department;
-
+            var OrganizationOfR = organizationOfR;
             ViewBag.OrganizationName = OrganizationOfR.OrganizationName + " - " + Department.DepartmentName;
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
             ViewBag.Username = user.FullName;
@@ -560,7 +573,7 @@ namespace TadarbProject.Controllers
             var user = User;
             var UnverTre = trainee;
             var Department = department;
-
+            var OrganizationOfR = organizationOfR;
             ViewBag.OrganizationName = OrganizationOfR.OrganizationName + " - " + Department.DepartmentName;
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
             ViewBag.Username = user.FullName;
@@ -597,6 +610,109 @@ namespace TadarbProject.Controllers
 
 
         #region
+
+
+
+        [HttpGet]
+        public IActionResult GetOpportunities(int CityID, int DetailFiledId)
+        {
+            int RUserId = UserId;
+            var user = User;
+            var UnverTre = trainee;
+            var Department = department;
+            var OrganizationOfR = organizationOfR;
+
+            IEnumerable<TrainingOpportunity> Opportunities = Enumerable.Empty<TrainingOpportunity>();
+
+            if (CityID == 0 && DetailFiledId == 0)
+            {
+                Opportunities = _DbContext.TrainingOpportunities.FromSqlRaw($"Select * from TrainingOpportunities WHERE DetailFiled_DetailFiledId IN" +
+             $"(SELECT TrainArea_DetailFiledId FROM DepartmentTrainingAreas WHERE Department_DepartmenId ={Department.DepartmentId}) " +
+             $" AND OpportunityStatus='Available' AND AbilityofSubmissionStatus='Available'").AsNoTracking().Include(item => item.DetailFiled)
+             .Include(item => item.Department.organization).AsNoTracking().ToList();
+
+                if (Opportunities?.Any() != true)
+                {
+                    return Json(new { Opportunities, Exists = false , message ="تخصصك"});
+
+                }
+
+                return Json(new { Opportunities, Exists = true });
+            }
+
+
+            if (CityID != 0 && DetailFiledId == 0)
+            {
+                Opportunities = _DbContext.TrainingOpportunities.FromSqlRaw($"Select * from TrainingOpportunities WHERE DetailFiled_DetailFiledId IN " +
+                    $"(SELECT TrainArea_DetailFiledId FROM DepartmentTrainingAreas WHERE Department_DepartmenId = {Department.DepartmentId})" +
+                    $" AND OpportunityStatus='Available' AND AbilityofSubmissionStatus='Available' AND Branch_BranchId " +
+                    $"IN (SELECT BranchId FROM OrganizationBranches_TrainProv WHERE City_CityId ={CityID})").AsNoTracking().Include(item => item.DetailFiled)
+             .Include(item => item.Department.organization).AsNoTracking().ToList();
+
+                if (Opportunities?.Any() != true)
+                {
+                    return Json(new { Opportunities, Exists = false  ,message = "مدخلاتك" });
+
+                }
+
+                return Json(new { Opportunities, Exists = true });
+            }
+
+
+            if (CityID == 0 && DetailFiledId != 0)
+            {
+                Opportunities = _DbContext.TrainingOpportunities.FromSqlRaw($"Select * from TrainingOpportunities WHERE DetailFiled_DetailFiledId IN " +
+                    $"(SELECT TrainArea_DetailFiledId FROM DepartmentTrainingAreas WHERE Department_DepartmenId = {Department.DepartmentId} AND DetailFiled_DetailFiledId = {DetailFiledId})" +
+                    $" AND OpportunityStatus='Available' AND AbilityofSubmissionStatus='Available'").AsNoTracking().Include(item => item.DetailFiled)
+             .Include(item => item.Department.organization).AsNoTracking().ToList();
+
+                if (Opportunities?.Any() != true)
+                {
+                    return Json(new { Opportunities, Exists = false,  message = "مدخلاتك" });
+
+                }
+
+                return Json(new { Opportunities, Exists = true });
+            }
+
+
+
+            if (CityID != 0 && DetailFiledId != 0)
+            {
+                Opportunities = _DbContext.TrainingOpportunities.FromSqlRaw($" Select * from TrainingOpportunities WHERE DetailFiled_DetailFiledId IN " +
+                    $"(SELECT TrainArea_DetailFiledId FROM DepartmentTrainingAreas WHERE Department_DepartmenId = {Department.DepartmentId} AND DetailFiled_DetailFiledId = {DetailFiledId}) " +
+                    $"AND OpportunityStatus='Available' AND AbilityofSubmissionStatus='Available' AND Branch_BranchId " +
+                    $"IN (SELECT BranchId FROM OrganizationBranches_TrainProv WHERE City_CityId = {CityID})").AsNoTracking().Include(item => item.DetailFiled)
+             .Include(item => item.Department.organization).AsNoTracking().ToList();
+
+                if (Opportunities?.Any() != true )
+                {
+                    return Json(new { Opportunities, Exists = false, message = "مدخلاتك" });
+
+                }
+
+                return Json(new { Opportunities, Exists = true });
+            }
+
+
+
+            //if (Opportunities?.Any() == true)
+            //{
+            //    return Json(new { Opportunities, Exists = true });
+            //}
+
+            //if (Opportunities?.Any() != true)
+            //{
+            //    // if collection is null
+            //    // if collection does not contain any item
+
+
+            //}
+
+
+            return Json(new { Opportunities, Exists = false, message = "تخصصك" });
+        }
+
 
         [HttpPost]
         public IActionResult StudentCancelBefore(int? id)
@@ -777,6 +893,35 @@ namespace TadarbProject.Controllers
 
 
             return Json(new { success = true });
+        }
+
+        [HttpGet]
+        public IActionResult GetCities(string? id)
+        {
+
+            if (!string.IsNullOrEmpty(id))
+            {
+                var Id = Convert.ToInt64(id);
+                var Cities = _DbContext.Cities.Where(item => item.Country_CountryId == Id).Select(item => new
+
+                {
+                    CityId = item.CityId,
+
+                    CityName = item.CityName
+
+                }
+
+
+                ).AsNoTracking().ToList();
+
+
+
+                return Json(new { Cities });
+
+            }
+
+
+            return Json(new { Exists = false });
         }
 
 
