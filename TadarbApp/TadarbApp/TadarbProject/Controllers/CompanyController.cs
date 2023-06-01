@@ -54,10 +54,18 @@ namespace TadarbProject.Controllers
 
             OrganizationOfR = _DbContext.Organizations.Where(item => item.ResponsibleUserId == RUserId).AsNoTracking().FirstOrDefault();
 
+            var TraingOper = _DbContext.TrainingOpportunities.FromSqlRaw($"Select * from  TrainingOpportunities where Branch_BranchId IN " +
+                $"(Select BranchId from OrganizationBranches_TrainProv Where Organization_OrganizationId = {OrganizationOfR.OrganizationId} )").AsNoTracking().ToList();
 
             ViewBag.OrganizationName = OrganizationOfR.OrganizationName;
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
             ViewBag.Username = user.FullName;
+
+            ViewBag.OperCount = TraingOper.Count();
+            ViewBag.Student = _DbContext.SemestersStudentAndEvaluationDetails.FromSqlRaw($"Select * from SemestersStudentAndEvaluationDetails where TrainingSupervisor_EmployeeId IN " +
+                $" ( Select EmployeeId from Employees where Department_DepartmentId IN " +
+                $"( Select DepartmentId from Departments where Organization_OrganizationId = {OrganizationOfR.OrganizationId})) AND GeneralTrainingStatus !='stop training' ").AsNoTracking().ToList().Count();
+
             return View();
         }
 
