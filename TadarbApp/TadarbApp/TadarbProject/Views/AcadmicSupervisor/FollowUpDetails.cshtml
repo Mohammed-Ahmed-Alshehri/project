@@ -64,7 +64,7 @@
 
         </div>
 
-        <div class="col-sm-7">
+        <div class="col-sm-8">
 
             <div class="card" style="border-radius: 25px; margin-top:2cm; margin-bottom:3cm;  border-color:black;background-color:#f2f5fa">
 
@@ -77,35 +77,40 @@
                     </div>
                     <br />
 
-                    <div class="table-responsive  p-0" style="width:50%">
+                    <div class="table-responsive p-0">
 
                         <table class="table table-borderless align-content-center table-light rounded">
 
-                            <thead >
+                            <thead>
                                 <tr>
-                         
-                                    <th scope="col">اجمالي درجات التقارير</th>
-                                    <th scope="col">درجة تقيم المشرف التدريبي</th>
-                                    <th scope="col">ساعات التدريب المكملة </th>
-                                    <th scope="col">ملاحظات المشرف</th>
+
+                                    <th scope="col"><i class="fa-solid fa-check-to-slot"></i>&ensp;اجمالي درجات التقرير</th>
+                                    <th scope="col"><i class="fa-solid fa-check-to-slot"></i>&ensp;درجة تقيم المشرف التدريبي</th>
+                                    <th scope="col"><i class="fa-solid fa-clock"></i>&ensp;ساعات التدريب المكملة </th>
+                                    <th scope="col"><i class="fa-solid fa-pencil"></i>&ensp; ملاحظات المشرف</th>
                                 </tr>
                             </thead>
 
 
 
                             <tbody class="table-group-divider">
+
                                 <tr>
-                          
+
                                     <td>@Model.AcademicSupervisorEvaluationMark</td>
                                     @{
+
                                         var Tmark = "لم يتم تقييم الطالب بعد";
 
                                         if (Model.TrainingSupervisorEvaluationMark != null)
-                                         Tmark = Model.TrainingSupervisorEvaluationMark.ToString();
+                                            Tmark = Model.TrainingSupervisorEvaluationMark.ToString();
 
                                     }
 
-                                    <td>@Tmark</td>
+                                    <td>
+                                        &ensp;
+                                        @Tmark
+                                    </td>
 
                                     @{
                                         var Thours = "لم يتم تحديد الساعات بعد";
@@ -115,10 +120,13 @@
 
                                     }
 
-                                    <td>@Thours</td>
+                                    <td>
+                                        &ensp;
+                                        @Thours
+                                    </td>
 
 
-                                  
+
 
                                     @{
                                         var TNote = "";
@@ -128,30 +136,33 @@
 
                                     }
 
-                                    <td>@TNote</td>
+                                    <td>
+                                        &ensp;
+                                        @TNote
+                                    </td>
                                 </tr>
-                             
-                            
+
+
                             </tbody>
 
                         </table>
 
-                         
+
 
                     </div>
 
 
 
-                    <div class="table-responsive  p-0" style="width:50%">
+                    <div class="table-responsive  p-0">
 
                         <table class="table table-borderless align-content-center table-light rounded">
 
                             <thead>
                                 <tr>
 
-                                    <th scope="col">اسم المشرف التدريبي</th>
-                                    <th scope="col">البريد الالكتروني</th>
-                                   
+                                    <th scope="col"><i class="fa-solid fa-user"></i>&ensp; اسم المشرف التدريبي</th>
+                                    <th scope="col"><i class="fa-solid fa-envelope"></i>&ensp; البريد الالكتروني</th>
+
                                 </tr>
                             </thead>
 
@@ -160,8 +171,15 @@
                             <tbody class="table-group-divider">
                                 <tr>
 
-                                    <td>@Model.EmployeeTrainingSupervisor.userAcount.FullName</td>
-                                    <td>@Model.EmployeeTrainingSupervisor.userAcount.UserEmail</td>
+                                    <td>
+                                        &ensp;
+                                        @Model.EmployeeTrainingSupervisor.userAcount.FullName
+                                    </td>
+
+                                    <td>
+                                        &ensp;
+                                        @Model.EmployeeTrainingSupervisor.userAcount.UserEmail
+                                    </td>
 
 
                                 </tr>
@@ -183,9 +201,9 @@
                         {
                             ShowDoc = "block";
                             showMsg = "none";
-                            
+
                         }
-                
+
                     }
 
                     <h5 style="">ملف التقيم المرفق من قبل المشرف:</h5>
@@ -206,7 +224,7 @@
         </div>
 
         <div class="col-sm-2"></div>
-       
+
     </div>
 
 </body>

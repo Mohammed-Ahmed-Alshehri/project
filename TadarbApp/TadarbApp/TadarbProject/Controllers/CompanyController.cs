@@ -500,14 +500,46 @@ namespace TadarbProject.Controllers
         }
 
 
+        //[HttpGet]
+        //public IActionResult GetLocationAjax()
+        //{
+        //    if (string.IsNullOrEmpty(_HttpContextAccessor.HttpContext.Session.GetString("Name")) || string.IsNullOrEmpty(_HttpContextAccessor.HttpContext.Session.GetInt32("UserId").ToString()))
+        //    {
+
+        //        return RedirectToAction("Login", "Home");
+
+        //    }
+
+        //    Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
+
+        //    ViewBag.Name = Name;
+
+        //    UserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
+
+        //    int RUserId = UserId;
+
+        //    //User = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).AsNoTracking().FirstOrDefault();
+
+        //    //var user = User;
+
+        //   OrganizationOfR = _DbContext.Organizations.Where(item => item.ResponsibleUserId == RUserId).AsNoTracking().FirstOrDefault();
+
+        //   var Branches = _DbContext.OrganizationBranches_TrainProv.Where(item => item.Organization_OrganizationId == OrganizationOfR.OrganizationId).AsNoTracking().ToList();
+
+        //    //var log = Branches.splt;
+           
+        //    //var Lat = '';
+        //    return Json(new { Branches });
+         
+            
+        //}
 
 
 
+            #region
 
-        #region
 
-
-        [HttpGet]
+            [HttpGet]
         public IActionResult PhoneExists(string? Phone)
         {
             if (Phone == null)
