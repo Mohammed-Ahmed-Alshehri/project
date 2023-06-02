@@ -85,7 +85,7 @@
         <div class="col-sm-6">
             <div class="row">
 
-             
+
 
                 <div class="page-wrapper">
                     <div class="content container-fluid">
@@ -98,10 +98,10 @@
                                                 <i class="fa-solid fa fa-users"></i>
                                             </span>
                                             <div>
-                                                <a >الفرص المتاحة في الشركة </a>
-                                                
+                                                <a>الفرص المتاحة في الشركة </a>
+
                                             </div>
-                                            <a  > @ViewBag.OperCount </a>
+                                            <a> @ViewBag.OperCount </a>
                                         </div>
                                     </div>
                                 </div>
@@ -130,7 +130,7 @@
                                             </span>
                                             <div class="dash-count">
                                                 <a>Chat Count</a>
-                                                <a > 2,980</a>
+                                                <a> 2,980</a>
                                             </div>
                                         </div>
                                     </div>
@@ -143,11 +143,11 @@
                                 <div class="card card-table flex-fill">
                                     <div class="card-header">
                                         <h4 class="card-title float-start">User List</h4>
-                                        
-                                        <div class="table-search float-end"   id="map">
+
+                                        <div class="table-search float-end" id="map">
                                         </div>
 
-                                        <div id="piechart" ></div>
+                                        <div id="piechart"></div>
                                     </div>
                                     <div class="card-body">
                                         <div class="table-responsive no-radius">
@@ -158,7 +158,7 @@
                             </div>
 
 
-                           
+
                         </div>
                     </div>
 
@@ -216,28 +216,28 @@
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
     <script type="text/javascript">
-      google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(drawChart);
+        google.charts.load('current', { 'packages': ['corechart'] });
+        google.charts.setOnLoadCallback(drawChart);
 
-      function drawChart() {
+        function drawChart() {
 
-        var data = google.visualization.arrayToDataTable([
-          ['Task', 'Hours per Day'],
-          ['طيبة',     9],
-          ['الامام',      2],
-          ['عزوز',  10],
-          [' البترول', 6]
-       
-        ]);
+            var data = google.visualization.arrayToDataTable([
+                ['Task', 'Hours per Day'],
+                ['طيبة', 9],
+                ['الامام', 2],
+                ['عزوز', 10],
+                [' البترول', 6]
 
-        var options = {
-          title: 'نسبة الطلاب  المتدريبن حسب كل جامعة'
-        };
+            ]);
 
-        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+            var options = {
+                title: 'نسبة الطلاب  المتدريبن حسب كل جامعة'
+            };
 
-        chart.draw(data, options);
-      }
+            var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+            chart.draw(data, options);
+        }
     </script>
 
 

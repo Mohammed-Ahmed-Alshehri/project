@@ -30,7 +30,34 @@
         right: 253px;
         top: 65px;
     }
+
+
+    .notification {
+        background-color: #555;
+        color: white;
+        text-decoration: none;
+        position: relative;
+        display: inline-block;
+        border-radius: 2px;
+    }
+
+    .notification:hover {
+        background: red;
+    }
+
+    .notification .badge {
+        position: absolute;
+        top: -10px;
+        right: -10px;
+        padding: 5px 10px;
+        border-radius: 50%;
+            background: #145369;
+        color: white;
+    }
+
 </style>
+
+
 
 <partial name="_Notification" />
 <body style="background: linear-gradient(#1c4c64,#5590ad);">
@@ -125,22 +152,36 @@
                                 <h4 class="card-title float-start">
                                 </h4>
                                 <div class="table-search float-start">
-                                    <button class="btn  btn-info" type="submit" onclick="Clear()" style="color:black;border:0px;font-size:18px;background-color:lightblue">ظهور الكل</button>
+                                    <button class="btn  btn-info notification" type="submit" onclick="Clear()" style="color:black;border:0px;font-size:18px;background-color:lightblue">
+                                        ظهور الكل
+                                        <span class="badge">@ViewBag.AllStudentCount</span>
+                                    </button>
 
 
 
-                                    <button class="btn  btn-info" type="submit" onclick="ChangeStudentRequestStatus(1)" style="color:black;border:0px;font-size:18px;background-color:lightblue">الطلاب المتقدمين</button>
+                                    <button class="btn  btn-info notification" type="submit" onclick="ChangeStudentRequestStatus(1)" style="color:black;border:0px;font-size:18px;background-color:lightblue">الطلاب المتقدمين
+                                        <span class="badge">@ViewBag.WaitingStudentCount</span>
+                                    </button>
 
 
 
-                                    <button class="btn  btn-info" type="submit" onclick="ChangeStudentRequestStatus(2)" style="color:black;border:0px;font-size:18px;background-color:lightblue">الطلاب غير المتقدمين</button>
+                                    <button class="btn  btn-info notification" type="submit" onclick="ChangeStudentRequestStatus(2)" style="color:black;border:0px;font-size:18px;background-color:lightblue">الطلاب غير المتقدمين
+                                        <span class="badge">@ViewBag.HasNotApplyStudentCount</span>
+                                    </button>
 
 
-                                    <button class="btn  btn-info" type="submit" onclick="ChangeStudentRequestStatus(3)" style="color:black;border:0px;font-size:18px;background-color:lightblue">الطلاب المرفوضين </button>
+                                    <button class="btn  btn-info notification" type="submit" onclick="ChangeStudentRequestStatus(3)" style="color:black;border:0px;font-size:18px;background-color:lightblue">
+                                        الطلاب المرفوضين
+
+                                        <span class="badge">@ViewBag.RejectedStudentCount</span>
+                                    </button>
 
 
 
-                                    <button class="btn  btn-info" type="submit" onclick="ChangeStudentRequestStatus(4)" style="color:black;border:0px;font-size:18px;background-color:lightblue">الطلاب المقبولين</button>
+                                    <button class="btn  btn-info notification" type="submit" onclick="ChangeStudentRequestStatus(4)" style="color:black;border:0px;font-size:18px;background-color:lightblue">الطلاب المقبولين
+
+                                        <span class="badge">@ViewBag.AcceptedStudentCount</span>
+                                    </button>
 
 
 

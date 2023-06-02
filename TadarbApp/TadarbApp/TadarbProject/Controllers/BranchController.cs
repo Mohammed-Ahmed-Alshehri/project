@@ -509,7 +509,7 @@ namespace TadarbProject.Controllers
             Opportunity.TrainingType_TrainingTypeId = TrainingOpportunityVM.TrainingOpportunity.TrainingType_TrainingTypeId;
 
 
-            if(TrainingOpportunityVM.TrainingOpportunity.SupervisorEmployeeId != Opportunity.SupervisorEmployeeId)
+            if (TrainingOpportunityVM.TrainingOpportunity.SupervisorEmployeeId != Opportunity.SupervisorEmployeeId)
             {
 
                 _DbContext.Database.ExecuteSqlRaw($"UPDATE SemestersStudentAndEvaluationDetails SET TrainingSupervisor_EmployeeId = {TrainingOpportunityVM.TrainingOpportunity.SupervisorEmployeeId} WHERE  StudentRequest_StudentRequestId IN " +
@@ -518,7 +518,7 @@ namespace TadarbProject.Controllers
                 Opportunity.SupervisorEmployeeId = TrainingOpportunityVM.TrainingOpportunity.SupervisorEmployeeId;
             }
 
-        
+
 
             Opportunity.TotalNumberOfSeats = totalseatupdate;
 

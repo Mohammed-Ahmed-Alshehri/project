@@ -633,7 +633,7 @@ namespace TadarbProject.Controllers
 
                 if (Opportunities?.Any() != true)
                 {
-                    return Json(new { Opportunities, Exists = false , message ="تخصصك"});
+                    return Json(new { Opportunities, Exists = false, message = "تخصصك" });
 
                 }
 
@@ -651,7 +651,7 @@ namespace TadarbProject.Controllers
 
                 if (Opportunities?.Any() != true)
                 {
-                    return Json(new { Opportunities, Exists = false  ,message = "مدخلاتك" });
+                    return Json(new { Opportunities, Exists = false, message = "مدخلاتك" });
 
                 }
 
@@ -668,7 +668,7 @@ namespace TadarbProject.Controllers
 
                 if (Opportunities?.Any() != true)
                 {
-                    return Json(new { Opportunities, Exists = false,  message = "مدخلاتك" });
+                    return Json(new { Opportunities, Exists = false, message = "مدخلاتك" });
 
                 }
 
@@ -685,7 +685,7 @@ namespace TadarbProject.Controllers
                     $"IN (SELECT BranchId FROM OrganizationBranches_TrainProv WHERE City_CityId = {CityID})").AsNoTracking().Include(item => item.DetailFiled)
              .Include(item => item.Department.organization).AsNoTracking().ToList();
 
-                if (Opportunities?.Any() != true )
+                if (Opportunities?.Any() != true)
                 {
                     return Json(new { Opportunities, Exists = false, message = "مدخلاتك" });
 

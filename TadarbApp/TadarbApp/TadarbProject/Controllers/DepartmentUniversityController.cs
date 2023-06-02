@@ -632,6 +632,42 @@ namespace TadarbProject.Controllers
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
             ViewBag.Username = user.FullName;
 
+            int AllStudentCount = 0;
+
+            AllStudentCount = _DbContext.UniversitiesTraineeStudents.Where(item => item.Department_DepartmentId == department.DepartmentId).AsNoTracking().Count();
+
+            ViewBag.AllStudentCount = AllStudentCount;
+
+            int WaitingStudentCount = 0;
+
+            WaitingStudentCount = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId = {Department.DepartmentId} " +
+                $"AND TraineeId IN (SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities  WHERE DecisionStatus = 'waitingStudentApprove' OR DecisionStatus = 'waiting')").AsNoTracking().Count();
+
+            ViewBag.WaitingStudentCount = WaitingStudentCount;
+
+
+            int HasNotApplyStudentCount = 0;
+
+            HasNotApplyStudentCount = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId = {Department.DepartmentId}" +
+                $"AND TraineeId NOT IN (SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities)").AsNoTracking().Count();
+
+            ViewBag.HasNotApplyStudentCount = HasNotApplyStudentCount;
+
+            int RejectedStudentCount = 0;
+
+            RejectedStudentCount = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId = {Department.DepartmentId} " +
+                $"AND TraineeId IN (SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities  WHERE DecisionStatus = 'rejected' OR DecisionStatus = 'system disable' OR  DecisionStatus = 'CancelBeforeApprove' OR  DecisionStatus = 'CancelAftereApprove') " +
+                $"AND TraineeId NOT IN (SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities  WHERE DecisionStatus = 'approved')").AsNoTracking().Count();
+
+            ViewBag.RejectedStudentCount = RejectedStudentCount;
+
+
+            int AcceptedStudentCount = 0;
+
+            AcceptedStudentCount = _DbContext.UniversitiesTraineeStudents.FromSqlRaw($"SELECT * FROM UniversitiesTraineeStudents WHERE Department_DepartmentId = {Department.DepartmentId} " +
+                $"AND TraineeId IN (SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities  WHERE DecisionStatus = 'approved')").AsNoTracking().Count();
+
+            ViewBag.AcceptedStudentCount = AcceptedStudentCount;
 
 
 
@@ -938,13 +974,43 @@ namespace TadarbProject.Controllers
                         GeneralTrainingStatus = "Company Approved",
 
 
-
-
                     };
-
 
                     _DbContext.SemestersStudentAndEvaluationDetails.Add(DTA);
                     _DbContext.SaveChanges();
+
+                    IEnumerable<StudentSemesterEvaluationMark> HasStudentSemesterEvaluationMarks = Enumerable.Empty<StudentSemesterEvaluationMark>();
+
+                    HasStudentSemesterEvaluationMarks = _DbContext.StudentSemesterEvaluationMarks.FromSqlRaw("SELECT DISTINCT * FROM StudentSemesterEvaluationMarks WHERE SemesterStudentAndEvaluationDetail_DetailId " +
+                           $"IN (SELECT SemesterStudentAndEvaluationDetailId FROM SemestersStudentAndEvaluationDetails WHERE SemesterMaster_SemesterMasterId " +
+                           $"IN (SELECT SemesterTrainingSettingMasterId FROM SemestersTrainingSettingMaster WHERE SemesterMaster_SemesterMasterId = {Mid}))").AsNoTracking().ToList();
+
+                    if (HasStudentSemesterEvaluationMarks.Any())
+                    {
+
+                        var ThisStudentSemesterEvaluationDetail = _DbContext.SemestersStudentAndEvaluationDetails.Where(item => item.StudentRequest_StudentRequestId == id).AsNoTracking().FirstOrDefault();
+
+                        foreach (var m in HasStudentSemesterEvaluationMarks)
+                        {
+
+
+                            var NewStudentSemesterEvaluationMark = new StudentSemesterEvaluationMark()
+                            {
+
+                                SemesterStudentAndEvaluationDetail_DetailId = ThisStudentSemesterEvaluationDetail.SemesterStudentAndEvaluationDetailId,
+                                DepartmentAssessmentTypeDetail_DetailId = m.DepartmentAssessmentTypeDetail_DetailId
+
+                            };
+
+
+                            _DbContext.StudentSemesterEvaluationMarks.Add(NewStudentSemesterEvaluationMark);
+                        }
+
+                        _DbContext.SaveChanges();
+
+                    }
+
+
                 }
 
                 TempData["success"] = "تم تعيين المشرف الاكاديمي للطلاب ";
@@ -965,13 +1031,10 @@ namespace TadarbProject.Controllers
         {
 
 
-            int RUserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
+            int RUserId = UserId;
 
 
-            var Department = _DbContext.Departments.Where(item => item.Responsible_UserId == RUserId).AsNoTracking().FirstOrDefault();
-
-
-            var OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == Department.Organization_OrganizationId).AsNoTracking().FirstOrDefault();
+            var Department = department;
 
             var college = _DbContext.UniversityColleges.Where(item => item.Organization_OrganizationId == OrganizationOfR.OrganizationId).AsNoTracking().FirstOrDefault();
 
@@ -1030,10 +1093,6 @@ namespace TadarbProject.Controllers
 
                         return Json(new { Students });
                     }
-
-
-
-
 
 
 
