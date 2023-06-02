@@ -74,7 +74,7 @@
                 <div class="card-body p-5">
                     <h2 class=" text-center mb-5">اختيار المجالات المراد تقديم التدريب فيها</h2>
 
-
+                    <form class="needs-validation" novalidate>
                     <div class="row">
                         <div class="col-md-6 mb-4 pb-2">
 
@@ -87,6 +87,8 @@
                                     <option selected disabled value="">--المجال العام--</option>
 
                                 </select>
+                                    <div class="invalid-feedback" style="text-align: right;"> الرجاء إدخال المجال   </div>
+
                             </div>
 
                         </div>
@@ -121,6 +123,7 @@
                         </div>
 
                     </div>
+                    </form>
                 </div>
 
 
@@ -129,7 +132,7 @@
 
                 <div class="d-flex justify-content-center">
 
-                    <a class="btn btn-lg " style="background-color:#e6e291; font-size:20px;" onclick="AddSP()">حفظ</a>
+                    <a class="btn btn-lg "  style="background-color:#e6e291; font-size:20px;" onclick="AddSP()">حفظ</a>
 
                 </div>
 
@@ -242,6 +245,28 @@
 
             window.location.replace('@Url.ActionLink("ViewSpecialities")');
         }
+
+
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+        (function () {
+            'use strict'
+
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.querySelectorAll('.needs-validation')
+
+            // Loop over them and prevent submission
+            Array.prototype.slice.call(forms)
+                .forEach(function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (!form.checkValidity()) {
+                            event.preventDefault()
+                            event.stopPropagation()
+                        }
+
+                        form.classList.add('was-validated')
+                    }, false)
+                })
+        })()
 
     </script>
 

@@ -37,6 +37,16 @@ namespace TadarbProject.Controllers
 
             }
 
+            //int UniversityCount;
+            //UniversityCount = _DbContext.Organizations.FromSqlRaw($"SELECT COUNT(*) from Organizations Where Organization_TypeId = (1);").AsNoTracking().Count();
+
+            //ViewBag.UniversityCount = UniversityCount;
+
+            //int CompanyCount;
+            //CompanyCount = _DbContext.Organizations.FromSqlRaw($"SELECT COUNT(*) from Organizations Where Organization_TypeId = (2);").AsNoTracking().Count();
+
+            //ViewBag.CompanyCount = CompanyCount;
+
             Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
 
             UserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
