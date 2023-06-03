@@ -867,6 +867,13 @@ namespace TadarbProject.Controllers
                     }
 
 
+                    if (i.DecisionStatus == "waiting")
+
+                    {
+                        i.trainingOpportunity.RequestedOpportunities = i.trainingOpportunity.RequestedOpportunities - 1;
+                    }
+
+
                     i.DecisionDate = DateTime.Now.Date;
                     i.DecisionStatus = "system disable";
 

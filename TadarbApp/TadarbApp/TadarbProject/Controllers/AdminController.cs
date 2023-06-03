@@ -44,7 +44,7 @@ namespace TadarbProject.Controllers
 
             ViewBag.UniversityCount = UniversityCount.Count();
 
- 
+
 
             ViewBag.CompanyCount = CompanyCount.Count();
 

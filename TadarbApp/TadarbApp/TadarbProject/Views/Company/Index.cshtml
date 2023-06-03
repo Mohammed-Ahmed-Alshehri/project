@@ -89,7 +89,6 @@
 
 
                 <div class="col-md-4 " style="background-color:white" id="piechart">
-               
                 </div>
 
                 <div class="col-md-4 ">
@@ -99,7 +98,7 @@
                             <h class="card-title" style="font-size:45px">
                                 <i class="fa-solid fa-user-group "></i>
                             </h>
-                            <p class="card-text" style="font-size:60px">600</p>
+                            <p class="card-text" style="font-size:60px">@ViewBag.NumberOfRequests</p>
                             <p class="card-text" style="font-size:25px;">طلبات الالتحاق بالفرص</p>
 
                         </div>
@@ -132,7 +131,7 @@
                             <h class="card-title" style="font-size:45px">
                                 <i class="fa-solid fa-user-group "></i>
                             </h>
-                            <p class="card-text" style="font-size:60px">600</p>
+                            <p class="card-text" style="font-size:60px">@ViewBag.HaveBeenTrained</p>
                             <p class="card-text" style="font-size:25px;">عدد الطلاب تم تدريبهم</p>
 
                         </div>
@@ -149,7 +148,7 @@
 
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
-    <script >
+    <script>
 
         google.charts.load('current', { packages: ['corechart'] });
         google.charts.setOnLoadCallback(drawChart);
@@ -166,77 +165,75 @@
                 pieHole: 0.4,
             };
 
+            $(document).ready(function () {
+
+
+
                 $.ajax({
                     type: 'GET',
                     url: "@Url.Action("GetStudentByUniAjax")",
-          
+
                     dataType: "json",
 
-                   
-                  
+
+
                     success: function (data) {
 
                         //console.log(data.student[0].employeeAcademicSupervisor.department.organization.organizationName);
 
 
-                    var dataa = new google.visualization.DataTable();
+                        var dataa = new google.visualization.DataTable();
 
-                    // Declare columns
-                    dataa.addColumn('string', 'Univerty');
-                    dataa.addColumn('number', 'countty');
-
-
-                    //var loop=0;
-
-                        $.each(data.student, function (key, value) {
-
-                             //loop = loop + 1;
-
-                        console.log(value.employeeAcademicSupervisor.department.organization.organizationName);
-
-                        //console.log(data.length);
-
-                        //console.log();
-                        //if (dataa == value.employeeAcademicSupervisor.department.organization.organizationName) {
-
-                        //}
+                        // Declare columns
+                        dataa.addColumn('string', 'Univerty');
+                        dataa.addColumn('number', 'countty');
 
 
-                           dataa.addRows([
+                        //var loop=0;
 
-                            [value.employeeAcademicSupervisor.department.organization.organizationName, 1]
-
-                              ]);
-
-                       
-                        //for (var i = 0; i < loop; i++) {
+                        $.each(data.organizationStudentList, function (key, value) {
 
 
-                        //    console.log(i);
-                        //    i=i+1;
-                        //}
-
-                        //console.log(dataa.Wf.length);
-                        //console.log(dataa.Wf[1]);
 
 
-                            
+                            dataa.addRows([
+
+                                [value.organizationName, value.studentsCount]
+
+                            ]);
+
+
+
+
+
                         });
 
 
-                    chart.draw(dataa, options);
+                        if (dataa.Wf.length == 0) {
+                            dataa.addRows([
+
+                                ["لايوجد طلاب قيد التدريب", 1]
+
+                            ]);
+                        }
+
+
+
+                        chart.draw(dataa, options);
+
                     }
 
 
-                })
-              
+                });
+
+            });
 
 
-         
 
-           
 
-           
+
+
+
         }
     </script>
 
