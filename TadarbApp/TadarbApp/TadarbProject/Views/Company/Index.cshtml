@@ -82,161 +82,161 @@
 
         </div>
 
-        <div class="col-sm-6">
+        <div class="col-sm-8" style="margin-bottom:10cm">
             <div class="row">
 
 
 
-                <div class="page-wrapper">
-                    <div class="content container-fluid">
-                        <div class="row">
-                            <div class="col-xl-4 col-sm-4 col-12">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="dash-widget-header">
-                                            <span class="dash-widget-icon bg-primary">
-                                                <i class="fa-solid fa fa-users"></i>
-                                            </span>
-                                            <div>
-                                                <a>الفرص المتاحة في الشركة </a>
 
-                                            </div>
-                                            <a> @ViewBag.OperCount </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-4 col-sm-4 col-12">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="dash-widget-header">
-                                            <span class="badge bg-warning">
-                                                <i class=" fa-solid fa-duotone fa-users" style="--fa-primary-color: #32589a; --fa-secondary-color: #b3b95f; --fa-secondary-opacity: 1.8;"></i>
-                                            </span>
-                                            <div class="dash-count">
-                                                <a>عدد الطلاب قيد التدريب</a>
-                                                <a> @ViewBag.Student </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-4 col-sm-4 col-12">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="dash-widget-header">
-                                            <span class="badge bg-primary">
-                                                <i class="fe fe-comments"></i>
-                                            </span>
-                                            <div class="dash-count">
-                                                <a>Chat Count</a>
-                                                <a> 2,980</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12 d-flex">
-
-                                <div class="card card-table flex-fill">
-                                    <div class="card-header">
-                                        <h4 class="card-title float-start">User List</h4>
-
-                                        <div class="table-search float-end" id="map">
-                                        </div>
-
-                                        <div id="piechart"></div>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="table-responsive no-radius">
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-
-
-
-                        </div>
-                    </div>
-
-
-
-
-
-
-
-
-
-                    @*<div class="col-md-6 mb-4 pb-2">
-                    <div class="card text-white bg-warning mb-3 text-center" style="max-width: 30rem; " >
-                    <div class="card-header" style="font-size:25px">  طلبات الالحتاق</div>
-                    <div class="card-body">
-                    <h class="card-title" style="font-size:50px">60</h>
-                    <p class="card-text"></p>
-                    </div>
-                    </div>
-
-                    <div class="card text-white bg-info mb-3 text-center" style="max-width: 30rem;">
-                    <div class="card-header" style="font-size:25px">الفرص المتاحة</div>
-                    <div class="card-body">
-                    <h class="card-title" style="font-size:50px">60</h>
-                    <p class="card-text"></p>
-                    </div>
-                    </div>
-                    </div>
-                    <div class="col-md-6 mb-4 pb-2">
-                    <div class="card bg-light mb-3 text-center" style="max-width: 30rem; ">
-                    <div class="card-header" style="font-size:25px">طلاب تم تدريبهم </div>
-                    <div class="card-body">
-                    <h class="card-title" style="font-size:50px">60</h>
-                    <p class="card-text"></p>
-                    </div>
-                    </div>
-
-                    <div class="card text-white bg-dark mb-3 text-center" style="max-width: 30rem;">
-                    <div class="card-header" style="font-size:25px" >طلاب قيد التدريب </div>
-                    <div class="card-body">
-                    <h class="card-title" style="font-size:50px">60</h>
-                    <p class="card-text"></p>
-                    </div>
-                    </div>
-
-                    </div>*@
+                <div class="col-md-4 " style="background-color:white" id="piechart">
+               
                 </div>
 
-                <div class="col-sm-2"></div>
+                <div class="col-md-4 ">
+                    <div class="card mb-3 text-center" style="max-width: 30rem; background: linear-gradient(#1b4860, #abc9d9
+);">
+                        <div class="card-body">
+                            <h class="card-title" style="font-size:45px">
+                                <i class="fa-solid fa-user-group "></i>
+                            </h>
+                            <p class="card-text" style="font-size:60px">600</p>
+                            <p class="card-text" style="font-size:25px;">طلبات الالتحاق بالفرص</p>
+
+                        </div>
+                    </div>
+                    <div class="card text-white bg-info mb-3 text-center" style="max-width: 30rem;background: linear-gradient(#28424f, #9fabb1);">
+                        <div class="card-body">
+                            <h class="card-title" style="font-size:45px">
+                                <i class="fa-solid fa-user-group "></i>
+                            </h>
+                            <p class="card-text" style="font-size:60px">@ViewBag.OperCount</p>
+                            <p class="card-text" style="font-size:25px;">الفرص المتاحة</p>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 mb-4 pb-2">
+                    <div class="card  mb-3 text-center" style="max-width: 30rem;background: linear-gradient(#35647b , #97d9f9); ">
+                        <div class="card-body">
+                            <h class="card-title" style="font-size:45px">
+                                <i class="fa-solid fa-user-group "></i>
+                            </h>
+                            <p class="card-text" style="font-size:60px">@ViewBag.Student</p>
+                            <p class="card-text" style="font-size:25px;">عدد الطلاب قيد التدريب</p>
+
+                        </div>
+                    </div>
+                    <div class="card text-white  mb-3 text-center" style="max-width: 30rem;background: linear-gradient(#517e94 , #dbf1fc); ">
+                        <div class="card-body">
+                            <h class="card-title" style="font-size:45px">
+                                <i class="fa-solid fa-user-group "></i>
+                            </h>
+                            <p class="card-text" style="font-size:60px">600</p>
+                            <p class="card-text" style="font-size:25px;">عدد الطلاب تم تدريبهم</p>
+
+                        </div>
+                    </div>
+
+                </div>
+
             </div>
+
+            <div class="col-sm-1"></div>
         </div>
 </body>
 @section Scripts{
 
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
-    <script type="text/javascript">
-        google.charts.load('current', { 'packages': ['corechart'] });
+    <script >
+
+        google.charts.load('current', { packages: ['corechart'] });
         google.charts.setOnLoadCallback(drawChart);
+
 
         function drawChart() {
 
-            var data = google.visualization.arrayToDataTable([
-                ['Task', 'Hours per Day'],
-                ['طيبة', 9],
-                ['الامام', 2],
-                ['عزوز', 10],
-                [' البترول', 6]
-
-            ]);
-
-            var options = {
-                title: 'نسبة الطلاب  المتدريبن حسب كل جامعة'
-            };
 
             var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+            //var data = [];
 
-            chart.draw(data, options);
+            var options = {
+                title: 'نسب الطلاب المتدربين حسب الجامعات',
+                pieHole: 0.4,
+            };
+
+                $.ajax({
+                    type: 'GET',
+                    url: "@Url.Action("GetStudentByUniAjax")",
+          
+                    dataType: "json",
+
+                   
+                  
+                    success: function (data) {
+
+                        //console.log(data.student[0].employeeAcademicSupervisor.department.organization.organizationName);
+
+
+                    var dataa = new google.visualization.DataTable();
+
+                    // Declare columns
+                    dataa.addColumn('string', 'Univerty');
+                    dataa.addColumn('number', 'countty');
+
+
+                    //var loop=0;
+
+                        $.each(data.student, function (key, value) {
+
+                             //loop = loop + 1;
+
+                        console.log(value.employeeAcademicSupervisor.department.organization.organizationName);
+
+                        //console.log(data.length);
+
+                        //console.log();
+                        //if (dataa == value.employeeAcademicSupervisor.department.organization.organizationName) {
+
+                        //}
+
+
+                           dataa.addRows([
+
+                            [value.employeeAcademicSupervisor.department.organization.organizationName, 1]
+
+                              ]);
+
+                       
+                        //for (var i = 0; i < loop; i++) {
+
+
+                        //    console.log(i);
+                        //    i=i+1;
+                        //}
+
+                        //console.log(dataa.Wf.length);
+                        //console.log(dataa.Wf[1]);
+
+
+                            
+                        });
+
+
+                    chart.draw(dataa, options);
+                    }
+
+
+                })
+              
+
+
+         
+
+           
+
+           
         }
     </script>
 
@@ -313,32 +313,6 @@
             });
     </script>
 
-    <script type="text/javascript">
-        google.charts.load("current", {
-            "packages": ["map"],
-            // Note: you will need to get a mapsApiKey for your project.
-            // See: https://developers.google.com/chart/interactive/docs/basic_load_libs#load-settings
-            //  "mapsApiKey": "AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY" -
-        });
-        google.charts.setOnLoadCallback(drawChart);
-        function drawChart() {
-            var data = google.visualization.arrayToDataTable([
-                ['Lat', 'Long', 'Name'],
-                [24.467222481536577, 39.58013318629216, 'sds'],
-                [24.507563, 39.594471, 'Airport'],
-                [24.467222481536577, 39.58013318629216, 'Shopping'],
-                [24.400928069147906, 39.62568173371517, 'Home']
-
-            ]);
-
-            var map = new google.visualization.Map(document.getElementById('map'));
-            map.draw(data, {
-                showTooltip: true,
-                showInfoWindow: true
-            });
-        }
-
-    </script>
 
 
 

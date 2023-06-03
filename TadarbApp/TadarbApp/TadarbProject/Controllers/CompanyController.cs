@@ -500,46 +500,56 @@ namespace TadarbProject.Controllers
         }
 
 
-        //[HttpGet]
-        //public IActionResult GetLocationAjax()
-        //{
-        //    if (string.IsNullOrEmpty(_HttpContextAccessor.HttpContext.Session.GetString("Name")) || string.IsNullOrEmpty(_HttpContextAccessor.HttpContext.Session.GetInt32("UserId").ToString()))
-        //    {
+        [HttpGet]
+        public IActionResult GetStudentByUniAjax()
+        {
+            if (string.IsNullOrEmpty(_HttpContextAccessor.HttpContext.Session.GetString("Name")) || string.IsNullOrEmpty(_HttpContextAccessor.HttpContext.Session.GetInt32("UserId").ToString()))
+            {
 
-        //        return RedirectToAction("Login", "Home");
+                return RedirectToAction("Login", "Home");
 
-        //    }
+            }
 
-        //    Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
+            Name = _HttpContextAccessor.HttpContext.Session.GetString("Name");
 
-        //    ViewBag.Name = Name;
+            ViewBag.Name = Name;
 
-        //    UserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
+            UserId = _HttpContextAccessor.HttpContext.Session.GetInt32("UserId").Value;
 
-        //    int RUserId = UserId;
+            int RUserId = UserId;
 
-        //    //User = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).AsNoTracking().FirstOrDefault();
+            //User = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).AsNoTracking().FirstOrDefault();
 
-        //    //var user = User;
+            //var user = User;
 
-        //   OrganizationOfR = _DbContext.Organizations.Where(item => item.ResponsibleUserId == RUserId).AsNoTracking().FirstOrDefault();
+            OrganizationOfR = _DbContext.Organizations.Where(item => item.ResponsibleUserId == RUserId).AsNoTracking().FirstOrDefault();
 
-        //   var Branches = _DbContext.OrganizationBranches_TrainProv.Where(item => item.Organization_OrganizationId == OrganizationOfR.OrganizationId).AsNoTracking().ToList();
+            //var Branches = _DbContext.OrganizationBranches_TrainProv.Where(item => item.Organization_OrganizationId == OrganizationOfR.OrganizationId).AsNoTracking().ToList();
 
-        //    //var log = Branches.splt;
-           
-        //    //var Lat = '';
-        //    return Json(new { Branches });
-         
-            
-        //}
-
-
-
-            #region
+            var Student = _DbContext.SemestersStudentAndEvaluationDetails.FromSqlRaw($"Select * from SemestersStudentAndEvaluationDetails where AcademicSupervisor_EmployeeId IN   " +
+                $"( Select EmployeeId from Employees where Department_DepartmentId IN      " +
+                $"( Select DepartmentId from Departments where Organization_OrganizationId IN " +
+                $"(select OrganizationId from Organizations where Organization_TypeId = 1  ) ))  AND GeneralTrainingStatus !='stop training'" +
+                $" And StudentRequest_StudentRequestId IN (Select StudentRequestOpportunityId from StudentRequestsOnOpportunities where TrainingOpportunity_TrainingOpportunityId IN " +
+                $"(Select TrainingOpportunityId from TrainingOpportunities where Branch_BranchId IN " +
+                $"(Select BranchId from OrganizationBranches_TrainProv where Organization_OrganizationId = {OrganizationOfR.OrganizationId} )))")
+                .Include(item => item.EmployeeAcademicSupervisor.department.organization).AsNoTracking().ToList();
 
 
-            [HttpGet]
+            //var log = Branches.splt;
+
+            //var Lat = '';
+            return Json(new { Student });
+
+
+        }
+
+
+
+        #region
+
+
+        [HttpGet]
         public IActionResult PhoneExists(string? Phone)
         {
             if (Phone == null)
