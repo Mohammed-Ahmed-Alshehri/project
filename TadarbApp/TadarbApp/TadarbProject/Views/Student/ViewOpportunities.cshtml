@@ -83,18 +83,19 @@
         <div class="col-sm-8">
 
 
-            <label for="CountryName" class="form-label mt-4" style="font-size:20px;">الدولة</label>
+            <label for="CountryName" class="form-label mt-4" style="font-size:20px; color:white">الدولة</label>
+            
             <select asp-items="@ViewBag.CountryListItems" class="form-select" id="CountryNameID" required>
                 <option selected disabled value="">--الدولة--</option>
 
             </select>
 
-            <label for="CityNameID" class="form-label mt-4" style="font-size:20px;">الفرع الرئيسي</label>
+            <label for="CityNameID" class="form-label mt-4" style="font-size:20px; color:white">الفرع الرئيسي</label>
             <select class="form-select" id="CityNameID" name="CityNameID" required>
             </select>
 
 
-            <label for="DetailFiledId" class="form-label mt-4" style="font-size:20px;">الفرع الرئيسي</label>
+            <label for="DetailFiledId" class="form-label mt-4" style="font-size:20px;color:white">التخصص</label>
 
             <select asp-items="@ViewBag.DepartmentDetailFileds" class="form-select" id="DetailFiledId" name="DetailFiledId" required>
 
