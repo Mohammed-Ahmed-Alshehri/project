@@ -13,7 +13,7 @@
 <partial name="_Notification" />
 <body style="background: linear-gradient(#1c4c64,#5590ad);">
 
-    <div class="row" >
+    <div class="row">
 
         <div class="col-sm-3" style="z-index:2;">
 
@@ -158,14 +158,14 @@
 
                                             @if (@item.DecisionStatus == "waitingStudentApprove")
                                             {
-                                                <span class="badge bg-info"> 
+                                                <span class="badge bg-info">
                                                     @{
-                                                        var datelift = DateTime.Now.Date - item.DecisionDate ;
+                                                        var datelift = DateTime.Now.Date - item.DecisionDate;
                                                         string day = "";
 
                                                         if (item.DecisionDate == DateTime.Now.Date.AddDays(-3))
                                                         {
-                                                           day = "0";
+                                                            day = "0";
                                                         }
 
                                                         if (item.DecisionDate == DateTime.Now.Date.AddDays(-2))
@@ -184,8 +184,8 @@
                                                         }
 
 
-                                            
-                                                     
+
+
                                                     }
 
 
@@ -197,7 +197,7 @@
 
 
 
-                                        
+
                                         </td>
 
                                         <td class="text-center">
@@ -381,7 +381,7 @@
             console.log(BEOrAF);
 
             if (BEOrAF == "waitingStudentApprove") {
-                        ActualApproval(Id);
+                ActualApproval(Id);
                 return;
             }
 
@@ -397,7 +397,7 @@
         }
 
 
-        function ActualApproval(Id ) {
+        function ActualApproval(Id) {
 
 
             Swal.fire({

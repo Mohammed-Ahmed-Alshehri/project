@@ -19,7 +19,7 @@ namespace TadarbProject.Controllers
         private static UserAcount User;
         private static Employee employee;
         private static Department department;
-        private static Organization OrganizationOfR;
+        private static Organization organizationOfR;
         public DepartmentUniversityController(AppDbContext DbContext, IEmailSender emailSender, IHttpContextAccessor HttpContextAccessor, IWebHostEnvironment webHostEnvironment)
         {
             _DbContext = DbContext;
@@ -28,6 +28,7 @@ namespace TadarbProject.Controllers
             _HttpContextAccessor = HttpContextAccessor;
 
         }
+
 
 
         public IActionResult Index()
@@ -53,14 +54,47 @@ namespace TadarbProject.Controllers
 
             department = _DbContext.Departments.Where(item => item.Responsible_UserId == RUserId).AsNoTracking().FirstOrDefault();
 
-            OrganizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == department.Organization_OrganizationId).AsNoTracking().FirstOrDefault();
+            organizationOfR = _DbContext.Organizations.Where(item => item.OrganizationId == department.Organization_OrganizationId).AsNoTracking().FirstOrDefault();
 
-            ViewBag.OrganizationName = OrganizationOfR.OrganizationName + " - " + department.DepartmentName;
-            ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
+            ViewBag.OrganizationName = organizationOfR.OrganizationName + " - " + department.DepartmentName;
+            ViewBag.OrganizationImage = organizationOfR.LogoPath;
             ViewBag.Username = User.FullName;
+
+
+
+            IEnumerable<SemesterStudentAndEvaluationDetail> StudentsTrainingDetails = Enumerable.Empty<SemesterStudentAndEvaluationDetail>();
+
+            StudentsTrainingDetails = _DbContext.SemestersStudentAndEvaluationDetails.FromSqlRaw("SELECT * FROM SemestersStudentAndEvaluationDetails WHERE AcademicSupervisor_EmployeeId IN " +
+                $"(SELECT EmployeeId FROM Employees WHERE Department_DepartmentId = {department.DepartmentId})").AsNoTracking().ToList();
+
+
+
+            IEnumerable<TrainingOpportunity> AvailableTrainingOpportunity = Enumerable.Empty<TrainingOpportunity>();
+
+            AvailableTrainingOpportunity = _DbContext.TrainingOpportunities.FromSqlRaw("SELECT * FROM TrainingOpportunities WHERE DetailFiled_DetailFiledId IN " +
+                $"(SELECT TrainArea_DetailFiledId FROM DepartmentTrainingAreas WHERE Department_DepartmenId ={department.DepartmentId}) " +
+                "AND OpportunityStatus='Available' AND AbilityofSubmissionStatus='Available'").AsNoTracking().ToList();
+
+
+            double? AverageNumHours = StudentsTrainingDetails.Average(x => x.CompletedStudyHour);
+
+            ViewBag.AverageNumHours = AverageNumHours;
+
+            int? CurrentTraineesNum = StudentsTrainingDetails.Where(x => x.GeneralTrainingStatus == "Company Approved").Count();
+
+            ViewBag.CurrentTraineesNum = CurrentTraineesNum;
+
+            int? NumHours = StudentsTrainingDetails.Sum(x => x.CompletedStudyHour);
+
+            ViewBag.NumHours = NumHours;
+
+            int? OpportunitiesNum = AvailableTrainingOpportunity.Count();
+
+            ViewBag.OpportunitiesNum = OpportunitiesNum;
 
             return View();
         }
+
 
 
         [HttpGet]
@@ -79,7 +113,7 @@ namespace TadarbProject.Controllers
             var user = User;
             var Department = department;
 
-            var OrganizationOfRs = OrganizationOfR;
+            var OrganizationOfR = organizationOfR;
 
             var MasterAssigmnt = _DbContext.DepartmentsAssessmentTypeMaster.Where(item => item.Department_DepartmentId == Department.DepartmentId)
                .AsNoTracking().FirstOrDefault();
@@ -126,6 +160,7 @@ namespace TadarbProject.Controllers
             int RUserId = UserId;
             var user = User;
             var Department = department;
+            var OrganizationOfR = organizationOfR;
 
             ViewBag.OrganizationName = OrganizationOfR.OrganizationName + " - " + Department.DepartmentName;
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
@@ -160,6 +195,7 @@ namespace TadarbProject.Controllers
             int RUserId = UserId;
             var user = User;
             var Department = department;
+            var OrganizationOfR = organizationOfR;
             var MasterAssigmnt = _DbContext.DepartmentsAssessmentTypeMaster.Where(item => item.Department_DepartmentId == Department.DepartmentId)
                 .AsNoTracking().FirstOrDefault();
 
@@ -196,7 +232,7 @@ namespace TadarbProject.Controllers
             int RUserId = UserId;
             var user = User;
             var Department = department;
-            ;
+            var OrganizationOfR = organizationOfR;
 
             var Semesters = _DbContext.SemestersTrainingSettingMaster.Where(item => item.Department_DepartmenId ==
                  Department.DepartmentId).AsNoTracking().FirstOrDefault();
@@ -234,7 +270,7 @@ namespace TadarbProject.Controllers
             int RUserId = UserId;
             var user = User;
             var Department = department;
-
+            var OrganizationOfR = organizationOfR;
             ViewBag.OrganizationName = OrganizationOfR.OrganizationName + " - " + Department.DepartmentName;
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
             ViewBag.Username = user.FullName;
@@ -260,7 +296,7 @@ namespace TadarbProject.Controllers
             int RUserId = UserId;
             var user = User;
             var Department = department;
-
+            var OrganizationOfR = organizationOfR;
             var Emplyee = employee;
             //var SemesterMaste = _DbContext.SemestersTrainingSettingMaster.Where(item => item.Cre == RUserId).AsNoTracking().FirstOrDefault();
             ViewBag.OrganizationName = OrganizationOfR.OrganizationName + " - " + Department.DepartmentName;
@@ -347,7 +383,7 @@ namespace TadarbProject.Controllers
             int RUserId = UserId;
             var user = User;
             var Department = department;
-
+            var OrganizationOfR = organizationOfR;
             ViewBag.OrganizationName = OrganizationOfR.OrganizationName + " - " + Department.DepartmentName;
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
             ViewBag.Username = user.FullName;
@@ -377,6 +413,7 @@ namespace TadarbProject.Controllers
             var user = User;
             var Department = department;
             var Emplyee = employee;
+            var OrganizationOfR = organizationOfR;
             ViewBag.OrganizationName = OrganizationOfR.OrganizationName + " - " + Department.DepartmentName;
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
             ViewBag.Username = user.FullName;
@@ -474,6 +511,7 @@ namespace TadarbProject.Controllers
             int RUserId = UserId;
             var user = User;
             var Department = department;
+            var OrganizationOfR = organizationOfR;
             var Emplyee = employee;
             ViewBag.OrganizationName = OrganizationOfR.OrganizationName + " - " + Department.DepartmentName;
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
@@ -516,7 +554,7 @@ namespace TadarbProject.Controllers
 
             var user = User;
             var Department = department;
-
+            var OrganizationOfR = organizationOfR;
             ViewBag.OrganizationName = OrganizationOfR.OrganizationName + " - " + Department.DepartmentName;
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
             ViewBag.Username = user.FullName;
@@ -594,6 +632,7 @@ namespace TadarbProject.Controllers
             ViewBag.Name = Name;
             int RUserId = UserId;
             var user = User;
+            var OrganizationOfR = organizationOfR;
             var Department = department;
             var Emplyee = employee;
             ViewBag.OrganizationName = OrganizationOfR.OrganizationName + " - " + Department.DepartmentName;
@@ -627,6 +666,7 @@ namespace TadarbProject.Controllers
             int RUserId = UserId;
             var user = User;
             var Department = department;
+            var OrganizationOfR = organizationOfR;
             var Emplyee = employee;
             ViewBag.OrganizationName = OrganizationOfR.OrganizationName + " - " + Department.DepartmentName;
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
@@ -694,6 +734,7 @@ namespace TadarbProject.Controllers
             int RUserId = UserId;
             var user = User;
             var Department = department;
+            var OrganizationOfR = organizationOfR;
             var Emplyee = employee;
             ViewBag.OrganizationName = OrganizationOfR.OrganizationName + " - " + Department.DepartmentName;
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
@@ -734,6 +775,7 @@ namespace TadarbProject.Controllers
             int RUserId = UserId;
             var user = User;
             var Department = department;
+            var OrganizationOfR = organizationOfR;
             var Emplyee = employee;
             ViewBag.OrganizationName = OrganizationOfR.OrganizationName + " - " + Department.DepartmentName;
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
@@ -749,7 +791,7 @@ namespace TadarbProject.Controllers
         {
             int RUserId = UserId;
 
-
+            var OrganizationOfR = organizationOfR;
             var Department = department;
 
 
@@ -829,6 +871,7 @@ namespace TadarbProject.Controllers
             int RUserId = UserId;
             var user = User;
             var Department = department;
+            var OrganizationOfR = organizationOfR;
             var Emplyee = employee;
             ViewBag.OrganizationName = OrganizationOfR.OrganizationName + " - " + Department.DepartmentName;
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
@@ -850,6 +893,70 @@ namespace TadarbProject.Controllers
 
 
         #region
+
+        [HttpGet]
+        public IActionResult GetStudentByCompAjax()
+        {
+            if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(UserId.ToString()))
+            {
+
+                return RedirectToAction("Login", "Home");
+
+            }
+
+            ViewBag.Name = Name;
+
+            int RUserId = UserId;
+            var OrganizationOfR = organizationOfR;
+
+
+
+
+            IEnumerable<SemesterStudentAndEvaluationDetail> Students = Enumerable.Empty<SemesterStudentAndEvaluationDetail>();
+
+            Students = _DbContext.SemestersStudentAndEvaluationDetails.FromSqlRaw($" SELECT * FROM SemestersStudentAndEvaluationDetails WHERE AcademicSupervisor_EmployeeId IN " +
+                $"(SELECT EmployeeId FROM Employees WHERE Department_DepartmentId IN " +
+                $"(SELECT DepartmentId FROM Departments WHERE Organization_OrganizationId = {OrganizationOfR.OrganizationId}))")
+                .Include(item => item.EmployeeTrainingSupervisor.department.organization).AsNoTracking().ToList();
+
+
+            var OrganizationStudentsCount = 0;
+
+            List<OrganizationStudents> OrganizationStudentList = new List<OrganizationStudents>();
+
+            IEnumerable<Organization> companies = Enumerable.Empty<Organization>();
+
+
+            companies = _DbContext.Organizations.FromSqlRaw($"SELECT * FROM Organizations WHERE OrganizationId IN " +
+                $"(SELECT Organization_OrganizationId FROM Departments WHERE DepartmentId IN " +
+                $"(SELECT Department_DepartmentId FROM Employees WHERE EmployeeId IN " +
+                $"(SELECT TrainingSupervisor_EmployeeId FROM SemestersStudentAndEvaluationDetails WHERE AcademicSupervisor_EmployeeId IN " +
+                $"(SELECT EmployeeId FROM Employees WHERE Department_DepartmentId IN " +
+                $"(SELECT DepartmentId FROM Departments WHERE Organization_OrganizationId ={OrganizationOfR.OrganizationId})))))").AsNoTracking().ToList();
+
+
+            if (companies.Any())
+            {
+
+                foreach (var company in companies)
+                {
+
+                    OrganizationStudentsCount = Students.Where(item => item.EmployeeTrainingSupervisor.department.organization.OrganizationId == company.OrganizationId).Count();
+
+                    OrganizationStudents organizationStudents = new OrganizationStudents() { OrganizationName = company.OrganizationName, StudentsCount = OrganizationStudentsCount };
+
+                    OrganizationStudentList.Add(organizationStudents);
+                }
+
+            }
+
+
+            return Json(new { OrganizationStudentList });
+
+
+        }
+
+
 
         [HttpGet]
         public IActionResult ViewAssessmentajax()
@@ -1035,6 +1142,8 @@ namespace TadarbProject.Controllers
 
 
             var Department = department;
+
+            var OrganizationOfR = organizationOfR;
 
             var college = _DbContext.UniversityColleges.Where(item => item.Organization_OrganizationId == OrganizationOfR.OrganizationId).AsNoTracking().FirstOrDefault();
 
@@ -2223,6 +2332,7 @@ namespace TadarbProject.Controllers
 
 
             var Department = department;
+            var OrganizationOfR = organizationOfR;
 
             var college = _DbContext.UniversityColleges.Where(item => item.Organization_OrganizationId == OrganizationOfR.OrganizationId).AsNoTracking().FirstOrDefault();
 
@@ -2246,7 +2356,7 @@ namespace TadarbProject.Controllers
 
 
             var Department = department;
-
+            var OrganizationOfR = organizationOfR;
             var college = _DbContext.UniversityColleges.Where(item => item.Organization_OrganizationId == OrganizationOfR.OrganizationId).AsNoTracking().FirstOrDefault();
 
 
@@ -2270,7 +2380,7 @@ namespace TadarbProject.Controllers
 
 
             var Department = department;
-
+            var OrganizationOfR = organizationOfR;
             var college = _DbContext.UniversityColleges.Where(item => item.Organization_OrganizationId == OrganizationOfR.OrganizationId).AsNoTracking().FirstOrDefault();
 
 
@@ -2293,7 +2403,7 @@ namespace TadarbProject.Controllers
 
 
             var Department = department;
-
+            var OrganizationOfR = organizationOfR;
             var college = _DbContext.UniversityColleges.Where(item => item.Organization_OrganizationId == OrganizationOfR.OrganizationId).AsNoTracking().FirstOrDefault();
 
 
@@ -2362,7 +2472,7 @@ namespace TadarbProject.Controllers
 
 
             int RUserId = UserId;
-
+            var OrganizationOfR = organizationOfR;
 
             var Department = department;
 
@@ -2404,6 +2514,7 @@ namespace TadarbProject.Controllers
 
             var Department = department;
 
+            var OrganizationOfR = organizationOfR;
 
             var Mastr = _DbContext.DepartmentsAssessmentTypeMaster.Where(item => item.Department_DepartmentId == Department.DepartmentId).AsNoTracking().FirstOrDefault();
 

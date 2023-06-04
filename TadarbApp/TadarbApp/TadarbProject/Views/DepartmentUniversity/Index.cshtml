@@ -12,35 +12,35 @@
 <partial name="_Notification" />
 <body style="background: linear-gradient(#1c4c64,#5590ad);">
 
-<div class="row" >
-    <div class="col-sm-4" style="z-index:2;">
+    <div class="row">
+        <div class="col-sm-3" style="z-index:2;">
 
-        <div class="vertical-nav bg-white" style="position:absolute"  id="sidebar">
-            <div class="py-4 px-3 mb-4 bg-light">
-                <div class="media d-flex align-items-center">
-                    <img src="~/@ViewBag.OrganizationImage" alt="..." width="65" class="mr-3 rounded-circle img-thumbnail shadow-sm">
-                    <div class="media-body">
-                        <h4 class="m-0">@ViewBag.OrganizationName</h4>
+            <div class="vertical-nav bg-white" style="position:absolute" id="sidebar">
+                <div class="py-4 px-3 mb-4 bg-light">
+                    <div class="media d-flex align-items-center">
+                        <img src="~/@ViewBag.OrganizationImage" alt="..." width="65" class="mr-3 rounded-circle img-thumbnail shadow-sm">
+                        <div class="media-body">
+                            <h4 class="m-0">@ViewBag.OrganizationName</h4>
+                        </div>
                     </div>
                 </div>
-            </div>
                 <h5> مرحبا بك @ViewBag.Username </h5>
-            <p class="text-gray font-weight-bold text-uppercase px-3 small pb-4 mb-0">القائمة</p>
+                <p class="text-gray font-weight-bold text-uppercase px-3 small pb-4 mb-0">القائمة</p>
 
-            <ul class="nav flex-column bg-white mb-0">
-                <li class="nav-item">
+                <ul class="nav flex-column bg-white mb-0">
+                    <li class="nav-item">
                         <a asp-controller="DepartmentUniversity" asp-action="Index" class="nav-link text-dark font-italic bg-light ">
                             <i class="fa-solid fa-house text-primary"></i>
-                        الصفحة الرئيسية
-                    </a>
-                </li>
+                            الصفحة الرئيسية
+                        </a>
+                    </li>
 
 
-                <li class="nav-item" id="fff">
-                    <a asp-controller="DepartmentUniversity" asp-action="ViewAcademicSupervisors" class="nav-link text-dark font-italic  ">
+                    <li class="nav-item" id="fff">
+                        <a asp-controller="DepartmentUniversity" asp-action="ViewAcademicSupervisors" class="nav-link text-dark font-italic  ">
                             <i class="fa-solid fa-users-gear"></i>
-                           إدارة المشرفين
-                    </a>
+                            إدارة المشرفين
+                        </a>
                     <li class="nav-item" id="ff2">
                         <a asp-controller="DepartmentUniversity" asp-action="ViewStudents" class="nav-link text-dark font-italic ">
                             <i class="fa-solid fa-people-roof"></i>
@@ -49,7 +49,7 @@
                         </a>
 
                     </li>
-                    <li class="nav-item" id="ff3"> 
+                    <li class="nav-item" id="ff3">
                         <a asp-controller="DepartmentUniversity" asp-action="ViewAssessment" class="nav-link text-dark font-italic  ">
                             <i class="fa-solid fa-chart-simple "></i>
 
@@ -63,8 +63,8 @@
                             ادارة الشعب
                         </a>
                     </li>
-             
-            </ul>
+
+                </ul>
                 <div>
                     <a class="btn " id="btn1">
                         <i class="fa-solid fa-person-circle-question"></i>
@@ -73,36 +73,235 @@
                     </a>
                 </div>
 
+            </div>
+
+
+            <!-- End vertical navbar -->
+            <!-- Page content holder -->
+            <div class="page-content p-1" id="content">
+                <!-- Toggle button -->
+                <button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i class="fa fa-bars mr-2"></i><small class="text-uppercase font-weight-bold">القائمة</small></button>
+            </div>
+
+
         </div>
 
+        <div class="col-sm-8" style="margin-bottom:10cm">
+            <div class="row">
 
-        <!-- End vertical navbar -->
-        <!-- Page content holder -->
-        <div class="page-content p-1" id="content">
-            <!-- Toggle button -->
-            <button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i class="fa fa-bars mr-2"></i><small class="text-uppercase font-weight-bold">القائمة</small></button>
+
+
+
+
+                <div class="col-md-4 " style="background-color:white ; direction:ltr;" id="myChart">
+                </div>
+
+                <div class="col-md-4 ">
+                    <div class="card mb-3 text-center" style="max-width: 30rem; background: linear-gradient(#9DB2BF, #526D82);">
+                        <div class="card-body">
+                            <h class="card-title" style="font-size:45px">
+
+                                <i class="fa-solid fa-chart-simple"></i>
+                            </h>
+
+                            <p class="card-text" style="font-weight:bold;font-size:60px;color:black">@ViewBag.NumHours</p>
+                            <p class="card-text" style="font-weight:bold;font-size:25px; color:black">عدد متوسط ساعات المتدربين</p>
+
+                        </div>
+                    </div>
+                    <div class="card text-white bg-info mb-3 text-center" style="max-width: 30rem;background: linear-gradient(#C7E8CA, #DDF7E3);">
+                        <div class="card-body">
+                            <h class="card-title" style="font-size:45px">
+                                <i class="fa-solid fa-circle-check" style="color: #5D9C59;"></i>
+                            </h>
+                            <p class="card-text" style="font-weight:bold;font-size:60px;color:black">@ViewBag.AverageNumHours</p>
+                            <p class="card-text" style="font-weight:bold;font-size:25px; color:black">عدد اجمالي ساعات المتدربين</p>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 mb-4 pb-2">
+                    <div class="card text-white  mb-3 text-center" style="max-width: 30rem;background: linear-gradient(#FFD369 , #EEEEEE); ">
+                        <div class="card-body">
+                            <h class="card-title" style="font-size:45px">
+                                <i class="fa-solid fa-people-roof" style="color: #393E46;"></i>
+                            </h>
+                            <p class="card-text" style="font-weight:bold;font-size:60px;color:black">@ViewBag.CurrentTraineesNum</p>
+                            <p class="card-text" style="font-weight:bold;font-size:25px;color:black">عدد الطلاب قيد التدريب </p>
+
+                        </div>
+                    </div>
+                    <div class="card  mb-3 text-center" style="max-width: 30rem;background: linear-gradient(#B70404 , #FFF3E2); ">
+                        <div class="card-body">
+                            <h class="card-title" style="font-size:45px">
+                                <i class="fa-solid fa-magnifying-glass-chart"></i>
+                            </h>
+                            <p class="card-text" style="font-weight:bold;font-size:60px;color:black">@ViewBag.OpportunitiesNum </p>
+                            <p class="card-text" style="font-weight:bold;font-size:25px;color:black;">عدد الفرص المتاحة  لطلاب القسم</p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-sm-1"></div>
         </div>
-
 
     </div>
 
-    <div class="col-sm-6">
 
-
-        @*        content page here1
-        *@
-        @*        content page1 
-        *@
-
-    </div>
-    <div class="col-sm-2"></div>
-</div>
 </body>
+
+
+
 @section Scripts{
 
 
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
     <script>
+
+
+        google.charts.load('current', { 'packages': ['corechart'] });
+        google.charts.setOnLoadCallback(drawChart);
+
+        drawChart();
+
+        function drawChart() {
+         
+            var options = {
+
+                title: 'الشركات المدربة لطلاب القسم'
+                , legend: 'right',
+                colors: ['Red']
+            };
+
+            var chart = new google.visualization.BarChart(document.getElementById('myChart'));
+
+            $(document).ready(function () {
+
+                $.ajax({
+                    type: 'GET',
+                    url: "@Url.Action("GetStudentByCompAjax")",
+                    dataType: "json",
+
+                    success: function (data) {
+
+                        var dataa = new google.visualization.DataTable();
+
+                        dataa.addColumn('string', 'الشركة');
+                        dataa.addColumn('number', 'عدد الطلاب');
+
+
+                        $.each(data.organizationStudentList, function (key, value) {
+
+                            console.log(value.organizationName, value.studentsCount);
+
+                            dataa.addRows([
+
+                                [value.organizationName, value.studentsCount]
+
+                            ]);
+
+                        });
+
+
+                        if (dataa.Wf.length == 0) {
+                            dataa.addRows([
+
+                                ["لايوجد طلاب قيد التدريب", 1]
+
+                            ]);
+                        }
+
+
+
+                        chart.draw(dataa, options);
+
+                    }
+
+
+                });
+
+            });
+
+        }
+
+
+        //function drawChart() {
+
+
+        //    var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+        //    var data = [];
+
+        //    var options = {
+        //        title: 'نسب الطلاب المتدربين حسب الشركات',
+        //        pieHole: 0.4,
+        //        pieHole: 0.4,
+        //        width: 330,
+        //        height: 500,
+        //        colors: ['#6096B4', '#93BFCF', '#BDCDD6', '#EEE9DA', '#325d73']
+        //    };
+
+        //    $(document).ready(function () {
+
+        //        $.ajax({
+        //            type: 'GET',
+        //            url: "Url.Action("GetStudentByUniAjax")",
+        //            dataType: "json",
+
+        //            success: function (data) {
+
+        //                //console.log(data.student[0].employeeAcademicSupervisor.department.organization.organizationName);
+
+        //                var dataa = new google.visualization.DataTable();
+
+        //                // Declare columns
+        //                dataa.addColumn('string', 'Univerty');
+        //                dataa.addColumn('number', 'countty');
+
+
+        //                //var loop=0;
+
+        //                $.each(data.organizationStudentList, function (key, value) {
+
+        //                    console.log(value.organizationName, value.studentsCount);
+
+
+
+        //                    dataa.addRows([
+
+        //                        [value.organizationName, value.studentsCount]
+
+        //                    ]);
+
+        //                });
+
+
+        //                if (dataa.Wf.length == 0) {
+        //                    dataa.addRows([
+
+        //                        ["لايوجد طلاب قيد التدريب", 1]
+
+        //                    ]);
+        //                }
+
+
+
+        //                chart.draw(dataa, options);
+
+        //            }
+
+
+        //        });
+
+        //    });
+
+
+
+        //}
 
         $(function () {
             // Sidebar toggle behavior
@@ -178,14 +377,11 @@
                 // Begin to guide
                 driver.start();
 
-
-
-
-
-
             });
+
 
     </script>
 
 
     }
+

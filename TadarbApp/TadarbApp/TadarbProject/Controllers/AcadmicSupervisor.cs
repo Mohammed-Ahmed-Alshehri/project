@@ -157,7 +157,7 @@ namespace TadarbProject.Controllers
 
             students = _DbContext.StudentRequestsOnOpportunities.FromSqlRaw("SELECT * FROM StudentRequestsOnOpportunities WHERE  StudentRequestOpportunityId IN " +
                 "(SELECT StudentRequest_StudentRequestId FROM SemestersStudentAndEvaluationDetails WHERE AcademicSupervisor_EmployeeId = " +
-                $"(SELECT EmployeeId FROM  Employees WHERE UserAccount_UserId ={RUserId}) AND SemesterMaster_SemesterMasterId ={Mid})")
+                $"(SELECT EmployeeId FROM  Employees WHERE UserAccount_UserId ={RUserId}) AND SemesterMaster_SemesterMasterId ={Mid} AND GeneralTrainingStatus ='Company Approved')")
                 .Include(item => item.student.user).Include(item => item.trainingOpportunity.Branch.organization).AsNoTracking().ToList();
 
 
@@ -445,14 +445,58 @@ namespace TadarbProject.Controllers
             && item.AcademicSupervisor_EmployeeId == Employee.EmployeeId).Include(item => item.EmployeeTrainingSupervisor.userAcount).AsNoTracking().FirstOrDefault();
 
 
+            ViewBag.SSEMId = SSEMId;
 
+            ViewBag.StuRqId = StuRqId;
 
             return View(SemestersStudentAndEvaluationDetails);
 
         }
 
 
+
+
+
+
         #region
+
+        [HttpGet]
+        public IActionResult EndStudentTraining(int? SSEMId, int? StuRqId)
+        {
+            if (SSEMId == null || StuRqId == null || SSEMId == 0 || StuRqId == 0)
+            {
+                NotFound();
+            }
+
+            var StudentAndEvaluationDetail = _DbContext.SemestersStudentAndEvaluationDetails.Where(item => item.StudentRequest_StudentRequestId == StuRqId
+            && item.SemesterMaster_SemesterMasterId == SSEMId).Include(item => item.studentRequest.student).AsNoTracking().FirstOrDefault();
+
+            if (StudentAndEvaluationDetail == null)
+            {
+                return Json(new { success = false });
+            }
+
+            if (StudentAndEvaluationDetail.AcademicSupervisorEvaluationMark == null || StudentAndEvaluationDetail.TrainingSupervisorEvaluationMark == null )
+            {
+                return Json(new { success = false });
+
+            }
+
+            StudentAndEvaluationDetail.GeneralTrainingStatus = "stop training";
+            StudentAndEvaluationDetail.studentRequest.DecisionStatus = "stop training";
+            StudentAndEvaluationDetail.studentRequest.DecisionDate = DateTime.Now.Date;
+            StudentAndEvaluationDetail.studentRequest.student.ActivationStatus = "Not_Active";
+
+            _DbContext.SemestersStudentAndEvaluationDetails.Update(StudentAndEvaluationDetail);
+
+            _DbContext.StudentRequestsOnOpportunities.Update(StudentAndEvaluationDetail.studentRequest);
+
+            _DbContext.UniversitiesTraineeStudents.Update(StudentAndEvaluationDetail.studentRequest.student);
+
+            _DbContext.SaveChanges();
+
+            return Json(new { success = true });
+        }
 
 
         [HttpPost]

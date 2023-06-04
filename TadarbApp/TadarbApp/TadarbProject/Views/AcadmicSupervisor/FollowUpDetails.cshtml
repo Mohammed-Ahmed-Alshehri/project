@@ -86,7 +86,7 @@
 
                                     <th scope="col"><i class="fa-solid fa-check-to-slot"></i>&ensp;اجمالي درجات التقرير</th>
                                     <th scope="col"><i class="fa-solid fa-check-to-slot"></i>&ensp;درجة تقيم المشرف التدريبي</th>
-                                    <th scope="col"><i class="fa-solid fa-clock"></i>&ensp;ساعات التدريب المكملة </th>
+                                    <th scope="col"><i class="fa-solid fa-clock"></i>&ensp;ساعات التدريب المكتملة </th>
                                     <th scope="col"><i class="fa-solid fa-pencil"></i>&ensp; ملاحظات المشرف</th>
                                 </tr>
                             </thead>
@@ -214,12 +214,26 @@
 
 
                     <h5 style="display:@showMsg; color:firebrick;">لا يوجد ملف مرفق.</h5>
+
+
                 </div>
 
                 <br />
                 <div class="row">
                 </div>
+
+                <div class="container-fluid align-content-center">
+
+                    <div class="col-md-12 text-center">
+                        <a class="btn btn-secondary" href="@Url.Action("AssignedStudents",new {Mid = ViewBag.SSEMId})" id="BackButton">العودة للقائمة</a>
+                        <button type="button" class="btn btn-dark" onclick="Confirm()">انهاء متابعة الطالب</button>
+                    </div>
+                </div>
+
+                <br />
+
             </div>
+
 
         </div>
 
@@ -267,6 +281,65 @@
 
             document.getElementById("SubmitBtn").click();
         }
+
+
+
+        function Confirm() {
+
+
+            Swal.fire({
+                title: 'تأكيد انهاء الطالب للتدريب.',
+                text: "التأكيد سيكون بشكل نهائي الرجاء التحقق من جميع معلومات التقيم.",
+                icon: 'info',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'تأكيد.!',
+                cancelButtonText: 'الغاء',
+            }).then((result) => {
+                if (result.isConfirmed) {
+
+                    $(document).ready(function () {
+
+                        $.ajax({
+                            type: "GET",
+                            url: "@Url.Action("EndStudentTraining")",
+                            data: { SSEMId: @ViewBag.SSEMId , StuRqId: @ViewBag.StuRqId },
+
+                            dataType: "json",
+                            success: function (data) {
+
+                                if (data.success) {
+
+                                    document.getElementById("BackButton").click();
+
+
+                                }
+
+                                if (!data.success) {
+
+                                    Swal.fire({
+                                        title: 'لا يمكن انهاء تدريب هذا الطالب بسبب عدم توفر تقيماته.',
+                                        icon: 'error',
+                                        confirmButtonText: 'موافق',
+
+                                    });
+
+                                }
+
+
+
+                            }
+                        });
+                    });
+
+
+                }
+            })
+
+        }
+
+
 
     </script>
 }
