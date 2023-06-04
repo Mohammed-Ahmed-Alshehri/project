@@ -580,7 +580,7 @@ namespace TadarbProject.Controllers
 
             Students = _DbContext.SemestersStudentAndEvaluationDetails.FromSqlRaw("SELECT * FROM SemestersStudentAndEvaluationDetails WHERE TrainingSupervisor_EmployeeId IN " +
                 "(SELECT EmployeeId FROM Employees WHERE Department_DepartmentId IN " +
-                $"(SELECT Department_DepartmentId FROM Departments WHERE Organization_OrganizationId ={OrganizationOfR.OrganizationId})) AND GeneralTrainingStatus !='stop training'")
+                $"(SELECT DepartmentId FROM Departments WHERE Organization_OrganizationId ={OrganizationOfR.OrganizationId})) AND GeneralTrainingStatus !='stop training'")
                 .Include(item => item.EmployeeAcademicSupervisor.department.organization).AsNoTracking().ToList();
 
 

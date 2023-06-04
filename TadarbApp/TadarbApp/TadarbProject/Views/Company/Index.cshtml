@@ -9,11 +9,12 @@
 </head>
 
 <partial name="_Notification" />
-<body style="background: linear-gradient(#1c4c64,#5590ad); ">
+<body style="background: linear-gradient(
+#e6edf3,#acc3d8) ">
 
     <div class="row">
 
-        <div class="col-sm-4" style="z-index:2;">
+        <div class="col-sm-3" style="z-index:2;">
 
             <div class="vertical-nav bg-white" style="position:absolute" id="sidebar">
                 <div class="py-4 px-3 mb-4 bg-light">
@@ -143,6 +144,9 @@
 
             <div class="col-sm-1"></div>
         </div>
+
+    </div>
+
 </body>
 @section Scripts{
 
@@ -161,8 +165,12 @@
             //var data = [];
 
             var options = {
-                title: 'نسب الطلاب المتدربين حسب الجامعات',
+                title: 'نسب الطلاب المتدربين حسب الشركات',
                 pieHole: 0.4,
+                pieHole: 0.4,
+                width: 450,
+                height: 500,
+                colors: ['#1c4c64', '#a4b7c1', '#7693a2', '#307294', '#325d73']
             };
 
             $(document).ready(function () {
@@ -172,7 +180,6 @@
                 $.ajax({
                     type: 'GET',
                     url: "@Url.Action("GetStudentByUniAjax")",
-
                     dataType: "json",
 
 
@@ -193,6 +200,7 @@
 
                         $.each(data.organizationStudentList, function (key, value) {
 
+                            console.log(value.organizationName, value.studentsCount);
 
 
 
@@ -236,6 +244,7 @@
 
         }
     </script>
+
 
 
     <script>
@@ -309,6 +318,7 @@
 
             });
     </script>
+
 
 
 

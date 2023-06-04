@@ -60,6 +60,26 @@ namespace TadarbProject.Controllers
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
             ViewBag.Username = user.FullName;
 
+
+            IEnumerable<SemesterStudentAndEvaluationDetail> Students = Enumerable.Empty<SemesterStudentAndEvaluationDetail>(); ;
+
+            Students = _DbContext.SemestersStudentAndEvaluationDetails.FromSqlRaw($"Select * from SemestersStudentAndEvaluationDetails where AcademicSupervisor_EmployeeId IN " +
+                $" ( Select EmployeeId from Employees where Department_DepartmentId IN " +
+                $"( Select DepartmentId from Departments where Organization_OrganizationId = {OrganizationOfR.OrganizationId}))").AsNoTracking().ToList();
+
+
+            int? UnderTraining = 0;
+
+            UnderTraining = Students.Where(item => item.GeneralTrainingStatus != "stop training").Count();
+
+            ViewBag.Student = UnderTraining;
+
+            int? HaveBeenTrained = 0;
+
+            HaveBeenTrained = Students.Where(item => item.GeneralTrainingStatus == "stop training").Count();
+
+            ViewBag.HaveBeenTrained = HaveBeenTrained;
+
             return View();
         }
 
@@ -507,6 +527,84 @@ namespace TadarbProject.Controllers
             _DbContext.SaveChanges();
             TempData["success"] = "تم إضافة حساب المسؤول  بنجاح";
             return RedirectToAction("ViewUsers");
+
+        }
+
+        [HttpGet]
+        public IActionResult GetStudentByUniAjax()
+        {
+            if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(UserId.ToString()))
+            {
+
+                return RedirectToAction("Login", "Home");
+
+            }
+
+            ViewBag.Name = Name;
+
+            int RUserId = UserId;
+
+            OrganizationOfR = _DbContext.Organizations.Where(item => item.ResponsibleUserId == RUserId).AsNoTracking().FirstOrDefault();
+
+            
+
+            //User = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).AsNoTracking().FirstOrDefault();
+
+            //var user = User;
+
+            //var Branches = _DbContext.OrganizationBranches_TrainProv.Where(item => item.Organization_OrganizationId == OrganizationOfR.OrganizationId).AsNoTracking().ToList();
+
+            //var Student = _DbContext.SemestersStudentAndEvaluationDetails.FromSqlRaw($"Select * from SemestersStudentAndEvaluationDetails where AcademicSupervisor_EmployeeId IN   " +
+            //    $"( Select EmployeeId from Employees where Department_DepartmentId IN " +
+            //    $"( Select DepartmentId from Departments where Organization_OrganizationId IN " +
+            //    $"(select OrganizationId from Organizations where Organization_TypeId = 1  ) ))  AND GeneralTrainingStatus !='stop training'" +
+            //    $" And StudentRequest_StudentRequestId IN (Select StudentRequestOpportunityId from StudentRequestsOnOpportunities where TrainingOpportunity_TrainingOpportunityId IN " +
+            //    $"(Select TrainingOpportunityId from TrainingOpportunities where Branch_BranchId IN " +
+            //    $"(Select BranchId from OrganizationBranches_TrainProv where Organization_OrganizationId = {OrganizationOfR.OrganizationId} )))")
+            //    .Include(item => item.EmployeeAcademicSupervisor.department.organization).AsNoTracking().ToList();
+
+
+            IEnumerable<SemesterStudentAndEvaluationDetail> Students = Enumerable.Empty<SemesterStudentAndEvaluationDetail>();
+
+            Students = _DbContext.SemestersStudentAndEvaluationDetails.FromSqlRaw("SELECT * FROM SemestersStudentAndEvaluationDetails WHERE AcademicSupervisor_EmployeeId IN " +
+                "(SELECT EmployeeId FROM Employees WHERE Department_DepartmentId IN " +
+                $"(SELECT DepartmentId FROM Departments WHERE Organization_OrganizationId ={OrganizationOfR.OrganizationId})) AND GeneralTrainingStatus !='stop training'")
+                .Include(item => item.EmployeeTrainingSupervisor.department.organization).AsNoTracking().ToList();
+
+
+            var OrganizationStudentsCount = 0;
+
+            List<OrganizationStudents> OrganizationStudentList = new List<OrganizationStudents>();
+
+            IEnumerable<Organization> universities = Enumerable.Empty<Organization>();
+
+
+            universities = _DbContext.Organizations.FromSqlRaw("SELECT * FROM Organizations WHERE OrganizationId IN " +
+                "(SELECT Organization_OrganizationId FROM Departments WHERE DepartmentId IN " +
+                "(SELECT Department_DepartmentId FROM Employees WHERE EmployeeId IN " +
+                "(SELECT TrainingSupervisor_EmployeeId FROM SemestersStudentAndEvaluationDetails WHERE AcademicSupervisor_EmployeeId IN " +
+                "(SELECT EmployeeId FROM Employees WHERE Department_DepartmentId IN " +
+                $"(SELECT DepartmentId FROM Departments WHERE Organization_OrganizationId = {OrganizationOfR.OrganizationId})))))").AsNoTracking().ToList();
+
+
+            if (universities.Any())
+            {
+
+                foreach (var univer in universities)
+                {
+
+                    OrganizationStudentsCount = Students.Where(item => item.EmployeeTrainingSupervisor.department.organization.OrganizationId == univer.OrganizationId).Count();
+
+                    OrganizationStudents organizationStudents = new OrganizationStudents() { OrganizationName = univer.OrganizationName, StudentsCount = OrganizationStudentsCount };
+
+                    OrganizationStudentList.Add(organizationStudents);
+                }
+
+            }
+
+
+            return Json(new { OrganizationStudentList });
+
 
         }
 

@@ -6,22 +6,22 @@
 
     <link rel="stylesheet" href="~/css/Addbranches.css" asp-append-version="true" />
 
-
 </head>
 
 <partial name="_Notification" />
-<body style="background: linear-gradient(#1c4c64,#5590ad);">
+<body style="background: linear-gradient(
+#e6edf3,#acc3d8) ">
 
     <div class="row">
 
-        <div class="col-sm-4" style="z-index:2;">
+        <div class="col-sm-3" style="z-index:2;">
 
             <div class="vertical-nav bg-white" style="position:absolute" id="sidebar">
                 <div class="py-4 px-3 mb-4 bg-light">
                     <div class="media d-flex align-items-center">
                         <img src="~/@ViewBag.OrganizationImage" alt="..." width="65" class="mr-3 rounded-circle img-thumbnail shadow-sm">
                         <div class="media-body">
-                            <h4 class="m-0"> @ViewBag.OrganizationName  </h4>
+                            <h4 class="m-0">@ViewBag.OrganizationName</h4>
                         </div>
                     </div>
                 </div>
@@ -31,33 +31,36 @@
 
                 <ul class="nav flex-column bg-white mb-0">
                     <li class="nav-item">
-                        <a asp-controller="University" asp-action="Index" class="nav-link text-dark font-italic bg-light">
-                            <i class="fa-solid fa-house"></i>
+                        <a asp-controller="Company" asp-action="Index" class="nav-link text-dark font-italic bg-light">
+                            <i class="fa-solid fa-house  mr-3 text-primary fa-fw "></i>
+
                             الصفحة الرئيسية
                         </a>
                     </li>
-                    <li class="nav-item" id="fff"> 
-                        <a asp-controller="University" asp-action="ViewSpecialities" class="nav-link text-dark font-italic ">
-                            <i class="fa-solid fa-bars"></i>
+                    <li class="nav-item" id="fff">
+                        <a asp-controller="Company" asp-action="ViewSpecialities" class="nav-link text-dark font-italic ">
+                            <i class="fa-brands fa-buffer mr-3  fa-fw  "></i>
+
+
                             إدارة مجالات التدريب
                         </a>
                     </li>
                     <li class="nav-item" id="ff2">
-                        <a asp-controller="University" asp-action="ViewUsers" class="nav-link text-dark font-italic  ">
-                            <i class="fa-solid fa-user-gear"></i>
+                        <a asp-controller="Company" asp-action="viewUsers" class="nav-link text-dark font-italic">
+                            <i class="fa-solid fa-user-group "></i>
                             إدارة الموظفين
 
                         </a>
                     </li>
                     <li class="nav-item" id="ff3">
-                        <a asp-controller="University" asp-action="ViewColleges" class="nav-link text-dark font-italic ">
-                            <i class="fa-solid fa-building-circle-check"></i>
-                            إدارة الكليات
-
+                        <a asp-controller="Company" asp-action="Viewbranches" class="nav-link text-dark font-italic ">
+                            <i class="fa-solid fa-building  mr-3  fa-fw "></i>
+                            إدارة الفروع
                         </a>
                     </li>
 
                 </ul>
+
                 <div>
                     <a class="btn " id="btn1">
                         <i class="fa-solid fa-person-circle-question"></i>
@@ -70,8 +73,8 @@
             </div>
 
 
-            <!-- End vertical navbar -->
-            <!-- Page content holder -->
+            <!-- End vertical navbar1 -->
+            <!-- Page content holder1 -->
             <div class="page-content p-1" id="content">
                 <!-- Toggle button -->
                 <button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i class="fa fa-bars mr-2"></i><small class="text-uppercase font-weight-bold">القائمة</small></button>
@@ -80,19 +83,162 @@
 
         </div>
 
-        <div class="col-sm-6">
-           
+        <div class="col-sm-8" style="margin-bottom:10cm;">
+            <div class="row" style="border-radius:5cm">
 
+                <div class="col-md-4" id="piechart">
+                </div>
 
+                <div class="col-md-4 ">
+                    <div class="card mb-3 text-white text-center" style="max-width: 30rem; background: linear-gradient(#4478a7, #82a5c4);">
+                        <div class="card-body">
+                            <h class="card-title" style="font-size:45px">
+                                <i class="fa-solid fa-file-signature" style="color: #ffffff;"></i>
+                            </h>
+                            <p class="card-text" style="font-size:60px">@ViewBag.NumberOfRequests</p>
+                            <p class="card-text" style="font-size:25px;">طلبات الالتحاق بالفرص</p>
 
-            @*            content page 
-            *@
+                        </div>
+                    </div>
+                    <div class="card text-white bg-info mb-3 text-center" style="max-width: 30rem;background: linear-gradient( #d5e2e9,#193752);">
+                        <div class="card-body">
+                            <h class="card-title" style="font-size:45px">
+                                <i class="fa-solid fa-circle-check" style="color: #ffffff;"></i>
+                            </h>
+                            <p class="card-text" style="font-size:60px">@ViewBag.OperCount</p>
+                            <p class="card-text" style="font-size:25px;">الفرص المتاحة</p>
 
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 mb-4 pb-2">
+                    <div class="card  mb-3 text-white text-center" style="max-width: 30rem;background: linear-gradient( #b1cee8,#306a9e); ">
+                        <div class="card-body">
+                            <h class="card-title" style="font-size:45px">
+                                <i class="fa-solid fa-people-roof" style="color: #ffffff;"></i>
+                                <p class="card-text" style="font-size:60px">@ViewBag.Student</p>
+                                <p class="card-text" style="font-size:25px;">عدد الطلاب قيد التدريب</p>
+
+                        </div>
+                    </div>
+                    <div class="card text-white  mb-3 text-center" style="max-width: 30rem;background: linear-gradient(#0b5394, #9dbad4); ">
+                        <div class="card-body">
+                            <h class="card-title" style="font-size:45px">
+                                <i class="fa-solid fa-users" style="color: #ffffff;"></i>
+                            </h>
+                            <p class="card-text" style="font-size:60px">@ViewBag.HaveBeenTrained</p>
+                            <p class="card-text" style="font-size:25px;">عدد الطلاب تم تدريبهم</p>
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-sm-1"></div>
         </div>
-        <div class="col-sm-2"></div>
+
     </div>
+
 </body>
 @section Scripts{
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+    <script>
+
+        google.charts.load('current', { packages: ['corechart'] });
+        google.charts.setOnLoadCallback(drawChart);
+
+
+        function drawChart() {
+
+
+            var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+            //var data = [];
+
+            var options = {
+                title: 'نسب الطلاب المتدربين حسب الشركات',
+                pieHole: 0.4,
+                pieHole: 0.4,
+                width: 450,
+                height: 500,
+                colors: ['#1c4c64', '#a4b7c1', '#7693a2', '#307294', '#325d73']
+            };
+
+            $(document).ready(function () {
+
+
+
+                $.ajax({
+                    type: 'GET',
+                    url: "@Url.Action("GetStudentByUniAjax")",
+                    dataType: "json",
+
+
+
+                    success: function (data) {
+
+                        //console.log(data.student[0].employeeAcademicSupervisor.department.organization.organizationName);
+
+
+                        var dataa = new google.visualization.DataTable();
+
+                        // Declare columns
+                        dataa.addColumn('string', 'Univerty');
+                        dataa.addColumn('number', 'countty');
+
+
+                        //var loop=0;
+
+                        $.each(data.organizationStudentList, function (key, value) {
+
+                            console.log(value.organizationName, value.studentsCount);
+
+
+
+                            dataa.addRows([
+
+                                [value.organizationName, value.studentsCount]
+
+                            ]);
+
+
+
+
+
+                        });
+
+
+                        if (dataa.Wf.length == 0) {
+                            dataa.addRows([
+
+                                ["لايوجد طلاب قيد التدريب", 1]
+
+                            ]);
+                        }
+
+
+
+                        chart.draw(dataa, options);
+
+                    }
+
+
+                });
+
+            });
+
+
+
+
+
+
+
+        }
+    </script>
 
 
 
@@ -103,7 +249,6 @@
                 $('#sidebar, #content').toggleClass('active');
             });
         });
-
 
         // giude tour
         document.getElementById('btn1')
@@ -120,7 +265,7 @@
                         popover: {
                             //className: 'first-step-popover-class',
                             title: 'أولاً : اضف المجالات  ',
-                            description: 'الرجاء اضافة جميع المجالات  التي تمتلكها الجامعة .. علما بأن جميع المجالات والتخصصات المضافة هي التي ستظهر  للكلية ',
+                            description: 'الرجاء اضافة جميع المجالات  التي تمتلكها الشركة .. علما بأن التخصصات المضافة هي التي ستظهر  للفروع ',
                             position: 'left',
                             closeBtnText: 'اغلق', // Text on the close button for this step
                             nextBtnText: 'التالي', // Next button text for this step
@@ -133,8 +278,8 @@
                     {
                         element: '#ff2',
                         popover: {
-                            title: 'ثانياً : اضافة موظف مسؤول عن الكلية',
-                            description: 'الرجاء اضافة المسؤول عن الكلية  ليتم تعيينه بالكلية المناسب لاحقاً',
+                            title: 'ثانياً : اضافة موظف مسؤول عن الفرع',
+                            description: 'الرجاء اضافة المسؤول عن الفرع  ليتم تعيينه بالفرع المناسب لاحقاً',
                             position: 'left',
                             closeBtnText: 'اغلق', // Text on the close button for this step
                             nextBtnText: 'التالي', // Next button text for this step
@@ -146,8 +291,8 @@
                     {
                         element: '#ff3',
                         popover: {
-                            title: 'ثالثاً : اضف الكليات  ',
-                            description: 'الرجاء اضافة الكليات وتعيين مسؤول عن هذا الكلية , علما بان المجال المضاف بالكلية لا يعني حصر الكلية بتخصصات معينه ',
+                            title: 'ثالثاً : اضف الفروع  ',
+                            description: 'الرجاء اضافة الفروع وتعيين مسؤول عن هذا الفرع ',
                             position: 'left',
                             closeBtnText: 'اغلق', // Text on the close button for this step
                             doneBtnText: 'انتهيت', // Text on the final button
@@ -168,6 +313,9 @@
 
             });
     </script>
+
+ 
+
 
 
     }
