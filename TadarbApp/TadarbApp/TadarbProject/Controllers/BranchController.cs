@@ -60,6 +60,38 @@ namespace TadarbProject.Controllers
             ViewBag.OrganizationName = OrganizationOfR.OrganizationName + " - " + Branch.BranchName;
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
             ViewBag.Username = user.FullName;
+
+            IEnumerable<TrainingOpportunity> TraingOper = Enumerable.Empty<TrainingOpportunity>(); ;
+
+
+
+            TraingOper = _DbContext.TrainingOpportunities.FromSqlRaw($"Select * from  TrainingOpportunities where Branch_BranchId = {Branch.BranchId} And AbilityofSubmissionStatus != 'Stop' ").AsNoTracking().ToList();
+
+             int? ReqSum= 0; 
+            
+            foreach (var i in TraingOper)
+            {
+                ReqSum += i.RequestedOpportunities;
+            }
+
+            int? AprovSum = 0;
+
+            foreach (var i in TraingOper)
+            {
+                AprovSum += i.ApprovedOpportunities;
+            }
+            int? AvalibleSum = 0;
+
+            foreach (var i in TraingOper)
+            {
+                AvalibleSum += i.AvailableOpportunities;
+            }
+
+            ViewBag.Request = ReqSum;
+            ViewBag.Approve = AprovSum;
+            ViewBag.Avalibe = AvalibleSum;
+            ViewBag.Oper = TraingOper.Count();
+
             return View();
 
         }
@@ -88,6 +120,8 @@ namespace TadarbProject.Controllers
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
             ViewBag.Username = user.FullName;
 
+
+          
             return View();
         }
 
@@ -978,6 +1012,71 @@ namespace TadarbProject.Controllers
 
         }
 
+        [HttpGet]
+        public IActionResult GetStudentByUniAjax()
+        {
+            if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(UserId.ToString()))
+            {
+
+                return RedirectToAction("Login", "Home");
+
+            }
+
+            ViewBag.Name = Name;
+
+            int RUserId = UserId;
+
+            var Branch = branch;
+
+            var OrganizationOfR = organizationOfR;
+
+
+
+
+
+            IEnumerable<SemesterStudentAndEvaluationDetail> Students = Enumerable.Empty<SemesterStudentAndEvaluationDetail>();
+
+            Students = _DbContext.SemestersStudentAndEvaluationDetails.FromSqlRaw("SELECT * FROM SemestersStudentAndEvaluationDetails WHERE TrainingSupervisor_EmployeeId IN " +
+                "(SELECT EmployeeId FROM Employees WHERE Department_DepartmentId IN " +
+                $"(SELECT DepartmentId FROM Departments WHERE Branch_BranchId ={Branch.BranchId})) AND GeneralTrainingStatus !='stop training'")
+                .Include(item => item.EmployeeAcademicSupervisor.department.organization).AsNoTracking().ToList();
+
+
+            var OrganizationStudentsCount = 0;
+
+            List<OrganizationStudents> OrganizationStudentList = new List<OrganizationStudents>();
+
+            IEnumerable<Organization> universities = Enumerable.Empty<Organization>();
+
+
+            universities = _DbContext.Organizations.FromSqlRaw("SELECT * FROM Organizations WHERE OrganizationId IN " +
+                "(SELECT Organization_OrganizationId FROM Departments WHERE DepartmentId IN " +
+                "(SELECT Department_DepartmentId FROM Employees WHERE EmployeeId IN " +
+                "(SELECT AcademicSupervisor_EmployeeId FROM SemestersStudentAndEvaluationDetails WHERE TrainingSupervisor_EmployeeId IN " +
+                "(SELECT EmployeeId FROM Employees WHERE Department_DepartmentId IN " +
+                $"(SELECT DepartmentId FROM Departments WHERE Branch_BranchId ={Branch.BranchId})))))").AsNoTracking().ToList();
+
+
+            if (universities.Any())
+            {
+
+                foreach (var univer in universities)
+                {
+
+                    OrganizationStudentsCount = Students.Where(item => item.EmployeeAcademicSupervisor.department.organization.OrganizationId == univer.OrganizationId).Count();
+
+                    OrganizationStudents organizationStudents = new OrganizationStudents() { OrganizationName = univer.OrganizationName, StudentsCount = OrganizationStudentsCount };
+
+                    OrganizationStudentList.Add(organizationStudents);
+                }
+
+            }
+
+
+            return Json(new { OrganizationStudentList });
+
+
+        }
 
         [HttpGet]
         public IActionResult GetDetailFields(string? ids)

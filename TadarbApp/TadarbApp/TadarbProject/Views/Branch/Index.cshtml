@@ -6,61 +6,58 @@
 
     <link rel="stylesheet" href="~/css/Addbranches.css" asp-append-version="true" />
 
-    
-     
-
-
 </head>
 
 <partial name="_Notification" />
-<body style="background: linear-gradient(#1c4c64,#5590ad);">
+<body style="background: linear-gradient(
+#e6edf3,#acc3d8) ">
 
-<div class="row">
+    <div class="row">
 
-    <div class="col-sm-4" style="z-index:2;">
+        <div class="col-sm-3" style="z-index:2;">
 
             <div class="vertical-nav bg-white" style="position:absolute" id="sidebar">
-            <div class="py-4 px-3 mb-4 bg-light">
-                <div class="media d-flex align-items-center">
-                    <img src="~/@ViewBag.OrganizationImage" alt="..." width="65" class="mr-3 rounded-circle img-thumbnail shadow-sm">
-                    <div class="media-body">
-                        <h4 class="m-0">@ViewBag.OrganizationName</h4>
+                <div class="py-4 px-3 mb-4 bg-light">
+                    <div class="media d-flex align-items-center">
+                        <img src="~/@ViewBag.OrganizationImage" alt="..." width="65" class="mr-3 rounded-circle img-thumbnail shadow-sm">
+                        <div class="media-body">
+                            <h4 class="m-0">@ViewBag.OrganizationName</h4>
+                        </div>
                     </div>
                 </div>
-            </div>
-                <h5  > مرحبا بك @ViewBag.Username </h5>
+                <h5> مرحبا بك @ViewBag.Username </h5>
 
-            <p class="text-gray font-weight-bold text-uppercase px-3 small pb-4 mb-0">القائمة</p>
+                <p class="text-gray font-weight-bold text-uppercase px-3 small pb-4 mb-0">القائمة</p>
 
-            <ul class="nav flex-column bg-white mb-0">
-                <li class="nav-item" >
-                    <a asp-controller="Branch" asp-action="Index" class="nav-link text-dark font-italic bg-light">
+                <ul class="nav flex-column bg-white mb-0">
+                    <li class="nav-item">
+                        <a asp-controller="Branch" asp-action="Index" class="nav-link text-dark font-italic bg-light">
                             <i class="fa-solid fa-house text-primary"></i>
-                        الصفحة الرئيسية
-                    </a>
-                </li>
+                            الصفحة الرئيسية
+                        </a>
+                    </li>
                     <li class="nav-item" id="fff">
                         <a asp-controller="Branch" asp-action="ManageDepartment" class="nav-link text-dark font-italic ">
-                        <i class="fa fa-address-card mr-3 text-primary fa-fw"></i>
-                        إدارة الاقسام
-                    </a>
-                </li>
-                <li class="nav-item" id="ff2">
-                    <a asp-controller="Branch" asp-action="ViewSupervisorsUser" class="nav-link text-dark font-italic ">
-                        <i class="fa-solid fa-building-user"></i>
-                         إدارة مشرفين التدريب
+                            <i class="fa fa-address-card mr-3 text-primary fa-fw"></i>
+                            إدارة الاقسام
+                        </a>
+                    </li>
+                    <li class="nav-item" id="ff2">
+                        <a asp-controller="Branch" asp-action="ViewSupervisorsUser" class="nav-link text-dark font-italic ">
+                            <i class="fa-solid fa-building-user"></i>
+                            إدارة مشرفين التدريب
 
 
-                    </a>
-                </li>
+                        </a>
+                    </li>
 
-               
-                <li class="nav-item" id="ff3">
-                    <a asp-controller="branch" asp-action="ViewDepartmentFiledSpecialties" class="nav-link text-dark font-italic ">
-                        <i class="fa-solid fa-book-open-reader"></i>
-                        إدارة التخصصات
-                    </a>
-                </li>
+
+                    <li class="nav-item" id="ff3">
+                        <a asp-controller="branch" asp-action="ViewDepartmentFiledSpecialties" class="nav-link text-dark font-italic ">
+                            <i class="fa-solid fa-book-open-reader"></i>
+                            إدارة التخصصات
+                        </a>
+                    </li>
 
                     <li class="nav-item" id="ff4">
                         <a asp-controller="branch" asp-action="ViewOpportunities" class="nav-link text-dark font-italic ">
@@ -69,62 +66,213 @@
                         </a>
                     </li>
 
-                 
-            </ul>
-            <div>
-                <a class="btn " id="btn1">
-                    <i class="fa-solid fa-person-circle-question"></i>
-                  احتاج مساعدة
-                    
-                </a>
+
+                </ul>
+
+                <div>
+                    <a class="btn " id="btn1">
+                        <i class="fa-solid fa-person-circle-question"></i>
+                        احتاج مساعدة
+
+                    </a>
                 </div>
+
+
+            </div>
+
+
+            <!-- End vertical navbar1 -->
+            <!-- Page content holder1 -->
+            <div class="page-content p-1" id="content">
+                <!-- Toggle button -->
+                <button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i class="fa fa-bars mr-2"></i><small class="text-uppercase font-weight-bold">القائمة</small></button>
+            </div>
+
+
         </div>
 
+        <div class="col-sm-8" style="margin-bottom:10cm">
+            <div class="row">
 
-        <!-- End vertical navbar11 -->
-        <!-- Page content holder11 -->
-        <div class="page-content p-1" id="content">
-            <!-- Toggle button11 -->
-            <button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i class="fa fa-bars mr-2"></i><small class="text-uppercase font-weight-bold">القائمة</small></button>
+
+
+
+                <div class="col-md-4 " style="background-color:white" id="piechart">
+                </div>
+
+                <div class="col-md-4 ">
+                    <div class="card mb-3 text-center" style="max-width: 30rem; background: linear-gradient(#9DB2BF, #526D82
+);">
+                        <div class="card-body">
+                            <h class="card-title" style="font-size:45px">
+                                <i class="fa-solid fa-file-signature" style="color:white"></i>
+                            </h>
+                            <p class="card-text" style="font-weight:bold;font-size:60px;color:white">@ViewBag.Request</p>
+                            <p class="card-text" style="font-weight:bold;font-size:25px;color:white">طلبات الالتحاق بالفرص</p>
+
+                        </div>
+                    </div>
+                    <div class="card text-white bg-info mb-3 text-center" style="max-width: 30rem;background: linear-gradient(#C7E8CA, #DDF7E3);">
+                        <div class="card-body">
+                            <h class="card-title" style="font-size:45px">
+                                <i class="fa-solid fa-circle-check" style="color: #5D9C59;"></i>
+                            </h>
+                            <p class="card-text" style="font-weight:bold;font-size:60px;color:black">@ViewBag.Approve</p>
+                            <p class="card-text" style="font-weight:bold;font-size:25px; color:black">عدد الطلاب المقبولين</p>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 mb-4 pb-2">
+                    <div class="card text-white  mb-3 text-center" style="max-width: 30rem;background: linear-gradient(#FFD369 , #EEEEEE); ">
+                        <div class="card-body">
+                            <h class="card-title" style="font-size:45px">
+                                <i class="fa-solid fa-people-roof" style="color: #393E46;"></i>
+                            </h>
+                            <p class="card-text" style="font-weight:bold;font-size:60px;color:black">@ViewBag.Oper</p>
+                            <p class="card-text" style="font-weight:bold;font-size:25px;color:black">عدد الفرصة </p>
+
+                        </div>
+                    </div>
+                    <div class="card  mb-3 text-center" style="max-width: 30rem;background: linear-gradient(#B70404 , #FFF3E2); ">
+                        <div class="card-body">
+                            <h class="card-title" style="font-size:45px">
+                                <i class="fa-solid fa-users"></i>
+                            </h>
+                            <p class="card-text" style="font-weight:bold;font-size:60px;color:black">@ViewBag.Avalibe </p>
+                            <p class="card-text" style="font-weight:bold;font-size:25px;color:black;">عدد المقاعد المتاحة</p>
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-sm-1"></div>
         </div>
-
 
     </div>
 
-    <div class="col-sm-6">
-
-
-        @*        content page 
-        *@
-    </div>
-    <div class="col-sm-2"></div>
-</div>
 </body>
 @section Scripts{
 
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
-   
+    <script>
+
+        google.charts.load('current', { packages: ['corechart'] });
+        google.charts.setOnLoadCallback(drawChart);
+
+
+        function drawChart() {
+
+
+            var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+            //var data = [];
+
+            var options = {
+                title: 'نسب الطلاب المتدربين حسب الشركات',
+                pieHole: 0.4,
+                pieHole: 0.4,
+                width: 330,
+                height: 500,
+                colors: ['#6096B4', '#93BFCF', '#BDCDD6', '#EEE9DA', '#325d73']
+            };
+
+            $(document).ready(function () {
+
+
+
+                $.ajax({
+                    type: 'GET',
+                    url: "@Url.Action("GetStudentByUniAjax")",
+                    dataType: "json",
+
+
+
+                    success: function (data) {
+
+                        //console.log(data.student[0].employeeAcademicSupervisor.department.organization.organizationName);
+
+
+                        var dataa = new google.visualization.DataTable();
+
+                        // Declare columns
+                        dataa.addColumn('string', 'Univerty');
+                        dataa.addColumn('number', 'countty');
+
+
+                        //var loop=0;
+
+                        $.each(data.organizationStudentList, function (key, value) {
+
+                            console.log(value.organizationName, value.studentsCount);
+
+
+
+                            dataa.addRows([
+
+                                [value.organizationName, value.studentsCount]
+
+                            ]);
+
+
+
+
+
+                        });
+
+
+                        if (dataa.Wf.length == 0) {
+                            dataa.addRows([
+
+                                ["لايوجد طلاب قيد التدريب", 1]
+
+                            ]);
+                        }
+
+
+
+                        chart.draw(dataa, options);
+
+                    }
+
+
+                });
+
+            });
+
+
+
+
+
+
+
+        }
+    </script>
+
 
 
     <script>
         $(function () {
-            // Sidebar toggle behaviorr
+            // Sidebar toggle behavior
             $('#sidebarCollapse').on('click', function () {
                 $('#sidebar, #content').toggleClass('active');
             });
         });
 
-        //var driver = new Driver();
-
-        // giude tour  
+        // giude tour
+        // giude tour
         document.getElementById('btn1')
             .addEventListener('click', function (event) {
                 event.stopPropagation();
 
                 const driver = new Driver();
                 // Define Steps
-                
-                            animate: false
+
+                animate: false
                 driver.defineSteps([
                     {
                         element: '#fff',
@@ -133,7 +281,7 @@
                             title: 'أولاً : اضف قسم ',
                             description: 'الرجاء اضافة جميع الاقسام في هذا الفرع',
                             position: 'left',
-                             closeBtnText: 'اغلق', // Text on the close button for this step
+                            closeBtnText: 'اغلق', // Text on the close button for this step
                             nextBtnText: 'التالي', // Next button text for this step
                             prevBtnText: 'السابق', // Previous button text for this step
                             doneBtnText: 'انتهيت', // Text on the final button
@@ -147,7 +295,7 @@
                             title: 'ثانياً : اضافة المشرفين',
                             description: 'الرجاء اضافة المشرفين لتعيينهم بالفرصة  التدريبية لاحقاً',
                             position: 'left',
-                             closeBtnText: 'اغلق', // Text on the close button for this step
+                            closeBtnText: 'اغلق', // Text on the close button for this step
                             nextBtnText: 'التالي', // Next button text for this step
                             prevBtnText: 'السابق', // Previous button text for this step
                             doneBtnText: 'انتهيت', // Text on the final button
@@ -163,7 +311,7 @@
                             closeBtnText: 'اغلق', // Text on the close button for this step
                             doneBtnText: 'انتهيت', // Text on the final button
 
-                             nextBtnText: 'التالي', // Next button text for this step
+                            nextBtnText: 'التالي', // Next button text for this step
                             prevBtnText: 'السابق', // Previous button text for this step
                         }
                     },
@@ -190,5 +338,9 @@
 
             });
     </script>
+
+
+
+
 
     }

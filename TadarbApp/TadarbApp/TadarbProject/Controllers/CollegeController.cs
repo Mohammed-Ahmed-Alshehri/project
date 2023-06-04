@@ -62,8 +62,45 @@ namespace TadarbProject.Controllers
             ViewBag.OrganizationName = OrganizationOfR.OrganizationName + " - " + College.CollegeName;
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
             ViewBag.Username = user.FullName;
-            return View();
+            
 
+
+
+
+
+
+            IEnumerable<SemesterStudentAndEvaluationDetail> Students = Enumerable.Empty<SemesterStudentAndEvaluationDetail>(); ;
+
+            Students = _DbContext.SemestersStudentAndEvaluationDetails.FromSqlRaw($"Select * from SemestersStudentAndEvaluationDetails where AcademicSupervisor_EmployeeId IN " +
+                $" ( Select EmployeeId from Employees where Department_DepartmentId IN " +
+                $"( Select DepartmentId from Departments where College_CollegeId = {College.CollegeId}))").AsNoTracking().ToList();
+
+            int? UnderTraining = 0;
+
+            UnderTraining = Students.Where(item => item.GeneralTrainingStatus != "stop training").Count();
+
+            ViewBag.Student = UnderTraining;
+
+            int? HaveBeenTrained = 0;
+
+            HaveBeenTrained = Students.Where(item => item.GeneralTrainingStatus == "stop training").Count();
+
+            ViewBag.HaveBeenTrained = HaveBeenTrained;
+
+            var Student = _DbContext.UniversitiesTraineeStudents.Where(item => item.department.College_CollegeId == College.CollegeId && item.ActivationStatus.Equals("Active")).AsNoTracking().ToList();
+
+            ViewBag.AllStudent = Student.Count();
+
+
+            var Approve = _DbContext.StudentRequestsOnOpportunities.Where(item => item.student.department.College_CollegeId == College.CollegeId && item.DecisionStatus.Equals("approved")).AsNoTracking().ToList();
+
+
+            ViewBag.Approved = Approve.Count();
+
+
+
+
+            return View();
 
         }
 
@@ -453,6 +490,72 @@ namespace TadarbProject.Controllers
 
 
             return Json(new { Exists = true, depList });
+        }
+
+
+        [HttpGet]
+        public IActionResult GetStudentByUniAjax()
+        {
+            if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(UserId.ToString()))
+            {
+
+                return RedirectToAction("Login", "Home");
+
+            }
+
+            ViewBag.Name = Name;
+
+            int RUserId = UserId;
+
+            var College = college;
+
+            var OrganizationOfR = organizationOfR;
+
+
+
+
+            IEnumerable<SemesterStudentAndEvaluationDetail> Students = Enumerable.Empty<SemesterStudentAndEvaluationDetail>();
+
+            Students = _DbContext.SemestersStudentAndEvaluationDetails.FromSqlRaw("SELECT * FROM SemestersStudentAndEvaluationDetails WHERE AcademicSupervisor_EmployeeId IN " +
+                "(SELECT EmployeeId FROM Employees WHERE Department_DepartmentId IN " +
+                $"(SELECT DepartmentId FROM Departments WHERE College_CollegeId ={College.CollegeId})) AND GeneralTrainingStatus !='stop training'")
+                .Include(item => item.EmployeeTrainingSupervisor.department.organization).AsNoTracking().ToList();
+
+
+            var OrganizationStudentsCount = 0;
+
+            List<OrganizationStudents> OrganizationStudentList = new List<OrganizationStudents>();
+
+            IEnumerable<Organization> universities = Enumerable.Empty<Organization>();
+
+
+            universities = _DbContext.Organizations.FromSqlRaw("SELECT * FROM Organizations WHERE OrganizationId IN " +
+                "(SELECT Organization_OrganizationId FROM Departments WHERE DepartmentId IN " +
+                "(SELECT Department_DepartmentId FROM Employees WHERE EmployeeId IN " +
+                "(SELECT TrainingSupervisor_EmployeeId FROM SemestersStudentAndEvaluationDetails WHERE AcademicSupervisor_EmployeeId IN " +
+                "(SELECT EmployeeId FROM Employees WHERE Department_DepartmentId IN " +
+                $"(SELECT DepartmentId FROM Departments WHERE College_CollegeId = {College.CollegeId})))))").AsNoTracking().ToList();
+
+
+            if (universities.Any())
+            {
+
+                foreach (var univer in universities)
+                {
+
+                    OrganizationStudentsCount = Students.Where(item => item.EmployeeTrainingSupervisor.department.organization.OrganizationId == univer.OrganizationId).Count();
+
+                    OrganizationStudents organizationStudents = new OrganizationStudents() { OrganizationName = univer.OrganizationName, StudentsCount = OrganizationStudentsCount };
+
+                    OrganizationStudentList.Add(organizationStudents);
+                }
+
+            }
+
+
+            return Json(new { OrganizationStudentList });
+
+
         }
 
 

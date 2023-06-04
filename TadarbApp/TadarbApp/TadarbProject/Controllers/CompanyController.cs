@@ -560,20 +560,7 @@ namespace TadarbProject.Controllers
             int RUserId = UserId;
             var OrganizationOfR = organizationOfR;
 
-            //User = _DbContext.UserAcounts.Where(item => item.UserId == RUserId).AsNoTracking().FirstOrDefault();
-
-            //var user = User;
-
-            //var Branches = _DbContext.OrganizationBranches_TrainProv.Where(item => item.Organization_OrganizationId == OrganizationOfR.OrganizationId).AsNoTracking().ToList();
-
-            //var Student = _DbContext.SemestersStudentAndEvaluationDetails.FromSqlRaw($"Select * from SemestersStudentAndEvaluationDetails where AcademicSupervisor_EmployeeId IN   " +
-            //    $"( Select EmployeeId from Employees where Department_DepartmentId IN " +
-            //    $"( Select DepartmentId from Departments where Organization_OrganizationId IN " +
-            //    $"(select OrganizationId from Organizations where Organization_TypeId = 1  ) ))  AND GeneralTrainingStatus !='stop training'" +
-            //    $" And StudentRequest_StudentRequestId IN (Select StudentRequestOpportunityId from StudentRequestsOnOpportunities where TrainingOpportunity_TrainingOpportunityId IN " +
-            //    $"(Select TrainingOpportunityId from TrainingOpportunities where Branch_BranchId IN " +
-            //    $"(Select BranchId from OrganizationBranches_TrainProv where Organization_OrganizationId = {OrganizationOfR.OrganizationId} )))")
-            //    .Include(item => item.EmployeeAcademicSupervisor.department.organization).AsNoTracking().ToList();
+          
 
 
             IEnumerable<SemesterStudentAndEvaluationDetail> Students = Enumerable.Empty<SemesterStudentAndEvaluationDetail>();

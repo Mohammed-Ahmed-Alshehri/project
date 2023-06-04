@@ -83,35 +83,51 @@
         <div class="col-sm-8">
 
 
-            <label for="CountryName" class="form-label mt-4" style="font-size:20px; color:white">الدولة</label>
-            
-            <select asp-items="@ViewBag.CountryListItems" class="form-select" id="CountryNameID" required>
-                <option selected disabled value="">--الدولة--</option>
+            <div class="row " style="color:black; background-color:#f2f5fa;border-radius: 20px;">
 
-            </select>
+                <h2 style="text-align:center;margin-top:1cm">الفرص المتاحة</h2>
 
-            <label for="CityNameID" class="form-label mt-4" style="font-size:20px; color:white">الفرع الرئيسي</label>
-            <select class="form-select" id="CityNameID" name="CityNameID" required>
-            </select>
+                <div class="col-sm-2">
+
+                    <label for="CountryName" class="form-label mt-4" style="font-size:20px;">الدولة</label>
+                    <select asp-items="@ViewBag.CountryListItems" class="form-select" id="CountryNameID" required>
+                        <option selected disabled value="">--الدولة--</option>
+
+                    </select>
+                    <br />
+                    <button id="b1" class="btn btn-secondary" onclick="Search()" style="background-color:#e6e291"><i class="fa-solid fa-magnifying-glass"></i> بحث</button> &ensp;
+
+                    <button id="b2" class="btn btn-primary" onclick="Clear()"><i class="fa-solid fa-reply-all"></i> إظهار الكل</button>
+                    <br /><br />
+                </div>
+
+                <div class="col-sm-2">
+                    <label for="CityNameID" class="form-label mt-4" style="font-size:20px;">التخصص</label>
+                    <select class="form-select" id="CityNameID" name="CityNameID" required>
+                    </select>
+                </div>
+
+                <div class="col-sm-2">
+                    <label for="DetailFiledId" class="form-label mt-4" style="font-size:20px;">الفرع الرئيسي</label>
+
+                    <select asp-items="@ViewBag.DepartmentDetailFileds" class="form-select" id="DetailFiledId" name="DetailFiledId" required>
+
+                        <option selected disabled value="">--التخصص--</option>
+
+                    </select>
+                </div>
+
+                <input id="SelectedCityId" hidden />
+
+                <input id="SelectedDetailFiledId" hidden />
+                <div class="col-sm-2 ">
+                </div>
+                <br />
+            </div>
 
 
-            <label for="DetailFiledId" class="form-label mt-4" style="font-size:20px;color:white">التخصص</label>
 
-            <select asp-items="@ViewBag.DepartmentDetailFileds" class="form-select" id="DetailFiledId" name="DetailFiledId" required>
-
-                <option selected disabled value="">--التخصص--</option>
-
-            </select>
-
-
-            <input id="SelectedCityId" hidden />
-
-            <input id="SelectedDetailFiledId" hidden />
-
-            <button id="b1" class="btn btn-secondary" onclick="Search()"> البحث</button>
-
-            <button id="b2" class="btn btn-secondary" onclick="Clear()"> إظهار الكل</button>
-
+            <br />
             <div class="row pb-3" style="z-index:1;" id="ConBody">
 
                 @*      @foreach (var item in Model)
@@ -164,9 +180,6 @@
 
 
             </div>
-
-
-
 
 
 
@@ -281,46 +294,46 @@
                             for (var i = 0; i < data.opportunities.length; i++) {
 
                                 Con += `<div class="col-lg-4 col-md-8">
-                                                                             <div class="row p-2">
-                                                                              <div class="col-12 p-1" style="border:1px solid #008cba; border-radius:5px;">
-                                                                              <div class="card" id="card">
-                                                                                                      <img src="/${data.opportunities[i].department.organization.logoPath}" class="card-img-top rounded" width="150" height="130"/>
-                                                                               <div class="card-body">
-                                                                               <div class="pl-1">
-                                                                                <p class="card-title">
-                                                                                         <h4 style="width:auto ;font-size:20px">${data.opportunities[i].detailFiled.specializationName}</h4></p>
-                                                                                            <br>
-                                                                                  <p class="card-title h5" style="color:#1c4c64">
-                                                                                                           عدد المقاعد المتاحة: <b>${data.opportunities[i].availableOpportunities}</b></p></div>
-                                                                                        <br>
-                                                                                        <div class="pl-1 h5">
-                                                                                            <p>
-                                                                         بداية التدريب:  <b>${data.opportunities[i].startDate} </b>
-                                                                                            </p>
+                                                                                     <div class="row p-2">
+                                                                                      <div class="col-12 p-1" style="border:1px solid #008cba; border-radius:5px;">
+                                                                                      <div class="card" id="card">
+                                                                                                              <img src="/${data.opportunities[i].department.organization.logoPath}" class="card-img-top rounded" width="150" height="130"/>
+                                                                                       <div class="card-body">
+                                                                                       <div class="pl-1">
+                                                                                        <p class="card-title">
+                                                                                                 <h4 style="width:auto ;font-size:20px">${data.opportunities[i].detailFiled.specializationName}</h4></p>
+                                                                                                    <br>
+                                                                                          <p class="card-title h5" style="color:#1c4c64">
+                                                                                                                   عدد المقاعد المتاحة: <b>${data.opportunities[i].availableOpportunities}</b></p></div>
+                                                                                                <br>
+                                                                                                <div class="pl-1 h5">
+                                                                                                    <p>
+                                                                                 بداية التدريب:  <b>${data.opportunities[i].startDate} </b>
+                                                                                                    </p>
 
-                                                                                            <p>
-                                                                                                                        نهاية التدريب:  <b>${data.opportunities[i].endDate}</b>
-                                                                                            </p>
-                                                                                            <p>
-                                                                                                                        نهاية فترة التسجيل:  <b>${data.opportunities[i].endRegisterDate}</b>
+                                                                                                    <p>
+                                                                                                                                نهاية التدريب:  <b>${data.opportunities[i].endDate}</b>
+                                                                                                    </p>
+                                                                                                    <p>
+                                                                                                                                نهاية فترة التسجيل:  <b>${data.opportunities[i].endRegisterDate}</b>
 
-                                                                                            </p>
+                                                                                                    </p>
+
+                                                                                                </div>
+
+                                                                                            </div>
+
+                                                                                            <div>
+                                                                                            <a  href="/Student/OpportunityInformation/?id=${data.opportunities[i].trainingOpportunityId}" class="btn form-control" style="background-color:#B8B474; color:black;  font-size:20px; border-radius:40;">التفاصيل</a>
+                                                                                            </div>
 
                                                                                         </div>
-
-                                                                                    </div>
-
-                                                                                    <div>
-                                                                                    <a  href="/Student/OpportunityInformation/?id=${data.opportunities[i].trainingOpportunityId}" class="btn form-control" style="background-color:#B8B474; color:black;  font-size:20px; border-radius:40;">التفاصيل</a>
                                                                                     </div>
 
                                                                                 </div>
+
                                                                             </div>
-
-                                                                        </div>
-
-                                                                    </div>
-                                                                            `;
+                                                                                    `;
 
                             }
 
@@ -328,11 +341,11 @@
 
                         if (!data.exists) {
                             Con = `<div class="alert alert-dark d-flex align-items-center" role="alert">
-                   <i class="bi bi-exclamation-circle-fill"></i>
-              <div>
-                                              لا توجد فرص متاحة تناسب ${data.message}.
-                      </div>
-            </div>`
+                           <i class="bi bi-exclamation-circle-fill"></i>
+                      <div>
+                                                      لا توجد فرص متاحة تناسب ${data.message}.
+                              </div>
+                    </div>`
                         }
 
 

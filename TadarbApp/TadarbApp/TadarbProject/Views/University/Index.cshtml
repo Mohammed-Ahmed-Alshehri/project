@@ -31,34 +31,31 @@
 
                 <ul class="nav flex-column bg-white mb-0">
                     <li class="nav-item">
-                        <a asp-controller="Company" asp-action="Index" class="nav-link text-dark font-italic bg-light">
-                            <i class="fa-solid fa-house  mr-3 text-primary fa-fw "></i>
-
+                        <a asp-controller="University" asp-action="Index" class="nav-link text-dark font-italic bg-light ">
+                            <i class="fa-solid fa-house"></i>
                             الصفحة الرئيسية
                         </a>
                     </li>
-                    <li class="nav-item" id="fff">
-                        <a asp-controller="Company" asp-action="ViewSpecialities" class="nav-link text-dark font-italic ">
-                            <i class="fa-brands fa-buffer mr-3  fa-fw  "></i>
-
-
+                    <li class="nav-item">
+                        <a asp-controller="University" asp-action="ViewSpecialities" class="nav-link text-dark font-italic ">
+                            <i class="fa-solid fa-bars"></i>
                             إدارة مجالات التدريب
                         </a>
                     </li>
-                    <li class="nav-item" id="ff2">
-                        <a asp-controller="Company" asp-action="viewUsers" class="nav-link text-dark font-italic">
-                            <i class="fa-solid fa-user-group "></i>
+                    <li class="nav-item">
+                        <a asp-controller="University" asp-action="ViewUsers" class="nav-link text-dark font-italic ">
+                            <i class="fa-solid fa-user-gear"></i>
                             إدارة الموظفين
 
                         </a>
                     </li>
-                    <li class="nav-item" id="ff3">
-                        <a asp-controller="Company" asp-action="Viewbranches" class="nav-link text-dark font-italic ">
-                            <i class="fa-solid fa-building  mr-3  fa-fw "></i>
-                            إدارة الفروع
+                    <li class="nav-item">
+                        <a asp-controller="University" asp-action="ViewColleges" class="nav-link text-dark font-italic ">
+                            <i class="fa-solid fa-building-circle-check text-primary"></i>
+                            إدارة الكليات
+
                         </a>
                     </li>
-
                 </ul>
 
                 <div>
@@ -83,52 +80,57 @@
 
         </div>
 
-        <div class="col-sm-8" style="margin-bottom:10cm;">
-            <div class="row" style="border-radius:5cm">
+        <div class="col-sm-8" style="margin-bottom:10cm">
+            <div class="row">
 
-                <div class="col-md-4" id="piechart">
+
+
+
+                <div class="col-md-4 " style="background-color:white" id="piechart">
                 </div>
 
                 <div class="col-md-4 ">
-                    <div class="card mb-3 text-white text-center" style="max-width: 30rem; background: linear-gradient(#4478a7, #82a5c4);">
+                    <div class="card mb-3 text-center" style="max-width: 30rem; background: linear-gradient(#9DB2BF, #526D82
+);">
                         <div class="card-body">
                             <h class="card-title" style="font-size:45px">
-                                <i class="fa-solid fa-file-signature" style="color: #ffffff;"></i>
+                                <i class="fa-solid fa-file-signature" style="color:white"></i>
                             </h>
-                            <p class="card-text" style="font-size:60px">@ViewBag.NumberOfRequests</p>
-                            <p class="card-text" style="font-size:25px;">طلبات الالتحاق بالفرص</p>
+                            <p class="card-text" style="font-size:60px">@ViewBag.Detail</p>
+                            <p class="card-text" style="font-size:25px;">التخصصات المسجلة</p>
 
                         </div>
                     </div>
-                    <div class="card text-white bg-info mb-3 text-center" style="max-width: 30rem;background: linear-gradient( #d5e2e9,#193752);">
+                    <div class="card text-white bg-info mb-3 text-center" style="max-width: 30rem;background: linear-gradient(#C7E8CA, #DDF7E3);">
                         <div class="card-body">
                             <h class="card-title" style="font-size:45px">
-                                <i class="fa-solid fa-circle-check" style="color: #ffffff;"></i>
+                                <i class="fa-solid fa-circle-check" style="color: #5D9C59;"></i>
                             </h>
-                            <p class="card-text" style="font-size:60px">@ViewBag.OperCount</p>
-                            <p class="card-text" style="font-size:25px;">الفرص المتاحة</p>
+                            <p class="card-text" style="font-size:60px;color:black"> @ViewBag.AllStudent </p>
+                            <p class="card-text" style="font-size:25px;color:black"> طلاب و طالبات </p>
 
                         </div>
                     </div>
                 </div>
 
                 <div class="col-md-4 mb-4 pb-2">
-                    <div class="card  mb-3 text-white text-center" style="max-width: 30rem;background: linear-gradient( #b1cee8,#306a9e); ">
+                    <div class="card text-white  mb-3 text-center" style="max-width: 30rem;background: linear-gradient(#FFD369 , #EEEEEE); ">
                         <div class="card-body">
                             <h class="card-title" style="font-size:45px">
-                                <i class="fa-solid fa-people-roof" style="color: #ffffff;"></i>
-                                <p class="card-text" style="font-size:60px">@ViewBag.Student</p>
-                                <p class="card-text" style="font-size:25px;">عدد الطلاب قيد التدريب</p>
+                                <i class="fa-solid fa-people-roof" style="color: #393E46;"></i>
+                            </h>
+                            <p class="card-text" style="font-size:60px;color:black" >@ViewBag.Student</p>
+                            <p class="card-text" style="font-size:25px;color:black">عدد الطلاب قيد التدريب</p>
 
                         </div>
                     </div>
-                    <div class="card text-white  mb-3 text-center" style="max-width: 30rem;background: linear-gradient(#0b5394, #9dbad4); ">
+                    <div class="card  mb-3 text-center" style="max-width: 30rem;background: linear-gradient(#B70404 , #FFF3E2); ">
                         <div class="card-body">
                             <h class="card-title" style="font-size:45px">
-                                <i class="fa-solid fa-users" style="color: #ffffff;"></i>
+                                <i class="fa-solid fa-users"></i>
                             </h>
-                            <p class="card-text" style="font-size:60px">@ViewBag.HaveBeenTrained</p>
-                            <p class="card-text" style="font-size:25px;">عدد الطلاب تم تدريبهم</p>
+                            <p class="card-text" style="font-size:60px;color:black">@ViewBag.HaveBeenTrained</p>
+                            <p class="card-text" style="font-size:25px;color:black">عدد الطلاب تم تدريبهم</p>
 
                         </div>
                     </div>
@@ -163,9 +165,9 @@
                 title: 'نسب الطلاب المتدربين حسب الشركات',
                 pieHole: 0.4,
                 pieHole: 0.4,
-                width: 450,
+                width: 330,
                 height: 500,
-                colors: ['#1c4c64', '#a4b7c1', '#7693a2', '#307294', '#325d73']
+                colors: ['#6096B4', '#93BFCF', '#BDCDD6', '#EEE9DA', '#325d73']
             };
 
             $(document).ready(function () {
@@ -251,6 +253,9 @@
         });
 
         // giude tour
+        // giude tour
+        // giude tour
+        // giude tour
         document.getElementById('btn1')
             .addEventListener('click', function (event) {
                 event.stopPropagation();
@@ -314,7 +319,7 @@
             });
     </script>
 
- 
+
 
 
 
