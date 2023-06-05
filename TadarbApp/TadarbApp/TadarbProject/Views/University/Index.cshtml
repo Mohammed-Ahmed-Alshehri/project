@@ -36,20 +36,20 @@
                             الصفحة الرئيسية
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a asp-controller="University" asp-action="ViewSpecialities" class="nav-link text-dark font-italic ">
+                    <li class="nav-item" id="fff">
+                        <a asp-controller="University" asp-action="ViewSpecialities" class="nav-link text-dark font-italic " >
                             <i class="fa-solid fa-bars"></i>
                             إدارة مجالات التدريب
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" id="ff2">
                         <a asp-controller="University" asp-action="ViewUsers" class="nav-link text-dark font-italic ">
                             <i class="fa-solid fa-user-gear"></i>
                             إدارة الموظفين
 
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" id="ff3">
                         <a asp-controller="University" asp-action="ViewColleges" class="nav-link text-dark font-italic ">
                             <i class="fa-solid fa-building-circle-check text-primary"></i>
                             إدارة الكليات
@@ -120,7 +120,7 @@
                                 <i class="fa-solid fa-people-roof" style="color: #393E46;"></i>
                             </h>
                             <p class="card-text" style="font-size:60px;color:black" >@ViewBag.Student</p>
-                            <p class="card-text" style="font-size:25px;color:black">عدد الطلاب قيد التدريب</p>
+                            <p class="card-text" style="font-size:25px;color:black">طلاب قيد التدريب</p>
 
                         </div>
                     </div>
@@ -130,7 +130,7 @@
                                 <i class="fa-solid fa-users"></i>
                             </h>
                             <p class="card-text" style="font-size:60px;color:black">@ViewBag.HaveBeenTrained</p>
-                            <p class="card-text" style="font-size:25px;color:black">عدد الطلاب تم تدريبهم</p>
+                            <p class="card-text" style="font-size:25px;color:black"> طلاب تم تدريبهم</p>
 
                         </div>
                     </div>
@@ -270,7 +270,7 @@
                         popover: {
                             //className: 'first-step-popover-class',
                             title: 'أولاً : اضف المجالات  ',
-                            description: 'الرجاء اضافة جميع المجالات  التي تمتلكها الشركة .. علما بأن التخصصات المضافة هي التي ستظهر  للفروع ',
+                            description: 'الرجاء اضافة جميع المجالات  التي تمتلكها الجامعة .. علما بأن التخصصات المضافة هي التي ستظهر  للكليات ',
                             position: 'left',
                             closeBtnText: 'اغلق', // Text on the close button for this step
                             nextBtnText: 'التالي', // Next button text for this step
@@ -283,8 +283,8 @@
                     {
                         element: '#ff2',
                         popover: {
-                            title: 'ثانياً : اضافة موظف مسؤول عن الفرع',
-                            description: 'الرجاء اضافة المسؤول عن الفرع  ليتم تعيينه بالفرع المناسب لاحقاً',
+                            title: 'ثانياً : اضافة موظف مسؤول عن الكلية',
+                            description: 'الرجاء اضافة المسؤول عن الكلية  ليتم تعيينه بالكلية المناسب لاحقاً',
                             position: 'left',
                             closeBtnText: 'اغلق', // Text on the close button for this step
                             nextBtnText: 'التالي', // Next button text for this step
@@ -296,8 +296,8 @@
                     {
                         element: '#ff3',
                         popover: {
-                            title: 'ثالثاً : اضف الفروع  ',
-                            description: 'الرجاء اضافة الفروع وتعيين مسؤول عن هذا الفرع ',
+                            title: 'ثالثاً : اضف الكليات  ',
+                            description: 'الرجاء اضافة الكليات وتعيين مسؤول لهذه الكلية ',
                             position: 'left',
                             closeBtnText: 'اغلق', // Text on the close button for this step
                             doneBtnText: 'انتهيت', // Text on the final button

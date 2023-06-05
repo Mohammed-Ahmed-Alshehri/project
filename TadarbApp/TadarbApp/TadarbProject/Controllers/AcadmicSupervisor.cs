@@ -486,12 +486,15 @@ namespace TadarbProject.Controllers
             StudentAndEvaluationDetail.studentRequest.DecisionStatus = "stop training";
             StudentAndEvaluationDetail.studentRequest.DecisionDate = DateTime.Now.Date;
             StudentAndEvaluationDetail.studentRequest.student.ActivationStatus = "Not_Active";
+            
+            //StudentAndEvaluationDetail.studentRequest.trainingOpportunity.ApprovedOpportunities -= 1;
 
             _DbContext.SemestersStudentAndEvaluationDetails.Update(StudentAndEvaluationDetail);
 
             _DbContext.StudentRequestsOnOpportunities.Update(StudentAndEvaluationDetail.studentRequest);
 
             _DbContext.UniversitiesTraineeStudents.Update(StudentAndEvaluationDetail.studentRequest.student);
+            _DbContext.TrainingOpportunities.Update(StudentAndEvaluationDetail.studentRequest.trainingOpportunity);
 
             _DbContext.SaveChanges();
 
