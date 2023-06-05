@@ -469,7 +469,7 @@ namespace TadarbProject.Controllers
             }
 
             var StudentAndEvaluationDetail = _DbContext.SemestersStudentAndEvaluationDetails.Where(item => item.StudentRequest_StudentRequestId == StuRqId
-            && item.SemesterMaster_SemesterMasterId == SSEMId).Include(item => item.studentRequest.student).AsNoTracking().FirstOrDefault();
+            && item.SemesterMaster_SemesterMasterId == SSEMId).Include(item => item.studentRequest.student).Include(item => item.studentRequest.trainingOpportunity).AsNoTracking().FirstOrDefault();
 
             if (StudentAndEvaluationDetail == null)
             {
@@ -486,14 +486,15 @@ namespace TadarbProject.Controllers
             StudentAndEvaluationDetail.studentRequest.DecisionStatus = "stop training";
             StudentAndEvaluationDetail.studentRequest.DecisionDate = DateTime.Now.Date;
             StudentAndEvaluationDetail.studentRequest.student.ActivationStatus = "Not_Active";
-            
-            //StudentAndEvaluationDetail.studentRequest.trainingOpportunity.ApprovedOpportunities -= 1;
+
+            StudentAndEvaluationDetail.studentRequest.trainingOpportunity.ApprovedOpportunities = StudentAndEvaluationDetail.studentRequest.trainingOpportunity.ApprovedOpportunities  - 1;
 
             _DbContext.SemestersStudentAndEvaluationDetails.Update(StudentAndEvaluationDetail);
 
             _DbContext.StudentRequestsOnOpportunities.Update(StudentAndEvaluationDetail.studentRequest);
 
             _DbContext.UniversitiesTraineeStudents.Update(StudentAndEvaluationDetail.studentRequest.student);
+
             _DbContext.TrainingOpportunities.Update(StudentAndEvaluationDetail.studentRequest.trainingOpportunity);
 
             _DbContext.SaveChanges();

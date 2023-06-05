@@ -91,11 +91,32 @@ namespace TadarbProject.Controllers
 
             ViewBag.AllStudent = Student.Count();
 
+            var countunassign = 0;
 
-            var Approve = _DbContext.StudentRequestsOnOpportunities.Where(item => item.student.department.College_CollegeId == College.CollegeId && item.DecisionStatus.Equals("approved")).AsNoTracking().ToList();
+            var RequsetO = _DbContext.StudentRequestsOnOpportunities.Where(item => item.student.department.College_CollegeId == College.CollegeId && item.DecisionStatus.Equals("approved")).AsNoTracking().ToList();
+
+            //foreach (var item in Students)
+            //{
+
+               
+            //    foreach(var i in RequsetO)
+            //    {
+            //        if (i.StudentRequestOpportunityId != item.StudentRequest_StudentRequestId)
+            //        {
+            //            countunassign += 1;
+
+            ///Double recorde not fixed yet
+            //        }
+                   
+            //    }
+            //}
 
 
-            ViewBag.Approved = Approve.Count();
+            //var NotAssign = _DbContext.
+
+
+
+            ViewBag.NotAssign = countunassign;
 
 
 

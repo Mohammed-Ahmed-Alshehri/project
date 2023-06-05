@@ -104,8 +104,8 @@
                                 <i class="fa-solid fa-chart-simple"></i>
                             </h>
 
-                            <p class="card-text" style="font-weight:bold;font-size:60px;color:black">@ViewBag.NumHours</p>
-                            <p class="card-text" style="font-weight:bold;font-size:25px; color:black">عدد متوسط ساعات المتدربين</p>
+                            <p class="card-text" style="font-weight:bold;font-size:60px;color:black">@ViewBag.AverageNumHours</p>
+                            <p class="card-text" style="font-weight:bold;font-size:25px; color:black"> متوسط ساعات المتدرب</p>
 
                         </div>
                     </div>
@@ -114,8 +114,8 @@
                             <h class="card-title" style="font-size:45px">
                                 <i class="fa-solid fa-circle-check" style="color: #5D9C59;"></i>
                             </h>
-                            <p class="card-text" style="font-weight:bold;font-size:60px;color:black">@ViewBag.AverageNumHours</p>
-                            <p class="card-text" style="font-weight:bold;font-size:25px; color:black">عدد اجمالي ساعات المتدربين</p>
+                            <p class="card-text" style="font-weight:bold;font-size:60px;color:black">@ViewBag.Requset</p>
+                            <p class="card-text" style="font-weight:bold;font-size:25px; color:black">المتقدمين</p>
 
                         </div>
                     </div>
@@ -162,114 +162,43 @@
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
     <script>
-
-
-        google.charts.load('current', { 'packages': ['corechart'] });
+        google.charts.load('current', { packages: ['corechart'] });
         google.charts.setOnLoadCallback(drawChart);
 
-        drawChart();
+        //google.charts.load('current', { 'packages': ['corechart'] });
+        //google.charts.setOnLoadCallback(drawChart);
 
-        function drawChart() {
-         
-            var options = {
-
-                title: 'الشركات المدربة لطلاب القسم'
-                , legend: 'right',
-                colors: ['Red']
-            };
-
-            var chart = new google.visualization.BarChart(document.getElementById('myChart'));
-
-            $(document).ready(function () {
-
-                $.ajax({
-                    type: 'GET',
-                    url: "@Url.Action("GetStudentByCompAjax")",
-                    dataType: "json",
-
-                    success: function (data) {
-
-                        var dataa = new google.visualization.DataTable();
-
-                        dataa.addColumn('string', 'الشركة');
-                        dataa.addColumn('number', 'عدد الطلاب');
-
-
-                        $.each(data.organizationStudentList, function (key, value) {
-
-                            console.log(value.organizationName, value.studentsCount);
-
-                            dataa.addRows([
-
-                                [value.organizationName, value.studentsCount]
-
-                            ]);
-
-                        });
-
-
-                        if (dataa.Wf.length == 0) {
-                            dataa.addRows([
-
-                                ["لايوجد طلاب قيد التدريب", 1]
-
-                            ]);
-                        }
-
-
-
-                        chart.draw(dataa, options);
-
-                    }
-
-
-                });
-
-            });
-
-        }
-
+        //drawChart();
 
         //function drawChart() {
-
-
-        //    var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-        //    var data = [];
-
+         
         //    var options = {
-        //        title: 'نسب الطلاب المتدربين حسب الشركات',
-        //        pieHole: 0.4,
-        //        pieHole: 0.4,
-        //        width: 330,
-        //        height: 500,
-        //        colors: ['#6096B4', '#93BFCF', '#BDCDD6', '#EEE9DA', '#325d73']
+
+        //        title: 'الشركات المدربة لطلاب القسم'
+        //        , legend: 'right',
+        //        colors: ['Red']
         //    };
+
+        //    var chart = new google.visualization.BarChart(document.getElementById('myChart'));
 
         //    $(document).ready(function () {
 
         //        $.ajax({
         //            type: 'GET',
-        //            url: "Url.Action("GetStudentByUniAjax")",
+        //            url: "Url.Action("GetStudentByCompAjax")",
         //            dataType: "json",
 
         //            success: function (data) {
 
-        //                //console.log(data.student[0].employeeAcademicSupervisor.department.organization.organizationName);
-
         //                var dataa = new google.visualization.DataTable();
 
-        //                // Declare columns
-        //                dataa.addColumn('string', 'Univerty');
-        //                dataa.addColumn('number', 'countty');
+        //                dataa.addColumn('string', 'الشركة');
+        //                dataa.addColumn('number', 'عدد الطلاب');
 
-
-        //                //var loop=0;
 
         //                $.each(data.organizationStudentList, function (key, value) {
 
         //                    console.log(value.organizationName, value.studentsCount);
-
-
 
         //                    dataa.addRows([
 
@@ -299,9 +228,81 @@
 
         //    });
 
-
-
         //}
+
+
+        function drawChart() {
+
+
+            var chart = new google.visualization.PieChart(document.getElementById('myChart'));
+            var data = [];
+
+            var options = {
+                title: 'نسب الطلاب المتدربين حسب الشركات',
+                pieHole: 0.4,
+                pieHole: 0.4,
+                width: 330,
+                height: 500,
+                colors: ['#6096B4', '#93BFCF', '#BDCDD6', '#EEE9DA', '#325d73']
+            };
+
+            $(document).ready(function () {
+
+                $.ajax({
+                    type: 'GET',
+                    url: "@Url.Action("GetStudentByCompAjax")",
+                    dataType: "json",
+
+                    success: function (data) {
+
+                        //console.log(data.student[0].employeeAcademicSupervisor.department.organization.organizationName);
+
+                        var dataa = new google.visualization.DataTable();
+
+                        // Declare columns
+                        dataa.addColumn('string', 'Univerty');
+                        dataa.addColumn('number', 'countty');
+
+
+                        //var loop=0;
+
+                        $.each(data.organizationStudentList, function (key, value) {
+
+                            console.log(value.organizationName, value.studentsCount);
+
+
+
+                            dataa.addRows([
+
+                                [value.organizationName, value.studentsCount]
+
+                            ]);
+
+                        });
+
+
+                        if (dataa.Wf.length == 0) {
+                            dataa.addRows([
+
+                                ["لايوجد طلاب قيد التدريب", 1]
+
+                            ]);
+                        }
+
+
+
+                        chart.draw(dataa, options);
+
+                    }
+
+
+                });
+
+            });
+
+
+
+        }
 
         $(function () {
             // Sidebar toggle behavior

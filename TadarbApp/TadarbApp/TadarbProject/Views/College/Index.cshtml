@@ -107,7 +107,7 @@
                             <h class="card-title" style="font-size:45px">
                                 <i class="fa-solid fa-circle-check" style="color: #5D9C59;"></i>
                             </h>
-                            <p class="card-text" style="font-weight:bold;font-size:60px;color:black">@ViewBag.Approved</p>
+                            <p class="card-text" style="font-weight:bold;font-size:60px;color:black">@ViewBag.NotAssign</p>
                             <p class="card-text" style="font-weight:bold;font-size:25px; color:black">طلاب لم يتم تعيين لهم مشرف</p>
 
                         </div>
@@ -159,7 +159,7 @@
         function drawChart() {
 
 
-            var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+            var chart = new google.visualization.PieChart(document.getElementById('myChart'));
             //var data = [];
 
             var options = {

@@ -155,7 +155,10 @@
                                             {
                                                 <span class="badge bg-danger"> تم الغاء الطلب من قبلك </span>
                                             }
-
+                                             @if (@item.DecisionStatus == "stop training")
+                                            {
+                                                <span class="badge bg-primary"> تم اكمال التدريب </span>
+                                            }
                                             @if (@item.DecisionStatus == "waitingStudentApprove")
                                             {
                                                 <span class="badge bg-info">

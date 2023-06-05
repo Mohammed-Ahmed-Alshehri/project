@@ -57,6 +57,20 @@ namespace TadarbProject.Controllers
 
             var UnverTre = trainee;
 
+            var AcadmicSuper = _DbContext.SemestersStudentAndEvaluationDetails.Where(item => item.studentRequest.Trainee_TraineeId == trainee.TraineeId)
+               .Include(item => item.EmployeeAcademicSupervisor.userAcount).AsNoTracking().FirstOrDefault();
+
+
+            if (AcadmicSuper == null)
+            {
+                ViewBag.AcadmicSuper = "لم يتعين مشرف";
+            }
+            else
+            {
+                ViewBag.AcadmicSuper = AcadmicSuper.EmployeeAcademicSupervisor.userAcount.FullName;
+
+            }
+
             department = _DbContext.Departments.Where(item => item.DepartmentId == UnverTre.Department_DepartmentId).AsNoTracking().FirstOrDefault();
 
             var Department = department;
