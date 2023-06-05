@@ -10,11 +10,70 @@
 
     <link rel="stylesheet" href="~/css/Addbranches.css" asp-append-version="true" />
 
+    <style>
+        .progressbar {
+            margin: 50px 0 50px 0;
+            counter-reset: step;
+        }
 
+            .progressbar li {
+                list-style-type: none;
+                width: 25%;
+                float: left;
+                font-size: 12px;
+                position: relative;
+                text-align: center;
+                text-transform: uppercase;
+                color: #7d7d7d;
+                font-weight: bolder;
+            }
+
+                .progressbar li:before {
+                    width: 15px;
+                    height: 15px;
+                    content: '';
+                    line-height: 30px;
+                    border: 2px solid #7d7d7d;
+                    background-color: #7d7d7d;
+                    display: block;
+                    text-align: center;
+                    margin: 0 auto 10px auto;
+                    border-radius: 50%;
+                    transition: all .8s;
+                }
+
+                .progressbar li:after {
+                    width: 100%;
+                    height: 2px;
+                    content: '';
+                    position: absolute;
+                    background-color: #7d7d7d;
+                    top: 7px;
+                    left: -50%;
+                    z-index: -1;
+                    transition: all .8s;
+                }
+
+                .progressbar li:first-child:after {
+                    content: none;
+                }
+
+                .progressbar li.active:before {
+                    border-color: #55b776;
+                    background-color: #55b776;
+                    transition: all .8s;
+                }
+
+                .progressbar li.active:after {
+                    background-color: #55b776;
+                    transition: all .8s;
+                }
+
+    </style>
 </head>
 
 <partial name="_Notification" />
-<body style="background: linear-gradient(#5590ad,white);">
+<body style="background: linear-gradient(white,#5590ad);">
 
     <div class="row">
 
@@ -86,6 +145,21 @@
 
 
         <div class="col-sm-8">
+            <div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <ul id="progress-bar" class="progressbar">
+                                <li id="completeid">تم اكمال التدريب</li>
+                                <li id="approveid">تمت الموافقة على فرصة</li>
+                                <li id="applyid">تم التقديم على الفرص</li>
+                                <li class="active">الحساب نشط</li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <form asp-action="EditAccount" method="get">
                 <div class="card " style="border-radius: 25px;  margin-bottom:3cm; padding:5px 5px 5px 5px ; border-color:black; width:auto; height:auto;background-color:#eef3f6">
                     <div class="card" style="background-color:#5590ad;border-radius: 18px;
@@ -300,6 +374,65 @@
                 $('#sidebar, #content').toggleClass('active');
             });
         });
+
+        progressbar();
+
+        function progressbar() {
+
+            //apply
+            var apply = document.getElementById("applyid");
+            //approve
+            var approve = document.getElementById("approveid");
+
+            //complete
+            var complette = document.getElementById("completeid");
+
+
+
+
+            $.ajax({
+                type: 'GET',
+                url: "@Url.Action("GetProgreesApplyAjax")",
+                dataType: "json",
+
+
+
+                success: function (data) {
+
+                    console.log(data.student);
+
+                    if (data.student == 1) {
+                        apply.classList.add("active");
+                    }
+                    if (data.student == 2) {
+                        apply.classList.add("active");
+                        approve.classList.add("active");
+                    }
+                    if (data.student == 3) {
+                        apply.classList.add("active");
+                        approve.classList.add("active");
+                        complette.classList.add("active");
+                    }
+
+
+
+
+
+
+
+
+
+                }
+
+
+            });
+
+
+
+
+
+        }
+
 
     </script>
 

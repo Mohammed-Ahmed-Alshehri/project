@@ -575,6 +575,72 @@ namespace TadarbProject.Controllers
 
         }
 
+        [HttpGet]
+        public IActionResult GetProgreesApplyAjax()
+        {
+            if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(UserId.ToString()))
+            {
+
+                return RedirectToAction("Login", "Home");
+
+            }
+
+            ViewBag.Name = Name;
+
+            int RUserId = UserId;
+            var OrganizationOfR = organizationOfR;
+
+
+
+
+
+
+
+            IEnumerable<StudentRequestOpportunity> Requset = Enumerable.Empty<StudentRequestOpportunity>(); ;
+            IEnumerable<SemesterStudentAndEvaluationDetail> Evalu = Enumerable.Empty<SemesterStudentAndEvaluationDetail>(); ;
+
+            int? student;
+
+            Requset = _DbContext.StudentRequestsOnOpportunities.Where(item => item.student.UserAccount_UserId == RUserId)
+            .AsNoTracking().ToList();
+
+            Evalu = _DbContext.SemestersStudentAndEvaluationDetails.Where(item => item.studentRequest.student.UserAccount_UserId == RUserId)
+               .AsNoTracking().ToList();
+
+            var approv = Requset.Where(item => item.DecisionStatus == "approved");
+            var complete = Requset.Where(item => item.DecisionStatus == "stop training");
+
+            if (Requset.Count() == 0)
+            {
+                student = 0;
+            }
+            else
+            {
+                student = 1;
+            }
+
+            if (approv.Count() > 0)
+            {
+                student = 2;
+            }
+            if (complete.Count() > 0)
+            {
+                student = 3;
+            }
+
+
+
+            return Json(new { student });
+        }
+
+
+
+
+
+
+
+
+
         [HttpPost]
         public IActionResult SubmitAssignment(StudentSemesterEvaluationMark obj, IFormFile? ReportFile)
         {
