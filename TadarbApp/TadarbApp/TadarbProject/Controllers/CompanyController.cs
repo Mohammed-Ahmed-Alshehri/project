@@ -560,7 +560,7 @@ namespace TadarbProject.Controllers
             int RUserId = UserId;
             var OrganizationOfR = organizationOfR;
 
-          
+
 
 
             IEnumerable<SemesterStudentAndEvaluationDetail> Students = Enumerable.Empty<SemesterStudentAndEvaluationDetail>();

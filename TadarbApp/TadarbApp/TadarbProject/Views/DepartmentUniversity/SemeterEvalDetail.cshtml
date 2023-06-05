@@ -158,7 +158,7 @@
 
                     &nbsp; &nbsp;
 
-                    <a class="btn btn-lg  " style="font-size:18px; color:black; background-color:#bac9d0;" href="@Url.Action("ViewSemesters")"> العودة الى القائمة</a>
+                        <a class="btn btn-lg  " style="font-size:18px; color:black; background-color:#bac9d0;" href="@Url.Action("ViewSemesters")" id="Goback"> العودة الى القائمة</a>
 
                     &nbsp; &nbsp;
 
@@ -355,17 +355,25 @@
 
 
 
-            $.ajax({
+            $(document).ready(function () {
 
-                type: "POST",
-                datatype: "json",
-                url: "@Url.Action("AddStudentAndSuper")",
-                data: { dFieldIds: JSON.stringify(Array), Mid:MId },
 
+               $.ajax({
+
+                 type: "POST",
+                 datatype: "json",
+                 url: "@Url.Action("AddStudentAndSuper")",
+                 data: { dFieldIds: JSON.stringify(Array), Mid:MId },
+
+
+               });
 
             });
 
-            window.location.replace('@Url.ActionLink("ViewSemesters")');
+
+            document.getElementById("Goback").click();
+
+           // window.location.replace('Url.ActionLink("ViewSemesters")');
 
            
         }

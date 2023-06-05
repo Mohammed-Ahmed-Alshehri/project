@@ -559,9 +559,9 @@ namespace TadarbProject.Controllers
 
             OrganizationOfR = _DbContext.Organizations.Where(item => item.ResponsibleUserId == RUserId).AsNoTracking().FirstOrDefault();
 
-            
 
-            
+
+
 
 
             IEnumerable<SemesterStudentAndEvaluationDetail> Students = Enumerable.Empty<SemesterStudentAndEvaluationDetail>();

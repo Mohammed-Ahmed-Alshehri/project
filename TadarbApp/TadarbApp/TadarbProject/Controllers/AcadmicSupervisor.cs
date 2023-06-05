@@ -403,7 +403,7 @@ namespace TadarbProject.Controllers
             _DbContext.SaveChanges();
 
 
-
+            TempData["success"] = "تم تقيم التقرير بنجاح.";
 
             return RedirectToAction("AssignedStudentAssignments", new { StuRqId = StuRqId });
 
@@ -463,6 +463,7 @@ namespace TadarbProject.Controllers
         [HttpGet]
         public IActionResult EndStudentTraining(int? SSEMId, int? StuRqId)
         {
+
             if (SSEMId == null || StuRqId == null || SSEMId == 0 || StuRqId == 0)
             {
                 NotFound();
@@ -476,7 +477,7 @@ namespace TadarbProject.Controllers
                 return Json(new { success = false });
             }
 
-            if (StudentAndEvaluationDetail.AcademicSupervisorEvaluationMark == null || StudentAndEvaluationDetail.TrainingSupervisorEvaluationMark == null )
+            if (StudentAndEvaluationDetail.AcademicSupervisorEvaluationMark == null || StudentAndEvaluationDetail.TrainingSupervisorEvaluationMark == null)
             {
                 return Json(new { success = false });
 
@@ -487,7 +488,7 @@ namespace TadarbProject.Controllers
             StudentAndEvaluationDetail.studentRequest.DecisionDate = DateTime.Now.Date;
             StudentAndEvaluationDetail.studentRequest.student.ActivationStatus = "Not_Active";
 
-            StudentAndEvaluationDetail.studentRequest.trainingOpportunity.ApprovedOpportunities = StudentAndEvaluationDetail.studentRequest.trainingOpportunity.ApprovedOpportunities  - 1;
+            StudentAndEvaluationDetail.studentRequest.trainingOpportunity.ApprovedOpportunities = StudentAndEvaluationDetail.studentRequest.trainingOpportunity.ApprovedOpportunities - 1;
 
             _DbContext.SemestersStudentAndEvaluationDetails.Update(StudentAndEvaluationDetail);
 
@@ -498,6 +499,8 @@ namespace TadarbProject.Controllers
             _DbContext.TrainingOpportunities.Update(StudentAndEvaluationDetail.studentRequest.trainingOpportunity);
 
             _DbContext.SaveChanges();
+
+            TempData["success"] = "تم تأكيد انهاء تدريب الطالب بنجاح.";
 
             return Json(new { success = true });
         }
@@ -553,6 +556,7 @@ namespace TadarbProject.Controllers
 
             _DbContext.SaveChanges();
 
+            TempData["success"] = "تم تعين التقارير بنجاح.";
 
             return Json(new { success = true });
 

@@ -62,7 +62,7 @@ namespace TadarbProject.Controllers
             ViewBag.OrganizationName = OrganizationOfR.OrganizationName + " - " + College.CollegeName;
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
             ViewBag.Username = user.FullName;
-            
+
 
 
 
@@ -91,32 +91,16 @@ namespace TadarbProject.Controllers
 
             ViewBag.AllStudent = Student.Count();
 
-            var countunassign = 0;
-
-            var RequsetO = _DbContext.StudentRequestsOnOpportunities.Where(item => item.student.department.College_CollegeId == College.CollegeId && item.DecisionStatus.Equals("approved")).AsNoTracking().ToList();
-
-            //foreach (var item in Students)
-            //{
-
-               
-            //    foreach(var i in RequsetO)
-            //    {
-            //        if (i.StudentRequestOpportunityId != item.StudentRequest_StudentRequestId)
-            //        {
-            //            countunassign += 1;
-
-            ///Double recorde not fixed yet
-            //        }
-                   
-            //    }
-            //}
+            int? NoSupervisor = 0;
 
 
-            //var NotAssign = _DbContext.
+            NoSupervisor = _DbContext.UniversitiesTraineeStudents.FromSqlRaw("SELECT * FROM UniversitiesTraineeStudents WHERE TraineeId NOT IN " +
+                "(SELECT Trainee_TraineeId FROM StudentRequestsOnOpportunities WHERE DecisionStatus !='stop training' AND StudentRequestOpportunityId  IN " +
+                "(SELECT StudentRequest_StudentRequestId FROM SemestersStudentAndEvaluationDetails)) AND TraineeId  IN " +
+                "(SELECT Trainee_TraineeId  FROM StudentRequestsOnOpportunities WHERE DecisionStatus !='stop training') AND Department_DepartmentId IN " +
+                $"(SELECT DepartmentId FROM Departments WHERE College_CollegeId = {College.CollegeId})").AsNoTracking().Count();
 
-
-
-            ViewBag.NotAssign = countunassign;
+            ViewBag.NotAssign = NoSupervisor;
 
 
 

@@ -78,11 +78,11 @@ namespace TadarbProject.Controllers
 
             IEnumerable<StudentRequestOpportunity> Requests = Enumerable.Empty<StudentRequestOpportunity>();
 
-            Requests = _DbContext.StudentRequestsOnOpportunities.Where(item => item.student.Department_DepartmentId == department.DepartmentId && item.DecisionStatus== "waiting" || item.DecisionStatus == "waitingStudentApprove").AsNoTracking().ToList();
+            Requests = _DbContext.StudentRequestsOnOpportunities.Where(item => item.student.Department_DepartmentId == department.DepartmentId && item.DecisionStatus == "waiting" || item.DecisionStatus == "waitingStudentApprove").AsNoTracking().ToList();
 
-            double ? AverageNumHours = StudentsTrainingDetails.Average(x => x.CompletedStudyHour);
+            double? AverageNumHours = StudentsTrainingDetails.Average(x => x.CompletedStudyHour);
 
-            if(AverageNumHours == null)
+            if (AverageNumHours == null)
             {
                 AverageNumHours = 0;
             }
@@ -1055,91 +1055,92 @@ namespace TadarbProject.Controllers
         public IActionResult AddStudentAndSuper(string dFieldIds, int Mid)
         {
 
-            if (dFieldIds != "[]")
+            if (dFieldIds == "[]")
             {
-                var charsToRemove = new string[] { "[", "]" };
+                return Json(new { exists = false });
+            }
+            var charsToRemove = new string[] { "[", "]" };
 
-                foreach (var c in charsToRemove)
+            foreach (var c in charsToRemove)
+            {
+                dFieldIds = dFieldIds.Replace(c, string.Empty);
+            }
+
+
+            string[] Ids = dFieldIds.Split(",");
+
+
+
+            int Emplyeid = Convert.ToInt32(Ids[0]);
+
+
+            foreach (var i in Ids.Skip(1))
+            {
+                int id = Convert.ToInt32(i);
+
+                var RequsetOper = _DbContext.StudentRequestsOnOpportunities.Where(item => item.StudentRequestOpportunityId == id)
+                 .AsNoTracking().Include(item => item.trainingOpportunity).FirstOrDefault();
+
+                var DTA = new SemesterStudentAndEvaluationDetail
                 {
-                    dFieldIds = dFieldIds.Replace(c, string.Empty);
-                }
+                    SemesterMaster_SemesterMasterId = Mid,
+                    StudentRequest_StudentRequestId = id,
+                    AcademicSupervisor_EmployeeId = Emplyeid,
+                    TrainingSupervisor_EmployeeId = RequsetOper.trainingOpportunity.SupervisorEmployeeId,
+
+                    GeneralTrainingStatus = "Company Approved",
 
 
-                string[] Ids = dFieldIds.Split(",");
+                };
 
+                _DbContext.SemestersStudentAndEvaluationDetails.Add(DTA);
+                _DbContext.SaveChanges();
 
+                IEnumerable<StudentSemesterEvaluationMark> HasStudentSemesterEvaluationMarks = Enumerable.Empty<StudentSemesterEvaluationMark>();
 
-                int Emplyeid = Convert.ToInt32(Ids[0]);
+                HasStudentSemesterEvaluationMarks = _DbContext.StudentSemesterEvaluationMarks.FromSqlRaw("SELECT DISTINCT * FROM StudentSemesterEvaluationMarks WHERE SemesterStudentAndEvaluationDetail_DetailId " +
+                       $"IN (SELECT SemesterStudentAndEvaluationDetailId FROM SemestersStudentAndEvaluationDetails WHERE SemesterMaster_SemesterMasterId " +
+                       $"IN (SELECT SemesterTrainingSettingMasterId FROM SemestersTrainingSettingMaster WHERE SemesterMaster_SemesterMasterId = {Mid}))").AsNoTracking().ToList();
 
-
-                foreach (var i in Ids.Skip(1))
+                if (HasStudentSemesterEvaluationMarks.Any())
                 {
-                    int id = Convert.ToInt32(i);
 
-                    var RequsetOper = _DbContext.StudentRequestsOnOpportunities.Where(item => item.StudentRequestOpportunityId == id)
-                     .AsNoTracking().Include(item => item.trainingOpportunity).FirstOrDefault();
+                    var ThisStudentSemesterEvaluationDetail = _DbContext.SemestersStudentAndEvaluationDetails.Where(item => item.StudentRequest_StudentRequestId == id).AsNoTracking().FirstOrDefault();
 
-                    var DTA = new SemesterStudentAndEvaluationDetail
-                    {
-                        SemesterMaster_SemesterMasterId = Mid,
-                        StudentRequest_StudentRequestId = id,
-                        AcademicSupervisor_EmployeeId = Emplyeid,
-                        TrainingSupervisor_EmployeeId = RequsetOper.trainingOpportunity.SupervisorEmployeeId,
-
-                        GeneralTrainingStatus = "Company Approved",
-
-
-                    };
-
-                    _DbContext.SemestersStudentAndEvaluationDetails.Add(DTA);
-                    _DbContext.SaveChanges();
-
-                    IEnumerable<StudentSemesterEvaluationMark> HasStudentSemesterEvaluationMarks = Enumerable.Empty<StudentSemesterEvaluationMark>();
-
-                    HasStudentSemesterEvaluationMarks = _DbContext.StudentSemesterEvaluationMarks.FromSqlRaw("SELECT DISTINCT * FROM StudentSemesterEvaluationMarks WHERE SemesterStudentAndEvaluationDetail_DetailId " +
-                           $"IN (SELECT SemesterStudentAndEvaluationDetailId FROM SemestersStudentAndEvaluationDetails WHERE SemesterMaster_SemesterMasterId " +
-                           $"IN (SELECT SemesterTrainingSettingMasterId FROM SemestersTrainingSettingMaster WHERE SemesterMaster_SemesterMasterId = {Mid}))").AsNoTracking().ToList();
-
-                    if (HasStudentSemesterEvaluationMarks.Any())
+                    foreach (var m in HasStudentSemesterEvaluationMarks)
                     {
 
-                        var ThisStudentSemesterEvaluationDetail = _DbContext.SemestersStudentAndEvaluationDetails.Where(item => item.StudentRequest_StudentRequestId == id).AsNoTracking().FirstOrDefault();
 
-                        foreach (var m in HasStudentSemesterEvaluationMarks)
+                        var NewStudentSemesterEvaluationMark = new StudentSemesterEvaluationMark()
                         {
 
+                            SemesterStudentAndEvaluationDetail_DetailId = ThisStudentSemesterEvaluationDetail.SemesterStudentAndEvaluationDetailId,
+                            DepartmentAssessmentTypeDetail_DetailId = m.DepartmentAssessmentTypeDetail_DetailId
 
-                            var NewStudentSemesterEvaluationMark = new StudentSemesterEvaluationMark()
-                            {
-
-                                SemesterStudentAndEvaluationDetail_DetailId = ThisStudentSemesterEvaluationDetail.SemesterStudentAndEvaluationDetailId,
-                                DepartmentAssessmentTypeDetail_DetailId = m.DepartmentAssessmentTypeDetail_DetailId
-
-                            };
+                        };
 
 
-                            _DbContext.StudentSemesterEvaluationMarks.Add(NewStudentSemesterEvaluationMark);
-                        }
-
-                        _DbContext.SaveChanges();
-
+                        _DbContext.StudentSemesterEvaluationMarks.Add(NewStudentSemesterEvaluationMark);
                     }
 
+                    _DbContext.SaveChanges();
 
                 }
-
-                TempData["success"] = "تم تعيين المشرف الاكاديمي للطلاب ";
 
 
             }
 
 
+            TempData["success"] = "تم تعيين المشرف الاكاديمي للطلاب ";
 
-
-            return Json(new { Exists = false });
+            return Json(new { Exists = true });
 
         }
 
+        public void CnangeToastr()
+        {
+            TempData["success"] = "تم تعيين المشرف الاكاديمي للطلاب ";
+        }
 
         [HttpGet]
         public IActionResult GetStudentsList(string? gender, int? UpdwGPA, int? UpdwHOUERS, int? StutReqStatus)
@@ -2002,7 +2003,7 @@ namespace TadarbProject.Controllers
 
                         return Json(new { Students });
                     }
-                     
+
 
                 }
 

@@ -67,8 +67,8 @@ namespace TadarbProject.Controllers
 
             TraingOper = _DbContext.TrainingOpportunities.FromSqlRaw($"Select * from  TrainingOpportunities where Branch_BranchId = {Branch.BranchId} And AbilityofSubmissionStatus != 'Stop' ").AsNoTracking().ToList();
 
-             int? ReqSum= 0; 
-            
+            int? ReqSum = 0;
+
             foreach (var i in TraingOper)
             {
                 ReqSum += i.RequestedOpportunities;
@@ -121,7 +121,7 @@ namespace TadarbProject.Controllers
             ViewBag.Username = user.FullName;
 
 
-          
+
             return View();
         }
 

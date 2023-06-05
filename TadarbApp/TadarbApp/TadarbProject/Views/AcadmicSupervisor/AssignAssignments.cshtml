@@ -117,7 +117,13 @@
 
                 <div class="d-flex justify-content-center">
 
+                    <a asp-controller="AcadmicSupervisor" asp-action="AssignSemester" class="btn btn-lg btn-secondary" style="font-size:18px; color:black; background-color:#bac9d0;">العودة للخلف</a>
+
+                    &nbsp; &nbsp;  &nbsp;
+
                     <a class="btn btn-lg " style="background-color:#e6e291; font-size:18px;" onclick="AddSP()">رفع التقرير</a>
+
+
 
                 </div><br /><br />
 
@@ -216,8 +222,6 @@
 
                             window.location.replace('@Url.Action("AssignAssignments",new {Mid = ViewBag.SemesterMasterId})');
                         }
-
-
 
 
 
