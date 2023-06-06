@@ -7,10 +7,11 @@
     <link rel="stylesheet" href="~/css/Addbranches.css" asp-append-version="true" />
 
 </head>
-
+<br />
+<br />
 <partial name="_Notification" />
-<body style="background: linear-gradient(
-#e6edf3,#acc3d8) ">
+<body style="background-color:#acc3d8;">
+
 
     <div class="row">
 
@@ -87,25 +88,24 @@
 
 
 
-                <div class="col-md-4 " style="background-color:white" id="myChart">
+                <div class="col-md-4 " style="background-color:#acc3d8;direction:ltr;" id="myChart">
                 </div>
 
                 <div class="col-md-4 ">
-                    <div class="card mb-3 text-center" style="max-width: 30rem; background: linear-gradient(#9DB2BF, #526D82
-);">
+                    <div class="card mb-3 text-center" style="max-width: 30rem; background: linear-gradient(#B9EDDD, #569DAA);">
                         <div class="card-body">
                             <h class="card-title" style="font-size:45px">
-                                <i class="fa-solid fa-file-signature" style="color:white"></i>
+                                <i class="fa-solid fa-user-check" style="color: #000000;"></i>
                             </h>
-                            <p class="card-text" style="font-weight:bold;font-size:60px;color:white">@ViewBag.AllStudent </p>
-                            <p class="card-text" style="font-weight:bold;font-size:25px;color:white"> طلاب الكلية المسجلين</p>
+                            <p class="card-text" style="font-weight:bold;font-size:60px;color:black">@ViewBag.AllStudent </p>
+                            <p class="card-text" style="font-weight:bold;font-size:25px;color:black"> طلاب الكلية المسجلين</p>
 
                         </div>
                     </div>
-                    <div class="card text-white bg-info mb-3 text-center" style="max-width: 30rem;background: linear-gradient(#C7E8CA, #DDF7E3);">
+                    <div class="card text-white bg-info mb-3 text-center" style="max-width: 30rem;background: linear-gradient(#D6E8DB, #C1D0B5);">
                         <div class="card-body">
                             <h class="card-title" style="font-size:45px">
-                                <i class="fa-solid fa-circle-check" style="color: #5D9C59;"></i>
+                                <i class="fa-solid fa-user-xmark" style="color: #000000;"></i>
                             </h>
                             <p class="card-text" style="font-weight:bold;font-size:60px;color:black">@ViewBag.NotAssign</p>
                             <p class="card-text" style="font-weight:bold;font-size:25px; color:black">طلاب لم يتم تعيين لهم مشرف</p>
@@ -121,7 +121,7 @@
                                 <i class="fa-solid fa-people-roof" style="color: #393E46;"></i>
                             </h>
                             <p class="card-text" style="font-weight:bold;font-size:60px;color:black">@ViewBag.Student</p>
-                            <p class="card-text" style="font-weight:bold;font-size:25px;color:black">طلاب قيد التدريب </p>
+                            <p class="card-text" style="font-weight:bold;font-size:25px;color:black"> عدد طلاب قيد التدريب </p>
 
                         </div>
                     </div>
@@ -166,8 +166,12 @@
                 title: 'نسب الطلاب المتدربين حسب الشركات',
                 pieHole: 0.4,
                 pieHole: 0.4,
-             
-                colors: ['#6096B4', '#93BFCF', '#BDCDD6', '#EEE9DA', '#325d73']
+                width: 500,
+                height: 500,
+                colors: ['#6096B4', '#93BFCF', '#BDCDD6', '#EEE9DA', '#325d73'],
+                backgroundColor: '#acc3d8',
+                fontSize: 20,
+                bold: true,
             };
 
             $(document).ready(function () {

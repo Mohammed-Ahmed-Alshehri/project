@@ -20,19 +20,20 @@
                 list-style-type: none;
                 width: 25%;
                 float: left;
-                font-size: 12px;
+                font-size: 22px;
                 position: relative;
                 text-align: center;
                 text-transform: uppercase;
-                color: #7d7d7d;
+                color: black;
                 font-weight: bolder;
+
             }
 
                 .progressbar li:before {
                     width: 15px;
                     height: 15px;
                     content: '';
-                    line-height: 30px;
+                    line-height: 50px;
                     border: 2px solid #7d7d7d;
                     background-color: #7d7d7d;
                     display: block;
@@ -59,7 +60,7 @@
                 }
 
                 .progressbar li.active:before {
-                    border-color: #55b776;
+                    border-color: darkgreen;
                     background-color: #55b776;
                     transition: all .8s;
                 }
@@ -71,7 +72,8 @@
 
     </style>
 </head>
-
+<br />
+<br />
 <partial name="_Notification" />
 <body style="background: linear-gradient(white,#5590ad);">
 
@@ -150,7 +152,7 @@
                     <div class="row">
                         <div class="col">
                             <ul id="progress-bar" class="progressbar">
-                                <li id="completeid">تم اكمال التدريب</li>
+                                <li id="completeid" >تم اكمال التدريب</li>
                                 <li id="approveid">تمت الموافقة على فرصة</li>
                                 <li id="applyid">تم التقديم على الفرص</li>
                                 <li class="active">الحساب نشط</li>
@@ -160,6 +162,8 @@
                     </div>
                 </div>
             </div>
+            <br /><br />
+
             <form asp-action="EditAccount" method="get">
                 <div class="card " style="border-radius: 25px;  margin-bottom:3cm; padding:5px 5px 5px 5px ; border-color:black; width:auto; height:auto;background-color:#eef3f6">
                     <div class="card" style="background-color:#5590ad;border-radius: 18px;

@@ -7,10 +7,11 @@
     <link rel="stylesheet" href="~/css/Addbranches.css" asp-append-version="true" />
 
 </head>
-
+<br />
+<br />
 <partial name="_Notification" />
-<body style="background: linear-gradient(
-#e6edf3,#acc3d8) ">
+<body style="background-color:#acc3d8;">
+
 
     <div class="row">
 
@@ -97,7 +98,7 @@
 
 
 
-                <div class="col-md-4 " style="background-color:white" id="piechart">
+                <div class="col-md-4 " style="background-color:#acc3d8;direction:ltr" id="piechart">
                 </div>
 
                 <div class="col-md-4 ">
@@ -125,20 +126,20 @@
                 </div>
 
                 <div class="col-md-4 mb-4 pb-2">
-                    <div class="card text-white  mb-3 text-center" style="max-width: 30rem;background: linear-gradient(#FFD369 , #EEEEEE); ">
+                    <div class="card text-white  mb-3 text-center" style="max-width: 30rem;background: linear-gradient(#F9F5EB, #E4DCCF );">
                         <div class="card-body">
                             <h class="card-title" style="font-size:45px">
-                                <i class="fa-solid fa-people-roof" style="color: #393E46;"></i>
+                                <i class="fa-solid fa-layer-group" style="color: #000000;"></i>
                             </h>
                             <p class="card-text" style="font-weight:bold;font-size:60px;color:black">@ViewBag.Oper</p>
                             <p class="card-text" style="font-weight:bold;font-size:25px;color:black">عدد الفرصة </p>
 
                         </div>
                     </div>
-                    <div class="card  mb-3 text-center" style="max-width: 30rem;background: linear-gradient(#B70404 , #FFF3E2); ">
+                    <div class="card  mb-3 text-center" style="max-width: 30rem;background: linear-gradient(#FFF9DE , #FFD3B0); ">
                         <div class="card-body">
                             <h class="card-title" style="font-size:45px">
-                                <i class="fa-solid fa-users"></i>
+                                <i class="fa-brands fa-slideshare" style="color: #000000;"></i>
                             </h>
                             <p class="card-text" style="font-weight:bold;font-size:60px;color:black">@ViewBag.Avalibe </p>
                             <p class="card-text" style="font-weight:bold;font-size:25px;color:black;">عدد المقاعد المتاحة</p>
@@ -176,8 +177,12 @@
                 title: 'نسب الطلاب المتدربين حسب الشركات',
                 pieHole: 0.4,
                 pieHole: 0.4,
-               
-                colors: ['#6096B4', '#93BFCF', '#BDCDD6', '#EEE9DA', '#325d73']
+                width: 500,
+                height: 500,
+                colors: ['#6096B4', '#93BFCF', '#BDCDD6', '#EEE9DA', '#325d73'],
+                backgroundColor: '#acc3d8',
+                fontSize: 20,
+                bold: true,
             };
 
             $(document).ready(function () {

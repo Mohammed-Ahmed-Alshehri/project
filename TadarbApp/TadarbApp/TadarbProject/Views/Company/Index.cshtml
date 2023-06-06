@@ -9,9 +9,9 @@
 </head>
 
 <partial name="_Notification" />
-<body style="background: linear-gradient(
-#e6edf3,#acc3d8) ">
-
+<body style="background-color:#acc3d8">
+    <br />
+    <br />
     <div class="row">
 
         <div class="col-sm-3" style="z-index:2;">
@@ -82,14 +82,14 @@
 
 
         </div>
-
+        
         <div class="col-sm-8" style="margin-bottom:10cm">
             <div class="row">
 
 
 
 
-                <div class="col-md-4 " style="background-color:white" id="piechart">
+                <div class="col-md-4 " style="background-color:#acc3d8;direction:ltr;" id="piechart">
                 </div>
 
                 <div class="col-md-4 ">
@@ -127,7 +127,7 @@
 
                         </div>
                     </div>
-                    <div class="card  mb-3 text-center" style="max-width: 30rem;background: linear-gradient(#B70404 , #FFF3E2); ">
+                    <div class="card  mb-3 text-center" style="max-width: 30rem;background: linear-gradient(#B70404 , #E1D7C6); ">
                         <div class="card-body">
                             <h class="card-title" style="font-size:45px">
                                 <i class="fa-solid fa-users"></i>
@@ -168,9 +168,13 @@
                 title: 'نسب الطلاب المتدربين حسب الشركات',
                 pieHole: 0.4,
                 pieHole: 0.4,
-                width: 330,
+                width: 500,
                 height: 500,
-                colors: ['#6096B4', '#93BFCF', '#BDCDD6', '#EEE9DA', '#325d73']
+                colors: ['#6096B4', '#93BFCF', '#BDCDD6', '#EEE9DA', '#325d73'],
+                backgroundColor: '#acc3d8',
+                fontSize: 20,
+                bold: true,
+                
             };
 
             $(document).ready(function () {

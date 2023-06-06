@@ -8,10 +8,11 @@
 
 
 </head>
+<br />
+<br />
 
 <partial name="_Notification" />
-<body style="background: linear-gradient(#1c4c64,#5590ad);">
-
+<body style="background-color:#acc3d8;">
     <div class="row">
         <div class="col-sm-3" style="z-index:2;">
 
@@ -93,7 +94,7 @@
 
 
 
-                <div class="col-md-4 " style="background-color:white ; direction:ltr;" id="myChart">
+                <div class="col-md-4 " style="background-color:#acc3d8 ; direction:ltr;" id="myChart">
                 </div>
 
                 <div class="col-md-4 ">
@@ -101,11 +102,11 @@
                         <div class="card-body">
                             <h class="card-title" style="font-size:45px">
 
-                                <i class="fa-solid fa-chart-simple"></i>
+                                <i class="fa-solid fa-chart-simple" style="color: white;"></i>
                             </h>
 
-                            <p class="card-text" style="font-weight:bold;font-size:60px;color:black">@ViewBag.AverageNumHours</p>
-                            <p class="card-text" style="font-weight:bold;font-size:25px; color:black"> متوسط ساعات المتدرب</p>
+                            <p class="card-text" style="font-weight:bold;font-size:60px;color:white">@ViewBag.AverageNumHours</p>
+                            <p class="card-text" style="font-weight:bold;font-size:25px; color:white"> متوسط ساعات المتدرب</p>
 
                         </div>
                     </div>
@@ -132,7 +133,8 @@
 
                         </div>
                     </div>
-                    <div class="card  mb-3 text-center" style="max-width: 30rem;background: linear-gradient(#B70404 , #FFF3E2); ">
+                    <div class="card  mb-3 text-center" style="max-width: 30rem;background: linear-gradient(#F8F4EA , #E1D7C6
+); ">
                         <div class="card-body">
                             <h class="card-title" style="font-size:45px">
                                 <i class="fa-solid fa-magnifying-glass-chart"></i>
@@ -241,8 +243,12 @@
                 title: 'نسب الطلاب المتدربين حسب الشركات',
                 pieHole: 0.4,
                 pieHole: 0.4,
-               
-                colors: ['#6096B4', '#93BFCF', '#BDCDD6', '#EEE9DA', '#325d73']
+                width: 500,
+                height: 500,
+                colors: ['#213555', '4F709C', '#9DB2BF', '#DDE6ED'],
+                backgroundColor: '#acc3d8',
+                fontSize: 20,
+                bold: true,
             };
 
             $(document).ready(function () {
