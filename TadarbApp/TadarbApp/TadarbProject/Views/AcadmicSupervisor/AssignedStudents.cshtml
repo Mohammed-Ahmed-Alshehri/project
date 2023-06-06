@@ -43,7 +43,7 @@
                     <li class="nav-item">
                         <a asp-controller="AcadmicSupervisor" asp-action="AssignSemester" class="nav-link text-dark font-italic bg-light ">
                             <i class="fa-solid fa-users-rectangle text-primary"></i>
-                            تسجيل الفصول
+                            الشعب الحالية
                         </a>
                     </li>
 
@@ -68,6 +68,7 @@
             <div class="card " style="border-radius: 25px; margin-top:2cm; margin-bottom:3cm; padding:5px 5px 5px 5px ; border-color:black;">
                 <div class="card-header" style="text-align: center;">
                     <h3>قائمة الطلاب المسجلين</h3>
+                    <a class="btn  float-start" asp-action="AssignSemester" style="background-color:gray"><i class="fa-solid fa-circle-left fa-lg" style="color: #ffffff;"></i></a>
 
 
                     <a asp-controller="DepartmentUniversity" asp-action="AddAcademicSupervisor" class="table-search float-end">
@@ -77,6 +78,8 @@
                 </div>
                 <div class="card-body">
                     <div class="table-responsive no-radius">
+
+
 
                         <table class="table table-hover " style="font-size:18px">
                             <thead>

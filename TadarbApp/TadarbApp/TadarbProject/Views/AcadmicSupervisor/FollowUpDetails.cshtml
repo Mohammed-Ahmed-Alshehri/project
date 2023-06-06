@@ -43,7 +43,7 @@
                     <li class="nav-item">
                         <a asp-controller="AcadmicSupervisor" asp-action="AssignSemester" class="nav-link text-dark font-italic bg-light ">
                             <i class="fa-solid fa-users-rectangle text-primary fa-fw"></i>
-                            الفصول المسجلة
+                            الشعب الحالية
                         </a>
                     </li>
 
@@ -226,7 +226,7 @@
 
                     <div class="col-md-12 text-center">
                         <a class="btn btn-secondary" href="@Url.Action("AssignedStudents",new {Mid = ViewBag.SSEMId})" id="BackButton">العودة للقائمة</a>
-                        <button type="button" class="btn btn-dark" onclick="Confirm()">انهاء متابعة الطالب</button>
+                        <button type="button" class="btn " style="background-color:#eb2842;color:white" onclick="Confirm()">انهاء متابعة الطالب</button>
                     </div>
                 </div>
 

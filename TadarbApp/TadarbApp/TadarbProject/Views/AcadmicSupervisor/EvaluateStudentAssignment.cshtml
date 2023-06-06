@@ -62,7 +62,7 @@
                     <li class="nav-item">
                         <a asp-controller="AcadmicSupervisor" asp-action="AssignSemester" class="nav-link text-dark font-italic bg-light ">
                             <i class="fa-solid fa-users-rectangle text-primary fa-fw"></i>
-                            الفصول المسجلة
+                           الشعب الحالية
                         </a>
                     </li>
 
@@ -90,7 +90,15 @@
 
                     <div class="card" style="background-color:#5590ad;">
                         <br />
-                        <h3 style="text-align: center;color:white">عرض التقارير</h3>
+                        <div class="card-header" style="text-align: center;">
+                            <h3 style="text-align: center;color:white">عرض التقارير</h3>
+
+                            <a class="btn  float-start" asp-action="AssignedStudentAssignments" style="background-color:gray"><i class="fa-solid fa-circle-left fa-lg" style="color: #ffffff;"></i></a>
+
+
+
+                        </div>
+                       
 
                     </div>
                     <br />

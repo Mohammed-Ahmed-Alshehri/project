@@ -96,14 +96,24 @@
 
         </div>
 
-        <div class="col-sm-7">
+        <div class="col-sm-8">
             <div class="card" style="border-radius: 25px; margin-top:2cm; margin-bottom:3cm;  border-color:black;background-color:#f2f5fa">
 
                 <div class="card">
 
                     <div class="card" style="background-color:#5590ad;">
                         <br />
+
                         <h3 style="text-align: center;color:white">تفاصيل التقرير</h3>
+                        <div class="card-header" style="text-align: center;">
+
+
+                            <a class="btn  float-start" asp-action="ViewAssignments" style="background-color:gray"><i class="fa-solid fa-circle-left fa-lg" style="color: #ffffff;"></i></a>
+
+
+                        </div>
+                       
+
 
                     </div>
                     <br /><br />
@@ -157,23 +167,25 @@
                         <button type="submit" class="btn " style="background-color:#e6e291"> إرفاق التقرير</button>
                     </form>
 
-                    <br /><br /><br />
+                    <br />
 
                     <div class="container-fluid" id="filediv" style="display:@ShowDoc; height:50vh;">
                         <iframe src="~/@Model.SupportiveDocumentsPath" type="application/pdf" style="border:none; height:100%; width:100%"></iframe>
                     </div>
+
+                     <br /> <br /> <br />
                 </div>
 
 
 
-                <br />
+                
                 <div class="row">
                 </div>
             </div>
 
         </div>
 
-        <div class="col-sm-2"></div>
+        <div class="col-sm-1"></div>
     </div>
 </body>
 
