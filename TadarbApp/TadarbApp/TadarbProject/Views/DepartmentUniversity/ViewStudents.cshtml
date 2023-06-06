@@ -41,19 +41,19 @@
         border-radius: 2px;
     }
 
-    .notification:hover {
-        background: red;
-    }
+        .notification:hover {
+            background: red;
+        }
 
-    .notification .badge {
-        position: absolute;
-        top: -10px;
-        right: -10px;
-        padding: 5px 10px;
-        border-radius: 50%;
+        .notification .badge {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            padding: 5px 10px;
+            border-radius: 50%;
             background: #145369;
-        color: white;
-    }
+            color: white;
+        }
 
 </style>
 
@@ -62,7 +62,7 @@
 <partial name="_Notification" />
 <body style="background: linear-gradient(#1c4c64,#5590ad);">
 
-    <div class="row" >
+    <div class="row">
 
         <div class="col-sm-3" style="z-index:2;">
 
@@ -100,7 +100,7 @@
                             إدارة الطلاب
                         </a>
                     </li>
-                    
+
                     <li class="nav-item">
                         <a asp-controller="DepartmentUniversity" asp-action="ViewAssessment" class="nav-link text-dark font-italic  ">
                             <i class="fa-solid fa-chart-simple "></i>
@@ -159,13 +159,15 @@
 
 
 
-                                    <button class="btn  btn-info notification" type="submit" onclick="ChangeStudentRequestStatus(1)" style="color:black;border:0px;font-size:18px;background-color:lightblue">الطلاب المتقدمين
+                                    <button class="btn  btn-info notification" type="submit" onclick="ChangeStudentRequestStatus(1)" style="color:black;border:0px;font-size:18px;background-color:lightblue">
+                                        الطلاب المتقدمين
                                         <span class="badge">@ViewBag.WaitingStudentCount</span>
                                     </button>
 
 
 
-                                    <button class="btn  btn-info notification" type="submit" onclick="ChangeStudentRequestStatus(2)" style="color:black;border:0px;font-size:18px;background-color:lightblue">الطلاب غير المتقدمين
+                                    <button class="btn  btn-info notification" type="submit" onclick="ChangeStudentRequestStatus(2)" style="color:black;border:0px;font-size:18px;background-color:lightblue">
+                                        الطلاب غير المتقدمين
                                         <span class="badge">@ViewBag.HasNotApplyStudentCount</span>
                                     </button>
 
@@ -178,7 +180,8 @@
 
 
 
-                                    <button class="btn  btn-info notification" type="submit" onclick="ChangeStudentRequestStatus(4)" style="color:black;border:0px;font-size:18px;background-color:lightblue">الطلاب المقبولين
+                                    <button class="btn  btn-info notification" type="submit" onclick="ChangeStudentRequestStatus(4)" style="color:black;border:0px;font-size:18px;background-color:lightblue">
+                                        الطلاب المقبولين
 
                                         <span class="badge">@ViewBag.AcceptedStudentCount</span>
                                     </button>
@@ -260,7 +263,7 @@
 
                 </div>
 
-                
+
 
 
             </div>
@@ -318,7 +321,7 @@
             UOrDGPA = x;
 
 
-            
+
             FillTable(Gender, UOrDGPA, UOrDHOUERS, StudentRequestStatus);
         }
 
@@ -348,7 +351,7 @@
 
 
 
-        function FillTable(gr, updwG, updwH , StRqSa) {
+        function FillTable(gr, updwG, updwH, StRqSa) {
 
             var body = "";
 
@@ -376,11 +379,11 @@
                                 + "<td class='text - nowrap'> " + value.gpa + "</td>"
                                 + "<td class='text - nowrap'>" + value.user.phone + "</td>"
                                 + "<td class='text - nowrap'>" + value.user.userEmail + '</td><td class=text-center font-weight-600  >' +
-                                '<a class="btn btn-outline-primary" href="//localhost:7122/DepartmentUniversity/DetailStudent?id=' +
+                                '<a class="btn btn-outline-primary" href="@Url.Action("DetailStudent")?id=' +
                                 value.traineeId
                                 + ' " >تفاصيل الطالب</a>' + '</td></tr>';
                             + "</tr>";
-
+                            // '<a class="btn btn-outline-primary" href="//localhost:7122/DepartmentUniversity/DetailStudent?id='
 
                             //console.log(value);
 
@@ -437,11 +440,11 @@
                                 + "<td class='text - nowrap'> " + value.gpa + "</td>"
                                 + "<td class='text - nowrap'>" + value.user.phone + "</td>"
                                 + "<td class='text - nowrap'>" + value.user.userEmail + '</td><td class=text-center font-weight-600  >' +
-                                '<a class="btn btn-outline-primary" href="//localhost:7122/DepartmentUniversity/DetailStudent?id=' +
+                                '<a class="btn btn-outline-primary" href="@Url.Action("DetailStudent")?id=' +
                                 value.traineeId
                                 + ' " >تفاصيل الطلب</a>' + '</td></tr>';
                             + "</tr>";
-
+                            // '<a class="btn btn-outline-primary" href="//localhost:7122/DepartmentUniversity/DetailStudent?id='
                             //console.log(value);
 
                         });

@@ -297,9 +297,9 @@
                                 + "<td class='text - nowrap'> " + value.gender + "</td>"
                                 + "<td class='text - nowrap'> " + value.department.universityCollege.city.country.countryName + ", " + value.department.universityCollege.city.cityName + "</td>"
                                 + "<td class='text - nowrap'> " + value.gpa + "</td>"
-                                + "<td class='text - nowrap'> " + `<a class="btn btn-outline-primary" href='//localhost:7122/TrainingSupervisor/TraineeEvaluation?id=${value.traineeId}'>تابع الطالب</a>` + '</td></tr>'
+                                + "<td class='text - nowrap'> " + `<a class="btn btn-outline-primary" href='@Url.Action("TraineeEvaluation")?id=${value.traineeId}'>تابع الطالب</a>` + '</td></tr>'
                                 + "";
-
+                            //localhost:7122/TrainingSupervisor/TraineeEvaluation?id=${value.traineeId}
 
                             if (key == 0) {
                                 c = 1;

@@ -178,7 +178,7 @@ namespace TadarbProject.Controllers
 
             }
 
-         
+
 
             ViewBag.Name = Name;
 
@@ -266,6 +266,7 @@ namespace TadarbProject.Controllers
 
 
             ViewBag.SemesterMasterId = Mid;
+
             return View();
 
         }
@@ -273,7 +274,7 @@ namespace TadarbProject.Controllers
 
 
         [HttpGet]
-        public IActionResult AssignedStudentAssignments(int? StuRqId)
+        public IActionResult AssignedStudentAssignments(int? StuRqId, int? SSEMId)
         {
             if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(UserId.ToString()))
             {
@@ -309,6 +310,7 @@ namespace TadarbProject.Controllers
 
 
             ViewBag.CurrentStuRqId = StuRqId;
+            ViewBag.SemesterMasterId = SSEMId;
 
             return View(Assignments);
 
@@ -352,6 +354,7 @@ namespace TadarbProject.Controllers
 
 
             ViewBag.CurrentStuRqId = StuRqId;
+            ViewBag.SemesterMasterId = SSEMId;
 
             return View(Assignment);
 
@@ -359,7 +362,7 @@ namespace TadarbProject.Controllers
 
 
         [HttpPost]
-        public IActionResult EvaluateStudentAssignment(StudentSemesterEvaluationMark Assignment, int? StuRqId)
+        public IActionResult EvaluateStudentAssignment(StudentSemesterEvaluationMark Assignment, int? StuRqId ,int? SSEMId)
         {
             if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(UserId.ToString()))
             {
@@ -391,7 +394,7 @@ namespace TadarbProject.Controllers
 
             if (Assignment.StudentMark == null)
             {
-                return RedirectToAction("AssignedStudentAssignments", new { StuRqId = StuRqId });
+                return RedirectToAction("AssignedStudentAssignments", new { StuRqId = StuRqId, SSEMId = SSEMId });
             }
 
             var StudentAndEvaluationDetails = _DbContext.SemestersStudentAndEvaluationDetails.Where(item => item.SemesterStudentAndEvaluationDetailId == Assignment.SemesterStudentAndEvaluationDetail_DetailId)
@@ -419,7 +422,7 @@ namespace TadarbProject.Controllers
 
             TempData["success"] = "تم تقيم التقرير بنجاح.";
 
-            return RedirectToAction("AssignedStudentAssignments", new { StuRqId = StuRqId });
+            return RedirectToAction("AssignedStudentAssignments", new { StuRqId = StuRqId, SSEMId = SSEMId });
 
         }
 

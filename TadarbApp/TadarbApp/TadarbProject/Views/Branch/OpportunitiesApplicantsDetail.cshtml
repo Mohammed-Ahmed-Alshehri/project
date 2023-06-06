@@ -325,14 +325,16 @@
 
 
 
-                        window.location.replace(`//localhost:7122/Branch/OpportunitiesApplicants?id=@Model.TrainingOpportunity_TrainingOpportunityId`);
+                        window.location.replace(`@Url.Action("OpportunitiesApplicants")?id=@Model.TrainingOpportunity_TrainingOpportunityId`);
 
 
-
+                        //localhost:7122/Branch/OpportunitiesApplicants?id=@Model.TrainingOpportunity_TrainingOpportunityId`
                     }
                     else {
 
-                        window.location.replace(`//localhost:7122/Branch/OpportunitiesApplicants?id=@Model.TrainingOpportunity_TrainingOpportunityId`);
+                        window.location.replace(`@Url.Action("OpportunitiesApplicants")?id=@Model.TrainingOpportunity_TrainingOpportunityId`);
+
+                        // window.location.replace(`//localhost:7122/Branch/OpportunitiesApplicants?id=@Model.TrainingOpportunity_TrainingOpportunityId`);
 
                     }
 
@@ -359,14 +361,18 @@
                     if (data.success) {
 
 
+                        window.location.replace(`@Url.Action("OpportunitiesApplicants")?id=@Model.TrainingOpportunity_TrainingOpportunityId`);
 
-                        window.location.replace(`//localhost:7122/Branch/OpportunitiesApplicants?id=@Model.TrainingOpportunity_TrainingOpportunityId`);
+                       // window.location.replace(`//localhost:7122/Branch/OpportunitiesApplicants?id=@Model.TrainingOpportunity_TrainingOpportunityId`);
 
 
 
                     }
                     else {
-                        window.location.replace(`//localhost:7122/Branch/OpportunitiesApplicants?id=@Model.TrainingOpportunity_TrainingOpportunityId`);
+
+                        window.location.replace(`@Url.Action("OpportunitiesApplicants")?id=@Model.TrainingOpportunity_TrainingOpportunityId`);
+
+                        //window.location.replace(`//localhost:7122/Branch/OpportunitiesApplicants?id=@Model.TrainingOpportunity_TrainingOpportunityId`);
                     }
 
 
@@ -381,7 +387,9 @@
 
         function GoBack()
         {
-            window.location.replace(`//localhost:7122/Branch/OpportunitiesApplicants?id=@Model.TrainingOpportunity_TrainingOpportunityId`);
+            window.location.replace(`@Url.Action("OpportunitiesApplicants")?id=@Model.TrainingOpportunity_TrainingOpportunityId`);
+
+           //window.location.replace(`//localhost:7122/Branch/OpportunitiesApplicants?id=@Model.TrainingOpportunity_TrainingOpportunityId`);
         }
 
     </script>

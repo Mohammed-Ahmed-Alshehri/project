@@ -174,9 +174,9 @@
                 </div>
 
             </div>
-       
-    <div class="col-sm-2"></div>
-    </div>
+
+            <div class="col-sm-2"></div>
+        </div>
     </div>
 </body>
 @section Scripts{
@@ -219,10 +219,10 @@
                             //console.log(data.assiment[0].assessmentTypeName);
                             $.each(data.assiment, function (key, value) {
 
-                               
+
                                 list_fieldHTML += '<option value="' + value.assessmentTypeId + '">' + value.assessmentTypeName + '</option >';
 
-                             });
+                            });
                             list_fieldHTML += '</select> </div></div><div class="col-xs-7 col-sm-7 col-md-7"> <label for="list[' + x + '][]">الدرجة المطلوبة</label><div class="form-group"><input name="list[' + x + '][]" type="text" placeholder="ادخل الدرجة المناسبة للتقييم" class="form-control AssessmentInName"/></div></div> <div class="col-xs-1 col-sm-7 col-md-1"><label for="list[' + x + '][]"> إزالة</label>   <div class="form-group">  <a href="javascript:void(0);" class="list_remove_button btn btn-danger">-</a>  </div> </div> </div>'; //New input field html
 
                             x++;  //Increment field counter
@@ -283,6 +283,9 @@
                 return;
             }
 
+
+
+
             var inputs = $(".AssessmentInName");
 
             for (var i = 0; i < inputs.length; i++) {
@@ -294,6 +297,20 @@
             //console.log(AssessmentRequiredMarks.toLocaleString());
 
             if (AssessmentRequiredMarks.toLocaleString() == "") {
+
+                DisplayMessage(0);
+
+                return;
+            }
+
+            var filteredAssessmentIds = AssessmentIds.filter(elm => elm);
+            var filteredAssessmentRequiredMarks = AssessmentRequiredMarks.filter(elm => elm);
+
+
+            if (filteredAssessmentIds.length !== filteredAssessmentRequiredMarks.length) {
+
+                //console.log(AssessmentIds.length);
+               //console.log(AssessmentRequiredMarks.length);
 
                 DisplayMessage(0);
 
@@ -358,7 +375,7 @@
 
             var AssessmentRequiredMarksStar = AssessmentRequiredMarks.toLocaleString();
 
-            PostMasterAndDetails(StartActivationDate, RequireCompletionHours, AcademicSupervisorMarks, TrainingSupervisorMarks,
+              PostMasterAndDetails(StartActivationDate, RequireCompletionHours, AcademicSupervisorMarks, TrainingSupervisorMarks,
                 AssessmentIdsStar, AssessmentRequiredMarksStar);
 
 
@@ -438,25 +455,25 @@
 
 
         // Example starter JavaScript for disabling form submissions if there are invalid fields
-(function () {
-  'use strict'
+        (function () {
+            'use strict'
 
-  // Fetch all the forms we want to apply custom Bootstrap validation styles to
-  var forms = document.querySelectorAll('.needs-validation')
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.querySelectorAll('.needs-validation')
 
-  // Loop over them and prevent submission
-  Array.prototype.slice.call(forms)
-    .forEach(function (form) {
-      form.addEventListener('submit', function (event) {
-        if (!form.checkValidity()) {
-          event.preventDefault()
-          event.stopPropagation()
-        }
+            // Loop over them and prevent submission
+            Array.prototype.slice.call(forms)
+                .forEach(function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (!form.checkValidity()) {
+                            event.preventDefault()
+                            event.stopPropagation()
+                        }
 
-        form.classList.add('was-validated')
-      }, false)
-    })
-})()
+                        form.classList.add('was-validated')
+                    }, false)
+                })
+        })()
 
     </script>
 

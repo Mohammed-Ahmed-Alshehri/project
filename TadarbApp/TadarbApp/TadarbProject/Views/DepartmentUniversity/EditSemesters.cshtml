@@ -87,7 +87,7 @@
 
                     <form asp-controller="DepartmentUniversity" asp-action="EditSemesters" method="post" class="needs-validation" enctype="multipart/form-data" novalidate>
 
-                        <input asp-for="SemesterTrainingSettingMaster.SemesterTrainingSettingMasterId" required hidden/>
+                        <input asp-for="SemesterTrainingSettingMaster.SemesterTrainingSettingMasterId" required hidden />
 
 
                         <div class="row">
@@ -97,7 +97,7 @@
 
                                 <div class="form-outline" style="text-align: right;">
                                     <i class="fa-solid fa-user"></i>
-                                    <label class="form-label" for="FullName"  style="font-size:20px;">السنة</label>
+                                    <label class="form-label" for="FullName" style="font-size:20px;">السنة</label>
 
                                     <input asp-for="SemesterTrainingSettingMaster.AcademicYear" placeholder="2023" type="text" id="FullNameID" class="form-control form-control-lg" required />
 
@@ -144,7 +144,7 @@
                             <label class="form-label" for="EmployeeSSN" style="font-size:20px;">    نوع التدريب </label>
 
                             <select asp-for="SemesterTrainingSettingMaster.TrainingType_TrainingTypeId" asp-items="@Model.TrainingTypeListItems" class="form-select" id="validationCustom04" required>
-                            <option selected disabled value="">-- نوع التدريب --</option>
+                                <option selected disabled value="">-- نوع التدريب --</option>
 
                             </select>
                             <div class="invalid-feedback" style="text-align: right;"> الرجاء تحديد نوع التدريب  </div>
@@ -156,7 +156,7 @@
                             <label for="LogoPathFile" class="form-label mt-4" style="font-size:20px;"> ارفق ملف التقييم الخاص للمشرف التدريبي </label>
 
                             @* //(imgFile)هنا اسم الملف الصورة مهم يطابق الاسم في الكنترولر لنه سيتم ارساله مع المودل.*@
-                            <input type="file" id="uploadField"  name="CvFile" class="form-control" accept=".pdf"  />
+                            <input type="file" id="uploadField" name="CvFile" class="form-control" accept=".pdf" />
                             <div class="invalid-feedback" style="text-align: right;"> الرجاء إرفاق الملف بصيغة(.pdf) </div>
 
                         </div>
@@ -178,11 +178,11 @@
 
                         </div>
 
-                       @* <div class="mb-4 pb-2">
-                            <i class="fa-solid fa-lock"></i>
-                            <label class="form-label" for="ConfirmUserPassword" style="font-size:20px;">تأكيد كلمة المرور</label>
-                            <input asp-for="userAcount.UserPassword" type="password" id="ConfirmUserPasswordID" class="form-control form-control-lg" required />
-                            <div class="invalid-feedback" id="ConfirmPasswordMassage" style="text-align: right;"> الرجاء تأكيد كلمة المرور </div>
+                        @* <div class="mb-4 pb-2">
+                        <i class="fa-solid fa-lock"></i>
+                        <label class="form-label" for="ConfirmUserPassword" style="font-size:20px;">تأكيد كلمة المرور</label>
+                        <input asp-for="userAcount.UserPassword" type="password" id="ConfirmUserPasswordID" class="form-control form-control-lg" required />
+                        <div class="invalid-feedback" id="ConfirmPasswordMassage" style="text-align: right;"> الرجاء تأكيد كلمة المرور </div>
                         </div>*@
 
                         <br />
@@ -207,33 +207,33 @@
 </body>
 
 @section Scripts{
-    @{
 
 
-        <script>
-            // Example starter JavaScript for disabling form submissions if there are invalid fields
-            (function () {
-                'use strict'
 
-                // Fetch all the forms we want to apply custom Bootstrap validation styles to
-                var forms = document.querySelectorAll('.needs-validation')
+    <script>
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+        (function () {
+            'use strict'
 
-                // Loop over them and prevent submission
-                Array.prototype.slice.call(forms)
-                    .forEach(function (form) {
-                        form.addEventListener('submit', function (event) {
-                            if (!form.checkValidity()) {
-                                event.preventDefault()
-                                event.stopPropagation()
-                            }
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.querySelectorAll('.needs-validation')
 
-                            form.classList.add('was-validated')
-                        }, false)
-                    })
-            })()
+            // Loop over them and prevent submission
+            Array.prototype.slice.call(forms)
+                .forEach(function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (!form.checkValidity()) {
+                            event.preventDefault()
+                            event.stopPropagation()
+                        }
+
+                        form.classList.add('was-validated')
+                    }, false)
+                })
+        })()
 
 
-        </script>
+    </script>
 
-    }
+
     }

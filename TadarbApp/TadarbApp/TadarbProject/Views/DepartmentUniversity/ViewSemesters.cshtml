@@ -153,12 +153,19 @@
                                         </td>
 
                                         <td class="text-center">
-                                            <a href="//localhost:7122/DepartmentUniversity/SemeterEvalDetail?id=@item.SemesterTrainingSettingMasterId" class="btn btn-primary">
+                                            <a href="@Url.Action("SemeterEvalDetail")?id=@item.SemesterTrainingSettingMasterId" class="btn btn-primary">
                                                 <i class="bi bi-person-plus-fill"></i>
                                             </a>
+
+                                     @*       <a href="//localhost:7122/DepartmentUniversity/SemeterEvalDetail?id=@item.SemesterTrainingSettingMasterId" class="btn btn-primary">
+                                                <i class="bi bi-person-plus-fill"></i>
+                                            </a>*@
+
                                         </td>
                                         <td class="text-center">
-                                            <a class="btn btn-info" href="//localhost:7122/DepartmentUniversity/EditSemesters?id=@item.SemesterTrainingSettingMasterId">  <i class="fa-solid fa-pen-to-square"></i></a>
+
+                                            <a class="btn btn-info" href="@Url.Action("EditSemesters")?id=@item.SemesterTrainingSettingMasterId">
+                                           @* <a class="btn btn-info" href="//localhost:7122/DepartmentUniversity/EditSemesters?id=@item.SemesterTrainingSettingMasterId">*@  <i class="fa-solid fa-pen-to-square"></i></a>
                                         </td>
 
                                         <td class="text-center">

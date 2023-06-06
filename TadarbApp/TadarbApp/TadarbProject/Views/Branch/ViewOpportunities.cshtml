@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<TrainingOpportunity>
 
 @{
-    ViewData["Title"] = "اضافة حساب مشرف تدريبي";
+    ViewData["Title"] = "قائمة الفرص";
 }
 <head>
 
@@ -202,15 +202,21 @@
                                         </td>
 
                                         <td>
-                                            <a class="btn btn-primary" href="//localhost:7122/Branch/EditOpportunities?id=@item.TrainingOpportunityId" fdprocessedid=" ezqldw"><i class="fa-regular fa-pen-to-square"></i></a>
+                                            <a class="btn btn-primary" href="@Url.Action("EditOpportunities")?id=@item.TrainingOpportunityId" fdprocessedid=" ezqldw"><i class="fa-regular fa-pen-to-square"></i></a>
+
+@*                                            <a class="btn btn-primary" href="//localhost:7122/Branch/EditOpportunities?id=@item.TrainingOpportunityId" fdprocessedid=" ezqldw"><i class="fa-regular fa-pen-to-square"></i></a>
+*@
 
                                         </td>
 
                                         <td>
                                             <input asp-for="@item.TrainingOpportunityId" hidden/>
-                                     
-      
-                                            <a class="btn notification" style="background-color:#ecd436;" href="//localhost:7122/Branch/OpportunitiesApplicants?id=@item.TrainingOpportunityId">
+
+
+                                            <a class="btn notification" style="background-color:#ecd436;" href="@Url.Action("OpportunitiesApplicants")?id=@item.TrainingOpportunityId">
+
+@*                                                <a class="btn notification" style="background-color:#ecd436;" href="//localhost:7122/Branch/OpportunitiesApplicants?id=@item.TrainingOpportunityId">
+*@
                                                 <span class="badge">@item.RequestedOpportunities</span>
 
                                                 <i class="fa-solid  fa-person-circle-check" style="color:black;"></i>

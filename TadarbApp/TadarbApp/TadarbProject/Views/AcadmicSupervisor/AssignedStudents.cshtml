@@ -121,7 +121,7 @@
                                         <td class="text-nowrap">  @item.trainingOpportunity.Branch.organization.OrganizationName  -   @item.trainingOpportunity.Branch.BranchName	 </td>
 
                                         <td class="text-center">
-                                            <a href="@Url.Action("AssignedStudentAssignments",new {StuRqId=item.StudentRequestOpportunityId})" class="btn btn-primary">
+                                            <a href="@Url.Action("AssignedStudentAssignments",new {StuRqId=item.StudentRequestOpportunityId , SSEMId = ViewBag.SemesterMasterId})" class="btn btn-primary">
                                                 <i class="bi bi-file-earmark-check"></i>
                                             </a>
                                         </td>

@@ -16,7 +16,7 @@
 <partial name="_Notification" />
 <body style="background: linear-gradient(#1c4c64,#5590ad);">
 
-    <div class="row" >
+    <div class="row">
 
         <div class="col-sm-4" style="z-index:2;">
 
@@ -41,11 +41,11 @@
                     </li>
 
 
-                   <li class="nav-item">
+                    <li class="nav-item">
                         <a asp-controller="DepartmentUniversity" asp-action="ViewAcademicSupervisors" class="nav-link text-dark font-italic  bg-light  ">
                             <i class="fa-solid fa-users-gear text-primary"></i>
-                           إدارة المشرفين
-                    </a>
+                            إدارة المشرفين
+                        </a>
                     <li class="nav-item">
                         <a asp-controller="DepartmentUniversity" asp-action="ViewStudents" class="nav-link text-dark font-italic ">
                             <i class="fa-solid fa-people-roof"></i>
@@ -68,7 +68,7 @@
                             ادارة الشعب
                         </a>
                     </li>
-                   
+
                 </ul>
 
 
@@ -113,7 +113,7 @@
                             </thead>
                             <tbody>
 
-                             
+
 
 
                                 @foreach (var item in Model)
@@ -132,9 +132,14 @@
                                         <td class="text-nowrap"> @item.UserEmail	</td>
 
                                         <td class="text-center">
-                                            <a href="//localhost:7122/DepartmentUniversity/ViewAcademicSupervisorStudents?id=@item.UserId" class="btn btn-primary">
+                                            <a href="@Url.Action("ViewAcademicSupervisorStudents")?id=@item.UserId" class="btn btn-primary">
                                                 <i class="bi bi-people-fill"></i>
                                             </a>
+
+                                            @*   <a href="//localhost:7122/DepartmentUniversity/ViewAcademicSupervisorStudents?id=@item.UserId" class="btn btn-primary">
+                                        <i class="bi bi-people-fill"></i>
+                                        </a>*@
+
                                         </td>
 
 

@@ -1096,36 +1096,49 @@ namespace TadarbProject.Controllers
                 _DbContext.SemestersStudentAndEvaluationDetails.Add(DTA);
                 _DbContext.SaveChanges();
 
-                IEnumerable<StudentSemesterEvaluationMark> HasStudentSemesterEvaluationMarks = Enumerable.Empty<StudentSemesterEvaluationMark>();
 
-                HasStudentSemesterEvaluationMarks = _DbContext.StudentSemesterEvaluationMarks.FromSqlRaw("SELECT DISTINCT * FROM StudentSemesterEvaluationMarks WHERE SemesterStudentAndEvaluationDetail_DetailId " +
-                       $"IN (SELECT SemesterStudentAndEvaluationDetailId FROM SemestersStudentAndEvaluationDetails WHERE SemesterMaster_SemesterMasterId " +
-                       $"IN (SELECT SemesterTrainingSettingMasterId FROM SemestersTrainingSettingMaster WHERE SemesterMaster_SemesterMasterId = {Mid}))").AsNoTracking().ToList();
 
-                if (HasStudentSemesterEvaluationMarks.Any())
+                var StudentOftheSameClass = _DbContext.StudentSemesterEvaluationMarks.FromSqlRaw("SELECT * FROM StudentSemesterEvaluationMarks WHERE SemesterStudentAndEvaluationDetail_DetailId " +
+                        $"IN (SELECT SemesterStudentAndEvaluationDetailId FROM SemestersStudentAndEvaluationDetails WHERE SemesterMaster_SemesterMasterId " +
+                        $"IN (SELECT SemesterTrainingSettingMasterId FROM SemestersTrainingSettingMaster WHERE SemesterMaster_SemesterMasterId = {Mid}))").AsNoTracking().FirstOrDefault();
+
+                if (StudentOftheSameClass != null)
                 {
 
-                    var ThisStudentSemesterEvaluationDetail = _DbContext.SemestersStudentAndEvaluationDetails.Where(item => item.StudentRequest_StudentRequestId == id).AsNoTracking().FirstOrDefault();
+                    IEnumerable<StudentSemesterEvaluationMark> HasStudentSemesterEvaluationMarks = Enumerable.Empty<StudentSemesterEvaluationMark>();
 
-                    foreach (var m in HasStudentSemesterEvaluationMarks)
+                    HasStudentSemesterEvaluationMarks = _DbContext.StudentSemesterEvaluationMarks.Where(item => item.SemesterStudentAndEvaluationDetail_DetailId == StudentOftheSameClass.SemesterStudentAndEvaluationDetail_DetailId).AsNoTracking().ToList();
+
+                    if (HasStudentSemesterEvaluationMarks.Any())
                     {
 
+                        var ThisStudentSemesterEvaluationDetail = _DbContext.SemestersStudentAndEvaluationDetails.Where(item => item.StudentRequest_StudentRequestId == id).AsNoTracking().FirstOrDefault();
 
-                        var NewStudentSemesterEvaluationMark = new StudentSemesterEvaluationMark()
+                        foreach (var m in HasStudentSemesterEvaluationMarks)
                         {
 
-                            SemesterStudentAndEvaluationDetail_DetailId = ThisStudentSemesterEvaluationDetail.SemesterStudentAndEvaluationDetailId,
-                            DepartmentAssessmentTypeDetail_DetailId = m.DepartmentAssessmentTypeDetail_DetailId
 
-                        };
+                            var NewStudentSemesterEvaluationMark = new StudentSemesterEvaluationMark()
+                            {
+
+                                SemesterStudentAndEvaluationDetail_DetailId = ThisStudentSemesterEvaluationDetail.SemesterStudentAndEvaluationDetailId,
+                                DepartmentAssessmentTypeDetail_DetailId = m.DepartmentAssessmentTypeDetail_DetailId
+
+                            };
 
 
-                        _DbContext.StudentSemesterEvaluationMarks.Add(NewStudentSemesterEvaluationMark);
+                            _DbContext.StudentSemesterEvaluationMarks.Add(NewStudentSemesterEvaluationMark);
+                        }
+
+                        _DbContext.SaveChanges();
+
+
                     }
 
-                    _DbContext.SaveChanges();
 
                 }
+
+
 
 
             }
@@ -1133,7 +1146,7 @@ namespace TadarbProject.Controllers
 
             TempData["success"] = "تم تعيين المشرف الاكاديمي للطلاب ";
 
-            return Json(new { Exists = true });
+            return Json(new { exists = true });
 
         }
 

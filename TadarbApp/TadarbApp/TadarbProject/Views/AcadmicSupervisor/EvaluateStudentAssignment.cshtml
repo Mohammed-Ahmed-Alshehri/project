@@ -93,7 +93,7 @@
                         <div class="card-header" style="text-align: center;">
                             <h3 style="text-align: center;color:white">عرض التقارير</h3>
 
-                            <a class="btn  float-start" asp-action="AssignedStudentAssignments" style="background-color:gray"><i class="fa-solid fa-circle-left fa-lg" style="color: #ffffff;"></i></a>
+                            <a class="btn  float-start" href="@Url.Action("AssignedStudentAssignments" ,new { StuRqId = ViewBag.CurrentStuRqId , SSEMId = ViewBag.SemesterMasterId })" style="background-color:gray"><i class="fa-solid fa-circle-left fa-lg" style="color: #ffffff;"></i></a>
 
 
 
@@ -152,7 +152,7 @@
 
                                         <button type="button" class="btn" onclick="check()" style="background-color:#e6e291">تقييم</button>
 
-                                        <button type="submit" class="btn" id="SubmitBtn" asp-route-StuRqId="@ViewBag.CurrentStuRqId" style="background-color:#e6e291" hidden>تقيم</button>
+                                        <button type="submit" class="btn" id="SubmitBtn" asp-route-StuRqId="@ViewBag.CurrentStuRqId" asp-route-SSEMId="@ViewBag.SemesterMasterId" style="background-color:#e6e291" hidden>تقيم</button>
 
                                     </div>
                                     <p id="Message" style="color:firebrick;"></p>

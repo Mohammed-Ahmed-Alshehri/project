@@ -341,9 +341,9 @@
                                 + "<td class='text - nowrap'> " + value.gender + "</td>"
                                 + "<td class='text - nowrap'> " + value.department.universityCollege.city.country.countryName + ", " + value.department.universityCollege.city.cityName + "</td>"
                                 + "<td class='text - nowrap'> " + value.gpa + "</td>"
-                                + "<td class='text - nowrap'> " + '<a class="btn btn-outline-primary" href="//localhost:7122/Branch/OpportunitiesApplicantsDetail/?id=' + value.traineeId + '&Oid=' + @ViewBag.OpportunitiyId + ' " >تفاصيل الطلب</a>' + '</td></tr>'
+                                + "<td class='text - nowrap'> " + '<a class="btn btn-outline-primary" href="@Url.Action("OpportunitiesApplicantsDetail")?id=' + value.traineeId + '&Oid=' + @ViewBag.OpportunitiyId + ' " >تفاصيل الطلب</a>' + '</td></tr>'
                                 + "";
-
+                            //href="//localhost:7122/Branch/OpportunitiesApplicantsDetail/?id=
 
                             if (key == 0) {
                                 c = 1;
