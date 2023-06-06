@@ -197,7 +197,7 @@
 
         $(document).ready(function () {
             var x = 0; //Initial field counter
-            var list_maxField = 7; //Input fields increment limitation
+            var list_maxField = 7; //Input fields increment limitation will adjust later
 
             //Once add button is clicked
             $('.list_add_button').click(function () {
@@ -213,10 +213,19 @@
                         dataType: "json",
                         success: function (data) {
 
-                            //console.log(data.assiment[0].assessmentTypeName);
-                            list_fieldHTML += ' <div class="row"><div class="col-xs-4 col-sm-4 col-md-4"><div class="form-group"><label for="list[' + x + '][]">نوع التقييم</label> <select name="list[' + x + '][]" class="form-control AssessmentList"><option value="" selected disabled >--الرجاء اختيار نوع التقييم--</<option><option value="' + data.assiment[0].assessmentTypeId + '">' + data.assiment[0].assessmentTypeName + '</option> <option value="' + data.assiment[1].assessmentTypeId + '">' + data.assiment[1].assessmentTypeName + '</option><option value="' + data.assiment[2].assessmentTypeId + '">' + data.assiment[2].assessmentTypeName + '</option> <option value="' + data.assiment[3].assessmentTypeId + '">' + data.assiment[3].assessmentTypeName + '</option> </select> </div></div><div class="col-xs-7 col-sm-7 col-md-7"> <label for="list[' + x + '][]">الدرجة المطلوبة</label><div class="form-group"><input name="list[' + x + '][]" type="text" placeholder="ادخل الدرجة المناسبة للتقييم" class="form-control AssessmentInName"/></div></div> <div class="col-xs-1 col-sm-7 col-md-1"><label for="list[' + x + '][]"> إزالة</label>   <div class="form-group">  <a href="javascript:void(0);" class="list_remove_button btn btn-danger">-</a>  </div> </div> </div>'; //New input field html
-                            x++;  //Increment field counter
+                            list_maxField = data.assiment.length; /*fields increment limitation base on recored */
 
+                            list_fieldHTML += ' <div class="row"><div class="col-xs-4 col-sm-4 col-md-4"><div class="form-group"><label for="list[' + x + '][]">نوع التقييم</label> <select name="list[' + x + '][]" class="form-control AssessmentList">  < option value = "" selected disabled > --الرجاء اختيار نوع التقييم-- < /<option>';
+                            //console.log(data.assiment[0].assessmentTypeName);
+                            $.each(data.assiment, function (key, value) {
+
+                               
+                                list_fieldHTML += '<option value="' + value.assessmentTypeId + '">' + value.assessmentTypeName + '</option >';
+
+                             });
+                            list_fieldHTML += '</select> </div></div><div class="col-xs-7 col-sm-7 col-md-7"> <label for="list[' + x + '][]">الدرجة المطلوبة</label><div class="form-group"><input name="list[' + x + '][]" type="text" placeholder="ادخل الدرجة المناسبة للتقييم" class="form-control AssessmentInName"/></div></div> <div class="col-xs-1 col-sm-7 col-md-1"><label for="list[' + x + '][]"> إزالة</label>   <div class="form-group">  <a href="javascript:void(0);" class="list_remove_button btn btn-danger">-</a>  </div> </div> </div>'; //New input field html
+
+                            x++;  //Increment field counter
                             $('.list_wrapper').append(list_fieldHTML); //Add field html
 
 

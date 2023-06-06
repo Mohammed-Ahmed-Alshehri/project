@@ -865,7 +865,6 @@ namespace TadarbProject.Controllers
             _DbContext.StudentRequestsOnOpportunities.Update(req);
 
 
-            req.trainingOpportunity.RequestedOpportunities = req.trainingOpportunity.RequestedOpportunities - 1;
 
             req.trainingOpportunity.AvailableOpportunities = req.trainingOpportunity.AvailableOpportunities + 1;
 

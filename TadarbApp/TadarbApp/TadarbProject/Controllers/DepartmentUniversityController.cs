@@ -2697,6 +2697,25 @@ namespace TadarbProject.Controllers
 
         }
 
+        [HttpGet]
+        public IActionResult EmailExists(string? Email)
+        {
+            if (Email == null)
+            {
+                return Json(new { Exists = false });
+            }
+
+            var item = _DbContext.UserAcounts.Where(item => item.UserEmail.Equals(Email)).AsNoTracking().FirstOrDefault();
+
+            if (item == null)
+            {
+                return Json(new { Exists = false });
+            }
+
+
+
+            return Json(new { Exists = true });
+        }
 
         [HttpGet]
         public IActionResult getAssessmentTypeDetail(int? id)

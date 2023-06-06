@@ -152,12 +152,16 @@
 
                                             @if (@item.DecisionStatus == "rejected")
                                             {
-                                                <span class="badge bg-danger"> تم الرفض </span>
+                                                <span class="badge bg-danger">  تم الرفض من قبل الشركة </span>
                                             }
 
                                             @if (@item.DecisionStatus == "CancelBeforeApprove")
                                             {
-                                                <span class="badge bg-danger"> تم الغاء الطلب من قبلك </span>
+                                                <span class="badge bg-danger"> تم الغاء الطلب من قبل الطاب قبل الموافقة  </span>
+                                            }
+                                            @if (@item.DecisionStatus == "CancelAftereApprove")
+                                            {
+                                                <span class="badge bg-danger"> تم الغاء الطلب من قبل الطاب بعد الموافقة  </span>
                                             }
                                             @if (@item.DecisionStatus == "stop training")
                                             {

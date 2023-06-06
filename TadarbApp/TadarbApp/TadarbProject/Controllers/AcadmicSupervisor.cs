@@ -178,6 +178,8 @@ namespace TadarbProject.Controllers
 
             }
 
+         
+
             ViewBag.Name = Name;
 
             int RUserId = UserId;
@@ -192,8 +194,20 @@ namespace TadarbProject.Controllers
             ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
             ViewBag.Username = user.FullName;
 
+            var semester = _DbContext.SemestersStudentAndEvaluationDetails.Where(item => item.AcademicSupervisor_EmployeeId == Employee.EmployeeId).AsNoTracking().FirstOrDefault();
+
+
+            if (semester == null)
+            {
+                TempData["error"] = "لا توجد لديك شعبة مسجلة الى الان ..";
+
+                return RedirectToAction("Index", "AcadmicSupervisor");
+
+            }
+
 
             IEnumerable<SemesterTrainingSettingMaster> Semasters = Enumerable.Empty<SemesterTrainingSettingMaster>();
+
 
             Semasters = _DbContext.SemestersTrainingSettingMaster.FromSqlRaw("SELECT * FROM SemestersTrainingSettingMaster WHERE SemesterTrainingSettingMasterId IN " +
                 "(SELECT SemesterMaster_SemesterMasterId FROM SemestersStudentAndEvaluationDetails WHERE AcademicSupervisor_EmployeeId = " +
