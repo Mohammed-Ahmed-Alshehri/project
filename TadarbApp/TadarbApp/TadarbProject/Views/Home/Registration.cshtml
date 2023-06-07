@@ -42,7 +42,7 @@
 <div class="alert alert-success" role="alert" style="display:@DisplayBEmail">
     <h4 class="alert-heading">لقد تم تسجيلك بنجاح!</h4>
     <br />
-  <hr>
+    <hr>
     <p>الرجاء التحقق من بريدكم الإلكتروني  المسجل وتفعيله لكي تتمكن من تسجيل الدخول في المنصة.</p>
 </div>
 
@@ -55,17 +55,17 @@
                     <div class="card-body p-0">
 
                         <form method="post" asp-action="Registration" enctype="multipart/form-data" class="needs-validation" novalidate>
-                            <div class="row g-0" >
+                            <div class="row g-0">
 
 
 
 
-                                <div class="col-lg-6" >
+                                <div class="col-lg-6">
                                     <div class="p-5">
-                                        <h3 class="fw-normal mb-5" style="color: black; font:bold; font-size:20px;" >معلومات المنظمة</h3>
+                                        <h3 class="fw-normal mb-5" style="color: black; font:bold; font-size:20px;">معلومات المنظمة</h3>
 
                                         <div class="form-group">
-                                            <label for="TypeNameOrganiaztion" class="form-label" style="font-size:20px;" >نوع المنظمة </label>
+                                            <label for="TypeNameOrganiaztion" class="form-label" style="font-size:20px;">نوع المنظمة </label>
                                             <select asp-for="organization.Organization_TypeId" asp-items="@Model.OrganizationTypeListItems" class="form-select" id="validationCustom04" required>
                                                 <option selected disabled value="">-- نوع المنظمة --</option>
 
@@ -78,7 +78,7 @@
 
                                         <br />
 
-                              
+
                                         <div class="row">
                                             <div class="col-md-6 mb-4 pb-2">
 
@@ -117,7 +117,7 @@
 
 
                                         <div class="form-group" style="text-align: right;">
-                                            <label for="CountryName" class="form-label mt-4" style="font-size:20px;" >الدولة</label>
+                                            <label for="CountryName" class="form-label mt-4" style="font-size:20px;">الدولة</label>
                                             <select asp-items="@Model.CountryListItems" class="form-select" id="CountryNameID" required>
                                                 <option selected disabled value="">--الدولة--</option>
 
@@ -131,9 +131,7 @@
 
 
                                             <label for="CityNameID" class="form-label mt-4" style="font-size:20px;">الفرع الرئيسي</label>
-                                            <select class="form-select" id="CityNameID" name="CityNameID" required  >
-                                                
-
+                                            <select class="form-select" id="CityNameID" name="CityNameID" required>
                                             </select>
 
                                             <div class="invalid-feedback">
@@ -166,7 +164,7 @@
                                             <div class="col-md-6 mb-4 pb-2" style="text-align: right;">
                                                 <br />
                                                 <div class="form-outline">
-                                                    <label class="form-label" for="OrganizationURL" style="font-size:20px;" > إرفاق رابط المنظمة</label>
+                                                    <label class="form-label" for="OrganizationURL" style="font-size:20px;"> إرفاق رابط المنظمة</label>
                                                     <input asp-for="organization.OrganizationURL" type="text" id="OrganizationURLID" class="form-control form-control-lg" required />
                                                     <div class="invalid-feedback" style="text-align: right;"> الرجاء إرفاق رابط المنظمة </div>
                                                 </div>
@@ -177,7 +175,7 @@
                                         <div class="input-group mb-3" style="text-align: right;">
 
                                             <input type="text" class="form-control" id="LocationID" placeholder="موقع المنظمة"
-                                                   aria-label="Recipient's username" aria-describedby="button-addon2" disabled style="display:none" >
+                                                   aria-label="Recipient's username" aria-describedby="button-addon2" disabled style="display:none">
 
                                             <button class="btn btn-primary" type="button" id="ButtonLocation" onclick="getLocation()" style="background-color:#1c4c64;border:0px">أدخل الموقع الحالي</button>
 
@@ -246,17 +244,18 @@
                                             <div class="form-outline" style="text-align: right;">
                                                 <label class="form-label" for="Phone" style="font-size:20px;">الجوال</label>
 
-                                                <input asp-for="userAcount.Phone" type="tel" id="PhoneID" class="form-control form-control-lg"  maxlength="10"  required />
+                                                <input asp-for="userAcount.Phone" type="tel" id="PhoneID" class="form-control form-control-lg" maxlength="10" required />
                                                 <div class="invalid-feedback" style="text-align: right;" id="PhoneIDMassage"> الرجاء إدخال رقم الجوال </div>
                                                 @*                                                <span asp-validation-for="userAcount.Phone" class="text-danger" style="text-align: right;"></span>
-*@                                            </div>
+                                                *@
+                                            </div>
                                         </div>
 
 
 
 
                                         <br /> <br />
-                                        
+
 
                                         <div class="row">
                                             <button type="submit" class="btn btn-primary btn-lg" onclick="return ValidateInputImage()"
@@ -293,8 +292,8 @@
 
     <script>
 
-        var  MapLatAndLng = { lat: 21.4655, lng: 30.3535 };
-     
+        var MapLatAndLng = { lat: 21.4655, lng: 30.3535 };
+
         var map;
 
         var marker;
@@ -302,8 +301,7 @@
         //الكود هذا بوتسرتراب يتحقق من جميع الانبت إذا فاضيه أو لا
 
         // Example starter JavaScript for disabling form submissions if there are invalid fields
-        (function ()
-        {
+        (function () {
 
             'use strict'
 
@@ -315,13 +313,13 @@
                 .forEach(function (form) {
                     form.addEventListener('submit', function (event) {
 
-                        if ( !form.checkValidity()  ) {
+                        if (!form.checkValidity()) {
 
                             event.preventDefault();
                             event.stopPropagation();
                         }
 
-                        if ( CustomValidation() ){
+                        if (!CustomValidation()) {
 
                             event.preventDefault();
                             event.stopPropagation();
@@ -339,8 +337,8 @@
                             event.stopPropagation();
                         }
 
-                        
-                        if (CustomValidation4()) {
+
+                        if (!CustomValidation4()) {
 
                             event.preventDefault();
                             event.stopPropagation();
@@ -348,14 +346,13 @@
 
                         form.classList.add('was-validated')
                     }, false)
-                    })
+                })
         })()
 
 
         //document.querySelector('#UserEmailID').addEventListener('blur', CustomValidation);
 
-        function CustomValidation()
-        {
+        function CustomValidation() {
 
             var E = document.getElementById("UserEmailID");
 
@@ -365,7 +362,7 @@
 
                 $.ajax({
                     type: "GET",
-                    url: "@Url.Action("EmailExists")", 
+                    url: "@Url.Action("EmailExists")",
 
                     data: { Email: E.value },
 
@@ -373,22 +370,22 @@
                     success: function (data) {
                         if (data.exists) {
 
-                                       E.classList.remove('is-valid');
+                            E.classList.remove('is-valid');
 
-                                       E.classList.add('is-invalid');
+                            E.classList.add('is-invalid');
 
-                                       EM.innerHTML = "الايميل مسجل مسبقا في النظام";
-                                       
-                                        return true;
+                            EM.innerHTML = "الايميل مسجل مسبقا في النظام";
+
+                            return true;
 
                         }
                         else {
 
-                                       E.classList.add('is-valid');
+                            E.classList.add('is-valid');
 
-                                       E.classList.remove('is-invalid');
+                            E.classList.remove('is-invalid');
 
-                                       EM.innerHTML = "الرجاء إدخال البريد الإلكتروني";
+                            EM.innerHTML = "الرجاء إدخال البريد الإلكتروني";
 
 
                         }
@@ -401,18 +398,17 @@
             return false;
         }
 
-   
 
 
-        function CustomValidation2()
-        {
+
+        function CustomValidation2() {
 
             var P = document.getElementById("PhoneID");
             var PM = document.getElementById("PhoneIDMassage");
 
 
 
-            if (P.value.length != 10 ) {
+            if (P.value.length != 10) {
 
                 P.classList.remove('is-valid');
                 P.classList.add('is-invalid');
@@ -421,10 +417,9 @@
                 return true;
             }
 
-            
 
-             if ( (P.value.charAt(0) != 0) )
-            {
+
+            if ((P.value.charAt(0) != 0)) {
                 P.classList.remove('is-valid');
                 P.classList.add('is-invalid');
 
@@ -458,8 +453,7 @@
         }
 
 
-           function CustomValidation3()
-        {
+        function CustomValidation3() {
 
             var password = document.getElementById("UserPasswordID");
             var confirmPassword = document.getElementById("ConfirmUserPasswordID");
@@ -476,7 +470,7 @@
 
 
 
-            
+
 
             else {
 
@@ -494,8 +488,7 @@
         }
 
 
-        function CustomValidation4()
-        {
+        function CustomValidation4() {
 
             var P = document.getElementById("PhoneID")
 
@@ -513,22 +506,22 @@
                     success: function (data) {
                         if (data.exists) {
 
-                                       P.classList.remove('is-valid');
+                            P.classList.remove('is-valid');
 
-                                       P.classList.add('is-invalid');
+                            P.classList.add('is-invalid');
 
                             PM.innerHTML = "رقم الهاتف مسجل مسبقا في النظام";
-                                       
-                                        return true;
+
+                            return true;
 
                         }
                         else {
 
-                                       P.classList.add('is-valid');
+                            P.classList.add('is-valid');
 
-                                       P.classList.remove('is-invalid');
+                            P.classList.remove('is-invalid');
 
-                                     PM.innerHTML = "الرجاء إدخال رقم الجوال";
+                            PM.innerHTML = "الرجاء إدخال رقم الجوال";
 
 
                         }
@@ -541,10 +534,10 @@
             return false;
         }
 
-   
-        
-         
-        
+
+
+
+
 
         //-------------انتهاء كود البوتستراب للتحقق------------------------
 
@@ -611,7 +604,7 @@
             x.placeholder = loc;
             z.value = loc;
             var Map = document.getElementById("map").style.display = "block";
-          //  console.log(Mlat + ", " + Mlng);
+            //  console.log(Mlat + ", " + Mlng);
         }
         //2
         //في حال اليوزر ما ضغط سماح على اعطاء الموقع
@@ -631,49 +624,48 @@
 
         }
 
-        //(function () 
+        //(function ()
         //{
 
         // window.onload = function () {
 
-        //    }) 
+        //    })
         //    ();
 
-        
-            function initMap() 
-            {
-           
 
-                map = new google.maps.Map(document.getElementById("map"), {
+        function initMap() {
+
+
+            map = new google.maps.Map(document.getElementById("map"), {
                 center: MapLatAndLng,
-                    zoom: 15, disableDefaultUI: true
+                zoom: 15, disableDefaultUI: true
 
-                });
-
-
+            });
 
 
 
-                marker =  new google.maps.Marker({
+
+
+            marker = new google.maps.Marker({
                 position: MapLatAndLng,
                 map,
                 title: "موقعك الحالي",
-               });
+            });
 
-            }
+        }
 
 
 
 
         $('#CountryNameID').on('change', function () {
 
-        
+
 
             FillCity(this.value);
         });
 
 
-        function FillCity(CId){
+        function FillCity(CId) {
 
 
             $(document).ready(function () {
@@ -704,13 +696,13 @@
 
 
             var d = document.getElementById("OrganizationMainBranchCityId").value = this.value;
-            
+
         });
 
 
-   
 
-        
+
+
 
     </script>
 
