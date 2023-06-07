@@ -185,7 +185,6 @@ namespace TadarbProject.Controllers
 
             };
 
-            TempData["success"] = "تم تعيين المشرف للطلاب بنجاح";
 
 
             return View(SemesterMasterVM);
