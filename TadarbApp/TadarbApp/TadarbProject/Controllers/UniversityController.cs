@@ -370,6 +370,9 @@ namespace TadarbProject.Controllers
 
             };
 
+            TempData["success"] = "تم إضافة التخصصات بنجاح";
+
+
             return View(specialitiesVM);
         }
 

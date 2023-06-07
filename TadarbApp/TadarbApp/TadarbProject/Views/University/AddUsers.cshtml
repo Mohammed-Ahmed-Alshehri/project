@@ -117,7 +117,7 @@
                     <div class="mb-4 pb-2">
                         <i class="fa-solid fa-at"></i>
                         <label class="form-label"  for="UserEmail" style="font-size:20px;">البريد الإلكتروني</label>
-                        <input type="email" asp-for="userAcount.UserEmail"  id="UserEmailID" class="form-control form-control-lg" required />
+                            <input type="email" asp-for="userAcount.UserEmail" id="UserEmailID" class="form-control form-control-lg" required />
                         <div class="invalid-feedback" id="UserEmailMassage" style="text-align: right;"> الرجاء إدخال البريد الإلكتروني </div>
                     </div>
 
@@ -180,6 +180,7 @@
 
             // Example starter JavaScript for disabling form submissions if there are invalid fields
             (function () {
+
                 'use strict'
 
                 // Fetch all the forms we want to apply custom Bootstrap validation styles to
@@ -189,6 +190,7 @@
                 Array.prototype.slice.call(forms)
                     .forEach(function (form) {
                         form.addEventListener('submit', function (event) {
+
                             if (!form.checkValidity()) {
 
                                 event.preventDefault();
@@ -212,6 +214,8 @@
                                 event.preventDefault();
                                 event.stopPropagation();
                             }
+
+
                             if (CustomValidation4()) {
 
                                 event.preventDefault();
@@ -223,8 +227,10 @@
                     })
             })()
 
+
+            //document.querySelector('#UserEmailID').addEventListener('blur', CustomValidation);
+
             function CustomValidation() {
-               
 
                 var E = document.getElementById("UserEmailID");
 
@@ -241,6 +247,7 @@
                         dataType: "json",
                         success: function (data) {
                             if (data.exists) {
+
                                 E.classList.remove('is-valid');
 
                                 E.classList.add('is-invalid');
@@ -268,6 +275,8 @@
 
                 return false;
             }
+
+
 
 
             function CustomValidation2() {
@@ -321,6 +330,7 @@
 
             }
 
+
             function CustomValidation3() {
 
                 var password = document.getElementById("UserPasswordID");
@@ -355,9 +365,11 @@
 
             }
 
+
             function CustomValidation4() {
 
-                var P = document.getElementById("PhoneID");
+                var P = document.getElementById("PhoneID")
+
                 var PM = document.getElementById("PhoneIDMassage");
 
                 $(document).ready(function () {
@@ -399,6 +411,13 @@
 
                 return false;
             }
+
+
+
+
+
+
+                    //-------------انتهاء كود البوتستراب للتحقق------------------------
 
 
 
