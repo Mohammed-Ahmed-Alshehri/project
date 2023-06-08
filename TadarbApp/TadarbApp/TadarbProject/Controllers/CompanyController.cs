@@ -724,7 +724,7 @@ namespace TadarbProject.Controllers
         }
 
 
-        [HttpGet]
+        [HttpPost]
         public IActionResult AddDetailFields(string dFieldIds)
         {
 
@@ -780,7 +780,7 @@ namespace TadarbProject.Controllers
 
         }
 
-        [HttpGet]
+        [HttpPost]
         public IActionResult DeleteFieldOfSpecialty(int? id)
         {
 

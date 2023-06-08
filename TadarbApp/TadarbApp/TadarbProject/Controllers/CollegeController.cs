@@ -630,7 +630,7 @@ namespace TadarbProject.Controllers
 
             };
 
-            TempData["success"] = "تم إضافة التخصصات للقسم بنجاح";
+    
 
 
             return View(specialitiesVM);
@@ -689,7 +689,7 @@ namespace TadarbProject.Controllers
                 }
 
                 _DbContext.SaveChanges();
-                //TempData["success"] = "تم إضافة التخصصات  بنجاح";
+                //TempData["success"] = "تم إضافة التخصصات للقسم بنجاح";
 
 
             }

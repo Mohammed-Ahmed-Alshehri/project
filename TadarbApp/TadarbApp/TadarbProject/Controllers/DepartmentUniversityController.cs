@@ -1045,7 +1045,6 @@ namespace TadarbProject.Controllers
 
             ).AsNoTracking().ToList();
 
-
             return Json(new { StudentDetail });
 
 
@@ -1129,7 +1128,6 @@ namespace TadarbProject.Controllers
 
                             _DbContext.StudentSemesterEvaluationMarks.Add(NewStudentSemesterEvaluationMark);
                         }
-
                         _DbContext.SaveChanges();
 
 

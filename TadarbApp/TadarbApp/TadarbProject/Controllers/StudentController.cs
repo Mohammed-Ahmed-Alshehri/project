@@ -370,6 +370,7 @@ namespace TadarbProject.Controllers
 
                 return NotFound();
             }
+              
 
             ViewBag.Name = Name;
             int RUserId = UserId;
@@ -380,7 +381,13 @@ namespace TadarbProject.Controllers
             var Opportunity = _DbContext.TrainingOpportunities
                 .Where(item => item.TrainingOpportunityId == id).Include(item => item.DetailFiled).Include(item => item.trainingType).Include(item => item.Branch.city.Country).Include(item => item.Branch.organization).AsNoTracking().FirstOrDefault();
 
+            var semsterEvlu = _DbContext.SemestersStudentAndEvaluationDetails.Where(item => item.studentRequest.student.UserAccount_UserId == RUserId && item.GeneralTrainingStatus == "stop training").FirstOrDefault();
 
+            if (semsterEvlu != null)
+            {
+                TempData["error"] = "لا يمكنك التقديم , تم اكمال تدريبك مسبقا ";
+                return RedirectToAction("index");
+            }
 
             //var OrganizationCompany = _DbContext.Organizations.FirstOrDefault(item => item.OrganizationId == 2);;
 
@@ -710,7 +717,7 @@ namespace TadarbProject.Controllers
              $"(SELECT TrainArea_DetailFiledId FROM DepartmentTrainingAreas WHERE Department_DepartmenId ={Department.DepartmentId}) " +
              $" AND OpportunityStatus='Available' AND AbilityofSubmissionStatus='Available'").AsNoTracking().Include(item => item.DetailFiled)
              .Include(item => item.Department.organization).AsNoTracking().ToList();
-
+             
                 if (Opportunities?.Any() != true)
                 {
                     return Json(new { Opportunities, Exists = false, message = "تخصصك" });
