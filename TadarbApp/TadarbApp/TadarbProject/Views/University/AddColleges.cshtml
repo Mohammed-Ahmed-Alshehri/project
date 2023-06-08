@@ -108,12 +108,12 @@
 
                     <select class="form-select" asp-for="College.City_CityId" asp-items="@Model.CityListItems"  required>
 
-                                    <option selected disabled value="">-- اختيار مدينة الفرع --</option>
+                                    <option selected disabled value="">-- اختيار المدينة  --</option>
 
                         </select>
 
                         <div class="invalid-feedback">
-                            الرجاء إدخال مدينة الفرع الرئيسي
+                            الرجاء إدخال المدينة  
                         </div>
 
                     </div>
@@ -123,7 +123,7 @@
                                 <i class="fa-solid fa-user"></i>
                                 <label for="3" class="form-label mt-4" style="font-size:20px;"> اسم المسؤول</label>
                                 <select class="form-select" asp-for="College.Responsible_UserId" asp-items="@Model.UserListItems" required>
-                                    <option selected disabled value="">-- أختيار مسؤول الفرع --</option>
+                                    <option selected disabled value="">-- أختيار مسؤول الكلية --</option>
 
                                 </select>
                                 <div class="invalid-feedback">
@@ -152,7 +152,7 @@
                 <input asp-for="College.Zoon" id="BZoon" hidden required />
 
                 <div class="invalid-feedback">
-                    الرجاء تحديد موقع الفرع
+                    الرجاء تحديد موقع الكلية
                 </div>
                 <br /> <br /> <br />
 
@@ -229,7 +229,7 @@
             // Create the initial InfoWindow.
             let infoWindow = new google.maps.InfoWindow({
 
-                content: "حدد موقع الفرع",
+                content: "حدد موقع الكلية",
                 position: myLatlng,
             });
 
