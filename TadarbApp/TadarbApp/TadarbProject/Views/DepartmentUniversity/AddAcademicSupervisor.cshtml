@@ -227,16 +227,17 @@
                 })
         })()
 
-        function CustomValidation() {
+        let bo = false;
 
+        function CustomValidation() {
 
             var E = document.getElementById("UserEmailID");
 
             var EM = document.getElementById("UserEmailMassage");
 
             $(document).ready(function () {
-
                 $.ajax({
+
                     type: "GET",
                     url: "@Url.Action("EmailExists")",
 
@@ -244,17 +245,22 @@
 
                     dataType: "json",
                     success: function (data) {
+
                         if (data.exists) {
+
                             E.classList.remove('is-valid');
 
                             E.classList.add('is-invalid');
 
                             EM.innerHTML = "الايميل مسجل مسبقا في النظام";
 
-                            return true;
+                            bo = true;
+
+
 
                         }
-                        else {
+
+                        if (!data.exists) {
 
                             E.classList.add('is-valid');
 
@@ -262,17 +268,24 @@
 
                             EM.innerHTML = "الرجاء إدخال البريد الإلكتروني";
 
+                            bo = false;
 
                         }
                     }
-                });
 
+
+
+                });
             });
 
+            //if(bo){
 
-            return false;
+            //    alert("ok");
+            //}
+
+            return bo;
+
         }
-
 
         function CustomValidation2() {
 
@@ -359,9 +372,12 @@
 
         }
 
+        let bo2 = false;
+
         function CustomValidation4() {
 
-            var P = document.getElementById("PhoneID");
+            var P = document.getElementById("PhoneID")
+
             var PM = document.getElementById("PhoneIDMassage");
 
             $(document).ready(function () {
@@ -382,17 +398,18 @@
 
                             PM.innerHTML = "رقم الهاتف مسجل مسبقا في النظام";
 
-                            return true;
+                            bo2 = true;
 
                         }
-                        else {
+
+                        if (!data.exists) {
 
                             P.classList.add('is-valid');
 
                             P.classList.remove('is-invalid');
 
                             PM.innerHTML = "الرجاء إدخال رقم الجوال";
-
+                            bo2 = false;
 
                         }
                     }
@@ -401,7 +418,7 @@
             });
 
 
-            return false;
+            return bo2;
         }
 
 

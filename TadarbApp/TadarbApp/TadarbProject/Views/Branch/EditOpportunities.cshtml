@@ -48,7 +48,7 @@
                         </a>
                     </li>
 
-                    
+
                     <li class="nav-item">
                         <a asp-controller="branch" asp-action="ViewDepartmentFiledSpecialties" class="nav-link text-dark font-italic ">
                             <i class="fa-solid fa-book-open-reader"></i>
@@ -63,7 +63,7 @@
                         </a>
                     </li>
 
-                  
+
                 </ul>
 
 
@@ -93,7 +93,7 @@
                         @*        <input asp-for="TrainingOpportunity.SupervisorEmployeeId" id="SupervisorEmployeeId" hidden /*@
                         <input asp-for="TrainingOpportunity.Department_DepartmentId" id="Department_DepartmentId" hidden />
                         <input asp-for="TrainingOpportunity.DetailFiled_DetailFiledId" id="DetailFiled_DetailFiledId" hidden />
-                           <input asp-for="StudentRequestsOnOpportunities.StudentRequestOpportunityId" id="TrainingType_TrainingTypeId" hidden />
+                        <input asp-for="StudentRequestsOnOpportunities.StudentRequestOpportunityId" id="TrainingType_TrainingTypeId" hidden />
                         @*  <input asp-for="UserListItems" id="OpertuntiyId" hidden />
                         <input asp-for="DepartmentListItems" id="OpertuntiyId" hidden />
                         <input asp-for="DetailFieldsListItems" id="OpertuntiyId" hidden />
@@ -201,7 +201,7 @@
                                     <div class="form-outline" style="text-align: right;">
                                         <i class="fa-solid fa-chair"></i>
                                         <label class="form-label" for="OrganizationName" style="font-size:20px;">عدد المقاعد الحالي : </label>
-                                        <input type="number" asp-for="@Model.TrainingOpportunity.AvailableOpportunities" id="OrganizationNameID" placeholder="زيادة عدد المقاعد"   class="form-control form-control-lg" required />
+                                        <input type="number" asp-for="@Model.TrainingOpportunity.AvailableOpportunities" id="OrganizationNameID" placeholder="زيادة عدد المقاعد" class="form-control form-control-lg" required />
                                         <div class="invalid-feedback" style="text-align: right;"> الرجاء يجب إدخال عدد المقاعد </div>
 
                                     </div>
@@ -235,7 +235,7 @@
                                 </div>
                             </div>
 
-                           
+
 
                             <div class=" col-md-6 mb-2 pb-2">
                                 <i class="fa-regular fa-calendar-days"></i>
@@ -335,58 +335,6 @@
         });
 
 
-
-                        //$('#DepartmentNameID').on('change', function () {
-
-
-
-                        //    FillCity(this.value);
-                        //});
-
-
-                        //function FillCity(CId) {
-
-
-                        //    $(document).ready(function () {
-                        //        $.ajax({
-                        //            type: "GET",
-                        //            url: "@Url.Action("GetSpecialization")",
-                        //            data: { id: CId },
-
-                        //            dataType: "json",
-                        //            success: function (data) {
-
-
-                        //                //console.log(data.specialities);
-
-
-                        //                //console.log(data.speslaiztion.specializationName);
-
-                        //                var s = '<option selected disabled value="">--التخصصات التابعه للقسم--</option>';
-
-                        //                for (var i = 0; i < data.specialities.length; i++) {
-
-
-
-                        //                    s += '<option value="' + data.specialities[i].detailFieldId + '">' + data.specialities[i].specializationName + '</option>';
-                        //                }
-
-                        //                $("#SpecializationNameID").html(s);
-
-                        //                $('#SpecializationNameID').attr('hidden', false);
-                        //            }
-                        //        });
-                        //    });
-
-
-                        //}
-
-                        //$('#SpecializationNameID').on('change', function () {
-
-
-                        //    var d = document.getElementById("OrganizationMainBranchCityId").value = this.value;
-
-                        //});
 
 
 

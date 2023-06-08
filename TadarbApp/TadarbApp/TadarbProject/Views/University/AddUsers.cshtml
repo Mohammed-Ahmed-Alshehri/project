@@ -1,4 +1,4 @@
-﻿@model EmployeeVM 
+﻿@model EmployeeVM
 
 @{
     ViewData["Title"] = "اضافة حساب موظف";
@@ -11,7 +11,7 @@
 </head>
 <body style="background: linear-gradient(#1c4c64,#5590ad);">
 
-<div class="row" >
+    <div class="row">
         <div class="col-sm-4" style="z-index:2;">
 
             <div class="vertical-nav bg-white" id="sidebar">
@@ -70,358 +70,382 @@
 
         </div>
 
-    <div class="col-sm-6">
-        <div class="card" style="border-radius: 25px; margin-top:2cm; margin-bottom:3cm; padding:5px 5px 5px 5px ; border-color:black;background-color:#dfebf2">
-            <div class="card-body p-5">
-                <h2 class=" text-center mb-5">إضافة موظف جديد </h2>
+        <div class="col-sm-6">
+            <div class="card" style="border-radius: 25px; margin-top:2cm; margin-bottom:3cm; padding:5px 5px 5px 5px ; border-color:black;background-color:#dfebf2">
+                <div class="card-body p-5">
+                    <h2 class=" text-center mb-5">إضافة موظف جديد </h2>
 
                     <form asp-controller="University" asp-action="AddUsers" method="post" class="needs-validation" novalidate>
 
-                    <div class="row">
+                        <div class="row">
 
-                        <div class=" mb-4 pb-2">
-                            <br />
+                            <div class=" mb-4 pb-2">
+                                <br />
 
-                            <div class="form-outline" style="text-align: right;">
-                                <i class="fa-solid fa-user"></i>
-                                <label class="form-label" for="FullName" style="font-size:20px;">الاسم الثلاثي</label>
+                                <div class="form-outline" style="text-align: right;">
+                                    <i class="fa-solid fa-user"></i>
+                                    <label class="form-label" for="FullName" style="font-size:20px;">الاسم الثلاثي</label>
 
-                                <input asp-for="userAcount.FullName" type="text" id="FullNameID" class="form-control form-control-lg" required />
+                                    <input asp-for="userAcount.FullName" type="text" id="FullNameID" class="form-control form-control-lg" required />
 
-                                <div class="invalid-feedback" style="text-align: right;"> الرجاء إدخال الاسم الثلاثي </div>
+                                    <div class="invalid-feedback" style="text-align: right;"> الرجاء إدخال الاسم الثلاثي </div>
+                                </div>
+
+
                             </div>
-
 
                         </div>
 
-                    </div>
 
 
+                        <div class="mb-4 pb-2">
+                            <i class="fa-regular fa-id-card"></i>
+                            <label class="form-label" for="EmployeeSSN" style="font-size:20px;">الرقم الوظيفي</label>
+                            <input type="number" asp-for="employee.SSN" id="EmployeeSSN" class="form-control form-control-lg" required />
+                            <div class="invalid-feedback" style="text-align: right;"> الرجاء إدخال الرقم الوظيفي </div>
+                        </div>
 
-                    <div class="mb-4 pb-2">
-                        <i class="fa-regular fa-id-card"></i>
-                        <label class="form-label"  for="EmployeeSSN" style="font-size:20px;">الرقم الوظيفي</label>
-                        <input type="number" asp-for="employee.SSN" id="EmployeeSSN" class="form-control form-control-lg" required />
-                        <div class="invalid-feedback"  style="text-align: right;"> الرجاء إدخال الرقم الوظيفي </div>
-                    </div>
 
-
-                    <div class="mb-4 pb-2">
-                        <i class="fa-solid fa-phone"></i>
-                        <label class="form-label" for="UserPhone" style="font-size:20px;">رقم الجوال</label>
+                        <div class="mb-4 pb-2">
+                            <i class="fa-solid fa-phone"></i>
+                            <label class="form-label" for="UserPhone" style="font-size:20px;">رقم الجوال</label>
                             <input type="tel" asp-for="userAcount.Phone" id="PhoneID" maxlength="10" class="form-control form-control-lg" required />
-                        <div class="invalid-feedback" id="PhoneIDMassage" style="text-align: right;"> الرجاء إدخال رقم الجوال </div>
-                    </div>
+                            <div class="invalid-feedback" id="PhoneIDMassage" style="text-align: right;"> الرجاء إدخال رقم الجوال </div>
+                        </div>
 
 
-                    <div class="mb-4 pb-2">
-                        <i class="fa-solid fa-at"></i>
-                        <label class="form-label"  for="UserEmail" style="font-size:20px;">البريد الإلكتروني</label>
+                        <div class="mb-4 pb-2">
+                            <i class="fa-solid fa-at"></i>
+                            <label class="form-label" for="UserEmail" style="font-size:20px;">البريد الإلكتروني</label>
                             <input type="email" asp-for="userAcount.UserEmail" id="UserEmailID" class="form-control form-control-lg" required />
-                        <div class="invalid-feedback" id="UserEmailMassage" style="text-align: right;"> الرجاء إدخال البريد الإلكتروني </div>
-                    </div>
+                            <div class="invalid-feedback" id="UserEmailMassage" style="text-align: right;"> الرجاء إدخال البريد الإلكتروني </div>
+                        </div>
 
 
-                    <div class="mb-4 pb-2">
-                        <i class="fa-solid fa-lock"></i>
-                        <label class="form-label" for="UserPassword" style="font-size:20px;">كلمة المرور</label>
-                        <input type="password" id="UserPasswordID" class="form-control form-control-lg" required />
-                        <div class="invalid-feedback" id="PasswordMassage" style="text-align: right;"> الرجاء إدخال كلمة المرور </div>
+                        <div class="mb-4 pb-2">
+                            <i class="fa-solid fa-lock"></i>
+                            <label class="form-label" for="UserPassword" style="font-size:20px;">كلمة المرور</label>
+                            <input type="password" id="UserPasswordID" class="form-control form-control-lg" required />
+                            <div class="invalid-feedback" id="PasswordMassage" style="text-align: right;"> الرجاء إدخال كلمة المرور </div>
 
-                    </div>
+                        </div>
 
-                    <div class="mb-4 pb-2">
-                        <i class="fa-solid fa-lock"></i>
-                        <label class="form-label" for="ConfirmUserPassword" style="font-size:20px;">تأكيد كلمة المرور</label>
-                        <input asp-for="userAcount.UserPassword" type="password" id="ConfirmUserPasswordID" class="form-control form-control-lg" required />
-                        <div class="invalid-feedback" id="ConfirmPasswordMassage" style="text-align: right;"> الرجاء تأكيد كلمة المرور </div>
-                    </div>
-
-
-
+                        <div class="mb-4 pb-2">
+                            <i class="fa-solid fa-lock"></i>
+                            <label class="form-label" for="ConfirmUserPassword" style="font-size:20px;">تأكيد كلمة المرور</label>
+                            <input asp-for="userAcount.UserPassword" type="password" id="ConfirmUserPasswordID" class="form-control form-control-lg" required />
+                            <div class="invalid-feedback" id="ConfirmPasswordMassage" style="text-align: right;"> الرجاء تأكيد كلمة المرور </div>
+                        </div>
 
 
 
-                    <br />
-                    <div class="row">
-
-                        <button type="submit"  class="btn" style="background-color:#e6e291; font-size:18px;">إضافة</button>
-
-                    </div>
 
 
-                </form>
 
+                        <br />
+                        <div class="row">
+
+                            <button type="submit" class="btn" style="background-color:#e6e291; font-size:18px;">إضافة</button>
+
+                        </div>
+
+
+                    </form>
+
+                </div>
             </div>
+
         </div>
 
+        <div class="col-sm-2"></div>
     </div>
-
-    <div class="col-sm-2"></div>
-</div>
-   </body> 
+</body>
 
 
 
 @section Scripts{
-    @{
 
 
-        <script>
 
-            //for moving navbar side
+    <script>
 
-            $(function () {
-                // Sidebar toggle behavior
-                $('#sidebarCollapse').on('click', function () {
-                    $('#sidebar, #content').toggleClass('active');
+        //for moving navbar side
+
+        $(function () {
+            // Sidebar toggle behavior
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar, #content').toggleClass('active');
+            });
+        });
+
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+        (function () {
+
+            'use strict'
+
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.querySelectorAll('.needs-validation')
+
+            // Loop over them and prevent submission
+            Array.prototype.slice.call(forms)
+                .forEach(function (form) {
+                    form.addEventListener('submit', function (event) {
+
+                        if (!form.checkValidity()) {
+
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+
+                        if (CustomValidation()) {
+
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+
+                        if (CustomValidation2()) {
+
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+
+                        if (CustomValidation3()) {
+
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+
+
+                        if (CustomValidation4()) {
+
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+
+                        form.classList.add('was-validated')
+                    }, false)
+                })
+        })()
+
+
+        //document.querySelector('#UserEmailID').addEventListener('blur', CustomValidation);
+        let bo = false;
+
+        function CustomValidation() {
+
+            var E = document.getElementById("UserEmailID");
+
+            var EM = document.getElementById("UserEmailMassage");
+
+            $(document).ready(function () {
+                $.ajax({
+
+                    type: "GET",
+                    url: "@Url.Action("EmailExists")",
+
+                    data: { Email: E.value },
+
+                    dataType: "json",
+                    success: function (data) {
+
+                        if (data.exists) {
+
+                            E.classList.remove('is-valid');
+
+                            E.classList.add('is-invalid');
+
+                            EM.innerHTML = "الايميل مسجل مسبقا في النظام";
+
+                            bo = true;
+
+
+
+                        }
+
+                        if (!data.exists) {
+
+                            E.classList.add('is-valid');
+
+                            E.classList.remove('is-invalid');
+
+                            EM.innerHTML = "الرجاء إدخال البريد الإلكتروني";
+
+                            bo = false;
+
+                        }
+                    }
+
+
+
                 });
             });
 
-            // Example starter JavaScript for disabling form submissions if there are invalid fields
-            (function () {
+            //if(bo){
 
-                'use strict'
+            //    alert("ok");
+            //}
 
-                // Fetch all the forms we want to apply custom Bootstrap validation styles to
-                var forms = document.querySelectorAll('.needs-validation')
+            return bo;
 
-                // Loop over them and prevent submission
-                Array.prototype.slice.call(forms)
-                    .forEach(function (form) {
-                        form.addEventListener('submit', function (event) {
-
-                            if (!form.checkValidity()) {
-
-                                event.preventDefault();
-                                event.stopPropagation();
-                            }
-
-                            if (CustomValidation()) {
-
-                                event.preventDefault();
-                                event.stopPropagation();
-                            }
-
-                            if (CustomValidation2()) {
-
-                                event.preventDefault();
-                                event.stopPropagation();
-                            }
-
-                            if (CustomValidation3()) {
-
-                                event.preventDefault();
-                                event.stopPropagation();
-                            }
+        }
 
 
-                            if (CustomValidation4()) {
+        let bo3 = false;
 
-                                event.preventDefault();
-                                event.stopPropagation();
-                            }
+        function CustomValidation2() {
 
-                            form.classList.add('was-validated')
-                        }, false)
-                    })
-            })()
+            var P = document.getElementById("PhoneID");
+            var PM = document.getElementById("PhoneIDMassage");
 
 
-            //document.querySelector('#UserEmailID').addEventListener('blur', CustomValidation);
 
-            function CustomValidation() {
+            if (P.value.length != 10) {
 
-                var E = document.getElementById("UserEmailID");
-
-                var EM = document.getElementById("UserEmailMassage");
-
-                $(document).ready(function () {
-
-                    $.ajax({
-                        type: "GET",
-                        url: "@Url.Action("EmailExists")",
-
-                        data: { Email: E.value },
-
-                        dataType: "json",
-                        success: function (data) {
-                            if (data.exists) {
-
-                                E.classList.remove('is-valid');
-
-                                E.classList.add('is-invalid');
-
-                                EM.innerHTML = "الايميل مسجل مسبقا في النظام";
-
-                                return true;
-
-                            }
-                            else {
-
-                                E.classList.add('is-valid');
-
-                                E.classList.remove('is-invalid');
-
-                                EM.innerHTML = "الرجاء إدخال البريد الإلكتروني";
+               
+                P.classList.remove('is-valid');
+                P.classList.add('is-invalid');
+                PM.innerHTML = "يجب أن يكون رقم الجوال مكون من عشرة أرقام";
+                        bo3 = true;
+            }
 
 
-                            }
+
+             else if ((P.value.charAt(0) != 0)) {
+                P.classList.remove('is-valid');
+                P.classList.add('is-invalid');
+
+                PM.innerHTML = "05******** يجب أن يبدأ رقم الجوال بـ ";
+                bo3 = true;
+
+            }
+
+            else if ((P.value.charAt(1) != 5)) {
+
+                P.classList.remove('is-valid');
+                P.classList.add('is-invalid');
+
+                PM.innerHTML = " 05******** يجب أن يبدأ رقم الجوال بـ ";
+                bo3 = true;
+            }
+
+
+            else{
+
+             
+                P.classList.add('is-valid');
+
+                P.classList.remove('is-invalid');
+
+                PM.innerHTML = "الرجاء إدخال رقم الجوال";
+                bo3 = false;
+            }
+    
+             
+
+
+            return bo3;
+
+        }
+
+
+        function CustomValidation3() {
+
+            var password = document.getElementById("UserPasswordID");
+            var confirmPassword = document.getElementById("ConfirmUserPasswordID");
+            var CMassage = document.getElementById("ConfirmPasswordMassage");
+
+            if (password.value !== confirmPassword.value) {
+
+                confirmPassword.classList.remove('is-valid');
+                confirmPassword.classList.add('is-invalid');
+
+                CMassage.innerHTML = "يجب أن تكون كلمة المرور متطابقة";
+                return true;
+            }
+
+
+
+
+
+            else {
+
+                confirmPassword.classList.add('is-valid');
+
+                confirmPassword.classList.remove('is-invalid');
+
+                CMassage.innerHTML = "الرجاء تأكيد كلمة المرور";
+
+
+            }
+
+            return false;
+
+        }
+
+        let bo2 = false;
+
+        function CustomValidation4() {
+
+            var P = document.getElementById("PhoneID")
+
+            var PM = document.getElementById("PhoneIDMassage");
+
+            $(document).ready(function () {
+
+                $.ajax({
+                    type: "GET",
+                    url: "@Url.Action("PhoneExists")",
+
+                    data: { Phone: P.value },
+
+                    dataType: "json",
+                    success: function (data) {
+                        if (data.exists) {
+
+                            P.classList.remove('is-valid');
+
+                            P.classList.add('is-invalid');
+
+                            PM.innerHTML = "رقم الهاتف مسجل مسبقا في النظام";
+
+                            bo2 = true;
+
                         }
-                    });
 
-                });
+                        if (!data.exists) {
 
-
-                return false;
-            }
-
-
-
-
-            function CustomValidation2() {
-
-                var P = document.getElementById("PhoneID");
-                var PM = document.getElementById("PhoneIDMassage");
-
-
-
-                if (P.value.length != 10) {
-
-                    P.classList.remove('is-valid');
-                    P.classList.add('is-invalid');
-
-                    PM.innerHTML = "يجب أن يكون رقم الجوال مكون من عشرة أرقام";
-                    return true;
-                }
-
-
-
-                if ((P.value.charAt(0) != 0)) {
-                    P.classList.remove('is-valid');
-                    P.classList.add('is-invalid');
-
-                    PM.innerHTML = "05******** يجب أن يبدأ رقم الجوال بـ ";
-                    return true;
-
-                }
-
-                if ((P.value.charAt(1) != 5)) {
-                    P.classList.remove('is-valid');
-                    P.classList.add('is-invalid');
-
-                    PM.innerHTML = " 05******** يجب أن يبدأ رقم الجوال بـ ";
-                    return true;
-
-                }
-
-                else {
-
-                    P.classList.add('is-valid');
-
-                    P.classList.remove('is-invalid');
-
-                    PM.innerHTML = "الرجاء إدخال رقم الجوال";
-
-
-                }
-
-                return false;
-
-            }
-
-
-            function CustomValidation3() {
-
-                var password = document.getElementById("UserPasswordID");
-                var confirmPassword = document.getElementById("ConfirmUserPasswordID");
-                var CMassage = document.getElementById("ConfirmPasswordMassage");
-
-                if (password.value !== confirmPassword.value) {
-
-                    confirmPassword.classList.remove('is-valid');
-                    confirmPassword.classList.add('is-invalid');
-
-                    CMassage.innerHTML = "يجب أن تكون كلمة المرور متطابقة";
-                    return true;
-                }
-
-
-
-
-
-                else {
-
-                    confirmPassword.classList.add('is-valid');
-
-                    confirmPassword.classList.remove('is-invalid');
-
-                    CMassage.innerHTML = "الرجاء تأكيد كلمة المرور";
-
-
-                }
-
-                return false;
-
-            }
-
-
-            function CustomValidation4() {
-
-                var P = document.getElementById("PhoneID")
-
-                var PM = document.getElementById("PhoneIDMassage");
-
-                $(document).ready(function () {
-
-                    $.ajax({
-                        type: "GET",
-                        url: "@Url.Action("PhoneExists")",
-
-                        data: { Phone: P.value },
-
-                        dataType: "json",
-                        success: function (data) {
-                            if (data.exists) {
-
-                                P.classList.remove('is-valid');
-
-                                P.classList.add('is-invalid');
-
-                                PM.innerHTML = "رقم الهاتف مسجل مسبقا في النظام";
-
-                                return true;
-
-                            }
-                            else {
+                            
 
                                 P.classList.add('is-valid');
 
                                 P.classList.remove('is-invalid');
 
                                 PM.innerHTML = "الرجاء إدخال رقم الجوال";
+                               
+                          
 
+                            bo2 = false;
 
-                            }
                         }
-                    });
-
+                    }
                 });
 
-
-                return false;
-            }
+            });
 
 
-
-
-
-
-                    //-------------انتهاء كود البوتستراب للتحقق------------------------
+            return bo2;
+        }
 
 
 
-        </script>
 
-    }
+
+
+                                    //-------------انتهاء كود البوتستراب للتحقق------------------------
+
+
+
+    </script>
+
+
     }

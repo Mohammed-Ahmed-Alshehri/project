@@ -113,7 +113,7 @@
                         </div>
 
                         <div class="mb-4 pb-2">
-                            
+
                             <label class="form-label" for="EmployeeSSN" style="font-size:20px;">الرقم الجامعي </label>
                             <input type="number" asp-for="UniversityTraineeStudent.UniversityStudentNumber" id="EmployeeSSN" class="form-control form-control-lg" required />
                             <div class="invalid-feedback" style="text-align: right;"> الرجاء إدخال الرقم الجامعي </div>
@@ -121,7 +121,7 @@
 
 
                         <div class="mb-4 pb-2">
-                            
+
                             <label class="form-label" for="STUGPA" style="font-size:20px;">المعدل التراكمي  </label>
                             <input type="number" min="1.5" max="5.0" step="any" asp-for="UniversityTraineeStudent.GPA" id="STUGPA" class="form-control form-control-lg" required />
                             <div class="invalid-feedback" style="text-align: right;"> الرجاء إدخال المعدل التراكمي </div>
@@ -130,11 +130,11 @@
 
                         <div class="mb-4 pb-2">
 
-                           
 
-@*                            <label class="form-label" for="STUbtn" style="font-size:20px;"> </label>
-*@
-                            <br /> 
+
+                            @*                            <label class="form-label" for="STUbtn" style="font-size:20px;"> </label>
+                            *@
+                            <br />
                             <div class="btn-group" style="width:60%" role="group" id="STUbtn" aria-label="Basic radio toggle button group">
                                 <div class="btn-group" style="width:60%" role="group" id="STUbtn" aria-label="Basic radio toggle button group">
 
@@ -159,47 +159,47 @@
                                 <div class="invalid-feedback" style="text-align: right;"> الرجاء تحديد النوع </div>
 
                             </div>
-                            </div>
-                            
-                            
-
-                            <div class="mb-4 pb-2">
-                                <i class="fa-solid fa-phone"></i>
-                                <label class="form-label" for="UserPhone" style="font-size:20px;">رقم جوال </label>
-                                <input type="tel" asp-for="userAcount.Phone" id="PhoneID" maxlength="10" class="form-control form-control-lg" required />
-                                <div class="invalid-feedback" id="PhoneIDMassage" style="text-align: right;"> الرجاء إدخال رقم الجوال </div>
-                            </div>
+                        </div>
 
 
-                            <div class="mb-4 pb-2">
-                                <i class="fa-solid fa-at"></i>
-                                <label class="form-label" for="UserEmail" style="font-size:20px;">البريد الإلكتروني </label>
-                                <input type="email" asp-for="userAcount.UserEmail" id="UserEmailID" class="form-control form-control-lg" required />
-                                <div class="invalid-feedback" id="UserEmailMassage" style="text-align: right;"> الرجاء إدخال البريد الإلكتروني </div>
-                            </div>
+
+                        <div class="mb-4 pb-2">
+                            <i class="fa-solid fa-phone"></i>
+                            <label class="form-label" for="UserPhone" style="font-size:20px;">رقم جوال </label>
+                            <input type="tel" asp-for="userAcount.Phone" id="PhoneID" maxlength="10" class="form-control form-control-lg" required />
+                            <div class="invalid-feedback" id="PhoneIDMassage" style="text-align: right;"> الرجاء إدخال رقم الجوال </div>
+                        </div>
 
 
-                            <div class="mb-4 pb-2">
-                                <i class="fa-solid fa-lock"></i>
-                                <label class="form-label" for="UserPassword" style="font-size:20px;">كلمة المرور</label>
-                                <input type="password" id="UserPasswordID" class="form-control form-control-lg" required />
-                                <div class="invalid-feedback" id="PasswordMassage" style="text-align: right;"> الرجاء إدخال كلمة المرور </div>
+                        <div class="mb-4 pb-2">
+                            <i class="fa-solid fa-at"></i>
+                            <label class="form-label" for="UserEmail" style="font-size:20px;">البريد الإلكتروني </label>
+                            <input type="email" asp-for="userAcount.UserEmail" id="UserEmailID" class="form-control form-control-lg" required />
+                            <div class="invalid-feedback" id="UserEmailMassage" style="text-align: right;"> الرجاء إدخال البريد الإلكتروني </div>
+                        </div>
 
-                            </div>
 
-                            <div class="mb-4 pb-2">
-                                <i class="fa-solid fa-lock"></i>
-                                <label class="form-label" for="ConfirmUserPassword" style="font-size:20px;">تأكيد كلمة المرور</label>
-                                <input asp-for="userAcount.UserPassword" type="password" id="ConfirmUserPasswordID" class="form-control form-control-lg" required />
-                                <div class="invalid-feedback" id="ConfirmPasswordMassage" style="text-align: right;"> الرجاء تأكيد كلمة المرور </div>
-                            </div>
+                        <div class="mb-4 pb-2">
+                            <i class="fa-solid fa-lock"></i>
+                            <label class="form-label" for="UserPassword" style="font-size:20px;">كلمة المرور</label>
+                            <input type="password" id="UserPasswordID" class="form-control form-control-lg" required />
+                            <div class="invalid-feedback" id="PasswordMassage" style="text-align: right;"> الرجاء إدخال كلمة المرور </div>
 
-                            <br />
-                            <div class="row">
+                        </div>
+
+                        <div class="mb-4 pb-2">
+                            <i class="fa-solid fa-lock"></i>
+                            <label class="form-label" for="ConfirmUserPassword" style="font-size:20px;">تأكيد كلمة المرور</label>
+                            <input asp-for="userAcount.UserPassword" type="password" id="ConfirmUserPasswordID" class="form-control form-control-lg" required />
+                            <div class="invalid-feedback" id="ConfirmPasswordMassage" style="text-align: right;"> الرجاء تأكيد كلمة المرور </div>
+                        </div>
+
+                        <br />
+                        <div class="row">
 
                             <button type="submit" class="btn" style="background-color:#e6e291; width:3cm; margin:auto; font-size:18px;">إضافة</button>
 
-                            </div>
+                        </div>
 
 
                     </form>
@@ -275,16 +275,17 @@
                 })
         })()
 
-        function CustomValidation() {
+        let bo = false;
 
+        function CustomValidation() {
 
             var E = document.getElementById("UserEmailID");
 
             var EM = document.getElementById("UserEmailMassage");
 
             $(document).ready(function () {
-
                 $.ajax({
+
                     type: "GET",
                     url: "@Url.Action("EmailExists")",
 
@@ -292,17 +293,22 @@
 
                     dataType: "json",
                     success: function (data) {
+
                         if (data.exists) {
+
                             E.classList.remove('is-valid');
 
                             E.classList.add('is-invalid');
 
                             EM.innerHTML = "الايميل مسجل مسبقا في النظام";
 
-                            return true;
+                            bo = true;
+
+
 
                         }
-                        else {
+
+                        if (!data.exists) {
 
                             E.classList.add('is-valid');
 
@@ -310,17 +316,24 @@
 
                             EM.innerHTML = "الرجاء إدخال البريد الإلكتروني";
 
+                            bo = false;
 
                         }
                     }
-                });
 
+
+
+                });
             });
 
+            //if(bo){
 
-            return false;
+            //    alert("ok");
+            //}
+
+            return bo;
+
         }
-
 
         function CustomValidation2() {
 
@@ -407,9 +420,12 @@
 
         }
 
+        let bo2 = false;
+
         function CustomValidation4() {
 
-            var P = document.getElementById("PhoneID");
+            var P = document.getElementById("PhoneID")
+
             var PM = document.getElementById("PhoneIDMassage");
 
             $(document).ready(function () {
@@ -430,17 +446,18 @@
 
                             PM.innerHTML = "رقم الهاتف مسجل مسبقا في النظام";
 
-                            return true;
+                            bo2 = true;
 
                         }
-                        else {
+
+                        if (!data.exists) {
 
                             P.classList.add('is-valid');
 
                             P.classList.remove('is-invalid');
 
                             PM.innerHTML = "الرجاء إدخال رقم الجوال";
-
+                            bo2 = false;
 
                         }
                     }
@@ -449,15 +466,14 @@
             });
 
 
-            return false;
+            return bo2;
         }
-
 
         function SetSTUGender(G) {
 
 
             document.getElementById("STUGender").value = G;
-           
+
         }
 
 

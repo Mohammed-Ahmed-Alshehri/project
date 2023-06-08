@@ -1004,13 +1004,14 @@ namespace TadarbProject.Controllers
             {
 
                 Assiment = _DbContext.AssessmentTypes.FromSqlRaw($"SELECT * FROM AssessmentTypes WHERE AssessmentTypeId NOT IN " +
-                    $"(SELECT AssessmentType_AssessmentTypeId FROM DepartmentsAssessmentTypeDetail WHERE DepartmentAssessmentTypeMaster_MasterId ={MasterAssigmnt.DepartmentAssessmentTypeMasterId})").AsNoTracking().ToList();
+                    $"(SELECT AssessmentType_AssessmentTypeId FROM DepartmentsAssessmentTypeDetail WHERE DepartmentAssessmentTypeMaster_MasterId ={MasterAssigmnt.DepartmentAssessmentTypeMasterId})")
+                    .AsNoTracking().OrderBy(i => i.AssessmentTypeName).ToList();
 
                 return Json(new { Assiment });
 
             }
 
-            Assiment = _DbContext.AssessmentTypes.AsNoTracking().ToList();
+            Assiment = _DbContext.AssessmentTypes.AsNoTracking().OrderBy(i => i.AssessmentTypeName).ToList();
 
 
 
