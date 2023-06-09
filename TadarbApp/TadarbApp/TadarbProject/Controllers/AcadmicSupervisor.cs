@@ -183,7 +183,7 @@ namespace TadarbProject.Controllers
                 return NotFound();
             }
 
-            ViewBag.Name = Name;
+
 
             int RUserId = UserId;
 
@@ -194,9 +194,6 @@ namespace TadarbProject.Controllers
             var Department = department;
 
 
-            ViewBag.OrganizationName = OrganizationOfR.OrganizationName + " - " + Department.DepartmentName;
-            ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
-            ViewBag.Username = user.FullName;
 
 
             IEnumerable<StudentRequestOpportunity> students = Enumerable.Empty<StudentRequestOpportunity>();
@@ -204,20 +201,19 @@ namespace TadarbProject.Controllers
             // all eavlue  
             if (filter == 0)
             {
-                students = _DbContext.StudentRequestsOnOpportunities.FromSqlRaw("Select * from StudentRequestsOnOpportunities Where StudentRequestOpportunityId IN " +
-                    "(Select StudentRequest_StudentRequestId from SemestersStudentAndEvaluationDetails" +
-                    $" Where SemesterStudentAndEvaluationDetailId IN (SELECT SemesterStudentAndEvaluationDetail_DetailId FROM StudentSemesterEvaluationMarks )" +
-                    $" AND AcademicSupervisor_EmployeeId = {Employee.EmployeeId} AND SemesterMaster_SemesterMasterId = {Mid})")
+                students = _DbContext.StudentRequestsOnOpportunities.FromSqlRaw($"SELECT * FROM StudentRequestsOnOpportunities WHERE  StudentRequestOpportunityId IN " +
+                    $"(SELECT StudentRequest_StudentRequestId FROM SemestersStudentAndEvaluationDetails WHERE AcademicSupervisor_EmployeeId = " +
+                    $"(SELECT EmployeeId FROM  Employees WHERE UserAccount_UserId = {RUserId} AND SemesterMaster_SemesterMasterId = {Mid} AND GeneralTrainingStatus ='Company Approved'))")
                 .Include(item => item.student.user).Include(item => item.trainingOpportunity.Branch.organization).AsNoTracking().ToList();
 
-               
+
 
             }
 
             // eavlue complete 
             if (filter == 1)
             {
-             
+
                 students = _DbContext.StudentRequestsOnOpportunities.FromSqlRaw("Select * from StudentRequestsOnOpportunities Where StudentRequestOpportunityId IN " +
                       "(Select StudentRequest_StudentRequestId from SemestersStudentAndEvaluationDetails" +
                       $" Where SemesterStudentAndEvaluationDetailId IN (SELECT SemesterStudentAndEvaluationDetail_DetailId FROM StudentSemesterEvaluationMarks WHERE StudentMark IS NOT null)" +
@@ -225,16 +221,16 @@ namespace TadarbProject.Controllers
                   .Include(item => item.student.user).Include(item => item.trainingOpportunity.Branch.organization).AsNoTracking().ToList();
 
 
-             
+
             }
             // eavlue not complete 
             if (filter == 2)
             {
 
-                students = _DbContext.StudentRequestsOnOpportunities.FromSqlRaw("Select * from StudentRequestsOnOpportunities Where StudentRequestOpportunityId IN " +
-                  "(Select StudentRequest_StudentRequestId from SemestersStudentAndEvaluationDetails" +
-                  $" Where SemesterStudentAndEvaluationDetailId IN (SELECT SemesterStudentAndEvaluationDetail_DetailId FROM StudentSemesterEvaluationMarks WHERE StudentMark IS null)" +
-                  $" AND AcademicSupervisor_EmployeeId = {Employee.EmployeeId} AND SemesterMaster_SemesterMasterId = {Mid})")
+                students = _DbContext.StudentRequestsOnOpportunities.FromSqlRaw($" Select * from StudentRequestsOnOpportunities Where StudentRequestOpportunityId IN " +
+                    $"(Select StudentRequest_StudentRequestId from SemestersStudentAndEvaluationDetails Where SemesterStudentAndEvaluationDetailId IN " +
+                    $"(SELECT SemesterStudentAndEvaluationDetail_DetailId FROM StudentSemesterEvaluationMarks WHERE StudentMark IS NULL) AND SemesterStudentAndEvaluationDetailId NOT IN " +
+                    $"(SELECT SemesterStudentAndEvaluationDetail_DetailId FROM StudentSemesterEvaluationMarks WHERE StudentMark IS NOT null) AND AcademicSupervisor_EmployeeId = {Employee.EmployeeId} AND SemesterMaster_SemesterMasterId = {Mid})")
               .Include(item => item.student.user).Include(item => item.trainingOpportunity.Branch.organization).AsNoTracking().ToList();
 
                 //students = _DbContext.StudentRequestsOnOpportunities.FromSqlRaw("SELECT * FROM StudentRequestsOnOpportunities WHERE  StudentRequestOpportunityId IN " +
@@ -398,7 +394,7 @@ namespace TadarbProject.Controllers
 
 
         [HttpGet]
-        public IActionResult EvaluateStudentAssignment(int? SSEMId, int? StuRqId)
+        public IActionResult EvaluateStudentAssignment(int? SSEM, int? SSEMId, int? StuRqId)
         {
             if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(UserId.ToString()))
             {
@@ -429,7 +425,7 @@ namespace TadarbProject.Controllers
 
 
 
-            var Assignment = _DbContext.StudentSemesterEvaluationMarks.Where(item => item.StudentSemesterEvaluationMarkId == SSEMId)
+            var Assignment = _DbContext.StudentSemesterEvaluationMarks.Where(item => item.StudentSemesterEvaluationMarkId == SSEM)
                 .Include(item => item.assessmentTypeDetail.assessmentType).AsNoTracking().FirstOrDefault();
 
 
@@ -442,7 +438,7 @@ namespace TadarbProject.Controllers
 
 
         [HttpPost]
-        public IActionResult EvaluateStudentAssignment(StudentSemesterEvaluationMark Assignment, int? StuRqId ,int? SSEMId)
+        public IActionResult EvaluateStudentAssignment(StudentSemesterEvaluationMark Assignment, int? StuRqId, int? SSEMId)
         {
             if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(UserId.ToString()))
             {

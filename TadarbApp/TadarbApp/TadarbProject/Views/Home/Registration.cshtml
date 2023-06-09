@@ -6,21 +6,20 @@
 
 <head>
     <link rel="stylesheet" href="~/css/RegistrationStyle.css" asp-append-version="true" />
-    <head>
 
 
 
 
-        <!-- boosteatch CSS -->
 
-        <link rel="stylesheet" href="~/css/boostwatch.css" asp-append-version="true" />
+    <!-- boosteatch CSS -->
+
+    <link rel="stylesheet" href="~/css/boostwatch.css" asp-append-version="true" />
 
 
-        <!--icones from awesfont-->
+    <!--icones from awesfont-->
 
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    </head>
 
 </head>
 
@@ -54,7 +53,7 @@
                 <div class="card card-registration card-registration-2" style="border-radius: 15px;">
                     <div class="card-body p-0">
 
-                        <form method="post" asp-action="Registration1" enctype="multipart/form-data" class="needs-validation" novalidate>
+                        <form method="post" asp-action="Registration" enctype="multipart/form-data" class="needs-validation" novalidate>
                             <div class="row g-0">
 
 
@@ -364,9 +363,7 @@
 
                     type: "GET",
                     url: "@Url.Action("EmailExists")",
-
                     data: { Email: E.value },
-
                     dataType: "json",
                     success: function (data) {
 
@@ -379,7 +376,7 @@
                             EM.innerHTML = "الايميل مسجل مسبقا في النظام";
 
                             bo = true;
-                 
+
 
 
                         }
@@ -407,7 +404,7 @@
             //    alert("ok");
             //}
             console.log(bo);
-           return bo;
+            return bo;
 
         }
 

@@ -68,19 +68,19 @@
             <div class="card " style="border-radius: 25px; margin-top:2cm; margin-bottom:3cm; padding:5px 5px 5px 5px ; border-color:black;">
                 <div class="card-header" style="text-align: center;">
                     <h3>قائمة الطلاب المسجلين</h3>
-                    <a class="table-search ">
-                        <a class="btn  float-end" style="background-color:#1c4c64; color:white;font-size:18px" onclick="filter(@ViewBag.SemesterMasterId , 0)">  الكل <i class="fa-solid fa-people-group"></i></a>
-                    </a>
 
 
+                    <button class="btn table-search float-end" style="background-color:#1c4c64; color:white;font-size:18px" onclick="filter(@ViewBag.SemesterMasterId , 0)">  الكل <i class="fa-solid fa-people-group"></i></button>
+                   
+
                     &nbsp;
-                       <a   class="table-search ">
-                        <a class="btn " style="background-color:#1e6b01; color:white;font-size:18px" onclick="filter(@ViewBag.SemesterMasterId , 1)">  طلاب بدأ تقييمهم<i class="fa-solid fa-user-check"></i></a>
-                    </a> 
+
+                    <button class="btn table-search" style="background-color:#1e6b01; color:white;font-size:18px" onclick="filter(@ViewBag.SemesterMasterId , 1)">  طلاب بدأ تقييمهم<i class="fa-solid fa-user-check"></i></button>
+                  
                     &nbsp;
-                    <a class="table-search ">
-                        <button class="btn " style="background-color:#760000; color:white;font-size:18px" onclick="filter(@ViewBag.SemesterMasterId , 2)">  طلاب لم يبدأ تقييمهم  <i class="fa-solid fa-user-clock"></i></button>
-                    </a>
+                  
+                        <button class="btn table-search " style="background-color:#760000; color:white;font-size:18px" onclick="filter(@ViewBag.SemesterMasterId , 2)">  طلاب لم يبدأ تقييمهم  <i class="fa-solid fa-user-clock"></i></button>
+                    
                     &nbsp;
 
                     <a class="btn float-start" asp-action="AssignSemester" style="background-color:gray"><i class="fa-solid fa-circle-left fa-lg" style="color: #ffffff;"></i></a>
