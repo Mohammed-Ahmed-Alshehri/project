@@ -152,21 +152,101 @@ namespace TadarbProject.Controllers
             ViewBag.Username = user.FullName;
 
 
-            IEnumerable<StudentRequestOpportunity> students = Enumerable.Empty<StudentRequestOpportunity>();
+            //IEnumerable<StudentRequestOpportunity> students = Enumerable.Empty<StudentRequestOpportunity>();
 
 
-            students = _DbContext.StudentRequestsOnOpportunities.FromSqlRaw("SELECT * FROM StudentRequestsOnOpportunities WHERE  StudentRequestOpportunityId IN " +
-                "(SELECT StudentRequest_StudentRequestId FROM SemestersStudentAndEvaluationDetails WHERE AcademicSupervisor_EmployeeId = " +
-                $"(SELECT EmployeeId FROM  Employees WHERE UserAccount_UserId ={RUserId}) AND SemesterMaster_SemesterMasterId ={Mid} AND GeneralTrainingStatus ='Company Approved')")
-                .Include(item => item.student.user).Include(item => item.trainingOpportunity.Branch.organization).AsNoTracking().ToList();
+            //students = _DbContext.StudentRequestsOnOpportunities.FromSqlRaw("SELECT * FROM StudentRequestsOnOpportunities WHERE  StudentRequestOpportunityId IN " +
+            //    "(SELECT StudentRequest_StudentRequestId FROM SemestersStudentAndEvaluationDetails WHERE AcademicSupervisor_EmployeeId = " +
+            //    $"(SELECT EmployeeId FROM  Employees WHERE UserAccount_UserId ={RUserId}) AND SemesterMaster_SemesterMasterId ={Mid} AND GeneralTrainingStatus ='Company Approved')")
+            //    .Include(item => item.student.user).Include(item => item.trainingOpportunity.Branch.organization).AsNoTracking().ToList();
 
 
             ViewBag.SemesterMasterId = Mid;
 
-            return View(students);
+            return View();
 
         }
 
+
+        [HttpGet]
+        public IActionResult FilterAssignedStudentsAjax(int? Mid, int? filter)
+        {
+            if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(UserId.ToString()))
+            {
+
+                return RedirectToAction("Login", "Home");
+
+            }
+
+            if (Mid == 0 || Mid == null)
+            {
+                return NotFound();
+            }
+
+            ViewBag.Name = Name;
+
+            int RUserId = UserId;
+
+            var user = User;
+
+            var Employee = employee;
+
+            var Department = department;
+
+
+            ViewBag.OrganizationName = OrganizationOfR.OrganizationName + " - " + Department.DepartmentName;
+            ViewBag.OrganizationImage = OrganizationOfR.LogoPath;
+            ViewBag.Username = user.FullName;
+
+
+            IEnumerable<StudentRequestOpportunity> students = Enumerable.Empty<StudentRequestOpportunity>();
+
+            // all eavlue  
+            if (filter == 0)
+            {
+                students = _DbContext.StudentRequestsOnOpportunities.FromSqlRaw("Select * from StudentRequestsOnOpportunities Where StudentRequestOpportunityId IN " +
+                    "(Select StudentRequest_StudentRequestId from SemestersStudentAndEvaluationDetails" +
+                    $" Where SemesterStudentAndEvaluationDetailId IN (SELECT SemesterStudentAndEvaluationDetail_DetailId FROM StudentSemesterEvaluationMarks )" +
+                    $" AND AcademicSupervisor_EmployeeId = {Employee.EmployeeId} AND SemesterMaster_SemesterMasterId = {Mid})")
+                .Include(item => item.student.user).Include(item => item.trainingOpportunity.Branch.organization).AsNoTracking().ToList();
+
+               
+
+            }
+
+            // eavlue complete 
+            if (filter == 1)
+            {
+             
+                students = _DbContext.StudentRequestsOnOpportunities.FromSqlRaw("Select * from StudentRequestsOnOpportunities Where StudentRequestOpportunityId IN " +
+                      "(Select StudentRequest_StudentRequestId from SemestersStudentAndEvaluationDetails" +
+                      $" Where SemesterStudentAndEvaluationDetailId IN (SELECT SemesterStudentAndEvaluationDetail_DetailId FROM StudentSemesterEvaluationMarks WHERE StudentMark IS NOT null)" +
+                      $" AND AcademicSupervisor_EmployeeId = {Employee.EmployeeId} AND SemesterMaster_SemesterMasterId = {Mid})")
+                  .Include(item => item.student.user).Include(item => item.trainingOpportunity.Branch.organization).AsNoTracking().ToList();
+
+
+             
+            }
+            // eavlue not complete 
+            if (filter == 2)
+            {
+
+                students = _DbContext.StudentRequestsOnOpportunities.FromSqlRaw("Select * from StudentRequestsOnOpportunities Where StudentRequestOpportunityId IN " +
+                  "(Select StudentRequest_StudentRequestId from SemestersStudentAndEvaluationDetails" +
+                  $" Where SemesterStudentAndEvaluationDetailId IN (SELECT SemesterStudentAndEvaluationDetail_DetailId FROM StudentSemesterEvaluationMarks WHERE StudentMark IS null)" +
+                  $" AND AcademicSupervisor_EmployeeId = {Employee.EmployeeId} AND SemesterMaster_SemesterMasterId = {Mid})")
+              .Include(item => item.student.user).Include(item => item.trainingOpportunity.Branch.organization).AsNoTracking().ToList();
+
+                //students = _DbContext.StudentRequestsOnOpportunities.FromSqlRaw("SELECT * FROM StudentRequestsOnOpportunities WHERE  StudentRequestOpportunityId IN " +
+                //"(SELECT StudentRequest_StudentRequestId FROM SemestersStudentAndEvaluationDetails WHERE AcademicSupervisor_EmployeeId = " +
+                //$"(SELECT EmployeeId FROM  Employees WHERE UserAccount_UserId ={RUserId}) AND SemesterMaster_SemesterMasterId ={Mid} AND GeneralTrainingStatus ='Company Approved')")
+                //.Include(item => item.student.user).Include(item => item.trainingOpportunity.Branch.organization).AsNoTracking().ToList();
+
+            }
+            ViewBag.SemesterMasterId = Mid;
+
+            return Json(new { students });
+        }
 
         [HttpGet]
         public IActionResult AssignSemester()

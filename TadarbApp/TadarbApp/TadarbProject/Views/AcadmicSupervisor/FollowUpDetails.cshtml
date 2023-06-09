@@ -96,8 +96,20 @@
                             <tbody class="table-group-divider">
 
                                 <tr>
+                                    @{
 
-                                    <td>@Model.AcademicSupervisorEvaluationMark</td>
+                                        var a = "لم يتم تقييم الطالب من قبلك بعد";
+                                        if (@Model.AcademicSupervisorEvaluationMark != null)
+                                        {
+                                            a = Model.AcademicSupervisorEvaluationMark.ToString();
+                                        }
+
+                                    }
+                                    <td>
+                                        &ensp;
+                                        @a
+
+                                    </td>
                                     @{
 
                                         var Tmark = "لم يتم تقييم الطالب بعد";
@@ -246,6 +258,15 @@
 
 @section Scripts
     {
+    <script>
+        $(function () {
+            // Sidebar toggle behaviorr
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar, #content').toggleClass('active');
+            });
+        });
+
+    </script>
 
     <script>
 

@@ -54,7 +54,7 @@
                 <div class="card card-registration card-registration-2" style="border-radius: 15px;">
                     <div class="card-body p-0">
 
-                        <form method="post" asp-action="Registration" enctype="multipart/form-data" class="needs-validation" novalidate>
+                        <form method="post" asp-action="Registration1" enctype="multipart/form-data" class="needs-validation" novalidate>
                             <div class="row g-0">
 
 
@@ -379,7 +379,7 @@
                             EM.innerHTML = "الايميل مسجل مسبقا في النظام";
 
                             bo = true;
-
+                 
 
 
                         }
@@ -406,8 +406,8 @@
 
             //    alert("ok");
             //}
-
-            return bo;
+            console.log(bo);
+           return bo;
 
         }
 

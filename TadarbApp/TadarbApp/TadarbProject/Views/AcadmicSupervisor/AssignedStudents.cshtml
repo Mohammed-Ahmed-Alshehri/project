@@ -1,4 +1,4 @@
-﻿@model IEnumerable<StudentRequestOpportunity>
+﻿@*@model IEnumerable<StudentRequestOpportunity>*@
 
 @{
     ViewData["Title"] = "قائمة الطلاب ";
@@ -68,12 +68,22 @@
             <div class="card " style="border-radius: 25px; margin-top:2cm; margin-bottom:3cm; padding:5px 5px 5px 5px ; border-color:black;">
                 <div class="card-header" style="text-align: center;">
                     <h3>قائمة الطلاب المسجلين</h3>
-                    <a class="btn  float-start" asp-action="AssignSemester" style="background-color:gray"><i class="fa-solid fa-circle-left fa-lg" style="color: #ffffff;"></i></a>
+                    <a class="table-search ">
+                        <a class="btn  float-end" style="background-color:#1c4c64; color:white;font-size:18px" onclick="filter(@ViewBag.SemesterMasterId , 0)">  الكل <i class="fa-solid fa-people-group"></i></a>
+                    </a>
 
 
-                    <a asp-controller="DepartmentUniversity" asp-action="AddAcademicSupervisor" class="table-search float-end">
-@*                        <button class="btn " style="background-color:#1c4c64; color:white;font-size:18px" type="submit" asp>  اضافة مسؤول جديد <i class="fa fa-add"></i></button>
-*@                    </a>
+                    &nbsp;
+                       <a   class="table-search ">
+                        <a class="btn " style="background-color:#1e6b01; color:white;font-size:18px" onclick="filter(@ViewBag.SemesterMasterId , 1)">  طلاب بدأ تقييمهم<i class="fa-solid fa-user-check"></i></a>
+                    </a> 
+                    &nbsp;
+                    <a class="table-search ">
+                        <button class="btn " style="background-color:#760000; color:white;font-size:18px" onclick="filter(@ViewBag.SemesterMasterId , 2)">  طلاب لم يبدأ تقييمهم  <i class="fa-solid fa-user-clock"></i></button>
+                    </a>
+                    &nbsp;
+
+                    <a class="btn float-start" asp-action="AssignSemester" style="background-color:gray"><i class="fa-solid fa-circle-left fa-lg" style="color: #ffffff;"></i></a>
 
                 </div>
                 <div class="card-body">
@@ -95,14 +105,13 @@
 
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="Tbody">
 
 
 
 
-                                @foreach (var item in Model)
-                                {
-                                    <tr>
+                                
+                                   @* <tr>
                                         <td class="text-nowrap">
                                             <div class="font-weight-600">
                                                 <div class="font-weight-600 ">
@@ -132,9 +141,9 @@
                                             </a>
                                         </td>
 
-                                    </tr>
+                                    </tr>*@
 
-                                }
+                                
 
                             </tbody>
                         </table>
@@ -157,6 +166,87 @@
                 $('#sidebar, #content').toggleClass('active');
             });
         });
+
+        FillTable(@ViewBag.SemesterMasterId , 0);
+
+
+        function filter(semester , filt){
+
+            x = filt;
+            FillTable(@ViewBag.SemesterMasterId , x);
+        }
+       
+
+
+
+
+                function FillTable(mi , filt) {
+
+            var body = "";
+
+            $(document).ready(function () {
+
+                $.ajax({
+
+                    url: "@Url.Action("FilterAssignedStudentsAjax")",
+                    type: 'GET',
+                    dataType: "json",
+                    data: { Mid: mi, filter: filt },
+
+
+                    success: function (data) {
+
+                        //console.log(data.students);
+
+                        $.each(data.students, function (key, value) {
+
+                            console.log(value.studentRequestOpportunityId);
+                            console.log(value);
+                            //console.log(value.student.gpa);
+                            //console.log(value.student.universityStudentNumber);
+                            //console.log(value.student.user.phone);
+                            //console.log(value.trainingOpportunity.branch.organization.organizationName);
+                            //console.log(value.trainingOpportunity.branch.branchName);
+
+
+                            body += "<tr> <td class='text - nowrap'>  <div class='font - weight - 600'> <div class='font - weight - 600'> " + value.student.user.fullName + "</div></div></td>" +
+                                "<td class='text - center'>" + value.student.gpa + "</td>"
+                                + "<td class='text - nowrap'> " + value.student.universityStudentNumber + "</td>"
+                                + "<td class='text - nowrap'> " + value.student.user.phone + "</td>"
+                                + "<td class='text - nowrap'> " + value.trainingOpportunity.branch.organization.organizationName + ' - ' + value.trainingOpportunity.branch.branchName + "</td>"
+                             
+                                +"<td class=text-center font-weight-600  > "+
+                                '<a class="btn btn-primary" href="@Url.Action("AssignedStudentAssignments")?StuRqId=' +
+                                value.studentRequestOpportunityId + '&SSEMId=' + @ViewBag.SemesterMasterId
+                                + ' " ><i class="bi bi-file-earmark-check"></i></a>' + '</td>'
+                                + "<td class=text-center font-weight-600  > "+
+                                '<a class="btn" style="background-color:#e6e291;" href="@Url.Action("FollowUpDetails")?StuRqId=' +
+                                value.studentRequestOpportunityId + '&SSEMId=' + @ViewBag.SemesterMasterId
+                                + ' " ><i class="bi bi-check-all"></i></a>' + '</td></tr>';
+                            + "</tr>";
+
+
+                            
+
+                            //console.log(value);
+
+                        });
+
+
+
+                        $("#Tbody").html(body);
+
+
+
+                    }
+
+
+                });
+
+            });
+
+        }
+
 
     </script>
 
